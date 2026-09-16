@@ -1,0 +1,84 @@
+\section{Experimental design}
+\label{sec:experiments}
+
+The experiments are designed to test four questions: whether revision improves
+held-out human-preference agreement; whether the resulting scores select better
+artifacts from a fixed pool; whether evaluator feedback improves new artifacts;
+and which editable components account for any observed effect. The final
+datasets, sample sizes, model revision, and budgets must be fixed before the
+confirmatory runs. Appendix~\ref{app:manifest} records these outstanding choices.
+
+\paragraph{Domains and supervision.}
+We evaluate the revision method under distinct artifact-evaluation standards,
+using a domain-specific adapter and evaluator for each standard. Candidate
+applications include presentations, webpages, and other structured artifacts.
+Candidate domains and relevant public resources are listed in
+Appendix~\ref{app:domains}; inclusion is conditional on authorized artifacts and
+suitable human judgments. Screenshot reconstruction and
+specification-driven web generation are treated as distinct domains because
+their evaluation standards differ, despite sharing an output format.
+Each split is grouped by original input, with near-duplicate sources audited
+before any optimization. Overall preference is kept distinct from rubric scores
+and model-generated explanations.
+
+\paragraph{Baselines and controls.}
+The planned comparisons comprise the seed evaluator, a fixed multi-criterion
+evaluator, prompt-only adaptation, and full program revision. The prompt-adaptation
+comparison includes an established reflective optimizer such as GEPA, with a
+prespecified version and edit space. Program-search comparisons expose comparable
+component interfaces to isolate the effect of the revision procedure.
+All matched comparisons use the same base model, training supervision,
+candidate pools, and measurement protocol. Search and deployment costs are
+reported separately, including tool and synthesis calls. A larger inference
+budget is not attributed to revision quality.
+
+\paragraph{Preference agreement and selection.}
+The primary endpoint is strict-pair agreement on locked test inputs, reported
+with coverage, predicted-tie frequency, and source-grouped uncertainty intervals.
+Paired differences use the same test inputs and repeated-scoring protocol.
+For best-of-$N$ selection, every evaluator ranks the same prespecified candidate
+pool for each input. Human assessment of the selected outputs is the endpoint;
+existing pair-only labels do not establish best-of-$N$ quality.
+Neither the pool size nor evaluation cohort is changed in response to a result.
+
+\paragraph{Feedback-guided refinement.}
+For each unseen input, a fixed generator first produces one fresh initial
+artifact shared by all refinement arms. The seed and evolved evaluators then
+provide feedback under matched budgets to the same refinement generator.
+New blinded human comparisons assess the resulting artifacts; labels attached
+to the original training pairs cannot evaluate these newly generated outputs.
+Generator settings, refinement rounds, presentation order, and annotation
+procedures are fixed in advance.
+
+\paragraph{Ablations and reliability.}
+The principal ablations remove component families or alter synthesis while
+holding the remaining protocol fixed (Table~\ref{tab:ablations}).
+Repeated runs of a fixed evaluator estimate stochastic variability, while
+multiple independent search seeds assess search variability.
+Held-out generators, source distributions, or quality regimes provide
+prespecified OOD tests. These analyses distinguish a stronger proposal mechanism
+from more favorable selection noise or additional computation.
+
+\begin{table}[t]
+\caption{Planned component comparisons. These are study conditions, not measured
+findings. Each comparison requires matched supervision, base model, and budgets.}
+\label{tab:ablations}
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{3.0cm}YY@{}}
+\toprule
+Condition & Change relative to full revision & Question \\
+\midrule
+Prompt-only revision & Freeze tools, routing, and program structure &
+Does the editable program add value? \\
+Fixed evidence access & Freeze tools and their routing &
+Does evidence acquisition matter? \\
+Fixed synthesis & Preserve the seed aggregation rule &
+Does synthesis revision matter? \\
+Numerical synthesis & Replace semantic synthesis with declared numerical fusion &
+Are the aggregation assumptions consequential? \\
+Restart-only search & Start each proposal from the best program &
+Does hypothesis continuation help? \\
+\bottomrule
+\end{tabularx}
+\end{table}

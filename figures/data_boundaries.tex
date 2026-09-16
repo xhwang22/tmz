@@ -1,0 +1,38 @@
+\begin{tikzpicture}
+  \fill[eraBlue!60,rounded corners=4pt] (-1.6,-3.60) rectangle (5.0,1.30);
+  \fill[eraSand!65,rounded corners=4pt] (5.35,-3.60) rectangle (11.95,1.30);
+  \node[font=\small\bfseries,text=eraNavy] at (1.70,1.65)
+    {(a) Adaptive learning};
+  \node[font=\small\bfseries,text=eraNavy] at (8.65,1.65)
+    {(b) Frozen assessment};
+  \node[eraBox,fill=eraBlue,text width=2.65cm,minimum height=1.5cm]
+    (prop) at (0,0) {\textbf{Proposal Train}\\$\Dprop$: artifacts\\$H_0$ + traces};
+  \node[eraBox,fill=eraTeal,text width=2.65cm,minimum height=1.5cm]
+    (dev) at (3.45,0) {\textbf{Sealed Train}\\$\Ddev$: disjoint\\development cohort};
+  \node[eraBox,fill=eraSand,text width=2.65cm,minimum height=1.5cm]
+    (val) at (6.9,0) {\textbf{Terminal Val}\\$\Dval$: no feedback\\to further revision};
+  \node[eraBox,fill=eraGray,text width=2.65cm,minimum height=1.5cm]
+    (test) at (10.35,0) {\textbf{Test / OOD}\\Locked until final\\protocol freeze};
+  \node[eraBox,fill=eraBlue,text width=2.65cm,minimum height=1.25cm]
+    (propose) at (0,-2.0) {Revision proposals\\+ search allocation};
+  \node[eraBox,fill=eraTeal,text width=2.65cm,minimum height=1.25cm]
+    (measure) at (3.45,-2.0) {Repeated scoring\\+ candidate selection};
+  \node[eraBox,fill=eraSand,text width=2.65cm,minimum height=1.25cm]
+    (freeze) at (6.9,-2.0) {Frozen shortlist\\then Val assessment};
+  \node[eraBox,fill=eraGray,text width=2.65cm,minimum height=1.25cm]
+    (final) at (10.35,-2.0) {Assess the\\frozen method};
+  \draw[eraArrow] (prop) -- (propose);
+  \draw[eraArrow] (dev) -- (measure);
+  \draw[eraArrow] (val) -- (freeze);
+  \draw[eraArrow] (test) -- (final);
+  \draw[eraArrow] (propose) -- (measure);
+  \draw[eraArrow] (measure) -- (freeze);
+  \draw[eraArrow] (freeze) -- (final);
+  \draw[eraArrow] (measure.south) -- ++(0,-0.55) -|
+    node[pos=0.25,below,font=\small]{Aggregate feedback only} (propose.south);
+  \draw[draw=eraNavy,dashed,line width=0.8pt] (5.175,1.22) -- (5.175,-3.60);
+  \node[align=center,font=\footnotesize] at (8.65,-3.22)
+    {No return path to proposal or search allocation};
+  \node[align=center,font=\footnotesize,text width=13.5cm] at (5.175,-4.0)
+    {Original tasks are disjoint across cohorts. Evaluation labels stay outside the pointwise scorer.};
+\end{tikzpicture}

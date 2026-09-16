@@ -1,0 +1,388 @@
+{
+  "checked_on": "2026-09-16",
+  "policy": "Prefer verified published records; otherwise cite the verified arXiv version explicitly as a preprint. Bibliographic identity is not a full-text claim audit. Unrelated search matches and failed metadata requests were discarded.",
+  "references": [
+    {
+      "key": "agrawal2026gepa",
+      "arxiv_id": "2507.19457",
+      "title": "GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning",
+      "authors": "Lakshya A Agrawal and Shangyin Tan and Dilara Soylu and Noah Ziems and Rishi Khare and Krista Opsahl-Ong and Arnav Singhvi and Herumb Shandilya and Michael J Ryan and Meng Jiang and Christopher Potts and Koushik Sen and Alexandros G. Dimakis and Ion Stoica and Dan Klein and Matei Zaharia and Omar Khattab",
+      "year": "2026",
+      "venue": "International Conference on Learning Representations",
+      "status": "ICLR venue verified in arXiv publication comment",
+      "primary_sources": [
+        "https://arxiv.org/abs/2507.19457v2"
+      ]
+    },
+    {
+      "key": "fabbri2021summeval",
+      "arxiv_id": "2007.12626",
+      "title": "{S}umm{E}val: Re-evaluating Summarization Evaluation",
+      "authors": "Fabbri, Alexander R. and Kry{\\'s}ci{\\'n}ski, Wojciech and McCann, Bryan and Xiong, Caiming and Socher, Richard and Radev, Dragomir",
+      "year": "2021",
+      "venue": "Transactions of the Association for Computational Linguistics",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2007.12626v4",
+        "https://aclanthology.org/2021.tacl-1.24.bib"
+      ]
+    },
+    {
+      "key": "ghosh2023geneval",
+      "arxiv_id": "2310.11513",
+      "title": "GenEval: An object-focused framework for evaluating text-to-image alignment",
+      "authors": "Ghosh, Dhruba and Hajishirzi, Hannaneh and Schmidt, Ludwig",
+      "year": "2023",
+      "venue": "Advances in Neural Information Processing Systems",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2310.11513v1",
+        "https://papers.nips.cc/paper_files/paper/2023/hash/a3bf71c7c63f0c3bcb7ff67c67b1e7b1-Abstract-Datasets_and_Benchmarks.html"
+      ]
+    },
+    {
+      "key": "hu2025adas",
+      "arxiv_id": "2408.08435",
+      "title": "Automated Design of Agentic Systems",
+      "authors": "Shengran Hu and Cong Lu and Jeff Clune",
+      "year": "2025",
+      "venue": "International Conference on Learning Representations",
+      "status": "ICLR 2025 venue verified on author project page; authors and title from arXiv",
+      "primary_sources": [
+        "https://arxiv.org/abs/2408.08435v2",
+        "https://shengranhu.com/ADAS/"
+      ]
+    },
+    {
+      "key": "khattab2024dspy",
+      "arxiv_id": "2310.03714",
+      "title": "DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines",
+      "authors": "Omar Khattab and Arnav Singhvi and Paridhi Maheshwari and Zhiyuan Zhang and Keshav Santhanam and Sri Vardhamanan and Saiful Haq and Ashutosh Sharma and Thomas T. Joshi and Hanna Moazam and Heather Miller and Matei Zaharia and Christopher Potts",
+      "year": "2024",
+      "venue": "International Conference on Learning Representations",
+      "status": "ICLR 2024 venue and author list verified in official project citation",
+      "primary_sources": [
+        "https://arxiv.org/abs/2310.03714v1",
+        "https://github.com/stanfordnlp/dspy"
+      ]
+    },
+    {
+      "key": "kim2024prometheus",
+      "arxiv_id": "2310.08491",
+      "title": "Prometheus: Inducing Fine-grained Evaluation Capability in Language Models",
+      "authors": "Seungone Kim and Jamin Shin and Yejin Cho and Joel Jang and Shayne Longpre and Hwaran Lee and Sangdoo Yun and Seongjin Shin and Sungdong Kim and James Thorne and Minjoon Seo",
+      "year": "2024",
+      "venue": "International Conference on Learning Representations",
+      "status": "ICLR venue verified in arXiv publication comment",
+      "primary_sources": [
+        "https://arxiv.org/abs/2310.08491v2"
+      ]
+    },
+    {
+      "key": "kim2024prometheus2",
+      "arxiv_id": "2405.01535",
+      "title": "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models",
+      "authors": "Kim, Seungone and Suk, Juyoung and Longpre, Shayne and Lin, Bill Yuchen and Shin, Jamin and Welleck, Sean and Neubig, Graham and Lee, Moontae and Lee, Kyungjae and Seo, Minjoon",
+      "year": "2024",
+      "venue": "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2405.01535v2",
+        "https://aclanthology.org/2024.emnlp-main.248.bib"
+      ]
+    },
+    {
+      "key": "kirstain2023pickapic",
+      "arxiv_id": "2305.01569",
+      "title": "Pick-a-Pic: An Open Dataset of User Preferences for Text-to-Image Generation",
+      "authors": "Kirstain, Yuval and Polyak, Adam and Singer, Uriel and Matiana, Shahbuland and Penna, Joe and Levy, Omer",
+      "year": "2023",
+      "venue": "Advances in Neural Information Processing Systems",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2305.01569v2",
+        "https://papers.nips.cc/paper_files/paper/2023/hash/73aacd8b3b05b4b503d58310b523553c-Abstract-Conference.html"
+      ]
+    },
+    {
+      "key": "lambert2024rewardbench",
+      "arxiv_id": "2403.13787",
+      "title": "RewardBench: Evaluating Reward Models for Language Modeling",
+      "authors": "Nathan Lambert and Valentina Pyatkin and Jacob Morrison and LJ Miranda and Bill Yuchen Lin and Khyathi Chandu and Nouha Dziri and Sachin Kumar and Tom Zick and Yejin Choi and Noah A. Smith and Hannaneh Hajishirzi",
+      "year": "2024",
+      "venue": "arXiv preprint arXiv:2403.13787",
+      "status": "verified arXiv preprint; formal venue not asserted",
+      "primary_sources": [
+        "https://arxiv.org/abs/2403.13787v2"
+      ]
+    },
+    {
+      "key": "liu2023geval",
+      "arxiv_id": "2303.16634",
+      "title": "{G}-Eval: {NLG} Evaluation using {GPT-4} with Better Human Alignment",
+      "authors": "Liu, Yang and Iter, Dan and Xu, Yichong and Wang, Shuohang and Xu, Ruochen and Zhu, Chenguang",
+      "year": "2023",
+      "venue": "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2303.16634v3",
+        "https://aclanthology.org/2023.emnlp-main.153.bib"
+      ]
+    },
+    {
+      "key": "madaan2023selfrefine",
+      "arxiv_id": "2303.17651",
+      "title": "Self-Refine: Iterative Refinement with Self-Feedback",
+      "authors": "Madaan, Aman and Tandon, Niket and Gupta, Prakhar and Hallinan, Skyler and Gao, Luyu and Wiegreffe, Sarah and Alon, Uri and Dziri, Nouha and Prabhumoye, Shrimai and Yang, Yiming and Gupta, Shashank and Majumder, Bodhisattwa Prasad and Hermann, Katherine and Welleck, Sean and Yazdanbakhsh, Amir and Clark, Peter",
+      "year": "2023",
+      "venue": "Advances in Neural Information Processing Systems",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2303.17651v2",
+        "https://papers.nips.cc/paper_files/paper/2023/hash/91edff07232fb1b55a505a9e9f6c0ff3-Abstract-Conference.html"
+      ]
+    },
+    {
+      "key": "ouyang2022instruct",
+      "arxiv_id": "2203.02155",
+      "title": "Training language models to follow instructions with human feedback",
+      "authors": "Ouyang, Long and Wu, Jeffrey and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and Schulman, John and Hilton, Jacob and Kelton, Fraser and Miller, Luke and Simens, Maddie and Askell, Amanda and Welinder, Peter and Christiano, Paul F and Leike, Jan and Lowe, Ryan",
+      "year": "2022",
+      "venue": "Advances in Neural Information Processing Systems",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2203.02155v1",
+        "https://papers.nips.cc/paper_files/paper/2022/hash/b1efde53be364a73914f58805a001731-Abstract-Conference.html"
+      ]
+    },
+    {
+      "key": "pptagent2025",
+      "arxiv_id": "2501.03936",
+      "title": "{PPTA}gent: Generating and Evaluating Presentations Beyond Text-to-Slides",
+      "authors": "Zheng, Hao and Guan, Xinyan and Kong, Hao and Zhang, Wenkai and Zheng, Jia and Zhou, Weixiang and Lin, Hongyu and Lu, Yaojie and Han, Xianpei and Sun, Le",
+      "year": "2025",
+      "venue": "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2501.03936v3",
+        "https://aclanthology.org/2025.emnlp-main.728.bib"
+      ]
+    },
+    {
+      "key": "presentbench2026",
+      "arxiv_id": "2603.07244",
+      "title": "PresentBench: A Fine-Grained Rubric-Based Benchmark for Slide Generation",
+      "authors": "Xin-Sheng Chen and Jiayu Zhu and Pei-lin Li and Hanzheng Wang and Shuojin Yang and Meng-Hao Guo",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2603.07244",
+      "status": "verified arXiv preprint; formal venue not asserted",
+      "primary_sources": [
+        "https://arxiv.org/abs/2603.07244v1"
+      ]
+    },
+    {
+      "key": "pryzant2023protegi",
+      "arxiv_id": "2305.03495",
+      "title": "Automatic Prompt Optimization with ``Gradient Descent'' and Beam Search",
+      "authors": "Pryzant, Reid and Iter, Dan and Li, Jerry and Lee, Yin and Zhu, Chenguang and Zeng, Michael",
+      "year": "2023",
+      "venue": "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2305.03495v2",
+        "https://aclanthology.org/2023.emnlp-main.494.bib"
+      ]
+    },
+    {
+      "key": "rafailov2023dpo",
+      "arxiv_id": "2305.18290",
+      "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
+      "authors": "Rafailov, Rafael and Sharma, Archit and Mitchell, Eric and Manning, Christopher D and Ermon, Stefano and Finn, Chelsea",
+      "year": "2023",
+      "venue": "Advances in Neural Information Processing Systems",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2305.18290v3",
+        "https://papers.nips.cc/paper_files/paper/2023/hash/a85b405ed65c6477a4fe8302b5e06ce7-Abstract-Conference.html"
+      ]
+    },
+    {
+      "key": "shankar2024evalgen",
+      "arxiv_id": "2404.12272",
+      "title": "Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences",
+      "authors": "Shankar, Shreya and Zamfirescu-Pereira, J.D. and Hartmann, Bjoern and Parameswaran, Aditya and Arawjo, Ian",
+      "year": "2024",
+      "venue": "Proceedings of the 37th Annual ACM Symposium on User Interface Software and Technology",
+      "status": "Published UIST record verified by exact title and authors in Crossref",
+      "primary_sources": [
+        "https://arxiv.org/abs/2404.12272v1",
+        "https://doi.org/10.1145/3654777.3676450"
+      ]
+    },
+    {
+      "key": "shinn2023reflexion",
+      "arxiv_id": "2303.11366",
+      "title": "Reflexion: language agents with verbal reinforcement learning",
+      "authors": "Shinn, Noah and Cassano, Federico and Gopinath, Ashwin and Narasimhan, Karthik and Yao, Shunyu",
+      "year": "2023",
+      "venue": "Advances in Neural Information Processing Systems",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2303.11366v4",
+        "https://papers.nips.cc/paper_files/paper/2023/hash/1b44b878bb782e6954cd888628510e90-Abstract-Conference.html"
+      ]
+    },
+    {
+      "key": "si2025design2code",
+      "arxiv_id": "2403.03163",
+      "title": "{D}esign2{C}ode: Benchmarking Multimodal Code Generation for Automated Front-End Engineering",
+      "authors": "Si, Chenglei and Zhang, Yanzhe and Li, Ryan and Yang, Zhengyuan and Liu, Ruibo and Yang, Diyi",
+      "year": "2025",
+      "venue": "Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2403.03163v3",
+        "https://aclanthology.org/2025.naacl-long.199.bib"
+      ]
+    },
+    {
+      "key": "stiennon2020summarize",
+      "arxiv_id": "2009.01325",
+      "title": "Learning to summarize with human feedback",
+      "authors": "Stiennon, Nisan and Ouyang, Long and Wu, Jeffrey and Ziegler, Daniel and Lowe, Ryan and Voss, Chelsea and Radford, Alec and Amodei, Dario and Christiano, Paul F",
+      "year": "2020",
+      "venue": "Advances in Neural Information Processing Systems",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2009.01325v3",
+        "https://papers.nips.cc/paper_files/paper/2020/hash/1f89885d556929e98d3ef9b86448f951-Abstract.html"
+      ]
+    },
+    {
+      "key": "tan2025judgebench",
+      "arxiv_id": "2410.12784",
+      "title": "JudgeBench: A Benchmark for Evaluating LLM-based Judges",
+      "authors": "Sijun Tan and Siyuan Zhuang and Kyle Montgomery and William Y. Tang and Alejandro Cuadron and Chenguang Wang and Raluca Ada Popa and Ion Stoica",
+      "year": "2025",
+      "venue": "International Conference on Learning Representations",
+      "status": "ICLR venue verified in arXiv publication comment",
+      "primary_sources": [
+        "https://arxiv.org/abs/2410.12784v2"
+      ]
+    },
+    {
+      "key": "wang2024selftaught",
+      "arxiv_id": "2408.02666",
+      "title": "Self-Taught Evaluators",
+      "authors": "Tianlu Wang and Ilia Kulikov and Olga Golovneva and Ping Yu and Weizhe Yuan and Jane Dwivedi-Yu and Richard Yuanzhe Pang and Maryam Fazel-Zarandi and Jason Weston and Xian Li",
+      "year": "2024",
+      "venue": "arXiv preprint arXiv:2408.02666",
+      "status": "verified arXiv preprint; formal venue not asserted",
+      "primary_sources": [
+        "https://arxiv.org/abs/2408.02666v2"
+      ]
+    },
+    {
+      "key": "xu2023imagereward",
+      "arxiv_id": "2304.05977",
+      "title": "ImageReward: Learning and Evaluating Human Preferences for Text-to-Image Generation",
+      "authors": "Xu, Jiazheng and Liu, Xiao and Wu, Yuchen and Tong, Yuxuan and Li, Qinkai and Ding, Ming and Tang, Jie and Dong, Yuxiao",
+      "year": "2023",
+      "venue": "Advances in Neural Information Processing Systems",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2304.05977v4",
+        "https://papers.nips.cc/paper_files/paper/2023/hash/33646ef0ed554145eab65f6250fab0c9-Abstract-Conference.html"
+      ]
+    },
+    {
+      "key": "yang2024opro",
+      "arxiv_id": "2309.03409",
+      "title": "Large Language Models as Optimizers",
+      "authors": "Chengrun Yang and Xuezhi Wang and Yifeng Lu and Hanxiao Liu and Quoc V. Le and Denny Zhou and Xinyun Chen",
+      "year": "2024",
+      "venue": "International Conference on Learning Representations",
+      "status": "ICLR venue verified in arXiv publication comment",
+      "primary_sources": [
+        "https://arxiv.org/abs/2309.03409v3"
+      ]
+    },
+    {
+      "key": "yao2023react",
+      "arxiv_id": "2210.03629",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "authors": "Shunyu Yao and Jeffrey Zhao and Dian Yu and Nan Du and Izhak Shafran and Karthik Narasimhan and Yuan Cao",
+      "year": "2023",
+      "venue": "International Conference on Learning Representations",
+      "status": "ICLR venue verified in arXiv publication comment",
+      "primary_sources": [
+        "https://arxiv.org/abs/2210.03629v3"
+      ]
+    },
+    {
+      "key": "yuksekgonul2025textgrad",
+      "arxiv_id": "2406.07496",
+      "title": "Optimizing generative AI by backpropagating language model feedback",
+      "authors": "Yuksekgonul, Mert and Bianchi, Federico and Boen, Joseph and Liu, Sheng and Lu, Pan and Huang, Zhi and Guestrin, Carlos and Zou, James",
+      "year": "2025",
+      "venue": "Nature",
+      "status": "Published Nature version verified by DOI metadata and official project citation; title and author list updated from preprint",
+      "primary_sources": [
+        "https://arxiv.org/abs/2406.07496v1",
+        "https://doi.org/10.1038/s41586-025-08661-4",
+        "https://github.com/zou-group/textgrad"
+      ]
+    },
+    {
+      "key": "zhang2020bertscore",
+      "arxiv_id": "1904.09675",
+      "title": "BERTScore: Evaluating Text Generation with BERT",
+      "authors": "Tianyi Zhang and Varsha Kishore and Felix Wu and Kilian Q. Weinberger and Yoav Artzi",
+      "year": "2020",
+      "venue": "International Conference on Learning Representations",
+      "status": "ICLR venue verified in arXiv publication comment",
+      "primary_sources": [
+        "https://arxiv.org/abs/1904.09675v3"
+      ]
+    },
+    {
+      "key": "zhang2025aflow",
+      "arxiv_id": "2410.10762",
+      "title": "{AF}low: Automating Agentic Workflow Generation",
+      "authors": "Jiayi Zhang and Jinyu Xiang and Zhaoyang Yu and Fengwei Teng and Xiong-Hui Chen and Jiaqi Chen and Mingchen Zhuge and Xin Cheng and Sirui Hong and Jinlin Wang and Bingnan Zheng and Bang Liu and Yuyu Luo and Chenglin Wu",
+      "year": "2025",
+      "venue": "The Thirteenth International Conference on Learning Representations",
+      "status": "ICLR 2025 metadata verified in official project citation",
+      "primary_sources": [
+        "https://arxiv.org/abs/2410.10762v4",
+        "https://raw.githubusercontent.com/FoundationAgents/AFlow/main/README.md",
+        "https://openreview.net/forum?id=z5uVAKwmjf"
+      ]
+    },
+    {
+      "key": "zhang2025dgm",
+      "arxiv_id": "2505.22954",
+      "title": "Darwin Godel Machine: Open-Ended Evolution of Self-Improving Agents",
+      "authors": "Jenny Zhang and Shengran Hu and Cong Lu and Robert Lange and Jeff Clune",
+      "year": "2025",
+      "venue": "arXiv preprint arXiv:2505.22954",
+      "status": "verified arXiv preprint; formal venue not asserted",
+      "primary_sources": [
+        "https://arxiv.org/abs/2505.22954v3"
+      ]
+    },
+    {
+      "key": "zheng2023judging",
+      "arxiv_id": "2306.05685",
+      "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+      "authors": "Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric and Zhang, Hao and Gonzalez, Joseph and Stoica, Ion",
+      "year": "2023",
+      "venue": "Advances in Neural Information Processing Systems",
+      "status": "published metadata verified against official proceedings",
+      "primary_sources": [
+        "https://arxiv.org/abs/2306.05685v4",
+        "https://papers.nips.cc/paper_files/paper/2023/hash/91f18a1287b398d378ef22505bf41832-Abstract-Datasets_and_Benchmarks.html"
+      ]
+    }
+  ]
+}

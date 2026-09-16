@@ -1,0 +1,18 @@
+Evaluating generated artifacts requires more than assigning a score: an evaluator
+must obtain relevant evidence, apply task-specific criteria, and reconcile
+competing aspects of quality. A disagreement with human preference may arise at
+any of these stages, making the evaluator itself a useful object of optimization.
+We study learning executable evaluation programs from human overall preferences
+while keeping the underlying model fixed. We introduce \ERA{}, Evidence-Guided
+Revision of Agentic Evaluators, as the method for revising these programs.
+An evaluation program comprises artifact representations, rubrics,
+specialist evaluators, evidence tools, routing, and score synthesis. \ERA{} uses
+artifact-level execution evidence to formulate revision hypotheses, constructs
+bounded program edits, and assesses candidates on a separate training cohort.
+At deployment, the resulting evaluator scores each artifact independently,
+without access to its opponent or preference labels. We specify an evaluation
+protocol that separates adaptive development from terminal validation and held-out
+testing, and tests both preference agreement and the usefulness of evaluator
+feedback for artifact refinement. The proposed experiments assess preference
+agreement, fixed-pool selection, and feedback-guided refinement under matched
+models and budgets.

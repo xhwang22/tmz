@@ -1,0 +1,90 @@
+\begin{tikzpicture}[font=\small, line cap=round, line join=round]
+  \tikzset{
+    stage/.style={draw=eraNavy!35,rounded corners=3pt,line width=0.6pt},
+    report/.style={draw=eraNavy!60,fill=white,rounded corners=2pt,
+      minimum width=2.5cm,minimum height=0.46cm,font=\footnotesize},
+    flow/.style={eraArrow,line width=0.8pt},
+    fine/.style={draw=eraNavy!70,line width=0.6pt}
+  }
+  \node[font=\small] at (6.72,5.25)
+    {$E_\theta=(A,K,V,T,\Pi,G)$\quad\textbf{Editable program, fixed base model}};
+  \draw[stage,fill=eraBlue] (0,1) rectangle (2.45,4.9);
+  \draw[stage,fill=eraTeal] (2.9,1) rectangle (5.45,4.9);
+  \draw[stage,fill=eraBlue] (6.0,1) rectangle (9.0,4.9);
+  \draw[stage,fill=eraSand] (9.7,1) rectangle (13.45,4.9);
+
+  \node[font=\footnotesize\bfseries,align=center,text width=2.2cm]
+    at (1.225,4.56) {(a) Views $A$};
+  \node[font=\footnotesize\bfseries,align=center,text width=2.3cm]
+    at (4.175,4.56) {(b) Tools $T$\\Routing $\Pi$};
+  \node[font=\footnotesize\bfseries] at (7.5,4.58) {(c) Specialists $V$};
+  \node[font=\footnotesize\bfseries] at (11.575,4.58) {(d) Synthesis $G$};
+
+  % Generic artifact views, not an experimental example or a screenshot.
+  \draw[fine,fill=white] (0.56,2.87) rectangle (2.1,4.02);
+  \draw[fine,fill=white] (0.39,2.70) rectangle (1.93,3.85);
+  \fill[eraNavy] (0.53,3.53) rectangle (1.77,3.67);
+  \fill[eraNavy!18] (0.53,2.90) rectangle (1.06,3.37);
+  \draw[fine] (1.20,3.32) -- (1.75,3.32);
+  \draw[fine] (1.20,3.13) -- (1.75,3.13);
+  \draw[fine] (1.20,2.94) -- (1.59,2.94);
+  \node[align=center,font=\footnotesize,text width=2.2cm] at (1.225,2.16)
+    {One artifact\\+ task};
+  \node[align=center,font=\footnotesize,text width=2.2cm] at (1.225,1.40)
+    {Views\\+ references};
+  \draw[flow] (2.45,2.85) -- (2.9,2.85);
+
+  % Evidence tools and a visible routing junction.
+  \draw[fine,rounded corners=2pt,fill=white] (3.06,3.18) rectangle (4.06,4.05);
+  \draw[fine,rounded corners=2pt,fill=white] (4.29,3.18) rectangle (5.29,4.05);
+  \draw[draw=eraNavy,line width=0.9pt] (3.48,3.74) circle (0.12);
+  \draw[draw=eraNavy,line width=0.9pt] (3.57,3.65) -- (3.74,3.48);
+  \node[font=\footnotesize\ttfamily] at (4.79,3.73) {</>};
+  \node[font=\scriptsize] at (3.56,3.35) {Observe};
+  \node[font=\scriptsize] at (4.79,3.35) {Execute};
+  \node[circle,draw=eraNavy,fill=white,minimum size=0.56cm,inner sep=0pt]
+    (route) at (4.175,2.38) {$\Pi$};
+  \draw[flow] (3.56,3.18) -- (3.56,2.85) -| (route.north);
+  \draw[flow] (4.79,3.18) -- (4.79,2.85) -| (route.north);
+  \node[align=center,font=\footnotesize,text width=2.3cm] at (4.175,1.50)
+    {Acquire and\\route evidence};
+
+  % Criteria and specialist reports remain separate objects.
+  \node[draw=eraNavy!45,rounded corners=2pt,fill=white,
+    minimum width=2.5cm,minimum height=0.43cm,font=\footnotesize]
+    at (7.5,4.02) {Rubric $K$: responsibilities};
+  \node[report] (v1) at (7.5,3.32) {$v_1$\quad Sourced judgment};
+  \node[report] (v2) at (7.5,2.66) {$v_2$\quad Sourced judgment};
+  \node[report] (vk) at (7.5,2.00) {$v_k$\quad Sourced judgment};
+  \node[align=center,font=\footnotesize,text width=2.8cm] at (7.5,1.39)
+    {Findings, quality,\\uncertainty};
+  \draw[fine] (route.east) -- (5.72,2.38);
+  \draw[fine] (5.72,2.0) -- (5.72,3.32);
+  \foreach \v in {v1,v2,vk}{
+    \draw[flow] (5.72,2.38 |- \v.west) -- (\v.west);
+    \draw[fine] (\v.east) -- (9.34,2.38 |- \v.east);
+  }
+  \draw[fine] (9.34,2.0) -- (9.34,3.32);
+  \draw[flow] (9.34,2.66) -- (9.7,2.66);
+
+  \node[align=center,font=\footnotesize] at (11.575,4.00)
+    {Judgments and evidence\\Declared synthesis rule};
+  \node[draw=eraNavy!60,fill=white,rounded corners=2pt,
+    minimum width=1.35cm,minimum height=0.50cm,font=\footnotesize]
+    (num) at (10.59,3.17) {Numerical};
+  \node[draw=eraNavy!60,fill=white,rounded corners=2pt,
+    minimum width=1.35cm,minimum height=0.50cm,font=\footnotesize]
+    (sem) at (12.56,3.17) {Semantic};
+  \node[font=\footnotesize\itshape] at (11.575,3.17) {or};
+  \node[draw=eraNavy,fill=white,rounded corners=2pt,
+    minimum width=2.8cm,minimum height=0.68cm,align=center,font=\footnotesize]
+    (out) at (11.575,1.68) {Overall score $s_\theta$\\Execution trace $\tau_\theta$};
+  \draw[fine] (num.south) -- (10.59,2.48) -- (11.575,2.48);
+  \draw[fine] (sem.south) -- (12.56,2.48) -- (11.575,2.48);
+  \draw[flow] (11.575,2.48) -- (out.north);
+
+  \draw[stage,fill=eraGray] (0,0) rectangle (13.45,0.70);
+  \node[align=center,font=\footnotesize] at (6.725,0.35)
+    {\textbf{Runtime access:} task, one artifact, and permitted evidence only\\
+     \textbf{Excluded:} opponent, human preferences, split labels, and development annotations};
+\end{tikzpicture}

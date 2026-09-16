@@ -1,0 +1,114 @@
+\section{Measurement and analysis protocol}
+\label{app:measurement}
+
+\paragraph{Completeness and denominators.}
+For a prespecified strict-preference cohort of $N$ pairs, let $c_i=1$ when both
+artifacts have all $R$ valid complete scores. Let
+$m=\sum_i c_i$ and $k=\sum_{i:c_i=1}z_i$, with $z_i$ from
+Equation~\ref{eq:measurement}. Report completed-pair accuracy $k/m$ when $m>0$,
+coverage $m/N$, and the missing-outcome interval
+\begin{equation}
+ \left[\frac{k}{N},\frac{k+N-m}{N}\right].
+ \label{eq:missing}
+\end{equation}
+This interval bounds full-cohort agreement under arbitrary missing outcomes; it
+is not a statistical confidence interval. A missing repeat is not silently
+replaced by the median of surviving calls. Execution completeness includes
+selected routes and tools, not just the availability of a final score.
+A valid observation that an artifact fails a quality check is distinct from a
+tool execution error.
+
+\paragraph{Randomness and repeated use.}
+Freeze $R\geq3$, score precision, tie handling, outcome-blind retry policy, and
+artifact reuse rules before evaluation. Repeated measurements of the same
+artifact are not independent task observations. Paired uncertainty estimates
+should resample original input groups, preserving their artifacts and comparisons;
+the planned interval level is 95\%. Report the number of independent search
+seeds separately from scoring repeats. Repeating calls on the same Val cohort
+can assess execution stability, but does not create an independent test set.
+
+\paragraph{Selection boundaries.}
+Retain the identities and outcomes of all attempted candidates, including
+unsuccessful and incomplete attempts, for the authorized internal analysis.
+Previously measured identical programs are not new independent candidates.
+Only aggregate sealed-development measurements inform search.
+The validation shortlist and its order are fixed from training evidence before
+Val access; all shortlisted outcomes are reported. An interrupted search does
+not initiate additional terminal assessment. The final test program and any
+choice among a multi-candidate shortlist must be prespecified without test-driven
+selection.
+
+\section{Candidate evaluation domains}
+\label{app:domains}
+
+\begin{table}[ht]
+\caption{Candidate domains and their evaluation standards. The table identifies
+study options, not completed experiments or confirmed dataset inclusion.
+Existing metrics and rubric labels do not automatically provide overall human
+pairwise supervision.}
+\label{tab:domains}
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{2.7cm}YY@{}}
+\toprule
+Domain & Quality standard & Relevant resources \\
+\midrule
+Slide generation & Source fidelity, narrative, readability, visual organization &
+PPTAgent; PresentBench \\
+Screenshot-to-web & Faithful reconstruction of a reference rendering &
+Design2Code \\
+Specification-to-web & Satisfaction of textual and interaction requirements &
+Corpus and human protocol to be fixed \\
+Summarization & Faithfulness, relevance, coherence, concision &
+SummEval; human-feedback summarization \\
+Text-to-image & Prompt alignment and human visual preference &
+Pick-a-Pic; ImageReward; GenEval \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+For each included domain, document source permissions, original-input grouping,
+artifact generators, annotation provenance, human agreement, and the availability
+of task references. Public benchmark examples must not be presented as private
+newly collected annotations, and benchmark-specific labels must remain outside
+the deployed scorer's input. Best-of-$N$ requires a fixed multi-artifact pool and
+appropriate human assessment beyond any pair-only corpus.
+
+\clearpage
+\section{Experiment manifest and completion checklist}
+\label{app:manifest}
+
+\begin{table}[ht]
+\caption{Information required before confirmatory evaluation. Unset fields are
+intentional placeholders and must not be inferred from development defaults.}
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}p{3.7cm}Y@{}}
+\toprule
+Item & Required specification \\
+\midrule
+Data and inclusion & Dataset versions, permissions, domains, input counts,
+pair counts, exclusions, human-tie policy: \tbd \\
+Partitioning & Original-input grouping, deduplication, split sizes, hashes,
+OOD definition: \tbd \\
+Models & Frozen scorer, proposer, tool-model and generator identities,
+revisions and sampling settings: \tbd \\
+Program and search & Seed program, editable components, edit bounds, allocation
+policy, development guard, shortlist size: \tbd \\
+Measurement & $R\geq3$, precision, completeness, retries, cache identity,
+search seeds, stopping rule: \tbd \\
+Budgets & Search opportunities, model calls, tokens, tool calls, runtime,
+deployment cost and budget-matching rule: \tbd \\
+Downstream studies & Candidate-pool size, shared fresh initial artifacts,
+refinement rounds, blinded annotation protocol: \tbd \\
+Analysis & Primary contrasts, grouped interval computation, multiplicity,
+missingness analysis and reporting cohort: \tbd \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The completed paper should replace the primary placeholder table with
+source-traceable measurements, add paired selection and refinement results,
+and include representative authorized examples with clear provenance.
+Any empirical figure must be generated from the frozen analysis data.
+The two current figures describe the method only.

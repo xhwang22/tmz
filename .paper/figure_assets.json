@@ -1,0 +1,19 @@
+{
+  "generated_images": [
+    {
+      "path": "output/imagegen/overview-final.png",
+      "sha256": "4701f4a35519501de0f57bd3319cffed981fc88a180fda5c2a0ac4846ae26e03",
+      "width": 3840,
+      "height": 2160,
+      "model": "gpt-image-2",
+      "deployment_model_version": "2026-04-21",
+      "quality": "high",
+      "role": "conceptual illustration; no empirical observations",
+      "prompts": [
+        ".paper/prompts/overview.txt",
+        ".paper/prompts/overview-correction.txt",
+        ".paper/prompts/overview-final-correction.txt"
+      ]
+    }
+  ]
+}

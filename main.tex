@@ -1,14 +1,37 @@
 \documentclass{article}
-\usepackage{graphicx} % Required for inserting images
+\usepackage{iclr2027_conference,times}
+\input{preamble}
 
-\title{tmz}
-\author{Xiaohua Wang}
-\date{September 2026}
+\title{Learning to Evaluate Structured Artifacts\\from Human Preferences}
+\author{Anonymous authors}
+% Keep anonymous review mode. Author order and affiliations are not finalized.
+% \iclrfinalcopy
 
 \begin{document}
-
 \maketitle
+\begin{center}
+{\small\itshape Working manuscript: method and evaluation protocol; empirical results pending.}
+\end{center}
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
 
-\section{Introduction}
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/problem}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
 
+\clearpage
+\label{first-post-main-page}
+\input{sections/statements}
+\bibliography{references}
+\bibliographystyle{iclr2027_conference}
+
+\clearpage
+\appendix
+\input{sections/appendix}
 \end{document}

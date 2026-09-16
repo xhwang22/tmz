@@ -1,0 +1,143 @@
+\section{Evidence-guided evaluator revision}
+\label{sec:method}
+
+\subsection{An executable evaluator}
+\label{sec:runtime}
+
+Figure~\ref{fig:runtime} summarizes the evaluation program. An adapter organizes
+the artifact into task-relevant views, such as rendered slides, document text,
+or webpage structure. Specialist evaluators apply explicit responsibilities
+and criteria. They may receive evidence from built-in checks, model-based
+observations, executable tools, or bounded tool compositions. Routing determines
+which evidence each specialist receives and may permit bounded follow-up
+acquisition. Each specialist returns sourced findings and uncertainty alongside
+its quality assessment. Synthesis then produces the overall judgment.
+
+\begin{figure}[t]
+\centering
+\input{figures/evaluator}
+\caption{The executable evaluator revised by \ERA{}. Panel (a) constructs
+task-relevant artifact views; (b) acquires and routes evidence; (c) applies the
+rubric through specialist judgments; and (d) synthesizes the overall score and
+trace using the declared numerical or semantic rule. All six components are
+editable, while the base model remains fixed. The artifact miniature is
+illustrative; preference labels and the comparison opponent never enter execution.}
+\label{fig:runtime}
+\end{figure}
+
+This representation permits changes that cross an ordinary prompt boundary.
+For example, a proposed inspection tool is useful only if routing makes its
+output available to an evaluator that can interpret it. A connected revision may
+therefore modify the tool, its route, and its consumer together. Specialist
+responsibilities can also be split, merged, or removed. The search remains
+bounded by component and edit constraints; it does not assume unrestricted
+inter-agent communication or recursive self-modification.
+
+\subsection{From execution evidence to a revision}
+\label{sec:proposal}
+
+The proposal process examines human-preference disagreements together with
+correctly ranked protection examples from $\Dprop$. It can inspect the original
+artifacts and repeated traces, including observations, specialist judgments, and
+synthesis. Compact case summaries support navigation but do not replace source
+evidence. The analysis asks where a mismatch arose: whether relevant evidence was
+absent, a criterion was misapplied, a responsibility was poorly assigned, or the
+final synthesis made an inappropriate trade-off.
+
+A proposal specifies a mechanism hypothesis, plausible competing explanations,
+the components to revise, and predicted effects on target and protection cases.
+The resulting edit is bounded in component scope and text replacement. These
+constraints limit the size of a revision, not its semantic effect. A connected
+multi-component edit is measured as a single candidate; an improvement in that
+candidate does not establish the contribution of every constituent edit.
+
+\subsection{Measurement and search allocation}
+\label{sec:search}
+
+\ERA{} separates three decisions: proposing a change, measuring the resulting
+program, and allocating further search effort. Local proposal-set evaluations
+help assess the stated mechanism. They do not serve as a mandatory success
+filter before development measurement. The latter evaluates frozen candidates
+on the same sealed $\Ddev$ cohort using Equation~\ref{eq:measurement}.
+Only aggregate development statistics return to the optimizer
+(Figure~\ref{fig:boundaries}).
+
+Search maintains a best development program and a working program for the
+current hypothesis. A new direction starts from the best program; a continuation
+may retain a completely evaluated intermediate program even when it has not
+improved the best score. This distinction permits connected revisions over
+multiple steps without treating every intermediate as a deployment improvement.
+Promotion requires strictly better development agreement, nondecreasing coverage,
+complete execution, and a prespecified guard against excessive stratum-level
+regression. It is a selection rule, not a statistical significance test.
+Allocation can continue a direction, acquire additional authorized evidence, or
+start another direction. Algorithm~\ref{alg:era} gives the resulting abstraction.
+
+\begin{figure}[t]
+\centering
+\input{figures/data_boundaries}
+\caption{Data access during revision and assessment. Panel (a) separates raw
+proposal evidence from sealed training development measurements, which return
+aggregate feedback only. Panel (b) assesses a frozen shortlist on Val without
+feeding its cases or results into further revision; Test/OOD assess the frozen
+method. Labels used by measurement never enter the pointwise evaluator.}
+\label{fig:boundaries}
+\end{figure}
+
+\begin{algorithm}[t]
+\caption{\ERA{}: separation of proposal, measurement, and allocation}
+\label{alg:era}
+\begin{algorithmic}[1]
+\Require Seed program $\theta_0$; $\Dprop$, sealed $\Ddev$; fixed search constraints
+\State Measure $\theta_0$ on $\Ddev$; set $\theta_{\mathrm{best}}\gets\theta_0$
+\State Initialize direction history and the working program
+\While{the prespecified search budget permits continuation}
+  \State Choose continuation, additional evidence, or a new direction
+  \If{additional evidence is requested}
+    \State Acquire authorized proposal evidence; update history; \textbf{continue}
+  \EndIf
+  \State Set parent to the working program (continuation) or $\theta_{\mathrm{best}}$ (new)
+  \State Form a revision hypothesis from $\Dprop$ and versioned execution evidence
+  \State Construct bounded candidate $\theta'$ and verify its execution contract
+  \State Evaluate local predictions and measure $\theta'$ on sealed $\Ddev$
+  \State Record the attempt, including incomplete or unfavorable outcomes
+  \If{$\theta'$ satisfies the development promotion rule}
+    \State $\theta_{\mathrm{best}}\gets\theta'$
+  \EndIf
+  \State Update the working program and direction history for the next allocation
+\EndWhile
+\State On normal completion, freeze the eligible shortlist before any Val assessment
+\State \Return $\theta_{\mathrm{best}}$ and the complete search record
+\end{algorithmic}
+\end{algorithm}
+
+The terminal shortlist contains only complete candidates previously promoted
+using training development evidence; the default shortlist size is one. If
+there is no eligible improvement, the seed is retained without querying Val.
+Terminal assessment does not restart search or adaptively reorder the shortlist.
+This boundary matters because repeated access to a nominal validation set would
+otherwise turn it into another development resource.
+
+\subsection{Evidence-aware score synthesis}
+\label{sec:synthesis}
+
+The representation supports both numerical aggregation and a semantic synthesis
+variant. In the latter, specialists express quality using explicit anchors.
+Given adjacent anchors with values $a_\ell$ and $a_{\ell+1}$ and an
+interval position $\lambda\in[0,1]$, the score is computed as
+\begin{equation}
+  s=a_\ell+\lambda(a_{\ell+1}-a_\ell),
+  \label{eq:anchors}
+\end{equation}
+on a scale whose endpoints are $0$ and $100$.
+The synthesis module reads sourced findings, reasoning, and specialist scales;
+it groups overlapping or conflicting factors and locates overall quality on
+its own anchored scale. It does not assume that raw specialist scores measure
+the same quantity.
+
+Each finding must be referenced exactly once across synthesis groups. This
+structural requirement exposes omissions and repeated references, but does not
+guarantee correct semantic deduplication or factual grounding. Numerical
+aggregation remains an explicit comparison condition. Changes to semantic
+synthesis require fresh model executions and are charged to the same measurement
+budget as other program changes.

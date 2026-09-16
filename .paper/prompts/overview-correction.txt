@@ -1,0 +1,13 @@
+Use case: precise-object-edit
+Asset type: corrected conceptual overview for a scientific paper.
+Input image 1: edit target; preserve its layout, typography, colors, all artifact miniatures, panel borders, six component tiles, and all scientific labels except the single feedback annotation relocation described below.
+
+Change only the feedback wiring in the middle panel, so it forms a scientifically correct learning loop. This is one focused connector correction, not a redesign.
+
+1. REMOVE the short vertical gold arrow going UP from the top center of the "Sealed development" box to the bottom center of the "Fixed base model" strip. Sealed development must NEVER feed the executable evaluator or its base model. Remove the floating "Aggregate feedback" label beside this deleted short arrow.
+
+2. KEEP the long gold return arrow that leaves the LEFT side of the "Sealed development" box, turns upward through the whitespace to the left of the six-component assembly, then enters the LEFT side of the "Bounded revision" node. This is the ONLY outgoing arrow from Sealed development. It must remain distinct from the navy human-preference arrow. Add the exact secondary label "Aggregate feedback only" as a clean second line INSIDE the sealed-development box, below "Sealed development". Slightly enlarge just that box vertically if needed, keeping the lock at the left and preserving clear spacing to the footer. The label refers to the existing gold return path.
+
+3. ADD a short, clearly directed dark-teal connector from the UPPER RIGHT edge of the six-component evaluator-program assembly to the BOTTOM edge of the "Execution evidence" document stack above it. Use the white gap between these two existing objects, so the connector does not cross a label, touch the "Freeze" arrow, or appear to originate at the sealed-development box. Arrowhead at Execution evidence. Preserve the existing teal arrow from Execution evidence leftward into Bounded revision and the downward arrow from Bounded revision into the evaluator assembly. The three arrows must form one closed loop: evaluator assembly -> Execution evidence -> Bounded revision -> evaluator assembly.
+
+All other content MUST remain unchanged, especially panel (a), panel (c), the one-way Freeze connection, the "No preference labels" boundary annotation, and the footer "One evaluator per evaluation standard". No extra labels, plots, scores, data, arrows, decorative elements, or additional components. Keep the same 3840x2160 composition and crisp readable scientific typography.

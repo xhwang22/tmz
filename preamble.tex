@@ -1,0 +1,37 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,array}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Learning to Evaluate Structured Artifacts from Human Preferences},
+  pdfauthor={Anonymous authors},
+  pdfsubject={Working manuscript; empirical results pending}
+}
+\newcommand{\ERA}{\textsc{ERA}}
+\newcommand{\Dprop}{\mathcal{D}_{\mathrm{prop}}}
+\newcommand{\Ddev}{\mathcal{D}_{\mathrm{dev}}}
+\newcommand{\Dval}{\mathcal{D}_{\mathrm{val}}}
+\newcommand{\Dtest}{\mathcal{D}_{\mathrm{test}}}
+\newcommand{\ind}{\mathbb{I}}
+\newcommand{\pending}{\textemdash}
+\newcommand{\tbd}{\textit{TBD}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\DeclareMathOperator{\median}{median}
+\definecolor{eraNavy}{HTML}{23445D}
+\definecolor{eraBlue}{HTML}{EAF1F8}
+\definecolor{eraTeal}{HTML}{E9F3F0}
+\definecolor{eraSand}{HTML}{F6F0E4}
+\definecolor{eraGray}{HTML}{F2F3F5}
+\tikzset{
+  eraBox/.style={draw=eraNavy,rounded corners=2pt,line width=0.65pt,
+    align=center,font=\small,inner sep=5pt},
+  eraArrow/.style={-{Latex[length=2mm]},draw=eraNavy,line width=0.75pt}
+}
