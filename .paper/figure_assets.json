@@ -1,6 +1,55 @@
 {
   "generated_images": [
     {
+      "path": "output/imagegen/edit-source.png",
+      "sha256": "0728db5e265b38001f049500c27ede1446384c730cb7e22bc9774488b3d5b9c3",
+      "width": 1536,
+      "height": 1024,
+      "max_print_width_cm": 3.0,
+      "model": "gpt-image-2",
+      "deployment_model_version": "2026-04-21",
+      "quality": "high",
+      "operation": "generation",
+      "role": "Synthetic source scene in Figure 6(a); no empirical data",
+      "prompts": [
+        ".paper/prompts/edit-scene-source.txt"
+      ]
+    },
+    {
+      "path": "output/imagegen/edit-preserved.png",
+      "sha256": "2adc4138148c451c4af2e803afa0d00f68ac671062ec12a54388185ab593bc75",
+      "width": 1536,
+      "height": 1024,
+      "max_print_width_cm": 3.0,
+      "model": "gpt-image-2",
+      "deployment_model_version": "2026-04-21",
+      "quality": "high",
+      "operation": "edit",
+      "input_image": "output/imagegen/edit-source.png",
+      "role": "Synthetic image-family example in Figure 1(a) and candidate B in Figure 6(a)",
+      "prompts": [
+        ".paper/prompts/edit-scene-preserved.txt"
+      ]
+    },
+    {
+      "path": "output/imagegen/edit-omission.png",
+      "sha256": "41442e9ed6cc1e681b73a1e8606a5227cdba8b94ec8acd5defcde130449de30c",
+      "width": 1536,
+      "height": 1024,
+      "max_print_width_cm": 3.0,
+      "model": "gpt-image-2",
+      "deployment_model_version": "2026-04-21",
+      "quality": "high",
+      "operation": "edit",
+      "input_image": "output/imagegen/edit-preserved.png",
+      "role": "Synthetic candidate A with localized bowl omission in Figure 6(a)",
+      "prompts": [
+        ".paper/prompts/edit-scene-omission.txt"
+      ]
+    }
+  ],
+  "archived_images": [
+    {
       "path": "output/imagegen/domain-panorama-final.png",
       "sha256": "f9054c5c8a75a3eebb56d004eee6652bd675f17dadfe566499694980c9bb6239",
       "width": 3840,
@@ -8,7 +57,7 @@
       "model": "gpt-image-2",
       "deployment_model_version": "2026-04-21",
       "quality": "high",
-      "role": "Synthetic domain vignettes in Figure 1(a); no empirical data",
+      "role": "Superseded round-2 panorama; not referenced by the current manuscript",
       "prompts": [
         ".paper/prompts/domain-panorama.txt",
         ".paper/prompts/domain-panorama-cleanup.txt"

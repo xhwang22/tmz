@@ -11,7 +11,8 @@ Review date: 2026-09-16. This checklist is not author sign-off or submission app
   of intermediate methods. The user-selected P2E plan supplies the complete
   research scope; current ERA documentation supplies the execution semantics.
   Their roles are recorded in `plan_coverage.md` and `source_provenance.md`.
-- All 22 candidate domains in four families appear in the domain panorama.
+- All 22 candidate domains in four families appear in the domain table;
+  the overview uses a compact four-family gallery of constructed artifacts.
   This is not a claim of readiness, transfer, or 22 completed experiments.
 - Semantic mapping, source dependence, three disagreement strata, H0–H3,
   evidence table Z, six-component ERA, and C1/C2/planned C3 are covered.
@@ -35,21 +36,31 @@ Review date: 2026-09-16. This checklist is not author sign-off or submission app
 
 ## Figures, tables, and memory
 
-- Eight figures use distinct visual forms: panorama, signal matrix, evaluator
-  architecture, revision branches, controlled study panels, annotation examples,
-  access boundaries, and semantic synthesis. Five are in the main text and
-  three in the appendix; all have editable TikZ sources.
+- Eight figures use distinct visual forms: artifact gallery and ERA loop,
+  signal matrix, worked evaluator architecture, connected revision branches,
+  matched study lanes, annotation examples, access timeline, and a
+  finding-to-factor graph. Five are in the main text and three in the appendix;
+  all have editable TikZ sources and a shared semantic color and label system.
+- Original figures from Self-Refine, Eureka, TextGrad, and Segment Anything
+  were visually inspected. The concrete design choices and primary-source
+  links are recorded in `visual_references.md`; no original figure was copied,
+  traced, or sent to the image-generation service.
 - Ten tables cover the study designs, outcomes, domains, annotation provenance,
   readiness, ablations, training controls, and reporting requirements. Every
   figure and table has a manuscript callout, and all figure captions match the
   structured memory exactly.
-- GPT Image 2 generated the 3840×1280 four-family vignette strip in Figure 1(a).
-  Prompts, model provenance, and the selected asset hash are recorded. The
-  raster exceeds 600 DPI at full text width. Captions and the AI use statement
-  distinguish all synthetic illustrations from observed cases and measurements.
-- Diagram labels, arrows, the title page, result tables, domain-table continuation,
-  algorithm, and appendix layouts were visually inspected after rendering.
-  Table columns are left-aligned to avoid stretched spacing in narrow cells.
+- GPT Image 2 generated one 1536×1024 source photograph and two controlled
+  edits for Figure 6(a); Figure 1(a) reuses the preserved candidate. All three
+  were inspected. Prompts, model provenance, input lineage, and asset hashes
+  are recorded. At the maximum 3 cm print width they provide about 1300 DPI.
+  The former panorama strip is archived and is not referenced by the paper.
+  Captions and the AI use statement distinguish all constructed examples and
+  preferences from observed cases, collected human feedback, and measurements.
+- `make figures` produces isolated vector PDFs, PNGs, and a contact sheet
+  without model calls. Diagram labels, arrows, the title page, result tables,
+  domain-table continuation, algorithm, and appendix layouts are reviewed
+  both in isolation and in the final manuscript. Table columns remain
+  left-aligned to avoid stretched spacing in narrow cells.
 - Thirty claim records, eight figure records, ten table records, and the
   revision history pass the repository's offline consistency checks.
   Claims also pass the upstream Draft 2020-12 JSON Schema with zero errors.

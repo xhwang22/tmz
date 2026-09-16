@@ -2,18 +2,20 @@
 
 The structured caption and claim mapping is in `figures.yml`.
 All eight figures are conceptual or explicitly synthetic; none contains observed
-performance. Exact structure is native TikZ. The sole generated raster is used
-in Figure 1(a), not as an empirical result.
+performance. Exact structure is native TikZ. Three controlled GPT Image 2 photos
+illustrate source and candidates in Figure 6(a); one is reused in Figure 1(a).
+They are not empirical results. Design sources and the redesign rationale are
+recorded in `visual_references.md`.
 
 | ID | Source | Purpose |
 | --- | --- | --- |
-| Fig1 | figures/overview.tex | Four families → preference mining → ERA → C1/C2/C3 |
+| Fig1 | figures/overview.tex | Concrete four-family gallery, human evidence, dominant ERA loop, C1/C2/C3 |
 | Fig2 | figures/preference_mining.tex | Signal–dimension matrix, three semantic strata, H0–H3 and Z |
-| Fig3 | figures/evaluator.tex | Six-component pointwise evaluator, sourced findings and fusion |
+| Fig3 | figures/evaluator.tex | Worked pointwise summary example: artifact → observations → findings → fusion |
 | Fig4 | figures/direction_search.tex | Direction versus connected edits, best/working state, four outcomes |
-| Fig5 | figures/downstream.tex | Fixed-pool C1, fresh-shared-start C2, planned own-rollout C3 |
-| Fig6 | figures/annotation_examples.tex | Synthetic summary, image-edit, and research-plan annotation examples |
-| Fig7 | figures/data_boundaries.tex | Proposal/Train/Val/Test access and independent metric reserve |
+| Fig5 | figures/downstream.tex | Matched lanes for fixed-pool C1, shared-start C2, planned Base / own-rollout C3 |
+| Fig6 | figures/annotation_examples.tex | Photographic image-edit, summary span, and controlled research-plan examples |
+| Fig7 | figures/data_boundaries.tex | Access timeline, one-way freeze boundary, independent metric reserve |
 | Fig8 | figures/semantic_synthesis.tex | Finding groups, contradictions, and synthetic anchor interpolation |
 
 | ID | Label | Purpose / status |
@@ -32,7 +34,11 @@ in Figure 1(a), not as an empirical result.
 Numbers shown in diagrams are identifiers, planned design values, or synthetic
 arithmetic, never study measurements. Figure 8's 50, 75, 100 anchors and lambda
 0.4 illustrate a specified scale; 50 + 0.4 × 25 = 60 is not a scored example.
-Figures 2 and 6 explicitly disclose their constructed preferences.
+Figures 1, 2, 3, and 6 explicitly disclose their constructed cases or preferences.
+
+`make figures` produces individual vector PDFs, PNG previews, and a contact sheet
+under `build/figure-review/`. This is an offline visual-review workflow, separate
+from image generation. Inspect the manuscript at its final 5.5-inch text width.
 
 Do not add decorative metric plots to fill placeholders. Empirical plots require
 authorized analysis artifacts, explicit units/denominators, and uncertainty.

@@ -12,6 +12,7 @@
 - [main.tex](main.tex)：主入口，Overleaf 选择此文件。
 - [sections/](sections/)：正文和附录，新增独立的偏好挖掘章节。
 - [figures/](figures/)：8 张可编辑图，5 张正文图、3 张附录图。
+- [可视化参考与设计说明](.paper/visual_references.md)：实际查看的 Self-Refine、Eureka、TextGrad、Segment Anything 图例，以及本项目采用的具体表达方式。
 - [完整覆盖映射](.paper/plan_coverage.md)：计划条目与正文、图表、证据边界的对应。
 - [主张索引](.paper/claims.yml)、[图表索引](.paper/figures.yml)：后续写作与图文一致性校验的结构化记忆。
 - [references.bib](references.bib)：33 条引文，核对来源见 [reference_sources.json](.paper/reference_sources.json)。
@@ -29,13 +30,26 @@ make
 make check
 ```
 
+逐图视觉检查（额外需要 Pillow、`standalone.cls` 和 `pdftoppm`）：
+
+```bash
+make figures
+# 或在独立环境中运行，不改项目依赖：
+uv run --python 3.11 --with pillow python scripts/render_figures.py
+```
+
+生成 `build/figure-review/` 下的独立矢量 PDF、PNG 与 `contact-sheet.png`；
+可向脚本传入 `overview`、`evaluator` 等图名，只重绘指定图。预览渲染不调用模型 API。
+
 构建中间文件位于 `build/`，最终文件为 `paper.pdf`。编译不需要 Azure 登录或模型 API。Overleaf 上传 TeX、BibTeX、模板、`figures/`、`output/imagegen/` 即可。`.paper/*.yml` 使用 JSON 兼容的 YAML，便于标准库检查，仍可由 YAML 工具读取。
 
-`make check` 检查引用、标签、9 页限制、溢出、图像哈希与分辨率，以及 22 领域、主张证据状态、图注和图表索引及正文引用。结构检查不代替学术审读或实证验证。
+`make check` 检查引用、标签、9 页限制、溢出、图像哈希与实际排印尺寸下的分辨率，以及 22 领域、主张证据状态、图注和图表索引及正文引用。结构检查不代替学术审读或实证验证。
 
 ## 插图与证据
 
-GPT Image 2 已通过指定的 Azure Foundry 接口生成四类领域的插图素材，最终资产为 [domain-panorama-final.png](output/imagegen/domain-panorama-final.png)，3840×1280。精确流程、数学、图内文字和其余图全部保留 TikZ 源码。生成提示与说明见 [image_generation.md](.paper/image_generation.md)。
+本轮参考原论文图例重绘了全部 8 张图：用具体产物与证据链替代泛化小图标，突出 ERA 闭环，以矩阵、路由、修订分支、实验对照、局部标注和隔离时间线表达不同关系。共享样式保留在 [visual_style.tex](figures/visual_style.tex)，原版 ICLR 模板没有改动。
+
+GPT Image 2 已通过指定 Azure Foundry 资源的 `/openai/v1/` 路径完成一次生成、两次编辑：[原图](output/imagegen/edit-source.png) → [加红杯、保留蓝碗](output/imagegen/edit-preserved.png) → [误删蓝碗示例](output/imagegen/edit-omission.png)。三张图片均为 1536×1024，最大排印宽度 3 cm（约 1300 DPI）。图 1 复用保留蓝碗的图片，图 6 用完整三图对比，错误定位圈和标签仍为 TikZ。旧的四类全景条不再用于正文；模型、提示、输入关系和哈希见 [image_generation.md](.paper/image_generation.md) 与 [figure_assets.json](.paper/figure_assets.json)。
 
 所有现有图均为概念图或明确标记的合成示例，不是实验观察。性能曲线、效率曲线、真实案例和数值结果必须等获准的数据与冻结分析准备好后再加入。写作不收录调试流水账、探索历程或历史中间方法。
 

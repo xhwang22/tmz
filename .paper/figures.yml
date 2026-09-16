@@ -21,10 +21,10 @@
         "C2",
         "C3"
       ],
-      "caption_in_manuscript": "\\PtwoE{} connects an evaluation ecosystem to feedback acquisition, evaluator evolution, and independent downstream assessment. Panel (a) illustrates the four domain families; each domain retains its own evaluation standard. Panel (b) maps evidence, mines disagreements, and forms structured human feedback. Panel (c) uses \\ERA{} to revise a six-component program. Panel (d) separates alignment and selection (C1), refinement (C2), and planned reward training (C3). The GPT Image 2 artifact vignettes are synthetic illustrations, not experimental cases; arrows specify information flow, not measured improvements.",
+      "caption_in_manuscript": "\\PtwoE{} connects domain-specific evaluation to human feedback, evaluator evolution, and independent assessment. (a) Four artifact families. (b) Disagreement and structured human evidence. (c) \\ERA{} revises a six-component program with a fixed base model. (d) C1 selection, C2 refinement, and planned C3 reward training. Artifacts, preferences, and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
       "evidence_status": "Conceptual specification; no measured results",
       "raster_assets": [
-        "output/imagegen/domain-panorama-final.png"
+        "output/imagegen/edit-preserved.png"
       ]
     },
     {
@@ -68,7 +68,7 @@
         "C12",
         "C18"
       ],
-      "caption_in_manuscript": "The six-component evaluation program. Panel (a) adapts one candidate and permitted task evidence; (b) routes observations from an executable tool library; (c) applies dimension-specific criteria through evaluator modules; and (d) fuses sourced findings into a score and critique. The lower rail identifies the editable components. Human feedback supervises the outer evolution process, never the deployed scoring path. Evidence and judgment are separate objects.",
+      "caption_in_manuscript": "The six-component evaluation program. (a) Read one candidate and permitted task evidence. (b) Route tool observations. (c) Apply dimensional criteria. (d) Fuse sourced findings into a score and critique. The lower rail identifies the editable components. Human feedback supervises evolution, never the deployed scorer. Evidence and judgment remain separate; the summary and findings are a constructed example.",
       "evidence_status": "Conceptual specification; no measured results"
     },
     {
@@ -89,7 +89,7 @@
         "C17",
         "C28"
       ],
-      "caption_in_manuscript": "A direction is a hypothesis, not an individual edit. Panel (a) illustrates a fixed-parent sequence of tool, routing, and interpretation changes, alongside separate best-program and working-program states. Panel (b) asks whether evidence was obtained, consumed, and interpreted before drawing a direction-level conclusion. Panel (c) distinguishes continuation, pause, resource exhaustion, and scoped refutation. This is a schematic search tree, not an observed optimization trajectory.",
+      "caption_in_manuscript": "A direction is a hypothesis, not an edit. (a) Connected tool, routing, and interpretation changes share a fixed parent. Best and working programs remain distinct; promotion and continuation both require complete measurement. (b) Check evidence acquisition, consumption, and interpretation. (c) Distinguish continuation, pause, exhaustion, and scoped refutation. The revision branches are schematic, not an observed optimization trajectory.",
       "evidence_status": "Conceptual specification; no measured results"
     },
     {
@@ -120,8 +120,8 @@
       "file": "figures/annotation_examples.tex",
       "caption_source": "sections/appendix.tex",
       "panels": [
-        "(a) summary",
-        "(b) image edit",
+        "(a) image edit",
+        "(b) summary",
         "(c) research ablation plan"
       ],
       "key_numbers": [],
@@ -129,8 +129,13 @@
         "C4",
         "C5"
       ],
-      "caption_in_manuscript": "Worked examples of feedback granularity across (a) summarization, (b) image editing, and (c) research study design. Each example separates overall preference, dimensional judgment, a localized diagnostic, and an optional rationale. All tasks, candidates, and judgments are constructed illustrations, not benchmark cases or collected human feedback. The labels demonstrate the annotation schema, not agreement rates or evaluator performance.",
-      "evidence_status": "Explicitly synthetic example; no measured results"
+      "caption_in_manuscript": "Worked examples of feedback granularity across (a) image editing, (b) summarization, and (c) research study design. Each example separates overall preference, dimensional judgment, a localized diagnostic, and an optional rationale. All tasks, candidates, and judgments are constructed illustrations, not benchmark cases or collected human feedback. GPT Image 2 generated the source photograph and controlled edits. The labels demonstrate the annotation schema, not agreement rates or evaluator performance.",
+      "evidence_status": "Explicitly synthetic example; no measured results",
+      "raster_assets": [
+        "output/imagegen/edit-source.png",
+        "output/imagegen/edit-omission.png",
+        "output/imagegen/edit-preserved.png"
+      ]
     },
     {
       "id": "Fig7",

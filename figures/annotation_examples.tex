@@ -1,56 +1,72 @@
 \begin{tikzpicture}[line cap=round,line join=round]
   \path[use as bounding box] (0,0) rectangle (13.7,8.20);
-  \foreach \x/\t/\col in {0/{(a) Source-grounded summary}/pGold,
-    4.65/{(b) Instruction-based image edit}/pTeal,
-    9.30/{(c) Research ablation plan}/pPlum}{
-    \node[pTitle,text=\col,anchor=west] at (\x,7.99) {\t};
-    \fill[\col!5,rounded corners=3pt] (\x,.53) rectangle (\x+4.4,7.70);
-  }
-  \node[pCard,draw=pGold!40,text width=3.87cm,minimum height=1.07cm,anchor=north]
-    at (2.20,7.50) {\textbf{Source}\\Fewer adult admissions.\\Children were not studied.};
-  \node[pCard,text width=3.87cm,minimum height=.94cm,anchor=north]
-    at (2.20,6.07) {\textcolor{pBlue}{\textbf{A}}\quad Admissions fell\\for all age groups.};
-  \node[pCard,text width=3.87cm,minimum height=.94cm,anchor=north]
-    at (2.20,4.84) {\textcolor{pGold}{\textbf{B}}\quad Admissions fell\\among adults.};
-  \node[pText,text width=3.95cm,anchor=north west] at (.20,3.53)
-    {$H_0$: B overall\\[2pt]
-     $H_1$: B on faithfulness\\[2pt]
-     $H_2$: major scope error in A\\
-     Location: \emph{all age groups}\\[2pt]
-     $H_3$: Children were not studied.};
+  \pPanel{a}{Image editing}{0}{7.99}
+  \node[pText,anchor=west] at (3.19,7.99)
+    {Instruction: add a red mug; preserve the blue bowl.};
+  \node[pLabel,anchor=west] at (.03,7.53) {SOURCE};
+  \pCandidate{A}{pBlue}{3.65}{7.53}
+  \node[pLabel,anchor=west] at (3.98,7.53) {Bowl removed};
+  \pCandidate{B}{pRed}{7.07}{7.53}
+  \node[pLabel,anchor=west] at (7.40,7.53) {Bowl retained};
+  \node[inner sep=0pt,anchor=south west] at (0,5.28)
+    {\includegraphics[width=3.00cm]{output/imagegen/edit-source.png}};
+  \node[inner sep=0pt,anchor=south west] at (3.42,5.28)
+    {\includegraphics[width=3.00cm]{output/imagegen/edit-omission.png}};
+  \node[inner sep=0pt,anchor=south west] at (6.84,5.28)
+    {\includegraphics[width=3.00cm]{output/imagegen/edit-preserved.png}};
+  \draw[pRed,densely dashed,line width=1pt] (5.57,6.20) ellipse (.61 and .36);
+  \draw[pArrow,draw=pRed] (5.57,5.82) -- (5.57,5.52) -- (4.96,5.11);
+  \node[pSmall,align=center] at (1.50,4.98) {Original artifact};
+  \node[pSmall,text=pRed,align=center] at (4.92,4.98) {$H_2$: localized omission};
+  \node[pSmall,text=pTeal,align=center] at (8.34,4.98) {Both requested objects present};
+  \draw[pRule] (10.09,5.11) -- (10.09,7.62);
+  \node[pLabel,text=pGold,anchor=west] at (10.31,7.53) {ILLUSTRATIVE FEEDBACK};
+  \node[pSmall,text=pInk,anchor=west] at (10.31,7.15) {$H_0$: B overall};
+  \node[pSmall,text=pInk,anchor=west] at (10.31,6.70)
+    {$\boldsymbol{H_1}$: B on preservation;\\tie on the added mug};
+  \node[pSmall,text=pInk,anchor=west] at (10.31,6.08)
+    {$H_2$: major omission in A\\Location: blue bowl};
+  \node[pSmall,text=pInk,anchor=west] at (10.31,5.47)
+    {$H_3$: an unrequested\\object was removed};
 
-  \node[pCard,draw=pTeal!40,text width=3.87cm,minimum height=1.07cm,anchor=north]
-    at (6.85,7.50) {\textbf{Instruction}\\Add a red mug.\\Preserve the blue bowl.};
-  \foreach \x/\t in {5.78/A,7.92/B}{
-    \draw[pLine,fill=white,rounded corners=2pt] (\x-.86,4.35) rectangle (\x+.86,6.07);
-    \node[pTitle] at (\x,5.81) {\t};
-    \draw[pRed,fill=pRed!75,rounded corners=1pt] (\x-.58,4.75) rectangle (\x-.16,5.23);
-    \draw[pRed,line width=1pt] (\x-.15,5.12) arc[start angle=90,end angle=-90,x radius=.14,y radius=.15];
-  }
-  \path[fill=pBlue!75,draw=pBlue] (8.04,5.07) .. controls (8.10,4.69) and (8.64,4.69) .. (8.70,5.07) -- cycle;
-  \draw[fill=pBlue!15,draw=pBlue] (8.37,5.07) ellipse (.33 and .10);
-  \node[pSmall,align=center] at (5.78,4.04) {Bowl removed};
-  \node[pSmall,align=center] at (7.92,4.04) {Bowl retained};
-  \node[pText,text width=3.95cm,anchor=north west] at (4.85,3.53)
-    {$H_0$: B overall\\[2pt]
-     $H_1$: B on preservation;\\
-     tie on the added object\\[2pt]
-     $H_2$: major omission in A\\
-     Location: blue bowl\\[2pt]
-     $H_3$: An unrequested object\\was removed.};
+  \draw[pRule] (0,4.62) -- (13.7,4.62);
+  \pPanel{b}{Source-grounded summary}{0}{4.30}
+  \pPanel{c}{Research ablation plan}{7.11}{4.30}
+  \draw[pRule] (6.74,.44) -- (6.74,3.99);
+  \fill[pPaper] (0,3.18) rectangle (6.39,3.98);
+  \node[pSmall,text=pInk,anchor=west] at (.14,3.58)
+    {\textbf{Source:} fewer adult admissions.\\Children were not studied.};
+  \pCandidate{A}{pBlue}{.23}{2.76}
+  \node[pText,anchor=west] at (.58,2.76)
+    {Admissions fell for \textcolor{pRed}{\underline{all age groups.}}};
+  \pCandidate{B}{pRed}{.23}{2.18}
+  \node[pText,anchor=west] at (.58,2.18) {Admissions fell among adults.};
+  \node[pSmall,text=pInk,anchor=west] at (.03,1.51)
+    {$H_0$: B overall\quad $\boldsymbol{H_1}$: B on faithfulness};
+  \node[pSmall,text=pInk,anchor=west] at (.03,1.06)
+    {$H_2$: major scope error in A; location: \emph{all age groups}};
+  \node[pSmall,text=pInk,anchor=west] at (.03,.61)
+    {$H_3$: children were not studied};
 
-  \node[pCard,draw=pPlum!40,text width=3.87cm,minimum height=1.07cm,anchor=north]
-    at (11.50,7.50) {\textbf{Question}\\Does retrieval improve\\factual answers?};
-  \node[pCard,text width=3.87cm,minimum height=.94cm,anchor=north]
-    at (11.50,6.07) {\textcolor{pBlue}{\textbf{A}}\quad Larger model + retrieval\\vs.\ smaller model.};
-  \node[pCard,text width=3.87cm,minimum height=.94cm,anchor=north]
-    at (11.50,4.84) {\textcolor{pGold}{\textbf{B}}\quad Same model and inputs;\\retrieval on/off.};
-  \node[pText,text width=3.95cm,anchor=north west] at (9.50,3.53)
-    {$H_0$: B overall\\[2pt]
-     $H_1$: B on identifiability\\[2pt]
-     $H_2$: major confound in A\\
-     Location: model size\\[2pt]
-     $H_3$: Retrieval is not isolated.};
-  \node[pSmall,align=center] at (6.85,.20)
-    {Synthetic examples and illustrative judgments; no collected human annotations or observed cases};
+  \node[pSmall,text=pInk,anchor=west] at (7.14,3.70)
+    {\textbf{Question:} does retrieval improve factual answers?};
+  \node[pSmall,anchor=west] at (7.14,3.30) {Same inputs; entries show model / retrieval};
+  \pCandidate{A}{pBlue}{7.33}{2.76}
+  \pCandidate{B}{pRed}{7.33}{2.18}
+  \foreach \y/\left/\right/\col in {2.76/{Large / on}/{Small / off}/pRed,
+    2.18/{Same / on}/{Same / off}/pTeal}{
+    \node[pSmall,draw=\col,fill=\col!4,minimum width=2.03cm,
+      minimum height=.43cm,text=\col] at (9.06,\y) {\left};
+    \node[pSmall,draw=\col,fill=\col!4,minimum width=2.03cm,
+      minimum height=.43cm,text=\col] at (12.02,\y) {\right};
+    \node[pSmall] at (10.53,\y) {vs.};
+  }
+  \node[pSmall,text=pInk,anchor=west] at (7.14,1.51)
+    {$H_0$: B overall\quad $\boldsymbol{H_1}$: B on identifiability};
+  \node[pSmall,text=pInk,anchor=west] at (7.14,1.06)
+    {$H_2$: major confound in A; location: model size};
+  \node[pSmall,text=pInk,anchor=west] at (7.14,.61)
+    {$H_3$: retrieval is not isolated};
+  \node[pSmall,align=center] at (6.85,.12)
+    {Constructed tasks, candidates and judgments; GPT Image 2 photographs are illustrative, not experimental outputs};
 \end{tikzpicture}

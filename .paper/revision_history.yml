@@ -71,6 +71,20 @@
         "Statements"
       ],
       "summary": "Reframes the paper as P2E for open-ended generation, with ERA as its revision method. Adds semantic preference mining, H0–H3 and source dependence, all 22 domains, independent metric reserve, full C1/C2/planned-C3 protocols, ablation and analysis designs, eight figures and ten tables. GPT Image 2 supplies synthetic four-family vignettes; native TikZ retains exact structure. Empirical gains remain unmeasured and training is not executed."
+    },
+    {
+      "round": 3,
+      "date": "2026-09-16",
+      "trigger": "Author requests reference-informed visual redesign instead of monotonous diagrams",
+      "reviewer": "Author feedback",
+      "changed_claims": [],
+      "changed_figures": [
+        "Fig1", "Fig2", "Fig3", "Fig4", "Fig5", "Fig6", "Fig7", "Fig8"
+      ],
+      "sections_touched": [
+        "Figure sources", "Figure captions", "AI use statement", "Figure provenance"
+      ],
+      "summary": "Redesigns all eight figures after visually inspecting Self-Refine, Eureka, TextGrad, and Segment Anything. Replaces the decorative panorama with concrete native artifacts and a dominant ERA loop; distinguishes matrix, routed evidence, connected revision, matched controls, access timeline, and factor graph. GPT Image 2 provides a controlled source/add-mug/remove-bowl illustration with native evidence overlays. Captions, asset lineage, print widths, and memory are synchronized. Claims, scientific scope, empirical gaps, and the design-only C3 status are unchanged."
     }
   ]
 }

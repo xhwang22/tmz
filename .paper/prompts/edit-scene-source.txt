@@ -1,0 +1,7 @@
+Use case: photorealistic-natural
+Asset type: synthetic source photograph for a scientific paper's controlled image-editing example.
+Primary request: an elegant, highly legible product photograph of one cobalt-blue ceramic bowl on a pale warm stone tabletop. The bowl is empty, round, and visibly recognizable as a bowl, placed in the right half of the image. Leave the left half of the tabletop empty so a mug can be added later.
+Scene: warm off-white wall behind the tabletop; a small, softly defocused olive branch in a narrow cream vase at the far back left. No other dishes, utensils, food, or objects. The vase is far behind the empty space where a mug could later be placed.
+Composition: landscape 3:2, camera slightly above tabletop height, front three-quarter view. The bowl occupies roughly the right central third, with its elliptical opening and curved exterior clearly visible. The tabletop fills the lower two thirds. Clean controlled studio framing with realistic gentle shadows and tactile ceramic glaze. Strong bowl/background contrast at thumbnail size.
+Lighting: soft daylight from upper left, warm neutral scene, saturated cobalt bowl, natural fine texture.
+Constraints: one blue bowl only; no mug yet. No text, numbers, labels, logos, borders, arrows, watermarks, hands, or humans. This is fictional illustrative artwork, not a research measurement.

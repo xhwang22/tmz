@@ -1,48 +1,56 @@
 \begin{tikzpicture}[line cap=round,line join=round]
   \path[use as bounding box] (0,0) rectangle (13.7,5.75);
-  \node[pTitle,anchor=west] at (0,5.53) {(a) Sourced specialist findings};
-  \node[pTitle,anchor=west] at (4.65,5.53) {(b) Semantic factors};
-  \node[pTitle,anchor=west] at (9.33,5.53) {(c) Anchored overall judgment};
-  \foreach \y/\id/\n/\t/\col in {
-    4.64/f1/1/Qualifier missing/pGold,
-    3.59/f2/2/Scope widened/pGold,
-    2.54/f3/3/No scope error/pBlue,
-    1.49/f4/4/Clear structure/pTeal}{
-    \node[pCard,draw=\col!45,text width=3.54cm,minimum height=.62cm]
-      (\id) at (1.94,\y) {$f_{\n}$\quad \t\\\textcolor{pMuted}{Evidence pointer}};
+  \pPanel{a}{Sourced findings}{0}{5.52}
+  \pPanel{b}{Resolve semantic factors}{4.69}{5.52}
+  \pPanel{c}{Anchored judgment}{9.33}{5.52}
+  \foreach \y/\id/\n/\t/\ptr/\col in {
+    4.62/f1/1/{Qualifier missing}/{$y$, clause 2; source $x$}/pGold,
+    3.57/f2/2/{Scope widened}/{$y$, clause 2; source $x$}/pGold,
+    2.52/f3/3/{No scope error}/{$y$, sentence 1}/pRed,
+    1.47/f4/4/{Clear structure}/{$y$, sentence 1}/pTeal}{
+    \node[pDot,draw=\col,fill=\col!6,text=\col,minimum size=.47cm] at (.31,\y+.03) {$f_{\n}$};
+    \node[pText,anchor=west] at (.71,\y+.13) {\t};
+    \node[pSmall,anchor=west] at (.71,\y-.25) {\ptr};
+    \coordinate (\id) at (3.89,\y);
+    \draw[pRule] (.71,\y-.47) -- (3.89,\y-.47);
   }
-  \node[pCard,draw=pGold!60,fill=pGold!6,text width=3.40cm,minimum height=1.50cm,align=left]
-    (factor1) at (6.70,3.96)
-    {\textbf{Scope / fidelity}\\
-     $f_1,f_2$: overlapping\\
-     $f_3$: conflicting\\[2pt]
-     Resolve against source};
-  \node[pCard,draw=pTeal!60,fill=pTeal!6,text width=3.40cm,minimum height=.93cm,align=left]
-    (factor2) at (6.70,1.64)
-    {\textbf{Organization}\\$f_4$: distinct factor};
-  \foreach \id in {f1,f2,f3}{
-    \draw[pSoftArrow] (\id.east) -- (4.22,0 |- \id.east) -- (factor1.west);
-  }
-  \draw[pSoftArrow] (f4.east) -- (factor2.west);
-  \node[pSmall,align=center] at (6.70,.69)
-    {Each finding assigned once\\Keep overlap and conflict};
-  \node[pText,text width=3.82cm,align=center] at (11.54,4.62)
-    {Use domain priorities\\and resolved factors};
-  \draw[pSoftArrow] (factor1.east) -- (9.19,3.96) -- (9.19,3.34) -- (9.75,3.34);
-  \draw[pSoftArrow] (factor2.east) -- (9.19,1.64) -- (9.19,3.34);
-  \draw[pInk,line width=.8pt] (9.79,3.34) -- (13.25,3.34);
+
+  \fill[pPaper,rounded corners=2pt] (4.95,2.37) rectangle (8.86,4.96);
+  \node[pTitle,anchor=west] at (5.14,4.63) {Scope / fidelity};
+  \node[pSmall,draw=pGold,fill=pGold!6,text=pGold,minimum width=1.02cm,
+    minimum height=.42cm] (overlap) at (5.72,4.02) {$f_1, f_2$};
+  \node[pText,anchor=west] at (6.39,4.02) {Overlap};
+  \node[pSmall,draw=pRed,dashed,fill=white,text=pRed,minimum width=1.02cm,
+    minimum height=.42cm] (conflict) at (5.72,3.34) {$f_3$};
+  \node[pText,anchor=west] at (6.39,3.34) {Conflict};
+  \draw[pArrow,draw=pGold] (f1) -- (4.39,4.62) -- (overlap.west);
+  \draw[pArrow,draw=pGold] (f2) -- (4.39,3.57) -- (overlap.west);
+  \draw[pArrow,draw=pRed,dashed] (f3) -- (4.55,2.52) -- (conflict.west);
+  \node[pSmall,align=center] at (6.91,2.78) {Resolve against source.\\Do not count duplicate votes.};
+  \draw[pTeal,line width=1pt] (5.14,1.86) -- (5.14,1.02);
+  \node[pTitle,anchor=west] at (5.32,1.68) {Organization};
+  \node[pSmall,anchor=west] at (5.32,1.28) {$f_4$: a distinct factor};
+  \draw[pEvidence] (f4) -- (5.10,1.47);
+  \node[pSmall,align=center] at (6.88,.65) {Each finding assigned once};
+
+  \node[pSmall,align=center] at (11.50,4.77) {Use resolved factors\\and domain priorities};
+  \draw[pRevision] (8.86,3.77) -- (9.31,3.77) -- (9.31,3.31) -- (9.76,3.31);
+  \draw[pPlum,line width=.85pt] (8.86,1.47) -- (9.13,1.47) -- (9.13,3.31) -- (9.31,3.31);
+  \fill[pPlum!12] (9.79,3.17) rectangle (11.52,3.45);
+  \draw[pInk,line width=.85pt] (9.79,3.31) -- (13.25,3.31);
   \foreach \x/\v/\t in {9.79/50/Mixed,11.52/75/Good,13.25/100/Excellent}{
-    \draw[pInk] (\x,3.18) -- (\x,3.50);
-    \node[pSmall,align=center] at (\x,2.91) {\v\\\t};
+    \draw[pInk] (\x,3.13) -- (\x,3.49);
+    \node[pTitle,align=center] at (\x,2.88) {\v};
+    \node[pSmall,align=center] at (\x,2.49) {\t};
   }
-  \fill[pPlum] (10.482,3.34) circle (.09);
-  \node[pSmall,text=pPlum,align=center] at (10.482,3.86) {Illustrative\\$\lambda=0.4$};
-  \node[pCard,draw=pPlum!55,fill=pPlum!5,text width=3.61cm,minimum height=.83cm,align=center]
-    at (11.54,1.62) {$s=(1-\lambda)a_k+\lambda a_{k+1}$\\
-    $50+0.4\cdot25=60$};
-  \node[pSmall,align=center] at (11.54,.62)
-    {Illustrative anchors only\\Not an observed score};
-  \draw[pLine] (0,.27) -- (13.7,.27);
-  \node[pSmall,align=center] at (6.85,.03)
+  \fill[pPlum] (10.482,3.31) circle (.09);
+  \node[pLead,text=pPlum] at (10.482,4.11) {60};
+  \draw[pRevision] (10.482,3.88) -- (10.482,3.48);
+  \node[pSmall,text=pPlum,anchor=west] at (11.08,4.11) {$\lambda=0.4$};
+  \node[pText,align=center] at (11.54,1.81) {$s=(1-\lambda)a_k+\lambda a_{k+1}$};
+  \node[pText,text=pPlum,align=center] at (11.54,1.31) {$50+0.4\cdot25=60$};
+  \node[pSmall,align=center] at (11.54,.71) {Synthetic arithmetic\\Not a measured score};
+  \draw[pRule] (0,.31) -- (13.7,.31);
+  \node[pSmall,align=center] at (6.85,.07)
     {Reference completeness $\ne$ correct semantic grouping $\ne$ calibrated overall quality};
 \end{tikzpicture}

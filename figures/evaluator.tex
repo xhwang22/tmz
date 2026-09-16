@@ -1,58 +1,66 @@
 \begin{tikzpicture}[line cap=round,line join=round]
   \path[use as bounding box] (0,0) rectangle (13.7,4.95);
-  \foreach \x/\t in {0/{(a) Artifact views},2.76/{(b) Evidence acquisition},6.58/{(c) Criteria and modules},10.47/{(d) Synthesis}}{
-    \node[pTitle,anchor=west] at (\x,4.73) {\t};
-  }
-  \foreach \x/\w/\col in {0/2.48/pBlue,2.73/3.55/pTeal,6.54/3.65/pGold,10.45/3.25/pPlum}{
-    \fill[\col!5,rounded corners=3pt] (\x,1.05) rectangle (\x+\w,4.40);
+  \pPanel{a}{Read one artifact}{0}{4.72}
+  \pPanel{b}{Route observations}{3.38}{4.72}
+  \pPanel{c}{Apply criteria}{7.03}{4.72}
+  \pPanel{d}{Synthesize}{10.66}{4.72}
+
+  \node[pSmall,text=pBlue,anchor=west] at (.03,4.16) {$A$: task $x$ and candidate $y$};
+  \draw[pRule,fill=white] (0,1.22) rectangle (2.91,3.84);
+  \fill[pBlue] (0,3.43) rectangle (2.91,3.84);
+  \node[pLabel,text=white,anchor=west] at (.12,3.64) {SUMMARY $y$};
+  \node[pText,anchor=north west] at (.12,3.27)
+    {Admissions fell for\\\textcolor{pRed}{\underline{all age groups.}}};
+  \draw[pRule] (.14,2.48) -- (2.76,2.48);
+  \node[pLabel,text=pMuted,anchor=west] at (.12,2.21) {TASK SOURCE $x$};
+  \node[pSmall,text=pInk,anchor=north west] at (.12,1.98)
+    {Adult admissions fell.\\Children were not studied.};
+
+  \node[pSmall,text=pTeal,anchor=west] at (3.42,4.16) {$T$: tools and permitted views};
+  \node[diamond,aspect=1.1,draw=pTeal,fill=pTeal!5,minimum width=.60cm,
+    minimum height=.60cm,inner sep=0pt,pTitle,text=pTeal] (route) at (3.55,2.70) {$\Pi$};
+  \draw[pArrow] (2.91,2.70) -- (route.west);
+  \foreach \y/\id/\call/\value in {
+    3.39/scope/{scope(y)}/{all age groups},
+    2.39/source/{source(x)}/{adults only},
+    1.39/raw/{text(y)}/{original wording}}{
+    \node[pCard,draw=pTeal!45,fill=pTeal!4,text width=2.18cm,
+      minimum height=.75cm,align=left] (\id) at (5.46,\y)
+      {\textcolor{pTeal}{\texttt{\call}}\\\value};
+    \draw[pEvidence] (route.east) -- (3.98,2.70) |- (\id.west);
   }
 
-  \draw[pBlue!60,fill=white,rounded corners=1pt] (.46,2.71) rectangle (1.99,3.84);
-  \draw[pBlue!60,fill=white,rounded corners=1pt] (.30,2.56) rectangle (1.83,3.69);
-  \fill[pBlue!25] (.43,3.11) rectangle (1.06,3.50);
-  \foreach \y in {3.49,3.32,3.15,2.91}{
-    \draw[pLine,line width=1pt] (1.20,\y) -- (1.69,\y);
-  }
-  \node[pTitle,text=pBlue] at (1.07,3.31) {$y$};
-  \node[pText,align=center] at (1.24,2.14) {One artifact $y$\\+ task $x$};
-  \node[pSmall,align=center] at (1.24,1.42)
-    {Render / source\\Structure / references};
+  \node[pSmall,text=pGold,anchor=west] at (7.07,4.16) {$K$: domain criteria + priorities};
+  \fill[pGold!8] (7.12,2.61) rectangle (10.08,3.80);
+  \fill[pGold] (7.12,2.61) rectangle (7.18,3.80);
+  \node[pLabel,text=pGold,anchor=west] at (7.28,3.56) {$V_1$\quad Faithfulness};
+  \node[pText,anchor=west] at (7.28,3.20) {Scope overreach};
+  \node[pSmall,anchor=west] at (7.28,2.83) {Source $x$; $y$, clause 2};
+  \draw[pEvidence] (scope.east) -- (7.11,3.39);
+  \draw[pEvidence] (source.east) -- (6.91,2.39) -- (6.91,2.97) -- (7.11,2.97);
+  \fill[pPaper] (7.12,1.03) rectangle (10.08,2.10);
+  \fill[pMuted] (7.12,1.03) rectangle (7.18,2.10);
+  \node[pLabel,anchor=west] at (7.28,1.84) {$V_2$\quad Fluency};
+  \node[pText,anchor=west] at (7.28,1.49) {Readable sentence};
+  \node[pSmall,anchor=west] at (7.28,1.17) {Pointer: $y$, sentence 1};
+  \draw[pEvidence] (raw.east) -- (7.11,1.39);
 
-  \node[diamond,aspect=1.15,draw=pTeal,fill=white,minimum width=.66cm,
-    minimum height=.63cm,inner sep=0pt,pTitle,text=pTeal] (route) at (3.24,2.96) {$\Pi$};
-  \draw[pArrow] (2.48,2.96) -- (route.west);
-  \foreach \y/\id/\t in {3.76/t1/Content,2.95/t2/Structure,2.14/t3/Metric}{
-    \node[pCard,draw=pTeal!45,text width=1.68cm,minimum height=.54cm,align=center]
-      (\id) at (4.92,\y) {\t};
-    \draw[pSoftArrow] (route.east) -- (3.85,2.96) |- (\id.west);
-    \draw[pSoftArrow] (\id.east) -- (6.14,\y);
-  }
-  \draw[pMuted,line width=.6pt] (6.14,2.14) -- (6.14,3.76);
-  \node[pSmall,align=center] at (4.56,1.44) {$T$: candidate tools};
+  \node[pSmall,align=center] at (12.14,4.16) {Evidence $\ne$ judgment};
+  \draw[pPlum,line width=.7pt] (10.08,3.20) -- (10.37,3.20) -- (10.37,1.56) -- (10.08,1.56);
+  \node[diamond,aspect=1.0,draw=pPlum,fill=pPlum!7,minimum size=.65cm,
+    inner sep=0pt,pTitle,text=pPlum] (fuse) at (10.98,2.66) {$G$};
+  \draw[pRevision] (10.37,2.66) -- (fuse.west);
+  \node[pCard,draw=pPlum,fill=white,text width=1.72cm,minimum height=1.06cm,
+    align=center] (score) at (12.64,2.66)
+    {$s_\theta(x,y)$\\\textbf{Score + critique}};
+  \draw[pRevision] (fuse) -- (score);
+  \node[pSmall,align=center] at (12.08,1.46) {Sourced findings\\and execution trace $\tau_\theta$};
+  \node[pSmall,align=center,text=pPlum] at (12.08,1.00) {Numerical / semantic fusion};
 
-  \node[pSmall,text=pGold,align=center] at (8.36,4.12)
-    {$K$: anchored rubrics and priorities};
-  \foreach \y/\id/\t in {3.49/v1/$v_1$: content,2.68/v2/$v_2$: structure,1.87/v3/$v_k$: domain criteria}{
-    \node[pCard,draw=pGold!45,text width=2.59cm,minimum height=.60cm,align=left]
-      (\id) at (8.36,\y) {\t\\[-1pt]\textcolor{pMuted}{Finding + source}};
-    \draw[pSoftArrow] (6.14,2.96) -- (6.38,2.96) |- (\id.west);
-    \draw[pMuted,line width=.5pt] (\id.east) -- (10.30,\y);
-  }
-  \draw[pMuted,line width=.5pt] (10.30,1.87) -- (10.30,3.49);
-  \node[pSmall,align=center] at (8.36,1.24) {$V$: findings with uncertainty};
-
-  \node[pCard,draw=pPlum!55,text width=2.63cm,minimum height=.94cm,align=center]
-    (fuse) at (12.08,3.39) {$G$: fusion\\
-    \textcolor{pMuted}{Numerical / semantic}};
-  \draw[pArrow] (10.30,2.68) -- (10.38,2.68) |- (fuse.west);
-  \node[pCard,draw=pPlum,fill=pPlum!6,text width=2.63cm,minimum height=.80cm,align=center]
-    (score) at (12.08,1.86) {Score $s_\theta$ + critique\\Execution trace $\tau_\theta$};
-  \draw[pArrow] (fuse.south) -- (score.north);
-
-  \fill[pInk!5,rounded corners=2pt] (0,.09) rectangle (13.7,.77);
-  \node[pText,align=center] at (6.85,.53)
+  \draw[pRule] (0,.75) -- (13.7,.75);
+  \node[pText,align=center] at (6.85,.48)
     {\textbf{Editable:}\quad $A$ views \quad $K$ rubrics \quad $V$ modules \quad
      $T$ tools \quad $\Pi$ routing \quad $G$ fusion};
-  \node[pSmall,align=center] at (6.85,.24)
-    {Fixed base model \quad $\vert$ \quad No opponent, human labels, split identity, or generator identity at runtime};
+  \node[pSmall,align=center] at (6.85,.12)
+    {Fixed model; no opponent, human labels, mining labels, split identity, or generator identity at runtime};
 \end{tikzpicture}

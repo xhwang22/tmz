@@ -1,12 +1,13 @@
 \begin{tikzpicture}[line cap=round,line join=round]
   \path[use as bounding box] (0,0) rectangle (13.7,5.65);
-  \node[pTitle,anchor=west] at (0,5.45) {(a) Signal--dimension map};
-  \node[pTitle,anchor=west] at (6.32,5.45) {(b) Semantic strata};
-  \node[pTitle,anchor=west] at (10.16,5.45) {(c) Feedback and evidence};
+  \pPanel{a}{Signal--dimension map}{0}{5.43}
+  \pPanel{b}{Interpret disagreement}{6.03}{5.43}
+  \pPanel{c}{Ask for evidence}{10.10}{5.43}
 
-  \node[pSmall,anchor=west] at (0,4.90) {Signal};
-  \foreach \x/\t in {2.72/Content,3.58/Layout,4.44/Style,5.30/Overall}{
-    \node[pSmall,align=center] at (\x,4.90) {\t};
+  \fill[pInk] (0,4.67) rectangle (5.75,5.10);
+  \node[pSmall,text=white,anchor=west] at (.07,4.90) {Signal};
+  \foreach \x/\t in {2.35/Content,3.32/Layout,4.29/Style,5.26/Overall}{
+    \node[pSmall,text=white,align=center] at (\x,4.90) {\t};
   }
   \foreach \y/\lab in {
     4.38/OCR or text,
@@ -18,57 +19,69 @@
     1.80/VLM style,
     1.37/VLM overall}{
     \node[pSmall,anchor=west,text=pInk] at (.02,\y) {\lab};
-    \foreach \x in {2.72,3.58,4.44,5.30}{
-      \draw[pLine,line width=.4pt,fill=pLine!8]
+    \foreach \x in {2.35,3.32,4.29,5.26}{
+      \draw[pLine,line width=.35pt,fill=pPaper]
         (\x-.40,\y-.195) rectangle (\x+.40,\y+.195);
       \node[pSmall,text=pLine!90!black] at (\x,\y) {--};
     }
   }
-  \foreach \x/\y in {2.72/4.38,2.72/3.95,4.44/3.95}{
-    \fill[pBlue!12] (\x-.40,\y-.195) rectangle (\x+.40,\y+.195);
-    \node[pTitle,text=pBlue] at (\x,\y) {A};
+  \foreach \x/\y in {2.35/4.38,2.35/3.95,4.29/3.95}{
+    \fill[pBlue] (\x-.40,\y-.195) rectangle (\x+.40,\y+.195);
   }
-  \foreach \x/\y in {3.58/3.52,3.58/3.09,4.44/3.09,2.72/2.66,3.58/2.23,4.44/1.80,5.30/1.37}{
-    \fill[pGold!13] (\x-.40,\y-.195) rectangle (\x+.40,\y+.195);
-    \node[pTitle,text=pGold] at (\x,\y) {B};
+  \foreach \x/\y in {3.32/3.52,3.32/3.09,4.29/3.09,2.35/2.66,3.32/2.23,4.29/1.80,5.26/1.37}{
+    \fill[pRed] (\x-.40,\y-.195) rectangle (\x+.40,\y+.195);
   }
-  \foreach \x/\y in {2.72/3.95,4.44/3.95,3.58/3.09,4.44/3.09}{
-    \draw[pattern=north east lines,pattern color=pMuted!24,draw=pLine]
+  \foreach \x/\y in {2.35/3.95,4.29/3.95,3.32/3.09,4.29/3.09}{
+    \draw[pattern=north east lines,pattern color=white!36,draw=pLine]
       (\x-.40,\y-.195) rectangle (\x+.40,\y+.195);
+  }
+  \foreach \x/\y in {2.35/4.38,2.35/3.95,4.29/3.95}{
+    \node[pTitle,text=white,fill=pBlue,inner sep=1pt] at (\x,\y) {A};
+  }
+  \foreach \x/\y in {3.32/3.52,3.32/3.09,4.29/3.09,2.35/2.66,3.32/2.23,4.29/1.80,5.26/1.37}{
+    \node[pTitle,text=white,fill=pRed,inner sep=1pt] at (\x,\y) {B};
   }
   \node[pSmall,anchor=north west] at (.02,.94)
     {A/B: preference; --: not mapped.\\Hatching: one shared signal, not two votes.};
 
-  \foreach \y/\col in {4.20/pBlue,2.65/pTeal,1.10/pGold}{
-    \fill[\col!6,rounded corners=2pt] (6.30,\y-.60) rectangle (9.90,\y+.65);
+  \draw[pRule] (5.93,.58) -- (5.93,5.11);
+  \foreach \y/\n in {4.67/1,3.18/2,1.69/3}{
+    \node[pDot,draw=pLine,text=pMuted,minimum size=.35cm,
+      font=\sffamily\fontsize{7}{8}\selectfont] at (6.30,\y) {\n};
   }
-  \node[pTitle,anchor=west] at (6.44,4.67) {Within one dimension};
-  \node[pText,align=center] at (8.10,4.19)
-    {\textcolor{pBlue}{OCR: A} \quad $\leftrightarrow$ \quad \textcolor{pGold}{VLM: B}};
-  \node[pSmall,align=center] at (8.10,3.83) {Conflicting signals};
+  \node[pLabel,anchor=west] at (6.57,4.67) {Within one dimension};
+  \pCandidate{A}{pBlue}{6.52}{4.13}
+  \node[pSmall,anchor=west] at (6.79,4.13) {OCR};
+  \draw[pArrow] (7.47,4.13) -- (8.03,4.13);
+  \draw[pArrow] (8.03,4.25) -- (7.47,4.25);
+  \pCandidate{B}{pRed}{8.34}{4.13}
+  \node[pSmall,anchor=west] at (8.61,4.13) {VLM};
+  \node[pSmall,anchor=west] at (6.23,3.66) {Conflicting content signals};
+  \draw[pRule] (6.23,3.43) -- (9.76,3.43);
 
-  \node[pTitle,anchor=west] at (6.44,3.12) {Overall--dimension};
-  \node[pText,align=center] at (8.10,2.64)
-    {Overall \textcolor{pGold}{B} \quad / \quad Content \textcolor{pBlue}{A}};
-  \node[pSmall,align=center] at (8.10,2.28) {Check priorities / fusion};
+  \node[pLabel,anchor=west] at (6.57,3.18) {Overall--dimension};
+  \node[pText,anchor=west] at (6.23,2.64)
+    {Overall \textcolor{pRed}{\textbf{B}} / content \textcolor{pBlue}{\textbf{A}}};
+  \node[pSmall,anchor=west] at (6.23,2.18) {Check priorities and fusion};
+  \draw[pRule] (6.23,1.96) -- (9.76,1.96);
 
-  \node[pTitle,anchor=west] at (6.44,1.57) {Across dimensions};
-  \node[pText,align=center] at (8.10,1.09)
-    {Content \textcolor{pBlue}{A} \quad / \quad Layout \textcolor{pGold}{B}};
-  \node[pSmall,align=center] at (8.10,.73) {Trade-off, not contradiction};
+  \node[pLabel,anchor=west] at (6.57,1.69) {Across dimensions};
+  \node[pText,anchor=west] at (6.23,1.18)
+    {Content \textcolor{pBlue}{\textbf{A}} / layout \textcolor{pRed}{\textbf{B}}};
+  \node[pSmall,anchor=west] at (6.23,.72) {Trade-off, not contradiction};
 
-  \foreach \y/\h/\t/\col in {
-    4.64/H_0/Overall/pBlue,
-    3.76/H_1/Dimensional/pTeal,
-    2.88/H_2/Localized errors/pGold,
-    2.00/H_3/Optional rationale/pPlum}{
-    \node[pCard,fill=\col!7,draw=\col!40,text width=3.06cm,
-      minimum height=.66cm,anchor=center] at (11.92,\y)
-      {\textcolor{\col}{$\boldsymbol{\h}$}\quad \t};
-  }
-  \draw[pSoftArrow] (11.92,1.66) -- (11.92,1.19);
-  \node[pCard,draw=pTeal,fill=pTeal!6,align=center,text width=3.06cm,minimum height=.82cm]
-    at (11.92,.76) {Evidence table $Z$\\
-    \textcolor{pMuted}{H + signals + traces}};
-  \draw[pDash] (9.90,2.65) -- (10.09,2.65) -- (10.09,3.76) -- (10.31,3.76);
+  \node[pText,anchor=west] at (10.27,4.67) {$H_0$\quad Overall preference};
+  \fill[pGold!9] (10.21,3.42) rectangle (13.7,4.27);
+  \fill[pGold] (10.21,3.42) rectangle (10.28,4.27);
+  \node[pText,anchor=west] at (10.40,4.04) {$\boldsymbol{H_1}$\quad Dimensional};
+  \node[pSmall,text=pGold,anchor=west] at (10.40,3.67) {Core supervision};
+  \node[pText,anchor=west] at (10.27,2.99) {$H_2$\quad Error + location};
+  \node[pText,anchor=west] at (10.27,2.33) {$H_3$\quad Optional rationale};
+  \draw[pEvidence] (11.96,2.00) -- (11.96,1.52);
+  \node[pCard,draw=pTeal,fill=pTeal!5,align=center,text width=2.96cm,minimum height=.83cm]
+    at (11.96,1.08) {\textbf{Evidence table $Z$}\\
+    {\fontsize{7}{8.4}\selectfont\textcolor{pMuted}{H + signals + traces}}};
+  \draw[pDash] (9.82,3.82) -- (10.16,3.82);
+  \node[pSmall,align=center] at (6.85,.13)
+    {Random reliability anchor $\rightarrow$ frozen acquisition policy $\rightarrow$ targeted conflicts; all annotation costs count};
 \end{tikzpicture}

@@ -8,8 +8,9 @@
 - US Letter; official font sizes, margins and text area unchanged.
 - Natbib author–year citations; supplied `.bst`; single-paragraph abstract.
 - Figure captions below; table captions above; readable vector artwork for exact
-  diagrams and at least 600 DPI at print width for raster line art. The 3840-pixel
-  panorama asset exceeds 600 DPI at the 5.5-inch text width.
+  diagrams. This draft checks all raster assets at a minimum of 600 DPI at print
+  width. Its three 1536-pixel photographs provide about 1300 DPI at their maximum
+  3 cm width; the former panorama strip is archived and unused.
 - Required AI use statement, at most one page, outside the page limit.
 - Recommended ethics and reproducibility statements, each at most one page,
   outside the page limit and before references.

@@ -1,58 +1,56 @@
 \begin{tikzpicture}[line cap=round,line join=round]
   \path[use as bounding box] (0,0) rectangle (13.7,4.80);
-  \node[pTitle,anchor=west] at (0,4.58) {(a) A direction, several connected edits};
-  \node[pTitle,anchor=west] at (6.54,4.58) {(b) Mechanism diagnosis};
-  \node[pTitle,anchor=west] at (10.40,4.58) {(c) Distinct outcomes};
+  \pPanel{a}{One hypothesis, connected edits}{0}{4.57}
+  \pPanel{b}{Mechanism checks}{6.46}{4.57}
+  \pPanel{c}{Allocate or stop}{10.33}{4.57}
+  \node[pText,anchor=west] at (.02,3.98)
+    {Hypothesis: the evaluator lacks scope evidence.};
 
-  \node[pDot,draw=pBlue,fill=pBlue!8,minimum size=.66cm] (b) at (.45,2.91) {$B$};
-  \node[pSmall,align=center] at (.47,3.56) {Fixed\\parent};
-  \fill[pTeal!6,rounded corners=3pt] (1.29,2.37) rectangle (5.30,3.53);
-  \node[pSmall,text=pTeal,anchor=west] at (1.37,3.92) {Active direction: missing scope evidence};
-  \foreach \x/\id/\t in {1.94/t/$T$,3.27/pi/$\Pi$,4.60/v/$V$}{
-    \node[pDot,draw=pTeal,fill=white,minimum size=.59cm] (\id) at (\x,2.96) {\t};
+  \node[pDot,draw=pInk,fill=pInk,text=white,minimum size=.58cm] (b) at (.40,2.80) {$B$};
+  \node[pSmall,align=center] at (.40,3.39) {Fixed\\parent};
+  \draw[pPlum,dashed,rounded corners=2pt] (1.19,2.02) rectangle (6.06,3.47);
+  \foreach \x/\id/\s/\t in {1.90/t/T/{Add scope\\extractor},
+    3.57/pi/\Pi/{Route the\\source span},5.23/v/V/{Compare\\qualifiers}}{
+    \node[draw=pPlum,fill=pPlum!7,minimum size=.50cm,inner sep=0pt,pTitle,text=pPlum]
+      (\id) at (\x,2.96) {$\s$};
+    \node[pSmall,align=center,text=pInk] at (\x,2.36) {\t};
   }
-  \draw[pArrow] (b.east) -- (t.west);
-  \draw[pArrow] (t) -- (pi);
-  \draw[pArrow] (pi) -- (v);
-  \node[pSmall] at (1.94,2.51) {Acquire};
-  \node[pSmall] at (3.27,2.51) {Route};
-  \node[pSmall] at (4.60,2.51) {Interpret};
-  \node[pSmall,align=center] at (3.30,3.34) {$W=\operatorname{patch}(B)$: one connected candidate};
-  \node[diamond,aspect=1.2,draw=pInk,fill=white,inner sep=2pt,pSmall,align=center]
-    (measure) at (5.64,1.84) {Sealed\\Train};
-  \draw[pArrow] (v.east) -- (5.64,2.96) -- (measure.north);
-  \node[pDot,draw=pGold,fill=pGold!8] (other) at (2.20,1.66) {$K$};
-  \draw[pDash] (b.south) -- (.45,1.66) -- (other.west);
-  \draw[pDash] (other.east) -- (3.15,1.66);
-  \node[pSmall,anchor=west] at (3.26,1.66) {Paused};
-
-  \fill[pBlue!8,rounded corners=2pt] (0,.70) rectangle (6.08,1.20);
-  \node[pSmall,text=pBlue,anchor=west] at (.15,.95)
-    {Best $B$: guarded gains only};
-  \fill[pTeal!8,rounded corners=2pt] (0,.07) rectangle (6.08,.57);
-  \node[pSmall,text=pTeal,anchor=west] at (.15,.32)
-    {Working $W$: evidence-bound continuation};
+  \draw[pRevision] (b.east) -- (1.04,2.80) -- (1.04,2.96) -- (t.west);
+  \draw[pRevision] (t) -- (pi);
+  \draw[pRevision] (pi) -- (v);
+  \node[pSmall,text=pPlum,fill=white,inner sep=2pt] at (3.59,3.47)
+    {$W=\operatorname{patch}(B)$};
+  \node[pDot,draw=pLine,text=pMuted,minimum size=.39cm] (k) at (1.28,1.61) {$K$};
+  \draw[pDash] (b.south) -- (.40,1.61) -- (k.west);
+  \node[pSmall,anchor=west] at (1.57,1.61) {Alternative direction: paused};
+  \node[pCard,draw=pTeal,fill=pTeal!5,text width=4.16cm,align=center,
+    minimum height=.62cm] (measure) at (3.85,1.00)
+    {Measure the complete program on sealed Train};
+  \draw[pEvidence] (v.east) -- (6.19,2.96) -- (6.19,1.00) -- (measure.east);
+  \node[pSmall,anchor=west,text=pBlue] at (.03,.31) {Best $B$: guarded gains};
+  \node[pSmall,anchor=west,text=pTeal] at (3.13,.31) {$W$: evidence + protection};
 
   \foreach \y/\n/\t/\sub in {
-    3.55/1/Evidence acquired?/Tool output,
-    2.55/2/Evidence consumed?/Routing + module traces,
-    1.55/3/Correct interpretation?/Criteria + fusion}{
-    \node[pDot,draw=pGold,fill=pGold!8,minimum size=.45cm] at (6.80,\y) {\n};
-    \node[pText,anchor=west] at (7.15,\y+.08) {\t};
-    \node[pSmall,anchor=west] at (7.15,\y-.28) {\sub};
+    3.62/1/{Acquired?}/{Inspect tool outputs},
+    2.55/2/{Consumed?}/{Inspect routing traces},
+    1.48/3/{Interpreted?}/{Inspect criteria and fusion}}{
+    \node[pDot,draw=pGold,fill=pGold!8,text=pGold,minimum size=.43cm] at (6.73,\y) {\n};
+    \node[pTitle,anchor=west] at (7.09,\y+.07) {\t};
+    \node[pSmall,anchor=west] at (7.09,\y-.31) {\sub};
   }
-  \draw[pSoftArrow] (6.80,3.27) -- (6.80,2.83);
-  \draw[pSoftArrow] (6.80,2.27) -- (6.80,1.83);
-  \node[pSmall,align=left,anchor=west] at (6.55,.47)
-    {Check alternatives.\\Not a success gate.};
+  \draw[pArrow,draw=pGold] (6.73,3.37) -- (6.73,2.81);
+  \draw[pArrow,draw=pGold] (6.73,2.30) -- (6.73,1.74);
+  \node[pSmall,anchor=west] at (6.48,.40) {Check alternatives.\\Not a success gate.};
 
-  \foreach \y/\t/\sub/\col in {
-    3.64/Continue/New supporting evidence/pTeal,
-    2.65/Pause/Reallocate effort/pBlue,
-    1.66/Exhausted/Budget ended/pGold,
-    .67/Refuted/Prediction contradicted within scope/pRed}{
-    \fill[\col] (10.47,\y) circle (.065);
-    \node[pTitle,text=\col,anchor=west] at (10.68,\y+.10) {\t};
-    \node[pSmall,text width=2.85cm,anchor=north west] at (10.68,\y-.12) {\sub};
+  \draw[pRule] (10.12,.11) -- (10.12,4.18);
+  \foreach \y/\mark/\t/\sub/\col in {
+    3.70/C/Continue/{Evidence; guards hold}/pTeal,
+    2.66/P/Pause/{Reallocate search effort}/pBlue,
+    1.62/E/Exhausted/{Resource budget ended}/pGold,
+    .66/R/Refuted/{Prediction contradicted\\within declared scope}/pRed}{
+    \node[pToken,fill=\col,minimum size=.33cm,font=\sffamily\bfseries\fontsize{7}{8}\selectfont]
+      at (10.54,\y+.05) {\mark};
+    \node[pTitle,text=\col,anchor=west] at (10.84,\y+.10) {\t};
+    \node[pSmall,anchor=north west] at (10.84,\y-.13) {\sub};
   }
 \end{tikzpicture}

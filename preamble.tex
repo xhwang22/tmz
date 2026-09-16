@@ -34,14 +34,15 @@
 \definecolor{eraTeal}{HTML}{E9F3F0}
 \definecolor{eraSand}{HTML}{F6F0E4}
 \definecolor{eraGray}{HTML}{F2F3F5}
-\definecolor{pBlue}{HTML}{326B9C}
-\definecolor{pTeal}{HTML}{16827D}
-\definecolor{pGold}{HTML}{A86B17}
-\definecolor{pPlum}{HTML}{85507D}
-\definecolor{pInk}{HTML}{243746}
-\definecolor{pMuted}{HTML}{596775}
-\definecolor{pLine}{HTML}{CFD8DF}
-\definecolor{pRed}{HTML}{AE513A}
+\definecolor{pBlue}{HTML}{2964A4}
+\definecolor{pTeal}{HTML}{087F78}
+\definecolor{pGold}{HTML}{A86B08}
+\definecolor{pPlum}{HTML}{7052A3}
+\definecolor{pInk}{HTML}{202C3B}
+\definecolor{pMuted}{HTML}{586473}
+\definecolor{pLine}{HTML}{D5DCE3}
+\definecolor{pRed}{HTML}{C3523F}
+\definecolor{pPaper}{HTML}{F4F6F8}
 \tikzset{
   eraBox/.style={draw=eraNavy,rounded corners=2pt,line width=0.65pt,
     align=center,font=\small,inner sep=5pt},
@@ -51,9 +52,10 @@
   pText/.style={font=\sffamily\fontsize{8}{9.6}\selectfont,text=pInk,align=left},
   pSmall/.style={font=\sffamily\fontsize{7}{8.4}\selectfont,text=pMuted,align=left},
   pTitle/.style={font=\sffamily\bfseries\fontsize{8.5}{10}\selectfont,text=pInk,align=left},
-  pCard/.style={draw=pLine,fill=white,rounded corners=2pt,line width=.55pt,inner sep=4pt,pText},
-  pArrow/.style={-{Latex[length=1.6mm]},draw=pInk,line width=.7pt},
+  pCard/.style={draw=pLine,fill=white,rounded corners=1pt,line width=.6pt,inner sep=4pt,pText},
+  pArrow/.style={-{Latex[length=1.7mm]},draw=pInk,line width=.85pt},
   pSoftArrow/.style={-{Latex[length=1.4mm]},draw=pMuted,line width=.55pt},
   pDash/.style={pSoftArrow,dashed},
   pDot/.style={circle,draw=pInk,fill=white,minimum size=5mm,inner sep=0pt,font=\sffamily\scriptsize}
 }
+\input{figures/visual_style.tex}

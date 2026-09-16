@@ -1,0 +1,32 @@
+% Shared figure vocabulary. Semantic structure and labels remain vector-native.
+\tikzset{
+  pLabel/.style={font=\sffamily\bfseries\fontsize{7}{8.4}\selectfont,text=pInk,align=left},
+  pLead/.style={font=\sffamily\bfseries\fontsize{11}{12}\selectfont,text=pInk},
+  pMono/.style={font=\ttfamily\fontsize{7}{8.4}\selectfont,text=pInk,align=left},
+  pBadge/.style={circle,fill=pInk,text=white,inner sep=0pt,minimum size=4mm,
+    font=\sffamily\bfseries\fontsize{8}{8}\selectfont},
+  pToken/.style={rectangle,rounded corners=.7pt,text=white,inner sep=0pt,
+    minimum size=4.4mm,font=\sffamily\bfseries\fontsize{8}{8}\selectfont},
+  pEvidence/.style={pArrow,draw=pTeal},
+  pRevision/.style={pArrow,draw=pPlum},
+  pRule/.style={draw=pLine,line width=.6pt}
+}
+\newcommand{\pPanel}[4]{%
+  \node[pBadge] at (#3+.20,#4) {#1};
+  \node[pTitle,anchor=west,inner sep=0pt] at (#3+.49,#4) {#2};
+}
+\newcommand{\pCandidate}[4]{%
+  \node[pToken,fill=#2] at (#3,#4) {#1};
+}
+\newcommand{\pComponent}[5]{%
+  \node[draw=#2,fill=#2!7,rounded corners=1pt,minimum width=.53cm,
+    minimum height=.49cm,inner sep=0pt,pTitle,text=#2] at (#4,#5) {$#1$};
+  \node[pSmall,align=center,inner sep=0pt] at (#4,#5-.43) {#3};
+}
+\newcommand{\pLock}[3]{%
+  \draw[#3,line width=.75pt] (#1-.105,#2+.04) -- (#1-.105,#2+.15)
+    arc[start angle=180,end angle=0,radius=.105] -- (#1+.105,#2+.04);
+  \draw[#3,fill=white,line width=.75pt,rounded corners=.5pt]
+    (#1-.17,#2-.16) rectangle (#1+.17,#2+.07);
+  \fill[#3] (#1,#2-.035) circle (.025);
+}

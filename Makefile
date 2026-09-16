@@ -2,7 +2,7 @@ SHELL := /bin/bash
 TEXFLAGS := -interaction=nonstopmode -halt-on-error -file-line-error -output-directory=build
 INPUTS := Makefile main.tex preamble.tex references.bib iclr2027_conference.sty iclr2027_conference.bst $(wildcard sections/*.tex figures/*.tex output/imagegen/*.png)
 
-.PHONY: all check clean
+.PHONY: all check figures clean
 all: paper.pdf
 
 build/main.pdf: $(INPUTS)
@@ -20,6 +20,10 @@ check: paper.pdf
 	python3 scripts/check_paper.py
 	python3 scripts/check_memory.py
 	git diff --check
+
+# Optional visual review: requires Pillow, standalone.cls, and pdftoppm.
+figures:
+	python3 scripts/render_figures.py
 
 clean:
 	rm -rf build

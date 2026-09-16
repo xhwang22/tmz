@@ -1,45 +1,50 @@
 \begin{tikzpicture}[line cap=round,line join=round]
   \path[use as bounding box] (0,0) rectangle (13.7,6.05);
-  \node[pTitle,anchor=west] at (0,5.83) {(a) Evidence access during evolution};
-  \node[pTitle,anchor=west] at (7.07,5.83) {(b) Frozen assessment};
-  \foreach \x/\col in {0/pBlue,3.55/pTeal,7.10/pGold,10.65/pPlum}{
-    \fill[\col!6,rounded corners=3pt] (\x,2.26) rectangle (\x+3.05,5.43);
+  \pPanel{a}{Train-time adaptation}{0}{5.81}
+  \pPanel{b}{Frozen assessment}{7.13}{5.81}
+
+  \draw[pArrow,draw=pMuted] (1.51,5.03) -- (12.18,5.03);
+  \foreach \x/\n/\col in {1.51/1/pBlue,5.03/2/pTeal,8.62/3/pGold,12.18/4/pPlum}{
+    \node[pBadge,fill=\col,minimum size=.48cm] at (\x,5.03) {\n};
   }
-  \node[pTitle,align=center,text=pBlue] at (1.525,5.11) {Proposal Train $\Dprop$};
-  \node[pText,align=center,text width=2.77cm] at (1.525,4.34)
-    {$x$, candidates, available H\\Raw execution traces};
-  \node[pCard,draw=pBlue!50,text width=2.42cm,minimum height=.70cm,align=center]
-    (propose) at (1.525,2.94) {Propose revisions\\Allocate search};
-  \draw[pSoftArrow] (1.525,3.70) -- (propose.north);
-  \node[pTitle,align=center,text=pTeal] at (5.075,5.11) {Sealed Train $\Ddev$};
-  \node[pText,align=center,text width=2.77cm] at (5.075,4.34)
-    {Disjoint input groups\\No raw-case access};
-  \node[pCard,draw=pTeal!50,text width=2.42cm,minimum height=.70cm,align=center]
-    (measure) at (5.075,2.94) {Common-cohort\\measurement};
-  \draw[pSoftArrow] (5.075,3.70) -- (measure.north);
-  \draw[pArrow] (propose.east) -- (measure.west);
-  \draw[pSoftArrow] (measure.south) -- (5.075,1.85) -- (1.525,1.85) -- (propose.south);
-  \node[pSmall,fill=white,inner sep=2pt] at (3.30,1.85) {Aggregate feedback only};
-  \node[pTitle,align=center,text=pGold] at (8.625,5.11) {Terminal Val $\Dval$};
-  \node[pText,align=center,text width=2.77cm] at (8.625,4.34)
-    {Train-frozen shortlist\\Fresh scoring repeats};
-  \node[pCard,draw=pGold!50,text width=2.42cm,minimum height=.70cm,align=center]
-    (val) at (8.625,2.94) {Confirm system\\No further revision};
-  \draw[pSoftArrow] (8.625,3.70) -- (val.north);
-  \node[pTitle,align=center,text=pPlum] at (12.175,5.11) {Locked Test / OOD};
-  \node[pText,align=center,text width=2.77cm] at (12.175,4.34)
-    {Frozen method\\Independent inputs};
-  \node[pCard,draw=pPlum!50,text width=2.42cm,minimum height=.70cm,align=center]
-    (test) at (12.175,2.94) {Final assessment\\C1 / C2 / C3};
-  \draw[pSoftArrow] (12.175,3.70) -- (test.north);
-  \draw[pArrow] (measure.east) -- (val.west);
-  \draw[pArrow] (val.east) -- (test.west);
-  \draw[pRed!65,dashed,line width=.8pt] (6.85,1.57) -- (6.85,5.49);
-  \node[pSmall,align=center] at (10.4,1.85) {No feedback into search or checkpoint choice};
-  \fill[pPlum!7,rounded corners=2pt] (0,.15) rectangle (13.7,1.23);
-  \node[pTitle,text=pPlum,anchor=west] at (.18,.94) {(c) External Metric Reserve};
-  \node[pText,anchor=west] at (.18,.48)
-    {Frozen before search; excluded from tools, routing, critique, reward, and model selection};
-  \draw[pSoftArrow,draw=pPlum] (12.17,1.23) -- (12.17,2.48);
-  \node[pSmall,text=pPlum,anchor=east,fill=white,inner sep=1pt] at (12.02,1.47) {Final assessment only};
+  \draw[pRed,dashed,line width=.85pt] (6.80,1.60) -- (6.80,5.48);
+  \node[pLabel,text=pRed,fill=white,inner sep=3pt] at (6.80,5.03) {FREEZE};
+  \node[pTitle,text=pBlue,align=center] at (1.51,4.45) {Proposal Train $\Dprop$};
+  \node[pTitle,text=pTeal,align=center] at (5.03,4.45) {Sealed Train $\Ddev$};
+  \node[pTitle,text=pGold,align=center] at (8.62,4.45) {Terminal Val $\Dval$};
+  \node[pTitle,text=pPlum,align=center] at (12.18,4.45) {Locked Test / OOD};
+
+  \draw[pRule,fill=white] (.05,2.39) rectangle (2.98,3.87);
+  \fill[pBlue] (.05,3.47) rectangle (2.98,3.87);
+  \node[pLabel,text=white,anchor=west] at (.17,3.67) {RAW EVIDENCE};
+  \node[pSmall,text=pInk,anchor=west] at (.17,2.94) {Artifacts + available H\\Sourced execution traces};
+  \draw[pTeal,fill=pTeal!4] (3.56,2.39) rectangle (6.50,3.87);
+  \node[pLabel,text=pTeal,anchor=west] at (3.69,3.64) {MEASUREMENT};
+  \pLock{6.15}{3.64}{pTeal}
+  \node[pText,anchor=west] at (3.69,2.94) {Disjoint input groups\\No raw-case access};
+  \draw[pEvidence] (2.98,3.11) -- (3.56,3.11);
+  \node[pSmall,text=pTeal] at (3.27,3.42) {$E$};
+  \draw[pEvidence] (5.03,2.39) -- (5.03,1.93) -- (1.51,1.93) -- (1.51,2.39);
+  \node[pSmall,fill=white,inner sep=2pt] at (3.26,1.93) {Aggregate feedback only};
+
+  \node[pText,align=center] at (8.62,3.54) {Train-frozen shortlist\\Fresh scoring repeats};
+  \node[pSmall,draw=pGold,fill=pGold!5,minimum width=2.46cm,
+    minimum height=.54cm,align=center] at (8.62,2.70) {$E_1\quad\cdots\quad E_k$};
+  \node[pSmall,align=center] at (8.62,2.08) {Confirm; no revision};
+  \node[pText,align=center] at (12.18,3.54) {Frozen method\\Independent inputs};
+  \foreach \x/\label in {11.37/C1,12.18/C2,12.99/C3}{
+    \node[pSmall,draw=pPlum,fill=pPlum!5,minimum width=.59cm,
+      minimum height=.54cm,align=center,text=pPlum] at (\x,2.70) {\label};
+  }
+  \node[pSmall,align=center] at (9.39,1.56) {No feedback to search or selection};
+
+  \fill[pInk] (0,.12) rectangle (13.7,1.26);
+  \node[pBadge,fill=white,text=pInk] at (.26,.93) {c};
+  \node[pTitle,text=white,anchor=west] at (.57,.93) {External Metric Reserve};
+  \node[pSmall,text=white,anchor=west] at (.14,.46)
+    {Frozen before search; excluded from tools, routing, critique, rewards and selection};
+  \draw[pPlum,line width=.65pt] (10.98,2.40) -- (10.98,2.29)
+    -- (13.38,2.29) -- (13.38,2.40);
+  \draw[pRevision] (12.18,1.26) -- (12.18,2.29);
+  \node[pSmall,text=pPlum,anchor=west] at (12.35,1.72) {Final only};
 \end{tikzpicture}

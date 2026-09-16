@@ -79,7 +79,21 @@ if r"\iclrfinalcopy" in manuscript:
 if re.search(r"/(?:home|mnt)/|gh[pousr]_[A-Za-z0-9_]{20,}", manuscript):
     errors.append("Potential private path or credential in manuscript.")
 
-graphics = set(re.findall(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", manuscript))
+graphic_uses = re.findall(
+    r"\\includegraphics(?:\[([^\]]*)\])?\{([^}]+)\}", manuscript
+)
+graphics = {relative for _, relative in graphic_uses}
+print_widths = {}
+units_per_inch = {"in": 1, "cm": 2.54, "mm": 25.4, "pt": 72.27, "bp": 72}
+for options, relative in graphic_uses:
+    # Figures use explicit native widths, without outer resizebox/scalebox.
+    match = re.search(r"(?:^|,)\s*width\s*=\s*([0-9.]+)\s*(in|cm|mm|pt|bp)(?:,|$)", options)
+    if not match:
+        errors.append(f"Raster needs an explicit physical print width: {relative}")
+        continue
+    print_widths.setdefault(relative, []).append(
+        float(match.group(1)) / units_per_inch[match.group(2)]
+    )
 assets = json.loads((ROOT / ".paper/figure_assets.json").read_text())
 recorded_graphics = set()
 for asset in assets["generated_images"]:
@@ -103,13 +117,26 @@ for asset in assets["generated_images"]:
     width, height = struct.unpack(">II", data[16:24])
     if (width, height) != (asset["width"], asset["height"]):
         errors.append(f"Figure dimensions do not match provenance: {relative}")
-    if width / 5.5 < 600:
-        errors.append(f"Figure below 600 DPI at full text width: {relative}")
+    declared_cm = asset.get("max_print_width_cm")
+    if not isinstance(declared_cm, (int, float)) or declared_cm <= 0:
+        errors.append(f"Missing positive max_print_width_cm: {relative}")
+    else:
+        declared_in = declared_cm / 2.54
+        if width / declared_in < 600:
+            errors.append(f"Figure below 600 DPI at declared maximum print width: {relative}")
+        for printed_in in print_widths.get(relative, []):
+            if printed_in > declared_in + 1e-6:
+                errors.append(f"TeX width exceeds the recorded print-width budget: {relative}")
+            if printed_in <= 0 or width / printed_in < 600:
+                errors.append(f"Figure below 600 DPI at its actual TeX width: {relative}")
     for prompt in asset["prompts"]:
         if not (ROOT / prompt).is_file():
             errors.append(f"Missing figure prompt: {prompt}")
 if graphics != recorded_graphics:
     errors.append("Referenced graphics and figure provenance do not match.")
+for asset in assets.get("archived_images", []):
+    if asset["path"] in graphics:
+        errors.append(f"Archived illustration is still referenced: {asset['path']}")
 
 aux_path = ROOT / "build/main.aux"
 if aux_path.exists():

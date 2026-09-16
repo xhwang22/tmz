@@ -1,34 +1,66 @@
 # Illustration provenance
 
-- Selected asset: `output/imagegen/domain-panorama-final.png`, 3840×1280,
-  RGB PNG, quality `high`. SHA-256 is recorded in `figure_assets.json`.
-- Model: `gpt-image-2`; the user-selected deployment reported version
-  `2026-04-21`. The route was not substituted with another image model.
-- Service: the user-authorized Azure Foundry resource, through the compatible
-  `/openai/v1/` generation and editing endpoints.
-- Tooling: imagegen skill's bundled `image_gen.py` CLI, isolated Python 3.11,
-  OpenAI SDK 3.14.1, Pillow. The source experiment environment was not changed.
-- Credentials: a short-lived Microsoft Entra token was acquired at invocation
-  time, used process-locally, and never written into the repository or output.
-- Prompts: `prompts/domain-panorama.txt` and
-  `prompts/domain-panorama-cleanup.txt`.
-- Generation: four domain-family vignettes covering visual artifacts, images/3D,
-  text, and automated research. The targeted edit removed invented text,
-  pseudo-citations, and an unrequested decorative icon.
-- Selection: only the reviewed final image is published. Rejected versions and
-  the replaced overview are not active manuscript assets.
-- Resolution: approximately 698 DPI at a full 5.5-inch text width.
+Updated 2026-09-16 for the reference-informed visual redesign. See
+[visual_references.md](visual_references.md) for the four inspected papers and
+the specific communication choices adopted. Their figures were not copied,
+traced, or uploaded to the image service.
 
-The image is used only in Figure 1(a). Miniatures, including pictured chart
-interfaces, are synthetic artwork, not measurements or experimental screenshots.
-All authoritative labels, mathematical expressions, flow arrows, and remaining
-figures are editable TikZ. The caption and AI use statement disclose the image's
-status. Final author review remains required.
+## Active generated assets
 
-Prompts contain generic tasks and aesthetics only. No private examples, human
-annotation records, observed metrics, credentials, or experiment logs were sent
-to the image service. These prompts record figure preparation, not scientific
-debugging history. Building the PDF uses committed assets and performs no API calls.
+All three images are 1536×1024 RGB PNG, generated with `gpt-image-2`, quality
+`high`. The selected deployment reported model version `2026-04-21`; no other
+image model was substituted. Exact hashes and input-image lineage are recorded
+in [figure_assets.json](figure_assets.json).
 
-The previously used 3840×2160 overview and its prompts remain recoverable in git
-history but are superseded by the four-family panorama plus native P2E diagram.
+| Asset in `output/imagegen/` | Operation and input | Manuscript use | Prompt in `.paper/prompts/` |
+| --- | --- | --- | --- |
+| `edit-source.png` | Generate a blue bowl on a pale stone table | Fig6(a), source | `edit-scene-source.txt` |
+| `edit-preserved.png` | Edit source: add a red mug, preserve the bowl and scene | Fig1(a), Fig6(a) candidate B | `edit-scene-preserved.txt` |
+| `edit-omission.png` | Edit preserved candidate: remove only the bowl and its shadow | Fig6(a) candidate A | `edit-scene-omission.txt` |
+
+The photographic comparison illustrates the instruction “Add a red mug.
+Preserve the blue bowl.” All three images were inspected after generation.
+The omitted bowl is circled by native TikZ, not an image-model annotation.
+The scenes are constructed illustrations, not benchmark artifacts, generator
+outputs under evaluation, human feedback, or measured results.
+
+## Verified generation route
+
+- Service: the user-authorized Azure Foundry resource, using the **resource-level**
+  `/openai/v1/` base URL and `/images/generations` / `/images/edits` APIs.
+  The project URL is resource context, not the base URL of these verified calls.
+- Tooling: imagegen skill's bundled, unmodified `image_gen.py` CLI via
+  `uv run --python 3.11 --with openai --with pillow`; OpenAI SDK 3.14.1 and
+  Pillow 12.3.0. The source research environment was not modified.
+- Authentication: `az account get-access-token` with resource
+  `https://cognitiveservices.azure.com`. A short-lived Entra token is held only
+  in the command's `OPENAI_API_KEY`; the SDK sends Bearer authentication.
+  The token is neither printed nor written to disk or this repository.
+- Commands: `generate` or `edit`, `--model gpt-image-2`, the recorded
+  `--prompt-file`, `--size 1536x1024 --quality high --no-augment`, explicit
+  `--out`; editing additionally supplies the recorded `--image`.
+- Generation completed in 97.7 seconds, the mug edit in 103.3 seconds, and the
+  omission edit in 97.9 seconds. These are preparation timings, not service
+  guarantees or scientific experiment measurements.
+
+The source, omission, and preserved images print at 3.00 cm width in Figure 6:
+approximately 1300 DPI. Figure 1 uses the preserved image at 2.265 cm width,
+approximately 1722 DPI. The checker requires at least 600 DPI, checks explicit
+TeX widths against each asset's declared maximum, and verifies PNG dimensions
+and SHA-256; it does not mistake a small photo for a full-page raster.
+
+## Disclosure and privacy
+
+All authoritative labels, mathematical expressions, evidence pointers, flow
+arrows, and other diagrams are editable TikZ. Native webpage, text, and research
+examples are also synthetic. The relevant captions and AI use statement disclose
+their status. Reference figures and factual plots are never generated evidence.
+
+Prompts contain invented scenes and generic aesthetics only. No private examples,
+human annotation records, observed metrics, credentials, or experiment logs were
+sent to the service. Building the PDF and figure previews uses committed assets
+and makes no model API calls.
+
+The round-2 `domain-panorama-final.png` and its prompts remain an explicitly
+archived asset, not an active manuscript graphic. Earlier overviews remain in
+git history. Final author review is still required.
