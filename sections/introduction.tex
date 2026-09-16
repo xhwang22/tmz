@@ -1,43 +1,39 @@
 \section{Introduction}
 \label{sec:intro}
 
-An appealing image may omit a requested object. A fluent summary may remove a
-qualification that changes the source's meaning. A research proposal may offer an
-interesting hypothesis without an experiment capable of testing it. These are
-evaluation problems in open-ended generation: multiple outputs are reasonable,
-quality has several dimensions, and no single deterministic verifier defines the
-complete ordering. Existing metrics and model-based judges provide useful but
-different evidence about that ordering
-\citep{fabbri2021summeval,xu2023imagereward,ghosh2023geneval,liu2023geval}.
+Open-ended generation exposes a gap between what automated evaluators measure
+and what people value. A fluent summary may mislead, an appealing image may
+violate its request, and an original research proposal may fail to test its
+hypothesis. Metrics and model-based judges scale assessment, but studies of
+summarization, image preference, and model-based
+judging document limitations in their agreement with human judgments
+\citep{fabbri2021summeval,xu2023imagereward,zheng2023judging}.
+Improving generation against these evaluators therefore need not improve the
+qualities that matter to people.
 
-The central difficulty is that a preference error does not identify its cause.
-A summary evaluator might never inspect the source qualification, observe it
-without passing it to the judge, or judge faithfulness correctly but give fluency
-too much weight. The same wrong ordering is compatible with each mechanism.
-Adding another score does not resolve this ambiguity when sources measure
-different constructs or share a blind spot. Work on model-based judging and
-human-authored criteria motivates examining what supports a judgment
-\citep{zheng2023judging,shankar2024evalgen}. The resulting question is:
-\emph{given a task and its human feedback, can we evolve an evaluator that better
-follows that task's evaluation standard}?
+The difficulty is making human preferences explicit enough to automate.
+Open-ended quality has no complete deterministic verifier. Criteria depend on
+the task, and even an agreed list of criteria leaves their interpretation and
+trade-offs unresolved. Visual similarity, for example, is central to screenshot
+reconstruction, whereas specification-conditioned web generation permits
+different appearances that satisfy the same requirements. An overall preference
+records a decision without fully specifying how to make such distinctions on
+new outputs. Aligning the evaluation criteria themselves is consequently part
+of the learning problem \citep{shankar2024evalgen}.
 
-We introduce \PtwoE{}, Preference-Guided Evaluator Evolution, for domains with
-open-ended outputs and an existing evaluation ecosystem.
-Figure~\ref{fig:overview} presents the complete framework. \PtwoE{} maps available
-signals to quality dimensions before exposing human labels. Suitable existing
-preferences can be reused; tasks without them require new human judgments.
-These are two data-construction settings for the same algorithmic problem,
-not different definitions of the method. Human evidence has
-two roles: it helps locate evaluation gaps and supplies the standard against
-which candidate mechanisms are selected. Within P2E, \ERA{} is our method for
-evidence-guided evaluator evolution. With the base model fixed, it evolves how
-an executable program represents artifacts, acquires observations, and turns
-them into judgments. The object of learning is the evaluation procedure itself.
+We study whether human preference data can drive the self-evolution of an
+evaluation agent toward a task's evaluation standard. Existing evaluation
+knowledge supplies initial criteria and tools; human feedback supplies evidence
+about where their current use falls short. Our method, \ERA{}, evolves the
+executable evaluation program while keeping its base model fixed
+(Figure~\ref{fig:overview}). The human standard remains the target. What evolves
+is the agent's explicit approximation of that standard, including how it obtains
+evidence and turns that evidence into judgments.
 
 \begin{figure}[t]
 \centering
 \input{figures/overview}
-\caption{\PtwoE{} evolves evaluation systems using human feedback.
+\caption{Evaluation-agent self-evolution from human feedback.
 (a) Four artifact families retain distinct evaluation standards.
 (b) Reused and newly collected preferences enter a common evidence interface;
 their provenance and annotation quality remain separate. (c) \ERA{} evolves a six-component
@@ -48,22 +44,38 @@ information flow, not measured improvements.}
 \label{fig:overview}
 \end{figure}
 
-Two hypotheses motivate the design. First, disagreements between reliable,
-nonredundant signals may make a fixed annotation budget more informative than
-uniform sampling. Second, failures that depend on acquiring, routing, and
-interpreting evidence may require coordinated evolution of those components.
-A new observation cannot affect a judgment unless it reaches a module able to
-interpret it. ERA therefore organizes variation around mechanism hypotheses
-while selecting complete programs. A failed implementation need not refute its
-hypothesis, and continuation need not promote the current program. These
-distinctions motivate matched-budget comparisons with independent proposals
-and component-restricted search.
+Why evolve the program rather than only tune parameters? Fine-tuning can improve
+judgment, as rubric-conditioned evaluators illustrate
+\citep{kim2024prometheus,kim2024prometheus2}. With a fixed observation path,
+however, tuning how evidence is interpreted leaves the evidence available to
+the judge unchanged. Calibration can adjust existing scores without acquiring
+new evidence.
+Program evolution exposes criteria, tools, and evidence use as objects that can
+be changed and tested. Fine-tuning can also learn criteria and tool use when its
+training interface permits them. A shared-observation control therefore separates
+changes to available evidence from changes to its interpretation. An explicit
+program is not automatically a faithful explanation. We therefore
+include evaluator fine-tuning and calibration as alternatives, without assuming
+an alignment or efficiency advantage (Appendix~\ref{app:adaptation}).
 
-A common evolution procedure is instantiated separately for each evaluation
-standard. We distinguish agreement and selection on fixed candidates (C1),
-refinement through a frozen critic (C2), and training under a frozen reward (C3).
-Success at one level does not establish success at the next. This paper develops
-the feedback-mining formulation, ERA evolution procedure, and controlled studies
-needed to test these hypotheses in both data-construction settings. The ability
-to build a new preference corpus and the value of a particular sampling policy
-require different evidence.
+Preference-guided evolution requires both informative feedback and a way to act
+on it. We map existing signals to quality dimensions before inspecting labels,
+separating disagreement about one criterion from trade-offs between criteria.
+We hypothesize that disagreements among reliable, nonredundant signals can make
+a fixed annotation budget more informative than random sampling. Available
+dimensional judgments and localized errors then inform hypotheses about missing
+observations or inappropriate interpretation. For example, a stricter
+faithfulness criterion cannot assess a source qualification that the program
+never makes available to the judge. We hypothesize that such dependencies
+between evidence acquisition and judgment favor coordinated program evolution.
+ERA uses hypotheses as units of exploration and complete programs as units of
+selection, allowing a connected mechanism to be tested without equating one
+unsuccessful implementation with a refuted hypothesis.
+
+Reusing existing preferences and collecting new judgments instantiate this same
+learning problem. Their provenance, agreement, and abstention remain separately
+reported; building a corpus does not establish the value of its sampling policy.
+The scope spans four domain families, with a separate evaluator for each
+evaluation standard. We distinguish alignment and selection on fixed candidates
+(C1), critic-guided refinement (C2), and planned reward-guided training (C3).
+Closer ranking agreement alone cannot establish useful feedback for generation.

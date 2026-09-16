@@ -1,12 +1,12 @@
 # Visual references and redesign brief
 
-Reviewed 2026-09-16. These sources inform visual communication, not P2E's
+Reviewed 2026-09-16. These sources inform visual communication, not this paper's
 empirical claims. Original figures are neither reproduced nor traced in the
 manuscript, and were not uploaded to the image-generation service.
 
 ## Primary references requested by the author
 
-| Reference inspected | Primary source | Transferable design choice | P2E application |
+| Reference inspected | Primary source | Transferable design choice | Application in this paper |
 | --- | --- | --- | --- |
 | *A Survey on Post-training of Large Language Models*, arXiv 2503.06072v3; Figs. 1/2/5/8/12, PDF pp. 6/7/15/19/26 | [Versioned paper](https://arxiv.org/pdf/2503.06072v3) | Pale rounded groups, original role pictograms, airy cycles, and matched lanes distinguish processes without heavy borders. | Gentle grouping and a dominant ERA cycle in the overview; C1/C2/C3 remain compact assessment lanes. |
 | *A Comprehensive Survey in LLM(-Agent) Full Stack Safety: Data, Training and Deployment*, arXiv 2504.15585v4; Figs. 11/12, PDF pp. 27/28 | [Versioned paper](https://arxiv.org/pdf/2504.15585v4) | Illustrated nested structures show which objects and roles belong to each stage. | Explicit evidence, human-feedback, evaluator, and independent-assessment roles with small original pictograms. |
@@ -21,7 +21,7 @@ as identical. No task examples, dataset totals, or measured plots were reused.
 
 ## Secondary references from the preceding round
 
-| Reference inspected | Primary source | Transferable design choice | P2E application |
+| Reference inspected | Primary source | Transferable design choice | Application in this paper |
 | --- | --- | --- | --- |
 | Madaan et al., *Self-Refine: Iterative Refinement with Self-Feedback*, Fig. 2, p. 3, arXiv v2 (2023) | [Paper](https://arxiv.org/pdf/2303.17651), [author site](https://selfrefine.info/) | Readable candidate text, specific feedback, and the modified object share a spatial alignment. | Annotated summary in the runtime diagram; the extended image-edit comparison is archived. |
 | Ma et al., *Eureka: Human-Level Reward Design via Coding Large Language Models*, Fig. 2, p. 2 | [Author-hosted paper](https://eureka-research.github.io/assets/eureka_paper.pdf), [project](https://eureka-research.github.io/) | Concrete task/code artifacts sit inside a legible feedback cycle. Color distinguishes paths with different roles. | Give ERA the dominant visual area; separate proposal, measurement, and retained program state. |
@@ -40,7 +40,7 @@ structured human evidence, the editable program, and independent assessment.
 | Local reference, preserved outside the commit | Adopted principle | Current use |
 | --- | --- | --- |
 | `color_reference.jpg` | Soft blue/mint/sand/peach/rose family; color should not overpower data | Light surfaces, quiet grid lines, dark text; no copied example values |
-| `color_reference_1.jpg` | Blue-to-warm progression; show distributions and individual observations | Blue static seed versus coral P2E; box/strip plots and raw-value overlays; no copied significance annotations |
+| `color_reference_1.jpg` | Blue-to-warm progression; show distributions and individual observations | Blue static seed versus coral ERA; box/strip plots and raw-value overlays; no copied significance annotations |
 | `color_reference_2.jpg` | Ocean blue, sea glass, sand, and coral with restrained contrast | Main shared palette and rank/outcome composition; no decorative radial plot |
 
 The working palette reconciles these references: blue `#376795`, sky `#7BC0CD`,
@@ -60,7 +60,7 @@ are not automatically redistributed. Their plotted values are never used.
   plots for component and feedback comparisons; rainclouds plus outcome bars
   for refinement; scatter for quality–cost trade-offs. Avoid chart variety that
   obscures a comparison, 3D effects, ornamental frames, or decorative p-values.
-- P2E remains coral and the static tool-augmented seed blue across method plots.
+- ERA remains coral and the static tool-augmented seed blue across method plots.
   Reused/new preference settings use teal/peach when setting identity is encoded
   by color. Rank and outcome plots have their own explicitly labeled ordinal
   mappings. Markers, dash patterns, hatching, zero references, and direct labels

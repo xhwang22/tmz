@@ -76,6 +76,8 @@ if refs - set(labels):
     errors.append(f"Undefined cross-references: {sorted(refs - set(labels))}")
 if r"\iclrfinalcopy" in manuscript:
     errors.append("Anonymous draft unexpectedly enables final-copy mode.")
+if re.search(r"\bP2E\b|\\PtwoE\b", manuscript):
+    errors.append("The retired project name remains in an active manuscript input.")
 if re.search(r"/(?:home|mnt)/|gh[pousr]_[A-Za-z0-9_]{20,}", manuscript):
     errors.append("Potential private path or credential in manuscript.")
 

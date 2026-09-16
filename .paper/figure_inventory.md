@@ -1,7 +1,7 @@
 # Figure and table inventory
 
 The authoritative caption and claim mapping is in `figures.yml`: nine figures
-(three main, six appendix) and eleven tables. Two figures are conceptual;
+(three main, six appendix) and twelve tables. Two figures are conceptual;
 seven are explicitly simulated quantitative displays. None reports measured
 performance. The only active GPT Image 2 photograph is the disclosed vignette
 in Figure 1. Unused conceptual sources and image lineage are retained as archives.
@@ -35,11 +35,12 @@ is in `figures/simulated/`. Figure wrappers preserve a native 5.4-inch width.
 | Tab9 | tab:downstream-results | C2/C3 empirical status; dashes mean unmeasured, not zero |
 | Tab10 | tab:simulation-cohorts | Eight illustrative cohorts; not verified label availability or fixed domain classes |
 | Tab11 | tab:manifest | Configuration fields to freeze; unresolved values marked TBD |
+| Tab12 | tab:adaptation | Score calibration, evaluator fine-tuning, and program evolution; planned C1 alternatives, not performance rankings |
 
 The ocean/sea-glass/sand/coral palette follows the three author references.
 Charts use TeX Gyre Heros; diagrams use scoped Helvetica-compatible text. Plot
 titles, axes, legends, and notes share an explicit size hierarchy. Method
-comparisons retain coral for P2E and blue for the static tool-augmented seed.
+comparisons retain coral for ERA and blue for the static tool-augmented seed.
 Rank colors, settings, and signed effects are separately defined in captions.
 See `visual_references.md` for the design rationale and inspected source papers.
 

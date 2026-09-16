@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data/simulated"
 CHARTS = ("alignment", "acquisition", "annotation", "selection", "ablation", "refinement", "cost")
 METHODS = ("Single metric", "Metric ensemble", "Static judge", "Static tools",
-           "Prompt optimization", "Program search", "P2E (ERA)")
+           "Prompt optimization", "Program search", "ERA")
 METRICS = ("pairwise", "top_region", "best_of_4", "rank_regret")
 SETTINGS = ("Reuse", "Collect")
 SPLITS = ("ID", "OOD")
@@ -158,7 +158,7 @@ def check_c1(cohorts):
     effect_index = index_unique(effects, ("domain", "split"), "Paired alignment effects")
     require(set(effect_index) == set(itertools.product(cohorts, SPLITS)), "Missing paired effect")
     for r in effects:
-        pairs = [(index[(r["domain"], r["split"], g["input_group"], "P2E (ERA)")], g)
+        pairs = [(index[(r["domain"], r["split"], g["input_group"], "ERA")], g)
                  for g in grouped[(r["domain"], r["split"], "Static tools")]]
         paired = [100 * (float(a["pairwise"]) - float(b["pairwise"]))
                   for a, b in pairs if a["complete"] == b["complete"] == "1"]
@@ -178,7 +178,7 @@ def check_c1(cohorts):
 
     ranks = rows("selection_ranks.csv")
     rank_index = index_unique(ranks, ("setting", "method", "selected_rank"), "Selected ranks")
-    selected = ("Static judge", "Static tools", "Program search", "P2E (ERA)")
+    selected = ("Static judge", "Static tools", "Program search", "ERA")
     require(set(rank_index) == set(itertools.product(SETTINGS, selected, ("1", "2", "3", "4", "unscored"))),
             "Selection rank cells changed")
     for setting, method in itertools.product(SETTINGS, selected):
@@ -289,12 +289,12 @@ def check_other_fixtures(cohorts):
     require(Counter(r["domain"] for r in refinements) == Counter({d: GROUPS for d in cohorts}),
             "Refinement domain coverage changed")
     for r in refinements:
-        y0, seed, p2e = (float(r[k]) for k in ("y0_quality", "seed_quality", "p2e_quality"))
-        require(all(map(math.isfinite, (y0, seed, p2e))), "Nonfinite C2 latent utility")
-        expected = "Tie" if abs(p2e - seed) < .15 else "P2E wins" if p2e > seed else "Seed wins"
+        y0, seed, era = (float(r[k]) for k in ("y0_quality", "seed_quality", "era_quality"))
+        require(all(map(math.isfinite, (y0, seed, era))), "Nonfinite C2 latent utility")
+        expected = "Tie" if abs(era - seed) < .15 else "ERA wins" if era > seed else "Seed wins"
         require(r["blinded_outcome"] in (expected, "Abstain"), "C2 preference threshold mismatch")
         require(int(r["seed_major_regression"]) == int(seed - y0 < -.8), "C2 seed regression mismatch")
-        require(int(r["p2e_major_regression"]) == int(p2e - y0 < -.8), "C2 P2E regression mismatch")
+        require(int(r["era_major_regression"]) == int(era - y0 < -.8), "C2 ERA regression mismatch")
         require(r["setting"] == cohorts[r["domain"]]["setting"], "Refinement setting mismatch")
 
 

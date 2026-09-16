@@ -301,7 +301,7 @@ findings are a constructed example.}
 \end{figure}
 
 \begin{algorithm}[t]
-\caption{ERA within the P2E framework}
+\caption{Evidence-guided evaluator evolution (ERA)}
 \label{alg:era}
 \small
 \begin{algorithmic}[1]
@@ -463,7 +463,7 @@ An oracle condition is diagnostic, not a deployable comparator.}
 Factor & Conditions & Endpoint or interpretation \\
 \midrule
 Acquisition & Random; judge uncertainty; cross-model conflict; run instability;
-P2E semantic multi-source disagreement &
+Semantic multi-source disagreement &
 Final held-out alignment at equal $N_H\in\{20,50,100,200\}$; acquisition yield alone is insufficient.\\
 Human detail & Same pairs with $H_0$, $H_0+H_1$, $H_0+H_1+H_2$, and
 $H_0+H_1+H_2+H_3$ &
@@ -519,7 +519,7 @@ in the experiment manifest.}
 \toprule
 Control & Contract \\
 \midrule
-Arms & Base is untrained; Seed-GRPO and P2E-GRPO start from the identical base checkpoint.\\
+Arms & Base is untrained; Seed-GRPO and ERA-GRPO start from the identical base checkpoint.\\
 Training data & Same unlabeled training inputs and order; source-level deduplication
 and contamination audit.\\
 Policy updates & Same LoRA structure, optimizer, learning rate, update count,
@@ -535,7 +535,7 @@ and checks reward exploitation; final metrics and final human labels remain lock
 Pilot gate & Prespecified acceptable validity, reward variance, KL, length,
 stability, held-out quality, and reward-hacking diagnostics before expansion.\\
 Final generation & Freeze checkpoints and decoding, then generate new Base,
-Seed-GRPO, and P2E-GRPO outputs on the same unseen ID/OOD inputs.\\
+Seed-GRPO, and ERA-GRPO outputs on the same unseen ID/OOD inputs.\\
 Final judgment & New blinded $H_0$ and core $H_1$, reserved external metrics,
 invalid/major-regression rates, length and format shifts, and total cost.\\
 \bottomrule
@@ -615,8 +615,8 @@ Dashes denote unmeasured quantities, not zeros. C3 is a planned study only.}
 \toprule
 Study & Primary contrast & ID preference & OOD preference & Regressions \\
 \midrule
-C2 & P2E-refined vs.\ Seed-refined & \pending & \pending & \pending \\
-C3 & P2E-GRPO vs.\ Seed-GRPO & \pending & \pending & \pending \\
+C2 & ERA-refined vs.\ Seed-refined & \pending & \pending & \pending \\
+C3 & ERA-GRPO vs.\ Seed-GRPO & \pending & \pending & \pending \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -748,7 +748,7 @@ are retained in the data for the full reporting contract.
 \input{figures/simulated_refinement}
 \caption{\textbf{Simulated C2 outcomes; not experimental results.}
 Panel (a) combines half-violin densities, all synthetic group values, median
-markers, and interquartile segments for P2E-refined minus Seed-refined quality.
+markers, and interquartile segments for ERA-refined minus Seed-refined quality.
 The horizontal scale is an arbitrary latent unit, not a human score.
 Panel (b) retains every win, tie, loss, and abstention under the toy rule.
 Both construction settings would require fresh blinded human endpoint
@@ -824,3 +824,74 @@ Before submission, complete Table~\ref{tab:manifest}, replace result placeholder
 measurements, finalize the empirical scope without changing the method's
 definition of a domain, and supply appropriately anonymized reproducibility
 artifacts. Unmeasured hypotheses remain hypotheses.
+
+\FloatBarrier
+\section{Program evolution and parameter adaptation}
+\label{app:adaptation}
+
+Parameter adaptation is a competing approach to learning human evaluation
+standards, not an assumed failure case. Table~\ref{tab:adaptation} distinguishes
+scorer calibration, evaluator weight fine-tuning, and program evolution by their
+editable objects. Fine-tuning can learn criteria and tool-use behavior when its
+training interface permits them. The fixed-structure control below is a declared
+experimental restriction, not a claim about the limits of fine-tuning in general.
+
+\begin{table}[!htbp]
+\caption{Adaptation choices for the planned C1 comparison. Rows specify what
+changes, not a ranking of effectiveness. All use the same permitted human
+supervision; observed evidence and total adaptation cost must also be reported.}
+\label{tab:adaptation}
+\centering\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\linewidth}{@{}P{2.55cm}P{4.45cm}Y@{}}
+\toprule
+Approach & Adapted object & What the comparison tests \\
+\midrule
+Score calibration & Combination weights, scale maps, or thresholds over frozen
+seed signals; model and evidence path fixed & Whether the preference mismatch
+can be addressed by a different numerical decision rule.\\
+Evaluator fine-tuning & Judge weights from the common base checkpoint; seed
+adapters, tools, routes, and output interface fixed & Whether learning a new
+mapping from the same observations to judgments is sufficient.\\
+\rowcolor{pEvoWash}
+ERA program evolution & Artifact adapters, criteria, evaluator modules, tools,
+routing, and fusion; base-model weights fixed & Whether changing the evaluation procedure improves
+alignment beyond parameter adaptation.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Common supervision and selection.}
+All arms use the same proposal-Train inputs, artifacts, and available human
+feedback levels. A weight-tuned evaluator learns pointwise scores from the
+permitted comparisons, with dimensional supervision when available; missing
+human explanations are not replaced by extra teacher labels in this contrast.
+Scoring remains pointwise and label-blind. Sealed Train supplies aggregate
+measurements only, never per-example training targets or gradients. Tuning
+configurations and checkpoints follow the same terminal-Val and locked-Test/OOD
+boundary as program candidates. Human units, annotation time, unsuccessful
+trials, optimization compute, tool calls, and selection costs are all counted.
+Adaptation and deployment costs are reported separately, with matched-budget
+comparisons wherever feasible and unmatched resources explicitly identified.
+
+\paragraph{Separating observation from interpretation.}
+The end-to-end comparison permits ERA to change its observation path. It cannot
+by itself attribute a difference to better interpretation of identical evidence.
+A shared-observation control therefore freezes $(A,T,\Pi)$ and supplies the same
+artifact evidence to fine-tuning and ERA restricted to $(K,V,G)$. This control,
+together with the component comparisons in Table~\ref{tab:full-ablations}, tests
+whether changed observations account for any advantage. Neither lower annotation
+cost nor superiority to fine-tuning is assumed. A combined weight-and-program
+arm would be needed to test complementarity.
+
+\paragraph{Inspectable does not mean faithful.}
+An explicit rubric and evidence trace make the stated basis of a judgment
+available for inspection. They do not establish that the judgment follows that
+basis or matches the human standard. Mechanism assessment must check cited
+observations and test predicted decision changes under controlled evidence or
+component interventions. These tests are distinct from preference agreement.
+
+The tuning comparison concerns the \emph{evaluator}. C3 instead trains a
+\emph{generator} against frozen evaluator rewards. Neither experiment has been
+executed in this draft. The simulated C1 displays illustrate a subset of reporting
+conditions and contain no fine-tuning or calibration outcomes.

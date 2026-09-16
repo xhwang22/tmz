@@ -10,8 +10,8 @@ EvalGen emphasizes aligning the criteria themselves with human preferences,
 while RewardBench and JudgeBench assess evaluators on challenging comparisons
 \citep{shankar2024evalgen,lambert2024rewardbench,tan2025judgebench}.
 Disagreement-based acquisition has a long history in query-by-committee
-\citep{seung1992committee}. P2E applies this principle to an ecosystem whose
-signals need not measure the same construct. Its semantic mapping distinguishes
+\citep{seung1992committee}. Our acquisition procedure applies this principle to
+signals that need not measure the same construct. Its semantic mapping distinguishes
 same-dimension conflict from trade-offs and records source dependence.
 Dimension-wise human judgments can then locate discrepancies that an overall
 label alone does not resolve.
@@ -40,5 +40,5 @@ ReAct, Reflexion, and Self-Refine connect observations, reflection, and iterativ
 Human-feedback summarization, instruction tuning, and direct preference
 optimization connect evaluation to model learning
 \citep{stiennon2020summarize,ouyang2022instruct,rafailov2023dpo}.
-P2E therefore separates fixed-pool evaluation, critic-guided refinement, and
+We therefore separate fixed-pool evaluation, critic-guided refinement, and
 reward-guided training as distinct tests of an evolved evaluator.

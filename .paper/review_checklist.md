@@ -4,13 +4,21 @@ Review date: 2026-09-16. This checklist is not author sign-off or submission app
 
 ## Content and scope
 
-- The title is **P2E: Evolving Evaluation Systems for Open-Ended Generation**.
-  P2E names the project; ERA is its evaluator evolution method. The historical source
+- The title is **Evolving Evaluation Systems from Human Feedback**.
+  No current project acronym is used; ERA names only the method. The historical source
   repository and local source directory were not renamed or modified.
 - The paper follows a scientific argument, not debugging history or a sequence
-  of intermediate methods. The user-selected P2E plan supplies the complete
+  of intermediate methods. The user-selected research plan supplies the complete
   research scope; current ERA documentation supplies the execution semantics.
   Their roles are recorded in `plan_coverage.md` and `source_provenance.md`.
+- The abstract and introduction lead with human-preference alignment and the
+  difficulty of expressing task-dependent quality as executable evaluation.
+  Preference-data-driven agent self-evolution connects structured acquisition
+  and program evolution. Error diagnosis is a supporting mechanism. Fixed-base
+  program adaptation is compared with evaluator fine-tuning and calibration,
+  including a shared-observation control. No superiority or faithful-reasoning
+  claim is inferred from an explicit program. Evaluator tuning and C3 generator
+  training remain distinct and unexecuted.
 - All 22 candidate domains in four families appear in the domain table.
   The overview uses a compact gallery of concrete artifacts and distinct
   quality criteria. The quantitative panels retain domain identities across
@@ -58,17 +66,17 @@ Review date: 2026-09-16. This checklist is not author sign-off or submission app
   survey, Speculative RAG, and MMMR visuals were inspected, alongside the earlier
   Self-Refine, Eureka, TextGrad, and Segment Anything references. All three
   author color references inform the shared ocean/sea-glass/sand/coral palette.
-  P2E is coral and the static tool-augmented seed is blue; reused preferences
+  ERA is coral and the static tool-augmented seed is blue; reused preferences
   are teal and newly collected preferences are warm peach. Rank, outcome, and
   signed-effect encodings have their own explicit legends. Labels, markers,
   line patterns, and hatching supplement color. Softly tinted groups, original
   pictograms, and curved flows remain in the diagrams. Source versions and
   design choices are recorded in `visual_references.md`; no reference figure
   was copied, traced, or sent to an image-generation service.
-- Eleven tables cover simulated C1 outcomes, domains, annotation provenance,
+- Twelve tables cover simulated C1 outcomes, domains, annotation provenance,
   readiness, information access, ablations, training controls, reporting
   requirements, pending empirical downstream outcomes, simulated cohorts,
-  and the experiment manifest. Every figure and table has a manuscript
+  the experiment manifest, and parameter-adaptation alternatives. Every figure and table has a manuscript
   callout. Exact captions for both figures and tables match structured memory.
 - Only the previously generated 1536×1024 preserved photograph remains active,
   in Figure 1. It prints at 1.96 cm, about 1990 DPI; the declared maximum 3 cm
@@ -90,7 +98,7 @@ Review date: 2026-09-16. This checklist is not author sign-off or submission app
   canvases, with 8.5 pt titles, 8 pt axes, 7.3–7.5 pt tick/legend labels, and
   6.8 pt fixture-disclosure notes. All PDF fonts are embedded, without Type 3
   fallbacks. Chart bounds and actual manuscript placements are checked.
-- Thirty-eight claim records, nine figure records, eleven table records, and the
+- Forty-one claim records, nine figure records, twelve table records, and the
   revision history pass the repository's offline consistency checks.
   Claims also pass the upstream Draft 2020-12 JSON Schema with zero errors.
   The upstream skill's advertised validation script was absent; the schema
@@ -122,7 +130,7 @@ Review date: 2026-09-16. This checklist is not author sign-off or submission app
 ## Build and references
 
 - The full local build succeeds with pdfLaTeX and BibTeX; `make check` passes.
-- Main text is 9 pages; the complete PDF is 26 pages including statements,
+- Main text is 9 pages; the complete PDF is 27 pages including statements,
   references and appendices. US Letter format and anonymous PDF author metadata.
 - The two official ICLR files match their upstream SHA-256 hashes exactly.
 - All 33 references are cited; no undefined citations, duplicated keys or

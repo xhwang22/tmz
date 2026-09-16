@@ -10,7 +10,7 @@ plan-to-manuscript map is `plan_coverage.md`.
 
 | Claim family | Manuscript / evidence | Allowed status |
 | --- | --- | --- |
-| Broad P2E scope and domain standard | Introduction, problem, Fig1, Tab2 | Research scope, not universal evaluation or transfer |
+| Preference-supervised evaluation-agent evolution and domain standard | Introduction, problem, Fig1, Tab2 | Research question and scope, not achieved alignment or universal transfer |
 | Two feedback-construction settings; no H0 admission prerequisite | Problem/mining, Fig1, Tab3; C33/C34 | Shared algorithm with separately reported data provenance |
 | New labels are not presumed more reliable | Annotation protocol, Fig5, Tab3; C35 | Reporting requirement; simulated raters supply no reliability evidence |
 | Semantic mapping, dependence, three strata | Mining, Tab4 | Acquisition design, not validated information efficiency |
@@ -21,6 +21,9 @@ plan-to-manuscript map is `plan_coverage.md`.
 | Train/Val/Test and metric reserve | Method/mining, Tab5 | Access contract; adaptive development is not final evidence |
 | Optional semantic synthesis | Method/appendix | Defined grouping and anchor arithmetic, not semantic accuracy |
 | C1/C2/C3 and controlled ablations | Experimental design, Tabs6–9/11 | Study design; no measured effect; C3 design-only |
+| External human standard; automated program changes | Method; C39 | Self-evolution definition, not self-definition of human preferences |
+| Fine-tuning/calibration alternatives and shared-observation control | Experiments, adaptation appendix, Tab12; C40 | Planned evaluator comparison; no superiority, data-efficiency, or cost result; distinct from C3 |
+| Explicit criteria and traces versus faithful explanation | Adaptation appendix; C41 | Inspection affordance and evidential boundary, not validated interpretability |
 | Corpus construction versus acquisition efficiency | Experiments, Fig3, Tab6; C36 | Separate matched-budget random-sampling comparison required |
 | Annotation efficiency and coordinated-evolution usefulness | Introduction; C27/C28 | Material empirical gaps; retain as hypotheses only |
 | Simulated display provenance | Generator, manifest, CSVs, PDFs; C37 | Supported only as artificial reporting examples, not effects |
@@ -30,7 +33,7 @@ plan-to-manuscript map is `plan_coverage.md`.
 
 | Token or quantity | Trace | Meaning |
 | --- | --- | --- |
-| P2E, ERA, H0–H3, C1/C2/C3 | Definitions in problem, introduction and experiments | Names and level/study identifiers |
+| ERA, H0–H3, C1/C2/C3 | Definitions in problem, introduction and experiments | Method name and level/study identifiers |
 | 22 domains; four families | Tab2, full domain IDs; Fig1 | Planned panorama only |
 | Two construction settings | Mining; Fig1; Tab3 | Reused/new feedback, not permanent domain classes |
 | Six components | Eq. program; Fig4 | (A, K, V, T, Pi, G), not an effect size |

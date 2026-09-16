@@ -1,4 +1,4 @@
-# P2E plan-to-manuscript coverage
+# Research plan-to-manuscript coverage
 
 Revision basis: `docs/plans/p2e_v2_plan.md` in the source project, especially
 sections 1–5; current ERA execution semantics additionally follow
@@ -8,6 +8,8 @@ completion claim. No private results are imported.
 | Research requirement | Manuscript destination | Visual destination | Evidence boundary |
 | --- | --- | --- | --- |
 | Open-ended generation with an existing evaluation ecosystem (§§1–2) | Introduction; problem formulation | Fig1 overview | Scope, not universal applicability or existing labels |
+| Human-preference alignment and executable evaluation standards (§§1–2.3) | Abstract; introduction; discussion | Fig1 feedback-to-evolution structure | Motivation and research question, not an achieved faithful representation of preferences |
+| Parameter adaptation versus program evolution (§2.2; author clarification) | Introduction; C1; adaptation appendix | Tab12 adaptation choices | Fixed-interface restriction is not a general limit of tuning; no training or comparative result |
 | Four domain families and all 22 standards (§2.4) | Problem; full domain appendix | Fig1 artifact gallery, Tab2 taxonomy | Planned scope, not 22 completed experiments |
 | Evaluation standard defines a domain (§2.4) | Problem; domain appendix | Tab2 per-task criteria; Figs2/5/7/8 domain rows | Shared procedure, not one universal scorer; plotted cohorts are illustrative |
 | Semantic space and versioned evaluation knowledge (§3.1) | Preference mining | Tab4 readiness audit | Mappings fixed before labels |

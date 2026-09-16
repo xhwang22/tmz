@@ -43,9 +43,9 @@ SETTING_COLORS = {"Reuse": TEAL, "Collect": PEACH}
 SETTINGS = ("Reuse", "Collect")
 SETTING_TITLES = {"Reuse": "Reused preferences", "Collect": "New preferences"}
 METHODS = ("Single metric", "Metric ensemble", "Static judge", "Static tools",
-           "Prompt optimization", "Program search", "P2E (ERA)")
+           "Prompt optimization", "Program search", "ERA")
 SHORT_METHODS = ("Metric", "Ensemble", "Static judge", "Static tools",
-                 "Prompt opt.", "Program search", "P2E (ERA)")
+                 "Prompt opt.", "Program search", "ERA")
 POLICIES = ("Random", "Uncertainty", "Model conflict", "Run instability", "Multi-source")
 POLICY_COLORS = [BLUE, TEAL, BROWN, "#9BA9AD", CORAL]
 POLICY_STYLES = ["--", "-.", ":", (0, (4, 1, 1, 1)), "-"]
@@ -128,7 +128,7 @@ def save(fig, name, note):
     fig.savefig(OUT / f"{name}.pdf", metadata={
         "Title": f"SIMULATED DATA — {name}",
         "Subject": "Layout fixtures, not empirical evidence or expected performance",
-        "Author": "", "Creator": "P2E synthetic reporting fixtures",
+        "Author": "", "Creator": "Evaluator-evolution synthetic reporting fixtures",
         "CreationDate": None, "ModDate": None,
     })
     fig.savefig(PREVIEW / f"{name}.png", dpi=220)
@@ -229,7 +229,7 @@ def alignment(records):
         ax.axvspan(-12, 0, color="#F6F8F9", zorder=0)
         for i, (setting, domain, *_) in enumerate(COHORTS):
             seed = records[(domain, split, "Static tools")][:, 0]
-            era = records[(domain, split, "P2E (ERA)")][:, 0]
+            era = records[(domain, split, "ERA")][:, 0]
             paired = np.isfinite(seed) & np.isfinite(era)
             mean, lo, hi = bootstrap(100 * (era[paired] - seed[paired]), rng)
             ax.errorbar(mean, i, xerr=[[mean-lo], [hi-mean]], fmt="D", ms=4.2,
@@ -359,7 +359,7 @@ def annotation():
 def selection(records,summary):
     fig,axes=plt.subplots(1,2,figsize=(5.4,3.05))
     fig.subplots_adjust(left=.10,right=.975,top=.83,bottom=.35,wspace=.25)
-    chosen=["Static judge","Static tools","Program search","P2E (ERA)"]
+    chosen=["Static judge","Static tools","Program search","ERA"]
     rows=[]
     for ax,setting,letter in zip(axes,SETTINGS,"ab"):
         cohort=[c for c in COHORTS if c[0]==setting]
@@ -378,7 +378,7 @@ def selection(records,summary):
                 rows.append(dict(setting=setting,method=method,selected_rank=str(rank+1) if rank<4 else "unscored",
                                  count=int(n),denominator=len(ranks),share_pct=value))
         ax.set(ylim=(0,100),yticks=[0,25,50,75,100],xticks=range(4),
-               xticklabels=["Static\njudge","Static\ntools","Program\nsearch","P2E\n(ERA)"])
+               xticklabels=["Static\njudge","Static\ntools","Program\nsearch","ERA"])
         ax.grid(axis="y")
         panel(ax,letter,SETTING_TITLES[setting])
     axes[0].set_ylabel("Selected rank: share of inputs (%)")
@@ -468,20 +468,20 @@ def refinement():
         era=base+.22+era_deltas[ci]+common+rng.normal(0,.60,N_GROUPS)
         abstain=rng.random(N_GROUPS)<.05
         diff=era-seed
-        outcome=np.where(abstain,"Abstain",np.where(abs(diff)<.15,"Tie",np.where(diff>0,"P2E wins","Seed wins")))
-        shares.append([100*np.mean(outcome==k) for k in ["P2E wins","Tie","Seed wins","Abstain"]])
+        outcome=np.where(abstain,"Abstain",np.where(abs(diff)<.15,"Tie",np.where(diff>0,"ERA wins","Seed wins")))
+        shares.append([100*np.mean(outcome==k) for k in ["ERA wins","Tie","Seed wins","Abstain"]])
         changes.append([(100*np.mean((v-base)>.15),100*np.mean((v-base)<-.15)) for v in [seed,era]])
         for i in range(N_GROUPS):
             rows.append(dict(setting=setting,domain=domain,input_group=f"SIM-C2-{ci}-{i:04d}",
-                             y0_quality=base[i],seed_quality=seed[i],p2e_quality=era[i],
+                             y0_quality=base[i],seed_quality=seed[i],era_quality=era[i],
                              blinded_outcome=outcome[i],seed_major_regression=int(seed[i]-base[i]<-.8),
-                             p2e_major_regression=int(era[i]-base[i]<-.8)))
+                             era_major_regression=int(era[i]-base[i]<-.8)))
     write_csv("refinement_groups.csv",rows)
     fig,axes=plt.subplots(1,2,figsize=(5.4,3.45))
     fig.subplots_adjust(left=.12,right=.975,top=.84,bottom=.28,wspace=.28)
     a,b=axes;y=np.arange(8);left=np.zeros(8);shares=np.array(shares)
     vrng=np.random.default_rng(SEED+205)
-    differences=[np.array([r["p2e_quality"]-r["seed_quality"] for r in rows if r["domain"]==c[1]]) for c in COHORTS]
+    differences=[np.array([r["era_quality"]-r["seed_quality"] for r in rows if r["domain"]==c[1]]) for c in COHORTS]
     violins=a.violinplot(differences,positions=y,vert=False,widths=.68,
                         showextrema=False,showmedians=False,bw_method=.35)
     for i,body in enumerate(violins["bodies"]):
@@ -498,7 +498,7 @@ def refinement():
     a.axvline(0,color="#97A5AC",lw=.8,zorder=0)
     a.grid(axis="x")
     panel(a,"a","Paired quality change")
-    for j,(label,color,hatch) in enumerate(zip(["P2E wins","Tie","Seed wins","Abstain"],
+    for j,(label,color,hatch) in enumerate(zip(["ERA wins","Tie","Seed wins","Abstain"],
                                              [CORAL,CREAM,BLUE,"#E8ECEE"],[None,None,None,"///"])):
         b.barh(y,shares[:,j],left=left,height=.63,color=color,edgecolor="white",lw=.6,hatch=hatch,label=label)
         if j in (0,2):
@@ -513,7 +513,7 @@ def refinement():
     setting_brackets(fig,.022,.28,.56)
     handles,_=b.get_legend_handles_labels()
     compact_legend(fig,handles,4,y=.12)
-    save(fig,"refinement","Difference = P2E-refined minus Seed-refined. All artifacts and judgments here are synthetic.")
+    save(fig,"refinement","Difference = ERA-refined minus Seed-refined. All artifacts and judgments here are synthetic.")
 
 
 def cost(summary):
@@ -566,7 +566,7 @@ def tables(summary):
                 for metric in METRICS:
                     val=np.mean([summary[(c[1],split,method)][metric][0] for c in cohort])
                     values.append(f"{val:.2f}" if metric=="rank_regret" else f"{100*val:.1f}")
-            if method=="P2E (ERA)":lines.append(r"\rowcolor{pEvoWash}")
+            if method=="ERA":lines.append(r"\rowcolor{pEvoWash}")
             lines.append(method+" & "+" & ".join(values)+r" \\")
     lines.extend([r"\bottomrule",r"\end{tabularx}"])
     (OUT/"c1_table.tex").write_text("\n".join(lines)+"\n",encoding="utf-8")

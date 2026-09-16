@@ -4,10 +4,24 @@
   debugging, historical runs, infrastructure work, or abandoned intermediate methods.
 - Distinguish specifications, hypotheses, implementation availability, and findings.
   Plans and synthetic examples are not empirical evidence.
-- P2E names the broader project. ERA names only the evaluator evolution method;
-  use a descriptive gloss, not an invented expanded acronym. Explain the
-  evolution of observation and judgment, not a history of prompt revisions.
-  Use the broad open-ended-generation title and retain the four-family scope.
+- Use the unbranded title "Evolving Evaluation Systems from Human Feedback".
+  Do not use P2E as the current paper/project name. ERA names only the evaluator
+  evolution method; do not invent an expanded acronym. Historical provenance
+  and source filenames are not renamed. Retain the four-family scope.
+- Lead with the source plan's problem: automated evaluation struggles to align
+  with task-dependent human preferences, which are difficult to make explicit,
+  interpretable, and executable. Preference-data-driven evaluation-agent
+  self-evolution is the response. Error diagnosis is a second-level mechanism,
+  not the paper's central problem. Connect structured preference acquisition
+  to hypothesis-guided program evolution; do not reduce the paper to score fitting.
+- Explain parameter adaptation fairly. Fixed-structure evaluator fine-tuning
+  changes the mapping from observations to judgments; calibration changes
+  existing numerical decision rules. ERA changes the explicit program with a
+  fixed base model. Fine-tuning can also learn criteria or tool use when its
+  interface permits them. Do not assert that it is incapable, data-inefficient,
+  or inferior. Include a shared-observation control and account for resources.
+  Evaluator fine-tuning is distinct from C3 generator training. Neither is run.
+  Inspectable criteria/traces do not establish faithful reasoning or alignment.
 - Domain means a shared evaluation standard, not an artifact modality.
   Do not imply one scorer transfers universally across 22 domains.
 - H0 = overall; H1 = dimension preference and core supervision; H2 = structured
@@ -61,7 +75,7 @@
 - Reconcile all three author references through blue #376795, sky #7BC0CD,
   teal #51999F, mint #BFDFD2, sand #DBCB92, cream #FFE6B7, peach #ECB66C, and coral
   #ED8D5A. Dark ink #303C43 and darker companion colors keep small text readable.
-  P2E is coral and the static tool-augmented seed is blue. Setting comparisons
+  ERA is coral and the static tool-augmented seed is blue. Setting comparisons
   use teal for reused preferences and peach for new preferences. Where color
   instead encodes ranks, signed effects, or outcomes, state that mapping in the
   legend/caption. Keep labels, shapes, line patterns, and hatching as redundant

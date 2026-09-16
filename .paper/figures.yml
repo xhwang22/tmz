@@ -30,7 +30,7 @@
         "C32",
         "C33"
       ],
-      "caption_in_manuscript": "\\PtwoE{} evolves evaluation systems using human feedback. (a) Four artifact families retain distinct evaluation standards. (b) Reused and newly collected preferences enter a common evidence interface; their provenance and annotation quality remain separate. (c) \\ERA{} evolves a six-component program with a fixed base model. (d) C1 selection, C2 refinement, and planned C3 reward training. Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
+      "caption_in_manuscript": "Evaluation-agent self-evolution from human feedback. (a) Four artifact families retain distinct evaluation standards. (b) Reused and newly collected preferences enter a common evidence interface; their provenance and annotation quality remain separate. (c) \\ERA{} evolves a six-component program with a fixed base model. (d) C1 selection, C2 refinement, and planned C3 reward training. Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
       "evidence_status": "Conceptual specification with constructed examples; no measured results"
     },
     {
@@ -55,7 +55,7 @@
         "C37",
         "C38"
       ],
-      "caption_in_manuscript": "\\textbf{Simulated domain-level alignment; not experimental results.} Panels (a) and (b) compare P2E with the static tool-augmented seed on ID and OOD inputs. Diamonds are paired mean differences; whiskers are 95\\% bootstrap intervals over jointly completed synthetic input groups. Zero denotes no difference. The two row groups indicate illustrative feedback-construction settings, not permanent domain categories or measured data readiness.",
+      "caption_in_manuscript": "\\textbf{Simulated domain-level alignment; not experimental results.} Panels (a) and (b) compare ERA with the static tool-augmented seed on ID and OOD inputs. Diamonds are paired mean differences; whiskers are 95\\% bootstrap intervals over jointly completed synthetic input groups. Zero denotes no difference. The two row groups indicate illustrative feedback-construction settings, not permanent domain categories or measured data readiness.",
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
@@ -199,7 +199,7 @@
         "C22",
         "C37"
       ],
-      "caption_in_manuscript": "\\textbf{Simulated C2 outcomes; not experimental results.} Panel (a) combines half-violin densities, all synthetic group values, median markers, and interquartile segments for P2E-refined minus Seed-refined quality. The horizontal scale is an arbitrary latent unit, not a human score. Panel (b) retains every win, tie, loss, and abstention under the toy rule. Both construction settings would require fresh blinded human endpoint judgments in an actual C2 study.",
+      "caption_in_manuscript": "\\textbf{Simulated C2 outcomes; not experimental results.} Panel (a) combines half-violin densities, all synthetic group values, median markers, and interquartile segments for ERA-refined minus Seed-refined quality. The horizontal scale is an arbitrary latent unit, not a human score. Panel (b) retains every win, tie, loss, and abstention under the toy rule. Both construction settings would require fresh blinded human endpoint judgments in an actual C2 study.",
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
@@ -354,6 +354,16 @@
         "C18"
       ],
       "evidence_status": "Experiment fields requiring author decisions"
+    },
+    {
+      "id": "Tab12",
+      "label": "tab:adaptation",
+      "file": "sections/appendix.tex",
+      "caption_in_manuscript": "Adaptation choices for the planned C1 comparison. Rows specify what changes, not a ranking of effectiveness. All use the same permitted human supervision; observed evidence and total adaptation cost must also be reported.",
+      "supports_claims": [
+        "C40"
+      ],
+      "evidence_status": "Planned calibration, evaluator fine-tuning, and program-evolution alternatives; no executed or simulated tuning outcomes"
     }
   ]
 }

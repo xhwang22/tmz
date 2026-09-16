@@ -5,12 +5,13 @@ explicitly simulated quantitative displays; empirical results pending.
 
 ## Title and scope
 
-**P2E: Evolving Evaluation Systems for Open-Ended Generation**
+**Evolving Evaluation Systems from Human Feedback**
 
-P2E means Preference-Guided Evaluator Evolution, the broader research project.
-ERA names the evidence-guided evaluator evolution method within P2E; do not
-invent an expanded acronym. The historical source-repository name does not
-restrict the paper to slides. Do not rename that repository or local source directory.
+The paper currently has no project acronym. ERA names only the evidence-guided
+evaluator evolution method; do not invent an expanded acronym. The author has
+retired P2E from the active paper, not from archival history or source filenames.
+The historical source-repository name does not restrict the paper to slides.
+Do not rename that repository or local source directory.
 
 The complete scope contains 22 domains in four families: structured visual
 artifacts; image generation and understanding, including 3D; text generation;
@@ -19,6 +20,14 @@ a human protocol. A common procedure is instantiated per standard, not deployed
 as one universal judge. Panorama inclusion does not imply readiness or results.
 
 ## Scientific argument
+
+The central difficulty is aligning automated evaluation with human preferences
+on open-ended tasks. Human standards are contextual and involve trade-offs;
+preference decisions do not fully specify an interpretable, executable procedure
+for applying them. Following the source plan's §§1–2.3, the response is to use
+preference data to drive an evaluation agent's self-evolution. The human standard
+remains the target; its explicit approximation in the evaluator is what evolves.
+Do not lead with error-diagnosis ambiguity as though that were the main problem.
 
 The shared question is whether an evaluator can evolve toward a task's human
 evaluation standard given that task and its human feedback. Reusing existing
@@ -32,7 +41,7 @@ labels are not inherently more reliable.
 The same wrong ordering may arise from missing observations, unused evidence,
 or inappropriate interpretation and priorities. Human evidence helps locate
 these evaluation gaps and supplies a selection standard; an ordering alone does
-not identify its cause. P2E inventories domain evaluation knowledge,
+not identify its cause. The acquisition procedure inventories domain evaluation knowledge,
 freezes signal–dimension mappings, uses a random reliability anchor, separates
 three semantic disagreement strata, and acquires structured H0–H3.
 H1 is central. H0-only instantiations do not possess uncollected H1/H2.
@@ -47,6 +56,17 @@ Connected changes instantiate a mechanism hypothesis, not an empirical finding.
 Proposal evidence, sealed Train measurement, and allocation are separate.
 Working and best programs differ. Evidence-bound continuation, protection guards,
 terminal Val, independent Test/OOD, and component attribution remain explicit.
+
+Parameter adaptation is a substantive alternative. The planned C1 controls add
+fixed-structure evaluator fine-tuning and score calibration. An additional
+shared-observation comparison freezes (A,T,Pi) and restricts ERA to (K,V,G),
+separating changed observations from changed interpretation. Fine-tuning can
+learn criteria or tool use under suitable interfaces; the control is not a
+general capability claim. Supervision, development access, and adaptation and
+deployment costs are accounted for. ERA's explicit criteria and traces permit
+inspection, not an automatic claim of faithful explanation. No advantage over
+parameter adaptation is asserted, no tuning results are simulated, and no
+training is run. Evaluator tuning is distinct from C3 generator training.
 
 ## Hypotheses and studies
 
@@ -74,8 +94,8 @@ Use claims.yml and figures.yml for subsequent audits; gap claims are hypotheses,
 never findings. Memory claim IDs C1/C2/etc. are a separate namespace from the
 paper's study labels C1/C2/C3.
 
-Current structure: 3 main figures, 6 appendix figures, 11 tables, 33 verified
-bibliographic identities, and 38 claim records. The overview and pointwise
+Current structure: 3 main figures, 6 appendix figures, 12 tables, 33 verified
+bibliographic identities, and 41 claim records. The overview and pointwise
 runtime remain conceptual; seven figures and Table 1 use simulated reporting
 fixtures. Figure 1 and the complete domain table preserve four-family diversity.
 The ICLR main-text limit remains 9 pages; official body typography is unchanged.

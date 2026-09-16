@@ -6,7 +6,7 @@
   "claims": [
     {
       "id": "C1",
-      "text": "We introduce \\PtwoE{}, Preference-Guided Evaluator Evolution, for domains with open-ended outputs and an existing evaluation ecosystem.",
+      "text": "We study whether human preference data can drive the self-evolution of an evaluation agent toward a task's evaluation standard.",
       "source": "sections/introduction.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -322,7 +322,7 @@
     },
     {
       "id": "C22",
-      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed critic and P2E critic each inspect that same output and permitted evidence, then return the same critique format. A common generator performs one refinement step under identical prompts, decoding, tool access, and token budgets.",
+      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed critic and ERA critic each inspect that same output and permitted evidence, then return the same critique format. A common generator performs one refinement step under identical prompts, decoding, tool access, and token budgets.",
       "source": "sections/experiments.tex",
       "kind": "C2 study protocol",
       "evidence_artifacts": [
@@ -401,7 +401,7 @@
     },
     {
       "id": "C27",
-      "text": "First, disagreements between reliable, nonredundant signals may make a fixed annotation budget more informative than uniform sampling.",
+      "text": "We hypothesize that disagreements among reliable, nonredundant signals can make a fixed annotation budget more informative than random sampling.",
       "source": "sections/introduction.tex",
       "kind": "hypothesis",
       "evidence_artifacts": [],
@@ -413,7 +413,7 @@
     },
     {
       "id": "C28",
-      "text": "Second, failures that depend on acquiring, routing, and interpreting evidence may require coordinated evolution of those components.",
+      "text": "We hypothesize that such dependencies between evidence acquisition and judgment favor coordinated program evolution.",
       "source": "sections/introduction.tex",
       "kind": "hypothesis",
       "evidence_artifacts": [],
@@ -594,6 +594,48 @@
       ],
       "status": "supported",
       "risk": "Arithmetic consistency of toy displays, not evidence of evaluator effectiveness; selection shares use the separate all-input denominator."
+    },
+    {
+      "id": "C39",
+      "text": "Self-evolution means automated changes to this evaluation program under external human feedback, not self-definition of the human standard.",
+      "source": "sections/method.tex",
+      "kind": "adaptation target and human-standard boundary",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        "sections/problem.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "Defines the object of adaptation, not an achieved interpretable representation of human preferences."
+    },
+    {
+      "id": "C40",
+      "text": "Fixed-structure evaluator fine-tuning and score calibration test parameter adaptation as alternatives (Appendix~\\ref{app:adaptation}).",
+      "source": "sections/experiments.tex",
+      "kind": "parameter-adaptation comparison protocol",
+      "evidence_artifacts": [
+        "sections/experiments.tex",
+        "sections/appendix.tex"
+      ],
+      "figure_or_table": [
+        "Tab12"
+      ],
+      "status": "draft",
+      "risk": "Planned C1 evaluator controls, not C3 generator training. No tuning execution or simulated tuning outcomes; no superiority or cost-efficiency claim. The shared-observation control is required to separate observation changes from interpretation changes."
+    },
+    {
+      "id": "C41",
+      "text": "An explicit rubric and evidence trace make the stated basis of a judgment available for inspection. They do not establish that the judgment follows that basis or matches the human standard.",
+      "source": "sections/appendix.tex",
+      "kind": "inspectability versus faithfulness boundary",
+      "evidence_artifacts": [
+        "sections/appendix.tex",
+        "sections/method.tex"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "An explicit representation permits inspection; faithful reasoning, interpretability benefits, and human alignment require independent evidence."
     }
   ]
 }

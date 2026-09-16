@@ -177,6 +177,20 @@
         "Offline checks"
       ],
       "summary": "Reframes existing and newly collected preferences as two data-construction settings for one evaluator-evolution problem. Adds separate label-provenance, protocol, agreement, and abstention reporting, while separating corpus construction from matched-budget acquisition tests. Replaces seven redundant conceptual diagrams with seven reproducible quantitative fixtures using forest plots, budget curves, an annotation audit, rank composition, an annotated heatmap with box/strip plots, raincloud distributions, and a quality–cost plot. The overview and runtime diagram remain; current Fig4 is runtime, Fig5 annotation, Fig6 selection, Fig7 ablation, Fig8 refinement, and Fig9 cost. Earlier figure IDs keep their historical meaning within their rounds. A common ocean/sea-glass/sand/coral palette and Helvetica-compatible chart typography preserve varied forms within a coherent family; ICLR body typography and the nine-page main-text limit remain unchanged. All numeric fixtures have per-row and visible simulation disclosures and independent arithmetic checks; they do not close empirical gaps C27/C28. C37/C38 support only simulation provenance and denominator consistency. GPT Image 2 supplies only the previously disclosed overview photo; unused conceptual assets and image lineage are archived without new API calls or source-project edits."
+    },
+    {
+      "round": 6,
+      "date": "2026-09-16",
+      "trigger": "Author retires the project acronym and clarifies the plan's central motivation: aligning automated evaluation with contextual human preferences through preference-data-driven agent self-evolution, with an explicit comparison to parameter tuning.",
+      "reviewer": "Author feedback",
+      "changed_claims": ["C1", "C22", "C27", "C28", "C39", "C40", "C41"],
+      "changed_figures": ["Fig1", "Fig2", "Fig3", "Fig5", "Fig6", "Fig7", "Fig8", "Fig9"],
+      "sections_touched": [
+        "Title", "Abstract", "Introduction", "Related work", "ERA definition",
+        "Experimental design", "Discussion", "Conclusion", "Appendices",
+        "Active chart/table labels and metadata", "Paper memory", "Offline checks"
+      ],
+      "summary": "Replaces the project-branded title with Evolving Evaluation Systems from Human Feedback while retaining ERA solely as the method name. Rewrites the abstract and introduction around the difficulty of translating human preferences into explicit, executable evaluation standards, following the source plan's two linked problems of structured preference acquisition and hypothesis-guided program evolution. Error diagnosis is a supporting mechanism rather than the primary research problem. Adds planned fixed-structure evaluator fine-tuning and score-calibration alternatives, a shared-observation control, and Table12; distinguishes evaluator tuning from C3 generator training and inspectable programs from faithful explanations. Updates active labels and simulation schemas without changing toy numerical values or visual styles. Preserves historical naming in archival provenance. C27/C28 remain empirical gaps; no experiments, tuning, training, new image calls, or source-project modifications are performed."
     }
   ]
 }
