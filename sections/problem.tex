@@ -11,6 +11,13 @@ enumerates the full research scope of 22 domains in four families, without
 assuming that all are ready for experiments. Closed tasks whose complete quality
 criterion is an executable postcondition fall outside this scope.
 
+Existing human preferences are not a domain-admission requirement. Their
+availability determines the missing data work, not the algorithm's definition.
+An evaluation ecosystem can exist without a suitable preference dataset.
+We distinguish \emph{reused preferences}, which test improvement on established
+benchmarks, from \emph{new preferences}, which test applicability when matching
+human judgments must first be collected. One domain can support both settings.
+
 Let $x$ be a task with permitted context, $y$ a candidate output, and
 $\mathcal{Q}_D=\{q_1,\ldots,q_m\}$ the quality dimensions for domain $D$.
 A human comparison has the core form
@@ -18,7 +25,7 @@ A human comparison has the core form
  h=(x,y_a,y_b,q,p,a,\nu),
  \label{eq:human}
 \end{equation}
-where $q$ is a dimension or overall quality, $p$ is a preference or tie,
+where $q$ is a dimension or overall quality, $p$ is a preference, tie, or abstention,
 $a$ records annotator agreement, and $\nu$ records provenance.
 Feedback has four levels: $H_0$ gives overall preference; $H_1$ gives
 dimension-wise preference; $H_2$ identifies error type, severity, and location;

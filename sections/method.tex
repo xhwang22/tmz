@@ -15,18 +15,6 @@ changes the judgment only if its evidence is acquired, routed, and interpreted.
 Existing metrics can serve as tools when their input contracts are satisfied,
 without requiring every tool to run on every artifact.
 
-\begin{figure}[t]
-\centering
-\input{figures/evaluator}
-\caption{The six-component evaluation program. (a) Read one candidate and
-permitted task evidence. (b) Route tool observations. (c) Apply dimensional
-criteria. (d) Fuse sourced findings into a score and critique. The lower rail
-identifies the editable components. Human feedback supervises evolution, never
-the deployed scorer. Evidence and judgment remain separate; the summary and
-findings are a constructed example.}
-\label{fig:runtime}
-\end{figure}
-
 Fusion may use a declared numerical rule or semantic synthesis. Semantic synthesis
 reads specialist findings and their anchored quality scales, groups overlapping
 or conflicting factors, and locates overall quality on its own scale. It does
@@ -66,20 +54,8 @@ A frozen candidate is also measured on the common $\Ddev$ cohort.
 Validation $\Dval$ is terminal; Test/OOD remain locked until the method and
 analysis are frozen (Appendix~\ref{app:boundaries}).
 
-\begin{figure}[t]
-\centering
-\input{figures/direction_search}
-\caption{A direction is a hypothesis, not an edit. (a) Connected tool, routing,
-and interpretation changes share a fixed parent. Best and working programs
-remain distinct; promotion and continuation both require complete measurement.
-(b) Check evidence acquisition, consumption, and interpretation.
-(c) Distinguish continuation, pause, exhaustion, and scoped refutation.
-The evolution branches are schematic, not an observed optimization trajectory.}
-\label{fig:directions}
-\end{figure}
-
 Search retains both a best development program and a working program for the
-active direction (Figure~\ref{fig:directions}a). New directions begin at the best
+active direction. New directions begin at the best
 program. Continuing a direction may retain a fully measured intermediate program
 when new evidence supports further evolution and the protection conditions hold.
 Development promotion requires improved agreement, complete execution,

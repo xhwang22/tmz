@@ -4,33 +4,47 @@
 
 本仓库撰写 Preference-Guided Evaluator Evolution（P2E）项目的论文。研究范围是开放式生成的评估系统，涵盖结构化视觉产物、图像与 3D、文本生成和自动科研，不限定为 slide generation。ERA 仅指其中的证据引导评估器演化方法，不是项目名称，也不另造缩写全称。
 
-本轮按源码项目的 `docs/plans/p2e_v2_plan.md` 重组了完整论证：评价生态 → 语义空间与分歧挖掘 → H0–H3 → 证据表 Z → ERA → 独立下游验证。当前采用原版 ICLR 2027 模板，匿名审稿模式；是方法与研究设计草稿，尚无实证结果，模板的 “Under review” 页眉不表示已经投稿。源码仓库 [Auto-Evolve-Harness-for-Slide-Evaluation](https://github.com/Moore-Tian/Auto-Evolve-Harness-for-Slide-Evaluation) 保留历史名称，未重命名代码仓库或本地目录。
+论文依照源码项目的 `docs/plans/p2e_v2_plan.md` 及其最新 §3.2 补丁，以“给定任务及其人类反馈，能否进化出更符合该任务评价标准的 evaluator”为主线。复用已有偏好与新收集偏好是两种数据构建设置，共用算法；同一领域可以兼有两者。现成 H0 决定需要补哪些数据工作，不决定算法或领域定义。标签来源、协议、一致性、弃权和结果分别报告，新标注不被预设为更可靠。新建数据集与证明分歧采样有效是不同结论，后者需要等预算随机采样对照。
+
+当前使用原版 ICLR 2027 模板、匿名审稿模式。按作者要求加入了**明确标记的模拟数据图表**，供审阅报告设计、配色和排版；没有实证结果，模板的 “Under review” 页眉不表示已经投稿。源码仓库 [Auto-Evolve-Harness-for-Slide-Evaluation](https://github.com/Moore-Tian/Auto-Evolve-Harness-for-Slide-Evaluation) 保留历史名称，本轮没有修改、重命名该代码仓库或启动实验。
 
 ## 阅读
 
 - [paper.pdf](paper.pdf)：编译预览，正文 9 页。
 - [main.tex](main.tex)：主入口，Overleaf 选择此文件。
 - [sections/](sections/)：正文和附录，新增独立的偏好挖掘章节。
-- [figures/](figures/)：9 张可编辑图，5 张正文图、4 张附录图。
+- [figures/](figures/)：9 张图，3 张正文图、6 张附录图；其中 2 张概念图、7 张模拟定量图。
+- [data/simulated/](data/simulated/)：13 个带逐行 `SIMULATED` 标记的 CSV 和哈希清单，不含真实标注或实验结果。
 - [可视化参考与设计说明](.paper/visual_references.md)：指定的 post-training survey（2503.06072）、full-stack safety survey、Speculative RAG、MMMR 图例，以及本项目采用的具体表达方式。
 - [完整覆盖映射](.paper/plan_coverage.md)：计划条目与正文、图表、证据边界的对应。
 - [主张索引](.paper/claims.yml)、[图表索引](.paper/figures.yml)：后续写作与图文一致性校验的结构化记忆。
 - [references.bib](references.bib)：33 条引文，核对来源见 [reference_sources.json](.paper/reference_sources.json)。
 
-9 张图分别解释完整 P2E 框架、信号—维度矩阵、六组件评估器、假设驱动的演化、C1/C2/C3 对照、领域全景、跨域标注示例、数据与保留指标边界、语义融合。新增全景用具体任务和质量标准呈现四类领域，标注图则各取一例，说明方法和反馈结构可以共用，判断依据仍因领域而异。10 张表覆盖主结果模板、完整 22 领域、标注来源、就绪条件、消融、训练对照及报告要求。22 个领域是研究全景，不是已经完成的 22 项实验。
+概念图保留总览与六组件运行机制。定量图包括配对效应森林图、标注预算曲线、一致性／弃权／共识面板、选择排名构成、消融热图与箱线散点、refinement 雨云分布与胜负构成，以及质量—成本散点。11 张表覆盖模拟 C1 数值、完整 22 领域、两类数据来源、就绪与访问条件、消融、训练控制和报告要求。22 个领域是研究全景；图表中的 8 个模拟队列不代表实际标签可用性，也没有缩减研究范围。
 
 论证主线是学习如何取证和判断：同一个偏好错误可能来自缺失观察、证据没有被使用，或判断标准与优先级不合适。ERA 以机制假设为探索单位、完整程序为选择单位；失败的实现不等于被证伪的假设，继续探索也不等于保留当前程序为最佳。这些方法定义不构成性能提升证据。
 
-C1 检验固定候选池上的对齐与选择；C2 从共享的新生成输出出发比较 critic；C3 设计冻结 reward 下的 LoRA + GRPO 对照。C3 仅为研究设计，本次没有启动参数训练。结果表中的横线均表示未测量，不是零值。
+C1 检验固定候选池上的对齐与选择；C2 从共享的新生成输出出发比较 critic，两种构建设置都需要对新输出另收盲化人类判断；C3 设计冻结 reward 下的 LoRA + GRPO 对照。C3 仅为研究设计，没有执行训练，也没有生成模拟训练结果。附录中的实证状态表与模拟图表分开，横线表示未测量，不是零值。
 
 ## 编译和检查
 
-需要 TeX Live 或同等环境，含 pdfLaTeX、BibTeX、TikZ、algorithm/algpseudocode、booktabs/tabularx/longtable、multirow、placeins 和 natbib。日常离线检查仅用 Python 3 标准库。
+需要 TeX Live 或同等环境，含 pdfLaTeX、BibTeX、TikZ、algorithm/algpseudocode、booktabs/tabularx/longtable、multirow、placeins 和 natbib。离线检查使用 Python 3 标准库及 Poppler 的 `pdfinfo`、`pdftotext`。
 
 ```bash
 make
 make check
 ```
+
+重新生成模拟数据、矢量图和数值表（需要 NumPy、Matplotlib 和 TeX Gyre Heros 字体）：
+
+```bash
+make simulated
+# 本次生成环境的 Python 包版本：
+uv run --python 3.11 --with numpy==1.24.4 --with matplotlib==3.7.5 python scripts/render_simulated_results.py
+make check
+```
+
+生成器固定种子为 `20260916`，不调用模型、不执行 ERA、不读取 benchmark 结果。数值、区间和成本仅用于布局示例，不能用于预测效果、功效分析或方法排名。相同环境可确定性再生成；跨环境改变字体或绘图库后需重新审阅版面和清单。
 
 逐图视觉检查（额外需要 Pillow、`standalone.cls` 和 `pdftoppm`）：
 
@@ -43,17 +57,21 @@ uv run --python 3.11 --with pillow python scripts/render_figures.py
 生成 `build/figure-review/` 下的独立矢量 PDF、PNG 与 `contact-sheet.png`；
 可向脚本传入 `overview`、`evaluator` 等图名，只重绘指定图。预览渲染不调用模型 API。
 
-构建中间文件位于 `build/`，最终文件为 `paper.pdf`。编译不需要 Azure 登录或模型 API。Overleaf 上传 TeX、BibTeX、模板、`figures/`、`output/imagegen/` 即可。`.paper/*.yml` 使用 JSON 兼容的 YAML，便于标准库检查，仍可由 YAML 工具读取。
+构建中间文件位于 `build/`，最终文件为 `paper.pdf`。已提交的矢量图可直接编译，不要求本地重新生成模拟数据，也不需要 Azure 登录或模型 API。Overleaf 上传 TeX、BibTeX、模板、`figures/`、`output/imagegen/` 即可。`.paper/*.yml` 使用 JSON 兼容的 YAML，便于标准库检查，仍可由 YAML 工具读取。
 
-`make check` 检查引用、标签、9 页限制、溢出、图像哈希与实际排印尺寸下的分辨率，以及 22 领域、主张证据状态、图注和图表索引及正文引用。结构检查不代替学术审读或实证验证。
+`make check` 检查引用、标签、9 页限制、溢出、图像哈希与排印分辨率、22 领域、主张状态、图表标题和正文引用，以及模拟数据的配对、缺失分母、数值表、一致性、弃权和成本汇总。结构与算术检查不代替学术审读或实证验证。
 
-## 插图与证据
+`python3 scripts/check_simulated_results.py --submission` 是投稿保护检查：当前应以状态码 2 拒绝通过，因为仍有模拟图表。只有替换为获准的真实测量、重算区间并重新审计主张，才能形成含实证结果的投稿稿；不能仅删除模拟标记。
 
-本轮参考指定论文的图例重绘了整组图，采用用户提供的蓝 `#74A9C5`、薄荷绿 `#C2E5CF`、米黄 `#EDDDAB`、桃粉 `#F2B8AE`、玫瑰色 `#DD7389`。浅色圆角分组、原创线描图标和曲线信息流统一视觉语言；四类领域各有颜色，玫瑰色突出共享的 ERA 演化过程。图表中的具体产物、证据定位和任务对照均为原创示意，不复用参考论文的图像或数据。共享样式保留在 [visual_style.tex](figures/visual_style.tex)，原版 ICLR 模板没有改动。
+## 配色、字体与图表
 
-GPT Image 2 已通过指定 Azure Foundry 资源的 `/openai/v1/` 路径完成一次生成、两次编辑：[原图](output/imagegen/edit-source.png) → [加红杯、保留蓝碗](output/imagegen/edit-preserved.png) → [误删蓝碗示例](output/imagegen/edit-omission.png)。三张图片均为 1536×1024，实际排印宽度不超过 1.96 cm（至少约 1990 DPI）。图 1 和图 6 复用保留蓝碗的图片，图 7 用完整三图对比，错误定位圈和标签仍为 TikZ。当前配色与领域全景更新复用这些素材，没有新增模型调用。旧的光栅全景条不再用于正文；模型、提示、输入关系和哈希见 [image_generation.md](.paper/image_generation.md) 与 [figure_assets.json](.paper/figure_assets.json)。
+三张作者配色参考合并为海洋蓝、海玻璃绿、沙金与珊瑚色：`#376795`、`#7BC0CD`、`#51999F`、`#BFDFD2`、`#DBCB92`、`#FFE6B7`、`#ECB66C`、`#ED8D5A`。方法图中 P2E 保持珊瑚色、静态工具种子保持蓝色；排名、分组或有符号效应另有明确图例，不依赖颜色单独传达信息。三张参考图原文件保留在作者工作区，不自动提交，也不使用其中的数值或显著性标记。
 
-所有现有图均为概念图或明确标记的合成示例，不是实验观察。性能曲线、效率曲线、真实案例和数值结果必须等获准的数据与冻结分析准备好后再加入。写作不收录调试流水账、探索历程或历史中间方法。
+正文保留 ICLR 的 Times 字体和正式标题层级；两张 TikZ 图局部使用 Helvetica 兼容字体，定量图使用 TeX Gyre Heros。图标题约 8.5 pt、轴标题 8 pt、刻度和图例约 7.3–7.5 pt，按 5.4 英寸原生宽度输出并检查文字边界。表格采用三线表、对齐的数值列和轻量行底色。实际 PDF 页面的图注、段落断页、图例留白和图标碰撞也纳入检查，没有修改官方模板的字号、边距或版芯。
+
+GPT Image 2 的已验证调用路线是指定 Azure Foundry 资源的 `/openai/v1/`，不是不可用。现有[原图](output/imagegen/edit-source.png) → [加红杯、保留蓝碗](output/imagegen/edit-preserved.png) → [误删蓝碗](output/imagegen/edit-omission.png) 的素材链和提示、哈希完整保留。目前只有图 1 使用保留蓝碗的照片，宽 1.96 cm，约 1990 DPI；其余照片和旧概念图已退出正文。本轮图表由原生矢量绘图生成，没有新增模型调用。[image_generation.md](.paper/image_generation.md) 记录素材来源，用户指定的 API 使用文档在前轮已经更新。
+
+所有定量显示都有逐图、逐表、逐行的模拟披露。配对效应使用共同完成的输入；数值表使用各方法完成的输入；排名构成保留未评分输入，避免分母混用。新建数据、采样有效性和组件有效性仍需不同实验证据。主张 C27/C28 保持待验证，不因模拟图表升级为结果。写作不收录调试流水账或历史中间方法。
 
 ## 后续作者工作
 

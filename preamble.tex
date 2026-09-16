@@ -6,7 +6,7 @@
 \usepackage{placeins}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
-\usepackage{xcolor}
+\usepackage{xcolor,colortbl}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.geometric,decorations.pathreplacing,patterns}
 \usepackage{url}
@@ -14,7 +14,7 @@
 \hypersetup{
   pdftitle={P2E: Evolving Evaluation Systems for Open-Ended Generation},
   pdfauthor={Anonymous authors},
-  pdfsubject={Working manuscript; empirical results pending}
+  pdfsubject={Working manuscript; simulated quantitative displays, not empirical results}
 }
 \newcommand{\ERA}{\textsc{ERA}}
 \newcommand{\PtwoE}{\textsc{P2E}}
@@ -34,17 +34,19 @@
 \definecolor{eraTeal}{HTML}{E9F3F0}
 \definecolor{eraSand}{HTML}{F6F0E4}
 \definecolor{eraGray}{HTML}{F2F3F5}
-% Author-selected five-color reference, with separate accessible ink colors.
-\definecolor{pSky}{HTML}{74A9C5}
-\definecolor{pMint}{HTML}{C2E5CF}
-\definecolor{pCream}{HTML}{EDDDAB}
-\definecolor{pPeach}{HTML}{F2B8AE}
-\definecolor{pRose}{HTML}{DD7389}
-\definecolor{pBlue}{HTML}{426A81}
-\definecolor{pTeal}{HTML}{476D59}
-\definecolor{pGold}{HTML}{7B663B}
-\definecolor{pEvo}{HTML}{994D62}
-\definecolor{pResearch}{HTML}{915C51}
+% Author's three references: ocean blues, sea glass, sand, and coral.
+% Separate dark inks preserve small-label contrast; body/template fonts unchanged.
+\definecolor{pSky}{HTML}{7BC0CD}
+\definecolor{pMint}{HTML}{BFDFD2}
+\definecolor{pCream}{HTML}{FFE6B7}
+\definecolor{pPeach}{HTML}{ECB66C}
+\definecolor{pCoral}{HTML}{ED8D5A}
+\colorlet{pRose}{pCoral}% Compatibility with archived native diagrams.
+\definecolor{pBlue}{HTML}{376795}
+\definecolor{pTeal}{HTML}{3E7F81}
+\definecolor{pGold}{HTML}{927439}
+\definecolor{pEvo}{HTML}{AD5D39}
+\definecolor{pResearch}{HTML}{92653F}
 \definecolor{pInk}{HTML}{303C43}
 \definecolor{pMuted}{HTML}{606C71}
 \definecolor{pLine}{HTML}{D5DCD8}
@@ -54,7 +56,7 @@
 \colorlet{pTealWash}{pMint!45!white}
 \colorlet{pGoldWash}{pCream!40!white}
 \colorlet{pResearchWash}{pPeach!29!white}
-\colorlet{pEvoWash}{pRose!11!white}
+\colorlet{pEvoWash}{pCoral!11!white}
 \colorlet{pRedWash}{pRose!13!white}
 \tikzset{
   eraBox/.style={draw=eraNavy,rounded corners=2pt,line width=0.65pt,

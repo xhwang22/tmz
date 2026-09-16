@@ -1,48 +1,74 @@
-\section{Results}
+\section{Quantitative evaluation: simulated displays}
 \label{sec:results}
 
-Empirical outcomes are not yet available. Tables~\ref{tab:results}
-and~\ref{tab:downstream-results} specify per-domain ID/OOD reporting;
-dashes denote unmeasured quantities, not zero or a method ordering.
-Appendix~\ref{app:results} specifies dimensional, reliability, cost, and
-ablation outputs.
+All numerical displays in this section use \emph{simulated data}, not measured
+evaluator performance or collected human judgments. They instantiate the reporting
+protocol while empirical evaluation remains pending. The generator, data, and
+limitations are documented in Appendix~\ref{app:simulation}. No ordering among
+the simulated methods constitutes evidence for either research hypothesis.
 
 \begin{table}[t]
-\caption{C1 reporting template by domain and source cohort. Pair = global
-pairwise agreement; Top = top-region agreement; BoN = Best-of-$N$ accuracy;
-Reg = normalized rank regret. All entries are unmeasured; coverage and grouped
-uncertainty accompany each metric.}
+\caption{\textbf{Simulated C1 reporting example; not experimental results.}
+Each setting averages four equally weighted toy cohorts. Pair = pairwise
+agreement; Top = top-region agreement; Bo4 = Best-of-4 accuracy (all in \%);
+Reg = normalized rank regret (lower is better). Cohort assignments do not
+assert actual label availability. Coverage and domain summaries accompany the
+reproducible fixtures.}
 \label{tab:results}
 \centering\small
-\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\linewidth}{@{}Ycccccccc@{}}
-\toprule
-& \multicolumn{4}{c}{ID test} & \multicolumn{4}{c}{OOD test} \\
-\cmidrule(lr){2-5}\cmidrule(l){6-9}
-Evaluator & Pair & Top & BoN & Reg & Pair & Top & BoN & Reg \\
-\midrule
-Best single metric & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending \\
-Metric ensemble & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending \\
-Strong static judge & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending \\
-Static tool-augmented & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending \\
-Prompt optimization & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending \\
-Program search & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending \\
-P2E (ERA) & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending \\
-\bottomrule
-\end{tabularx}
+\setlength{\tabcolsep}{3.6pt}
+\renewcommand{\arraystretch}{1.06}
+\input{figures/simulated/c1_table}
 \end{table}
 
-\begin{table}[t]
-\caption{Downstream contrasts by domain. Report human preference on new outputs
-with grouped 95\% intervals. C3 is planned only; all entries are unmeasured.}
-\label{tab:downstream-results}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}P{.85cm}Yccc@{}}
-\toprule
-Study & Primary contrast & ID preference & OOD preference & Regressions \\
-\midrule
-C2 & P2E-refined vs.\ Seed-refined & \pending & \pending & \pending \\
-C3 & P2E-GRPO vs.\ Seed-GRPO & \pending & \pending & \pending \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\paragraph{Alignment under distinct standards.}
+The relevant comparison is evaluator evolution within a task, not one data
+source against another. Table~\ref{tab:results} separates the two construction
+settings and the ID/OOD endpoints. Figure~\ref{fig:alignment}a--b retains
+domain-level paired effects instead of reducing heterogeneous standards to one
+average. Each effect compares P2E with the static tool-augmented seed on their
+jointly completed input groups. A change in pairwise agreement also leaves open
+which candidates are selected; the rank-composition display in
+Figure~\ref{fig:selection} makes that distinction explicit.
+
+\begin{figure}[t]
+\centering
+\input{figures/simulated_alignment}
+\caption{\textbf{Simulated domain-level alignment; not experimental results.}
+Panels (a) and (b) compare P2E with the static tool-augmented seed on ID and OOD
+inputs. Diamonds are paired mean differences; whiskers are 95\% bootstrap
+intervals over jointly completed synthetic input groups. Zero denotes no
+difference. The two row groups indicate illustrative feedback-construction
+settings, not permanent domain categories or measured data readiness.}
+\label{fig:alignment}
+\end{figure}
+
+\paragraph{Acquisition as a separate test.}
+A preference corpus can support evolution without establishing that its sampling
+policy was efficient. Figure~\ref{fig:acquisition}a--b specifies the separate
+comparison against random sampling at equal human budgets. The endpoint is
+held-out agreement after evolution, not disagreement density in the acquired
+batch. The same reliability anchor is charged to all policies. Annotation
+granularity is held fixed in this comparison and varied separately in
+Figure~\ref{fig:ablation}b.
+
+\begin{figure}[t]
+\centering
+\input{figures/simulated_acquisition}
+\caption{\textbf{Simulated acquisition curves; not experimental results.}
+Panels (a) and (b) compare five policies under reused and newly collected
+preferences. Lines average 12 toy runs; bands mark the 10th--90th percentiles
+for random and multi-source sampling, not confidence intervals. Budgets count
+original-input annotation units, including a shared 10-unit random anchor.}
+\label{fig:acquisition}
+\end{figure}
+
+\begin{samepage}
+\paragraph{Feedback quality and unresolved judgments.}
+Label origin does not determine reliability. Figure~\ref{fig:annotation-quality}a--c
+separates valid-pair agreement, requested-rating abstention, and group consensus,
+preserving their distinct denominators. Unreported reliability in reused
+sources is marked unknown. C2 distributions and deployment-cost displays appear
+in Figures~\ref{fig:refinement} and~\ref{fig:cost}; C3 remains entirely unmeasured.
+\par
+\end{samepage}

@@ -2,8 +2,11 @@ Human preferences specify desired orderings of open-ended outputs without
 identifying what an evaluator must observe or how it should interpret that
 evidence. We present \PtwoE{}, Preference-Guided Evaluator Evolution, a framework
 for learning executable evaluation procedures under domain-specific human
-standards. \PtwoE{} maps existing metrics, judges, and tools to quality dimensions
-and acquires structured feedback on semantically distinct disagreements. This
+standards. Two data-construction settings reuse existing preferences or collect
+new preferences for tasks without suitable evaluation data. Both address the
+same question of evolving an evaluator from a task and its human feedback.
+\PtwoE{} maps existing metrics, judges, and tools to quality dimensions
+and organizes structured feedback around semantically distinct disagreements. This
 evidence grounds hypotheses about missing observations, unused evidence, or
 inappropriate criteria. Within P2E, \ERA{} evolves artifact representations,
 rubrics, evaluator modules, tools, evidence routing, and fusion while holding
@@ -14,5 +17,8 @@ a refuted hypothesis. The research scope spans structured visual artifacts,
 images and 3D, text generation, and automated research. We specify matched-budget
 studies of feedback acquisition and evolution, followed by independent tests of
 alignment and selection, critic-guided refinement, and planned reward-guided
-training. Whether an evolved evaluator agrees better with humans and whether it
-improves generation remain distinct empirical questions.
+training. Label provenance, annotation quality, and outcomes are reported
+separately by construction setting. Data construction does not establish the
+value of disagreement sampling, which requires a matched-budget random-sampling
+control. Quantitative displays in this draft use simulated data, not empirical
+results.

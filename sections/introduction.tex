@@ -17,15 +17,17 @@ too much weight. The same wrong ordering is compatible with each mechanism.
 Adding another score does not resolve this ambiguity when sources measure
 different constructs or share a blind spot. Work on model-based judging and
 human-authored criteria motivates examining what supports a judgment
-\citep{zheng2023judging,shankar2024evalgen}. This leads to two linked questions:
-\emph{which human judgments reveal gaps in evaluation}, and \emph{how should an
-evaluator evolve in response}?
+\citep{zheng2023judging,shankar2024evalgen}. The resulting question is:
+\emph{given a task and its human feedback, can we evolve an evaluator that better
+follows that task's evaluation standard}?
 
 We introduce \PtwoE{}, Preference-Guided Evaluator Evolution, for domains with
 open-ended outputs and an existing evaluation ecosystem.
 Figure~\ref{fig:overview} presents the complete framework. \PtwoE{} maps available
-signals to quality dimensions before exposing human labels and requests
-structured feedback on semantically distinct disagreements. Human evidence has
+signals to quality dimensions before exposing human labels. Suitable existing
+preferences can be reused; tasks without them require new human judgments.
+These are two data-construction settings for the same algorithmic problem,
+not different definitions of the method. Human evidence has
 two roles: it helps locate evaluation gaps and supplies the standard against
 which candidate mechanisms are selected. Within P2E, \ERA{} is our method for
 evidence-guided evaluator evolution. With the base model fixed, it evolves how
@@ -35,11 +37,12 @@ them into judgments. The object of learning is the evaluation procedure itself.
 \begin{figure}[t]
 \centering
 \input{figures/overview}
-\caption{\PtwoE{} connects domain-specific evaluation to human feedback,
-evaluator evolution, and independent assessment. (a) Four artifact families.
-(b) Disagreement and structured human evidence. (c) \ERA{} evolves a six-component
+\caption{\PtwoE{} evolves evaluation systems using human feedback.
+(a) Four artifact families retain distinct evaluation standards.
+(b) Reused and newly collected preferences enter a common evidence interface;
+their provenance and annotation quality remain separate. (c) \ERA{} evolves a six-component
 program with a fixed base model. (d) C1 selection, C2 refinement, and planned
-C3 reward training. Artifacts, preferences, and feedback are constructed
+C3 reward training. Artifacts and feedback are constructed
 illustrations; the photograph is generated with GPT Image 2. Arrows denote
 information flow, not measured improvements.}
 \label{fig:overview}
@@ -61,4 +64,6 @@ standard. We distinguish agreement and selection on fixed candidates (C1),
 refinement through a frozen critic (C2), and training under a frozen reward (C3).
 Success at one level does not establish success at the next. This paper develops
 the feedback-mining formulation, ERA evolution procedure, and controlled studies
-needed to test these hypotheses.
+needed to test these hypotheses in both data-construction settings. The ability
+to build a new preference corpus and the value of a particular sampling policy
+require different evidence.

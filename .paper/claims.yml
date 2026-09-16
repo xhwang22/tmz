@@ -2,7 +2,7 @@
   "updated_on": "2026-09-16",
   "serialization": "JSON-compatible YAML",
   "id_namespace": "C1... here are memory claim IDs, separate from manuscript study labels C1/C2/C3.",
-  "evidence_policy": "Specification artifacts support design statements only. Hypotheses lacking experiment outputs are status gap. No empirical result artifacts were imported.",
+  "evidence_policy": "Specification artifacts support design statements only. Explicit simulated reporting fixtures support provenance and arithmetic checks, never empirical effectiveness. Hypotheses C27/C28 remain gaps; no empirical outputs were imported.",
   "claims": [
     {
       "id": "C1",
@@ -26,13 +26,11 @@
       "kind": "scope",
       "evidence_artifacts": [
         "sections/problem.tex",
-        ".paper/source_provenance.md",
-        "figures/domain_panorama.tex"
+        ".paper/source_provenance.md"
       ],
       "figure_or_table": [
         "Fig1",
-        "Fig6",
-        "Tab4"
+        "Tab2"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -44,13 +42,11 @@
       "kind": "scope",
       "evidence_artifacts": [
         "sections/problem.tex",
-        ".paper/source_provenance.md",
-        "figures/domain_panorama.tex"
+        ".paper/source_provenance.md"
       ],
       "figure_or_table": [
         "Fig1",
-        "Fig6",
-        "Tab4"
+        "Tab2"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -65,9 +61,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig2",
-        "Fig7",
-        "Tab5"
+        "Tab3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -82,9 +76,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig2",
-        "Fig7",
-        "Tab5"
+        "Tab3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -99,8 +91,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig2",
-        "Tab6"
+        "Tab4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -115,15 +106,14 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig2",
-        "Tab6"
+        "Tab4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C8",
-      "text": "We sample three separately recorded semantic strata (Figure~\\ref{fig:mining}b). \\emph{Within-dimension disagreement} occurs when reliable signals disagree about the same quality criterion. \\emph{Overall--dimension disagreement} indicates a possible mismatch in priorities or aggregation. \\emph{Cross-dimensional trade-offs} identify cases where different criteria favor different candidates; they are not contradictions between measurements of the same construct.",
+      "text": "We sample three separately recorded semantic strata. \\emph{Within-dimension disagreement} occurs when reliable signals disagree about the same quality criterion. \\emph{Overall--dimension disagreement} indicates a possible mismatch in priorities or aggregation. \\emph{Cross-dimensional trade-offs} identify cases where different criteria favor different candidates; they are not contradictions between measurements of the same construct.",
       "source": "sections/mining.tex",
       "kind": "acquisition definition",
       "evidence_artifacts": [
@@ -131,7 +121,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig2"
+        "Tab4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -146,8 +136,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig2",
-        "Fig3"
+        "Fig1",
+        "Fig4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -162,7 +152,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig3"
+        "Fig4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -177,8 +167,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig3",
-        "Fig8"
+        "Fig4",
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -193,7 +183,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig3"
+        "Fig4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -208,8 +198,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig4",
-        "Tab7"
+        "Tab6"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -224,7 +213,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig8"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -239,14 +228,14 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig4"
+        "Fig1"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C16",
-      "text": "Search retains both a best development program and a working program for the active direction (Figure~\\ref{fig:directions}a).",
+      "text": "Search retains both a best development program and a working program for the active direction.",
       "source": "sections/method.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -254,7 +243,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig4"
+        "Fig1"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -268,9 +257,7 @@
         "sections/method.tex",
         ".paper/source_provenance.md"
       ],
-      "figure_or_table": [
-        "Fig4"
-      ],
+      "figure_or_table": [],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
@@ -284,7 +271,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig3"
+        "Tab11"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -298,9 +285,7 @@
         "sections/method.tex",
         ".paper/source_provenance.md"
       ],
-      "figure_or_table": [
-        "Fig9"
-      ],
+      "figure_or_table": [],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
@@ -314,7 +299,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig8"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -329,15 +314,15 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig5",
-        "Tab2"
+        "Tab1",
+        "Fig6"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C22",
-      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed critic and P2E critic each inspect that same output and permitted evidence, then return the same critique format. A common generator performs one refinement step under identical prompts, decoding, tool access, and token budgets (Figure~\\ref{fig:downstream}b).",
+      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed critic and P2E critic each inspect that same output and permitted evidence, then return the same critique format. A common generator performs one refinement step under identical prompts, decoding, tool access, and token budgets.",
       "source": "sections/experiments.tex",
       "kind": "C2 study protocol",
       "evidence_artifacts": [
@@ -345,8 +330,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig5",
-        "Tab3"
+        "Fig8",
+        "Tab9"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -361,8 +346,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig5",
-        "Tab8"
+        "Tab7"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -377,9 +361,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig5",
-        "Tab3",
-        "Tab8"
+        "Tab7",
+        "Tab9"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -394,8 +377,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab1",
-        "Tab7"
+        "Fig3",
+        "Tab6"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -410,7 +393,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab9"
+        "Fig2",
+        "Tab8"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -422,11 +406,10 @@
       "kind": "hypothesis",
       "evidence_artifacts": [],
       "figure_or_table": [
-        "Tab1",
-        "Tab7"
+        "Tab6"
       ],
       "status": "gap",
-      "gap_reason": "No matched-human-budget held-out acquisition experiment is incorporated; this sentence is an explicitly hedged hypothesis."
+      "gap_reason": "No matched-human-budget held-out acquisition experiment is incorporated. Simulated curves are reporting fixtures and cannot support this explicitly hedged hypothesis."
     },
     {
       "id": "C28",
@@ -435,11 +418,10 @@
       "kind": "hypothesis",
       "evidence_artifacts": [],
       "figure_or_table": [
-        "Fig4",
-        "Tab7"
+        "Tab6"
       ],
       "status": "gap",
-      "gap_reason": "No controlled component/evolution result is incorporated; coordinated evolution remains a mechanism hypothesis rather than a demonstrated benefit."
+      "gap_reason": "No controlled component/evolution result is incorporated. Simulated ablations cannot establish coordinated evolution's benefit."
     },
     {
       "id": "C29",
@@ -456,16 +438,14 @@
     },
     {
       "id": "C30",
-      "text": "Figure~\\ref{fig:synthesis}c illustrates only the arithmetic, using $a_k=50$, $a_{k+1}=75$, and $\\lambda=0.4$.",
+      "text": "A synthetic arithmetic example uses $a_k=50$, $a_{k+1}=75$, and $\\lambda=0.4$, giving $s=60$.",
       "source": "sections/appendix.tex",
       "kind": "synthetic illustration",
       "evidence_artifacts": [
         "sections/appendix.tex",
         ".paper/source_provenance.md"
       ],
-      "figure_or_table": [
-        "Fig9"
-      ],
+      "figure_or_table": [],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
@@ -480,7 +460,7 @@
       ],
       "figure_or_table": [
         "Fig1",
-        "Fig3"
+        "Fig4"
       ],
       "status": "draft",
       "risk": "A statement of the method's editable mechanisms, not evidence that evolution improves evaluation."
@@ -496,10 +476,124 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig4"
+        "Fig1",
+        "Tab6"
       ],
       "status": "draft",
       "risk": "A procedural distinction, not a claim that hypothesis-guided exploration outperforms alternatives."
+    },
+    {
+      "id": "C33",
+      "text": "Both construction settings supply this interface to ERA, while retaining their label origins and annotation protocols.",
+      "source": "sections/mining.tex",
+      "kind": "shared algorithm and data provenance",
+      "figure_or_table": [
+        "Fig1",
+        "Tab3"
+      ],
+      "evidence_artifacts": [
+        "sections/mining.tex",
+        ".paper/source_provenance.md"
+      ],
+      "status": "draft",
+      "risk": "A definition or evaluation requirement; empirical claims require authorized observed outputs."
+    },
+    {
+      "id": "C34",
+      "text": "Existing human preferences are not a domain-admission requirement. Their availability determines the missing data work, not the algorithm's definition.",
+      "source": "sections/problem.tex",
+      "kind": "data availability boundary",
+      "figure_or_table": [
+        "Tab3"
+      ],
+      "evidence_artifacts": [
+        "sections/problem.tex",
+        ".paper/source_provenance.md"
+      ],
+      "status": "draft",
+      "risk": "A definition or evaluation requirement; empirical claims require authorized observed outputs."
+    },
+    {
+      "id": "C35",
+      "text": "New labels are not assumed to be more reliable than reused labels.",
+      "source": "sections/appendix.tex",
+      "kind": "annotation reliability boundary",
+      "figure_or_table": [
+        "Tab3",
+        "Fig5"
+      ],
+      "evidence_artifacts": [
+        "sections/appendix.tex",
+        ".paper/source_provenance.md"
+      ],
+      "status": "draft",
+      "risk": "A definition or evaluation requirement; empirical claims require authorized observed outputs."
+    },
+    {
+      "id": "C36",
+      "text": "Corpus construction alone cannot establish sampling efficiency.",
+      "source": "sections/experiments.tex",
+      "kind": "acquisition inference boundary",
+      "figure_or_table": [
+        "Tab6",
+        "Fig3"
+      ],
+      "evidence_artifacts": [
+        "sections/experiments.tex",
+        ".paper/source_provenance.md"
+      ],
+      "status": "draft",
+      "risk": "A definition or evaluation requirement; empirical claims require authorized observed outputs."
+    },
+    {
+      "id": "C37",
+      "text": "All numerical displays in this section use \\emph{simulated data}, not measured evaluator performance or collected human judgments.",
+      "source": "sections/results.tex",
+      "kind": "simulation provenance",
+      "figure_or_table": [
+        "Fig2",
+        "Fig3",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9",
+        "Tab1",
+        "Tab10"
+      ],
+      "evidence_artifacts": [
+        "scripts/render_simulated_results.py",
+        "scripts/check_simulated_results.py",
+        "data/simulated/manifest.json",
+        "data/simulated/c1_groups.csv",
+        "data/simulated/acquisition.csv",
+        "data/simulated/annotation_groups.csv",
+        "data/simulated/component_effects.csv",
+        "data/simulated/granularity.csv",
+        "data/simulated/refinement_groups.csv"
+      ],
+      "status": "supported",
+      "risk": "Verified only as provenance of artificial reporting examples. No method ordering, effect, cost, or annotation reliability generalizes to an experiment."
+    },
+    {
+      "id": "C38",
+      "text": "Its means use each method's complete groups, whereas the paired differences in Figure~\\ref{fig:alignment} use the intersection of completed groups.",
+      "source": "sections/appendix.tex",
+      "kind": "simulation denominator definition",
+      "figure_or_table": [
+        "Tab1",
+        "Fig2",
+        "Fig6"
+      ],
+      "evidence_artifacts": [
+        "data/simulated/c1_groups.csv",
+        "data/simulated/c1_summary.csv",
+        "data/simulated/alignment_effects.csv",
+        "data/simulated/selection_ranks.csv",
+        "scripts/check_simulated_results.py"
+      ],
+      "status": "supported",
+      "risk": "Arithmetic consistency of toy displays, not evidence of evaluator effectiveness; selection shares use the separate all-input denominator."
     }
   ]
 }

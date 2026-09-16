@@ -89,7 +89,7 @@ for options, relative in graphic_uses:
     # Figures use explicit native widths, without outer resizebox/scalebox.
     match = re.search(r"(?:^|,)\s*width\s*=\s*([0-9.]+)\s*(in|cm|mm|pt|bp)(?:,|$)", options)
     if not match:
-        errors.append(f"Raster needs an explicit physical print width: {relative}")
+        errors.append(f"Graphic needs an explicit physical print width: {relative}")
         continue
     print_widths.setdefault(relative, []).append(
         float(match.group(1)) / units_per_inch[match.group(2)]
@@ -132,11 +132,48 @@ for asset in assets["generated_images"]:
     for prompt in asset["prompts"]:
         if not (ROOT / prompt).is_file():
             errors.append(f"Missing figure prompt: {prompt}")
+
+# Vector charts have data/generator provenance, not image-model provenance.
+# Keep the two validation paths separate; PDFs have no meaningful raster DPI.
+manifest = json.loads((ROOT / "data/simulated/manifest.json").read_text())
+if manifest.get("simulation_only") is not True or manifest.get("empirical_evidence") is not False:
+    errors.append("Quantitative fixture provenance does not disclose simulation.")
+for relative in sorted(graphics):
+    if not relative.endswith(".pdf"):
+        continue
+    path = (ROOT / relative).resolve()
+    try:
+        path.relative_to(ROOT)
+    except ValueError:
+        errors.append(f"Vector graphic escapes repository: {relative}")
+        continue
+    recorded_graphics.add(relative)
+    if not path.is_file():
+        errors.append(f"Missing vector figure: {relative}")
+        continue
+    data = path.read_bytes()
+    if not data.startswith(b"%PDF-"):
+        errors.append(f"Expected vector PDF: {relative}")
+    if hashlib.sha256(data).hexdigest() != manifest["files"].get(relative):
+        errors.append(f"Vector figure does not match data manifest: {relative}")
+    if any(abs(width - 5.4) > 1e-6 for width in print_widths.get(relative, [])):
+        errors.append(f"Vector chart does not retain its 5.4-inch native width: {relative}")
 if graphics != recorded_graphics:
     errors.append("Referenced graphics and figure provenance do not match.")
 for asset in assets.get("archived_images", []):
     if asset["path"] in graphics:
         errors.append(f"Archived illustration is still referenced: {asset['path']}")
+    path = (ROOT / asset["path"]).resolve()
+    try:
+        path.relative_to(ROOT)
+    except ValueError:
+        errors.append(f"Archived asset escapes repository: {asset['path']}")
+        continue
+    if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != asset["sha256"]:
+        errors.append(f"Archived image missing or hash changed: {asset['path']}")
+    for prompt in asset["prompts"]:
+        if not (ROOT / prompt).is_file():
+            errors.append(f"Missing archived prompt: {prompt}")
 
 aux_path = ROOT / "build/main.aux"
 if aux_path.exists():
@@ -165,7 +202,7 @@ else:
     errors.append("Build missing; run make before checking the paper.")
 
 print(f"TeX inputs: {len(visited)}; cited references: {len(cited)}; labels: {len(labels)}")
-print(f"Generated figures: {len(recorded_graphics)}; hashes and print resolution checked")
+print(f"Graphics: {len(recorded_graphics)}; raster resolution and vector provenance checked")
 if errors:
     for error in errors:
         print(f"ERROR: {error}", file=sys.stderr)

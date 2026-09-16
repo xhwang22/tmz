@@ -7,11 +7,19 @@
 - Anonymous review mode; do not enable `\iclrfinalcopy` for this draft.
 - US Letter; official font sizes, margins and text area unchanged.
 - Natbib author–year citations; supplied `.bst`; single-paragraph abstract.
-- Figure captions below; table captions above; readable vector artwork for exact
-  diagrams. This draft checks all raster assets at a minimum of 600 DPI at print
-  width. Its three 1536-pixel photographs provide about 1300 DPI at the declared
-  maximum 3 cm width and at least 1990 DPI at their actual placements. The former
-  raster panorama strip is archived and unused; Figure 6 is now native TikZ.
+- Figure captions below; table captions above; vector artwork for diagrams,
+  quantitative marks, and text. Seven chart PDFs have native 5.4-inch canvases;
+  figure typography is scoped and does not replace the official Times body.
+  Fonts must be embedded, with no Type 3 fallbacks. This draft checks active
+  raster assets at a minimum of 600 DPI at print width. The only active photo
+  is 1536 pixels wide and prints at 1.96 cm in Figure 1, about 1990 DPI.
+  Its declared maximum 3 cm width provides about 1300 DPI. Other generated
+  images and unused conceptual diagrams remain archived, not manuscript assets.
+- Simulated quantitative fixtures are expressly marked, not empirical results.
+  The author-requested layout draft is not a results-bearing submission;
+  `scripts/check_simulated_results.py --submission` must reject it while these
+  fixtures remain. Simulation disclosures cannot be removed without replacing
+  the data and auditing the resulting claims.
 - Required AI use statement, at most one page, outside the page limit.
 - Recommended ethics and reproducibility statements, each at most one page,
   outside the page limit and before references.

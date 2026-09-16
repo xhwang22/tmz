@@ -38,8 +38,10 @@ def read(relative):
     return local_file(relative).read_text(encoding="utf-8")
 
 
-def caption_for(text, label):
-    for match in re.finditer(r"\\begin\{figure\}[\s\S]*?\\end\{figure\}", text):
+def caption_for(text, label, kind="figure"):
+    environments = "figure" if kind == "figure" else "table|longtable"
+    pattern = r"\\begin\{(" + environments + r")\}[\s\S]*?\\end\{\1\}"
+    for match in re.finditer(pattern, text):
         block = match.group(0)
         if "\\label{" + label + "}" not in block:
             continue
@@ -57,7 +59,7 @@ def caption_for(text, label):
                     depth -= 1
             if depth == 0:
                 return normalize(block[start:end])
-    raise ValueError(f"Missing figure environment for {label}")
+    raise ValueError(f"Missing {kind} environment for {label}")
 
 
 try:
@@ -120,6 +122,10 @@ try:
             fail(f"{fid}: recorded source is not referenced by its caption file")
         for asset in figure.get("raster_assets", []):
             local_file(asset)
+
+    for table in tables:
+        if caption_for(read(table["file"]), table["label"], "table") != normalize(table["caption_in_manuscript"]):
+            fail(f"{table['id']}: caption memory is stale")
 
     for display in figures + tables:
         did = display["id"]

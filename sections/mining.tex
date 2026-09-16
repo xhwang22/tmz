@@ -22,6 +22,23 @@ Existing executable metrics can enter the candidate tool library. Metrics
 reserved for final independent assessment are frozen separately and never enter
 tools, routing, critique, or reward.
 
+\subsection{Two routes to human feedback}
+
+Reusing a preference requires an aligned task, readable same-input candidates,
+and a judgment of the intended quality construct. Rankings, pointwise ratings,
+and error annotations need a validated adapter with conversion provenance.
+An input, reference, or automatic score alone is not human feedback.
+
+When matching preferences are absent, we freeze the task and annotation protocol
+before collecting them. Existing candidates are retained when suitable; only
+missing candidate groups require fresh generation. Source-disjoint partitions
+are fixed before label-blind acquisition. New judgments are independent of old
+winners, model scores, and method identities. Their recency does not make them
+more reliable. Both settings report the annotator pool, supervision levels,
+agreement, ties, abstentions, and unresolved cases, with unavailable information
+marked as unknown (Appendix~\ref{app:annotation}). A protocol change defines a
+different measurement condition, not evidence that old labels were wrong.
+
 \subsection{Semantic disagreement and structured annotation}
 
 Raw scores on incompatible scales are not directly subtracted. For a candidate
@@ -42,21 +59,8 @@ dependent sources. An empty denominator gives no conflict estimate.
 This formulation leaves the calibration and dependence rule to be fixed before
 the sampling comparison; disagreement is not itself a correctness label.
 
-\begin{figure}[t]
-\centering
-\input{figures/preference_mining}
-\caption{From evaluator signals to informative feedback. Panel (a) is a
-synthetic webpage example of the many-to-many signal--dimension mapping; letters
-indicate candidate preference, not scores. Hatched cells share one mixed signal.
-Panel (b) distinguishes within-dimension contradiction, overall--dimension
-disagreement, and a trade-off between different dimensions. Panel (c) connects
-these strata to $H_0$--$H_3$ and the adaptation evidence table $Z$.
-The matrix is illustrative and does not report measured scorer behavior.}
-\label{fig:mining}
-\end{figure}
-
-We sample three separately recorded semantic strata
-(Figure~\ref{fig:mining}b). \emph{Within-dimension disagreement} occurs when
+We sample three separately recorded semantic strata.
+\emph{Within-dimension disagreement} occurs when
 reliable signals disagree about the same quality criterion.
 \emph{Overall--dimension disagreement} indicates a possible mismatch in
 priorities or aggregation. \emph{Cross-dimensional trade-offs} identify cases
@@ -75,9 +79,7 @@ diagnostics on a conflict or failure subset. All candidates derived from one
 input remain grouped. The adaptation evidence table $Z(r,q)$ joins artifact
 provenance, human judgments and agreement, every source's direction and
 uncertainty, evaluator decisions, selected routes, tool evidence, and execution
-cost. This is the interface from preference mining to ERA.
-Existing rankings, pointwise ratings, and error annotations require validated
-adapters and explicit provenance; input/reference pairs alone provide no human
-supervision. Appendix~\ref{app:annotation} specifies the feedback and readiness
-audits. Neither model-generated explanations nor labels derived from a different
+cost. Both construction settings supply this interface to ERA, while retaining
+their label origins and annotation protocols. Neither model-generated
+explanations nor labels derived from a different
 quality construct are promoted to human $H_1$ or $H_2$.

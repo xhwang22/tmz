@@ -1,3 +1,5 @@
+\begingroup
+\renewcommand{\sfdefault}{phv}% Helvetica-compatible figure typography only.
 \begin{tikzpicture}[line cap=round,line join=round]
   \path[use as bounding box] (0,0) rectangle (13.7,8.1);
   \pPanel{a}{Open-ended generation: domain-specific evaluation standards}{0}{7.88}
@@ -54,29 +56,30 @@
   \path[pSurface,fill=pGoldWash] (0,.05) rectangle (3.94,5.28);
   \path[pSurface,fill=pEvoWash,draw=pEvo!18,line width=.5pt]
     (4.24,.05) rectangle (10.32,5.28);
-  \pPanel{b}{Mine human evidence}{.12}{4.99}
+  \pPanel{b}{Human feedback}{.12}{4.99}
   \pPanel{c}{Evolve the evaluator}{4.39}{4.99}
   \pPanel{d}{Assess}{10.79}{4.99}
 
-  \path[fill=white,rounded corners=4pt] (.18,3.73) rectangle (3.74,4.62);
-  \pIcon{page}{pGold}{.50}{4.19}{.58}
-  \node[pLabel,text=pGold,anchor=west] at (.83,4.44) {Source};
-  \node[pSmall,text=pInk,anchor=west] at (.83,4.02)
-    {Adult admissions fell.\\Children not studied.};
-  \pCandidate{A}{pBlue}{.44}{3.23}
-  \node[pText,anchor=west] at (.79,3.23)
-    {Admissions fell for\\\textcolor{pRed}{\underline{all age groups.}}};
-  \pCandidate{B}{pRed}{.44}{2.46}
-  \node[pText,anchor=west] at (.79,2.46) {Admissions fell\\among adults.};
-  \node[pSmall,anchor=west] at (.23,1.94)
-    {Fluency: \textcolor{pBlue}{\textbf{A}}\quad Fidelity: \textcolor{pRed}{\textbf{B}}};
-  \path[draw=pGold!30,fill=white,rounded corners=5pt]
-    (.18,.24) rectangle (3.74,1.68);
-  \pIcon{person}{pGold}{.54}{1.28}{.63}
-  \node[pLabel,text=pGold,anchor=west] at (.96,1.40) {Human evidence $\rightarrow Z$};
-  \node[pSmall,text=pInk,anchor=west] at (.96,1.02) {$H_1$: B on faithfulness};
-  \node[pSmall,text=pInk,anchor=west] at (.36,.68) {$H_2$: scope error in A};
-  \node[pSmall,anchor=west] at (.36,.38) {$H_0$: overall; optional $H_3$};
+  % Two parallel construction routes, not a taxonomy of domains.
+  \path[fill=white,rounded corners=4pt] (.18,3.10) rectangle (3.47,4.62);
+  \pIcon{database}{pTeal}{.52}{4.25}{.57}
+  \node[pLabel,text=pTeal,anchor=west] at (.86,4.27) {Reused preferences};
+  \node[pText,anchor=west] at (.36,3.76) {Artifacts + human labels};
+  \node[pSmall,anchor=west] at (.36,3.35) {Retain original protocol.};
+  \path[fill=white,rounded corners=4pt] (.18,1.41) rectangle (3.47,2.90);
+  \pIcon{person}{pResearch}{.52}{2.60}{.57}
+  \node[pLabel,text=pResearch,anchor=west] at (.86,2.57) {New preferences};
+  \node[pText,anchor=west] at (.36,1.98) {Freeze task + protocol};
+  \node[pSmall,anchor=west] at (.36,1.59) {Collect blinded judgments.};
+  \path[draw=pGold!30,fill=white,rounded corners=4pt]
+    (.18,.24) rectangle (3.47,1.13);
+  \node[pLabel,text=pGold,anchor=west] at (.36,.89) {Human evidence $\rightarrow Z$};
+  \node[pSmall,anchor=west] at (.36,.57) {$H_0$--$H_3$ as available};
+  \node[pSmall,anchor=west] at (.36,.32) {Provenance + uncertainty};
+  \draw[pGold!55,line width=.6pt,rounded corners=3pt]
+    (3.47,3.85) -- (3.74,3.85) -- (3.74,.72);
+  \draw[pGold!55,line width=.6pt] (3.47,2.16) -- (3.74,2.16);
+  \draw[pSoftArrow,draw=pGold] (3.74,.72) -- (3.48,.72);
 
   \foreach \s/\col/\t/\x in {A/pBlue/views/4.76,K/pGold/rubrics/5.73,V/pGold/modules/6.70,
     T/pTeal/tools/7.67,\Pi/pTeal/routing/8.64,G/pEvo/fusion/9.61}{
@@ -94,8 +97,8 @@
   \draw[pEvolution] (5.96,3.33) .. controls (6.70,3.81) and (7.83,3.81) .. (8.55,3.33);
   \draw[pEvidence] (9.65,3.05) .. controls (10.13,2.78) and (10.13,2.06) .. (9.65,1.82);
   \draw[pEvolution] (8.53,1.61) .. controls (7.77,1.12) and (6.74,1.12) .. (6.01,1.61);
-  \draw[pEvolution] (4.91,1.87) .. controls (4.51,2.12) and (4.51,2.70) .. (4.91,3.02);
-  \draw[pEvidence] (3.74,.98) to[out=0,in=205] (4.96,1.65);
+  \draw[pEvolution] (4.91,1.87) .. controls (4.13,2.04) and (4.13,2.80) .. (4.91,3.02);
+  \draw[pEvidence] (3.47,.40) to[out=0,in=205] (4.96,1.65);
   \pIcon{agent}{pEvo}{7.26}{2.78}{.80}
   \node[pLead,text=pEvo] at (7.26,2.14) {ERA};
   \node[pSmall,align=center] at (7.26,1.81) {Fixed base model};
@@ -126,3 +129,4 @@
     (frozen.east) -- (10.61,.41) -- (10.61,4.12);
   \foreach \y in {4.12,2.68,1.13}{\draw[pEvolution] (10.61,\y) -- (10.87,\y);}
 \end{tikzpicture}
+\endgroup

@@ -13,6 +13,12 @@
 - H0 = overall; H1 = dimension preference and core supervision; H2 = structured
   error/severity/localization; H3 = optional human rationale. H0-only data remain
   useful but cannot be relabeled as H1/H2. Model reasoning is not human rationale.
+- Reusing existing preferences and collecting new preferences are two
+  data-construction settings for the same task-plus-human-feedback problem.
+  A domain can use both; existing H0 is not a domain-admission requirement.
+  Preserve separate provenance, protocols, agreement, abstention, and results.
+  Newly collected labels are not presumed superior. Corpus construction does
+  not establish sampling efficiency; require a matched-budget random control.
 - Include upstream preference mining and the C3 design, but do not describe any
   parameter-training execution or training benefits without new authorization
   and evidence. Leave optional teacher variants and historical optimizer modes out.
@@ -31,27 +37,48 @@
 - Keep caveats near relevant claims without repeating draft-status notices in
   every paragraph. Avoid promotional novelty claims and universal dismissals
   of existing program optimizers.
-- Figures should use distinct visual forms for distinct relationships: artifact
-  gallery and feedback loop, matrix, routed architecture, evolution branches,
-  matched study lanes, domain panorama, worked examples, access timeline, and factor synthesis.
-  Use GPT Image 2 only for disclosed synthetic vignettes; exact labels, flows,
-  and equations remain native TikZ. No fabricated performance curves or counts.
+- Prefer quantitative displays over redundant conceptual diagrams. Retain the
+  overview and pointwise runtime; use paired-effect forest plots, budget curves,
+  an annotation audit, rank composition, an annotated heatmap with box/strip
+  plots, raincloud distributions, and quality–cost scatter for distinct questions.
+  Chart variety must follow the quantity, not decoration. Avoid unnecessary 3D,
+  radial charts, heavy frames, and decorative significance markers.
+- The author explicitly authorized simulated data for reporting/layout review.
+  This is an exception for transparently labeled fixtures, never permission to
+  fabricate evidence. Disclose simulation in the title-page notice, section,
+  image, caption, each data row, and manifest. Effects, intervals, costs, cohort
+  assignments, and artificial raters are neither observations nor predictions.
+  Retain null/negative contrasts; do not manufacture a uniformly winning method.
+  No simulated C3 training. Never upgrade C27/C28 based on these fixtures.
+  Use GPT Image 2 only for disclosed illustrative bitmaps; exact labels, flows,
+  equations, axes, and quantitative marks remain native vector graphics.
 - The author's requested references take priority: the post-training survey
   (2503.06072), full-stack safety survey, Speculative RAG, and MMMR. Adopt airy
   grouping, illustrated roles, curved information paths, and a diverse task
   gallery, not their artwork, data, or results. Earlier Self-Refine, Eureka,
   TextGrad, and SAM examples remain secondary references for evidence alignment.
   Record figure/page/source and the mapping in `visual_references.md`.
-- Use the author's palette: #74A9C5, #C2E5CF, #EDDDAB, #F2B8AE, #DD7389.
-  The four families use blue/mint/cream/peach; shared evolution uses rose.
-  Prefer pale rounded surfaces, original outlined pictograms, generous whitespace,
-  and dark labels over heavy borders or dark header bars. This supersedes the
-  earlier saturated-accent brief. Candidate letters, hatching, and line patterns
-  must also work without color. Principal labels remain 8–9 pt and subordinate
-  labels about 7 pt at native manuscript size.
+- Reconcile all three author references through blue #376795, sky #7BC0CD,
+  teal #51999F, mint #BFDFD2, sand #DBCB92, cream #FFE6B7, peach #ECB66C, and coral
+  #ED8D5A. Dark ink #303C43 and darker companion colors keep small text readable.
+  P2E is coral and the static tool-augmented seed is blue. Setting comparisons
+  use teal for reused preferences and peach for new preferences. Where color
+  instead encodes ranks, signed effects, or outcomes, state that mapping in the
+  legend/caption. Keep labels, shapes, line patterns, and hatching as redundant
+  cues. Preserve softly tinted surfaces and original pictograms in diagrams.
+- Keep ICLR body fonts, margins, and heading rules unchanged. Figures use
+  Helvetica-compatible typography: scoped `phv` in TikZ and TeX Gyre Heros in
+  Matplotlib. Main chart titles are 8.5 pt, axis labels 8 pt, tick/legend labels
+  about 7.3–7.5 pt; 6.8 pt is reserved for fixture-disclosure notes. The native
+  chart canvas is 5.4 inches wide and is not silently cropped or reduced.
+  Use aligned numeric columns, booktabs rules, light row emphasis, and readable
+  row spacing. Inspect complete pages as well as individual charts for orphaned
+  text, detached captions, icon collisions, excessive whitespace, and font
+  embedding; a successful compilation alone is insufficient.
 - Show domain diversity through concrete artifacts and different quality
-  criteria, not modality names alone. The four-family panorama and four feedback
-  examples share a method/schema while retaining distinct evaluation standards.
+  criteria, not modality names alone. The overview, complete 22-domain table,
+  and per-domain quantitative panels share a procedure while retaining distinct
+  evaluation standards. Eight toy cohorts are display choices, not scope cuts.
 - Shared palette, panel markers, candidate tokens, and component styles live in
   `figures/visual_style.tex` and `preamble.tex`. Review standalone figures and
   final manuscript pages; a successful TeX build does not detect label collisions.

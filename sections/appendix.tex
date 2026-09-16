@@ -7,22 +7,8 @@ starting taxonomy to be refined from domain evaluation knowledge before selectin
 datasets. Each instantiated domain must additionally fix priorities, decision
 rules, and an annotation protocol. Inclusion in this panorama does not establish
 data readiness, an implemented adapter, or empirical transfer.
-Figure~\ref{fig:domains} illustrates representative tasks and the quality
-criteria that distinguish the four families.
-
-\begin{figure}[t]
-\centering
-\input{figures/domain_panorama}
-\caption{Diverse artifacts, distinct evaluation standards. Representative tasks
-span (a) structured visual artifacts, (b) images and 3D, (c) text generation,
-and (d) automated research. Each family combines several quality considerations;
-the full 22-domain taxonomy is in Table~\ref{tab:domains}. P2E shares an evolution
-procedure across these standards, not a universal scorer. Artifact views are
-constructed illustrations, including the GPT Image 2 photograph; they do not
-indicate benchmark coverage, implemented adapters, or completed experiments.}
-\label{fig:domains}
-\end{figure}
-\FloatBarrier
+Figure~\ref{fig:overview}a gives representative artifacts; the table makes
+their differing evaluation criteria explicit.
 
 \begingroup
 \small
@@ -43,7 +29,8 @@ ID & Domain & Core quality considerations \\
 \endhead
 \bottomrule
 \endfoot
-\multicolumn{3}{@{}l}{\textbf{Structured visual artifacts}}\\
+\rowcolor{pBlueWash}
+\multicolumn{3}{@{}l}{\textcolor{pBlue}{\textbf{Structured visual artifacts}}}\\
 TD-SV1 & Brief-conditioned single-slide generation &
 Brief coverage, hierarchy, readability, composition, and visual consistency.\\
 TD-SV2 & Screenshot-conditioned webpage reconstruction &
@@ -57,7 +44,8 @@ Source faithfulness, narrative, coverage, slide readability, and deck consistenc
 TD-SV6 & Topic-conditioned slide-deck generation &
 Relevance, factual support, narrative completeness, audience fit, and presentation quality.\\
 \addlinespace
-\multicolumn{3}{@{}l}{\textbf{Image generation and understanding}}\\
+\rowcolor{pTealWash}
+\multicolumn{3}{@{}l}{\textcolor{pTeal}{\textbf{Image generation and understanding}}}\\
 TD-IG1 & Detailed image-caption generation &
 Grounding, coverage, relation accuracy, specificity, and absence of hallucination.\\
 TD-IG2 & Text-to-image generation &
@@ -71,7 +59,8 @@ Prompt correspondence, geometry, appearance, and multi-view consistency.\\
 TD-IG6 & Image-to-3D object generation &
 Source-view fidelity, plausible unseen geometry, appearance, and multi-view consistency.\\
 \addlinespace
-\multicolumn{3}{@{}l}{\textbf{Text generation}}\\
+\rowcolor{pGoldWash}
+\multicolumn{3}{@{}l}{\textcolor{pGold}{\textbf{Text generation}}}\\
 TD-TG1 & Source-grounded document summarization &
 Faithfulness, relevance, coverage, coherence, and concision.\\
 TD-TG2 & RAG-supported long-form answer generation &
@@ -83,7 +72,8 @@ Constraint satisfaction, substantive correctness, relevance, and response qualit
 TD-TG5 & Open-ended dialogue-response generation &
 Contextual appropriateness, helpfulness, consistency, safety, and conversational quality.\\
 \addlinespace
-\multicolumn{3}{@{}l}{\textbf{Automated research}}\\
+\rowcolor{pResearchWash}
+\multicolumn{3}{@{}l}{\textcolor{pResearch}{\textbf{Automated research}}}\\
 TD-AR1 & Research-idea generation &
 Novelty relative to evidence, significance, feasibility, and testability.\\
 TD-AR2 & ML/NLP ablation-plan generation &
@@ -122,32 +112,46 @@ unselected domains from the research scope.
 \section{Feedback provenance, annotation, and readiness}
 \label{app:annotation}
 
-Data reuse follows the provenance rules in Table~\ref{tab:human-provenance}.
+The two construction settings in Table~\ref{tab:human-provenance} share the
+same evaluator-evolution problem. They differ in the work needed to obtain
+matched human feedback. A domain may use both settings. Direct, derived, and
+materials-only provenance describe what a resource supplies; they are not
+additional domain classes or alternative algorithms.
 
 \begin{table}[t]
-\caption{Permitted uses of existing data. An adapter changes representation,
-not the quality construct or the provenance of the original judgment.}
+\caption{Two routes to human feedback. Report each source's protocol,
+agreement, abstention, and available supervision separately. An adapter changes
+representation, not the quality construct or the provenance of a judgment.}
 \label{tab:human-provenance}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}P{2.15cm}YY@{}}
+\begin{tabularx}{\linewidth}{@{}P{2.10cm}YY@{}}
 \toprule
-Source category & Required evidence & Permitted use \\
+Setting & Label origin and protocol & Permitted supervision \\
 \midrule
-Direct human feedback &
-Aligned input, readable same-input candidates, and original pair or ranking judgments &
-$H_0$ when overall quality was judged; $H_1/H_2$ only if originally annotated \\
-Adapted feedback &
-Recoverable candidate groups and valid rankings, pointwise scores, or error annotations &
-Derived pairs with original groups and explicit ranking/pointwise/error provenance \\
-Materials only &
-Inputs, references, editable artifacts, or metric outputs without matched human judgments &
-Fresh generation, method development, or independent metrics; not human supervision \\
-New annotation &
-New outputs or a mismatch between existing labels and the endpoint &
-Direct judgments under the frozen protocol; required for new C2/C3 outputs \\
+\rowcolor{pTealWash}
+Reused preferences &
+Original human pairs/rankings on readable same-input candidates; retain the
+source protocol and document any conversion from rankings, scores, or errors &
+$H_0$ only for overall judgments; $H_1/H_2$ only when actually annotated.
+Unknown source agreement or abstention remains unknown \\
+\addlinespace
+\rowcolor{pResearchWash}
+New preferences &
+Freeze the task, visible evidence, dimensions, ties, and abstention before
+collecting independent blind judgments on existing or freshly generated candidates &
+Collect the levels required by the study; preserve individual votes and
+unresolved disagreements. Fresh C2/C3 outputs require new endpoint judgments \\
 \bottomrule
 \end{tabularx}
 \end{table}
+
+Inputs, references, editable artifacts, and automatic metrics without matched
+human judgments are materials only. They may support candidate construction or
+independent assessment, but do not supply human supervision. When $H_0$ is absent,
+we preserve the original task and evaluation standard, separate source groups,
+recover readable candidates or generate them with frozen generators, and collect
+the required feedback. Preparation can precede annotation; final human-alignment
+claims cannot precede matched human assessment.
 
 \paragraph{Annotation units and levels.}
 One annotation unit is an original input and its anonymized candidate group,
@@ -162,24 +166,25 @@ conflict and failure subsets. $H_3$ is optional. Two independent annotators with
 adjudication may support development; final ID/OOD assessment targets three
 independent annotators and blinded complete rankings. Core dimensions and the
 tie policy are fixed in advance. A model or an author decision is not substituted
-for a missing independent final annotation. Figures~\ref{fig:annotation}a--d
-illustrate the distinctions without supplying study data.
+for a missing independent final annotation.
 An $H_0$-only instantiation must be reported as such; the framework's richer
 interface does not establish that a run actually received $H_1$ or $H_2$.
 
-\begin{figure}[t]
-\centering
-\input{figures/annotation_examples}
-\caption{A common feedback schema across distinct quality standards:
-(a) webpage requirement satisfaction, (b) image-edit preservation,
-(c) summary faithfulness, and (d) research identifiability. Each example separates overall
-preference, dimensional judgment, a localized diagnostic, and an optional
-rationale. All tasks, candidates, and judgments are constructed illustrations,
-not benchmark cases or collected human feedback. GPT Image 2 generated the
-source photograph and controlled edits. The labels demonstrate the annotation
-schema, not agreement rates or evaluator performance.}
-\label{fig:annotation}
-\end{figure}
+\paragraph{Agreement, abstention, and reannotation.}
+New labels are not assumed to be more reliable than reused labels. Report the
+agreement statistic, its valid-response denominator, and the number of raters
+per group. Abstention uses all requested ratings as its denominator, including
+those excluded from valid-pair agreement. Group outcomes distinguish decisive
+preference, tie, no consensus, and insufficient votes. The simulated audit in
+Figure~\ref{fig:annotation-quality}a--c illustrates these separate quantities.
+Individual disagreements are retained rather than filtered to match an old
+winner.
+
+\begin{samepage}
+Annotators do not see model scores, method identity, or earlier winners.
+A changed rubric or visible evidence defines a changed protocol; resulting
+differences do not by themselves establish errors in the older labels.\par
+\end{samepage}
 
 \paragraph{Label-blind acquisition.}
 Freeze domain knowledge, signal definitions, semantic mappings, and the
@@ -236,22 +241,28 @@ Deterministic or fixed learned metrics are not duplicated for every judge model.
 \section{Data access and independent assessment}
 \label{app:boundaries}
 
-Figure~\ref{fig:boundaries} separates proposal evidence, adaptive development
+Table~\ref{tab:access} separates proposal evidence, adaptive development
 measurements, and terminal assessment. The scorer always receives the same
 pointwise input contract, regardless of the cohort in which it is invoked.
 Only the authorized diagnostic process sees human labels and pair identities.
 
-\begin{figure}[t]
-\centering
-\input{figures/data_boundaries}
-\caption{Data and metric boundaries. Panel (a) exposes raw proposal-Train
-evidence but returns only aggregate measurements from a disjoint sealed Train
-cohort. Panel (b) assesses a frozen shortlist on Val and the frozen method on
-locked Test/OOD. Panel (c) reserves metrics for independent final assessment.
-The reserve cannot be reintroduced through tools, critique, reward, aliases,
-or checkpoint selection. All partitions preserve original-input/source groups.}
-\label{fig:boundaries}
-\end{figure}
+\begin{table}[t]
+\caption{Information available to evolution and assessment. Every invocation
+of the deployed scorer remains pointwise and label-blind, including on Train.}
+\label{tab:access}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}P{2.05cm}YY@{}}
+\toprule
+Partition & Information released & Permitted decision \\
+\midrule
+Proposal Train & Authorized artifacts, feedback, and traces & Mechanism hypotheses and candidate evolution \\
+Sealed Train & Prespecified aggregates only & Development promotion, continuation, and allocation \\
+Terminal Val & Frozen-shortlist measurements & Prespecified terminal selection; no new mechanism edits \\
+Test/OOD & Locked until method and analysis freeze & Independent final reporting \\
+Metric reserve & No access during evolution & Final assessment only; no tools, critique, reward, or selection \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \paragraph{Training and validation.}
 Proposal-Train evidence may inform evolution directions, candidates, and allocation.
@@ -273,6 +284,21 @@ does not forbid using other existing metrics as tools.
 
 \section{ERA algorithm and attribution contract}
 \label{app:algorithm}
+
+Figure~\ref{fig:runtime} separates the editable observation and judgment
+mechanisms. Algorithm~\ref{alg:era} specifies their evolution and selection.
+
+\begin{figure}[t]
+\centering
+\input{figures/evaluator}
+\caption{The six-component evaluation program. (a) Read one candidate and
+permitted task evidence. (b) Route tool observations. (c) Apply dimensional
+criteria. (d) Fuse sourced findings into a score and critique. The lower rail
+identifies the editable components. Human feedback supervises evolution, never
+the deployed scorer. Evidence and judgment remain separate; the summary and
+findings are a constructed example.}
+\label{fig:runtime}
+\end{figure}
 
 \begin{algorithm}[t]
 \caption{ERA within the P2E framework}
@@ -332,11 +358,15 @@ Selection uncertainty and the number of assessed candidates are reported.
 An elementary mutation changes one attributable component. A connected patch
 may introduce a tool, a route, and a consumer change against one fixed parent.
 The bundle receives one system-level outcome, not three independent causal
-credits. Component attribution requires paired interventions with all other
+credits.
+
+\begin{samepage}
+Component attribution requires paired interventions with all other
 interfaces held fixed, including tool on/off, evolved versus seed tool, and
 adaptive versus static routing. If disabling a dependency makes a program
 invalid, report that limitation and use a compatible control where justified.
-System confirmation and attribution answer different questions.
+System confirmation and attribution answer different questions.\par
+\end{samepage}
 
 A scoped refutation records the contradicted prediction and the evidence that
 rules out relevant implementation alternatives. Missing observations, an
@@ -351,22 +381,10 @@ Semantic synthesis is an optional fusion procedure, compared with a declared
 numerical rule. A specialist report contains a finding identifier, supporting
 evidence, a dimension, uncertainty, and an anchored quality judgment.
 The synthesizer groups findings into factors while preserving overlap and
-contradiction (Figure~\ref{fig:synthesis}a--b). Duplicate descriptions of the same
+contradiction. Duplicate descriptions of the same
 defect should not become independent penalties, and a favorable style judgment
 should not silently cancel a factual error when the domain standard prioritizes
 faithfulness.
-
-\begin{figure}[t]
-\centering
-\input{figures/semantic_synthesis}
-\caption{Optional semantic synthesis. Panel (a) supplies sourced findings;
-(b) groups overlapping and conflicting statements into factors; (c) locates
-overall quality between prespecified anchors. Every finding reference is assigned
-once, but bookkeeping alone cannot validate the grouping or the quality judgment.
-The anchor values and interpolation are a synthetic arithmetic example, not an
-evaluator result or a universal scale for all domains.}
-\label{fig:synthesis}
-\end{figure}
 
 Let $a_k<a_{k+1}$ be adjacent declared anchors and $\lambda\in[0,1]$ locate
 quality between them. The resulting scalar is
@@ -377,8 +395,9 @@ quality between them. The resulting scalar is
 The anchors have domain-specific verbal meanings. Finding-level scores with
 different meanings are not averaged merely because they are numeric.
 Reference completeness, semantic correctness, and calibration are separate
-properties and require separate checks. Figure~\ref{fig:synthesis}c illustrates
-only the arithmetic, using $a_k=50$, $a_{k+1}=75$, and $\lambda=0.4$.
+properties and require separate checks. A synthetic arithmetic example uses
+$a_k=50$, $a_{k+1}=75$, and $\lambda=0.4$, giving $s=60$.
+These numbers do not prescribe a universal scale or report an evaluator result.
 
 \section{Measurement and statistical analysis}
 \label{app:measurement}
@@ -535,18 +554,22 @@ reward-hacking gate fails, expansion stops for that domain and the failure is
 retained. Success elsewhere is not a substitute. Final sample sizes are determined
 from pilot variance and a declared minimum detectable effect before test
 generation. Test inputs and judgments do not participate in training, checkpoint
-selection, reward design, or failure-driven edits. Any deliberate sharing of
+selection, reward design, or failure-driven edits.
+
+\begin{samepage}
+Any deliberate sharing of
 locked input pools across C1/C2/C3 must be prespecified with an access audit;
 their newly generated outputs and judgments are never treated as reusable old
-labels.
+labels.\par
+\end{samepage}
 
 \section{Required result and analysis outputs}
 \label{app:results}
 
 \begin{table}[t]
-\caption{Companion outputs to the core result templates. Every empirical output
-requires authorized frozen data and a traceable analysis; none is supplied by
-the conceptual illustrations.}
+\caption{Required empirical outputs beyond the simulated reporting examples.
+Every result requires authorized frozen data and a traceable analysis; neither
+conceptual illustrations nor simulated displays supply such evidence.}
 \label{tab:reporting}
 \centering\small
 \begin{tabularx}{\linewidth}{@{}P{2.10cm}YY@{}}
@@ -555,6 +578,8 @@ Output & Required summary & Interpretation limit \\
 \midrule
 C1 alignment & Global/top-region agreement, per-dimension $H_1$, worst stratum,
 ID/OOD, coverage, repeated-score variation & Pairwise improvement does not establish selection or generation gains.\\
+Feedback quality & Label origin, source protocol, annotator pool, agreement,
+abstention, unresolved judgments, and annotation time per setting & Newly collected labels are not automatically more reliable.\\
 C1 selection & Best-of-$N$, normalized rank regret, complete human rankings,
 grouped intervals & Rank regret is not cardinal utility; pair-only corpora are insufficient.\\
 C2 refinement & New blinded contrast, changes against $y_0$, major regressions,
@@ -576,13 +601,193 @@ the same subset & Annotation conversion cannot change the construct being evalua
 Empirical plots for the outcomes in Table~\ref{tab:reporting} require frozen
 reporting cohorts and analysis. Suitable outputs include human-budget curves, per-domain component
 effects, annotated search trajectories, and C2/C3 regression breakdowns.
-The present figures are conceptual diagrams and synthetic worked examples, not
-provisional substitutes for those measurements.
+The numerical displays in Appendix~\ref{app:simulation} are reporting fixtures,
+not provisional substitutes for those measurements. Table~\ref{tab:downstream-results}
+records the empirical status of the downstream studies independently of the
+simulated C2 illustration.
 
+\begin{table}[t]
+\caption{Empirical downstream status, separate from all simulated displays.
+Dashes denote unmeasured quantities, not zeros. C3 is a planned study only.}
+\label{tab:downstream-results}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}P{.85cm}Yccc@{}}
+\toprule
+Study & Primary contrast & ID preference & OOD preference & Regressions \\
+\midrule
+C2 & P2E-refined vs.\ Seed-refined & \pending & \pending & \pending \\
+C3 & P2E-GRPO vs.\ Seed-GRPO & \pending & \pending & \pending \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\FloatBarrier
+\section{Simulated reporting fixtures}
+\label{app:simulation}
+
+\paragraph{Purpose and limits.}
+All quantitative figures and Table~\ref{tab:results} are generated from
+explicitly simulated data for reviewing the reporting design. The generator
+does not execute ERA, run a model, consult benchmark outcomes, or recruit
+annotators. Its assigned noise, effects, costs, and cohort labels are not
+estimates of expected performance, a power analysis, or evidence for method
+ranking. Positive, near-zero, and negative contrasts are retained. None of
+these fixtures provides evidence for acquisition efficiency, component
+effectiveness, or human-label reliability. No C3 training outcomes are simulated.
+
+\begin{table}[t]
+\caption{Illustrative cohorts in the simulated displays. Assignments are
+layout examples, not verified data availability or fixed domain categories.
+Each C1 domain/split contains 160 synthetic input groups and four candidates.}
+\label{tab:simulation-cohorts}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}P{2.30cm}YY@{}}
+\toprule
+Family & Reused-preference example & New-preference example \\
+\midrule
+\rowcolor{pBlueWash}
+Structured visuals & TD-SV4: specification-conditioned web & TD-SV2: webpage reconstruction \\
+\rowcolor{pTealWash}
+Images / 3D & TD-IG1: detailed image captioning & TD-IG3: instruction-based image editing \\
+\rowcolor{pGoldWash}
+Text generation & TD-TG1: document summarization & TD-TG2: RAG-supported answers \\
+\rowcolor{pResearchWash}
+Automated research & TD-AR1: research ideas & TD-AR2: ablation plans \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Construction and uncertainty.}
+Table~\ref{tab:simulation-cohorts} maps the eight toy cohorts to the full domain
+taxonomy. Gaussian latent utilities define synthetic C1 rankings. Noisy scores
+are repeated three times per artifact and reduced to medians before strict
+comparison. Incomplete groups remain in coverage denominators. The C1 table
+averages domain-level metrics equally within each setting. Its means use each
+method's complete groups, whereas the paired differences in
+Figure~\ref{fig:alignment} use the intersection of completed groups. Intervals
+use 1,000 input-group bootstrap replicates of these artificial observations.
+They quantify resampling variation in the fixtures, not uncertainty about ERA.
+The acquisition generator assigns budget responses for five policies and 12
+toy runs; its bands are percentile ranges across runs, not bootstrap intervals.
+
+The annotation fixture assigns three simulated raters per group. Candidate
+preferences are encoded as 0/1, a tie as 2, and abstention as $-1$.
+Agreement is computed within each group from all available non-abstaining rater
+pairs, then averaged across eligible groups. Fewer than two valid votes is
+insufficient; three distinct valid votes yields no consensus. A two-of-three
+majority gives a decisive preference or a tie. These outcomes are not evidence
+about actual annotators or any public benchmark.
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/simulated_annotation}
+\caption{\textbf{Simulated annotation audit; no human study was conducted.}
+Panel (a) averages valid-pair agreement within input groups; whiskers are 95\%
+group-bootstrap intervals. Panel (b) divides abstentions by all requested
+ratings. Panel (c) retains decisive preferences, ties, no consensus, and
+insufficient votes under a two-of-three rule. Domain codes map to
+Table~\ref{tab:simulation-cohorts}. The settings share a schema, not an assumed
+reliability ordering.}
+\label{fig:annotation-quality}
+\end{figure}
+
+\FloatBarrier
+\paragraph{Selection beyond pairwise agreement.}
+Figure~\ref{fig:selection}a--b reports the entire selected-rank distribution.
+Rank 1 is the synthetic human optimum; unscored inputs remain visible.
+This full-input denominator differs from the completed-group Best-of-4
+accuracy in Table~\ref{tab:results}. Both definitions are exported with their
+denominators so missingness cannot masquerade as better selection.
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/simulated_selection}
+\caption{\textbf{Simulated C1 selection; not experimental results.}
+Panels (a) and (b) show selected ranks for four evaluator fixtures in the two
+construction settings, using ID inputs. Rank 1 is best. Labels give its share
+of all input groups, including unscored groups in the denominator. Colors
+encode ranks, not methods. Equal cohort sizes permit pooling within a setting;
+actual domain-level results must also be reported.}
+\label{fig:selection}
+\end{figure}
+
+\paragraph{Mechanisms and feedback detail.}
+The heatmap in Figure~\ref{fig:ablation}a specifies conditional contrasts between
+a full program and a program holding one component fixed. Such contrasts are
+not additive causal contributions. Panel (b) varies cumulative feedback on
+the same synthetic input groups. Its distributions describe assigned
+group-level values rather than independent search runs. Actual granularity
+studies must also account for annotation time and unequal label availability.
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/simulated_ablation}
+\caption{\textbf{Simulated ablations; not experimental results.}
+Panel (a) gives mean full-minus-fixed agreement differences in percentage
+points for the six components $(A,K,V,T,\Pi,G)$. Panel (b) compares cumulative
+$H_0$--$H_3$ detail. Dots denote synthetic input groups; boxes show quartiles,
+central lines medians, and whiskers the 10th--90th percentiles. Colors in
+panel (a) encode signed differences; in panel (b) they identify construction
+settings. No displayed contrast establishes a component's benefit.}
+\label{fig:ablation}
+\end{figure}
+
+\FloatBarrier
+\paragraph{Refinement and resource use.}
+The C2 fixture constructs two noisy refinements from a shared latent $y_0$.
+Figure~\ref{fig:refinement}a retains their paired quality differences and
+panel (b) converts those differences to wins, ties, and losses with an
+independent abstention indicator. The toy tie threshold is 0.15 latent units,
+not a proposed universal human threshold. Reused/new row labels describe
+feedback used for evaluator evolution; endpoint judgments on fresh C2 outputs
+must be new in both settings. Changes against $y_0$ and major-regression flags
+are retained in the data for the full reporting contract.
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/simulated_refinement}
+\caption{\textbf{Simulated C2 outcomes; not experimental results.}
+Panel (a) combines half-violin densities, all synthetic group values, median
+markers, and interquartile segments for P2E-refined minus Seed-refined quality.
+The horizontal scale is an arbitrary latent unit, not a human score.
+Panel (b) retains every win, tie, loss, and abstention under the toy rule.
+Both construction settings would require fresh blinded human endpoint
+judgments in an actual C2 study.}
+\label{fig:refinement}
+\end{figure}
+
+Figure~\ref{fig:cost}a--b pairs agreement with assigned relative deployment
+costs, keeping the two settings separate. Dashed paths connect nondominated
+toy points only. A real resource comparison must report search and annotation
+costs separately from deployment cost; the artificial costs here cannot
+establish practical efficiency.
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/simulated_cost}
+\caption{\textbf{Simulated quality--cost trade-offs; not measured costs.}
+Panels (a) and (b) give equal-weight means across four ID cohorts per setting.
+Markers identify evaluator fixtures and dashed paths join their nondominated
+points. Cost units are assigned to the toy generator, not timed API calls or
+measured compute. The plot does not establish an efficiency frontier for ERA.}
+\label{fig:cost}
+\end{figure}
+
+\paragraph{Reproduction and replacement.}
+The offline script \path{scripts/render_simulated_results.py}, seeded with
+20260916, produces the CSV fixtures, vector figures, numerical table, and a
+manifest of hashes. Every data row carries a \texttt{SIMULATED} provenance
+field, and every chart discloses its status within the image. The committed
+assets compile without model access. Before a results-bearing submission,
+replace the fixtures with authorized measurements, regenerate captions and
+uncertainty, and audit all claims against the actual evidence. Removing a
+disclosure without replacing its data is not a valid conversion to results.
+
+\FloatBarrier
 \section{Experiment manifest}
 \label{app:manifest}
 
-\begin{table}[t]
+\begin{table}[!htbp]
 \caption{Information required before confirmatory evaluation. Unset values
 are intentional placeholders, not inferred development defaults.}
 \label{tab:manifest}

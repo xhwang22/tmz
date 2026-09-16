@@ -1,0 +1,9 @@
+provenance,setting,domain,short_name,family,groups
+SIMULATED,Reuse,TD-SV4,Spec. web,Structured visuals,160
+SIMULATED,Reuse,TD-IG1,Captioning,Images / 3D,160
+SIMULATED,Reuse,TD-TG1,Summarization,Text generation,160
+SIMULATED,Reuse,TD-AR1,Research ideas,Automated research,160
+SIMULATED,Collect,TD-SV2,Web reconstruction,Structured visuals,160
+SIMULATED,Collect,TD-IG3,Image editing,Images / 3D,160
+SIMULATED,Collect,TD-TG2,RAG answers,Text generation,160
+SIMULATED,Collect,TD-AR2,Ablation plans,Automated research,160
