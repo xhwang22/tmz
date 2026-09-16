@@ -1,18 +1,20 @@
-Evaluating generated artifacts requires more than assigning a score: an evaluator
-must obtain relevant evidence, apply task-specific criteria, and reconcile
-competing aspects of quality. A disagreement with human preference may arise at
-any of these stages, making the evaluator itself a useful object of optimization.
-We study learning executable evaluation programs from human overall preferences
-while keeping the underlying model fixed. We introduce \ERA{}, Evidence-Guided
-Revision of Agentic Evaluators, as the method for revising these programs.
-An evaluation program comprises artifact representations, rubrics,
-specialist evaluators, evidence tools, routing, and score synthesis. \ERA{} uses
-artifact-level execution evidence to formulate revision hypotheses, constructs
-bounded program edits, and assesses candidates on a separate training cohort.
-At deployment, the resulting evaluator scores each artifact independently,
-without access to its opponent or preference labels. We specify an evaluation
-protocol that separates adaptive development from terminal validation and held-out
-testing, and tests both preference agreement and the usefulness of evaluator
-feedback for artifact refinement. The proposed experiments assess preference
-agreement, fixed-pool selection, and feedback-guided refinement under matched
-models and budgets.
+Open-ended generation is evaluated through multiple, partly overlapping signals,
+yet disagreement with human judgment rarely identifies which part of an
+evaluation system should change. We present \PtwoE{}, Preference-Guided Evaluator
+Evolution, a framework that connects the acquisition of human feedback to the
+revision and downstream use of executable evaluation programs. \PtwoE{} first
+organizes existing metrics, judges, and tools in a domain-specific evaluation
+semantic space. It then distinguishes disagreements within a quality dimension,
+conflicts between overall and dimensional judgments, and cross-dimensional
+trade-offs to guide annotation. Overall preferences, dimensional preferences,
+and localized diagnostics form an adaptation evidence table. Within this
+framework, \ERA{} (Evidence-Guided Revision of Agentic Evaluators) revises
+artifact representations, rubrics, evaluator modules,
+tools, evidence routing, and fusion while holding the base model fixed.
+Direction-level hypotheses organize connected revisions, with separate decisions
+for proposal, measurement, and search allocation. The research scope spans
+structured visual artifacts, image generation and understanding, text generation,
+and automated research. We specify controlled studies of evaluator alignment and
+selection, critic-guided refinement, and reward-guided training, together with
+annotation-efficiency and component ablations. These studies test evaluation and
+generation separately, without assuming a universal judge.

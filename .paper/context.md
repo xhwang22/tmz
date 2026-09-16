@@ -1,57 +1,69 @@
 # Paper context
 
-Updated: 2026-09-16. Status: method-and-protocol skeleton, not an empirical report.
+Updated: 2026-09-16. Status: method and study design; empirical results pending.
 
-## Scope and audience
+## Title and scope
 
-Working title: **Learning to Evaluate Structured Artifacts from Human Preferences**.
-Audience: ICLR readers interested in model-based evaluation, preference learning,
-and optimization of language-model programs.
+**P2E: Evolving Evaluation Systems for Open-Ended Generation**
 
-Research project: **Preference-Guided Evaluator Evolution**. ERA is only the
-revision method, not the project name. The source repository retains its
-historical Auto-Evolve-Harness-for-Slide-Evaluation name; do not mistake that
-path for the research scope or rename the repository without authorization.
-The project concerns learning evaluators under different evaluation standards.
-Slides, webpages and other structured artifacts are candidate applications,
-not a slide-only task followed by assumed transfer. Reuse of the revision method
-does not imply that one learned scorer works across all domains; a shared
-artifact format alone does not define a shared evaluation standard.
+P2E means Preference-Guided Evaluator Evolution, the broader research project.
+ERA means Evidence-Guided Revision of Agentic Evaluators, one adaptation method
+within P2E. The historical source-repository name does not restrict the paper to
+slides. Do not rename that repository or local source directory.
 
-Central question: can overall human preferences guide useful revisions to how an
-executable evaluator obtains evidence, applies criteria, and synthesizes quality?
-The working hypothesis is that program revision can address some errors left by
-prompt-only adaptation. This is not yet a demonstrated conclusion.
+The complete scope contains 22 domains in four families: structured visual
+artifacts; image generation and understanding, including 3D; text generation;
+automated research. A domain shares dimensions, priorities, a decision rule, and
+a human protocol. A common procedure is instantiated per standard, not deployed
+as one universal judge. Panorama inclusion does not imply readiness or results.
 
-## Narrative contract
+## Scientific argument
 
-Follow a conventional paper argument: motivation, related work, formulation,
-method, controlled evaluation, results, limitations. Do not narrate debugging,
-historical search runs, abandoned variants, infrastructure repairs, or successive
-internal algorithm versions. Implementation history is not a contribution.
+The questions are where to request human feedback and how that feedback should
+change an evaluation system. P2E inventories domain evaluation knowledge,
+freezes signal–dimension mappings, uses a random reliability anchor, separates
+three semantic disagreement strata, and acquires structured H0–H3.
+H1 is central. H0-only instantiations do not possess uncollected H1/H2.
+The evidence table Z connects feedback, artifacts, source signals, routes,
+tool output, uncertainty, and cost to ERA.
 
-Main method: pointwise evaluator; six editable components; evidence-guided
-revision; separate proposal, measurement and allocation; protected data boundaries.
-Numerical versus semantic synthesis is an explicit method choice and comparison.
+ERA revises (A, K, V, T, Pi, G) with a fixed base model. Pointwise scoring excludes
+opponents and labels. At least three complete scores per artifact precede the
+median comparison. Directions are hypotheses; connected edits are implementations.
+Proposal evidence, sealed Train measurement, and allocation are separate.
+Working and best programs differ. Evidence-bound continuation, protection guards,
+terminal Val, independent Test/OOD, and component attribution remain explicit.
 
-Out of scope for this draft: optional teacher-annotation branches, upstream
-disagreement mining, internal study names, historical optimizer variants,
-parameter-training experiments, and claims about arbitrary multi-agent systems.
+## Hypotheses and studies
 
-## Evidence status
+Disagreement acquisition may improve annotation efficiency; connected revisions
+may address observation/routing/interpretation failures. Both remain unverified.
+C1 assesses alignment and fixed-pool selection. C2 uses fresh shared initial
+outputs and new blinded human rankings. C3 specifies frozen-reward LoRA + GRPO,
+with own-policy online rollouts and matched resources; it is design-only.
+The three experimental parts are core results, ablations, and analysis.
+The External Metric Reserve never enters evolution, critique, reward, or selection.
 
-Public method documentation and selected implementation modules support the
-method description. They do not demonstrate performance, generalization,
-causality, or sample efficiency. No experiment results were imported.
+## Narrative and evidence contract
 
-The source working tree contained pre-existing uncommitted changes. Source HEAD
-alone is therefore not a complete snapshot of the method consulted.
-See `source_provenance.md` and `claim_evidence_ledger.md`.
+Use formal paper prose, not debugging or method-version history. Mining and the
+C3 research design are in scope, superseding the older draft's exclusions.
+Optional teacher branches, historical optimizer names, private records, training
+execution, and unmeasured gains remain out of scope.
 
-## Next author decisions
+No empirical results, sample IDs, logs, or generated evaluators were imported.
+The source working tree was already dirty and was not modified.
+Source documentation supports specifications, not performance or causality.
+Use claims.yml and figures.yml for subsequent audits; gap claims are hypotheses,
+never findings. Memory claim IDs C1/C2/etc. are a separate namespace from the
+paper's study labels C1/C2/C3.
 
-Freeze datasets, permissions, supervision, models, budgets, comparison interfaces,
-primary contrasts, annotation procedures and final author information.
-Replace result placeholders only with permitted, source-traceable measurements.
-After the draft and figures stabilize, a paper-memory-builder pass can promote
-the lightweight ledger to `.paper/claims.yml` and `.paper/figures.yml`.
+Current structure: 5 main figures, 3 appendix figures, 10 tables, 33 verified
+bibliographic identities. Figures are conceptual; sample matrices and annotation
+examples are explicitly synthetic. The ICLR main-text limit remains 9 pages.
+
+## Remaining author decisions
+
+Freeze execution scope, data permissions, real supervision, models, budgets,
+contrasts, human protocols, analysis, authorship, and disclosures.
+Add empirical outputs only from authorized source-traceable measurements.

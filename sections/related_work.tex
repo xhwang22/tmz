@@ -1,46 +1,44 @@
 \section{Related work}
 \label{sec:related}
 
-\paragraph{Learning and assessing evaluators.}
-G-Eval and MT-Bench study model-based judgments and their relationship to human
-evaluation \citep{liu2023geval,zheng2023judging}. Prometheus and Prometheus~2 train
-models for rubric-conditioned evaluation, while Self-Taught Evaluators use
-synthetic supervision to improve judges
+\paragraph{Evaluators and feedback acquisition.}
+G-Eval and MT-Bench study model-based judgment and human agreement
+\citep{liu2023geval,zheng2023judging}. Prometheus, Prometheus~2, and Self-Taught
+Evaluators improve judges through rubric-conditioned or synthetic supervision
 \citep{kim2024prometheus,kim2024prometheus2,wang2024selftaught}.
-EvalGen emphasizes that evaluation criteria themselves require alignment with
-human preferences \citep{shankar2024evalgen}. RewardBench and JudgeBench test
-evaluators on challenging comparisons, including cases where preference and
-objective correctness require careful distinction
-\citep{lambert2024rewardbench,tan2025judgebench}.
-\ERA{} instead holds model weights fixed and revises the executable evaluation
-procedure. Overall human preference is its supervision target; inferred
-explanations are not additional human annotations.
+EvalGen emphasizes aligning the criteria themselves with human preferences,
+while RewardBench and JudgeBench assess evaluators on challenging comparisons
+\citep{shankar2024evalgen,lambert2024rewardbench,tan2025judgebench}.
+Disagreement-based acquisition has a long history in query-by-committee
+\citep{seung1992committee}. P2E applies this principle to an ecosystem whose
+signals need not measure the same construct. Its semantic mapping distinguishes
+same-dimension conflict from trade-offs and records source dependence.
+Dimension-wise human judgments can then locate discrepancies that an overall
+label alone does not resolve.
 
 \paragraph{Optimizing language-model programs.}
-DSPy exposes compositional language-model pipelines to optimization
-\citep{khattab2024dspy}. ProTeGi, OPRO, TextGrad, and GEPA use model-generated
-feedback or proposals to improve instructions and programs
+DSPy exposes compositional pipelines to optimization \citep{khattab2024dspy}.
+ProTeGi, OPRO, TextGrad, and GEPA use model-generated feedback or proposals to
+improve instructions and programs
 \citep{pryzant2023protegi,yang2024opro,yuksekgonul2025textgrad,agrawal2026gepa}.
-ADAS, AFlow, and the Darwin G\"odel Machine further investigate the automated
-construction or revision of agentic systems
-\citep{hu2025adas,zhang2025aflow,zhang2025dgm}.
-Their broad search spaces make them relevant baselines for assessing an
-evaluator-specific representation and evidence interface. \ERA{} specializes
-these interfaces to evaluation, where a ranking failure must be related to
-observations, criteria, and synthesis.
+ADAS, AFlow, and the Darwin G\"odel Machine investigate automated construction
+or revision of agentic systems \citep{hu2025adas,zhang2025aflow,zhang2025dgm}.
+Their search spaces provide relevant controls, rather than a basis for assuming
+that prior methods cannot revise structure. ERA specializes the representation
+and evidence interface to evaluation, linking ranking failures to observations,
+criteria, and synthesis while separating an implementation outcome from its
+underlying direction hypothesis.
 
-\paragraph{Artifact quality and downstream use.}
-Evaluation standards differ across domains. SummEval and BERTScore address
-summarization evaluation and text similarity
+\paragraph{Domain quality and downstream use.}
+SummEval and BERTScore address summarization evaluation and text similarity
 \citep{fabbri2021summeval,zhang2020bertscore}; ImageReward, Pick-a-Pic, and GenEval
-capture different aspects of image preference and text--image alignment
+capture different aspects of image preference and alignment
 \citep{xu2023imagereward,kirstain2023pickapic,ghosh2023geneval}.
-Such signals may supply evidence or comparisons, but are not interchangeable
-definitions of overall quality. ReAct, Reflexion, and Self-Refine show ways to
-combine observations, reflection, and revision
+These signals are useful evidence, not interchangeable definitions of quality.
+ReAct, Reflexion, and Self-Refine connect observations, reflection, and revision
 \citep{yao2023react,shinn2023reflexion,madaan2023selfrefine}.
-Preference-based summarization, instruction tuning, and direct preference
+Human-feedback summarization, instruction tuning, and direct preference
 optimization connect evaluation to model learning
 \citep{stiennon2020summarize,ouyang2022instruct,rafailov2023dpo}.
-The proposed evaluation focuses on an evolved evaluator as a selector and critic;
-reward-guided parameter training is outside the empirical scope.
+P2E therefore separates fixed-pool evaluation, critic-guided refinement, and
+reward-guided training as distinct tests of an evolved evaluator.

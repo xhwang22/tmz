@@ -1,28 +1,43 @@
 # Claim–evidence ledger
 
-Evidence paths below are relative to the source project, not this paper repository.
-The ledger supports writing consistency; it is not an experimental result log.
+The authoritative current sentence-level memory is `claims.yml`.
+Its artifact paths are relative to this paper repository. Specification evidence
+shows what the method defines, not that the method works. The source plan and
+current ERA documentation are identified in `source_provenance.md`; the
+plan-to-manuscript map is `plan_coverage.md`.
 
-| ID | Manuscript statement | Evidence | Status / permitted inference |
-| --- | --- | --- | --- |
-| M0 | The revision method is instantiated for distinct evaluation standards; slides are one candidate application | `docs/plans/p2e_v2_plan.md` §2; user scope clarification | Research scope; no universal scorer or demonstrated cross-domain transfer |
-| M1 | ERA revises representation, rubric, specialists, tools, routing and synthesis | `docs/era_algorithm.md` §§1–2; `docs/plans/p2e_v2_plan.md` | Method representation; no effectiveness claim |
-| M2 | Runtime scores one artifact without its opponent or H0 | `docs/era_algorithm.md` §1; runtime contract in `README.md` | Deployment interface; no claim of immunity to every leakage risk |
-| M3 | Each artifact is scored at least three times; medians precede strict comparison | `docs/era_algorithm.md` §1 | Measurement definition, not observed reliability |
-| M4 | Proposal Train and sealed development Train are separate; Val is terminal | `docs/era_algorithm.md` §§3–5; `docs/era_main_search.md`; `harness_evolution/multidomain/era_search.py` | Access and selection protocol; adaptive development is not unbiased test evidence |
-| M5 | Proposals use original evidence, mechanism hypotheses and bounded edits | `docs/era_algorithm.md` §4 | Implemented method interface; no claim of causal diagnosis or semantic trust region |
-| M6 | Working and best programs differ; continuation may retain a non-promoted program | `docs/era_algorithm.md` §§4–5 | Allocation capability; benefit needs controlled comparison |
-| M7 | Semantic synthesis uses anchored scores and finding references | `docs/semantic_synthesis.md`; `harness_evolution/multidomain/score_scale.py`; `harness_evolution/multidomain/semantic_fusion.py` | Optional mechanism; reference coverage is not proof of semantic correctness |
-| H1 | Full program revision may outperform prompt-only adaptation | Motivation plus proposed experiments | Hypothesis only; all quantitative cells pending |
-| H2 | An evolved scorer may improve fixed-pool selection | `docs/plans/p2e_v2_plan.md`, C1 | Planned endpoint; pair-only accuracy is insufficient |
-| H3 | Evolved feedback may improve freshly generated artifacts | `docs/plans/p2e_v2_plan.md`, C2 | Planned study; requires shared fresh starts and new blinded human labels |
-| P1 | Coverage and missing-outcome bounds supplement complete-pair accuracy | Mathematical accounting in Appendix A | Reporting definition, not measurements or a confidence interval |
-| P2 | Grouped 95% intervals and matched-budget ablations assess differences | `sections/experiments.tex`; Appendix A/C | Analysis proposal; not a frozen completed analysis |
+## Allowed inference
 
-Not permitted without new evidence: measured accuracy gains; statistical
-significance; superiority to GEPA or program-search methods; demonstrated
-cross-domain transfer; annotation efficiency; correct causal explanations;
-reward-training benefits; completed human studies; or universal leakage freedom.
+| Claim family | Manuscript / evidence | Allowed status |
+| --- | --- | --- |
+| Broad P2E scope and domain standard | Introduction, problem, Tab4, Fig1 | Research scope, not universal evaluation or transfer |
+| Semantic mapping, dependence, three strata | Mining, Fig2, Tabs5–6 | Acquisition design, not validated information efficiency |
+| H0–H3 and evidence table Z | Problem/mining, Fig6, Tab5 | Protocol; actual availability must be reported per run |
+| Six components, fixed model, pointwise access | Problem/method, Fig3 | Method specification, not immunity to leakage |
+| Directions, connected edits, best/working, outcomes | Method, Fig4, Algorithm1 | Search procedure; utility requires ablation |
+| Train/Val/Test and metric reserve | Method/mining, Fig7 | Access contract; adaptive development is not final evidence |
+| Optional semantic synthesis | Method/appendix, Fig8 | Defined grouping and anchor arithmetic, not semantic accuracy |
+| C1/C2/C3 and controlled ablations | Experimental design, Fig5, Tabs1–3/7–10 | Study design; no measured effect |
+| Annotation efficiency and connected-revision usefulness | Introduction hypotheses | Material empirical gaps; never assert as findings |
 
-Do not cite internal positive targets, successful synthetic tests, study entry
-points, or engineering availability as empirical support for these claims.
+## Numerical audit
+
+| Token or quantity | Trace | Meaning |
+| --- | --- | --- |
+| P2E, ERA, H0–H3, C1/C2/C3 | Definitions in problem, introduction and experiments | Names and level/study identifiers |
+| 22 domains; four families | Tab4, full domain IDs | Planned panorama only |
+| Six components | Eq. program; Fig3 | (A, K, V, T, Pi, G), not an effect size |
+| Three semantic strata | Mining; Fig2 | Within-dimension, overall–dimension, trade-off |
+| At least 3 repeats | Eq. measurement; Appendix measurement | Fixed measurement requirement, not observed reliability |
+| Default N=4; top-two | C1 design and measurement appendix | Planned candidate-pool and ranking endpoints |
+| 95% intervals | Experimental design and measurement appendix | Planned interval level, not an observed confidence interval |
+| H budgets 20, 50, 100, 200 | Ablation paragraph; Tab7 | Matched-budget study conditions |
+| Two development / three final annotators | Annotation appendix | Planned independent annotation protocol |
+| 50, 75, 100; lambda=0.4; result 60 | Fig8 and anchor equation | Explicitly synthetic arithmetic, not a performance score |
+| Dashes in results | Tabs2–3 | Unmeasured, not zero |
+
+No claim of measured accuracy, selection, refinement, training gain,
+statistical significance, annotation efficiency, superiority to existing
+optimizers, causal diagnosis, or completed multi-domain evaluation is supported
+by this draft. Do not convert plan targets, available code, or synthetic tests
+into evidence for such claims.

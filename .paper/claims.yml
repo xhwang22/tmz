@@ -1,0 +1,469 @@
+{
+  "updated_on": "2026-09-16",
+  "serialization": "JSON-compatible YAML",
+  "id_namespace": "C1... here are memory claim IDs, separate from manuscript study labels C1/C2/C3.",
+  "evidence_policy": "Specification artifacts support design statements only. Hypotheses lacking experiment outputs are status gap. No empirical result artifacts were imported.",
+  "claims": [
+    {
+      "id": "C1",
+      "text": "We introduce \\PtwoE{}, Preference-Guided Evaluator Evolution, for domains with open-ended outputs and an existing evaluation ecosystem.",
+      "source": "sections/introduction.tex",
+      "kind": "specification",
+      "evidence_artifacts": [
+        "sections/introduction.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig1"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C2",
+      "text": "A \\emph{domain} is a collection of tasks sharing core quality dimensions, their priorities, the overall decision rule, and the human annotation protocol.",
+      "source": "sections/problem.tex",
+      "kind": "scope",
+      "evidence_artifacts": [
+        "sections/problem.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig1",
+        "Tab4"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C3",
+      "text": "Appendix~\\ref{app:domains} enumerates the full research scope of 22 domains in four families, without assuming that all are ready for experiments.",
+      "source": "sections/problem.tex",
+      "kind": "scope",
+      "evidence_artifacts": [
+        "sections/problem.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig1",
+        "Tab4"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C4",
+      "text": "Feedback has four levels: $H_0$ gives overall preference; $H_1$ gives dimension-wise preference; $H_2$ identifies error type, severity, and location; $H_3$ optionally supplies a free-form rationale.",
+      "source": "sections/problem.tex",
+      "kind": "definition",
+      "evidence_artifacts": [
+        "sections/problem.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig2",
+        "Fig6",
+        "Tab5"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C5",
+      "text": "$H_1$ is central to the dimension-guided design. An $H_0$-only corpus remains usable, but it supplies neither human dimensional judgments nor human explanations.",
+      "source": "sections/problem.tex",
+      "kind": "supervision boundary",
+      "evidence_artifacts": [
+        "sections/problem.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig2",
+        "Fig6",
+        "Tab5"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C6",
+      "text": "We freeze a many-to-many mapping $M_{jq}$ from signal $j$ to dimension $q$ using its definition and measurement procedure before reading preference labels.",
+      "source": "sections/mining.tex",
+      "kind": "specification",
+      "evidence_artifacts": [
+        "sections/mining.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig2",
+        "Tab6"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C7",
+      "text": "A mixed score may connect to several dimensions, but remains one shared signal.",
+      "source": "sections/mining.tex",
+      "kind": "dependence definition",
+      "evidence_artifacts": [
+        "sections/mining.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig2",
+        "Tab6"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C8",
+      "text": "We sample three separately recorded semantic strata (Figure~\\ref{fig:mining}b). \\emph{Within-dimension disagreement} occurs when reliable signals disagree about the same quality criterion. \\emph{Overall--dimension disagreement} indicates a possible mismatch in priorities or aggregation. \\emph{Cross-dimensional trade-offs} identify cases where different criteria favor different candidates; they are not contradictions between measurements of the same construct.",
+      "source": "sections/mining.tex",
+      "kind": "acquisition definition",
+      "evidence_artifacts": [
+        "sections/mining.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig2"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C9",
+      "text": "The adaptation evidence table $Z(r,q)$ joins artifact provenance, human judgments and agreement, every source's direction and uncertainty, evaluator decisions, selected routes, tool evidence, and execution cost.",
+      "source": "sections/mining.tex",
+      "kind": "specification",
+      "evidence_artifacts": [
+        "sections/mining.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig2",
+        "Fig3"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C10",
+      "text": "The base model is fixed outside $\\theta$.",
+      "source": "sections/problem.tex",
+      "kind": "model boundary",
+      "evidence_artifacts": [
+        "sections/problem.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig3"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C11",
+      "text": "At deployment, the evaluator receives one candidate and its permitted evidence; opponents, human labels, generator identity, split labels, and mining strata are excluded.",
+      "source": "sections/problem.tex",
+      "kind": "runtime boundary",
+      "evidence_artifacts": [
+        "sections/problem.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig3",
+        "Fig7"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C12",
+      "text": "Routing selects tools and sends their outputs to evaluator modules with explicit responsibilities.",
+      "source": "sections/method.tex",
+      "kind": "specification",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig3"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C13",
+      "text": "The complete candidate is measured once as a system; its outcome is not credited separately to every edit.",
+      "source": "sections/method.tex",
+      "kind": "attribution boundary",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig4",
+        "Tab7"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C14",
+      "text": "The proposal subset $\\Dprop$ exposes authorized training artifacts, available human feedback, and versioned traces. A source-disjoint, sealed training subset $\\Ddev$ supplies aggregate development measurements only. Local checks on $\\Dprop$ assess predictions and regressions without estimating population performance. A frozen candidate is also measured on the common $\\Ddev$ cohort. Validation $\\Dval$ is terminal; Test/OOD remain locked until the method and analysis are frozen (Appendix~\\ref{app:boundaries}).",
+      "source": "sections/method.tex",
+      "kind": "data access protocol",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig7"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C15",
+      "text": "Development promotion requires improved agreement, complete execution, nondecreasing coverage, and a prespecified stratum-regression guard.",
+      "source": "sections/method.tex",
+      "kind": "development selection",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig4"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C16",
+      "text": "Search retains both a best development program and a working program for the active direction (Figure~\\ref{fig:directions}a).",
+      "source": "sections/method.tex",
+      "kind": "specification",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig4"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C17",
+      "text": "Failure of one candidate or a nonsignificant interval is insufficient.",
+      "source": "sections/method.tex",
+      "kind": "refutation boundary",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig4"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C18",
+      "text": "Each artifact receives $R\\geq3$ complete scores under a fixed protocol.",
+      "source": "sections/method.tex",
+      "kind": "measurement definition",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig3"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C19",
+      "text": "References to findings must be accounted for, although correct reference bookkeeping does not establish semantic correctness.",
+      "source": "sections/method.tex",
+      "kind": "synthesis boundary",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig8"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C20",
+      "text": "Metrics reserved for final independent assessment are frozen separately and never enter tools, routing, critique, or reward.",
+      "source": "sections/mining.tex",
+      "kind": "metric independence",
+      "evidence_artifacts": [
+        "sections/mining.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig7"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C21",
+      "text": "For each test input, all evaluators receive the same candidate group, with a default design of $N=4$. Complete human rankings support global pairwise agreement, top-region agreement involving the human top-two candidates, Best-of-$N$ selection, and selection regret. When only ranks are available, normalized regret is $(\\operatorname{rank}(\\hat y)-1)/(N-1)$ for the selected output $\\hat y$. A pair-only dataset supports pairwise evaluation, not an $N$-way selection claim.",
+      "source": "sections/experiments.tex",
+      "kind": "C1 study protocol",
+      "evidence_artifacts": [
+        "sections/experiments.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig5",
+        "Tab2"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C22",
+      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed critic and P2E critic each inspect that same output and permitted evidence, then return the same critique format. A common generator performs one revision under identical prompts, decoding, tool access, and token budgets (Figure~\\ref{fig:downstream}b).",
+      "source": "sections/experiments.tex",
+      "kind": "C2 study protocol",
+      "evidence_artifacts": [
+        "sections/experiments.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig5",
+        "Tab3"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C23",
+      "text": "Rewards are frozen before training. Rollouts are sampled online by each arm's own evolving policy and are not shared.",
+      "source": "sections/experiments.tex",
+      "kind": "C3 study protocol",
+      "evidence_artifacts": [
+        "sections/experiments.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig5",
+        "Tab8"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C24",
+      "text": "C3 remains a design-only study here; no parameter training or training benefit is reported.",
+      "source": "sections/experiments.tex",
+      "kind": "evidence status",
+      "evidence_artifacts": [
+        "sections/experiments.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig5",
+        "Tab3",
+        "Tab8"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C25",
+      "text": "Mining strategies are compared at equal human budgets $N_H\\in\\{20,50,100,200\\}$, measured in original-input annotation units.",
+      "source": "sections/experiments.tex",
+      "kind": "ablation design",
+      "evidence_artifacts": [
+        "sections/experiments.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Tab1",
+        "Tab7"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C26",
+      "text": "Paired effects use grouped 95\\% intervals.",
+      "source": "sections/experiments.tex",
+      "kind": "analysis design",
+      "evidence_artifacts": [
+        "sections/experiments.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Tab9"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C27",
+      "text": "First, disagreements between reliable, nonredundant signals may make a fixed annotation budget more informative than uniform sampling.",
+      "source": "sections/introduction.tex",
+      "kind": "hypothesis",
+      "evidence_artifacts": [],
+      "figure_or_table": [
+        "Tab1",
+        "Tab7"
+      ],
+      "status": "gap",
+      "gap_reason": "No matched-human-budget held-out acquisition experiment is incorporated; this sentence is an explicitly hedged hypothesis."
+    },
+    {
+      "id": "C28",
+      "text": "Second, failures that depend on acquiring, routing, and interpreting evidence may require connected program revisions.",
+      "source": "sections/introduction.tex",
+      "kind": "hypothesis",
+      "evidence_artifacts": [],
+      "figure_or_table": [
+        "Fig4",
+        "Tab7"
+      ],
+      "status": "gap",
+      "gap_reason": "No controlled component/evolution result is incorporated; connected revisions remain a mechanism hypothesis rather than a demonstrated benefit."
+    },
+    {
+      "id": "C29",
+      "text": "This interval bounds full-cohort agreement under arbitrary missing outcomes; it is not a statistical confidence interval.",
+      "source": "sections/appendix.tex",
+      "kind": "mathematical definition",
+      "evidence_artifacts": [
+        "sections/appendix.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C30",
+      "text": "Figure~\\ref{fig:synthesis}c illustrates only the arithmetic, using $a_k=50$, $a_{k+1}=75$, and $\\lambda=0.4$.",
+      "source": "sections/appendix.tex",
+      "kind": "synthetic illustration",
+      "evidence_artifacts": [
+        "sections/appendix.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig8"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    }
+  ]
+}

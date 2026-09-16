@@ -9,7 +9,7 @@
 - Natbib author–year citations; supplied `.bst`; single-paragraph abstract.
 - Figure captions below; table captions above; readable vector artwork for exact
   diagrams and at least 600 DPI at print width for raster line art. The 3840-pixel
-  overview exceeds 600 DPI at the 5.5-inch text width.
+  panorama asset exceeds 600 DPI at the 5.5-inch text width.
 - Required AI use statement, at most one page, outside the page limit.
 - Recommended ethics and reproducibility statements, each at most one page,
   outside the page limit and before references.

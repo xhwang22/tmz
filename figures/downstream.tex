@@ -1,0 +1,69 @@
+\begin{tikzpicture}[line cap=round,line join=round]
+  \path[use as bounding box] (0,0) rectangle (13.7,5.78);
+  \foreach \x/\t/\col in {0/{(a) C1: alignment and selection}/pBlue,
+    4.65/{(b) C2: critic-guided refinement}/pTeal,
+    9.30/{(c) C3: reward training (planned)}/pPlum}{
+    \node[pTitle,text=\col,anchor=west] at (\x,5.55) {\t};
+    \fill[\col!4,rounded corners=3pt] (\x,.75) rectangle (\x+4.4,5.26);
+  }
+
+  \node[pText,align=center] at (2.2,4.97) {Same input and fixed pool};
+  \foreach \x/\n in {.8/1,1.73/2,2.66/3,3.59/4}{
+    \draw[pBlue!60,fill=white,rounded corners=1pt] (\x-.28,4.13) rectangle (\x+.28,4.64);
+    \node[pSmall,text=pBlue] at (\x,4.39) {$y_{\n}$};
+  }
+  \node[pCard,draw=pBlue!40,text width=3.68cm,minimum height=.55cm,align=center]
+    (judges) at (2.2,3.56) {Frozen evaluators\\Identical scoring protocol};
+  \draw[pArrow] (2.2,4.08) -- (judges.north);
+  \node[pCard,draw=pBlue!40,text width=1.36cm,align=center,minimum height=.62cm]
+    (selects) at (1.06,2.40) {Baseline\\selection};
+  \node[pCard,draw=pBlue,text width=1.36cm,align=center,minimum height=.62cm]
+    (selectp) at (3.34,2.40) {P2E\\selection};
+  \draw[pSoftArrow] (judges.south) -- (2.2,3.04) -| (selects.north);
+  \draw[pSoftArrow] (2.2,3.04) -| (selectp.north);
+  \node[pSmall,align=center] at (2.2,1.30)
+    {Full human rankings\\Agreement / selection / regret};
+  \draw[pSoftArrow] (selects.south) -- (1.06,1.76);
+  \draw[pSoftArrow] (selectp.south) -- (3.34,1.76);
+
+  \node[pCard,draw=pTeal,fill=white,text width=2.85cm,minimum height=.52cm,align=center]
+    (y0) at (6.85,4.64) {Shared fresh $y_0$};
+  \foreach \x/\id/\t in {5.67/cs/Seed critic,8.03/cp/P2E critic}{
+    \node[pCard,draw=pTeal!50,text width=1.57cm,minimum height=.54cm,align=center]
+      (\id) at (\x,3.61) {\t};
+    \draw[pSoftArrow] (y0.south) -- (6.85,4.10) -| (\id.north);
+  }
+  \foreach \x/\id/\t in {5.67/ys/$y_{\mathrm{Seed}}'$,8.03/yp/$y_{\mathrm{P2E}}'$}{
+    \node[pCard,draw=pTeal!55,fill=pTeal!6,minimum width=1.22cm,minimum height=.55cm,align=center]
+      (\id) at (\x,2.28) {\t};
+  }
+  \draw[pSoftArrow] (cs.south) -- (ys.north);
+  \draw[pSoftArrow] (cp.south) -- (yp.north);
+  \node[pSmall,align=center,fill=white,inner sep=2pt] at (6.85,2.96)
+    {Same reviser and budget};
+  \node[pSmall,align=center] at (6.85,1.28)
+    {New blind ranking: $y_0$, $y_{\mathrm{Seed}}'$, $y_{\mathrm{P2E}}'$\\
+     Primary: P2E vs.\ Seed};
+
+  \node[pText,align=center] at (11.50,4.95) {Same base and inputs; frozen rewards};
+  \node[pSmall,align=center] at (11.50,4.67) {Base arm: no parameter update};
+  \foreach \x/\id/\t in {10.40/rs/Seed reward,12.60/rp/P2E reward}{
+    \node[pCard,draw=pPlum!50,text width=1.60cm,minimum height=.61cm,align=center]
+      (\id) at (\x,4.15) {\t};
+  }
+  \foreach \x/\id in {10.40/ps,12.60/pp}{
+    \node[pCard,draw=pPlum!55,fill=pPlum!6,text width=1.45cm,minimum height=.68cm,align=center]
+      (\id) at (\x,2.98) {GRPO\\(LoRA)};
+    \draw[pSoftArrow] (\x,3.81) -- (\id.north);
+    \draw[pSoftArrow] (\id.south) -- (\x,2.25);
+    \draw[pSoftArrow] (\x,2.25) -- (\x+.94,2.25) -- (\x+.94,3.0) -- (\id.east);
+    \node[pSmall,align=center] at (\x,1.91) {Own rollouts};
+  }
+  \node[pSmall,align=center] at (11.50,1.14)
+    {Base, Seed-GRPO, P2E-GRPO\\
+     New outputs and blinded $H_0/H_1$};
+
+  \draw[pLine,line width=.6pt] (0,.52) -- (13.7,.52);
+  \node[pSmall,align=center] at (6.85,.23)
+    {Independent ID / OOD assessment \quad $\vert$ \quad External Metric Reserve \quad $\vert$ \quad Original-input grouped uncertainty};
+\end{tikzpicture}

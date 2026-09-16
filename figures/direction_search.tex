@@ -1,0 +1,58 @@
+\begin{tikzpicture}[line cap=round,line join=round]
+  \path[use as bounding box] (0,0) rectangle (13.7,4.80);
+  \node[pTitle,anchor=west] at (0,4.58) {(a) A direction, several connected edits};
+  \node[pTitle,anchor=west] at (6.54,4.58) {(b) Mechanism diagnosis};
+  \node[pTitle,anchor=west] at (10.40,4.58) {(c) Distinct outcomes};
+
+  \node[pDot,draw=pBlue,fill=pBlue!8,minimum size=.66cm] (b) at (.45,2.91) {$B$};
+  \node[pSmall,align=center] at (.47,3.56) {Fixed\\parent};
+  \fill[pTeal!6,rounded corners=3pt] (1.29,2.37) rectangle (5.30,3.53);
+  \node[pSmall,text=pTeal,anchor=west] at (1.37,3.92) {Active direction: missing scope evidence};
+  \foreach \x/\id/\t in {1.94/t/$T$,3.27/pi/$\Pi$,4.60/v/$V$}{
+    \node[pDot,draw=pTeal,fill=white,minimum size=.59cm] (\id) at (\x,2.96) {\t};
+  }
+  \draw[pArrow] (b.east) -- (t.west);
+  \draw[pArrow] (t) -- (pi);
+  \draw[pArrow] (pi) -- (v);
+  \node[pSmall] at (1.94,2.51) {Acquire};
+  \node[pSmall] at (3.27,2.51) {Route};
+  \node[pSmall] at (4.60,2.51) {Interpret};
+  \node[pSmall,align=center] at (3.30,3.34) {$W=\operatorname{patch}(B)$: one connected candidate};
+  \node[diamond,aspect=1.2,draw=pInk,fill=white,inner sep=2pt,pSmall,align=center]
+    (measure) at (5.64,1.84) {Sealed\\Train};
+  \draw[pArrow] (v.east) -- (5.64,2.96) -- (measure.north);
+  \node[pDot,draw=pGold,fill=pGold!8] (other) at (2.20,1.66) {$K$};
+  \draw[pDash] (b.south) -- (.45,1.66) -- (other.west);
+  \draw[pDash] (other.east) -- (3.15,1.66);
+  \node[pSmall,anchor=west] at (3.26,1.66) {Paused};
+
+  \fill[pBlue!8,rounded corners=2pt] (0,.70) rectangle (6.08,1.20);
+  \node[pSmall,text=pBlue,anchor=west] at (.15,.95)
+    {Best $B$: guarded gains only};
+  \fill[pTeal!8,rounded corners=2pt] (0,.07) rectangle (6.08,.57);
+  \node[pSmall,text=pTeal,anchor=west] at (.15,.32)
+    {Working $W$: evidence-bound continuation};
+
+  \foreach \y/\n/\t/\sub in {
+    3.55/1/Evidence acquired?/Tool output,
+    2.55/2/Evidence consumed?/Routing + module traces,
+    1.55/3/Correct interpretation?/Criteria + fusion}{
+    \node[pDot,draw=pGold,fill=pGold!8,minimum size=.45cm] at (6.80,\y) {\n};
+    \node[pText,anchor=west] at (7.15,\y+.08) {\t};
+    \node[pSmall,anchor=west] at (7.15,\y-.28) {\sub};
+  }
+  \draw[pSoftArrow] (6.80,3.27) -- (6.80,2.83);
+  \draw[pSoftArrow] (6.80,2.27) -- (6.80,1.83);
+  \node[pSmall,align=left,anchor=west] at (6.55,.47)
+    {Check alternatives.\\Not a success gate.};
+
+  \foreach \y/\t/\sub/\col in {
+    3.64/Continue/New supporting evidence/pTeal,
+    2.65/Pause/Reallocate effort/pBlue,
+    1.66/Exhausted/Budget ended/pGold,
+    .67/Refuted/Prediction contradicted within scope/pRed}{
+    \fill[\col] (10.47,\y) circle (.065);
+    \node[pTitle,text=\col,anchor=west] at (10.68,\y+.10) {\t};
+    \node[pSmall,text width=2.85cm,anchor=north west] at (10.68,\y-.12) {\sub};
+  }
+\end{tikzpicture}

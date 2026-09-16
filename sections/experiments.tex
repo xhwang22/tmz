@@ -1,84 +1,126 @@
 \section{Experimental design}
 \label{sec:experiments}
 
-The experiments are designed to test four questions: whether revision improves
-held-out human-preference agreement; whether the resulting scores select better
-artifacts from a fixed pool; whether evaluator feedback improves new artifacts;
-and which editable components account for any observed effect. The final
-datasets, sample sizes, model revision, and budgets must be fixed before the
-confirmatory runs. Appendix~\ref{app:manifest} records these outstanding choices.
+The evaluation has three parallel parts: core results, ablation studies, and
+analysis. Domains enter confirmatory experiments only after a readiness audit.
+The complete domain panorama is retained independently of the selected execution
+scope. Models, datasets, human protocols, budgets, and primary contrasts are
+frozen before final outcomes are observed.
 
-\paragraph{Domains and supervision.}
-We evaluate the revision method under distinct artifact-evaluation standards,
-using a domain-specific adapter and evaluator for each standard. Candidate
-applications include presentations, webpages, and other structured artifacts.
-Candidate domains and relevant public resources are listed in
-Appendix~\ref{app:domains}; inclusion is conditional on authorized artifacts and
-suitable human judgments. Screenshot reconstruction and
-specification-driven web generation are treated as distinct domains because
-their evaluation standards differ, despite sharing an output format.
-Each split is grouped by original input, with near-duplicate sources audited
-before any optimization. Overall preference is kept distinct from rubric scores
-and model-generated explanations.
+\subsection{Core results}
+\label{sec:core}
 
-\paragraph{Baselines and controls.}
-The planned comparisons comprise the seed evaluator, a fixed multi-criterion
-evaluator, prompt-only adaptation, and full program revision. The prompt-adaptation
-comparison includes an established reflective optimizer such as GEPA, with a
-prespecified version and edit space. Program-search comparisons expose comparable
-component interfaces to isolate the effect of the revision procedure.
-All matched comparisons use the same base model, training supervision,
-candidate pools, and measurement protocol. Search and deployment costs are
-reported separately, including tool and synthesis calls. A larger inference
-budget is not attributed to revision quality.
+\begin{figure}[t]
+\centering
+\input{figures/downstream}
+\caption{Three controlled uses of the evolved evaluator. Panel (a), C1, holds the
+candidate pool fixed and compares ranking and selection. Panel (b), C2, branches
+from a freshly generated shared $y_0$ and changes only the critic. Panel (c), C3,
+contrasts an unchanged Base policy with two policies trained under frozen rewards.
+The trained policies use matched inputs and compute but generate their own rollouts.
+Final judgments are blinded
+and external metrics are reserved from evolution. C3 is a planned training study,
+not an executed experiment.}
+\label{fig:downstream}
+\end{figure}
 
-\paragraph{Preference agreement and selection.}
-The primary endpoint is strict-pair agreement on locked test inputs, reported
-with coverage, predicted-tie frequency, and source-grouped uncertainty intervals.
-Paired differences use the same test inputs and repeated-scoring protocol.
-For best-of-$N$ selection, every evaluator ranks the same prespecified candidate
-pool for each input. Human assessment of the selected outputs is the endpoint;
-existing pair-only labels do not establish best-of-$N$ quality.
-Neither the pool size nor evaluation cohort is changed in response to a result.
+\paragraph{C1: evaluator alignment and selection.}
+Frozen P2E evaluators (Figure~\ref{fig:downstream}a) are compared with the best single metric, a metric ensemble,
+a strong static judge, and a static tool-augmented judge. Prompt-optimization
+and program-search controls use declared versions and comparable edit interfaces.
+Matched comparisons share the base model, human supervision, inputs, candidate
+pools, and scoring protocol. Search cost and deployment cost are reported
+separately.
 
-\paragraph{Feedback-guided refinement.}
-For each unseen input, a fixed generator first produces one fresh initial
-artifact shared by all refinement arms. The seed and evolved evaluators then
-provide feedback under matched budgets to the same refinement generator.
-New blinded human comparisons assess the resulting artifacts; labels attached
-to the original training pairs cannot evaluate these newly generated outputs.
-Generator settings, refinement rounds, presentation order, and annotation
-procedures are fixed in advance.
+For each test input, all evaluators receive the same candidate group, with
+a default design of $N=4$. Complete human rankings support global pairwise
+agreement, top-region agreement involving the human top-two candidates, Best-of-$N$
+selection, and selection regret. When only ranks are available, normalized regret
+is $(\operatorname{rank}(\hat y)-1)/(N-1)$ for the selected output $\hat y$.
+A pair-only dataset supports pairwise evaluation, not an $N$-way selection claim.
+Core $H_1$, worst-stratum performance, coverage, variance, and cost accompany
+overall agreement.
 
-\paragraph{Ablations and reliability.}
-The principal ablations remove component families or alter synthesis while
-holding the remaining protocol fixed (Table~\ref{tab:ablations}).
-Repeated runs of a fixed evaluator estimate stochastic variability, while
-multiple independent search seeds assess search variability.
-Held-out generators, source distributions, or quality regimes provide
-prespecified OOD tests. These analyses distinguish a stronger proposal mechanism
-from more favorable selection noise or additional computation.
+ID and OOD results are reported separately. OOD changes dataset or source
+distribution while preserving the evaluation standard. A difficult subset alone
+is a difficulty test, not an OOD source. Final sampling is independent of mining
+conflicts. All splitting and statistical resampling preserve original input/source
+groups. Paired effects use grouped 95\% intervals. Existing annotations are reused
+only when their construct and candidate groups match the endpoint.
+
+\paragraph{C2: critic-guided refinement.}
+For each unseen input, a frozen generator produces one fresh output $y_0$.
+The seed critic and P2E critic each inspect that same output and permitted evidence,
+then return the same critique format. A common generator performs one revision
+under identical prompts, decoding, tool access, and token budgets
+(Figure~\ref{fig:downstream}b). A separate refinement-validation set determines
+these settings before ID/OOD generation.
+New blinded human rankings assess $y_0$, Seed-refined, and P2E-refined.
+The primary contrast is P2E-refined versus Seed-refined, accompanied by improvement
+and regression rates against $y_0$, core dimensional judgments, and reserved
+external metrics. Existing benchmark outputs serve only as pipeline pilots;
+their labels cannot assess the new outputs.
+
+\paragraph{C3: reward-guided training.}
+The planned training study compares Base, Seed-GRPO, and P2E-GRPO from the same
+initial checkpoint (Figure~\ref{fig:downstream}c), using LoRA and group relative policy optimization
+\citep{hu2022lora,shao2024deepseekmath}. The two training arms share prompts and
+their order, optimizer settings, group size, token limits, update count, and
+policy-training compute. Rewards are frozen before training. Rollouts are sampled
+online by each arm's own evolving policy and are not shared. Reward-call counts
+and token limits are matched; actual scoring cost is reported separately.
+Frozen final checkpoints generate new ID/OOD outputs for new blinded $H_0/H_1$
+and reserved external metrics. Checkpoint selection, invalid-output policy, and
+reward-hacking diagnostics are specified in Appendix~\ref{app:training}.
+C3 remains a design-only study here; no parameter training or training benefit
+is reported.
+
+\subsection{Ablation studies}
+\label{sec:ablations}
+
+The ablations separate annotation choices from changes to the evaluator and search
+procedure (Table~\ref{tab:ablations}). Mining strategies are compared at equal
+human budgets $N_H\in\{20,50,100,200\}$, measured in original-input annotation
+units. The endpoint is final held-out alignment after evolution, not the fraction
+of errors found during acquisition. When feedback granularity changes annotation
+time, both unit count and time/cost are reported. Component controls preserve
+unaffected interfaces; an invalid dependency is reported instead of silently
+reverting the entire evaluator to its seed.
 
 \begin{table}[t]
-\caption{Planned component comparisons. These are study conditions, not measured
-findings. Each comparison requires matched supervision, base model, and budgets.}
+\caption{Controlled ablation families. Each row tests a different hypothesis;
+none is a completed result. The full condition matrix is in
+Appendix~\ref{app:ablations}.}
 \label{tab:ablations}
-\centering
-\small
-\begin{tabularx}{\linewidth}{@{}p{3.0cm}YY@{}}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}P{2.3cm}YY@{}}
 \toprule
-Condition & Change relative to full revision & Question \\
+Variable & Principal conditions & Fixed quantities \\
 \midrule
-Prompt-only revision & Freeze tools, routing, and program structure &
-Does the editable program add value? \\
-Fixed evidence access & Freeze tools and their routing &
-Does evidence acquisition matter? \\
-Fixed synthesis & Preserve the seed aggregation rule &
-Does synthesis revision matter? \\
-Numerical synthesis & Replace semantic synthesis with declared numerical fusion &
-Are the aggregation assumptions consequential? \\
-Restart-only search & Start each proposal from the best program &
-Does hypothesis continuation help? \\
+Preference mining & Random; uncertainty; model conflict; instability; P2E &
+Human budget, evolution procedure, test set \\
+Feedback detail & $H_0$; $+H_1$; $+H_2$; $+H_3$ &
+Same pairs and annotation provenance \\
+Editable components & Full; rubric/procedure only; fixed tools/routes; routing only &
+Seed, model, opportunity and measurement budgets \\
+Search allocation & Independent proposals; history only; direction continuation; pause/resume &
+Initial state, evidence access, total compute \\
+Component attribution & Tool on/off; evolved/seed tool; adaptive/static route; fixed fusion &
+Other components and paired input groups \\
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\subsection{Analysis and studies}
+\label{sec:analysis}
+
+Trajectory analysis reports accepted directions, implementation attempts,
+resource use, and the evidence supporting each scoped refutation.
+Failure-regime analysis compares rubric, tool, routing, and fusion contributions
+with the remaining gap to human agreement. A domain is described as
+specification-limited, observation-limited, or headroom-limited only after these
+comparisons; strata within one domain may differ.
+Feedback-efficiency analysis relates held-out changes to annotation units, time,
+and granularity. Adapter analysis compares direct human judgments with labels
+derived from rankings, pointwise scores, or error annotations on the same subset.
+Repeated scoring and independent search runs are separate sources of variation.

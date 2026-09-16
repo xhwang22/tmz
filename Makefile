@@ -18,6 +18,7 @@ paper.pdf: build/main.pdf
 
 check: paper.pdf
 	python3 scripts/check_paper.py
+	python3 scripts/check_memory.py
 	git diff --check
 
 clean:

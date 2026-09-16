@@ -1,1 +1,62 @@
-\includegraphics[width=\linewidth]{output/imagegen/overview-final.png}
+\begin{tikzpicture}[line cap=round,line join=round]
+  \path[use as bounding box] (0,0) rectangle (13.7,8.1);
+  \node[pTitle,anchor=west] at (0,7.94) {(a) Open-ended generation: four families, domain-specific standards};
+  \node[inner sep=0pt,anchor=north] at (6.85,7.69)
+    {\includegraphics[width=13.65cm]{output/imagegen/domain-panorama-final.png}};
+  \foreach \x/\label/\col in {
+    1.7125/Structured visuals/pBlue,
+    5.1375/Images and 3D/pTeal,
+    8.5625/Text generation/pGold,
+    11.9875/Automated research/pPlum}{
+    \node[pTitle,text=\col,align=center] at (\x,3.04) {\label};
+    \draw[draw=\col,line width=1.1pt] (\x-1.5,2.81) -- (\x+1.5,2.81);
+  }
+  \node[pTitle,anchor=west] at (0,2.48) {(b) Preference mining};
+  \node[pTitle,anchor=west] at (5.35,2.48) {(c) Evaluator evolution};
+  \node[pTitle,anchor=west] at (10.85,2.48) {(d) Independent uses};
+
+  \node[pCard,fill=pBlue!6,text width=1.35cm,minimum height=.82cm,align=center]
+    (space) at (.83,1.77) {Semantic\\space};
+  \node[pCard,fill=pGold!7,text width=1.35cm,minimum height=.82cm,align=center]
+    (conflict) at (2.6,1.77) {Conflict\\pool};
+  \node[pCard,fill=pTeal!7,text width=1.35cm,minimum height=.82cm,align=center]
+    (human) at (4.37,1.77) {Human\\feedback};
+  \draw[pArrow] (space) -- (conflict);
+  \draw[pArrow] (conflict) -- (human);
+  \node[pSmall,align=center] at (2.60,1.00)
+    {$H_0$ overall \quad $H_1$ dimensional};
+  \node[pSmall,align=center] at (2.60,.61)
+    {$H_2$ localized \quad $H_3$ rationale};
+  \node[pSmall,align=center] at (2.60,.20)
+    {Label-blind pool selection};
+
+  \node[pCard,fill=pTeal!7,text width=1.23cm,minimum height=.82cm,align=center]
+    (z) at (5.98,1.77) {Evidence\\table $Z$};
+  \node[circle,draw=pBlue,fill=pBlue!6,line width=.9pt,
+    minimum size=1.35cm,inner sep=1pt,pTitle,align=center]
+    (era) at (8.0,1.77) {ERA\\revision};
+  \draw[-{Latex[length=1.5mm]},pBlue,line width=.8pt]
+    (8.0,2.37) arc[start angle=90,end angle=405,radius=.60cm];
+  \node[pCard,fill=pBlue!7,text width=.85cm,minimum height=.82cm,align=center]
+    (program) at (9.87,1.77) {Frozen\\$E^*$};
+  \draw[pArrow] (human.east) -- (z.west);
+  \draw[pArrow] (z) -- (era);
+  \draw[pArrow] (era) -- (program);
+  \node[pSmall,align=center] at (8.0,.84)
+    {Views $A$ \quad Rubrics $K$ \quad Modules $V$\\
+     Tools $T$ \quad Routing $\Pi$ \quad Fusion $G$};
+  \node[pSmall,align=center] at (8.0,.20)
+    {Fixed model; pointwise deployment};
+
+  \foreach \y/\head/\desc/\col in {
+    2.00/C1/Alignment and selection/pBlue,
+    1.27/C2/Critic-guided refinement/pTeal,
+    .54/C3/Reward training: planned/pPlum}{
+    \fill[\col!9,rounded corners=2pt] (10.92,\y-.29) rectangle (13.7,\y+.29);
+    \node[pTitle,text=\col,anchor=west] at (11.02,\y+.09) {\head};
+    \node[pSmall,anchor=west,text=pInk,text width=1.97cm] at (11.61,\y) {\desc};
+  }
+  \draw[pSoftArrow] (program.east) -- (10.63,1.77) -- (10.63,2.0) -- (10.92,2.0);
+  \draw[pSoftArrow] (10.63,1.77) -- (10.63,1.27) -- (10.92,1.27);
+  \draw[pSoftArrow] (10.63,1.27) -- (10.63,.54) -- (10.92,.54);
+\end{tikzpicture}

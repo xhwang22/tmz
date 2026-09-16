@@ -1,56 +1,41 @@
-\section{Problem formulation}
+\section{Scope and problem formulation}
 \label{sec:problem}
 
-The learning problem is defined within a domain, meaning a shared evaluation
-standard rather than an artifact format. The revision method can be instantiated
-with different domain adapters and criteria; each learned evaluator remains
-specific to its evaluation standard.
+A \emph{domain} is a collection of tasks sharing core quality dimensions, their
+priorities, the overall decision rule, and the human annotation protocol.
+An artifact type does not define a domain: screenshot-conditioned webpage
+reconstruction and specification-conditioned webpage generation require
+different standards. A change of source distribution that preserves the standard
+is instead a within-domain distribution shift. Appendix~\ref{app:domains}
+enumerates the full research scope of 22 domains in four families, without
+assuming that all are ready for experiments. Closed tasks whose complete quality
+criterion is an executable postcondition fall outside this scope.
 
-Let $x$ denote a task with its permitted context and references, and $y$ a generated
-artifact. Training comparisons $(x_i,y_i^+,y_i^-)$ indicate an overall human
-preference for $y_i^+$ over $y_i^-$. This supervision, denoted $H_0$, need not
-include dimension-level ratings or explanations. The superscripts identify the
-human ordering in the learning objective only; they are never supplied to the
-deployed scorer.
-
-We represent an evaluator by
+Let $x$ be a task with permitted context, $y$ a candidate output, and
+$\mathcal{Q}_D=\{q_1,\ldots,q_m\}$ the quality dimensions for domain $D$.
+A human comparison has the core form
 \begin{equation}
-  E_\theta=(A,K,V,T,\Pi,G), \qquad
-  (s_\theta,\tau_\theta)=E_\theta(x,y),
-  \label{eq:program}
+ h=(x,y_a,y_b,q,p,a,\nu),
+ \label{eq:human}
 \end{equation}
-where $A$ constructs artifact views, $K$ specifies evaluation criteria, $V$ is a
-set of specialist evaluators, $T$ provides evidence tools, $\Pi$ routes evidence,
-and $G$ synthesizes an overall score. The execution trace $\tau_\theta$ records
-the observations and judgments that support the score. Model identity, runtime
-interfaces, and experimental constraints are fixed outside $\theta$.
-The objective is to improve preference agreement on unseen tasks within that
-standard while retaining
-complete execution and an acceptable evaluation cost.
+where $q$ is a dimension or overall quality, $p$ is a preference or tie,
+$a$ records annotator agreement, and $\nu$ records provenance.
+Feedback has four levels: $H_0$ gives overall preference; $H_1$ gives
+dimension-wise preference; $H_2$ identifies error type, severity, and location;
+$H_3$ optionally supplies a free-form rationale. $H_1$ is central to the
+dimension-guided design. An $H_0$-only corpus remains usable, but it supplies
+neither human dimensional judgments nor human explanations.
 
-\paragraph{Pointwise, repeated measurement.}
-Because model-based scoring is stochastic, each artifact receives $R\geq3$
-complete evaluations under the same frozen protocol. We first aggregate scores
-\emph{within each artifact}, then compare:
+The learned object is an executable evaluation program
 \begin{equation}
-  \bar{s}_\theta(x,y)=\median_{r=1,\ldots,R}s_\theta^{(r)}(x,y),
-  \qquad
-  z_i=\ind\!\left[\bar{s}_\theta(x_i,y_i^+)>
-                        \bar{s}_\theta(x_i,y_i^-)\right].
-  \label{eq:measurement}
+ E_\theta=(A,K,V,T,\Pi,G),\qquad (s_\theta,\tau_\theta)=E_\theta(x,y),
+ \label{eq:program}
 \end{equation}
-A predicted tie is incorrect for a strict human preference. This procedure is not
-majority voting over pairwise decisions. An incomplete execution does not yield
-a valid repeated-score estimate; coverage and missing-outcome bounds accompany
-accuracy (Appendix~\ref{app:measurement}). Human ties and ambiguous annotations
-require a separate, prespecified treatment.
-
-\paragraph{Data access.}
-We partition examples by their original task or source before constructing pairs.
-The proposal set $\Dprop$ exposes training artifacts, $H_0$, and execution traces.
-A disjoint training development set $\Ddev$ supports repeated candidate
-measurement, returning only aggregate feedback to the optimizer.
-Validation $\Dval$ is used only after the candidate shortlist is frozen, and
-Test/OOD data remain locked until the method and analysis are fixed.
-Adaptively reused development accuracy is a search signal, not an unbiased
-estimate of generalization.
+comprising artifact adapters $A$, dimension schema and rubrics $K$, evaluator
+modules $V$, tools $T$, evidence routing $\Pi$, and fusion $G$.
+The score $s_\theta$ is accompanied by an execution trace $\tau_\theta$.
+The base model is fixed outside $\theta$.
+At deployment, the evaluator receives one candidate and its permitted evidence;
+opponents, human labels, generator identity, split labels, and mining strata
+are excluded. We seek agreement with unseen human preferences at an explicitly
+reported evaluation cost, rather than a single judge shared across all domains.

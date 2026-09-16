@@ -1,0 +1,48 @@
+\begin{tikzpicture}[line cap=round,line join=round]
+  \path[use as bounding box] (0,0) rectangle (13.7,5.75);
+  \node[pTitle,anchor=west] at (0,5.53) {(a) Sourced specialist findings};
+  \node[pTitle,anchor=west] at (4.65,5.53) {(b) Semantic factors};
+  \node[pTitle,anchor=west] at (9.33,5.53) {(c) Anchored overall judgment};
+  \foreach \y/\id/\n/\t/\col in {
+    4.64/f1/1/Qualifier missing/pGold,
+    3.59/f2/2/Scope widened/pGold,
+    2.54/f3/3/No scope error/pBlue,
+    1.49/f4/4/Clear structure/pTeal}{
+    \node[pCard,draw=\col!45,text width=3.54cm,minimum height=.62cm]
+      (\id) at (1.94,\y) {$f_{\n}$\quad \t\\\textcolor{pMuted}{Evidence pointer}};
+  }
+  \node[pCard,draw=pGold!60,fill=pGold!6,text width=3.40cm,minimum height=1.50cm,align=left]
+    (factor1) at (6.70,3.96)
+    {\textbf{Scope / fidelity}\\
+     $f_1,f_2$: overlapping\\
+     $f_3$: conflicting\\[2pt]
+     Resolve against source};
+  \node[pCard,draw=pTeal!60,fill=pTeal!6,text width=3.40cm,minimum height=.93cm,align=left]
+    (factor2) at (6.70,1.64)
+    {\textbf{Organization}\\$f_4$: distinct factor};
+  \foreach \id in {f1,f2,f3}{
+    \draw[pSoftArrow] (\id.east) -- (4.22,0 |- \id.east) -- (factor1.west);
+  }
+  \draw[pSoftArrow] (f4.east) -- (factor2.west);
+  \node[pSmall,align=center] at (6.70,.69)
+    {Each finding assigned once\\Keep overlap and conflict};
+  \node[pText,text width=3.82cm,align=center] at (11.54,4.62)
+    {Use domain priorities\\and resolved factors};
+  \draw[pSoftArrow] (factor1.east) -- (9.19,3.96) -- (9.19,3.34) -- (9.75,3.34);
+  \draw[pSoftArrow] (factor2.east) -- (9.19,1.64) -- (9.19,3.34);
+  \draw[pInk,line width=.8pt] (9.79,3.34) -- (13.25,3.34);
+  \foreach \x/\v/\t in {9.79/50/Mixed,11.52/75/Good,13.25/100/Excellent}{
+    \draw[pInk] (\x,3.18) -- (\x,3.50);
+    \node[pSmall,align=center] at (\x,2.91) {\v\\\t};
+  }
+  \fill[pPlum] (10.482,3.34) circle (.09);
+  \node[pSmall,text=pPlum,align=center] at (10.482,3.86) {Illustrative\\$\lambda=0.4$};
+  \node[pCard,draw=pPlum!55,fill=pPlum!5,text width=3.61cm,minimum height=.83cm,align=center]
+    at (11.54,1.62) {$s=(1-\lambda)a_k+\lambda a_{k+1}$\\
+    $50+0.4\cdot25=60$};
+  \node[pSmall,align=center] at (11.54,.62)
+    {Illustrative anchors only\\Not an observed score};
+  \draw[pLine] (0,.27) -- (13.7,.27);
+  \node[pSmall,align=center] at (6.85,.03)
+    {Reference completeness $\ne$ correct semantic grouping $\ne$ calibrated overall quality};
+\end{tikzpicture}

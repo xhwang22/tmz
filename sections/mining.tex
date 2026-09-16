@@ -1,0 +1,83 @@
+\section{Evaluator-gap-driven preference mining}
+\label{sec:mining}
+
+\subsection{An evaluation semantic space}
+
+Feedback acquisition begins with a versioned inventory of evaluation knowledge,
+not with a convenient labeled dataset. For each domain, we record dimension
+definitions, human protocols, rubrics, published metrics, learned scorers,
+LLM/VLM judges, and external analysis tools. Each source has an input contract,
+provenance, known limitations, and an execution status. A coverage audit checks
+the resulting dimension--source matrix. Every core dimension needs executable
+evidence; conflict mining ordinarily needs two sources with different mechanisms.
+Several scorers sharing a model or training labels do not establish independent
+coverage.
+
+The unit of comparison is an \emph{output signal}, rather than an evaluator name.
+We freeze a many-to-many mapping $M_{jq}$ from signal $j$ to dimension $q$
+using its definition and measurement procedure before reading preference labels.
+A mixed score may connect to several dimensions, but remains one shared signal.
+Uninterpretable outputs are not assigned dimensions from post hoc correlations.
+Existing executable metrics can enter the candidate tool library. Metrics
+reserved for final independent assessment are frozen separately and never enter
+tools, routing, critique, or reward.
+
+\subsection{Semantic disagreement and structured annotation}
+
+Raw scores on incompatible scales are not directly subtracted. For a candidate
+pair $r=(x,y_a,y_b)$, each signal supplies a direction
+$u_j(r)\in\{-1,0,+1,\bot\}$, with a normalized margin, repeated-run variance,
+confidence, and availability. Zero denotes a tie and $\bot$ unavailable or
+abstaining evidence. A small random anchor estimates reliability and human
+disagreement before targeted sampling. For the reliable, nonabstaining signal
+pairs $\mathcal{P}_q(r)$ mapped to the same dimension, a conflict score is
+\begin{equation}
+ c_q(r)=\frac{\sum_{(j,k)\in\mathcal{P}_q(r)}
+             w_{jkq}\,\ind[u_j(r)\ne u_k(r)]}
+            {\sum_{(j,k)\in\mathcal{P}_q(r)}w_{jkq}},
+ \label{eq:conflict}
+\end{equation}
+where nonnegative weights reflect anchor reliability and cap the influence of
+dependent sources. An empty denominator gives no conflict estimate.
+This formulation leaves the calibration and dependence rule to be fixed before
+the sampling comparison; disagreement is not itself a correctness label.
+
+\begin{figure}[t]
+\centering
+\input{figures/preference_mining}
+\caption{From evaluator signals to informative feedback. Panel (a) is a
+synthetic webpage example of the many-to-many signal--dimension mapping; letters
+indicate candidate preference, not scores. Hatched cells share one mixed signal.
+Panel (b) distinguishes within-dimension contradiction, overall--dimension
+disagreement, and a trade-off between different dimensions. Panel (c) connects
+these strata to $H_0$--$H_3$ and the adaptation evidence table $Z$.
+The matrix is illustrative and does not report measured scorer behavior.}
+\label{fig:mining}
+\end{figure}
+
+We sample three separately recorded semantic strata
+(Figure~\ref{fig:mining}b). \emph{Within-dimension disagreement} occurs when
+reliable signals disagree about the same quality criterion.
+\emph{Overall--dimension disagreement} indicates a possible mismatch in
+priorities or aggregation. \emph{Cross-dimensional trade-offs} identify cases
+where different criteria favor different candidates; they are not contradictions
+between measurements of the same construct. Model differences, repeated-run
+instability, and small margins further describe each stratum without replacing
+its semantic definition. Candidate groups cover generators, decoding choices,
+quality ranges, and failure types. After anchor calibration, the remaining pool's
+labels stay hidden until the sampling policy is fixed. Only evolution data are conflict-sampled; final
+evaluation uses prespecified random or stratified sampling.
+
+\subsection{The adaptation evidence table}
+
+Annotation targets overall and dimensional preferences, with localized
+diagnostics on a conflict or failure subset. All candidates derived from one
+input remain grouped. The adaptation evidence table $Z(r,q)$ joins artifact
+provenance, human judgments and agreement, every source's direction and
+uncertainty, evaluator decisions, selected routes, tool evidence, and execution
+cost. This is the interface from preference mining to ERA.
+Existing rankings, pointwise ratings, and error annotations require validated
+adapters and explicit provenance; input/reference pairs alone provide no human
+supervision. Appendix~\ref{app:annotation} specifies the feedback and readiness
+audits. Neither model-generated explanations nor labels derived from a different
+quality construct are promoted to human $H_1$ or $H_2$.

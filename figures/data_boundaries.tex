@@ -1,38 +1,45 @@
-\begin{tikzpicture}
-  \fill[eraBlue!60,rounded corners=4pt] (-1.6,-3.60) rectangle (5.0,1.30);
-  \fill[eraSand!65,rounded corners=4pt] (5.35,-3.60) rectangle (11.95,1.30);
-  \node[font=\small\bfseries,text=eraNavy] at (1.70,1.65)
-    {(a) Adaptive learning};
-  \node[font=\small\bfseries,text=eraNavy] at (8.65,1.65)
-    {(b) Frozen assessment};
-  \node[eraBox,fill=eraBlue,text width=2.65cm,minimum height=1.5cm]
-    (prop) at (0,0) {\textbf{Proposal Train}\\$\Dprop$: artifacts\\$H_0$ + traces};
-  \node[eraBox,fill=eraTeal,text width=2.65cm,minimum height=1.5cm]
-    (dev) at (3.45,0) {\textbf{Sealed Train}\\$\Ddev$: disjoint\\development cohort};
-  \node[eraBox,fill=eraSand,text width=2.65cm,minimum height=1.5cm]
-    (val) at (6.9,0) {\textbf{Terminal Val}\\$\Dval$: no feedback\\to further revision};
-  \node[eraBox,fill=eraGray,text width=2.65cm,minimum height=1.5cm]
-    (test) at (10.35,0) {\textbf{Test / OOD}\\Locked until final\\protocol freeze};
-  \node[eraBox,fill=eraBlue,text width=2.65cm,minimum height=1.25cm]
-    (propose) at (0,-2.0) {Revision proposals\\+ search allocation};
-  \node[eraBox,fill=eraTeal,text width=2.65cm,minimum height=1.25cm]
-    (measure) at (3.45,-2.0) {Repeated scoring\\+ candidate selection};
-  \node[eraBox,fill=eraSand,text width=2.65cm,minimum height=1.25cm]
-    (freeze) at (6.9,-2.0) {Frozen shortlist\\then Val assessment};
-  \node[eraBox,fill=eraGray,text width=2.65cm,minimum height=1.25cm]
-    (final) at (10.35,-2.0) {Assess the\\frozen method};
-  \draw[eraArrow] (prop) -- (propose);
-  \draw[eraArrow] (dev) -- (measure);
-  \draw[eraArrow] (val) -- (freeze);
-  \draw[eraArrow] (test) -- (final);
-  \draw[eraArrow] (propose) -- (measure);
-  \draw[eraArrow] (measure) -- (freeze);
-  \draw[eraArrow] (freeze) -- (final);
-  \draw[eraArrow] (measure.south) -- ++(0,-0.55) -|
-    node[pos=0.25,below,font=\small]{Aggregate feedback only} (propose.south);
-  \draw[draw=eraNavy,dashed,line width=0.8pt] (5.175,1.22) -- (5.175,-3.60);
-  \node[align=center,font=\footnotesize] at (8.65,-3.22)
-    {No return path to proposal or search allocation};
-  \node[align=center,font=\footnotesize,text width=13.5cm] at (5.175,-4.0)
-    {Original tasks are disjoint across cohorts. Evaluation labels stay outside the pointwise scorer.};
+\begin{tikzpicture}[line cap=round,line join=round]
+  \path[use as bounding box] (0,0) rectangle (13.7,6.05);
+  \node[pTitle,anchor=west] at (0,5.83) {(a) Evidence access during evolution};
+  \node[pTitle,anchor=west] at (7.07,5.83) {(b) Frozen assessment};
+  \foreach \x/\col in {0/pBlue,3.55/pTeal,7.10/pGold,10.65/pPlum}{
+    \fill[\col!6,rounded corners=3pt] (\x,2.26) rectangle (\x+3.05,5.43);
+  }
+  \node[pTitle,align=center,text=pBlue] at (1.525,5.11) {Proposal Train $\Dprop$};
+  \node[pText,align=center,text width=2.77cm] at (1.525,4.34)
+    {$x$, candidates, available H\\Raw execution traces};
+  \node[pCard,draw=pBlue!50,text width=2.42cm,minimum height=.70cm,align=center]
+    (propose) at (1.525,2.94) {Propose revisions\\Allocate search};
+  \draw[pSoftArrow] (1.525,3.70) -- (propose.north);
+  \node[pTitle,align=center,text=pTeal] at (5.075,5.11) {Sealed Train $\Ddev$};
+  \node[pText,align=center,text width=2.77cm] at (5.075,4.34)
+    {Disjoint input groups\\No raw-case access};
+  \node[pCard,draw=pTeal!50,text width=2.42cm,minimum height=.70cm,align=center]
+    (measure) at (5.075,2.94) {Common-cohort\\measurement};
+  \draw[pSoftArrow] (5.075,3.70) -- (measure.north);
+  \draw[pArrow] (propose.east) -- (measure.west);
+  \draw[pSoftArrow] (measure.south) -- (5.075,1.85) -- (1.525,1.85) -- (propose.south);
+  \node[pSmall,fill=white,inner sep=2pt] at (3.30,1.85) {Aggregate feedback only};
+  \node[pTitle,align=center,text=pGold] at (8.625,5.11) {Terminal Val $\Dval$};
+  \node[pText,align=center,text width=2.77cm] at (8.625,4.34)
+    {Train-frozen shortlist\\Fresh scoring repeats};
+  \node[pCard,draw=pGold!50,text width=2.42cm,minimum height=.70cm,align=center]
+    (val) at (8.625,2.94) {Confirm system\\No further revision};
+  \draw[pSoftArrow] (8.625,3.70) -- (val.north);
+  \node[pTitle,align=center,text=pPlum] at (12.175,5.11) {Locked Test / OOD};
+  \node[pText,align=center,text width=2.77cm] at (12.175,4.34)
+    {Frozen method\\Independent inputs};
+  \node[pCard,draw=pPlum!50,text width=2.42cm,minimum height=.70cm,align=center]
+    (test) at (12.175,2.94) {Final assessment\\C1 / C2 / C3};
+  \draw[pSoftArrow] (12.175,3.70) -- (test.north);
+  \draw[pArrow] (measure.east) -- (val.west);
+  \draw[pArrow] (val.east) -- (test.west);
+  \draw[pRed!65,dashed,line width=.8pt] (6.85,1.57) -- (6.85,5.49);
+  \node[pSmall,align=center] at (10.4,1.85) {No feedback into search or checkpoint choice};
+  \fill[pPlum!7,rounded corners=2pt] (0,.15) rectangle (13.7,1.23);
+  \node[pTitle,text=pPlum,anchor=west] at (.18,.94) {(c) External Metric Reserve};
+  \node[pText,anchor=west] at (.18,.48)
+    {Frozen before search; excluded from tools, routing, critique, reward, and model selection};
+  \draw[pSoftArrow,draw=pPlum] (12.17,1.23) -- (12.17,2.48);
+  \node[pSmall,text=pPlum,anchor=east,fill=white,inner sep=1pt] at (12.02,1.47) {Final assessment only};
 \end{tikzpicture}

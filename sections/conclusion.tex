@@ -1,13 +1,11 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Learning an evaluator from human preferences requires specifying how evidence is
-obtained and how quality judgments are combined. We formulate this learning
-problem over executable evaluation programs and introduce \ERA{} as the revision
-method. It connects human overall preferences to changes in
-representation, criteria, specialist responsibilities, evidence acquisition,
-routing, and synthesis while preserving pointwise deployment. The experimental
-protocol separates adaptive development from terminal and held-out assessment,
-and evaluates the scorer both as a judge and as a source of feedback.
-Whether these revisions yield reliable gains remains to be established by the
-planned controlled experiments.
+Open-ended generation requires evaluation systems that can acquire relevant
+evidence and reconcile competing quality criteria. P2E connects semantic
+disagreement mining and structured human feedback to executable evaluator
+evolution. ERA supplies the revision method while keeping the scoring model
+fixed. The research design covers four domain families and separates alignment
+and selection, critic-guided refinement, and planned reward-guided training.
+Independent measurements are still required to determine whether more informative
+feedback and evidence-guided revisions improve evaluation and generation.

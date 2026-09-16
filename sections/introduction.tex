@@ -1,65 +1,62 @@
 \section{Introduction}
 \label{sec:intro}
 
-An automatically generated slide deck can preserve the source facts yet obscure
-their relationships through poor visual hierarchy. A reconstructed webpage can
-resemble a reference image while failing to implement a required interaction.
-These examples illustrate a difficulty in evaluating structured artifacts:
-different quality judgments require different evidence, and an overall preference
-depends on how those judgments are combined. Recent benchmarks for presentations
-and front-end generation make such evaluation requirements explicit
-\citep{pptagent2025,presentbench2026,si2025design2code}.
+An appealing image may omit a requested object. A fluent summary may remove a
+qualification that changes the source's meaning. A research proposal may offer an
+interesting hypothesis without an experiment capable of testing it. These are
+evaluation problems in open-ended generation: multiple outputs are reasonable,
+quality has several dimensions, and no single deterministic verifier defines the
+complete ordering. Existing metrics and model-based judges provide useful but
+different evidence about that ordering
+\citep{fabbri2021summeval,xu2023imagereward,ghosh2023geneval,liu2023geval}.
 
-Language-model evaluators provide a flexible alternative to fixed similarity
-metrics, but their agreement with people depends on the instructions, evidence,
-and decision procedure they receive
-\citep{liu2023geval,zheng2023judging,shankar2024evalgen}.
-Human feedback can identify a preferred artifact without identifying why an
-evaluator disagreed. A missing observation, an inappropriate criterion, and an
-incorrect trade-off can produce the same ranking error. Merely increasing the
-weight of a criterion does not resolve all three causes.
+The availability of more evaluators does not by itself specify how to resolve
+their disagreement. A learned metric and a language-model judge may assess
+different constructs, or share a blind spot despite producing different scores.
+Human feedback is valuable where such evidence is insufficient, but an overall
+preference alone does not locate a failure in observation, criteria, reasoning,
+or aggregation. Work on model-based judging and human-authored criteria motivates
+making these distinctions explicit \citep{zheng2023judging,shankar2024evalgen}.
+The resulting research problem concerns both \emph{where to request feedback}
+and \emph{how to use it to change an evaluation system}.
 
-We study the following question: \emph{can human overall preferences guide the
-revision of an executable evaluator, including how it acquires and combines
-evidence?} We formulate the evaluator as a structured program and introduce
-\ERA{} as the method for revising it. The program exposes six connected components: artifact
-representation, rubric, specialist evaluators, evidence tools, evidence routing,
-and synthesis. An outer revision process uses authorized training examples and
-execution traces to identify a candidate mechanism of error and propose a
-corresponding program change. The deployed program remains a pointwise evaluator:
-it receives one artifact and its task context, not the human comparison used to
-develop it.
+We introduce \PtwoE{}, Preference-Guided Evaluator Evolution, for domains with
+open-ended outputs and an existing evaluation ecosystem.
+Figure~\ref{fig:overview} presents the complete framework. \PtwoE{} maps available
+signals to quality dimensions before exposing human labels, mines informative
+disagreements, and collects feedback at a declared level of granularity.
+An adaptation evidence table connects these judgments to source artifacts and
+execution traces. Within P2E, we instantiate evaluator adaptation with
+\ERA{} (Evidence-Guided Revision of Agentic Evaluators), a method for revising
+executable evaluation programs.
 
 \begin{figure}[t]
 \centering
 \input{figures/overview}
-\caption{Learning evaluation programs from human preferences. Panel (a) supplies
-training comparisons within an evaluation standard. Panel (b) uses \ERA{} to
-revise the program from execution evidence and aggregate development feedback.
-Panel (c) uses the frozen evaluator for independent scoring and feedback;
-selection and refinement are evaluation targets, not measured outcomes here.
-The generated artifact miniatures illustrate possible applications, not benchmark
-cases. Each evaluation standard has its own learned evaluator.}
+\caption{\PtwoE{} connects an evaluation ecosystem to feedback acquisition,
+evaluator evolution, and independent downstream assessment. Panel (a) illustrates
+the four domain families; each domain retains its own evaluation standard.
+Panel (b) maps evidence, mines disagreements, and forms structured human feedback.
+Panel (c) uses \ERA{} to revise a six-component program. Panel (d) separates
+alignment and selection (C1), refinement (C2), and planned reward training (C3).
+The GPT Image 2 artifact vignettes are synthetic illustrations, not experimental
+cases; arrows specify information flow, not measured improvements.}
 \label{fig:overview}
 \end{figure}
 
-Figure~\ref{fig:overview} separates training supervision, program revision, and
-use of the frozen evaluator. The same revision method can be instantiated under
-different evaluation standards, without assuming that one learned scorer serves
-all domains.
+Two hypotheses motivate the design. First, disagreements between reliable,
+nonredundant signals may make a fixed annotation budget more informative than
+uniform sampling. Second, failures that depend on acquiring, routing, and
+interpreting evidence may require connected program revisions. A failed
+implementation is therefore insufficient to reject its underlying hypothesis.
+These expectations call for matched-budget comparisons, not an assumption that
+more feedback detail or a larger search space must help.
 
-Reflective optimization and automated agent design support revisions to prompts,
-workflows, and code
-\citep{agrawal2026gepa,hu2025adas,zhang2025aflow,zhang2025dgm}.
-Our focus is the evaluator-specific learning problem: overall preference provides
-supervision, execution evidence supports revision, and independent artifact scores
-must preserve useful quality distinctions. The central hypothesis is that
-revising evidence acquisition and synthesis can address errors that remain under
-prompt-only adaptation. This is an empirical hypothesis, not an assumed benefit
-of a larger search space.
-
-The paper develops three elements: (i) a structured formulation of the
-evaluator-revision problem; (ii) an evidence-guided search procedure with separate
-proposal, measurement, and allocation decisions; and (iii) a controlled protocol
-for assessing preference agreement, artifact selection, and feedback-guided
-refinement.
+The research scope extends across structured visual artifacts, image generation
+and understanding, text generation, and automated research. A common procedure
+is instantiated separately for each evaluation standard. Its value is tested at
+three distinct levels: agreement and selection on fixed candidates (C1), changes
+to outputs through a frozen critic (C2), and changes to a generator through a
+frozen reward (C3). Success at one level does not establish success at the next.
+This paper develops the feedback-mining formulation, the ERA revision procedure,
+and the controlled evaluation design for these hypotheses.

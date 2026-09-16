@@ -1,43 +1,80 @@
-# Skeleton review
+# Revised manuscript review
 
 Review date: 2026-09-16. This checklist is not author sign-off or submission approval.
 
 ## Content and scope
 
-- Main text follows a paper argument rather than an engineering chronology.
-- The research framing is preference-guided evaluator evolution across evaluation
-  standards. Slides are one candidate application; ERA is the revision method,
-  not the project name. The historical source-repository name is not its scope.
-- No private results, observed performance numbers, run identifiers or generated
-  evaluators were imported.
-- Capability claims trace to the method ledger; performance claims remain
-  hypotheses. Results contain explicit unmeasured placeholders.
-- Main text omits historical versions, debugging records and optional teacher or
-  training branches.
-- Human H0, model-generated reasoning and future human annotation are distinct.
-- Repeated-score aggregation and training/validation/test access are consistent
-  between prose, equations, algorithm and figures.
+- The title is **P2E: Evolving Evaluation Systems for Open-Ended Generation**.
+  P2E names the project; ERA is its revision method. The historical source
+  repository and local source directory were not renamed or modified.
+- The paper follows a scientific argument, not debugging history or a sequence
+  of intermediate methods. The user-selected P2E plan supplies the complete
+  research scope; current ERA documentation supplies the execution semantics.
+  Their roles are recorded in `plan_coverage.md` and `source_provenance.md`.
+- All 22 candidate domains in four families appear in the domain panorama.
+  This is not a claim of readiness, transfer, or 22 completed experiments.
+- Semantic mapping, source dependence, three disagreement strata, H0–H3,
+  evidence table Z, six-component ERA, and C1/C2/planned C3 are covered.
+  Experimental design retains core results, ablations, and analysis as its
+  three principal parts.
+- Human H1/H2 are not inferred from H0; model reasoning is not human rationale.
+  A random reliability anchor precedes the frozen targeted acquisition policy.
+- Complete artifact scores precede median comparison. Proposal evidence,
+  sealed Train aggregates, terminal Val, and Test/OOD remain distinct.
+  The pre-search External Metric Reserve cannot enter evolution or selection.
+- A direction is distinct from its implementation; best and working programs
+  have separate roles. Complete measurement is required for both promotion
+  and continuation. Resource exhaustion and scoped refutation are not equated.
+- C1 has fixed candidate pools and complete rankings. C2 uses fresh shared
+  initial outputs and new blinded judgments. C3 includes an unchanged Base
+  reference and two frozen-reward training arms with their own online rollouts.
+  No parameter training was performed.
+- No private results, sample identifiers, run records, or generated evaluators
+  were imported. Numerical outcomes remain unmeasured. Claims C27/C28 are
+  recorded as empirical gaps and retained only as hypotheses, not findings.
+
+## Figures, tables, and memory
+
+- Eight figures use distinct visual forms: panorama, signal matrix, evaluator
+  architecture, revision branches, controlled study panels, annotation examples,
+  access boundaries, and semantic synthesis. Five are in the main text and
+  three in the appendix; all have editable TikZ sources.
+- Ten tables cover the study designs, outcomes, domains, annotation provenance,
+  readiness, ablations, training controls, and reporting requirements. Every
+  figure and table has a manuscript callout, and all figure captions match the
+  structured memory exactly.
+- GPT Image 2 generated the 3840×1280 four-family vignette strip in Figure 1(a).
+  Prompts, model provenance, and the selected asset hash are recorded. The
+  raster exceeds 600 DPI at full text width. Captions and the AI use statement
+  distinguish all synthetic illustrations from observed cases and measurements.
+- Diagram labels, arrows, the title page, result tables, domain-table continuation,
+  algorithm, and appendix layouts were visually inspected after rendering.
+  Table columns are left-aligned to avoid stretched spacing in narrow cells.
+- Thirty claim records, eight figure records, ten table records, and the
+  revision history pass the repository's offline consistency checks.
+  Claims also pass the upstream Draft 2020-12 JSON Schema with zero errors.
+  The upstream skill's advertised validation script was absent; the schema
+  was preserved unmodified and validated with modern `jsonschema` instead.
+  Structural validity does not establish empirical support.
 
 ## Build and references
 
-- Clean local build succeeds with pdfLaTeX and BibTeX.
-- Main text is 8 pages; the complete PDF is 13 pages including statements,
+- The full local build succeeds with pdfLaTeX and BibTeX; `make check` passes.
+- Main text is 9 pages; the complete PDF is 22 pages including statements,
   references and appendices. US Letter format and anonymous PDF author metadata.
 - The two official ICLR files match their upstream SHA-256 hashes exactly.
-- All 30 references are cited; no undefined citations, duplicated keys or
+- All 33 references are cited; no undefined citations, duplicated keys or
   unresolved cross-references.
-- The bibliography validator reports 30 valid entries and zero errors.
-  Its 21 recommended-field warnings concern page ranges for online ICLR papers
+- The bibliography validator reports 33 valid entries and zero errors.
+  Its 25 recommended-field warnings concern page ranges for online ICLR papers
   and volume/pages/DOI fields for explicitly cited arXiv preprints. Those fields
   were not invented to silence generic warnings.
-- No overfull boxes, undefined citations/references, or rerun warnings. Four
-  underfull-box notices concern page justification and bibliography spacing.
-- The title page, generated overview, both editable method diagrams, algorithm,
-  result tables and appendix layout were visually inspected.
-- The GPT Image 2 overview is 3840 by 2160, with recorded prompts and an asset
-  hash checked offline. Human-preference and aggregate-development feedback
-  enter revision, not the deployed evaluator. Its miniatures are disclosed as
-  illustrations in the caption and AI use statement, not empirical cases.
+- No overfull boxes, undefined citations/references, font-size substitutions,
+  or unresolved rerun warnings remain. Nonfatal underfull-box notices concern
+  page justification and bibliography spacing.
+- Private-path and credential-pattern scans passed for publication sources.
+  Repository documentation remains intentionally identifiable and is not an
+  anonymous submission supplement.
 
 ## Still required
 

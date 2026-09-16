@@ -1,0 +1,274 @@
+{
+  "updated_on": "2026-09-16",
+  "serialization": "JSON-compatible YAML",
+  "figures": [
+    {
+      "id": "Fig1",
+      "label": "fig:overview",
+      "file": "figures/overview.tex",
+      "caption_source": "sections/introduction.tex",
+      "panels": [
+        "(a) four domain families",
+        "(b) preference mining",
+        "(c) ERA evolution",
+        "(d) C1/C2/C3"
+      ],
+      "key_numbers": [
+        "Four domain families (scope)"
+      ],
+      "supports_claims": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "caption_in_manuscript": "\\PtwoE{} connects an evaluation ecosystem to feedback acquisition, evaluator evolution, and independent downstream assessment. Panel (a) illustrates the four domain families; each domain retains its own evaluation standard. Panel (b) maps evidence, mines disagreements, and forms structured human feedback. Panel (c) uses \\ERA{} to revise a six-component program. Panel (d) separates alignment and selection (C1), refinement (C2), and planned reward training (C3). The GPT Image 2 artifact vignettes are synthetic illustrations, not experimental cases; arrows specify information flow, not measured improvements.",
+      "evidence_status": "Conceptual specification; no measured results",
+      "raster_assets": [
+        "output/imagegen/domain-panorama-final.png"
+      ]
+    },
+    {
+      "id": "Fig2",
+      "label": "fig:mining",
+      "file": "figures/preference_mining.tex",
+      "caption_source": "sections/mining.tex",
+      "panels": [
+        "(a) signal–dimension map",
+        "(b) three semantic strata",
+        "(c) H0–H3 and evidence table"
+      ],
+      "key_numbers": [],
+      "supports_claims": [
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9"
+      ],
+      "caption_in_manuscript": "From evaluator signals to informative feedback. Panel (a) is a synthetic webpage example of the many-to-many signal--dimension mapping; letters indicate candidate preference, not scores. Hatched cells share one mixed signal. Panel (b) distinguishes within-dimension contradiction, overall--dimension disagreement, and a trade-off between different dimensions. Panel (c) connects these strata to $H_0$--$H_3$ and the adaptation evidence table $Z$. The matrix is illustrative and does not report measured scorer behavior.",
+      "evidence_status": "Explicitly synthetic example; no measured results"
+    },
+    {
+      "id": "Fig3",
+      "label": "fig:runtime",
+      "file": "figures/evaluator.tex",
+      "caption_source": "sections/method.tex",
+      "panels": [
+        "(a) artifact views",
+        "(b) evidence acquisition",
+        "(c) criteria and modules",
+        "(d) fusion"
+      ],
+      "key_numbers": [],
+      "supports_claims": [
+        "C9",
+        "C10",
+        "C11",
+        "C12",
+        "C18"
+      ],
+      "caption_in_manuscript": "The six-component evaluation program. Panel (a) adapts one candidate and permitted task evidence; (b) routes observations from an executable tool library; (c) applies dimension-specific criteria through evaluator modules; and (d) fuses sourced findings into a score and critique. The lower rail identifies the editable components. Human feedback supervises the outer evolution process, never the deployed scoring path. Evidence and judgment are separate objects.",
+      "evidence_status": "Conceptual specification; no measured results"
+    },
+    {
+      "id": "Fig4",
+      "label": "fig:directions",
+      "file": "figures/direction_search.tex",
+      "caption_source": "sections/method.tex",
+      "panels": [
+        "(a) connected edits and best/working programs",
+        "(b) mechanism diagnostics",
+        "(c) four direction outcomes"
+      ],
+      "key_numbers": [],
+      "supports_claims": [
+        "C13",
+        "C15",
+        "C16",
+        "C17",
+        "C28"
+      ],
+      "caption_in_manuscript": "A direction is a hypothesis, not an individual edit. Panel (a) illustrates a fixed-parent sequence of tool, routing, and interpretation changes, alongside separate best-program and working-program states. Panel (b) asks whether evidence was obtained, consumed, and interpreted before drawing a direction-level conclusion. Panel (c) distinguishes continuation, pause, resource exhaustion, and scoped refutation. This is a schematic search tree, not an observed optimization trajectory.",
+      "evidence_status": "Conceptual specification; no measured results"
+    },
+    {
+      "id": "Fig5",
+      "label": "fig:downstream",
+      "file": "figures/downstream.tex",
+      "caption_source": "sections/experiments.tex",
+      "panels": [
+        "(a) C1 fixed-pool evaluation",
+        "(b) C2 critic-guided refinement",
+        "(c) planned C3 reward training"
+      ],
+      "key_numbers": [
+        "C1 default four-candidate pool (planned design)"
+      ],
+      "supports_claims": [
+        "C21",
+        "C22",
+        "C23",
+        "C24"
+      ],
+      "caption_in_manuscript": "Three controlled uses of the evolved evaluator. Panel (a), C1, holds the candidate pool fixed and compares ranking and selection. Panel (b), C2, branches from a freshly generated shared $y_0$ and changes only the critic. Panel (c), C3, contrasts an unchanged Base policy with two policies trained under frozen rewards. The trained policies use matched inputs and compute but generate their own rollouts. Final judgments are blinded and external metrics are reserved from evolution. C3 is a planned training study, not an executed experiment.",
+      "evidence_status": "Conceptual specification; no measured results"
+    },
+    {
+      "id": "Fig6",
+      "label": "fig:annotation",
+      "file": "figures/annotation_examples.tex",
+      "caption_source": "sections/appendix.tex",
+      "panels": [
+        "(a) summary",
+        "(b) image edit",
+        "(c) research ablation plan"
+      ],
+      "key_numbers": [],
+      "supports_claims": [
+        "C4",
+        "C5"
+      ],
+      "caption_in_manuscript": "Worked examples of feedback granularity across (a) summarization, (b) image editing, and (c) research study design. Each example separates overall preference, dimensional judgment, a localized diagnostic, and an optional rationale. All tasks, candidates, and judgments are constructed illustrations, not benchmark cases or collected human feedback. The labels demonstrate the annotation schema, not agreement rates or evaluator performance.",
+      "evidence_status": "Explicitly synthetic example; no measured results"
+    },
+    {
+      "id": "Fig7",
+      "label": "fig:boundaries",
+      "file": "figures/data_boundaries.tex",
+      "caption_source": "sections/appendix.tex",
+      "panels": [
+        "(a) proposal and sealed Train",
+        "(b) terminal Val and locked Test/OOD",
+        "(c) External Metric Reserve"
+      ],
+      "key_numbers": [],
+      "supports_claims": [
+        "C11",
+        "C14",
+        "C20"
+      ],
+      "caption_in_manuscript": "Data and metric boundaries. Panel (a) exposes raw proposal-Train evidence but returns only aggregate measurements from a disjoint sealed Train cohort. Panel (b) assesses a frozen shortlist on Val and the frozen method on locked Test/OOD. Panel (c) reserves metrics for independent final assessment. The reserve cannot be reintroduced through tools, critique, reward, aliases, or checkpoint selection. All partitions preserve original-input/source groups.",
+      "evidence_status": "Conceptual specification; no measured results"
+    },
+    {
+      "id": "Fig8",
+      "label": "fig:synthesis",
+      "file": "figures/semantic_synthesis.tex",
+      "caption_source": "sections/appendix.tex",
+      "panels": [
+        "(a) sourced findings",
+        "(b) semantic factors",
+        "(c) anchored judgment"
+      ],
+      "key_numbers": [
+        "Synthetic anchors 50, 75, 100; lambda=0.4; arithmetic example 60"
+      ],
+      "supports_claims": [
+        "C19",
+        "C30"
+      ],
+      "caption_in_manuscript": "Optional semantic synthesis. Panel (a) supplies sourced findings; (b) groups overlapping and conflicting statements into factors; (c) locates overall quality between prespecified anchors. Every finding reference is assigned once, but bookkeeping alone cannot validate the grouping or the quality judgment. The anchor values and interpolation are a synthetic arithmetic example, not an evaluator result or a universal scale for all domains.",
+      "evidence_status": "Explicitly synthetic example; no measured results"
+    }
+  ],
+  "tables": [
+    {
+      "id": "Tab1",
+      "label": "tab:ablations",
+      "file": "sections/experiments.tex",
+      "supports_claims": [
+        "C25",
+        "C27"
+      ],
+      "evidence_status": "Protocol or scope specification"
+    },
+    {
+      "id": "Tab2",
+      "label": "tab:results",
+      "file": "sections/results.tex",
+      "supports_claims": [
+        "C21"
+      ],
+      "evidence_status": "Unmeasured result template"
+    },
+    {
+      "id": "Tab3",
+      "label": "tab:downstream-results",
+      "file": "sections/results.tex",
+      "supports_claims": [
+        "C22",
+        "C24"
+      ],
+      "evidence_status": "Unmeasured result template"
+    },
+    {
+      "id": "Tab4",
+      "label": "tab:domains",
+      "file": "sections/appendix.tex",
+      "supports_claims": [
+        "C2",
+        "C3"
+      ],
+      "evidence_status": "Protocol or scope specification"
+    },
+    {
+      "id": "Tab5",
+      "label": "tab:human-provenance",
+      "file": "sections/appendix.tex",
+      "supports_claims": [
+        "C4",
+        "C5"
+      ],
+      "evidence_status": "Protocol or scope specification"
+    },
+    {
+      "id": "Tab6",
+      "label": "tab:readiness",
+      "file": "sections/appendix.tex",
+      "supports_claims": [
+        "C6",
+        "C7"
+      ],
+      "evidence_status": "Protocol or scope specification"
+    },
+    {
+      "id": "Tab7",
+      "label": "tab:full-ablations",
+      "file": "sections/appendix.tex",
+      "supports_claims": [
+        "C13",
+        "C25",
+        "C27",
+        "C28"
+      ],
+      "evidence_status": "Protocol or scope specification"
+    },
+    {
+      "id": "Tab8",
+      "label": "tab:training",
+      "file": "sections/appendix.tex",
+      "supports_claims": [
+        "C23",
+        "C24"
+      ],
+      "evidence_status": "Protocol or scope specification"
+    },
+    {
+      "id": "Tab9",
+      "label": "tab:reporting",
+      "file": "sections/appendix.tex",
+      "supports_claims": [
+        "C26"
+      ],
+      "evidence_status": "Protocol or scope specification"
+    },
+    {
+      "id": "Tab10",
+      "label": "tab:manifest",
+      "file": "sections/appendix.tex",
+      "supports_claims": [],
+      "evidence_status": "Protocol or scope specification"
+    }
+  ]
+}

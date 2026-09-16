@@ -1,0 +1,76 @@
+{
+  "revisions": [
+    {
+      "round": 1,
+      "date": "2026-09-16",
+      "trigger": "Preceding ICLR draft, anchored at commit 72cb8ac2eae9aed346971d32335987a5a9f24ff9",
+      "changed_claims": [],
+      "changed_figures": [],
+      "summary": "Records the existing pre-revision manuscript as the initial memory baseline. It framed the project around structured artifacts, distinguished ERA as a method, and contained no imported empirical results. No earlier claim IDs are inferred."
+    },
+    {
+      "round": 2,
+      "date": "2026-09-16",
+      "trigger": "User requests a broader title, richer illustrations, more figures/tables, and full p2e_v2_plan coverage",
+      "reviewer": "Author feedback",
+      "changed_claims": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C21",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C27",
+        "C28",
+        "C29",
+        "C30"
+      ],
+      "changed_figures": [
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8"
+      ],
+      "sections_touched": [
+        "Title",
+        "Abstract",
+        "Introduction",
+        "Related work",
+        "Problem",
+        "Preference mining",
+        "ERA",
+        "Experimental design",
+        "Results",
+        "Discussion",
+        "Conclusion",
+        "Appendices",
+        "Statements"
+      ],
+      "summary": "Reframes the paper as P2E for open-ended generation, with ERA as its revision method. Adds semantic preference mining, H0–H3 and source dependence, all 22 domains, independent metric reserve, full C1/C2/planned-C3 protocols, ablation and analysis designs, eight figures and ten tables. GPT Image 2 supplies synthetic four-family vignettes; native TikZ retains exact structure. Empirical gains remain unmeasured and training is not executed."
+    }
+  ]
+}

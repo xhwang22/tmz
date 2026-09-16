@@ -1,18 +1,17 @@
 {
   "generated_images": [
     {
-      "path": "output/imagegen/overview-final.png",
-      "sha256": "4701f4a35519501de0f57bd3319cffed981fc88a180fda5c2a0ac4846ae26e03",
+      "path": "output/imagegen/domain-panorama-final.png",
+      "sha256": "f9054c5c8a75a3eebb56d004eee6652bd675f17dadfe566499694980c9bb6239",
       "width": 3840,
-      "height": 2160,
+      "height": 1280,
       "model": "gpt-image-2",
       "deployment_model_version": "2026-04-21",
       "quality": "high",
-      "role": "conceptual illustration; no empirical observations",
+      "role": "Synthetic domain vignettes in Figure 1(a); no empirical data",
       "prompts": [
-        ".paper/prompts/overview.txt",
-        ".paper/prompts/overview-correction.txt",
-        ".paper/prompts/overview-final-correction.txt"
+        ".paper/prompts/domain-panorama.txt",
+        ".paper/prompts/domain-panorama-cleanup.txt"
       ]
     }
   ]

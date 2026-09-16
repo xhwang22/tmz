@@ -1,22 +1,25 @@
-\section{Discussion and limitations}
+\section{Discussion}
 \label{sec:discussion}
 
-Program revision increases the number of possible explanations for an observed
-change. A connected edit may improve agreement without establishing which
-component caused the effect; targeted ablations and artifact-level evidence are
-needed for attribution. Human overall preference also underdetermines the
-underlying criteria. An evaluator can reproduce an ordering for the wrong reason,
-and source-linked findings alone do not establish faithful reasoning.
+P2E treats human feedback as evidence for revising an evaluation procedure.
+Its two stages address different bottlenecks: mining determines which judgments
+are requested, while ERA determines how those judgments change the program.
+A favorable result would need to survive both independent source-level assessment
+and cost-matched comparisons. Agreement alone would not establish that the
+evaluator's critique helps generation or that its reward remains useful under
+policy optimization.
 
-Pointwise scores make selection and refinement possible, but assume that a
-context-independent quality ordering is useful within the domain. Contextual
-preferences or incompatible quality dimensions may violate this assumption.
-Repeated scoring reduces sensitivity to individual calls without eliminating
-model bias. Adaptive development selection can still overfit, making locked
-test data necessary.
+\subsection{Limitations and future work}
 
-Finally, tool access, human annotation, and repeated evaluation can be costly.
-The proposed comparisons must therefore report both agreement and resource use.
-Cross-domain transfer, improved refinement, and robustness remain open empirical
-questions. The present scope does not establish benefits for reward-guided
-parameter training or unrestricted autonomous agent design.
+First, available feedback may cover only overall preference. Dimensional
+supervision and expert diagnostics require additional annotation and construct
+validation. Second, disagreement can reflect noise or shared model bias rather
+than useful evaluator gaps; random anchors and source-dependence audits must
+precede claims of annotation efficiency. Third, program edits interact, so
+connected-candidate gains require controlled attribution rather than causal
+interpretation from traces alone. Finally, pointwise scoring assumes a useful
+within-domain ordering and adaptive development can overfit. Independent
+ID/OOD evaluation, explicit tie policies, and generation-level studies are
+needed to determine where this formulation is adequate. Empirical improvements,
+transfer across evaluation standards, and reward-training benefits remain open
+questions.

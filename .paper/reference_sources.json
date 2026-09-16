@@ -383,6 +383,48 @@
         "https://arxiv.org/abs/2306.05685v4",
         "https://papers.nips.cc/paper_files/paper/2023/hash/91f18a1287b398d378ef22505bf41832-Abstract-Datasets_and_Benchmarks.html"
       ]
+    },
+    {
+      "key": "hu2022lora",
+      "arxiv_id": "2106.09685",
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "authors": "Edward J. Hu and Yelong Shen and Phillip Wallis and Zeyuan Allen-Zhu and Yuanzhi Li and Shean Wang and Lu Wang and Weizhu Chen",
+      "year": "2022",
+      "venue": "International Conference on Learning Representations",
+      "status": "Published venue and citation verified from the authors' official repository; no proceedings page range or DOI provided.",
+      "primary_sources": [
+        "https://raw.githubusercontent.com/microsoft/LoRA/main/README.md",
+        "https://arxiv.org/abs/2106.09685"
+      ],
+      "claim_scope": "LoRA as the proposed parameter-efficient adaptation mechanism; no LoRA benchmark gains transferred to P2E."
+    },
+    {
+      "key": "shao2024deepseekmath",
+      "arxiv_id": "2402.03300",
+      "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+      "authors": "Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and Junxiao Song and Xiao Bi and Haowei Zhang and Mingchuan Zhang and Y. K. Li and Y. Wu and Daya Guo",
+      "year": "2024",
+      "venue": "arXiv preprint",
+      "status": "arXiv metadata and GRPO introduction verified; no unverified formal venue or page range added.",
+      "primary_sources": [
+        "https://arxiv.org/abs/2402.03300"
+      ],
+      "claim_scope": "Definition/provenance of GRPO for the planned C3 protocol; no training outcome asserted."
+    },
+    {
+      "key": "seung1992committee",
+      "title": "Query by Committee",
+      "authors": "Seung, H. S. and Opper, M. and Sompolinsky, H.",
+      "year": "1992",
+      "venue": "Proceedings of the Fifth Annual Workshop on Computational Learning Theory",
+      "doi": "10.1145/130385.130417",
+      "pages": "287--294",
+      "status": "Publisher DOI content negotiation verified title, authors, venue, year, and pages; normalized a returned dash encoding.",
+      "primary_sources": [
+        "https://doi.org/10.1145/130385.130417",
+        "https://api.crossref.org/works/10.1145/130385.130417"
+      ],
+      "claim_scope": "Prior art for disagreement-based acquisition, not evidence for P2E annotation efficiency."
     }
   ]
 }
