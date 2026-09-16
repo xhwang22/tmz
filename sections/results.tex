@@ -1,19 +1,17 @@
 \section{Results}
 \label{sec:results}
 
-Tables~\ref{tab:results} and \ref{tab:downstream-results} reserve the core
-reporting structure. Numerical results have not been incorporated into this
-manuscript. Every dash denotes an unmeasured quantity, not zero, and no method
-ordering is implied. Estimates will be reported per domain and cohort before
-any cross-domain summary. Appendix~\ref{app:results} specifies additional
-dimensional, reliability, cost, and ablation outputs.
+Empirical outcomes are not yet available. Tables~\ref{tab:results}
+and~\ref{tab:downstream-results} specify per-domain ID/OOD reporting;
+dashes denote unmeasured quantities, not zero or a method ordering.
+Appendix~\ref{app:results} specifies dimensional, reliability, cost, and
+ablation outputs.
 
 \begin{table}[t]
-\caption{C1 results template for each frozen domain. ID and OOD use separate
-source cohorts. Pair = global pairwise agreement; Top = top-region agreement;
-BoN = Best-of-$N$ selection accuracy; Reg = normalized rank regret.
-All entries are unmeasured. Coverage and grouped uncertainty are mandatory
-companion outputs, not optional exclusions.}
+\caption{C1 reporting template by domain and source cohort. Pair = global
+pairwise agreement; Top = top-region agreement; BoN = Best-of-$N$ accuracy;
+Reg = normalized rank regret. All entries are unmeasured; coverage and grouped
+uncertainty accompany each metric.}
 \label{tab:results}
 \centering\small
 \setlength{\tabcolsep}{4pt}
@@ -35,9 +33,8 @@ P2E (ERA) & \pending & \pending & \pending & \pending & \pending & \pending & \p
 \end{table}
 
 \begin{table}[t]
-\caption{Downstream primary-contrast templates, reported separately for each
-domain. Human preference is measured on newly generated outputs with grouped
-95\% intervals. C3 is planned only; dashes are not training results.}
+\caption{Downstream contrasts by domain. Report human preference on new outputs
+with grouped 95\% intervals. C3 is planned only; all entries are unmeasured.}
 \label{tab:downstream-results}
 \centering\small
 \begin{tabularx}{\linewidth}{@{}P{.85cm}Yccc@{}}

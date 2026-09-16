@@ -1,20 +1,18 @@
-Open-ended generation is evaluated through multiple, partly overlapping signals,
-yet disagreement with human judgment rarely identifies which part of an
-evaluation system should change. We present \PtwoE{}, Preference-Guided Evaluator
-Evolution, a framework that connects the acquisition of human feedback to the
-revision and downstream use of executable evaluation programs. \PtwoE{} first
-organizes existing metrics, judges, and tools in a domain-specific evaluation
-semantic space. It then distinguishes disagreements within a quality dimension,
-conflicts between overall and dimensional judgments, and cross-dimensional
-trade-offs to guide annotation. Overall preferences, dimensional preferences,
-and localized diagnostics form an adaptation evidence table. Within this
-framework, \ERA{} (Evidence-Guided Revision of Agentic Evaluators) revises
-artifact representations, rubrics, evaluator modules,
-tools, evidence routing, and fusion while holding the base model fixed.
-Direction-level hypotheses organize connected revisions, with separate decisions
-for proposal, measurement, and search allocation. The research scope spans
-structured visual artifacts, image generation and understanding, text generation,
-and automated research. We specify controlled studies of evaluator alignment and
-selection, critic-guided refinement, and reward-guided training, together with
-annotation-efficiency and component ablations. These studies test evaluation and
-generation separately, without assuming a universal judge.
+Human preferences specify desired orderings of open-ended outputs without
+identifying what an evaluator must observe or how it should interpret that
+evidence. We present \PtwoE{}, Preference-Guided Evaluator Evolution, a framework
+for learning executable evaluation procedures under domain-specific human
+standards. \PtwoE{} maps existing metrics, judges, and tools to quality dimensions
+and acquires structured feedback on semantically distinct disagreements. This
+evidence grounds hypotheses about missing observations, unused evidence, or
+inappropriate criteria. Within P2E, \ERA{} evolves artifact representations,
+rubrics, evaluator modules, tools, evidence routing, and fusion while holding
+the base model fixed. Mechanism hypotheses guide connected changes, whereas
+complete programs are the units of selection. This separation permits
+evidence-guided continuation without equating an unsuccessful implementation with
+a refuted hypothesis. The research scope spans structured visual artifacts,
+images and 3D, text generation, and automated research. We specify matched-budget
+studies of feedback acquisition and evolution, followed by independent tests of
+alignment and selection, critic-guided refinement, and planned reward-guided
+training. Whether an evolved evaluator agrees better with humans and whether it
+improves generation remain distinct empirical questions.

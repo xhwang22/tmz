@@ -1,63 +1,70 @@
 \begin{tikzpicture}[line cap=round,line join=round]
   \path[use as bounding box] (0,0) rectangle (13.7,4.95);
   \pPanel{a}{Read one artifact}{0}{4.72}
-  \pPanel{b}{Route observations}{3.38}{4.72}
-  \pPanel{c}{Apply criteria}{7.03}{4.72}
-  \pPanel{d}{Synthesize}{10.66}{4.72}
+  \pPanel{b}{Route observations}{3.37}{4.72}
+  \pPanel{c}{Apply criteria}{7.01}{4.72}
+  \pPanel{d}{Synthesize}{10.62}{4.72}
+  \path[pSurface,fill=pBlueWash] (0,1.02) rectangle (2.93,4.38);
+  \path[pSurface,fill=pTealWash] (3.81,1.02) rectangle (6.65,4.38);
+  \path[pSurface,fill=pGoldWash] (7.08,1.02) rectangle (10.17,4.38);
+  \path[pSurface,fill=pEvoWash] (10.71,1.02) rectangle (13.70,4.38);
 
-  \node[pSmall,text=pBlue,anchor=west] at (.03,4.16) {$A$: task $x$ and candidate $y$};
-  \draw[pRule,fill=white] (0,1.22) rectangle (2.91,3.84);
-  \fill[pBlue] (0,3.43) rectangle (2.91,3.84);
-  \node[pLabel,text=white,anchor=west] at (.12,3.64) {SUMMARY $y$};
-  \node[pText,anchor=north west] at (.12,3.27)
+  \pIcon{page}{pBlue}{.34}{4.03}{.58}
+  \node[pSmall,text=pBlue,anchor=west] at (.70,4.07) {$A$: artifact views};
+  \path[draw=pBlue!30,fill=white,rounded corners=3pt]
+    (.17,1.12) rectangle (2.76,3.61);
+  \node[pLabel,text=pBlue,anchor=west] at (.28,3.39) {Summary $y$};
+  \node[pText,anchor=north west] at (.28,3.15)
     {Admissions fell for\\\textcolor{pRed}{\underline{all age groups.}}};
-  \draw[pRule] (.14,2.48) -- (2.76,2.48);
-  \node[pLabel,text=pMuted,anchor=west] at (.12,2.21) {TASK SOURCE $x$};
-  \node[pSmall,text=pInk,anchor=north west] at (.12,1.98)
-    {Adult admissions fell.\\Children were not studied.};
+  \draw[pRule] (.31,2.32) -- (2.60,2.32);
+  \node[pLabel,anchor=west] at (.28,2.09) {Task source $x$};
+  \node[pSmall,text=pInk,anchor=north west] at (.28,1.85)
+    {Adult admissions fell.\\Children not studied.};
 
-  \node[pSmall,text=pTeal,anchor=west] at (3.42,4.16) {$T$: tools and permitted views};
-  \node[diamond,aspect=1.1,draw=pTeal,fill=pTeal!5,minimum width=.60cm,
-    minimum height=.60cm,inner sep=0pt,pTitle,text=pTeal] (route) at (3.55,2.70) {$\Pi$};
-  \draw[pArrow] (2.91,2.70) -- (route.west);
+  \pIcon{loupe}{pTeal}{4.12}{4.03}{.59}
+  \node[pSmall,text=pTeal,anchor=west] at (4.46,4.07) {$T$: permitted tools};
+  \node[circle,draw=pTeal!55,fill=white,minimum size=.56cm,
+    inner sep=0pt,pTitle,text=pTeal] (route) at (3.38,2.70) {$\Pi$};
+  \draw[pArrow,draw=pBlue] (2.77,2.70) -- (route.west);
   \foreach \y/\id/\call/\value in {
-    3.39/scope/{scope(y)}/{all age groups},
-    2.39/source/{source(x)}/{adults only},
-    1.39/raw/{text(y)}/{original wording}}{
-    \node[pCard,draw=pTeal!45,fill=pTeal!4,text width=2.18cm,
-      minimum height=.75cm,align=left] (\id) at (5.46,\y)
+    3.34/scope/{scope(y)}/{all age groups},
+    2.38/source/{source(x)}/{adults only},
+    1.43/raw/{text(y)}/{original wording}}{
+    \node[pCard,draw=pTeal!28,fill=white,text width=2.18cm,
+      minimum height=.73cm,align=left] (\id) at (5.25,\y)
       {\textcolor{pTeal}{\texttt{\call}}\\\value};
-    \draw[pEvidence] (route.east) -- (3.98,2.70) |- (\id.west);
+    \draw[pEvidence] (route.east) to[out=0,in=180] (\id.west);
   }
 
-  \node[pSmall,text=pGold,anchor=west] at (7.07,4.16) {$K$: domain criteria + priorities};
-  \fill[pGold!8] (7.12,2.61) rectangle (10.08,3.80);
-  \fill[pGold] (7.12,2.61) rectangle (7.18,3.80);
-  \node[pLabel,text=pGold,anchor=west] at (7.28,3.56) {$V_1$\quad Faithfulness};
-  \node[pText,anchor=west] at (7.28,3.20) {Scope overreach};
-  \node[pSmall,anchor=west] at (7.28,2.83) {Source $x$; $y$, clause 2};
-  \draw[pEvidence] (scope.east) -- (7.11,3.39);
-  \draw[pEvidence] (source.east) -- (6.91,2.39) -- (6.91,2.97) -- (7.11,2.97);
-  \fill[pPaper] (7.12,1.03) rectangle (10.08,2.10);
-  \fill[pMuted] (7.12,1.03) rectangle (7.18,2.10);
-  \node[pLabel,anchor=west] at (7.28,1.84) {$V_2$\quad Fluency};
-  \node[pText,anchor=west] at (7.28,1.49) {Readable sentence};
-  \node[pSmall,anchor=west] at (7.28,1.17) {Pointer: $y$, sentence 1};
-  \draw[pEvidence] (raw.east) -- (7.11,1.39);
+  \pIcon{clipboard}{pGold}{7.41}{4.03}{.59}
+  \node[pSmall,text=pGold,anchor=west] at (7.76,4.07) {$K$: domain criteria};
+  \path[draw=pGold!25,fill=white,rounded corners=4pt]
+    (7.23,2.53) rectangle (10.01,3.65);
+  \node[pLabel,text=pGold,anchor=west] at (7.36,3.44) {$V_1$\quad Faithfulness};
+  \node[pText,anchor=west] at (7.36,3.07) {Scope overreach};
+  \node[pSmall,anchor=west] at (7.36,2.73) {Source $x$; $y$, clause 2};
+  \draw[pEvidence] (scope.east) to[out=0,in=180] (7.22,3.20);
+  \draw[pEvidence] (source.east) to[out=0,in=180] (7.22,2.80);
+  \path[draw=pGold!25,fill=white,rounded corners=4pt]
+    (7.23,1.18) rectangle (10.01,2.18);
+  \node[pLabel,anchor=west] at (7.36,1.97) {$V_2$\quad Fluency};
+  \node[pText,anchor=west] at (7.36,1.61) {Readable sentence};
+  \node[pSmall,anchor=west] at (7.36,1.32) {At $y$, sentence 1};
+  \draw[pEvidence] (raw.east) to[out=0,in=180] (7.22,1.57);
 
-  \node[pSmall,align=center] at (12.14,4.16) {Evidence $\ne$ judgment};
-  \draw[pPlum,line width=.7pt] (10.08,3.20) -- (10.37,3.20) -- (10.37,1.56) -- (10.08,1.56);
-  \node[diamond,aspect=1.0,draw=pPlum,fill=pPlum!7,minimum size=.65cm,
-    inner sep=0pt,pTitle,text=pPlum] (fuse) at (10.98,2.66) {$G$};
-  \draw[pRevision] (10.37,2.66) -- (fuse.west);
-  \node[pCard,draw=pPlum,fill=white,text width=1.72cm,minimum height=1.06cm,
-    align=center] (score) at (12.64,2.66)
-    {$s_\theta(x,y)$\\\textbf{Score + critique}};
-  \draw[pRevision] (fuse) -- (score);
-  \node[pSmall,align=center] at (12.08,1.46) {Sourced findings\\and execution trace $\tau_\theta$};
-  \node[pSmall,align=center,text=pPlum] at (12.08,1.00) {Numerical / semantic fusion};
+  \node[pSmall,align=center] at (12.20,4.06) {Evidence $\ne$ judgment};
+  \draw[pEvolution] (10.01,3.07) to[out=0,in=155] (10.96,2.69);
+  \draw[pEvolution] (10.01,1.61) to[out=0,in=205] (10.96,2.61);
+  \node[circle,draw=pEvo!55,fill=white,minimum size=.53cm,
+    inner sep=0pt,pTitle,text=pEvo] (fuse) at (11.18,2.65) {$G$};
+  \pIcon{clipboard}{pEvo}{12.64}{3.29}{.84}
+  \node[pText,align=center] at (12.64,2.62) {$s_\theta(x,y)$};
+  \node[pLabel,align=center] at (12.64,2.26) {Score + critique};
+  \draw[pEvolution] (fuse.east) -- (11.94,2.65);
+  \node[pSmall,align=center] at (12.20,1.64) {Findings + trace $\tau_\theta$};
+  \node[pSmall,text=pEvo,align=center] at (12.20,1.22) {Numerical / semantic $G$};
 
-  \draw[pRule] (0,.75) -- (13.7,.75);
+  \draw[pRule] (0,.76) -- (13.7,.76);
   \node[pText,align=center] at (6.85,.48)
     {\textbf{Editable:}\quad $A$ views \quad $K$ rubrics \quad $V$ modules \quad
      $T$ tools \quad $\Pi$ routing \quad $G$ fusion};

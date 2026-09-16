@@ -19,9 +19,10 @@
       "supports_claims": [
         "C1",
         "C2",
-        "C3"
+        "C3",
+        "C31"
       ],
-      "caption_in_manuscript": "\\PtwoE{} connects domain-specific evaluation to human feedback, evaluator evolution, and independent assessment. (a) Four artifact families. (b) Disagreement and structured human evidence. (c) \\ERA{} revises a six-component program with a fixed base model. (d) C1 selection, C2 refinement, and planned C3 reward training. Artifacts, preferences, and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
+      "caption_in_manuscript": "\\PtwoE{} connects domain-specific evaluation to human feedback, evaluator evolution, and independent assessment. (a) Four artifact families. (b) Disagreement and structured human evidence. (c) \\ERA{} evolves a six-component program with a fixed base model. (d) C1 selection, C2 refinement, and planned C3 reward training. Artifacts, preferences, and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
       "evidence_status": "Conceptual specification; no measured results",
       "raster_assets": [
         "output/imagegen/edit-preserved.png"
@@ -66,7 +67,8 @@
         "C10",
         "C11",
         "C12",
-        "C18"
+        "C18",
+        "C31"
       ],
       "caption_in_manuscript": "The six-component evaluation program. (a) Read one candidate and permitted task evidence. (b) Route tool observations. (c) Apply dimensional criteria. (d) Fuse sourced findings into a score and critique. The lower rail identifies the editable components. Human feedback supervises evolution, never the deployed scorer. Evidence and judgment remain separate; the summary and findings are a constructed example.",
       "evidence_status": "Conceptual specification; no measured results"
@@ -87,9 +89,10 @@
         "C15",
         "C16",
         "C17",
-        "C28"
+        "C28",
+        "C32"
       ],
-      "caption_in_manuscript": "A direction is a hypothesis, not an edit. (a) Connected tool, routing, and interpretation changes share a fixed parent. Best and working programs remain distinct; promotion and continuation both require complete measurement. (b) Check evidence acquisition, consumption, and interpretation. (c) Distinguish continuation, pause, exhaustion, and scoped refutation. The revision branches are schematic, not an observed optimization trajectory.",
+      "caption_in_manuscript": "A direction is a hypothesis, not an edit. (a) Connected tool, routing, and interpretation changes share a fixed parent. Best and working programs remain distinct; promotion and continuation both require complete measurement. (b) Check evidence acquisition, consumption, and interpretation. (c) Distinguish continuation, pause, exhaustion, and scoped refutation. The evolution branches are schematic, not an observed optimization trajectory.",
       "evidence_status": "Conceptual specification; no measured results"
     },
     {
@@ -116,20 +119,45 @@
     },
     {
       "id": "Fig6",
+      "label": "fig:domains",
+      "file": "figures/domain_panorama.tex",
+      "caption_source": "sections/appendix.tex",
+      "panels": [
+        "(a) structured visual artifacts",
+        "(b) images and 3D",
+        "(c) text generation",
+        "(d) automated research"
+      ],
+      "key_numbers": [
+        "Four domain families; 22-domain taxonomy in Table 4 (research scope only)"
+      ],
+      "supports_claims": [
+        "C2",
+        "C3"
+      ],
+      "caption_in_manuscript": "Diverse artifacts, distinct evaluation standards. Representative tasks span (a) structured visual artifacts, (b) images and 3D, (c) text generation, and (d) automated research. Each family combines several quality considerations; the full 22-domain taxonomy is in Table~\\ref{tab:domains}. P2E shares an evolution procedure across these standards, not a universal scorer. Artifact views are constructed illustrations, including the GPT Image 2 photograph; they do not indicate benchmark coverage, implemented adapters, or completed experiments.",
+      "evidence_status": "Conceptual scope with constructed artifacts; no implemented-coverage or empirical claim",
+      "raster_assets": [
+        "output/imagegen/edit-preserved.png"
+      ]
+    },
+    {
+      "id": "Fig7",
       "label": "fig:annotation",
       "file": "figures/annotation_examples.tex",
       "caption_source": "sections/appendix.tex",
       "panels": [
-        "(a) image edit",
-        "(b) summary",
-        "(c) research ablation plan"
+        "(a) webpage requirement satisfaction",
+        "(b) image-edit preservation",
+        "(c) summary faithfulness",
+        "(d) research identifiability"
       ],
       "key_numbers": [],
       "supports_claims": [
         "C4",
         "C5"
       ],
-      "caption_in_manuscript": "Worked examples of feedback granularity across (a) image editing, (b) summarization, and (c) research study design. Each example separates overall preference, dimensional judgment, a localized diagnostic, and an optional rationale. All tasks, candidates, and judgments are constructed illustrations, not benchmark cases or collected human feedback. GPT Image 2 generated the source photograph and controlled edits. The labels demonstrate the annotation schema, not agreement rates or evaluator performance.",
+      "caption_in_manuscript": "A common feedback schema across distinct quality standards: (a) webpage requirement satisfaction, (b) image-edit preservation, (c) summary faithfulness, and (d) research identifiability. Each example separates overall preference, dimensional judgment, a localized diagnostic, and an optional rationale. All tasks, candidates, and judgments are constructed illustrations, not benchmark cases or collected human feedback. GPT Image 2 generated the source photograph and controlled edits. The labels demonstrate the annotation schema, not agreement rates or evaluator performance.",
       "evidence_status": "Explicitly synthetic example; no measured results",
       "raster_assets": [
         "output/imagegen/edit-source.png",
@@ -138,7 +166,7 @@
       ]
     },
     {
-      "id": "Fig7",
+      "id": "Fig8",
       "label": "fig:boundaries",
       "file": "figures/data_boundaries.tex",
       "caption_source": "sections/appendix.tex",
@@ -157,7 +185,7 @@
       "evidence_status": "Conceptual specification; no measured results"
     },
     {
-      "id": "Fig8",
+      "id": "Fig9",
       "label": "fig:synthesis",
       "file": "figures/semantic_synthesis.tex",
       "caption_source": "sections/appendix.tex",

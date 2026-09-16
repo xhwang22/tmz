@@ -85,6 +85,24 @@
         "Figure sources", "Figure captions", "AI use statement", "Figure provenance"
       ],
       "summary": "Redesigns all eight figures after visually inspecting Self-Refine, Eureka, TextGrad, and Segment Anything. Replaces the decorative panorama with concrete native artifacts and a dominant ERA loop; distinguishes matrix, routed evidence, connected revision, matched controls, access timeline, and factor graph. GPT Image 2 provides a controlled source/add-mug/remove-bowl illustration with native evidence overlays. Captions, asset lineage, print widths, and memory are synchronized. Claims, scientific scope, empirical gaps, and the design-only C3 status are unchanged."
+    },
+    {
+      "round": 4,
+      "date": "2026-09-16",
+      "trigger": "Author requests softer reference-informed visuals, the supplied five-color palette, insightful evolution framing, and visible domain diversity",
+      "reviewer": "Author feedback",
+      "changed_claims": [
+        "C2", "C3", "C4", "C5", "C11", "C14", "C19", "C20", "C22", "C28", "C30", "C31", "C32"
+      ],
+      "changed_figures": [
+        "Fig1", "Fig2", "Fig3", "Fig4", "Fig5", "Fig6", "Fig7", "Fig8", "Fig9"
+      ],
+      "sections_touched": [
+        "Abstract", "Introduction", "Related work", "ERA", "Experimental design",
+        "Results captions", "Discussion", "Conclusion", "Appendices", "Statements",
+        "Figure sources", "Paper memory", "Visual provenance"
+      ],
+      "summary": "Reframes ERA as evolution of observation and judgment with a fixed base model, distinguishing hypothesis-level exploration from complete-program selection and separating alignment, critique, and reward use. Adopts the author's blue/mint/cream/peach/rose palette and illustrated grouping principles inspected in the requested post-training and full-stack safety surveys, Speculative RAG, and MMMR. Adds the four-family domain panorama as current Fig6, expands annotation examples to one per family as Fig7, and shifts the previous Figs6–8 to Figs7–9; figure IDs in earlier rounds retain their historical meanings. All nine figures use original native structure and previously disclosed photographs, with no new model calls. C31/C32 record procedural definitions; C27/C28 remain empirical gaps. No observed results or training execution are added."
     }
   ]
 }

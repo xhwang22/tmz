@@ -51,15 +51,14 @@ only when their construct and candidate groups match the endpoint.
 \paragraph{C2: critic-guided refinement.}
 For each unseen input, a frozen generator produces one fresh output $y_0$.
 The seed critic and P2E critic each inspect that same output and permitted evidence,
-then return the same critique format. A common generator performs one revision
+then return the same critique format. A common generator performs one refinement step
 under identical prompts, decoding, tool access, and token budgets
 (Figure~\ref{fig:downstream}b). A separate refinement-validation set determines
 these settings before ID/OOD generation.
 New blinded human rankings assess $y_0$, Seed-refined, and P2E-refined.
 The primary contrast is P2E-refined versus Seed-refined, accompanied by improvement
 and regression rates against $y_0$, core dimensional judgments, and reserved
-external metrics. Existing benchmark outputs serve only as pipeline pilots;
-their labels cannot assess the new outputs.
+external metrics. Labels on pre-existing outputs cannot assess these new outputs.
 
 \paragraph{C3: reward-guided training.}
 The planned training study compares Base, Seed-GRPO, and P2E-GRPO from the same

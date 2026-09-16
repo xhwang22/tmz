@@ -1,50 +1,59 @@
 \begin{tikzpicture}[line cap=round,line join=round]
   \path[use as bounding box] (0,0) rectangle (13.7,6.05);
-  \pPanel{a}{Train-time adaptation}{0}{5.81}
+  \pPanel{a}{Train-time evolution}{0}{5.81}
   \pPanel{b}{Frozen assessment}{7.13}{5.81}
 
-  \draw[pArrow,draw=pMuted] (1.51,5.03) -- (12.18,5.03);
-  \foreach \x/\n/\col in {1.51/1/pBlue,5.03/2/pTeal,8.62/3/pGold,12.18/4/pPlum}{
-    \node[pBadge,fill=\col,minimum size=.48cm] at (\x,5.03) {\n};
+  \draw[pSoftArrow,draw=pMuted!65] (1.51,5.05) -- (12.18,5.05);
+  \foreach \x/\n/\col in {1.51/1/pBlue,5.03/2/pTeal,8.62/3/pGold,12.18/4/pEvo}{
+    \node[pBadge,fill=\col!13,draw=\col!40,text=\col,minimum size=.47cm]
+      at (\x,5.05) {\n};
   }
-  \draw[pRed,dashed,line width=.85pt] (6.80,1.60) -- (6.80,5.48);
-  \node[pLabel,text=pRed,fill=white,inner sep=3pt] at (6.80,5.03) {FREEZE};
-  \node[pTitle,text=pBlue,align=center] at (1.51,4.45) {Proposal Train $\Dprop$};
-  \node[pTitle,text=pTeal,align=center] at (5.03,4.45) {Sealed Train $\Ddev$};
-  \node[pTitle,text=pGold,align=center] at (8.62,4.45) {Terminal Val $\Dval$};
-  \node[pTitle,text=pPlum,align=center] at (12.18,4.45) {Locked Test / OOD};
+  \draw[pMuted!50,dashed,line width=.65pt] (6.80,1.51) -- (6.80,5.46);
+  \node[pPill,draw=pMuted!40,text=pMuted] at (6.80,5.05) {Freeze};
+  \node[pTitle,text=pBlue,align=center] at (1.51,4.48) {Proposal Train $\Dprop$};
+  \node[pTitle,text=pTeal,align=center] at (5.03,4.48) {Sealed Train $\Ddev$};
+  \node[pTitle,text=pGold,align=center] at (8.62,4.48) {Terminal Val $\Dval$};
+  \node[pTitle,text=pEvo,align=center] at (12.18,4.48) {Locked Test / OOD};
 
-  \draw[pRule,fill=white] (.05,2.39) rectangle (2.98,3.87);
-  \fill[pBlue] (.05,3.47) rectangle (2.98,3.87);
-  \node[pLabel,text=white,anchor=west] at (.17,3.67) {RAW EVIDENCE};
-  \node[pSmall,text=pInk,anchor=west] at (.17,2.94) {Artifacts + available H\\Sourced execution traces};
-  \draw[pTeal,fill=pTeal!4] (3.56,2.39) rectangle (6.50,3.87);
-  \node[pLabel,text=pTeal,anchor=west] at (3.69,3.64) {MEASUREMENT};
-  \pLock{6.15}{3.64}{pTeal}
-  \node[pText,anchor=west] at (3.69,2.94) {Disjoint input groups\\No raw-case access};
-  \draw[pEvidence] (2.98,3.11) -- (3.56,3.11);
-  \node[pSmall,text=pTeal] at (3.27,3.42) {$E$};
-  \draw[pEvidence] (5.03,2.39) -- (5.03,1.93) -- (1.51,1.93) -- (1.51,2.39);
-  \node[pSmall,fill=white,inner sep=2pt] at (3.26,1.93) {Aggregate feedback only};
+  \path[pSurface,fill=pBlueWash] (0,2.17) rectangle (3.03,4.18);
+  \path[pSurface,fill=pTealWash] (3.51,2.17) rectangle (6.54,4.18);
+  \path[pSurface,fill=pGoldWash] (7.10,2.17) rectangle (10.14,4.18);
+  \path[pSurface,fill=pEvoWash] (10.66,2.17) rectangle (13.70,4.18);
+  \pIcon{database}{pBlue}{1.51}{3.76}{.96}
+  \pIcon{database}{pTeal}{5.03}{3.76}{.96}
+  \pLock{5.43}{3.92}{pTeal}
+  \pIcon{cards}{pGold}{8.62}{3.75}{.83}
+  \pIcon{shield}{pEvo}{12.18}{3.75}{.83}
+  \node[pLabel,text=pBlue,align=center] at (1.51,3.19) {Raw evidence};
+  \node[pSmall,text=pInk,align=center] at (1.51,2.68)
+    {Artifacts + available H\\Sourced execution traces};
+  \node[pLabel,text=pTeal,align=center] at (5.03,3.19) {Sealed measurement};
+  \node[pSmall,text=pInk,align=center] at (5.03,2.68)
+    {Disjoint input groups\\No raw-case access};
+  \draw[pEvidence] (3.04,3.48) -- (3.50,3.48);
+  \node[pSmall,text=pTeal] at (3.27,3.82) {$E$};
+  \draw[pEvidence,rounded corners=5pt] (5.03,2.17) -- (5.03,1.76)
+    -- (1.51,1.76) -- (1.51,2.17);
+  \node[pSmall,fill=white,inner sep=3pt] at (3.27,1.76) {Aggregate feedback only};
 
-  \node[pText,align=center] at (8.62,3.54) {Train-frozen shortlist\\Fresh scoring repeats};
-  \node[pSmall,draw=pGold,fill=pGold!5,minimum width=2.46cm,
-    minimum height=.54cm,align=center] at (8.62,2.70) {$E_1\quad\cdots\quad E_k$};
-  \node[pSmall,align=center] at (8.62,2.08) {Confirm; no revision};
-  \node[pText,align=center] at (12.18,3.54) {Frozen method\\Independent inputs};
-  \foreach \x/\label in {11.37/C1,12.18/C2,12.99/C3}{
-    \node[pSmall,draw=pPlum,fill=pPlum!5,minimum width=.59cm,
-      minimum height=.54cm,align=center,text=pPlum] at (\x,2.70) {\label};
+  \node[pLabel,text=pGold,align=center] at (8.62,3.19) {Train-frozen shortlist};
+  \node[pPill,draw=pGold!30,minimum width=2.49cm,align=center] at (8.62,2.66)
+    {$E_1\;\cdots\;E_k \;\rightarrow\; E^*$};
+  \node[pSmall,align=center] at (8.62,1.77) {Select once; no evolution};
+  \node[pLabel,text=pEvo,align=center] at (12.18,3.19) {Independent inputs};
+  \foreach \x/\label in {11.36/C1,12.18/C2,13.00/C3}{
+    \node[pPill,draw=pEvo!30,minimum width=.60cm,align=center,text=pEvo]
+      at (\x,2.66) {\label};
   }
-  \node[pSmall,align=center] at (9.39,1.56) {No feedback to search or selection};
+  \node[pSmall,align=center] at (12.18,1.77) {No search feedback};
 
-  \fill[pInk] (0,.12) rectangle (13.7,1.26);
-  \node[pBadge,fill=white,text=pInk] at (.26,.93) {c};
-  \node[pTitle,text=white,anchor=west] at (.57,.93) {External Metric Reserve};
-  \node[pSmall,text=white,anchor=west] at (.14,.46)
-    {Frozen before search; excluded from tools, routing, critique, rewards and selection};
-  \draw[pPlum,line width=.65pt] (10.98,2.40) -- (10.98,2.29)
-    -- (13.38,2.29) -- (13.38,2.40);
-  \draw[pRevision] (12.18,1.26) -- (12.18,2.29);
-  \node[pSmall,text=pPlum,anchor=west] at (12.35,1.72) {Final only};
+  \path[pSurface,fill=pPaper,draw=pLine,line width=.5pt]
+    (0,.12) rectangle (13.70,1.28);
+  \pPanel{c}{External Metric Reserve}{.12}{.96}
+  \node[pSmall,anchor=west] at (5.10,.96) {Frozen before search};
+  \node[pSmall,text=pInk,anchor=west] at (.25,.46)
+    {Excluded from tools, routing, critique, rewards and selection};
+  \pIcon{shield}{pEvo}{10.49}{.71}{.66}
+  \draw[pEvolution] (13.44,1.28) -- (13.44,2.17);
+  \node[pSmall,text=pEvo,align=center] at (12.18,.71) {Final assessment\\only};
 \end{tikzpicture}

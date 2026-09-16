@@ -1,9 +1,10 @@
 # Figure and table inventory
 
 The structured caption and claim mapping is in `figures.yml`.
-All eight figures are conceptual or explicitly synthetic; none contains observed
+All nine figures are conceptual or explicitly synthetic; none contains observed
 performance. Exact structure is native TikZ. Three controlled GPT Image 2 photos
-illustrate source and candidates in Figure 6(a); one is reused in Figure 1(a).
+illustrate source and candidates in Figure 7(b); one is reused in Figures 1(a)
+and 6(b). The author's blue/mint/cream/peach/rose palette is shared across figures.
 They are not empirical results. Design sources and the redesign rationale are
 recorded in `visual_references.md`.
 
@@ -14,9 +15,10 @@ recorded in `visual_references.md`.
 | Fig3 | figures/evaluator.tex | Worked pointwise summary example: artifact → observations → findings → fusion |
 | Fig4 | figures/direction_search.tex | Direction versus connected edits, best/working state, four outcomes |
 | Fig5 | figures/downstream.tex | Matched lanes for fixed-pool C1, shared-start C2, planned Base / own-rollout C3 |
-| Fig6 | figures/annotation_examples.tex | Photographic image-edit, summary span, and controlled research-plan examples |
-| Fig7 | figures/data_boundaries.tex | Access timeline, one-way freeze boundary, independent metric reserve |
-| Fig8 | figures/semantic_synthesis.tex | Finding groups, contradictions, and synthetic anchor interpolation |
+| Fig6 | figures/domain_panorama.tex | Four-family task gallery with domain-specific evidence and quality criteria |
+| Fig7 | figures/annotation_examples.tex | Webpage omission, photographic image edit, summary span, and research-plan examples |
+| Fig8 | figures/data_boundaries.tex | Access timeline, one-way freeze boundary, independent metric reserve |
+| Fig9 | figures/semantic_synthesis.tex | Finding groups, contradictions, and synthetic anchor interpolation |
 
 | ID | Label | Purpose / status |
 | --- | --- | --- |
@@ -32,9 +34,9 @@ recorded in `visual_references.md`.
 | Tab10 | tab:manifest | Configuration fields to freeze; unresolved values marked TBD |
 
 Numbers shown in diagrams are identifiers, planned design values, or synthetic
-arithmetic, never study measurements. Figure 8's 50, 75, 100 anchors and lambda
+arithmetic, never study measurements. Figure 9's 50, 75, 100 anchors and lambda
 0.4 illustrate a specified scale; 50 + 0.4 × 25 = 60 is not a scored example.
-Figures 1, 2, 3, and 6 explicitly disclose their constructed cases or preferences.
+Figures 1, 2, 3, 6, and 7 explicitly disclose their constructed cases or preferences.
 
 `make figures` produces individual vector PDFs, PNG previews, and a contact sheet
 under `build/figure-review/`. This is an offline visual-review workflow, separate

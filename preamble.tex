@@ -34,15 +34,28 @@
 \definecolor{eraTeal}{HTML}{E9F3F0}
 \definecolor{eraSand}{HTML}{F6F0E4}
 \definecolor{eraGray}{HTML}{F2F3F5}
-\definecolor{pBlue}{HTML}{2964A4}
-\definecolor{pTeal}{HTML}{087F78}
-\definecolor{pGold}{HTML}{A86B08}
-\definecolor{pPlum}{HTML}{7052A3}
-\definecolor{pInk}{HTML}{202C3B}
-\definecolor{pMuted}{HTML}{586473}
-\definecolor{pLine}{HTML}{D5DCE3}
-\definecolor{pRed}{HTML}{C3523F}
-\definecolor{pPaper}{HTML}{F4F6F8}
+% Author-selected five-color reference, with separate accessible ink colors.
+\definecolor{pSky}{HTML}{74A9C5}
+\definecolor{pMint}{HTML}{C2E5CF}
+\definecolor{pCream}{HTML}{EDDDAB}
+\definecolor{pPeach}{HTML}{F2B8AE}
+\definecolor{pRose}{HTML}{DD7389}
+\definecolor{pBlue}{HTML}{426A81}
+\definecolor{pTeal}{HTML}{476D59}
+\definecolor{pGold}{HTML}{7B663B}
+\definecolor{pEvo}{HTML}{994D62}
+\definecolor{pResearch}{HTML}{915C51}
+\definecolor{pInk}{HTML}{303C43}
+\definecolor{pMuted}{HTML}{606C71}
+\definecolor{pLine}{HTML}{D5DCD8}
+\definecolor{pRed}{HTML}{A75161}
+\definecolor{pPaper}{HTML}{F7F7F3}
+\colorlet{pBlueWash}{pSky!19!white}
+\colorlet{pTealWash}{pMint!45!white}
+\colorlet{pGoldWash}{pCream!40!white}
+\colorlet{pResearchWash}{pPeach!29!white}
+\colorlet{pEvoWash}{pRose!11!white}
+\colorlet{pRedWash}{pRose!13!white}
 \tikzset{
   eraBox/.style={draw=eraNavy,rounded corners=2pt,line width=0.65pt,
     align=center,font=\small,inner sep=5pt},
@@ -52,9 +65,9 @@
   pText/.style={font=\sffamily\fontsize{8}{9.6}\selectfont,text=pInk,align=left},
   pSmall/.style={font=\sffamily\fontsize{7}{8.4}\selectfont,text=pMuted,align=left},
   pTitle/.style={font=\sffamily\bfseries\fontsize{8.5}{10}\selectfont,text=pInk,align=left},
-  pCard/.style={draw=pLine,fill=white,rounded corners=1pt,line width=.6pt,inner sep=4pt,pText},
-  pArrow/.style={-{Latex[length=1.7mm]},draw=pInk,line width=.85pt},
-  pSoftArrow/.style={-{Latex[length=1.4mm]},draw=pMuted,line width=.55pt},
+  pCard/.style={draw=pLine,fill=white,rounded corners=5pt,line width=.55pt,inner sep=4pt,pText},
+  pArrow/.style={-{Stealth[length=1.6mm,width=1.15mm]},draw=pInk,line width=.68pt},
+  pSoftArrow/.style={-{Stealth[length=1.4mm,width=1mm]},draw=pMuted,line width=.55pt},
   pDash/.style={pSoftArrow,dashed},
   pDot/.style={circle,draw=pInk,fill=white,minimum size=5mm,inner sep=0pt,font=\sffamily\scriptsize}
 }

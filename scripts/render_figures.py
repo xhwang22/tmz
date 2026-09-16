@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[1]
 FIGURES = (
     "overview", "preference_mining", "evaluator", "direction_search",
-    "downstream", "annotation_examples", "data_boundaries", "semantic_synthesis",
+    "downstream", "domain_panorama", "annotation_examples", "data_boundaries", "semantic_synthesis",
 )
 
 
@@ -64,7 +64,7 @@ def contact_sheet(paths, destination):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("names", nargs="*", help="Figure stems; default: all eight")
+    parser.add_argument("names", nargs="*", help="Figure stems; default: all manuscript figures")
     parser.add_argument("--out", default="build/figure-review")
     args = parser.parse_args()
     names = args.names or list(FIGURES)

@@ -3,66 +3,73 @@
   \pPanel{a}{C1: Select}{0}{5.54}
   \pPanel{b}{C2: Refine}{4.65}{5.54}
   \pPanel{c}{C3: Train (planned)}{9.30}{5.54}
-  \draw[pRule] (4.43,.71) -- (4.43,5.20);
-  \draw[pRule] (9.08,.71) -- (9.08,5.20);
+  \path[pSurface,fill=pBlueWash] (0,.72) rectangle (4.37,5.23);
+  \path[pSurface,fill=pTealWash] (4.65,.72) rectangle (9.01,5.23);
+  \path[pSurface,fill=pEvoWash] (9.30,.72) rectangle (13.70,5.23);
 
-  \node[pSmall,align=center] at (2.15,5.05) {Same input; fixed pool ($N=4$)};
-  \foreach \x/\n in {.66/1,1.66/2,2.66/3,3.66/4}{
-    \node[draw=pBlue,fill=pBlue!5,minimum width=.63cm,minimum height=.55cm,
-      inner sep=0pt,pText,text=pBlue] at (\x,4.48) {$y_{\n}$};
+  \node[pSmall,align=center] at (2.18,4.99) {Same input; fixed pool ($N=4$)};
+  \foreach \x/\n in {.67/1,1.67/2,2.67/3,3.67/4}{
+    \path[draw=pBlue!50,fill=white,rounded corners=2pt]
+      (\x-.29,4.15) rectangle (\x+.29,4.68);
+    \path[draw=pBlue!50,fill=pBlue!15]
+      (\x+.11,4.68) -- (\x+.11,4.52) -- (\x+.29,4.52);
+    \node[pText,text=pBlue] at (\x,4.36) {$y_{\n}$};
   }
-  \foreach \x/\id/\t/\col in {1.07/es/Baselines/pMuted,3.24/ep/P2E/pTeal}{
-    \node[pCard,draw=\col,text width=1.40cm,minimum height=.56cm,align=center]
-      (\id) at (\x,3.48) {\t};
-    \draw[pArrow,draw=\col] (2.15,4.15) -- (2.15,3.95) -| (\id.north);
+  \foreach \x/\t/\col in {1.07/Baselines/pMuted,3.24/P2E/pTeal}{
+    \pIcon{agent}{\col}{\x}{3.39}{.62}
+    \node[pLabel,text=\col] at (\x,2.91) {\t};
+    \draw[pArrow,draw=\col] (2.15,4.02) to[out=-90,in=90] (\x,3.74);
   }
-  \node[pText,text=pMuted] (sb) at (1.07,2.30) {$\hat y_{\mathrm{base}}$};
-  \node[pText,text=pTeal] (sp) at (3.24,2.30) {$\hat y_{\mathrm{P2E}}$};
-  \draw[pArrow,draw=pMuted] (es.south) -- (sb.north);
-  \draw[pEvidence] (ep.south) -- (sp.north);
-  \node[pSmall,fill=white,inner sep=2pt,align=center] at (2.15,2.91) {Frozen scoring protocol};
-  \fill[pGold!8] (.10,.97) rectangle (4.20,1.83);
-  \node[pLabel,text=pGold,align=center] at (2.15,1.60) {FULL HUMAN RANKINGS};
-  \node[pSmall,align=center,text=pInk] at (2.15,1.20) {Agreement / selection / regret};
+  \node[pText,text=pMuted] (sb) at (1.07,2.22) {$\hat y_{\mathrm{base}}$};
+  \node[pText,text=pTeal] (sp) at (3.24,2.22) {$\hat y_{\mathrm{P2E}}$};
+  \draw[pSoftArrow] (1.07,2.69) -- (sb.north);
+  \draw[pEvidence] (3.24,2.69) -- (sp.north);
+  \node[pSmall,align=center] at (2.15,1.80) {Frozen scoring protocol};
+  \path[fill=white,draw=pGold!25,rounded corners=5pt] (.15,.87) rectangle (4.22,1.53);
+  \pIcon{person}{pGold}{.53}{1.18}{.51}
+  \node[pLabel,text=pGold,anchor=west] at (.93,1.33) {Full human rankings};
+  \node[pSmall,anchor=west,text=pInk] at (.93,1.02) {Agreement, selection, regret};
 
-  \node[pSmall,align=center] at (6.85,5.05) {Fresh generation; shared start};
-  \node[draw=pBlue,fill=pBlue!5,minimum width=.75cm,minimum height=.55cm,
-    inner sep=0pt,pText,text=pBlue] (y0) at (6.85,4.48) {$y_0$};
-  \foreach \x/\id/\t/\col in {5.74/cs/{Seed critic}/pMuted,7.97/cp/{P2E critic}/pTeal}{
-    \node[pCard,draw=\col,text width=1.45cm,minimum height=.56cm,align=center]
-      (\id) at (\x,3.48) {\t};
-    \draw[pArrow,draw=\col] (y0.south) -- (6.85,3.95) -| (\id.north);
+  \node[pSmall,align=center] at (6.83,4.99) {Fresh generation; shared start};
+  \node[pPill,draw=pBlue!50,text=pBlue,minimum width=.72cm,minimum height=.52cm]
+    (y0) at (6.83,4.41) {$y_0$};
+  \foreach \x/\t/\col in {5.74/{Seed critic}/pMuted,7.97/{P2E critic}/pTeal}{
+    \pIcon{clipboard}{\col}{\x}{3.39}{.67}
+    \node[pLabel,text=\col] at (\x,2.91) {\t};
+    \draw[pArrow,draw=\col] (y0.south) to[out=-90,in=90] (\x,3.73);
   }
-  \node[pText,text=pMuted] (ys) at (5.74,2.26) {$y'_{\mathrm{Seed}}$};
-  \node[pText,text=pTeal] (yp) at (7.97,2.26) {$y'_{\mathrm{P2E}}$};
-  \draw[pArrow,draw=pMuted] (cs.south) -- (ys.north);
-  \draw[pEvidence] (cp.south) -- (yp.north);
-  \node[pSmall,fill=white,inner sep=2pt] at (6.85,2.90) {Same reviser + budget};
-  \fill[pGold!8] (4.79,.81) rectangle (8.91,1.86);
-  \node[pLabel,text=pGold,align=center] at (6.85,1.65) {NEW BLIND RANKING};
-  \node[pSmall,align=center,text=pInk] at (6.85,1.26) {$y_0$, $y'_{\mathrm{Seed}}$, $y'_{\mathrm{P2E}}$};
-  \node[pSmall,align=center,text=pInk] at (6.85,.95) {Primary: P2E vs.\ Seed};
+  \node[pText,text=pMuted] (ys) at (5.74,2.22) {$y'_{\mathrm{Seed}}$};
+  \node[pText,text=pTeal] (yp) at (7.97,2.22) {$y'_{\mathrm{P2E}}$};
+  \draw[pSoftArrow] (5.74,2.69) -- (ys.north);
+  \draw[pEvidence] (7.97,2.69) -- (yp.north);
+  \node[pSmall,align=center] at (6.83,1.80) {Same refinement model + budget};
+  \path[fill=white,draw=pGold!25,rounded corners=5pt] (4.80,.87) rectangle (8.86,1.53);
+  \pIcon{person}{pGold}{5.17}{1.18}{.51}
+  \node[pLabel,text=pGold,anchor=west] at (5.57,1.33) {New blind ranking};
+  \node[pSmall,anchor=west,text=pInk] at (5.57,1.02) {$y_0$, $y'_{\mathrm{Seed}}$, $y'_{\mathrm{P2E}}$};
 
-  \node[pSmall,align=center] at (11.49,5.05) {Same base model and training inputs};
-  \node[pText,draw=pInk,minimum width=.75cm,minimum height=.55cm,
-    inner sep=0pt] (base) at (11.49,4.48) {$\pi_0$};
-  \draw[pArrow] (base.south) -- (11.49,3.97) -- (9.83,3.97) -- (9.83,1.99);
-  \node[pSmall,align=center,fill=white,inner sep=2pt] at (9.83,3.30) {Base\\no update};
-  \foreach \x/\id/\t/\col in {11.33/rs/Seed/pMuted,12.95/rp/P2E/pPlum}{
-    \node[pSmall,draw=\col,fill=white,text=\col,text width=.98cm,
-      minimum height=.67cm,align=center] (\id) at (\x,3.46) {\t\\reward};
-    \node[pSmall,draw=\col,fill=\col!5,text=pInk,text width=.98cm,
+  \node[pSmall,align=center] at (11.49,4.99) {Same base model and training inputs};
+  \pIcon{agent}{pEvo}{11.49}{4.39}{.48}
+  \node[pText,anchor=west] at (11.88,4.39) {$\pi_0$};
+  \draw[pSoftArrow,rounded corners=4pt]
+    (11.49,4.07) -- (9.86,4.07) -- (9.86,1.94);
+  \node[pSmall,align=center,fill=pEvoWash,inner sep=2pt] at (9.86,3.26) {Base\\no update};
+  \foreach \x/\id/\t/\col in {11.33/rs/Seed/pMuted,12.95/rp/P2E/pEvo}{
+    \node[pPill,draw=\col!45,text=\col,text width=.98cm,
+      minimum height=.64cm,align=center] (\id) at (\x,3.46) {\t\\reward};
+    \node[pPill,draw=\col!45,fill=white,text=pInk,text width=.98cm,
       minimum height=.64cm,align=center] (g\id) at (\x,2.40) {GRPO\\LoRA};
-    \draw[pArrow,draw=\col] (11.49,3.97) -- (\x-.79,3.97)
+    % Initialization and scalar rewards are separate inputs to the trainer.
+    \draw[pSoftArrow,rounded corners=3pt] (11.49,4.07) -- (\x-.79,4.07)
       -- (\x-.79,2.40) -- (g\id.west);
     \draw[pArrow,draw=\col] (\id) -- (g\id);
-    \draw[pArrow,draw=\col] (g\id.south) -- (\x,1.88) -- (\x+.61,1.88)
-      -- (\x+.61,2.40) -- (g\id.east);
+    \draw[pArrow,draw=\col,rounded corners=4pt] (g\id.south)
+      -- (\x,1.88) -- (\x+.61,1.88) -- (\x+.61,2.40) -- (g\id.east);
     \node[pSmall,align=center] at (\x,1.57) {Own rollouts};
   }
-  \node[pText] at (9.83,1.70) {$\pi_0$};
-  \node[pSmall,align=center] at (11.49,1.12) {Frozen rewards; matched compute};
-  \node[pSmall,text=pGold,align=center] at (11.49,.80) {New outputs; blind $H_0/H_1$};
+  \node[pText] at (9.86,1.67) {$\pi_0$};
+  \node[pSmall,align=center] at (11.49,1.16) {Frozen rewards; matched compute};
+  \node[pSmall,text=pGold,align=center] at (11.49,.86) {New outputs; blind $H_0/H_1$};
 
   \draw[pRule] (0,.55) -- (13.7,.55);
   \node[pSmall,align=center] at (6.85,.24)

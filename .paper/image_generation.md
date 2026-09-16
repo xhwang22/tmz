@@ -1,7 +1,7 @@
 # Illustration provenance
 
 Updated 2026-09-16 for the reference-informed visual redesign. See
-[visual_references.md](visual_references.md) for the four inspected papers and
+[visual_references.md](visual_references.md) for the inspected papers and
 the specific communication choices adopted. Their figures were not copied,
 traced, or uploaded to the image service.
 
@@ -14,9 +14,9 @@ in [figure_assets.json](figure_assets.json).
 
 | Asset in `output/imagegen/` | Operation and input | Manuscript use | Prompt in `.paper/prompts/` |
 | --- | --- | --- | --- |
-| `edit-source.png` | Generate a blue bowl on a pale stone table | Fig6(a), source | `edit-scene-source.txt` |
-| `edit-preserved.png` | Edit source: add a red mug, preserve the bowl and scene | Fig1(a), Fig6(a) candidate B | `edit-scene-preserved.txt` |
-| `edit-omission.png` | Edit preserved candidate: remove only the bowl and its shadow | Fig6(a) candidate A | `edit-scene-omission.txt` |
+| `edit-source.png` | Generate a blue bowl on a pale stone table | Fig7(b), source | `edit-scene-source.txt` |
+| `edit-preserved.png` | Edit source: add a red mug, preserve the bowl and scene | Fig1(a), Fig6(b), Fig7(b) candidate B | `edit-scene-preserved.txt` |
+| `edit-omission.png` | Edit preserved candidate: remove only the bowl and its shadow | Fig7(b) candidate A | `edit-scene-omission.txt` |
 
 The photographic comparison illustrates the instruction “Add a red mug.
 Preserve the blue bowl.” All three images were inspected after generation.
@@ -43,9 +43,11 @@ outputs under evaluation, human feedback, or measured results.
   omission edit in 97.9 seconds. These are preparation timings, not service
   guarantees or scientific experiment measurements.
 
-The source, omission, and preserved images print at 3.00 cm width in Figure 6:
-approximately 1300 DPI. Figure 1 uses the preserved image at 2.265 cm width,
-approximately 1722 DPI. The checker requires at least 600 DPI, checks explicit
+The source, omission, and preserved images print at 1.94 cm width in Figure 7(b):
+approximately 2011 DPI. The preserved image prints at 1.96 cm in Figure 1(a)
+(approximately 1991 DPI) and 1.68 cm in Figure 6(b) (approximately 2322 DPI).
+The declared maximum width remains 3 cm, a conservative 1300-DPI budget rather
+than the actual placement size. The checker requires at least 600 DPI, checks explicit
 TeX widths against each asset's declared maximum, and verifies PNG dimensions
 and SHA-256; it does not mistake a small photo for a full-page raster.
 
@@ -60,6 +62,10 @@ Prompts contain invented scenes and generic aesthetics only. No private examples
 human annotation records, observed metrics, credentials, or experiment logs were
 sent to the service. Building the PDF and figure previews uses committed assets
 and makes no model API calls.
+
+The author's blue/mint/cream/peach/rose palette and the expanded task gallery
+were implemented in native TikZ in round 4. The three photographs, model
+provenance, lineage, and hashes are unchanged; this round makes no new model calls.
 
 The round-2 `domain-panorama-final.png` and its prompts remain an explicitly
 archived asset, not an active manuscript graphic. Earlier overviews remain in

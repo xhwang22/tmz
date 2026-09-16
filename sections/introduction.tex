@@ -10,32 +10,34 @@ complete ordering. Existing metrics and model-based judges provide useful but
 different evidence about that ordering
 \citep{fabbri2021summeval,xu2023imagereward,ghosh2023geneval,liu2023geval}.
 
-The availability of more evaluators does not by itself specify how to resolve
-their disagreement. A learned metric and a language-model judge may assess
-different constructs, or share a blind spot despite producing different scores.
-Human feedback is valuable where such evidence is insufficient, but an overall
-preference alone does not locate a failure in observation, criteria, reasoning,
-or aggregation. Work on model-based judging and human-authored criteria motivates
-making these distinctions explicit \citep{zheng2023judging,shankar2024evalgen}.
-The resulting research problem concerns both \emph{where to request feedback}
-and \emph{how to use it to change an evaluation system}.
+The central difficulty is that a preference error does not identify its cause.
+A summary evaluator might never inspect the source qualification, observe it
+without passing it to the judge, or judge faithfulness correctly but give fluency
+too much weight. The same wrong ordering is compatible with each mechanism.
+Adding another score does not resolve this ambiguity when sources measure
+different constructs or share a blind spot. Work on model-based judging and
+human-authored criteria motivates examining what supports a judgment
+\citep{zheng2023judging,shankar2024evalgen}. This leads to two linked questions:
+\emph{which human judgments reveal gaps in evaluation}, and \emph{how should an
+evaluator evolve in response}?
 
 We introduce \PtwoE{}, Preference-Guided Evaluator Evolution, for domains with
 open-ended outputs and an existing evaluation ecosystem.
 Figure~\ref{fig:overview} presents the complete framework. \PtwoE{} maps available
-signals to quality dimensions before exposing human labels, mines informative
-disagreements, and collects feedback at a declared level of granularity.
-An adaptation evidence table connects these judgments to source artifacts and
-execution traces. Within P2E, we instantiate evaluator adaptation with
-\ERA{} (Evidence-Guided Revision of Agentic Evaluators), a method for revising
-executable evaluation programs.
+signals to quality dimensions before exposing human labels and requests
+structured feedback on semantically distinct disagreements. Human evidence has
+two roles: it helps locate evaluation gaps and supplies the standard against
+which candidate mechanisms are selected. Within P2E, \ERA{} is our method for
+evidence-guided evaluator evolution. With the base model fixed, it evolves how
+an executable program represents artifacts, acquires observations, and turns
+them into judgments. The object of learning is the evaluation procedure itself.
 
 \begin{figure}[t]
 \centering
 \input{figures/overview}
 \caption{\PtwoE{} connects domain-specific evaluation to human feedback,
 evaluator evolution, and independent assessment. (a) Four artifact families.
-(b) Disagreement and structured human evidence. (c) \ERA{} revises a six-component
+(b) Disagreement and structured human evidence. (c) \ERA{} evolves a six-component
 program with a fixed base model. (d) C1 selection, C2 refinement, and planned
 C3 reward training. Artifacts, preferences, and feedback are constructed
 illustrations; the photograph is generated with GPT Image 2. Arrows denote
@@ -46,16 +48,17 @@ information flow, not measured improvements.}
 Two hypotheses motivate the design. First, disagreements between reliable,
 nonredundant signals may make a fixed annotation budget more informative than
 uniform sampling. Second, failures that depend on acquiring, routing, and
-interpreting evidence may require connected program revisions. A failed
-implementation is therefore insufficient to reject its underlying hypothesis.
-These expectations call for matched-budget comparisons, not an assumption that
-more feedback detail or a larger search space must help.
+interpreting evidence may require coordinated evolution of those components.
+A new observation cannot affect a judgment unless it reaches a module able to
+interpret it. ERA therefore organizes variation around mechanism hypotheses
+while selecting complete programs. A failed implementation need not refute its
+hypothesis, and continuation need not promote the current program. These
+distinctions motivate matched-budget comparisons with independent proposals
+and component-restricted search.
 
-The research scope extends across structured visual artifacts, image generation
-and understanding, text generation, and automated research. A common procedure
-is instantiated separately for each evaluation standard. Its value is tested at
-three distinct levels: agreement and selection on fixed candidates (C1), changes
-to outputs through a frozen critic (C2), and changes to a generator through a
-frozen reward (C3). Success at one level does not establish success at the next.
-This paper develops the feedback-mining formulation, the ERA revision procedure,
-and the controlled evaluation design for these hypotheses.
+A common evolution procedure is instantiated separately for each evaluation
+standard. We distinguish agreement and selection on fixed candidates (C1),
+refinement through a frozen critic (C2), and training under a frozen reward (C3).
+Success at one level does not establish success at the next. This paper develops
+the feedback-mining formulation, ERA evolution procedure, and controlled studies
+needed to test these hypotheses.

@@ -9,8 +9,9 @@
 - Natbib author–year citations; supplied `.bst`; single-paragraph abstract.
 - Figure captions below; table captions above; readable vector artwork for exact
   diagrams. This draft checks all raster assets at a minimum of 600 DPI at print
-  width. Its three 1536-pixel photographs provide about 1300 DPI at their maximum
-  3 cm width; the former panorama strip is archived and unused.
+  width. Its three 1536-pixel photographs provide about 1300 DPI at the declared
+  maximum 3 cm width and at least 1990 DPI at their actual placements. The former
+  raster panorama strip is archived and unused; Figure 6 is now native TikZ.
 - Required AI use statement, at most one page, outside the page limit.
 - Recommended ethics and reproducibility statements, each at most one page,
   outside the page limit and before references.

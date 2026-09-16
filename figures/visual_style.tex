@@ -1,32 +1,175 @@
-% Shared figure vocabulary. Semantic structure and labels remain vector-native.
+% Original vector pictograms and shared figure vocabulary.
+% Reference principles and provenance: .paper/visual_references.md.
 \tikzset{
   pLabel/.style={font=\sffamily\bfseries\fontsize{7}{8.4}\selectfont,text=pInk,align=left},
   pLead/.style={font=\sffamily\bfseries\fontsize{11}{12}\selectfont,text=pInk},
   pMono/.style={font=\ttfamily\fontsize{7}{8.4}\selectfont,text=pInk,align=left},
-  pBadge/.style={circle,fill=pInk,text=white,inner sep=0pt,minimum size=4mm,
+  pBadge/.style={circle,fill=pInk!8,text=pInk,inner sep=0pt,minimum size=4mm,
     font=\sffamily\bfseries\fontsize{8}{8}\selectfont},
-  pToken/.style={rectangle,rounded corners=.7pt,text=white,inner sep=0pt,
+  pToken/.style={rectangle,rounded corners=2.5pt,text=pInk,inner sep=0pt,
     minimum size=4.4mm,font=\sffamily\bfseries\fontsize{8}{8}\selectfont},
   pEvidence/.style={pArrow,draw=pTeal},
-  pRevision/.style={pArrow,draw=pPlum},
-  pRule/.style={draw=pLine,line width=.6pt}
+  pEvolution/.style={pArrow,draw=pEvo},
+  pRule/.style={draw=pLine,line width=.5pt},
+  pSurface/.style={rounded corners=7pt,draw=none},
+  pPill/.style={rounded corners=3pt,draw=pLine,line width=.5pt,fill=white,
+    minimum height=.43cm,inner sep=3pt,pSmall}
 }
 \newcommand{\pPanel}[4]{%
   \node[pBadge] at (#3+.20,#4) {#1};
   \node[pTitle,anchor=west,inner sep=0pt] at (#3+.49,#4) {#2};
 }
 \newcommand{\pCandidate}[4]{%
-  \node[pToken,fill=#2] at (#3,#4) {#1};
+  \node[pToken,fill=#2!16,draw=#2!40,line width=.5pt,text=#2!85!black] at (#3,#4) {#1};
 }
 \newcommand{\pComponent}[5]{%
-  \node[draw=#2,fill=#2!7,rounded corners=1pt,minimum width=.53cm,
+  \node[draw=#2!40,fill=white,rounded corners=3pt,minimum width=.53cm,
     minimum height=.49cm,inner sep=0pt,pTitle,text=#2] at (#4,#5) {$#1$};
   \node[pSmall,align=center,inner sep=0pt] at (#4,#5-.43) {#3};
 }
 \newcommand{\pLock}[3]{%
-  \draw[#3,line width=.75pt] (#1-.105,#2+.04) -- (#1-.105,#2+.15)
+  \draw[#3,line width=.65pt] (#1-.105,#2+.04) -- (#1-.105,#2+.15)
     arc[start angle=180,end angle=0,radius=.105] -- (#1+.105,#2+.04);
-  \draw[#3,fill=white,line width=.75pt,rounded corners=.5pt]
+  \draw[#3,fill=#3!12,line width=.65pt,rounded corners=1pt]
     (#1-.17,#2-.16) rectangle (#1+.17,#2+.07);
   \fill[#3] (#1,#2-.035) circle (.025);
+}
+
+% Each pictogram is centered on (0,0), about .8 cm high at scale 1.
+% No font glyphs, external icon packs, or copied reference artwork are used.
+\newcommand{\pIcon}[5]{%
+  \begin{scope}[shift={(#3,#4)},scale=#5,draw=pInk!85,line width=.65pt,
+    line cap=round,line join=round]
+    \def\pIconColor{#2}
+    \pic {p/#1};
+  \end{scope}
+}
+\tikzset{
+  pics/p/page/.style={code={
+    \path[draw=pInk!75,fill=\pIconColor!16,draw=none,rounded corners=1pt]
+      (-.22,-.39) rectangle (.33,.30);
+    \path[draw=pInk!75,fill=white] (-.30,-.32) -- (.23,-.32) -- (.23,.19)
+      -- (.04,.38) -- (-.30,.38) -- cycle;
+    \path[draw=pInk!75,fill=\pIconColor!24] (.04,.38) -- (.04,.19) -- (.23,.19);
+    \draw[\pIconColor,line width=1.1pt] (-.20,.12) -- (-.05,.12);
+    \draw[pMuted!65] (-.20,-.015) -- (.12,-.015)
+      (-.20,-.13) -- (.12,-.13) (-.20,-.24) -- (.015,-.24);
+  }},
+  pics/p/program/.style={code={
+    \path[draw=pInk!75,fill=\pIconColor!15,rounded corners=2pt] (-.21,-.36) rectangle (.37,.27);
+    \path[draw=pInk!75,fill=white,rounded corners=2pt] (-.35,-.24) rectangle (.24,.39);
+    \draw[\pIconColor!65] (-.35,.22) -- (.24,.22);
+    \fill[\pIconColor!45] (-.25,.31) circle (.025);
+    \fill[\pIconColor!45] (-.15,.31) circle (.025);
+    \draw[\pIconColor,line width=1pt] (-.14,.09) -- (-.24,.00) -- (-.14,-.09)
+      (.07,.09) -- (.17,.00) -- (.07,-.09) (.015,.13) -- (-.085,-.13);
+  }},
+  pics/p/agent/.style={code={
+    \draw (0,.31) -- (0,.45);
+    \fill[\pIconColor!60] (0,.48) circle (.045);
+    \path[draw=pInk!75,fill=\pIconColor!17,rounded corners=2pt] (-.21,-.41) rectangle (.21,-.12);
+    \draw (-.30,-.23) -- (-.39,-.32) (.30,-.23) -- (.39,-.32);
+    \draw (-.12,-.41) -- (-.12,-.47) (.12,-.41) -- (.12,-.47);
+    \path[draw=pInk!75,fill=white,rounded corners=3pt] (-.32,-.16) rectangle (.32,.32);
+    \path[draw=pInk!75,fill=\pIconColor!13,draw=\pIconColor!60,rounded corners=2pt]
+      (-.23,-.065) rectangle (.23,.22);
+    \fill[\pIconColor] (-.105,.10) circle (.036);
+    \fill[\pIconColor] (.105,.10) circle (.036);
+    \draw[\pIconColor] (-.07,.00) .. controls (0,-.05) .. (.07,.00);
+    \draw (-.32,.08) -- (-.39,.08) (.32,.08) -- (.39,.08);
+  }},
+  pics/p/person/.style={code={
+    \path[draw=pInk!75,fill=\pIconColor!22] (-.37,-.37) .. controls (-.36,-.08) and (.36,-.08)
+      .. (.37,-.37) -- cycle;
+    \path[draw=pInk!75,fill=pGold!13] (0,.12) ellipse (.19 and .235);
+    \path[draw=pInk!75,fill=pInk!75,draw=none] (-.19,.15) .. controls (-.23,.47) and (.25,.45)
+      .. (.20,.12) -- (.12,.21) -- (.03,.25) -- (-.08,.18) -- cycle;
+    \draw[pInk!65] (-.055,.07) .. controls (0,.025) .. (.055,.07);
+    \path[draw=pInk!75,fill=white,rounded corners=1pt] (.05,-.39) rectangle (.40,-.03);
+    \draw[\pIconColor] (.12,-.14) -- (.32,-.14) (.12,-.24) -- (.26,-.24);
+  }},
+  pics/p/clipboard/.style={code={
+    \path[draw=pInk!75,fill=\pIconColor!16,rounded corners=2pt] (-.28,-.37) rectangle (.28,.31);
+    \path[draw=pInk!75,fill=white,rounded corners=1pt] (-.21,-.29) rectangle (.21,.24);
+    \path[draw=pInk!75,fill=\pIconColor!28,rounded corners=1pt] (-.12,.25) rectangle (.12,.39);
+    \foreach \y in {.10,-.055,-.21}{
+      \draw[\pIconColor] (-.15,\y) -- (-.115,\y-.035) -- (-.055,\y+.035);
+      \draw[pMuted!70] (.02,\y) -- (.15,\y);
+    }
+  }},
+  pics/p/loupe/.style={code={
+    \path[draw=pInk!75,fill=white,rounded corners=1pt] (-.35,-.26) rectangle (.10,.36);
+    \draw[pMuted!60] (-.26,.23) -- (-.01,.23) (-.26,.12) -- (-.05,.12)
+      (-.26,.01) -- (-.10,.01);
+    \draw[\pIconColor!75,line width=2.9pt] (.15,-.13) -- (.37,-.35);
+    \draw[line width=.7pt] (.15,-.13) -- (.37,-.35);
+    \path[draw=pInk!75,fill=\pIconColor!15] (.045,-.01) circle (.20);
+    \draw[white,line width=1.3pt] (-.05,.065) .. controls (-.01,.12) .. (.06,.12);
+  }},
+  pics/p/edit/.style={code={
+    \path[draw=pInk!75,fill=white,rounded corners=1pt] (-.31,-.32) rectangle (.18,.33);
+    \draw[pMuted!55] (-.21,.19) -- (.06,.19) (-.21,.05) -- (.02,.05)
+      (-.21,-.20) -- (-.04,-.20);
+    \begin{scope}[rotate=-38]
+      \path[draw=pInk!75,fill=\pIconColor!30] (.10,-.22) rectangle (.24,.36);
+      \path[draw=pInk!75,fill=pGold!22] (.10,-.22) -- (.17,-.39) -- (.24,-.22) -- cycle;
+      \fill[pInk] (.14,-.33) -- (.17,-.39) -- (.20,-.33) -- cycle;
+      \path[draw=pInk!75,fill=\pIconColor!55] (.10,.25) rectangle (.24,.36);
+    \end{scope}
+  }},
+  pics/p/database/.style={code={
+    \path[draw=pInk!75,fill=\pIconColor!14] (-.31,.23) -- (-.31,-.23)
+      arc[start angle=180,end angle=360,x radius=.31,y radius=.10]
+      -- (.31,.23) -- cycle;
+    \draw (-.31,.02) arc[start angle=180,end angle=360,x radius=.31,y radius=.10];
+    \draw (-.31,-.11) arc[start angle=180,end angle=360,x radius=.31,y radius=.10];
+    \path[draw=pInk!75,fill=white] (0,.23) ellipse (.31 and .10);
+    \draw[\pIconColor] (-.11,.23) -- (.10,.23);
+  }},
+  pics/p/route/.style={code={
+    \draw[\pIconColor] (-.23,0) -- (.02,0) (.02,.25) -- (.02,-.25)
+      (.02,.25) -- (.27,.25) (.02,0) -- (.27,0) (.02,-.25) -- (.27,-.25);
+    \path[draw=pInk!75,fill=\pIconColor!22] (-.28,0) circle (.10);
+    \foreach \y in {-.25,0,.25}{\path[draw=pInk!75,fill=white] (.31,\y) circle (.075);}
+  }},
+  pics/p/fusion/.style={code={
+    \draw[\pIconColor] (-.26,.25) .. controls (-.05,.25) and (-.12,0) .. (.18,0)
+      (-.26,-.25) .. controls (-.05,-.25) and (-.12,0) .. (.18,0);
+    \path[draw=pInk!75,fill=white] (-.28,.25) circle (.075);
+    \path[draw=pInk!75,fill=white] (-.28,-.25) circle (.075);
+    \path[draw=pInk!75,fill=\pIconColor!28] (.23,0) circle (.13);
+  }},
+  pics/p/cards/.style={code={
+    \path[draw=pInk!75,fill=\pIconColor!12,rounded corners=1pt] (-.32,-.20) rectangle (.12,.34);
+    \path[draw=pInk!75,fill=white,rounded corners=1pt] (-.18,-.28) rectangle (.26,.26);
+    \path[draw=pInk!75,fill=\pIconColor!20,rounded corners=1pt] (-.04,-.36) rectangle (.40,.18);
+    \draw[\pIconColor] (.05,.05) -- (.28,.05) (.05,-.06) -- (.28,-.06);
+    \draw[\pIconColor,line width=1pt] (.09,-.21) -- (.15,-.27) -- (.28,-.14);
+  }},
+  pics/p/cube/.style={code={
+    \path[draw=pInk!75,fill=\pIconColor!10] (0,.36) -- (.32,.18) -- (.32,-.19) -- (0,-.37)
+      -- (-.32,-.19) -- (-.32,.18) -- cycle;
+    \path[draw=pInk!75,fill=\pIconColor!27,draw=none] (0,0) -- (.32,.18) -- (.32,-.19) -- (0,-.37) -- cycle;
+    \draw (-.32,.18) -- (0,0) -- (.32,.18) (0,0) -- (0,-.37);
+  }},
+  pics/p/flask/.style={code={
+    \path[draw=pInk!75,fill=white] (-.105,.32) -- (-.105,.06) -- (-.31,-.27)
+      .. controls (-.35,-.36) and (-.28,-.39) .. (-.20,-.39)
+      -- (.20,-.39) .. controls (.28,-.39) and (.35,-.36) .. (.31,-.27)
+      -- (.105,.06) -- (.105,.32) -- cycle;
+    \path[draw=pInk!75,fill=\pIconColor!28,draw=none] (-.15,-.075) -- (-.27,-.29)
+      .. controls (-.29,-.33) and (-.24,-.35) .. (-.20,-.35) -- (.20,-.35)
+      .. controls (.24,-.35) and (.29,-.33) .. (.27,-.29) -- (.15,-.075) -- cycle;
+    \draw (-.16,.33) -- (.16,.33);
+    \fill[white] (-.10,-.20) circle (.036);
+    \fill[\pIconColor!60] (.08,-.27) circle (.029);
+    \draw[\pIconColor] (.24,.21) -- (.24,.33) (.18,.27) -- (.30,.27);
+  }},
+  pics/p/shield/.style={code={
+    \path[draw=pInk!75,fill=\pIconColor!15] (0,.37) .. controls (.12,.27) and (.22,.27) .. (.30,.27)
+      -- (.28,-.06) .. controls (.23,-.24) and (.10,-.33) .. (0,-.40)
+      .. controls (-.10,-.33) and (-.23,-.24) .. (-.28,-.06)
+      -- (-.30,.27) .. controls (-.22,.27) and (-.12,.27) .. (0,.37) -- cycle;
+    \draw[\pIconColor,line width=1.3pt] (-.15,-.01) -- (-.045,-.11) -- (.17,.13);
+  }}
 }

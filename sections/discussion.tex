@@ -1,25 +1,26 @@
 \section{Discussion}
 \label{sec:discussion}
 
-P2E treats human feedback as evidence for revising an evaluation procedure.
-Its two stages address different bottlenecks: mining determines which judgments
-are requested, while ERA determines how those judgments change the program.
-A favorable result would need to survive both independent source-level assessment
-and cost-matched comparisons. Agreement alone would not establish that the
-evaluator's critique helps generation or that its reward remains useful under
-policy optimization.
+P2E asks what an evaluator must learn beyond a mapping from outputs to scores.
+A preference specifies an ordering, but explaining it requires evidence and a
+standard for interpretation. Mining locates cases where existing signals fail
+to settle a judgment. ERA then tests hypotheses about what to observe and how
+those observations should matter, making observation, routing, and interpretation
+explicit objects of evolution.
+
+Useful exploration need not yield a program worth retaining. Connected changes
+can instantiate a hypothesis without justifying its continued pursuit. The
+same distinction applies downstream: correct rankings need not produce
+actionable critiques, and agreement on fixed candidates need not survive policy
+optimization. C1, C2, and C3 separate these uses of an evolved evaluator.
 
 \subsection{Limitations and future work}
 
-First, available feedback may cover only overall preference. Dimensional
-supervision and expert diagnostics require additional annotation and construct
-validation. Second, disagreement can reflect noise or shared model bias rather
-than useful evaluator gaps; random anchors and source-dependence audits must
-precede claims of annotation efficiency. Third, program edits interact, so
-connected-candidate gains require controlled attribution rather than causal
-interpretation from traces alone. Finally, pointwise scoring assumes a useful
-within-domain ordering and adaptive development can overfit. Independent
-ID/OOD evaluation, explicit tie policies, and generation-level studies are
-needed to determine where this formulation is adequate. Empirical improvements,
-transfer across evaluation standards, and reward-training benefits remain open
-questions.
+First, dimensional judgments require additional annotation and construct
+validation beyond overall preference. Second, disagreement can reflect noise
+or shared bias, requiring source-dependence audits and matched-budget acquisition
+studies. Third, interacting components require controlled attribution beyond
+execution traces. Finally, pointwise scoring assumes a useful within-domain
+ordering, and repeated development can overfit aggregate feedback. Independent
+ID/OOD and generation-level studies are needed to test evaluation gains,
+transfer across standards, and training benefits.

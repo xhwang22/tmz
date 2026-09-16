@@ -26,10 +26,12 @@
       "kind": "scope",
       "evidence_artifacts": [
         "sections/problem.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        "figures/domain_panorama.tex"
       ],
       "figure_or_table": [
         "Fig1",
+        "Fig6",
         "Tab4"
       ],
       "status": "draft",
@@ -42,10 +44,12 @@
       "kind": "scope",
       "evidence_artifacts": [
         "sections/problem.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        "figures/domain_panorama.tex"
       ],
       "figure_or_table": [
         "Fig1",
+        "Fig6",
         "Tab4"
       ],
       "status": "draft",
@@ -62,7 +66,7 @@
       ],
       "figure_or_table": [
         "Fig2",
-        "Fig6",
+        "Fig7",
         "Tab5"
       ],
       "status": "draft",
@@ -79,7 +83,7 @@
       ],
       "figure_or_table": [
         "Fig2",
-        "Fig6",
+        "Fig7",
         "Tab5"
       ],
       "status": "draft",
@@ -174,7 +178,7 @@
       ],
       "figure_or_table": [
         "Fig3",
-        "Fig7"
+        "Fig8"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -220,7 +224,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig7"
+        "Fig8"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -295,7 +299,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig8"
+        "Fig9"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -310,7 +314,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig7"
+        "Fig8"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -333,7 +337,7 @@
     },
     {
       "id": "C22",
-      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed critic and P2E critic each inspect that same output and permitted evidence, then return the same critique format. A common generator performs one revision under identical prompts, decoding, tool access, and token budgets (Figure~\\ref{fig:downstream}b).",
+      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed critic and P2E critic each inspect that same output and permitted evidence, then return the same critique format. A common generator performs one refinement step under identical prompts, decoding, tool access, and token budgets (Figure~\\ref{fig:downstream}b).",
       "source": "sections/experiments.tex",
       "kind": "C2 study protocol",
       "evidence_artifacts": [
@@ -426,7 +430,7 @@
     },
     {
       "id": "C28",
-      "text": "Second, failures that depend on acquiring, routing, and interpreting evidence may require connected program revisions.",
+      "text": "Second, failures that depend on acquiring, routing, and interpreting evidence may require coordinated evolution of those components.",
       "source": "sections/introduction.tex",
       "kind": "hypothesis",
       "evidence_artifacts": [],
@@ -435,7 +439,7 @@
         "Tab7"
       ],
       "status": "gap",
-      "gap_reason": "No controlled component/evolution result is incorporated; connected revisions remain a mechanism hypothesis rather than a demonstrated benefit."
+      "gap_reason": "No controlled component/evolution result is incorporated; coordinated evolution remains a mechanism hypothesis rather than a demonstrated benefit."
     },
     {
       "id": "C29",
@@ -460,10 +464,42 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig8"
+        "Fig9"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C31",
+      "text": "ERA treats the evaluator's observation and judgment mechanisms as the objects of evolution.",
+      "source": "sections/method.tex",
+      "kind": "evolution object",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig1",
+        "Fig3"
+      ],
+      "status": "draft",
+      "risk": "A statement of the method's editable mechanisms, not evidence that evolution improves evaluation."
+    },
+    {
+      "id": "C32",
+      "text": "The hypothesis is the unit of exploration; the complete program is the unit of selection.",
+      "source": "sections/method.tex",
+      "kind": "search and selection definition",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        "sections/appendix.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [
+        "Fig4"
+      ],
+      "status": "draft",
+      "risk": "A procedural distinction, not a claim that hypothesis-guided exploration outperforms alternatives."
     }
   ]
 }

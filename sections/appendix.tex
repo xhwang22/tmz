@@ -7,6 +7,22 @@ starting taxonomy to be refined from domain evaluation knowledge before selectin
 datasets. Each instantiated domain must additionally fix priorities, decision
 rules, and an annotation protocol. Inclusion in this panorama does not establish
 data readiness, an implemented adapter, or empirical transfer.
+Figure~\ref{fig:domains} illustrates representative tasks and the quality
+criteria that distinguish the four families.
+
+\begin{figure}[t]
+\centering
+\input{figures/domain_panorama}
+\caption{Diverse artifacts, distinct evaluation standards. Representative tasks
+span (a) structured visual artifacts, (b) images and 3D, (c) text generation,
+and (d) automated research. Each family combines several quality considerations;
+the full 22-domain taxonomy is in Table~\ref{tab:domains}. P2E shares an evolution
+procedure across these standards, not a universal scorer. Artifact views are
+constructed illustrations, including the GPT Image 2 photograph; they do not
+indicate benchmark coverage, implemented adapters, or completed experiments.}
+\label{fig:domains}
+\end{figure}
+\FloatBarrier
 
 \begingroup
 \small
@@ -146,7 +162,7 @@ conflict and failure subsets. $H_3$ is optional. Two independent annotators with
 adjudication may support development; final ID/OOD assessment targets three
 independent annotators and blinded complete rankings. Core dimensions and the
 tie policy are fixed in advance. A model or an author decision is not substituted
-for a missing independent final annotation. Figures~\ref{fig:annotation}a--c
+for a missing independent final annotation. Figures~\ref{fig:annotation}a--d
 illustrate the distinctions without supplying study data.
 An $H_0$-only instantiation must be reported as such; the framework's richer
 interface does not establish that a run actually received $H_1$ or $H_2$.
@@ -154,8 +170,9 @@ interface does not establish that a run actually received $H_1$ or $H_2$.
 \begin{figure}[t]
 \centering
 \input{figures/annotation_examples}
-\caption{Worked examples of feedback granularity across (a) image editing,
-(b) summarization, and (c) research study design. Each example separates overall
+\caption{A common feedback schema across distinct quality standards:
+(a) webpage requirement satisfaction, (b) image-edit preservation,
+(c) summary faithfulness, and (d) research identifiability. Each example separates overall
 preference, dimensional judgment, a localized diagnostic, and an optional
 rationale. All tasks, candidates, and judgments are constructed illustrations,
 not benchmark cases or collected human feedback. GPT Image 2 generated the
@@ -237,7 +254,7 @@ or checkpoint selection. All partitions preserve original-input/source groups.}
 \end{figure}
 
 \paragraph{Training and validation.}
-Proposal-Train evidence may inform directions, revisions, and allocation.
+Proposal-Train evidence may inform evolution directions, candidates, and allocation.
 Sealed Train reveals prespecified aggregate agreement, coverage, and stratum
 guards without examples, labels, or per-case errors. Aggregates remain adaptive
 development evidence, not a final performance estimate. The terminal shortlist
@@ -434,7 +451,7 @@ $H_0+H_1+H_2+H_3$ &
 Marginal value of granularity; report annotation units and annotation time.\\
 Editable scope & Full $(A,K,V,T,\Pi,G)$; rubric/procedure only $(K,V)$;
 fixed tools and static routes; routing only &
-Whether additional observations or structural changes are needed beyond criteria revision.\\
+Whether additional observations or structural changes are needed beyond criteria changes.\\
 Evidence ceiling & Oracle evidence and/or oracle routing with access declared &
 Diagnostic headroom under privileged information; no deployment claim.\\
 Search allocation & Independent one-shot proposals; history-only proposals;
@@ -518,7 +535,7 @@ reward-hacking gate fails, expansion stops for that domain and the failure is
 retained. Success elsewhere is not a substitute. Final sample sizes are determined
 from pilot variance and a declared minimum detectable effect before test
 generation. Test inputs and judgments do not participate in training, checkpoint
-selection, reward revision, or failure-driven edits. Any deliberate sharing of
+selection, reward design, or failure-driven edits. Any deliberate sharing of
 locked input pools across C1/C2/C3 must be prespecified with an access audit;
 their newly generated outputs and judgments are never treated as reusable old
 labels.
