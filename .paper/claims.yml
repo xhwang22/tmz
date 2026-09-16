@@ -636,6 +636,20 @@
       "figure_or_table": [],
       "status": "draft",
       "risk": "An explicit representation permits inspection; faithful reasoning, interpretability benefits, and human alignment require independent evidence."
+    },
+    {
+      "id": "C42",
+      "text": "Human preference data provide a reference for alignment, but a preference alone does not fully specify the criteria and evidence needed to judge new outputs.",
+      "source": "sections/abstract.tex",
+      "kind": "problem framing",
+      "evidence_artifacts": [
+        "sections/introduction.tex",
+        "sections/problem.tex",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "The distinction between a preference outcome and an explicit evaluation procedure motivates the method; it does not establish that human criteria can be fully recovered, that explanations are faithful, or that evolution improves alignment."
     }
   ]
 }

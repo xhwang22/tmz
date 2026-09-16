@@ -191,6 +191,18 @@
         "Active chart/table labels and metadata", "Paper memory", "Offline checks"
       ],
       "summary": "Replaces the project-branded title with Evolving Evaluation Systems from Human Feedback while retaining ERA solely as the method name. Rewrites the abstract and introduction around the difficulty of translating human preferences into explicit, executable evaluation standards, following the source plan's two linked problems of structured preference acquisition and hypothesis-guided program evolution. Error diagnosis is a supporting mechanism rather than the primary research problem. Adds planned fixed-structure evaluator fine-tuning and score-calibration alternatives, a shared-observation control, and Table12; distinguishes evaluator tuning from C3 generator training and inspectable programs from faithful explanations. Updates active labels and simulation schemas without changing toy numerical values or visual styles. Preserves historical naming in archival provenance. C27/C28 remain empirical gaps; no experiments, tuning, training, new image calls, or source-project modifications are performed."
+    },
+    {
+      "round": 7,
+      "date": "2026-09-16",
+      "trigger": "Author approves the title scope and abstract argument before rewriting: open-ended preference alignment, the gap between feedback and executable evaluation, evaluation-agent evolution, and cross-task validation.",
+      "reviewer": "Author feedback",
+      "changed_claims": ["C42"],
+      "changed_figures": [],
+      "sections_touched": [
+        "Title and PDF metadata", "Abstract", "Introduction opening", "Paper memory", "README"
+      ],
+      "summary": "Adds for Open-Ended Tasks to the unbranded title and rewrites the abstract around the author-approved causal argument. C42 records the distinction between an observed preference and the criteria and evidence needed to judge new outputs. Structured acquisition is conditional on needing new feedback, and hypotheses guide coordinated evaluator changes assessed against separate human feedback. Removes the parameter-fitting contrast, search-state mechanics, provenance-reporting details, and domain/study-arm lists from the abstract while retaining substantive comparisons and protocols in the body. Lightly aligns the introduction opening, keeps its parameter-adaptation paragraph intact below the overview, and synchronizes title metadata and writing guidance. Figures, tables, simulated data, empirical-gap statuses, and prior history entries are unchanged; no experiments, training, model calls, or source-project edits are made."
     }
   ]
 }
