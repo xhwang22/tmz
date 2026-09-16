@@ -88,8 +88,14 @@
   legend/caption. Keep labels, shapes, line patterns, and hatching as redundant
   cues. Preserve softly tinted surfaces and original pictograms in diagrams.
 - Keep ICLR body fonts, margins, and heading rules unchanged. Figures use
-  Helvetica-compatible typography: scoped `phv` in TikZ and TeX Gyre Heros in
-  Matplotlib. Main chart titles are 8.5 pt, axis labels 8 pt, tick/legend labels
+  Helvetica-compatible typography: scoped TeX Gyre Heros (`qhv`) in the main
+  overview, `phv` in the runtime diagram, and TeX Gyre Heros in Matplotlib.
+  The overview uses 8.5 pt panel headings, 7.4 pt card headings/body labels,
+  7 pt notes, and an 11 pt ERA label. Reserve bold for headings and ERA;
+  keep action labels regular. Retain explicit card insets, consistent row
+  spacing, and the figure-local `transform shape` setting so pictograms respect
+  their specified scales. Do not shrink the entire figure to hide crowding.
+  Main chart titles are 8.5 pt, axis labels 8 pt, tick/legend labels
   about 7.3–7.5 pt; 6.8 pt is reserved for fixture-disclosure notes. The native
   chart canvas is 5.4 inches wide and is not silently cropped or reduced.
   Use aligned numeric columns, booktabs rules, light row emphasis, and readable

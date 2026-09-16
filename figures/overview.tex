@@ -1,6 +1,30 @@
 \begingroup
-\renewcommand{\sfdefault}{phv}% Helvetica-compatible figure typography only.
-\begin{tikzpicture}[line cap=round,line join=round]
+\renewcommand{\sfdefault}{qhv}% TeX Gyre Heros; scoped to this figure.
+% A small, role-based type scale. Only headings and ERA carry bold weight.
+% Zero default node padding makes the explicit card insets predictable;
+% pills restore their own padding below. The ICLR body fonts are unchanged.
+\tikzset{
+  pTitle/.style={font=\sffamily\bfseries\fontsize{8.5}{10.4}\selectfont,
+    text=pInk,align=left},
+  pLabel/.style={font=\sffamily\bfseries\fontsize{7.4}{9.2}\selectfont,
+    text=pInk,align=left},
+  pText/.style={font=\sffamily\mdseries\fontsize{7.4}{9.4}\selectfont,
+    text=pInk,align=left},
+  pSmall/.style={font=\sffamily\mdseries\fontsize{7}{9}\selectfont,
+    text=pMuted,align=left},
+  pLead/.style={font=\sffamily\bfseries\fontsize{11}{13}\selectfont,text=pEvo},
+  pBadge/.style={circle,fill=pInk!7,text=pInk,inner sep=0pt,minimum size=3.8mm,
+    font=\sffamily\bfseries\fontsize{7.6}{9}\selectfont},
+  pPill/.style={pSmall,rounded corners=3pt,draw=pLine,line width=.5pt,
+    fill=white,minimum height=.43cm,inner xsep=4pt,inner ysep=2.5pt},
+  ovStep/.style={pText,align=center},
+  pEvolution/.style={pArrow,draw=pEvo,line width=.62pt},
+  pEvidence/.style={pArrow,draw=pTeal,line width=.62pt}
+}%
+% TikZ pics otherwise discard scale when their local transformation is reset.
+% This makes each pictogram respect the size requested by \pIcon.
+\begin{tikzpicture}[line cap=round,line join=round,transform shape,
+  every node/.style={inner sep=0pt,outer sep=0pt}]
   \path[use as bounding box] (0,0) rectangle (13.7,8.1);
   \pPanel{a}{Open-ended generation: domain-specific evaluation standards}{0}{7.88}
 
@@ -8,49 +32,58 @@
   \foreach \x/\col in {0/pBlueWash,3.47/pTealWash,6.94/pGoldWash,10.41/pResearchWash}{
     \path[pSurface,fill=\col] (\x,5.59) rectangle (\x+3.29,7.53);
   }
-  \node[pLabel,text=pBlue,anchor=west] at (.18,7.29) {Structured visuals};
-  \draw[pBlue!60,fill=white,rounded corners=2pt] (.24,6.05) rectangle (2.00,6.98);
-  \draw[pBlue!35] (.24,6.78) -- (2.00,6.78);
-  \foreach \x in {.37,.49,.61}{\fill[pBlue!45] (\x,6.88) circle (.025);}
-  \path[fill=pBlue!23,rounded corners=1pt] (.37,6.18) rectangle (.91,6.65);
-  \path[fill=pBlue!75] (.46,6.18) -- (.46,6.43)
-    arc[start angle=180,end angle=0,radius=.18] -- (.82,6.18) -- cycle;
+  \node[pLabel,text=pBlue,anchor=base west] at (.26,7.18) {Structured visuals};
+  \draw[pBlue!60,fill=white,rounded corners=2pt] (.26,6.20) rectangle (2.01,7.02);
+  \draw[pBlue!35] (.26,6.83) -- (2.01,6.83);
+  \foreach \x in {.39,.51,.63}{\fill[pBlue!45] (\x,6.92) circle (.025);}
+  \path[fill=pBlue!23,rounded corners=1pt] (.39,6.32) rectangle (.93,6.72);
+  \path[fill=pBlue!75] (.48,6.32) -- (.48,6.49)
+    arc[start angle=180,end angle=0,radius=.18] -- (.84,6.32) -- cycle;
   \node[font=\sffamily\bfseries\fontsize{6}{7}\selectfont,text=pInk,anchor=west]
-    at (.93,6.58) {Art};
-  \draw[pBlue!45,line width=.7pt] (1.09,6.39) -- (1.78,6.39);
-  \path[fill=pBlue!30,rounded corners=1pt] (1.09,6.18) rectangle (1.68,6.29);
-  \draw[pBlue!60,fill=white,rounded corners=2pt] (1.69,5.99) rectangle (3.01,6.69);
-  \draw[pBlue!55,line width=1pt] (1.84,6.51) -- (2.62,6.51);
-  \path[fill=pGold!26,draw=pGold!60] (1.98,6.28) circle (.12);
-  \draw[pBlue!50] (2.26,6.30) -- (2.84,6.30) (2.26,6.17) -- (2.70,6.17);
-  \node[pSmall,align=center] at (1.645,5.79) {Slides $\cdot$ web $\cdot$ charts};
+    at (1.08,6.65) {Art};
+  \draw[pBlue!45,line width=.7pt] (1.09,6.47) -- (1.78,6.47);
+  \path[fill=pBlue!30,rounded corners=1pt] (1.09,6.30) rectangle (1.68,6.40);
+  \draw[pBlue!60,fill=white,rounded corners=2pt] (1.69,6.15) rectangle (3.01,6.76);
+  \draw[pBlue!55,line width=1pt] (1.84,6.60) -- (2.62,6.60);
+  \path[fill=pGold!26,draw=pGold!60] (1.98,6.40) circle (.11);
+  \draw[pBlue!50] (2.26,6.42) -- (2.84,6.42) (2.26,6.29) -- (2.70,6.29);
+  \node[pSmall,align=center] at (1.645,5.91)
+    {Slides\,\textperiodcentered\,web\,\textperiodcentered\,charts};
 
-  \node[pLabel,text=pTeal,anchor=west] at (3.65,7.29) {Images and 3D};
+  \node[pLabel,text=pTeal,anchor=base west] at (3.73,7.18) {Images and 3D};
   \begin{scope}
-    \clip[rounded corners=3pt] (3.67,6.00) rectangle (5.63,7.04);
-    \node[inner sep=0pt] at (4.65,6.55)
+    \clip[rounded corners=3pt] (3.73,6.15) rectangle (5.69,7.02);
+    \node[inner sep=0pt] at (4.71,6.58)
       {\includegraphics[width=1.96cm]{output/imagegen/edit-preserved.png}};
   \end{scope}
-  \pIcon{cube}{pTeal}{6.17}{6.53}{.83}
-  \node[pSmall,align=center] at (5.115,5.79) {Synthesis $\cdot$ editing $\cdot$ 3D};
+  \pIcon{cube}{pTeal}{6.20}{6.58}{.83}
+  \node[pSmall,align=center] at (5.115,5.91)
+    {Synthesis\,\textperiodcentered\,editing\,\textperiodcentered\,3D};
 
-  \node[pLabel,text=pGold,anchor=west] at (7.12,7.29) {Text generation};
-  \pIcon{page}{pGold}{7.55}{6.54}{.94}
-  \draw[pSoftArrow,draw=pGold] (7.97,6.55) -- (8.27,6.55);
+  \node[pLabel,text=pGold,anchor=base west] at (7.20,7.18) {Text generation};
+  \pIcon{page}{pGold}{7.58}{6.61}{.90}
+  \draw[pSoftArrow,draw=pGold] (7.95,6.61) -- (8.23,6.61);
   \path[draw=pGold!35,fill=white,rounded corners=3pt]
-    (8.32,6.10) rectangle (10.04,6.98);
-  \node[pSmall,text=pInk,align=left] at (9.17,6.57) {Fewer adult\\admissions.};
-  \node[pSmall,align=center] at (8.585,5.79) {Summaries $\cdot$ answers};
+    (8.34,6.21) rectangle (9.99,7.00);
+  \node[pSmall,text=pInk,align=left,text width=1.29cm]
+    at (9.165,6.61) {Fewer adult\\admissions.};
+  \node[pSmall,align=center] at (8.585,5.91)
+    {Summaries\,\textperiodcentered\,answers};
 
-  \node[pLabel,text=pResearch,anchor=west] at (10.59,7.29) {Automated research};
-  \pIcon{flask}{pResearch}{10.99}{6.55}{.79}
-  \node[pSmall,text=pInk] (same) at (12.23,6.94) {Same model};
-  \node[pPill,draw=pResearch!35,text=pResearch,minimum width=.76cm] (on) at (11.66,6.37) {on};
-  \node[pPill,draw=pResearch!35,text=pResearch,minimum width=.76cm] (off) at (12.91,6.37) {off};
-  \draw[pArrow,draw=pResearch] (same.south) to[out=-90,in=90] (on.north);
-  \draw[pArrow,draw=pResearch] (same.south) to[out=-90,in=90] (off.north);
-  \node[pSmall] at (12.25,6.09) {retrieval};
-  \node[pSmall,align=center] at (12.055,5.79) {Studies $\cdot$ reports $\cdot$ review};
+  \node[pLabel,text=pResearch,anchor=base west] at (10.67,7.18) {Automated research};
+  \pIcon{flask}{pResearch}{11.00}{6.59}{.78}
+  \node[pSmall,text=pInk] (same) at (12.25,6.93) {Same model};
+  \node[pPill,draw=pResearch!35,text=pResearch,minimum width=.74cm,
+    minimum height=.34cm,inner ysep=1pt] (on) at (11.66,6.53) {on};
+  \node[pPill,draw=pResearch!35,text=pResearch,minimum width=.74cm,
+    minimum height=.34cm,inner ysep=1pt] (off) at (12.91,6.53) {off};
+  \draw[pSoftArrow,draw=pResearch,shorten <=1pt,shorten >=1pt]
+    (same.south) to[out=-90,in=90] (on.north);
+  \draw[pSoftArrow,draw=pResearch,shorten <=1pt,shorten >=1pt]
+    (same.south) to[out=-90,in=90] (off.north);
+  \node[pSmall] at (12.25,6.21) {retrieval};
+  \node[pSmall,align=center] at (12.055,5.91)
+    {Studies\,\textperiodcentered\,reports\,\textperiodcentered\,review};
 
   % Soft stage groupings; the evolution cycle itself is open and icon-led.
   \path[pSurface,fill=pGoldWash] (0,.05) rectangle (3.94,5.28);
@@ -60,73 +93,76 @@
   \pPanel{c}{Evolve the evaluator}{4.39}{4.99}
   \pPanel{d}{Assess}{10.79}{4.99}
 
-  % Two parallel construction routes, not a taxonomy of domains.
-  \path[fill=white,rounded corners=4pt] (.18,3.10) rectangle (3.47,4.62);
-  \pIcon{database}{pTeal}{.52}{4.25}{.57}
-  \node[pLabel,text=pTeal,anchor=west] at (.86,4.27) {Reused preferences};
-  \node[pText,anchor=west] at (.36,3.76) {Artifacts + human labels};
-  \node[pSmall,anchor=west] at (.36,3.35) {Retain original protocol.};
-  \path[fill=white,rounded corners=4pt] (.18,1.41) rectangle (3.47,2.90);
-  \pIcon{person}{pResearch}{.52}{2.60}{.57}
-  \node[pLabel,text=pResearch,anchor=west] at (.86,2.57) {New preferences};
-  \node[pText,anchor=west] at (.36,1.98) {Freeze task + protocol};
-  \node[pSmall,anchor=west] at (.36,1.59) {Collect blinded judgments.};
+  % Two parallel construction routes, not a taxonomy of domains. Labels share
+  % a left inset; the evidence card has room for all three lines and descenders.
+  \path[fill=white,rounded corners=4pt] (.22,3.26) rectangle (3.49,4.60);
+  \pIcon{database}{pTeal}{.54}{4.27}{.50}
+  \node[pLabel,text=pTeal,anchor=west] at (.84,4.27) {Reused preferences};
+  \node[pText,anchor=west] at (.44,3.90) {Artifacts + human labels};
+  \node[pSmall,anchor=west] at (.44,3.57) {Retain original protocol.};
+  \path[fill=white,rounded corners=4pt] (.22,1.70) rectangle (3.49,3.04);
+  \pIcon{person}{pResearch}{.54}{2.75}{.44}
+  \node[pLabel,text=pResearch,anchor=west] at (.84,2.71) {New preferences};
+  \node[pText,anchor=west] at (.44,2.34) {Freeze task + protocol};
+  \node[pSmall,anchor=west] at (.44,2.01) {Collect blinded judgments.};
   \path[draw=pGold!30,fill=white,rounded corners=4pt]
-    (.18,.24) rectangle (3.47,1.13);
-  \node[pLabel,text=pGold,anchor=west] at (.36,.89) {Human evidence $\rightarrow Z$};
-  \node[pSmall,anchor=west] at (.36,.57) {$H_0$--$H_3$ as available};
-  \node[pSmall,anchor=west] at (.36,.32) {Provenance + uncertainty};
+    (.22,.25) rectangle (3.49,1.49);
+  \node[pLabel,text=pGold,anchor=west] at (.44,1.20)
+    {Human evidence {\fontsize{7}{9}\selectfont $\rightarrow Z$}};
+  \node[pSmall,anchor=west] at (.44,.89) {$H_0$--$H_3$ as available};
+  \node[pSmall,anchor=west] at (.44,.58) {Provenance + uncertainty};
   \draw[pGold!55,line width=.6pt,rounded corners=3pt]
-    (3.47,3.85) -- (3.74,3.85) -- (3.74,.72);
-  \draw[pGold!55,line width=.6pt] (3.47,2.16) -- (3.74,2.16);
-  \draw[pSoftArrow,draw=pGold] (3.74,.72) -- (3.48,.72);
+    (3.49,3.93) -- (3.74,3.93) -- (3.74,.91);
+  \draw[pGold!55,line width=.6pt] (3.49,2.37) -- (3.74,2.37);
+  \draw[pSoftArrow,draw=pGold] (3.74,.91) -- (3.52,.91);
 
   \foreach \s/\col/\t/\x in {A/pBlue/views/4.76,K/pGold/rubrics/5.73,V/pGold/modules/6.70,
     T/pTeal/tools/7.67,\Pi/pTeal/routing/8.64,G/pEvo/fusion/9.61}{
     \pComponent{\s}{\col}{\t}{\x}{4.40}
   }
-  \pIcon{edit}{pEvo}{5.48}{3.23}{.75}
-  \node[pLabel,align=center] at (5.48,2.66) {Vary mechanisms};
-  \pIcon{database}{pTeal}{9.06}{3.23}{.88}
-  \pLock{9.52}{3.42}{pTeal}
-  \node[pLabel,align=center] at (9.06,2.73) {Sealed Train};
-  \pIcon{cards}{pEvo}{9.06}{1.65}{.73}
-  \node[pLabel,align=center] at (9.06,1.10) {Select / continue};
-  \pIcon{loupe}{pGold}{5.48}{1.65}{.77}
-  \node[pLabel,align=center] at (5.48,1.14) {Test hypotheses};
-  \draw[pEvolution] (5.96,3.33) .. controls (6.70,3.81) and (7.83,3.81) .. (8.55,3.33);
-  \draw[pEvidence] (9.65,3.05) .. controls (10.13,2.78) and (10.13,2.06) .. (9.65,1.82);
-  \draw[pEvolution] (8.53,1.61) .. controls (7.77,1.12) and (6.74,1.12) .. (6.01,1.61);
-  \draw[pEvolution] (4.91,1.87) .. controls (4.13,2.04) and (4.13,2.80) .. (4.91,3.02);
-  \draw[pEvidence] (3.47,.40) to[out=0,in=205] (4.96,1.65);
-  \pIcon{agent}{pEvo}{7.26}{2.78}{.80}
-  \node[pLead,text=pEvo] at (7.26,2.14) {ERA};
-  \node[pSmall,align=center] at (7.26,1.81) {Fixed base model};
+  \pIcon{edit}{pEvo}{5.64}{3.19}{.72}
+  \node[ovStep] at (5.64,2.64) {Vary mechanisms};
+  \pIcon{database}{pTeal}{9.04}{3.19}{.78}
+  \pLock{9.38}{3.36}{pTeal}
+  \node[ovStep] at (9.04,2.64) {Sealed Train};
+  \pIcon{cards}{pEvo}{9.04}{1.77}{.70}
+  \node[ovStep] at (9.04,1.24) {Select / continue};
+  \pIcon{loupe}{pGold}{5.64}{1.77}{.73}
+  \node[ovStep] at (5.64,1.24) {Test hypotheses};
+  \draw[pEvolution] (6.00,3.32) .. controls (6.74,3.79) and (7.83,3.79) .. (8.56,3.32);
+  \draw[pEvidence] (9.58,3.02) .. controls (10.10,2.79) and (10.10,2.10) .. (9.58,1.91);
+  \draw[pEvolution] (8.56,1.80) .. controls (7.80,1.30) and (6.83,1.30) .. (6.08,1.80);
+  \draw[pEvolution] (5.07,1.98) .. controls (4.29,2.17) and (4.29,2.80) .. (5.07,3.01);
+  \draw[pEvidence] (3.51,.54) to[out=0,in=205] (5.03,1.75);
+  \pIcon{agent}{pEvo}{7.29}{2.99}{.64}
+  \node[pLead] at (7.29,2.30) {ERA};
+  \node[pSmall,align=center] at (7.29,1.92) {Fixed base model};
 
-  \node[pPill,minimum width=1.71cm] (val) at (6.02,.41) {Terminal Val};
+  \node[pPill,minimum width=1.76cm] (val) at (6.13,.45) {Terminal Val};
   \node[pPill,draw=pEvo!35,fill=white,text=pEvo,
-    minimum width=1.70cm,font=\sffamily\bfseries\fontsize{8}{9}\selectfont]
-    (frozen) at (9.08,.41) {Frozen $E^*$};
-  \draw[pEvolution] (8.52,.99) to[out=225,in=90] (val.north);
+    minimum width=1.76cm]
+    (frozen) at (9.04,.45) {Frozen $E^*$};
+  \draw[pEvolution] (8.61,1.01) .. controls (8.05,.68) and (6.13,1.10) .. (val.north);
   \draw[pEvolution] (val.east) -- (frozen.west);
 
-  \foreach \lo/\hi/\col in {3.47/4.65/pBlueWash,1.98/3.23/pTealWash,.24/1.74/pEvoWash}{
+  % Assessment cards use the same title/body/note rhythm and left inset.
+  \foreach \lo/\hi/\col in {3.31/4.66/pBlueWash,1.81/3.16/pTealWash,.25/1.66/pEvoWash}{
     \path[pSurface,fill=\col] (10.90,\lo) rectangle (13.70,\hi);
   }
-  \pIcon{cards}{pBlue}{11.28}{4.14}{.59}
-  \node[pTitle,text=pBlue,anchor=west] at (11.76,4.33) {C1\; Select};
-  \node[pSmall,anchor=west] at (11.76,3.94) {Fixed pool};
-  \node[pSmall,anchor=west] at (11.07,3.64) {Blinded full ranking};
-  \pIcon{edit}{pTeal}{11.28}{2.68}{.60}
-  \node[pTitle,text=pTeal,anchor=west] at (11.76,2.92) {C2\; Refine};
-  \node[pSmall,anchor=west] at (11.76,2.55) {Shared $y_0$};
-  \node[pSmall,anchor=west] at (11.07,2.17) {Matched resources};
-  \pIcon{agent}{pEvo}{11.28}{1.13}{.58}
-  \node[pTitle,text=pEvo,anchor=west] at (11.76,1.40) {C3\; Reward};
-  \node[pSmall,anchor=west] at (11.76,1.02) {Own rollouts};
-  \node[pSmall,text=pEvo,anchor=west] at (11.07,.50) {Planned training};
+  \pIcon{cards}{pBlue}{11.28}{4.17}{.54}
+  \node[pTitle,text=pBlue,anchor=west] at (11.73,4.33) {C1\; Select};
+  \node[pSmall,anchor=west] at (11.73,3.96) {Fixed pool};
+  \node[pSmall,anchor=west] at (11.15,3.60) {Blinded full ranking};
+  \pIcon{edit}{pTeal}{11.28}{2.67}{.55}
+  \node[pTitle,text=pTeal,anchor=west] at (11.73,2.83) {C2\; Refine};
+  \node[pSmall,anchor=west] at (11.73,2.46) {Shared $y_0$};
+  \node[pSmall,anchor=west] at (11.15,2.10) {Matched resources};
+  \pIcon{agent}{pEvo}{11.28}{1.13}{.51}
+  \node[pTitle,text=pEvo,anchor=west] at (11.73,1.33) {C3\; Reward};
+  \node[pSmall,anchor=west] at (11.73,.96) {Own rollouts};
+  \node[pSmall,text=pEvo,anchor=west] at (11.15,.54) {Planned training};
   \draw[pEvo!55,line width=.6pt,rounded corners=4pt]
-    (frozen.east) -- (10.61,.41) -- (10.61,4.12);
-  \foreach \y in {4.12,2.68,1.13}{\draw[pEvolution] (10.61,\y) -- (10.87,\y);}
-\end{tikzpicture}
-\endgroup
+    (frozen.east) -- (10.61,.45) -- (10.61,4.17);
+  \foreach \y in {4.17,2.67,1.13}{\draw[pEvolution] (10.61,\y) -- (10.87,\y);}
+\end{tikzpicture}%
+\endgroup%

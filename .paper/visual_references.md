@@ -78,8 +78,15 @@ are not automatically redistributed. Their plotted values are never used.
 ### Typography and page composition
 
 - Keep official ICLR Times body text, headings, margins, and the nine-page main
-  limit unchanged. Diagram sans-serif is scoped to `phv`; charts use TeX Gyre
-  Heros with embedded fonts. No body-wide font substitution is introduced.
+  limit unchanged. The main overview uses scoped TeX Gyre Heros (`qhv`), matching
+  the charts; the runtime diagram retains `phv`. Fonts are embedded, and no
+  body-wide font substitution is introduced.
+- The overview's typography pass retains its 13.7 by 8.1 cm native canvas,
+  palette, four artifact families, two feedback settings, ERA loop, and three
+  assessment roles. Use regular-weight action labels, aligned card text, and
+  explicit padding for the human-evidence and assessment cards. Local
+  `transform shape` restores the intended pictogram sizes; separate curved
+  paths from text. This is a presentation change, not new scientific content.
 - Render quantitative charts on a true 5.4-inch canvas. Titles are 8.5 pt,
   axis labels 8 pt, ticks/legends 7.3–7.5 pt, and disclosure notes 6.8 pt.
   Labels are bounds-checked before export; readable text is not sacrificed to
