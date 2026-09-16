@@ -11,6 +11,7 @@ plan-to-manuscript map is `plan_coverage.md`.
 | Claim family | Manuscript / evidence | Allowed status |
 | --- | --- | --- |
 | Preference-supervised evaluation-agent evolution and domain standard | Introduction, problem, Fig1, Tab2 | Research question and scope, not achieved alignment or universal transfer |
+| Preference outcomes versus criteria and evidence for new outputs | Abstract, introduction, problem; C42 | Problem framing, not a claim that all human preferences can be recovered or explained |
 | Two feedback-construction settings; no H0 admission prerequisite | Problem/mining, Fig1, Tab3; C33/C34 | Shared algorithm with separately reported data provenance |
 | New labels are not presumed more reliable | Annotation protocol, Fig5, Tab3; C35 | Reporting requirement; simulated raters supply no reliability evidence |
 | Semantic mapping, dependence, three strata | Mining, Tab4 | Acquisition design, not validated information efficiency |
@@ -28,6 +29,14 @@ plan-to-manuscript map is `plan_coverage.md`.
 | Annotation efficiency and coordinated-evolution usefulness | Introduction; C27/C28 | Material empirical gaps; retain as hypotheses only |
 | Simulated display provenance | Generator, manifest, CSVs, PDFs; C37 | Supported only as artificial reporting examples, not effects |
 | C1 denominators | C1/selection CSVs and arithmetic checker; C38 | Supported only as arithmetic consistency of toy displays |
+
+The round-7 abstract maps its preference/procedure distinction to C42, its
+learning object and external human target to C1/C31/C39, structured acquisition
+to C4–C8, coordinated changes and separate-feedback assessment to
+C12/C14/C15/C32, and the cross-task study design to C2/C3/C21/C22. Its opening
+alignment motivation is supported by the literature cited in the introduction.
+The final simulation notice maps to C37. No sentence asserts the acquisition or
+evolution advantages recorded as gaps in C27/C28.
 
 ## Numerical audit
 

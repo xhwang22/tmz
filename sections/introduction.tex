@@ -1,7 +1,7 @@
 \section{Introduction}
 \label{sec:intro}
 
-Open-ended generation exposes a gap between what automated evaluators measure
+Open-ended tasks expose a gap between what automated evaluators measure
 and what people value. A fluent summary may mislead, an appealing image may
 violate its request, and an original research proposal may fail to test its
 hypothesis. Metrics and model-based judges scale assessment, but studies of
@@ -11,7 +11,7 @@ judging document limitations in their agreement with human judgments
 Improving generation against these evaluators therefore need not improve the
 qualities that matter to people.
 
-The difficulty is making human preferences explicit enough to automate.
+The difficulty is turning observed preferences into a procedure for judging new outputs.
 Open-ended quality has no complete deterministic verifier. Criteria depend on
 the task, and even an agreed list of criteria leaves their interpretation and
 trade-offs unresolved. Visual similarity, for example, is central to screenshot
@@ -44,6 +44,7 @@ information flow, not measured improvements.}
 \label{fig:overview}
 \end{figure}
 
+\begin{samepage}
 Why evolve the program rather than only tune parameters? Fine-tuning can improve
 judgment, as rubric-conditioned evaluators illustrate
 \citep{kim2024prometheus,kim2024prometheus2}. With a fixed observation path,
@@ -57,6 +58,8 @@ changes to available evidence from changes to its interpretation. An explicit
 program is not automatically a faithful explanation. We therefore
 include evaluator fine-tuning and calibration as alternatives, without assuming
 an alignment or efficiency advantage (Appendix~\ref{app:adaptation}).
+
+\end{samepage}
 
 Preference-guided evolution requires both informative feedback and a way to act
 on it. We map existing signals to quality dimensions before inspecting labels,

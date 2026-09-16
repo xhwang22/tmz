@@ -4,16 +4,23 @@
   debugging, historical runs, infrastructure work, or abandoned intermediate methods.
 - Distinguish specifications, hypotheses, implementation availability, and findings.
   Plans and synthetic examples are not empirical evidence.
-- Use the unbranded title "Evolving Evaluation Systems from Human Feedback".
+- Use the unbranded title "Evolving Evaluation Systems from Human Feedback for
+  Open-Ended Tasks".
   Do not use P2E as the current paper/project name. ERA names only the evaluator
   evolution method; do not invent an expanded acronym. Historical provenance
   and source filenames are not renamed. Retain the four-family scope.
 - Lead with the source plan's problem: automated evaluation struggles to align
-  with task-dependent human preferences, which are difficult to make explicit,
-  interpretable, and executable. Preference-data-driven evaluation-agent
-  self-evolution is the response. Error diagnosis is a second-level mechanism,
-  not the paper's central problem. Connect structured preference acquisition
-  to hypothesis-guided program evolution; do not reduce the paper to score fitting.
+  with task-dependent human preferences. An observed preference records a
+  judgment without fully specifying the criteria and evidence for new outputs.
+  Preference-data-driven evaluation-agent self-evolution is the response.
+  The author-approved abstract order is alignment difficulty, the gap between
+  preference feedback and an executable evaluation procedure, agent evolution,
+  and cross-task validation. Error diagnosis supports this argument; it is not
+  the paper's central problem. Explain acquisition and evolution through their
+  roles in that argument. Keep parameter-fitting contrasts, search-state
+  mechanics, data-provenance protocols, and lists of domains or study arms out
+  of the abstract. Human standards remain the target, not objects the agent
+  invents. Executable programs do not establish complete or faithful explanations.
 - Explain parameter adaptation fairly. Fixed-structure evaluator fine-tuning
   changes the mapping from observations to judgments; calibration changes
   existing numerical decision rules. ERA changes the explicit program with a

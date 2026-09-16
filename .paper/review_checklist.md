@@ -4,21 +4,23 @@ Review date: 2026-09-16. This checklist is not author sign-off or submission app
 
 ## Content and scope
 
-- The title is **Evolving Evaluation Systems from Human Feedback**.
+- The title is **Evolving Evaluation Systems from Human Feedback for Open-Ended Tasks**.
   No current project acronym is used; ERA names only the method. The historical source
   repository and local source directory were not renamed or modified.
 - The paper follows a scientific argument, not debugging history or a sequence
   of intermediate methods. The user-selected research plan supplies the complete
   research scope; current ERA documentation supplies the execution semantics.
   Their roles are recorded in `plan_coverage.md` and `source_provenance.md`.
-- The abstract and introduction lead with human-preference alignment and the
-  difficulty of expressing task-dependent quality as executable evaluation.
-  Preference-data-driven agent self-evolution connects structured acquisition
-  and program evolution. Error diagnosis is a supporting mechanism. Fixed-base
-  program adaptation is compared with evaluator fine-tuning and calibration,
-  including a shared-observation control. No superiority or faithful-reasoning
-  claim is inferred from an explicit program. Evaluator tuning and C3 generator
-  training remain distinct and unexecuted.
+- The abstract follows the author-approved argument: preference-alignment
+  difficulty on open-ended tasks, the gap between a preference outcome and a
+  procedure for judging new outputs, feedback-driven agent evolution, and
+  cross-task validation. Structured acquisition and evaluation-failure
+  hypotheses support that argument. Parameter-fitting contrasts, search-state
+  mechanics, provenance protocols, and domain/study-arm lists are removed from
+  the abstract. The introduction retains evaluator fine-tuning and calibration
+  comparisons, including a shared-observation control. No superiority or
+  faithful-reasoning claim is inferred from an explicit program. Evaluator
+  tuning and C3 generator training remain distinct and unexecuted.
 - All 22 candidate domains in four families appear in the domain table.
   The overview uses a compact gallery of concrete artifacts and distinct
   quality criteria. The quantitative panels retain domain identities across
@@ -91,6 +93,8 @@ Review date: 2026-09-16. This checklist is not author sign-off or submission app
   both in isolation and in the final manuscript. Numerical table columns are
   right-aligned; narrow prose columns are left-aligned. The final experiment
   manifest fits beneath the cost figure rather than occupying an isolated page.
+  The parameter-adaptation paragraph stays together below the overview instead
+  of being split across the first page and the figure on the second page.
   Short annotation, attribution, and training-protocol paragraphs are kept
   intact so large floats do not interrupt individual sentences across pages.
 - The official Times body and ICLR heading rules are unchanged. Diagram `phv`
@@ -98,7 +102,7 @@ Review date: 2026-09-16. This checklist is not author sign-off or submission app
   canvases, with 8.5 pt titles, 8 pt axes, 7.3–7.5 pt tick/legend labels, and
   6.8 pt fixture-disclosure notes. All PDF fonts are embedded, without Type 3
   fallbacks. Chart bounds and actual manuscript placements are checked.
-- Forty-one claim records, nine figure records, twelve table records, and the
+- Forty-two claim records, nine figure records, twelve table records, and the
   revision history pass the repository's offline consistency checks.
   Claims also pass the upstream Draft 2020-12 JSON Schema with zero errors.
   The upstream skill's advertised validation script was absent; the schema

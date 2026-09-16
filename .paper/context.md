@@ -5,7 +5,7 @@ explicitly simulated quantitative displays; empirical results pending.
 
 ## Title and scope
 
-**Evolving Evaluation Systems from Human Feedback**
+**Evolving Evaluation Systems from Human Feedback for Open-Ended Tasks**
 
 The paper currently has no project acronym. ERA names only the evidence-guided
 evaluator evolution method; do not invent an expanded acronym. The author has
@@ -22,12 +22,22 @@ as one universal judge. Panorama inclusion does not imply readiness or results.
 ## Scientific argument
 
 The central difficulty is aligning automated evaluation with human preferences
-on open-ended tasks. Human standards are contextual and involve trade-offs;
-preference decisions do not fully specify an interpretable, executable procedure
-for applying them. Following the source plan's §§1–2.3, the response is to use
-preference data to drive an evaluation agent's self-evolution. The human standard
-remains the target; its explicit approximation in the evaluator is what evolves.
-Do not lead with error-diagnosis ambiguity as though that were the main problem.
+on open-ended tasks. Human standards are contextual and involve trade-offs.
+A preference records a judgment without fully specifying the criteria and
+evidence needed to judge new outputs. Following the source plan's §§1–2.3,
+the response is to use preference data to drive an evaluation agent's
+self-evolution. The human standard remains the target; its explicit
+approximation in the evaluator is what evolves. Do not lead with error-diagnosis
+ambiguity as though that were the main problem.
+
+The author approved the abstract's argument before this rewrite: alignment
+difficulty, the gap between preference feedback and an executable evaluation
+procedure, feedback-driven agent evolution, and cross-task validation. Structured
+acquisition and coordinated changes are supporting method mechanisms.
+Parameter-adaptation comparisons remain in the introduction and experiments;
+provenance protocols and detailed study-arm/domain lists do not belong in this
+abstract. The short simulation notice remains, without inventing a results
+sentence or implying validated interpretability. C42 records the framing claim.
 
 The shared question is whether an evaluator can evolve toward a task's human
 evaluation standard given that task and its human feedback. Reusing existing
@@ -95,7 +105,7 @@ never findings. Memory claim IDs C1/C2/etc. are a separate namespace from the
 paper's study labels C1/C2/C3.
 
 Current structure: 3 main figures, 6 appendix figures, 12 tables, 33 verified
-bibliographic identities, and 41 claim records. The overview and pointwise
+bibliographic identities, and 42 claim records. The overview and pointwise
 runtime remain conceptual; seven figures and Table 1 use simulated reporting
 fixtures. Figure 1 and the complete domain table preserve four-family diversity.
 The ICLR main-text limit remains 9 pages; official body typography is unchanged.
