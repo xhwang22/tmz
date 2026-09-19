@@ -1,18 +1,23 @@
 {
   "checked_on": "2026-09-16",
-  "policy": "Prefer verified published records; otherwise cite the verified arXiv version explicitly as a preprint. Bibliographic identity is not a full-text claim audit. Unrelated search matches and failed metadata requests were discarded.",
+  "policy": "Prefer verified published records; otherwise cite the verified arXiv version explicitly as a preprint. Bibliographic identity is not a full-text claim audit. Unrelated search matches and failed metadata requests were discarded. Later incremental checks carry per-reference checked_on dates; the top-level date describes the original verification pass.",
   "references": [
     {
       "key": "agrawal2026gepa",
       "arxiv_id": "2507.19457",
-      "title": "GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning",
-      "authors": "Lakshya A Agrawal and Shangyin Tan and Dilara Soylu and Noah Ziems and Rishi Khare and Krista Opsahl-Ong and Arnav Singhvi and Herumb Shandilya and Michael J Ryan and Meng Jiang and Christopher Potts and Koushik Sen and Alexandros G. Dimakis and Ion Stoica and Dan Klein and Matei Zaharia and Omar Khattab",
+      "title": "{GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning}",
+      "authors": "Lakshya A Agrawal and Shangyin Tan and Dilara Soylu and Noah Ziems and Rishi Khare and Krista Opsahl-Ong and Arnav Singhvi and Herumb Shandilya and Michael J Ryan and Meng Jiang and Christopher Potts and Koushik Sen and Alex Dimakis and Ion Stoica and Dan Klein and Matei Zaharia and Omar Khattab",
       "year": "2026",
       "venue": "International Conference on Learning Representations",
-      "status": "ICLR venue verified in arXiv publication comment",
+      "status": "Official ICLR 2026 proceedings metadata; published author name Alex Dimakis, volume and pages adopted.",
       "primary_sources": [
-        "https://arxiv.org/abs/2507.19457v2"
-      ]
+        "https://arxiv.org/abs/2507.19457v2",
+        "https://proceedings.iclr.cc/paper_files/paper/6768-/bibtex",
+        "https://proceedings.iclr.cc/paper_files/paper/2026/hash/0e9e708b6f48e14fd0ac29e167413f76-Abstract-Conference.html"
+      ],
+      "checked_on": "2026-09-19",
+      "pages": "8479--8565",
+      "volume": "2026"
     },
     {
       "key": "fabbri2021summeval",
@@ -43,40 +48,55 @@
     {
       "key": "hu2025adas",
       "arxiv_id": "2408.08435",
-      "title": "Automated Design of Agentic Systems",
+      "title": "{Automated Design of Agentic Systems}",
       "authors": "Shengran Hu and Cong Lu and Jeff Clune",
       "year": "2025",
       "venue": "International Conference on Learning Representations",
-      "status": "ICLR 2025 venue verified on author project page; authors and title from arXiv",
+      "status": "Official ICLR 2025 proceedings metadata; volume and pages added.",
       "primary_sources": [
         "https://arxiv.org/abs/2408.08435v2",
-        "https://shengranhu.com/ADAS/"
-      ]
+        "https://shengranhu.com/ADAS/",
+        "https://proceedings.iclr.cc/paper_files/paper/2066-/bibtex",
+        "https://proceedings.iclr.cc/paper_files/paper/2025/hash/36b7acf6f6010652b3f2a433774a66fe-Abstract-Conference.html"
+      ],
+      "checked_on": "2026-09-19",
+      "pages": "21344--21377",
+      "volume": "2025"
     },
     {
       "key": "khattab2024dspy",
       "arxiv_id": "2310.03714",
-      "title": "DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines",
+      "title": "{DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines}",
       "authors": "Omar Khattab and Arnav Singhvi and Paridhi Maheshwari and Zhiyuan Zhang and Keshav Santhanam and Sri Vardhamanan and Saiful Haq and Ashutosh Sharma and Thomas T. Joshi and Hanna Moazam and Heather Miller and Matei Zaharia and Christopher Potts",
       "year": "2024",
       "venue": "International Conference on Learning Representations",
-      "status": "ICLR 2024 venue and author list verified in official project citation",
+      "status": "Official ICLR 2024 proceedings metadata for venue/volume/pages; title Self-Improving Pipelines and author names retained from the published PDF, which differs from the index.",
       "primary_sources": [
         "https://arxiv.org/abs/2310.03714v1",
-        "https://github.com/stanfordnlp/dspy"
-      ]
+        "https://github.com/stanfordnlp/dspy",
+        "https://proceedings.iclr.cc/paper_files/paper/4781-/bibtex",
+        "https://proceedings.iclr.cc/paper_files/paper/2024/file/f1cf02ce09757f57c3b93c0db83181e0-Paper-Conference.pdf"
+      ],
+      "checked_on": "2026-09-19",
+      "pages": "54928--54958",
+      "volume": "2024"
     },
     {
       "key": "kim2024prometheus",
       "arxiv_id": "2310.08491",
-      "title": "Prometheus: Inducing Fine-grained Evaluation Capability in Language Models",
+      "title": "{Prometheus: Inducing Fine-grained Evaluation Capability in Language Models}",
       "authors": "Seungone Kim and Jamin Shin and Yejin Cho and Joel Jang and Shayne Longpre and Hwaran Lee and Sangdoo Yun and Seongjin Shin and Sungdong Kim and James Thorne and Minjoon Seo",
       "year": "2024",
       "venue": "International Conference on Learning Representations",
-      "status": "ICLR venue verified in arXiv publication comment",
+      "status": "Official ICLR 2024 proceedings metadata for venue/volume/pages; author names Jamin Shin and Seongjin Shin retained from the published PDF, which differs from the index.",
       "primary_sources": [
-        "https://arxiv.org/abs/2310.08491v2"
-      ]
+        "https://arxiv.org/abs/2310.08491v2",
+        "https://proceedings.iclr.cc/paper_files/paper/4064-/bibtex",
+        "https://proceedings.iclr.cc/paper_files/paper/2024/file/803485352e61e3ebf41221e4776c9fd4-Paper-Conference.pdf"
+      ],
+      "checked_on": "2026-09-19",
+      "pages": "29927--29962",
+      "volume": "2024"
     },
     {
       "key": "kim2024prometheus2",
@@ -107,14 +127,19 @@
     {
       "key": "lambert2024rewardbench",
       "arxiv_id": "2403.13787",
-      "title": "RewardBench: Evaluating Reward Models for Language Modeling",
+      "title": "{RewardBench: Evaluating Reward Models for Language Modeling}",
       "authors": "Nathan Lambert and Valentina Pyatkin and Jacob Morrison and LJ Miranda and Bill Yuchen Lin and Khyathi Chandu and Nouha Dziri and Sachin Kumar and Tom Zick and Yejin Choi and Noah A. Smith and Hannaneh Hajishirzi",
-      "year": "2024",
-      "venue": "arXiv preprint arXiv:2403.13787",
-      "status": "verified arXiv preprint; formal venue not asserted",
+      "year": "2025",
+      "venue": "Findings of the Association for Computational Linguistics: NAACL 2025",
+      "status": "Updated from arXiv 2024 to Findings of NAACL 2025, not the main NAACL proceedings. Venue, year, pages and DOI verified against ACL Anthology; stable key retained.",
       "primary_sources": [
-        "https://arxiv.org/abs/2403.13787v2"
-      ]
+        "https://arxiv.org/abs/2403.13787v2",
+        "https://aclanthology.org/2025.findings-naacl.96.bib",
+        "https://aclanthology.org/2025.findings-naacl.96/"
+      ],
+      "checked_on": "2026-09-19",
+      "pages": "1755--1797",
+      "doi": "10.18653/v1/2025.findings-naacl.96"
     },
     {
       "key": "liu2023geval",
@@ -261,14 +286,19 @@
     {
       "key": "tan2025judgebench",
       "arxiv_id": "2410.12784",
-      "title": "JudgeBench: A Benchmark for Evaluating LLM-based Judges",
+      "title": "{JudgeBench: A Benchmark for Evaluating LLM-based Judges}",
       "authors": "Sijun Tan and Siyuan Zhuang and Kyle Montgomery and William Y. Tang and Alejandro Cuadron and Chenguang Wang and Raluca Ada Popa and Ion Stoica",
       "year": "2025",
       "venue": "International Conference on Learning Representations",
-      "status": "ICLR venue verified in arXiv publication comment",
+      "status": "Official ICLR 2025 proceedings metadata for venue/volume/pages; published PDF confirms full author names retained rather than shortened index names.",
       "primary_sources": [
-        "https://arxiv.org/abs/2410.12784v2"
-      ]
+        "https://arxiv.org/abs/2410.12784v2",
+        "https://proceedings.iclr.cc/paper_files/paper/1874-/bibtex",
+        "https://proceedings.iclr.cc/paper_files/paper/2025/file/9e720fce64f91114c49cfd640d821da3-Paper-Conference.pdf"
+      ],
+      "checked_on": "2026-09-19",
+      "pages": "63277--63303",
+      "volume": "2025"
     },
     {
       "key": "wang2024selftaught",
@@ -298,14 +328,19 @@
     {
       "key": "yang2024opro",
       "arxiv_id": "2309.03409",
-      "title": "Large Language Models as Optimizers",
+      "title": "{Large Language Models as Optimizers}",
       "authors": "Chengrun Yang and Xuezhi Wang and Yifeng Lu and Hanxiao Liu and Quoc V. Le and Denny Zhou and Xinyun Chen",
       "year": "2024",
       "venue": "International Conference on Learning Representations",
-      "status": "ICLR venue verified in arXiv publication comment",
+      "status": "Official ICLR 2024 proceedings metadata; volume and pages added.",
       "primary_sources": [
-        "https://arxiv.org/abs/2309.03409v3"
-      ]
+        "https://arxiv.org/abs/2309.03409v3",
+        "https://proceedings.iclr.cc/paper_files/paper/5223-/bibtex",
+        "https://proceedings.iclr.cc/paper_files/paper/2024/hash/3339f19c5fcee3ad74502947a32be9e6-Abstract-Conference.html"
+      ],
+      "checked_on": "2026-09-19",
+      "pages": "12028--12068",
+      "volume": "2024"
     },
     {
       "key": "yao2023react",
@@ -348,28 +383,37 @@
     {
       "key": "zhang2025aflow",
       "arxiv_id": "2410.10762",
-      "title": "{AF}low: Automating Agentic Workflow Generation",
-      "authors": "Jiayi Zhang and Jinyu Xiang and Zhaoyang Yu and Fengwei Teng and Xiong-Hui Chen and Jiaqi Chen and Mingchen Zhuge and Xin Cheng and Sirui Hong and Jinlin Wang and Bingnan Zheng and Bang Liu and Yuyu Luo and Chenglin Wu",
+      "title": "{{AF}low: Automating Agentic Workflow Generation}",
+      "authors": "Jiayi Zhang and Jinyu Xiang and Zhaoyang Yu and Fengwei Teng and XiongHui Chen and Jiaqi Chen and Mingchen Zhuge and Xin Cheng and Sirui Hong and Jinlin Wang and Bingnan Zheng and Bang Liu and Yuyu Luo and Chenglin Wu",
       "year": "2025",
-      "venue": "The Thirteenth International Conference on Learning Representations",
-      "status": "ICLR 2025 metadata verified in official project citation",
+      "venue": "International Conference on Learning Representations",
+      "status": "Official ICLR 2025 proceedings metadata; XiongHui Chen spelling, volume and pages adopted.",
       "primary_sources": [
         "https://arxiv.org/abs/2410.10762v4",
         "https://raw.githubusercontent.com/FoundationAgents/AFlow/main/README.md",
-        "https://openreview.net/forum?id=z5uVAKwmjf"
-      ]
+        "https://openreview.net/forum?id=z5uVAKwmjf",
+        "https://proceedings.iclr.cc/paper_files/paper/2345-/bibtex"
+      ],
+      "checked_on": "2026-09-19",
+      "pages": "34040--34077",
+      "volume": "2025"
     },
     {
       "key": "zhang2025dgm",
       "arxiv_id": "2505.22954",
-      "title": "Darwin Godel Machine: Open-Ended Evolution of Self-Improving Agents",
+      "title": "{Darwin G\\\"{o}del Machine: Open-Ended Evolution of Self-Improving Agents}",
       "authors": "Jenny Zhang and Shengran Hu and Cong Lu and Robert Lange and Jeff Clune",
-      "year": "2025",
-      "venue": "arXiv preprint arXiv:2505.22954",
-      "status": "verified arXiv preprint; formal venue not asserted",
+      "year": "2026",
+      "venue": "International Conference on Learning Representations",
+      "status": "Updated from arXiv 2025 to ICLR 2026 using official proceedings metadata; stable citation key retained.",
       "primary_sources": [
-        "https://arxiv.org/abs/2505.22954v3"
-      ]
+        "https://arxiv.org/abs/2505.22954v3",
+        "https://proceedings.iclr.cc/paper_files/paper/6883-/bibtex",
+        "https://proceedings.iclr.cc/paper_files/paper/2026/hash/aa5f5e6eb6f613ec412f1d948dfa21a5-Abstract-Conference.html"
+      ],
+      "checked_on": "2026-09-19",
+      "pages": "104223--104294",
+      "volume": "2026"
     },
     {
       "key": "zheng2023judging",
@@ -425,6 +469,139 @@
         "https://api.crossref.org/works/10.1145/130385.130417"
       ],
       "claim_scope": "Prior art for disagreement-based acquisition, not evidence for P2E annotation efficiency."
+    },
+    {
+      "key": "liu2024autocalibrate",
+      "checked_on": "2026-09-19",
+      "arxiv_id": "2309.13308",
+      "title": "Calibrating LLM-Based Evaluator",
+      "authors": "Liu, Yuxuan and Yang, Tianchi and Huang, Shaohan and Zhang, Zihan and Huang, Haizhen and Wei, Furu and Deng, Weiwei and Sun, Feng and Zhang, Qi",
+      "year": "2024",
+      "venue": "Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)",
+      "pages": "2638--2656",
+      "doi": "10.63317/3posqwchnb6g",
+      "status": "Published metadata verified against ACL Anthology and its BibTeX; DOI verified against the LREC publisher and Crossref. Published full text checked for the cited method scope.",
+      "primary_sources": [
+        "https://aclanthology.org/2024.lrec-main.237/",
+        "https://aclanthology.org/2024.lrec-main.237.bib",
+        "https://aclanthology.org/2024.lrec-main.237.pdf",
+        "https://lrec.elra.info/lrec2024-main-0237",
+        "https://api.crossref.org/works/10.63317/3posqwchnb6g"
+      ],
+      "claim_scope": "Prior work uses human-labeled examples to draft, select and refine evaluation criteria. AutoCalibrate changes natural-language criteria/prompts, not only final numerical scores. No ERA advantage or general evaluator-program search result is inferred."
+    },
+    {
+      "key": "zhuge2025agentjudge",
+      "checked_on": "2026-09-19",
+      "arxiv_id": "2410.10934",
+      "title": "Agent-as-a-Judge: Evaluate Agents with Agents",
+      "authors": "Zhuge, Mingchen and Zhao, Changsheng and Ashley, Dylan R. and Wang, Wenyi and Khizbullin, Dmitrii and Xiong, Yunyang and Liu, Zechun and Chang, Ernie and Krishnamoorthi, Raghuraman and Tian, Yuandong and Shi, Yangyang and Chandra, Vikas and Schmidhuber, Jürgen",
+      "year": "2025",
+      "venue": "Proceedings of the 42nd International Conference on Machine Learning",
+      "volume": "267",
+      "pages": "80569--80611",
+      "status": "Published metadata and author spelling verified against the official ICML 2025 PMLR record and BibTeX. Published full text checked for tool-based evidence gathering and the future-work boundary.",
+      "primary_sources": [
+        "https://proceedings.mlr.press/v267/zhuge25a.html",
+        "https://raw.githubusercontent.com/mlresearch/v267/main/assets/zhuge25a/zhuge25a.pdf"
+      ],
+      "claim_scope": "Agentic evaluation can gather evidence through file access, localization and trajectory retrieval. This does not establish feedback-driven evaluator evolution; the paper leaves automated prompt/workflow optimization to future work."
+    },
+    {
+      "key": "muldrew2024activepreference",
+      "checked_on": "2026-09-19",
+      "arxiv_id": "2402.08114",
+      "title": "Active Preference Learning for Large Language Models",
+      "authors": "Muldrew, William and Hayes, Peter and Zhang, Mingtian and Barber, David",
+      "year": "2024",
+      "venue": "Proceedings of the 41st International Conference on Machine Learning",
+      "volume": "235",
+      "pages": "36577--36590",
+      "status": "Published metadata verified against the official ICML 2024 PMLR record and BibTeX. Published full text checked for acquisition, DPO and oracle-label scope.",
+      "primary_sources": [
+        "https://proceedings.mlr.press/v235/muldrew24a.html",
+        "https://raw.githubusercontent.com/mlresearch/v235/main/assets/muldrew24a/muldrew24a.pdf"
+      ],
+      "claim_scope": "Context for allocating a limited preference-label budget through active selection. The method fine-tunes a generator with DPO and uses an LLM oracle in its online experiment; it does not establish human annotation savings, disagreement-sampling superiority or evaluator-evolution gains for this paper."
+    },
+    {
+      "key": "wang2026rewardhacking",
+      "arxiv_id": "2604.13602",
+      "title": "{Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges}",
+      "authors": "Xiaohua Wang and Muzhao Tian and Yuqi Zeng and Zisu Huang and Jiakang Yuan and Bowen Chen and Jingwen Xu and Mingbo Zhou and Wenhao Liu and Muling Wu and Zhengkang Guo and Qi Qian and Yifei Wang and Feiran Zhang and Ruicheng Yin and Shihan Dou and Changze Lv and Tao Chen and Kaitao Song and Xu Tan and Tao Gui and Xiaoqing Zheng and Xuanjing Huang",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2604.13602",
+      "checked_on": "2026-09-19",
+      "status": "arXiv BibTeX, landing metadata and full text verified; reference-audit independently matched identity via OpenAlex. No formal conference or journal publication was verified; cite explicitly as an arXiv preprint.",
+      "primary_sources": [
+        "https://arxiv.org/bibtex/2604.13602",
+        "https://arxiv.org/abs/2604.13602v1",
+        "https://arxiv.org/pdf/2604.13602v1"
+      ],
+      "claim_support": {
+        "location": "Section 2 (proxy-based alignment and Proxy Compression Hypothesis); Sections 3–7 (surveyed mechanisms and defenses).",
+        "supported_scope": "Cited as a survey organizing proxy-optimization risks; not empirical proof that ERA avoids reward hacking."
+      }
+    },
+    {
+      "key": "qian2026benchmark2",
+      "arxiv_id": "2601.03986",
+      "title": "{Benchmark$^2$: Systematic Evaluation of LLM Benchmarks}",
+      "authors": "Qi Qian and Chengsong Huang and Jingwen Xu and Changze Lv and Muling Wu and Wenhao Liu and Xiaohua Wang and Zhenghua Wang and Zisu Huang and Muzhao Tian and Jianhan Xu and Kun Hu and He-Da Wang and Yao Hu and Xuanjing Huang and Xiaoqing Zheng",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2601.03986",
+      "checked_on": "2026-09-19",
+      "status": "arXiv BibTeX, landing metadata and full text verified; reference-audit independently matched identity via OpenAlex. No formal conference or journal publication was verified; cite explicitly as an arXiv preprint.",
+      "primary_sources": [
+        "https://arxiv.org/bibtex/2601.03986",
+        "https://arxiv.org/abs/2601.03986v1",
+        "https://arxiv.org/pdf/2601.03986v1"
+      ],
+      "claim_support": {
+        "location": "Sections 3.1–3.4 (benchmark metrics), Section 4 and Table 2 (selective benchmark evaluation).",
+        "supported_scope": "Benchmark-quality metrics and selective test-set construction; does not establish human-annotation efficiency or disagreement-acquisition gains for our pipeline."
+      }
+    },
+    {
+      "key": "huang2026skillconsumption",
+      "arxiv_id": "2605.23899",
+      "title": "{From Raw Experience to Skill Consumption: A Systematic Study of Model-Generated Agent Skills}",
+      "authors": "Zisu Huang and Jingwen Xu and Yifan Yang and Ziyang Gong and Qihao Yang and Muzhao Tian and Xiaohua Wang and Changze Lv and Xuemei Gao and Qi Dai and Bei Liu and Kai Qiu and Xue Yang and Dongdong Chen and Xiaoqing Zheng and Chong Luo",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2605.23899",
+      "checked_on": "2026-09-19",
+      "status": "arXiv BibTeX, landing metadata and full text verified; reference-audit independently matched identity via Semantic Scholar. No formal conference or journal publication was verified; cite explicitly as an arXiv preprint.",
+      "primary_sources": [
+        "https://arxiv.org/bibtex/2605.23899",
+        "https://arxiv.org/abs/2605.23899v1",
+        "https://arxiv.org/pdf/2605.23899v1"
+      ],
+      "claim_support": {
+        "location": "Section 3 (experience/extraction/consumption and utility), Section 4.2 and Table 1 (average gains and negative transfer), Section 5 (lifecycle analysis).",
+        "supported_scope": "Extracted skills have consumer-dependent utility; negative transfer is not evidence of ERA's under-implementation mechanism or continuation advantage."
+      }
+    },
+    {
+      "key": "lv2026queryrubrics",
+      "arxiv_id": "2602.03619",
+      "title": "{Learning Query-Specific Rubrics from Human Preferences for DeepResearch Report Generation}",
+      "authors": "Changze Lv and Jie Zhou and Wentao Zhao and Jingwen Xu and Shihan Dou and Zisu Huang and Muzhao Tian and Xiaohua Wang and Zhengkang Guo and Yang Liu and Pluto Zhou and Tao Gui and Le Tian and Xiao Zhou and Xiaoqing Zheng and Xuanjing Huang and Jie Zhou",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2602.03619",
+      "checked_on": "2026-09-19",
+      "status": "arXiv BibTeX, landing metadata and full text verified; reference-audit independently matched identity via OpenAlex. No formal conference or journal publication was verified; cite explicitly as an arXiv preprint.",
+      "primary_sources": [
+        "https://arxiv.org/bibtex/2602.03619",
+        "https://arxiv.org/abs/2602.03619v3",
+        "https://arxiv.org/pdf/2602.03619v3"
+      ],
+      "claim_support": {
+        "location": "Sections 3.2–3.4 (preference-grounded rubric training and downstream rewards), Section 4 (evaluation).",
+        "supported_scope": "Learns query-specific rubric generators from preferences and uses learned rubrics for report-generator training; not a claim of evaluator-program evolution."
+      },
+      "author_note": "Jie Zhou appears twice in both official arXiv BibTeX and v3 PDF. Preserved; identity/deduplication requires author clarification."
     }
-  ]
+  ],
+  "last_incremental_audit": "2026-09-19",
+  "audit_report": ".paper/citation_audit.md"
 }

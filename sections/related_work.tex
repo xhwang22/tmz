@@ -2,43 +2,29 @@
 \label{sec:related}
 
 \paragraph{Evaluators and feedback acquisition.}
-G-Eval and MT-Bench study model-based judgment and human agreement
-\citep{liu2023geval,zheng2023judging}. Prometheus, Prometheus~2, and Self-Taught
-Evaluators improve judges through rubric-conditioned or synthetic supervision
-\citep{kim2024prometheus,kim2024prometheus2,wang2024selftaught}.
-EvalGen emphasizes aligning the criteria themselves with human preferences,
-while RewardBench and JudgeBench assess evaluators on challenging comparisons
-\citep{shankar2024evalgen,lambert2024rewardbench,tan2025judgebench}.
-Disagreement-based acquisition has a long history in query-by-committee
-\citep{seung1992committee}. Our acquisition procedure applies this principle to
-signals that need not measure the same construct. Its semantic mapping distinguishes
-same-dimension conflict from trade-offs and records source dependence.
-Dimension-wise human judgments can then locate discrepancies that an overall
-label alone does not resolve.
+G-Eval and MT-Bench study model-based judgment and human agreement \citep{liu2023geval,zheng2023judging}.
+Prometheus, Prometheus~2, and Self-Taught Evaluators improve judges through rubric-conditioned or synthetic training data \citep{kim2024prometheus,kim2024prometheus2,wang2024selftaught}.
+AutoCalibrate refines evaluation criteria from human-labeled examples, while EvalGen helps users define criteria and select evaluation functions using human grades \citep{liu2024autocalibrate,shankar2024evalgen}.
+For DeepResearch reports, \citet{lv2026queryrubrics} train query-specific rubric generators from human preferences and use the learned rubrics as training rewards.
+Our optimization target includes both the criteria and the procedure for gathering and using evaluation evidence.
+
+RewardBench and JudgeBench assess evaluators on preference comparisons \citep{lambert2024rewardbench,tan2025judgebench}.
+Benchmark$^2$ instead examines benchmark quality through ranking consistency, discriminability, and capability alignment, and studies selective test-set construction \citep{qian2026benchmark2}.
+Our acquisition question concerns which comparisons to annotate for evaluator improvement, drawing on query-by-committee and active preference learning \citep{seung1992committee,muldrew2024activepreference}.
+Because our evaluation signals can measure different properties, acquisition distinguishes conflicts within a dimension from trade-offs across dimensions and retains random sampling to check shared blind spots.
 
 \paragraph{Optimizing language-model programs.}
 DSPy exposes compositional pipelines to optimization \citep{khattab2024dspy}.
-ProTeGi, OPRO, TextGrad, and GEPA use model-generated feedback or proposals to
-improve instructions and programs
-\citep{pryzant2023protegi,yang2024opro,yuksekgonul2025textgrad,agrawal2026gepa}.
-ADAS, AFlow, and the Darwin G\"odel Machine investigate automated construction
-or evolution of agentic systems \citep{hu2025adas,zhang2025aflow,zhang2025dgm}.
-Their search spaces provide relevant controls, rather than a basis for assuming
-that prior methods cannot change structure. ERA specializes the representation
-and evidence interface to evaluation, linking ranking failures to observations,
-criteria, and synthesis while separating an implementation outcome from its
-underlying direction hypothesis.
+ProTeGi, OPRO, TextGrad, and GEPA use model-generated feedback or proposals to improve instructions and programs \citep{pryzant2023protegi,yang2024opro,yuksekgonul2025textgrad,agrawal2026gepa}.
+ADAS, AFlow, and the Darwin G\"odel Machine investigate automated construction or evolution of agentic systems \citep{hu2025adas,zhang2025aflow,zhang2025dgm}.
+GEPA retains candidates with complementary strengths, while DGM explores an archive of agent implementations.
+Studying the path from experience generation through skill extraction to consumption, \citet{huang2026skillconsumption} report average gains alongside negative transfer and differences between a model's ability to extract and use skills.
+Their study tests whether extracted skills help a target agent; ERA examines how to continue an evaluator-improvement direction after an unsuccessful implementation, separately from accepting that candidate.
 
 \paragraph{Domain quality and downstream use.}
-SummEval and BERTScore address summarization evaluation and text similarity
-\citep{fabbri2021summeval,zhang2020bertscore}; ImageReward, Pick-a-Pic, and GenEval
-capture different aspects of image preference and alignment
-\citep{xu2023imagereward,kirstain2023pickapic,ghosh2023geneval}.
+SummEval and BERTScore address summarization evaluation and text similarity \citep{fabbri2021summeval,zhang2020bertscore}; ImageReward, Pick-a-Pic, and GenEval capture different aspects of image preference and alignment \citep{xu2023imagereward,kirstain2023pickapic,ghosh2023geneval}.
 These signals are useful evidence, not interchangeable definitions of quality.
-ReAct, Reflexion, and Self-Refine connect observations, reflection, and iterative improvement
-\citep{yao2023react,shinn2023reflexion,madaan2023selfrefine}.
-Human-feedback summarization, instruction tuning, and direct preference
-optimization connect evaluation to model learning
-\citep{stiennon2020summarize,ouyang2022instruct,rafailov2023dpo}.
-We therefore separate fixed-pool evaluation, critic-guided refinement, and
-reward-guided training as distinct tests of an evolved evaluator.
+ReAct, Reflexion, and Self-Refine connect observations, reflection, and iterative improvement \citep{yao2023react,shinn2023reflexion,madaan2023selfrefine}.
+Human-feedback summarization, instruction tuning, and direct preference optimization connect evaluation to model learning \citep{stiennon2020summarize,ouyang2022instruct,rafailov2023dpo}.
+The reward-hacking survey of \citet{wang2026rewardhacking} organizes risks of proxy optimization around objective compression, optimization amplification, and evaluator--policy co-adaptation.
+An evaluator's agreement on fixed outputs therefore needs to be distinguished from its behavior under optimization, motivating separate tests of fixed-pool selection, critic-guided refinement, and reward-guided training.

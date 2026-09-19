@@ -19,7 +19,7 @@
 - [三张参考图对应的配色候选](.paper/palette_candidates.md)：直接采用原图标注色值的浅蓝—玫瑰粉、蓝—橙、青蓝—杏橙方案；不混入新的色系。
 - [完整覆盖映射](.paper/plan_coverage.md)：计划条目与正文、图表、证据边界的对应。
 - [主张索引](.paper/claims.yml)、[图表索引](.paper/figures.yml)：后续写作与图文一致性校验的结构化记忆。
-- [references.bib](references.bib)：33 条引文，核对来源见 [reference_sources.json](.paper/reference_sources.json)。
+- [references.bib](references.bib)：40 条引文，含作者指定的四篇 2026 年论文；来源见 [reference_sources.json](.paper/reference_sources.json)，出版处核验、全文支持范围及未决项见 [citation_audit.md](.paper/citation_audit.md)。
 
 概念图保留总览与六组件运行机制。正文 Figure 2 已换成确认的横版组图：左上任务组成环图、右上成本—一致性点图、下方四个任务族柱状图横排，覆盖全部 22 个任务。基线沿各任务族主题色浅渐变，ERA 统一湖绿强调；Source Sans 3 / Source Serif 4 字体已嵌入矢量 PDF。图中 2,880 个 OOD 输入按固定哈希从模拟全量数据抽取，四族各 720 个，并重新计算均值和区间，不等同于附录的全量结果。附录 Figure 4 保留全部 22 个领域的 ID/OOD 配对增益；组件／反馈粒度图为 Figure 8，C2 为 Figure 9。数值表、预算曲线、标注审计、排名与成本图也在附录，另有 12 张表覆盖研究设计。
 

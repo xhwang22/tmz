@@ -1,11 +1,14 @@
 Automated evaluators for open-ended tasks often miss the task-dependent trade-offs reflected in human preferences.
-Human feedback records judgments on concrete outputs, but does not specify an evaluation procedure for new ones.
-We study whether an evaluation agent can learn such a procedure by evolving how it gathers evidence and makes judgments.
-To obtain feedback for evolution, we use disagreement-based preference acquisition to reduce annotation of comparisons on which existing evaluation signals agree.
-Even with human feedback, search in the optimization traces we examined repeatedly discarded unsuccessful candidates and moved to other directions.
-Yet an evaluation procedure may need several connected changes before a direction produces a gain.
+Human preferences identify better outputs in concrete comparisons, but do not specify an evaluation procedure for new ones.
+We study how an evaluation agent can evolve this procedure from human feedback.
+Doing so requires acquiring informative preferences and turning the problems they reveal into working changes to the evaluation procedure.
+A limited annotation budget can be spent on repetitive comparisons that provide little guidance for improving the evaluator.
+Disagreement-based preference acquisition allocates fewer annotations to comparisons on which existing evaluation signals agree.
+In the iterative optimizer we tested, unsuccessful candidates were repeatedly followed by a return to the best evaluator and proposals in other directions.
+Yet a direction may require coordinated changes across the evaluation procedure before it produces a gain.
 We introduce \ERA{}, falsification-guided depth-first evolution that separates accepting a candidate from continuing its direction.
-ERA uses failures to guide further implementation without replacing the best evaluator with an unsuccessful candidate.
-Continuation depends on new evidence, distinguishing implementation obstacles from evidence against the direction's hypothesis.
-Our cross-domain evaluation protocol compares annotation efficiency, search progress, and agreement with human preferences under matched budgets.
+A failed candidate does not by itself refute a direction's hypothesis.
+ERA checks whether the proposed behavior occurred before treating its outcome as a test of the hypothesis.
+Diagnostic results guide further implementation or support refutation.
+Our cross-domain evaluation design tests acquisition and evolution separately and end-to-end under matched annotation and search budgets.
 Quantitative displays are simulated; confirmatory evaluation remains pending.

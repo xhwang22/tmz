@@ -4,15 +4,13 @@
 Open-ended tasks admit many plausible outputs, but their quality depends on which properties matter in context.
 A shorter summary may preserve the central argument better than a longer one, while an elaborate webpage may still fail its main purpose.
 Metrics and model-based judges capture useful aspects of quality, yet do not consistently match human preferences \citep{fabbri2021summeval,xu2023imagereward,zheng2023judging}.
-Adding more metrics leaves a judgment unresolved: which evidence should matter, and how should conflicting criteria be weighed for this task?
+Adding more metrics does not resolve the central question: which evidence should matter, and how should conflicting criteria be weighed for this task?
 
-Human feedback offers evidence of these task-dependent standards without requiring people to specify them fully in advance \citep{shankar2024evalgen}.
-A preference identifies the better output, but leaves open what an evaluator should inspect and how its findings should affect future judgments.
-Learning from human feedback therefore requires a way to turn concrete judgments into an evaluation procedure.
-We study whether an evaluation agent can learn this procedure through self-evolution.
-The agent uses disagreements with human feedback to propose and test changes to how it gathers or interprets evidence.
-Program evolution directly modifies this procedure while keeping the base model fixed \citep{agrawal2026gepa,zhang2025dgm}.
-Its success depends both on the feedback available and on how search uses that feedback.
+Human preferences provide feedback on which output is better, but leave open what an evaluator should inspect and how its findings should affect future judgments.
+Prior work uses human feedback to refine evaluation criteria or select evaluation functions \citep{liu2024autocalibrate,shankar2024evalgen}, while agentic judges gather evidence with tools \citep{zhuge2025agentjudge}.
+We study how an evaluation agent can evolve both evidence gathering and judgment from human feedback.
+Methods that propose and test changes to prompts and agent code provide a starting point for evolving this procedure \citep{agrawal2026gepa,zhang2025dgm}.
+Its success depends on two linked steps: acquiring informative preferences and turning the problems they reveal into working changes to the evaluation procedure.
 
 \begin{figure}[t]
 \centering
@@ -27,30 +25,30 @@ Arrows denote information flow, not measured improvements.}
 \label{fig:overview}
 \end{figure}
 
-Obtaining human feedback for a new task domain is difficult.
-Hand-designed examples can embed the designer's assumptions; unrestricted collection can burden annotators with easy, repetitive comparisons.
-Our approach spends fewer annotations on comparisons where existing evaluation signals agree, leaving more for disagreements.
-Disagreement-based preference acquisition implements this allocation, with a random anchor checking for shared errors \citep{seung1992committee}.
-The empirical question is whether these preferences improve the evaluator more than random sampling at the same human annotation cost.
+Obtaining informative preferences is difficult in a new domain.
+Hand-designed comparisons can embed the designer's assumptions; unrestricted collection can produce repetitive judgments.
+Drawing on query-by-committee and active preference learning \citep{seung1992committee,muldrew2024activepreference}, our disagreement-based preference acquisition allocates fewer annotations to comparisons on which existing evaluation signals agree.
+Random sampling checks for shared blind spots among these signals.
+We test whether these preferences support greater evaluator improvement than random sampling at equal human annotation cost.
 
-Even with human feedback, evaluator evolution can stall.
-In the iterative optimizer configuration we tested, a candidate was retained only when it improved the development score.
-After unsuccessful candidates, the agent repeatedly returned to the best evaluator and proposed other changes instead of continuing the rejected implementation.
-Such redirection matters when a proposed improvement requires several parts of the evaluation procedure to work together.
-For example, checking whether a summary omits important content requires retrieving the relevant source evidence and deciding which omissions should affect its score.
-Changing only one of these steps may fail to improve the overall judgment.
-If immediate gain also determines whether to continue a direction, search can stop before the changes needed to make it work are complete.
+Even with informative preferences, search can leave a direction unfinished.
+In the iterative optimizer we tested, candidates needed to improve the development score to replace the best evaluator.
+Rejection was repeatedly followed by a return to that evaluator and new proposals rather than further development of the rejected implementation.
+This pattern matters when a direction requires coordinated changes across the evaluation procedure.
+For example, evaluating omissions in a summary requires detecting missing content, judging its importance, and making that judgment affect the final score.
+Changing only one step may not improve the overall judgment.
+If immediate gain determines both candidate acceptance and further work on a direction, search can move on before the direction has been adequately implemented.
 
 We therefore separate \emph{whether to accept a candidate} from \emph{whether to continue its direction}.
-\ERA{} implements this principle through falsification-guided depth-first evolution (Figure~\ref{fig:overview}c).
-Each direction specifies an intended improvement, supported by a hypothesis about how it would correct an evaluation error.
-ERA gives priority to developing that direction, using failed attempts to check whether the intended behavior occurred and whether the evaluator used the resulting evidence as intended.
-Continuation requires new diagnostic evidence.
-Evidence against the hypothesis can end a direction; budget exhaustion alone does not refute it.
-An unsuccessful candidate can thus remain a starting point for further work without replacing the best evaluator.
+\ERA{} implements this distinction through falsification-guided depth-first evolution (Figure~\ref{fig:overview}c).
+Each direction is motivated by a hypothesis about how a change would correct an evaluation error.
+A failed candidate does not by itself refute that hypothesis.
+ERA first checks whether the proposed behavior was implemented and affected the final judgment as hypothesized.
+New diagnostic results guide further work on the implementation.
+Results contradicting the hypothesis can end a direction; budget exhaustion alone does not refute it.
 We test whether this continuation produces more sustained gains than restarting proposals under the same search budget.
 
-Our method connects the acquisition of human feedback with its use in developing an evaluator.
-Our evaluation protocol separates acquisition efficiency, evolutionary progress, and final evaluator agreement across structured visual artifacts, images and 3D, text generation, and automated research.
-It covers both reused and newly collected preferences, with a pointwise evaluator for each task standard.
-The planned comparisons include evaluator fine-tuning \citep{kim2024prometheus,kim2024prometheus2} and score calibration under controlled feedback and observation access.
+Preference acquisition and ERA target two obstacles to learning an evaluation procedure from human feedback: redundant annotation and premature abandonment of corrective directions.
+The cross-domain evaluation separates acquisition efficiency, search progress, and final evaluator agreement across structured visual artifacts, images and 3D, text generation, and automated research.
+It includes reused and newly collected preferences, with a pointwise evaluator for each task standard.
+The comparisons include evaluator fine-tuning \citep{kim2024prometheus,kim2024prometheus2} and score calibration under controlled feedback and observation access.

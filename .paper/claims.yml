@@ -6,7 +6,7 @@
   "claims": [
     {
       "id": "C1",
-      "text": "We study whether an evaluation agent can learn this procedure through self-evolution.",
+      "text": "We study how an evaluation agent can evolve both evidence gathering and judgment from human feedback.",
       "source": "sections/introduction.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -402,7 +402,7 @@
     },
     {
       "id": "C27",
-      "text": "The empirical question is whether these preferences improve the evaluator more than random sampling at the same human annotation cost.",
+      "text": "We test whether these preferences support greater evaluator improvement than random sampling at equal human annotation cost.",
       "source": "sections/introduction.tex",
       "kind": "hypothesis",
       "evidence_artifacts": [],
@@ -646,7 +646,7 @@
     },
     {
       "id": "C42",
-      "text": "Human feedback records judgments on concrete outputs, but does not specify an evaluation procedure for new ones.",
+      "text": "Human preferences identify better outputs in concrete comparisons, but do not specify an evaluation procedure for new ones.",
       "source": "sections/abstract.tex",
       "kind": "problem framing",
       "evidence_artifacts": [
@@ -660,7 +660,7 @@
     },
     {
       "id": "C43",
-      "text": "After unsuccessful candidates, the agent repeatedly returned to the best evaluator and proposed other changes instead of continuing the rejected implementation.",
+      "text": "Rejection was repeatedly followed by a return to that evaluator and new proposals rather than further development of the rejected implementation.",
       "source": "sections/introduction.tex",
       "kind": "bounded development observation",
       "evidence_artifacts": [

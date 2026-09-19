@@ -34,7 +34,7 @@ ambiguity as though that were the main problem.
 The author approved the revised argument: alignment difficulty, the gap between
 preference feedback and an executable evaluation procedure, why agent evolution
 is a useful candidate approach, then two connected learning obstacles.
-Acquisition reduces annotation of easy comparisons and recurring patterns;
+Acquisition reduces repeated annotation of comparisons on which existing signals agree;
 falsification-guided depth-first evolution develops directions beyond an initial
 unsuccessful implementation.
 The search principle is to separate accepting a candidate from continuing its
@@ -51,7 +51,27 @@ still be negative evidence. Consensus among signals is not correctness.
 Use human feedback consistently as the umbrella term and human preferences only
 for preference judgments. Detailed adaptation controls stay in Experiments and
 the appendix, with a short alternative-method comparison at the end of the introduction.
+Preferences are introduced as a form of human feedback. Disagreement refers to
+conflict among existing evaluation signals; diagnostic results refer to search-level
+implementation checks, distinct from evidence gathered about an artifact.
+The acquisition-to-evolution link is explicit: acquire informative preferences,
+then turn the problems they reveal into working evaluation-procedure changes.
+Immediate gain is a conditional explanation of direction abandonment, not a
+verified rule governing every continuation decision in the tested optimizer.
 GEPA, Meta-Harness, and DGM guide the argument structure, not borrowed findings.
+The introduction's literature bridge cites AutoCalibrate for feedback-driven
+criteria refinement and EvalGen for evaluation-function selection, Agent-as-a-Judge for tool-based
+evidence gathering, and active preference learning alongside query-by-committee
+for selective acquisition. These establish relevant prior capabilities, not ERA
+novelty or effectiveness. These sources use verified published records.
+Related Work now includes all four author-requested 2026 preprints: query-specific
+rubrics, Benchmark2, skill extraction/consumption, and the reward-hacking survey.
+They support distinct comparisons, not ERA's effectiveness claims.
+The citation audit checks identities, publication fields and cited scope separately.
+DGM is updated to ICLR 2026 and RewardBench to Findings of NAACL 2025.
+Official proceedings/PDF conflicts are resolved field by field; index matches
+never override the primary record without review. See citation_audit.md for
+the 40-entry venue inventory, verification dates and remaining limitations.
 Parameter-adaptation comparisons remain in the introduction and experiments;
 provenance protocols and detailed study-arm/domain lists do not belong in this
 abstract. The short simulation notice remains, without inventing a results
@@ -130,10 +150,10 @@ Use claims.yml and figures.yml for subsequent audits; gap claims are hypotheses,
 never findings. Memory claim IDs C1/C2/etc. are a separate namespace from the
 paper's study labels C1/C2/C3.
 
-Current structure: 2 main figures, 8 appendix figures, 12 tables, 33 verified
+Current structure: 2 main figures, 8 appendix figures, 12 tables, 40 verified
 bibliographic identities, and 44 claim records. The overview and pointwise
 runtime remain conceptual; eight figures and Table 10 use simulated reporting
-fixtures. The complete PDF is 30 pages; the main text remains within 9 pages.
+fixtures. The complete PDF is 31 pages; the main text remains within 9 pages.
 Official ICLR body fonts, margins, and heading rules are unchanged.
 
 Main Figure 2 is now the approved v20 landscape composite: balanced task ring,

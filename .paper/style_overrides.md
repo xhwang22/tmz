@@ -214,3 +214,49 @@ in Fig4, not Fig2. Other chart styles are unchanged in this integration pass.
   Keep the abstract a single paragraph and revised source one sentence per line.
 - Do not remove simulation disclosures or turn planned comparisons into completed
   studies to make the prose sound more conclusive.
+
+## Argument compression and terminology (2026-09-19, round 17)
+
+- Make the acquisition-to-evolution link explicit: obtain informative preferences,
+  then turn the problems they reveal into working evaluation-procedure changes.
+  Keep learning human-aligned evaluation as the research question; do not recast
+  the paper as a generic claim about feedback efficiency.
+- Introduce preferences as the form of human feedback used here. This does not
+  exclude the richer H2/H3 feedback defined in Methods or change pointwise scoring.
+- Reserve disagreement in the revised abstract/introduction for conflict among
+  existing evaluation signals. Use errors revealed by human feedback for mismatch
+  between the evaluator and human preferences.
+- Use diagnostic results for search-level implementation checks; keep artifact
+  evidence distinct. Do not use an ambiguous new evidence to bridge the levels.
+- Explain that immediate-gain-based acceptance can also curtail further work,
+  but do not elevate observed rejection/redirection into an enforced baseline
+  stopping rule, universal first-attempt abandonment, or proof of useful directions.
+- Consensus is an acquisition proxy, not proof that a comparison is resolved
+  correctly or intrinsically easy. Preserve random checks for shared blind spots.
+- End the introduction with the learning problem and the roles of the two stages,
+  followed by a compact evaluation scope. Reduce repeated planned/protocol wording
+  without changing unmeasured comparisons into completed empirical studies.
+- Add prior work only at the claim it supports. AutoCalibrate refines criteria,
+  not only scores; Agent-as-a-Judge gathers evidence but does not establish
+  feedback-driven evaluator evolution. Active preference learning motivates
+  selective acquisition, not this paper's human-cost or alignment gains.
+  Prefer verified published metadata and record each new citation's claim scope.
+
+## Citation identity, publication and claim support (2026-09-19, round 18)
+
+- Check identity, publication fields and cited claim support separately. A valid
+  DOI or an exactly-one index match does not certify the venue or the sentence.
+- Verify journal/booktitle, publication year, volume, issue, pages, DOI and version
+  where applicable. Distinguish main proceedings, Findings, workshops and preprints.
+  Never infer a formal venue from a paper's topic, author reputation or a search snippet.
+- Resolve conflicting index/BibTeX/PDF metadata field by field against the original
+  publication artifact; retain the conflicting values and decision in the audit.
+  Do not overwrite published author names or titles with a preprint/index variant.
+- Cite unconfirmed publication status explicitly as a verified arXiv preprint;
+  do not invent missing pages, volume, DOI or acceptance. Preserve verification
+  tiers and dates, including author-side comments versus proceedings records.
+- Include the four requested papers in their relevant Related Work discussions,
+  with their actual scope. Benchmark construction, skill utility, learned rubrics
+  and reward-hacking taxonomy do not prove our acquisition or search advantages.
+- Keep citation checks reproducible and report unresolved matches, source anomalies
+  and parser limitations. Do not describe a mixed-result audit as all passed.

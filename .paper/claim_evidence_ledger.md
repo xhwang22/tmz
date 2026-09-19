@@ -101,3 +101,62 @@ umbrella; human preferences are preference judgments. A direction states an
 intended improvement, its hypothesis predicts a testable change, and a candidate
 is a complete evaluator implementation. Detailed provenance and adaptation
 controls remain in their existing sections rather than the early introduction.
+
+## Argument compression audit (2026-09-19, round 17)
+
+The abstract and introduction now explicitly connect informative preference
+acquisition to working changes in the evaluation procedure. C1 and C42 retain
+their framing/specification status. Preferences are the concrete feedback form,
+without restricting the richer feedback schema or changing pointwise scoring.
+
+C43 still reports rejection followed by redirection in the tested configuration.
+The immediate-gain explanation is conditional: the audit does not establish a
+hard rule governing direction continuation, universal abandonment after a first
+attempt, or the value of abandoned directions. The summary-omission example
+illustrates coordinated evaluation steps, not a measured successful repair.
+
+Search-level implementation checks are called diagnostic results, distinct from
+the artifact evidence gathered by the evaluator. C15--C17/C32 support the
+acceptance/continuation distinction and scoped refutation as method definitions.
+Remaining implementation work alone does not justify indefinite continuation.
+The acquisition proxy remains agreement among signals, not agreement with humans.
+Random sampling checks for shared blind spots; C27/C28 remain open comparisons.
+
+The closing paragraph states the two obstacles to learning an evaluator and then
+describes the evaluation organization. Removing repeated planned/protocol labels
+does not change study status: the title-page and abstract notices, experimental
+sections, data manifests, and figures continue to disclose simulated quantities
+and pending confirmatory evaluation.
+
+Three targeted references now support the introduction's prior-work bridge and
+acquisition context. Their published metadata and method scope were checked.
+
+| Added source | Supported use | Boundary |
+| --- | --- | --- |
+| AutoCalibrate, LREC-COLING 2024 | Human-labeled examples guide evaluation-criteria refinement | Not only numerical score calibration; no ERA performance claim |
+| Agent-as-a-Judge, ICML 2025 | Tool-based gathering of evaluation evidence | Not evidence of human-feedback-driven evaluator evolution |
+| Active Preference Learning, ICML 2024 | Selective acquisition under a preference-label budget | DPO generator adaptation with an LLM oracle in the online experiment; not evidence for C27 or C28 |
+
+The bibliography now has 36 entries. Incremental checks are dated per entry in
+reference_sources.json; the earlier bibliography was not silently re-certified.
+
+## Requested literature and publication audit (2026-09-19, round 18)
+
+All four requested arXiv papers now appear in Related Work and the bibliography,
+bringing the cited set to 40. Query-specific rubrics contextualizes preference-
+trained criteria; Benchmark2 contextualizes selective benchmark construction;
+the skill study separates extraction from consumption; the reward-hacking survey
+motivates distinguishing agreement on fixed outputs from behavior under optimization.
+Their cited method/result passages and scope boundaries are recorded in
+`citation_audit.md` and `reference_sources.json`.
+
+The four are verified preprints, not assigned an unverified formal venue.
+The wider metadata audit updates DGM to ICLR 2026 and RewardBench to Findings of
+NAACL 2025, adds official ICLR publication fields, and records conflicts between
+indexes and primary publications. A matching title or identifier is not a
+substitute for venue verification or full-text claim support.
+
+C27 is refreshed verbatim after Introduction compression; it remains a gap.
+C28 remains a gap as well. Neither cited studies nor simulated reporting fixtures
+provide evidence of our equal-cost acquisition or search advantage.
+No figures, data, empirical claims or study execution status change in this round.

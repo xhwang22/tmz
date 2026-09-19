@@ -494,6 +494,26 @@
       "changed_figures": [],
       "sections_touched": ["Abstract", "Introduction", "Method definitions", "Mining terminology", "Paper memory", "Writing conventions"],
       "summary": "Reorganizes the abstract and introduction around learning an executable evaluation procedure from human feedback. Preference acquisition reduces redundant annotation; observed rejection and redirection motivate developing a direction through connected evaluation changes. Separates candidate acceptance from direction continuation without claiming that a failed implementation supplies no negative evidence. Bounds the observation to the tested iterative configuration and makes the omission example explicit. Moves fine-tuning and calibration positioning to the introduction's closing paragraph. Distinguishes direction, hypothesis, candidate, procedure and program in Methods, and uses preference acquisition consistently in Mining. Preserves one sentence per revised source line, pointwise deployment, simulation disclosures, and the empirical gaps C27/C28. Retains the previously integrated landscape composite and all prior changes for the authorized GitHub update; no new data, experiments, training or model calls."
+    },
+    {
+      "round": 17,
+      "date": "2026-09-19",
+      "trigger": "Author requests tighter terminology and argument compression, explicitly connecting acquisition to evolution and sharpening candidate acceptance versus direction continuation; earlier feedback also requests targeted introduction references.",
+      "reviewer": "Author feedback",
+      "changed_claims": ["C1", "C42", "C43"],
+      "changed_figures": [],
+      "sections_touched": ["Abstract", "Introduction", "Method terminology", "Bibliography and source provenance", "Paper memory", "Writing conventions", "README"],
+      "summary": "Makes the acquisition-to-evolution link explicit: informative preferences must lead to working evaluation-procedure changes. Establishes preferences as a form of human feedback, reserves disagreement for existing evaluation signals, and distinguishes search diagnostics from artifact evidence. Binds rejection/redirection to the inspected optimizer and states immediate-gain-based direction abandonment conditionally, without asserting a formal stopping rule or usefulness of rejected directions. Simplifies the abstract's implementation check and hypothesis test, preserves the distinction between refutation and budget exhaustion, and closes the introduction with the two obstacles to evaluator learning. Adds verified published versions of AutoCalibrate, Agent-as-a-Judge and Active Preference Learning at their supported claims, with full-text scope boundaries and incremental verification dates; bibliography grows from 33 to 36 entries. Preserves pointwise scoring, richer feedback levels, matched-budget questions C27/C28, the approved figures, one sentence per revised source line, and all simulation/pending-evaluation disclosures. No new experiments, data, training, model calls, source-project changes, commit or push."
+    },
+    {
+      "round": 18,
+      "date": "2026-09-19",
+      "trigger": "Author requires the four supplied arXiv papers in Related Work and a citation-hallucination audit including publication venue fields, using reference-audit.",
+      "reviewer": "Author feedback",
+      "changed_claims": ["C27"],
+      "changed_figures": [],
+      "sections_touched": ["Related Work", "Introduction citation scope and compression", "Bibliography and publication metadata", "Citation audit", "Paper memory", "README"],
+      "summary": "Includes all four requested papers in thematic Related Work discussions, with verified arXiv metadata and full-text scope boundaries. Corrects DGM to ICLR 2026 and RewardBench to Findings of NAACL 2025; adds official ICLR volume/page records and resolves published-PDF versus index author/title conflicts without blindly copying automated matches. Runs the pinned reference-audit CLI and a reproducible identity screen, documenting 40 cited entries, field-level conflicts, verification tiers, unavailable formal venues and unresolved index checks. Narrows EvalGen and GEPA attribution in the introduction and compresses acquisition prose without changing the learning argument. Refreshes C27 exactly while retaining C27/C28 as empirical gaps. Preserves one sentence per revised source line, pointwise deployment, approved figures and all simulated-result disclosures. Compiles a 31-page PDF with 9 main-text pages and visually reviews the affected prose and bibliography. No experiments, training, image calls, private-data import, source-project edits, commit or push."
     }
   ]
 }
