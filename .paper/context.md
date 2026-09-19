@@ -31,9 +31,11 @@ self-evolution. The human standard remains the target; its explicit
 approximation in the evaluator is what evolves. Do not lead with error-diagnosis
 ambiguity as though that were the main problem.
 
-The author approved the revised argument: alignment difficulty, the gap between
-preference feedback and an executable evaluation procedure, why agent evolution
-is a useful candidate approach, then two connected learning obstacles.
+The author approved the revised argument: open-ended evaluation is difficult
+because quality depends on task-specific criteria and trade-offs; preferences
+provide concrete judgments without specifying an executable evaluation procedure.
+Agent evolution is a candidate approach to learning that procedure, with two
+connected learning obstacles.
 Acquisition reduces repeated annotation of comparisons on which existing signals agree;
 falsification-guided depth-first evolution develops directions beyond an initial
 unsuccessful implementation.
@@ -56,8 +58,12 @@ conflict among existing evaluation signals; diagnostic results refer to search-l
 implementation checks, distinct from evidence gathered about an artifact.
 The acquisition-to-evolution link is explicit: acquire informative preferences,
 then turn the problems they reveal into working evaluation-procedure changes.
-Immediate gain is a conditional explanation of direction abandonment, not a
-verified rule governing every continuation decision in the tested optimizer.
+The observation of rejection/redirection motivates the explicit design principle
+that rejecting a candidate need not end work on its direction. It does not
+establish that immediate gain governed the optimizer's continuation decisions.
+The research question precedes the literature bridge, and acquisition references
+follow the allocation rule they support. The two linked steps are introduced
+once, without adding a separate feedback-waste theory or expanding the overview.
 GEPA, Meta-Harness, and DGM guide the argument structure, not borrowed findings.
 The introduction's literature bridge cites AutoCalibrate for feedback-driven
 criteria refinement and EvalGen for evaluation-function selection, Agent-as-a-Judge for tool-based

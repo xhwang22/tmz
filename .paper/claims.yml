@@ -6,7 +6,7 @@
   "claims": [
     {
       "id": "C1",
-      "text": "We study how an evaluation agent can evolve both evidence gathering and judgment from human feedback.",
+      "text": "We study how an evaluation agent can evolve an evaluation procedure from human feedback by changing how it gathers evidence and makes judgments.",
       "source": "sections/introduction.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -646,7 +646,7 @@
     },
     {
       "id": "C42",
-      "text": "Human preferences identify better outputs in concrete comparisons, but do not specify an evaluation procedure for new ones.",
+      "text": "Human preferences provide judgments on concrete outputs, but do not specify what an evaluator should inspect or how its findings should affect future judgments.",
       "source": "sections/abstract.tex",
       "kind": "problem framing",
       "evidence_artifacts": [
@@ -660,7 +660,7 @@
     },
     {
       "id": "C43",
-      "text": "Rejection was repeatedly followed by a return to that evaluator and new proposals rather than further development of the rejected implementation.",
+      "text": "After rejections, search repeatedly returned to that evaluator and proposed other directions instead of further developing the rejected implementation.",
       "source": "sections/introduction.tex",
       "kind": "bounded development observation",
       "evidence_artifacts": [

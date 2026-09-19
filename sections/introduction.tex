@@ -1,16 +1,16 @@
 \section{Introduction}
 \label{sec:intro}
 
-Open-ended tasks admit many plausible outputs, but their quality depends on which properties matter in context.
+Evaluating open-ended outputs is difficult because their quality depends on task-specific criteria and trade-offs.
 A shorter summary may preserve the central argument better than a longer one, while an elaborate webpage may still fail its main purpose.
 Metrics and model-based judges capture useful aspects of quality, yet do not consistently match human preferences \citep{fabbri2021summeval,xu2023imagereward,zheng2023judging}.
-Adding more metrics does not resolve the central question: which evidence should matter, and how should conflicting criteria be weighed for this task?
+Collecting more evaluation signals does not by itself resolve the central question: which evidence should matter, and how should conflicting criteria be weighed for this task?
 
 Human preferences provide feedback on which output is better, but leave open what an evaluator should inspect and how its findings should affect future judgments.
+We study how an evaluation agent can evolve an evaluation procedure from human feedback by changing how it gathers evidence and makes judgments.
 Prior work uses human feedback to refine evaluation criteria or select evaluation functions \citep{liu2024autocalibrate,shankar2024evalgen}, while agentic judges gather evidence with tools \citep{zhuge2025agentjudge}.
-We study how an evaluation agent can evolve both evidence gathering and judgment from human feedback.
 Methods that propose and test changes to prompts and agent code provide a starting point for evolving this procedure \citep{agrawal2026gepa,zhang2025dgm}.
-Its success depends on two linked steps: acquiring informative preferences and turning the problems they reveal into working changes to the evaluation procedure.
+Evolving the procedure requires two linked steps: acquiring informative preferences and turning the problems they reveal into working changes.
 
 \begin{figure}[t]
 \centering
@@ -27,20 +27,19 @@ Arrows denote information flow, not measured improvements.}
 
 Obtaining informative preferences is difficult in a new domain.
 Hand-designed comparisons can embed the designer's assumptions; unrestricted collection can produce repetitive judgments.
-Drawing on query-by-committee and active preference learning \citep{seung1992committee,muldrew2024activepreference}, our disagreement-based preference acquisition allocates fewer annotations to comparisons on which existing evaluation signals agree.
+Our disagreement-based preference acquisition allocates fewer annotations to comparisons on which existing evaluation signals agree, drawing on query-by-committee and active preference learning \citep{seung1992committee,muldrew2024activepreference}.
 Random sampling checks for shared blind spots among these signals.
 We test whether these preferences support greater evaluator improvement than random sampling at equal human annotation cost.
 
 Even with informative preferences, search can leave a direction unfinished.
 In the iterative optimizer we tested, candidates needed to improve the development score to replace the best evaluator.
-Rejection was repeatedly followed by a return to that evaluator and new proposals rather than further development of the rejected implementation.
+After rejections, search repeatedly returned to that evaluator and proposed other directions instead of further developing the rejected implementation.
 This pattern matters when a direction requires coordinated changes across the evaluation procedure.
 For example, evaluating omissions in a summary requires detecting missing content, judging its importance, and making that judgment affect the final score.
-Changing only one step may not improve the overall judgment.
-If immediate gain determines both candidate acceptance and further work on a direction, search can move on before the direction has been adequately implemented.
+Changing only one step may leave the overall judgment unchanged.
 
-We therefore separate \emph{whether to accept a candidate} from \emph{whether to continue its direction}.
-\ERA{} implements this distinction through falsification-guided depth-first evolution (Figure~\ref{fig:overview}c).
+Rejecting a candidate need not end work on its direction.
+\ERA{} separates \emph{candidate acceptance} from \emph{direction continuation} through falsification-guided depth-first evolution (Figure~\ref{fig:overview}c).
 Each direction is motivated by a hypothesis about how a change would correct an evaluation error.
 A failed candidate does not by itself refute that hypothesis.
 ERA first checks whether the proposed behavior was implemented and affected the final judgment as hypothesized.

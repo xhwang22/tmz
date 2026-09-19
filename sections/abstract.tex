@@ -1,12 +1,12 @@
-Automated evaluators for open-ended tasks often miss the task-dependent trade-offs reflected in human preferences.
-Human preferences identify better outputs in concrete comparisons, but do not specify an evaluation procedure for new ones.
-We study how an evaluation agent can evolve this procedure from human feedback.
+Open-ended evaluation is difficult because quality depends on task-specific criteria and trade-offs.
+Human preferences provide judgments on concrete outputs, but do not specify what an evaluator should inspect or how its findings should affect future judgments.
+We study how an evaluation agent can evolve an evaluation procedure from human feedback.
 Doing so requires acquiring informative preferences and turning the problems they reveal into working changes to the evaluation procedure.
 A limited annotation budget can be spent on repetitive comparisons that provide little guidance for improving the evaluator.
 Disagreement-based preference acquisition allocates fewer annotations to comparisons on which existing evaluation signals agree.
-In the iterative optimizer we tested, unsuccessful candidates were repeatedly followed by a return to the best evaluator and proposals in other directions.
+In the iterative optimizer we tested, rejected candidates were repeatedly followed by new proposals rather than further development of the rejected implementation.
 Yet a direction may require coordinated changes across the evaluation procedure before it produces a gain.
-We introduce \ERA{}, falsification-guided depth-first evolution that separates accepting a candidate from continuing its direction.
+We introduce \ERA{}, falsification-guided depth-first evolution that separates candidate acceptance from direction continuation.
 A failed candidate does not by itself refute a direction's hypothesis.
 ERA checks whether the proposed behavior occurred before treating its outcome as a test of the hypothesis.
 Diagnostic results guide further implementation or support refutation.

@@ -260,3 +260,20 @@ in Fig4, not Fig2. Other chart styles are unchanged in this integration pass.
   and reward-hacking taxonomy do not prove our acquisition or search advantages.
 - Keep citation checks reproducible and report unresolved matches, source anomalies
   and parser limitations. Do not describe a mixed-result audit as all passed.
+
+## Argument focus (2026-09-19, round 19)
+
+- Open with why open-ended evaluation is difficult: task-specific criteria and
+  trade-offs. Introduce limitations of existing evaluators after that problem.
+- Let the preference/procedure gap lead directly to the research question.
+  Place prior work after the question or capability it supports, without
+  deleting the verified references or expanding their attributed scope.
+- Keep one explicit acquisition-to-evolution bridge. Do not add repeated
+  definitions of two stages, two failures, and wasted feedback.
+- State the observed rejection/redirection pattern directly, then state that
+  rejecting a candidate need not end work on its direction as a design principle.
+  Do not turn this principle into a verified causal rule of the tested optimizer.
+- Preserve agreement rather than resolved judgments as the acquisition proxy,
+  and program evolution as a research choice rather than a necessary alternative
+  to score fitting or fine-tuning. Sentence focus should follow the argument,
+  not a mechanical requirement to place every new concept in the subject.
