@@ -42,6 +42,7 @@ comprising artifact adapters $A$, dimension schema and rubrics $K$, evaluator
 modules $V$, tools $T$, evidence routing $\Pi$, and fusion $G$.
 The score $s_\theta$ is accompanied by an execution trace $\tau_\theta$.
 The base model is fixed outside $\theta$.
+Self-evolution means automated changes to this evaluation program under external human feedback, not self-definition of the human standard.
 At deployment, the evaluator receives one candidate and its permitted evidence;
 opponents, human labels, generator identity, split labels, and mining strata
 are excluded. We seek agreement with unseen human preferences at an explicitly

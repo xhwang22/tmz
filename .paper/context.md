@@ -95,21 +95,36 @@ labels are not inherently more reliable.
 The same wrong ordering may arise from missing observations, unused evidence,
 or inappropriate interpretation and priorities. Human evidence helps locate
 these evaluation gaps and supplies a selection standard; an ordering alone does
-not identify its cause. The acquisition procedure inventories domain evaluation knowledge,
+not identify its cause. The acquisition design inventories domain evaluation knowledge,
 freezes signal–dimension mappings, uses a random reliability anchor, separates
-three semantic disagreement strata, and acquires structured H0–H3.
+three semantic disagreement strata, and acquires available H0–H3.
+The implemented miner supplies structural priorities and source-group records;
+human-reliability qualification is a separate, still unverified step.
 H1 is central. H0-only instantiations do not possess uncollected H1/H2.
 The evidence table Z connects feedback, artifacts, source signals, routes,
 tool output, uncertainty, and cost to ERA.
 
 ERA evolves observation and judgment through (A, K, V, T, Pi, G) with a fixed
-base model. Pointwise scoring excludes opponents and labels. At least three
-complete scores per artifact precede the median comparison. The hypothesis is
-the unit of exploration; the complete program is the unit of selection.
+base model. Pointwise scoring excludes opponents and labels. Full development
+and terminal validation request at least three executions per artifact before
+median comparison, with completeness checked separately. The direction is
+the unit of continued exploration; the complete program is the unit of selection.
 Connected changes instantiate a mechanism hypothesis, not an empirical finding.
 Proposal evidence, sealed Train measurement, and allocation are separate.
 Working and best programs differ. Evidence-bound continuation, protection guards,
 terminal Val, independent Test/OOD, and component attribution remain explicit.
+The Method now follows executable evaluation and measurement, error-to-candidate
+revision, independent best/working updates, and failure interpretation and freeze.
+Default synthesis hides structured specialist scores, ratings, and scales while
+retaining findings, reasons, and scopes. Patch sessions require actual edits,
+intent, and inspected Train references; expectations and checks are optional.
+Working inheritance distinguishes accepted, undamaged, and unaccepted damaged
+candidates; the last needs fresh, uncredited progress and preserved protection
+cases. Exact recorded-field changes, not semantic claims, can earn such progress.
+The controller does not automatically assign semantic refutation. Falsification
+remains a research standard for interpreting diagnostic results, distinct from
+pausing or budget exhaustion. Terminal Val never reranks the Train shortlist.
+The detailed implementation/exemplar audit is in method_implementation_audit.md.
 
 Parameter adaptation is a substantive alternative. The planned C1 controls add
 fixed-structure evaluator fine-tuning and score calibration. An additional
@@ -159,7 +174,7 @@ paper's study labels C1/C2/C3.
 Current structure: 2 main figures, 8 appendix figures, 12 tables, 40 verified
 bibliographic identities, and 44 claim records. The overview and pointwise
 runtime remain conceptual; eight figures and Table 10 use simulated reporting
-fixtures. The complete PDF is 31 pages; the main text remains within 9 pages.
+fixtures. The complete PDF is 32 pages; the main text remains within 9 pages.
 Official ICLR body fonts, margins, and heading rules are unchanged.
 
 Main Figure 2 is now the approved v20 landscape composite: balanced task ring,

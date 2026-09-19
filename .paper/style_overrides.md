@@ -50,8 +50,9 @@
   Independent reserved metrics never become tools, critics, rewards, or selectors.
 - Separate a direction from its implementation, working from best program,
   continuation from promotion, and exhaustion from scoped refutation.
-  Mechanism hypotheses are the units of exploration; complete programs are
-  the units of selection. Alignment, useful critique, and useful reward under
+  Directions are the units of continued exploration; their hypotheses explain
+  the intended correction, and complete programs are the units of selection.
+  Alignment, useful critique, and useful reward under
   optimization are separate capabilities that require separate evidence.
 - Bound causal language to controlled paired attribution; connected-bundle gains
   do not establish each component's independent contribution.
@@ -277,3 +278,28 @@ in Fig4, not Fig2. Other chart styles are unchanged in this integration pass.
   and program evolution as a research choice rather than a necessary alternative
   to score fitting or fine-tuning. Sentence focus should follow the argument,
   not a mechanical requirement to place every new concept in the subject.
+
+## Method exposition and implementation boundary (2026-09-19, round 20)
+
+- Use GEPA, Meta-Harness, and DGM as structural exemplars, with SkillOpt as an
+  auxiliary terminology reference. Explain the executable evaluator and its
+  measurement, then error-driven candidate changes, acceptance versus
+  continuation, and failure interpretation. Do not borrow their results or
+  characterize their search policies as uniformly greedy.
+- Keep pointwise execution central. A complete program is the selection unit;
+  a direction is the continued-exploration unit. Put detailed access checks,
+  optional declarations, attribution controls, and pseudocode in the appendix.
+  Use one complete sentence per source line in revised Method and acquisition prose.
+- Ground mechanisms in the inspected native patch implementation. Structured
+  specialist scores are hidden from default synthesis; proposal expectations
+  are optional. Accepted, undamaged, and unaccepted damaged candidates have
+  distinct working-state eligibility. Exact recorded-field changes are not
+  automatically verified semantic explanations.
+- Distinguish scoped refutation as an evidence standard from the controller's
+  implemented continuation and pausing decisions. Do not claim an automatic
+  semantic-refutation oracle. Terminal Val never reranks the Train shortlist
+  or drives another edit; budget exhaustion does not refute a direction.
+- Describe acquisition's implemented structural conflict ranking separately
+  from still-unverified human-reliability qualification. Do not restore the
+  unimplemented reliability-weighted formula or inherit a model-pilot anchor
+  fraction as the human-study setting. Preserve absent feedback levels.

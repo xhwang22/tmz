@@ -195,6 +195,34 @@ Charge anchor annotations to every strategy's human budget. An existing labeled
 dataset must simulate the same access order. The final cohort is sampled
 independently of conflicts and never contributes to reliability calibration.
 
+\paragraph{Implemented conflict ranking.}
+The miner computes structural disagreement without reading the pair's human preference.
+Let $I_{\mathrm{within},q}(r)$ indicate opposing signals from distinct source groups on dimension $q$, $I_{\mathrm{overall},q}(r)$ indicate opposition between an overall and a dimensional signal, and $I_{\mathrm{tradeoff}}(r)$ indicate opposed dimension-level preferences.
+Its current priority rule is
+\begin{equation}
+ P(r)=2\sum_q I_{\mathrm{within},q}(r)
+      +\sum_q I_{\mathrm{overall},q}(r)+I_{\mathrm{tradeoff}}(r).
+ \label{eq:conflict}
+\end{equation}
+The coefficients define a structural ranking, not estimated signal reliability or a probability of evaluation error.
+Overall--dimension comparisons retain whether their signals share a source group; they are not automatically independent evidence.
+Each source group contributes at most one direction to a dimension's aggregate preference, with opposing within-group directions yielding abstention.
+Missing outputs and small-margin ties remain distinct from opposing preferences.
+
+For repeated model signals, the acquisition margin is the median of same-repeat score differences between the two artifacts; variation and sign changes are retained.
+This differs from Equation~\ref{eq:measurement}, which first takes each artifact's median final score and then compares them.
+A missing required signal repeat makes that acquisition signal unavailable.
+Deterministic metrics use declared ranges and orientations, not ranges fitted to the candidate pool or human labels.
+The random anchor is selected by original-input hashes before scoring, preserving candidate groups.
+Label-blind execution does not establish label-blind upstream cohort selection; historical data must also document how the candidate pool was chosen.
+
+\paragraph{Human qualification and implementation boundary.}
+The implemented miner supplies the structural queue and its source-dependence records.
+The full acquisition protocol additionally requires human-annotated anchors to qualify signals before targeted annotation; cross-domain human-reliability calibration and the equal-budget advantage remain unverified.
+Model-annotated pilot anchors measure agreement with that model, not human reliability.
+The annotation fraction, qualification thresholds, and targeted policy must be frozen for the human study, rather than inherited silently from a pilot.
+The evidence table $Z$ is a logical join over feedback, artifact, signal, and execution records; absent human dimensions or rationales remain absent.
+
 \begin{table}[t]
 \caption{Readiness criteria before a domain enters confirmatory evaluation.
 These are audit requirements, not completed coverage scores.}
@@ -257,7 +285,7 @@ Partition & Information released & Permitted decision \\
 \midrule
 Proposal Train & Authorized artifacts, feedback, and traces & Mechanism hypotheses and candidate evolution \\
 Sealed Train & Prespecified aggregates only & Development promotion, continuation, and allocation \\
-Terminal Val & Frozen-shortlist measurements & Prespecified terminal selection; no new mechanism edits \\
+Terminal Val & Frozen-shortlist measurements & Terminal assessment; no reranking or further edits \\
 Test/OOD & Locked until method and analysis freeze & Independent final reporting \\
 Metric reserve & No access during evolution & Final assessment only; no tools, critique, reward, or selection \\
 \bottomrule
@@ -288,7 +316,7 @@ does not forbid using other existing metrics as tools.
 Figure~\ref{fig:runtime} separates the editable observation and judgment
 mechanisms. Algorithm~\ref{alg:era} specifies their evolution and selection.
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \input{figures/evaluator}
 \caption{The six-component evaluation program. (a) Read one candidate and
@@ -300,104 +328,110 @@ findings are a constructed example.}
 \label{fig:runtime}
 \end{figure}
 
-\begin{algorithm}[t]
-\caption{Evidence-guided evaluator evolution (ERA)}
+\begin{algorithm}[htbp]
+\caption{ERA: separate candidate acceptance from direction continuation}
 \label{alg:era}
 \small
 \begin{algorithmic}[1]
-\Require Seed $E_0$, proposal evidence $Z_{\mathrm{prop}}$, sealed development
-interface, fixed budgets and measurement rule
-\State Measure $E_0$ on the common sealed Train cohort; set best program $B\gets E_0$
-\State Initialize direction history and allocation state
+\Require Seed $E_0$, proposal evidence $Z_{\mathrm{prop}}$, sealed $\Ddev$, fixed search and execution limits
+\State Measure $E_0$; initialize best $B\gets E_0$, working $W\gets E_0$, and history
 \While{search resources remain}
-  \State Choose to request evidence, start, continue, pause, or switch direction
-  \If{requesting evidence}
-    \State Acquire authorized proposal-Train evidence; charge its cost
-  \ElsIf{starting or continuing a direction}
-    \State Set parent $P\gets B$ for a new direction, or the eligible working program
-    \State Specify prediction, alternatives, target cases, and protection conditions
-    \State Construct a bounded atomic edit or connected patch $E'\gets\operatorname{patch}(P)$
-    \State Inspect local diagnostics; retain observations and failures
-    \State Measure frozen $E'$ on the common sealed Train cohort
-    \State Record the full attempt, component changes, costs, and aggregate outcome
-    \If{measurement is complete and the development promotion rule holds}
-      \State $B\gets E'$
+  \State Start a direction from $B$, or continue the active direction from $W$
+  \State Inspect proposal-Train artifacts and history; request diagnostics as needed
+  \State Construct complete candidate $C$ with its intent and inspected Train references
+  \If{$C$ is valid and distinct}
+    \State Measure $C$ on $\Ddev$; retain local diagnostic outcomes
+    \If{the candidate-acceptance conditions hold}
+      \State $B\gets C$
     \EndIf
-    \If{measurement is complete and the continuation rule holds}
-      \State Retain $E'$ as the direction's working program
-    \EndIf
-    \State Update direction status without equating a failed candidate with refutation
-  \Else
-    \State Save the direction state and reallocate the remaining resources
+    \State $W\gets C$ if measured inheritance is eligible; otherwise $W\gets B$
   \EndIf
+  \State Retain changes, outcomes, failed attempts, and resource use in history
+  \State Continue the direction with its diagnostics, or pause it
 \EndWhile
-\State On normal completion, freeze an eligible shortlist using training evidence only
-\State Assess the shortlist on terminal Val under a prespecified selection rule
-\State Freeze the final evaluator and analysis before independent Test/OOD assessment
+\State On normal completion, freeze and order eligible candidates using Train only
+\State Assess a nonempty shortlist on terminal Val without reranking or further edits
+\State Retain the Train-selected evaluator, or the seed if no eligible improvement exists
 \end{algorithmic}
 \end{algorithm}
 
-\paragraph{Hypothesis state.}
-Each direction records a mechanism, its evidence, alternative explanations,
-a falsifiable prediction, protected cases, editable components, and the
-observations needed to assess the prediction. Local diagnostics are not a
-mandatory success gate for broader sealed-development measurement.
-Continuation retains a working program only when its measurement, new evidence,
-and protection conditions justify doing so. The best program is a separate
-selection state; retaining a working program does not redefine the best score.
+\paragraph{Investigation and candidate construction.}
+The evolution agent reads original proposal-Train artifacts, installed component instructions, execution traces, and relevant history through a tool-driven editing session.
+It can request additional authorized proposal-Train measurements or fixed-input component probes.
+The submission contains actual edits, a short intent, and references to inspected training cases.
+Predicted orderings, contrast cases, and intermediate checks are optional declarations, not controller-inferred scientific predictions.
+The controller records the exact parent, installed program, and measured outcomes.
+Local diagnostic success is not an admission requirement for the common development measurement.
 
-\paragraph{Promotion and confirmation.}
-Development promotion requires complete execution, a strict agreement gain,
-nondecreasing coverage, and a prespecified worst-stratum regression guard.
-Guard thresholds and tie rules are fixed before search. These are development
-selection rules rather than statistical significance claims. Normal completion
-is followed by fresh repeated terminal measurements of the frozen shortlist.
-Selection uncertainty and the number of assessed candidates are reported.
+An elementary edit changes one component; a connected candidate can assemble a tool, its route, and its consumer against a fixed parent.
+Only the complete candidate is executed and measured, not its partially assembled versions.
+Changed tools must be connected to valid routes, although valid routing alone does not establish correct use of their outputs.
+Interface validity, fixed-model constraints, and execution limits remain mandatory; edit-character counts are recorded as guidance rather than a hard acceptance or stopping rule.
+Unchanged programs and verified historical replays are distinguished from fresh trials, and failed calls remain in the cost record.
 
-\paragraph{Attribution.}
-An elementary mutation changes one attributable component. A connected patch
-may introduce a tool, a route, and a consumer change against one fixed parent.
-The bundle receives one system-level outcome, not three independent causal
-credits.
+\paragraph{Diagnostic observations.}
+Fixed-input probes compare supported specialist or synthesis variants while holding their upstream inputs fixed.
+Such probes bind their observations to the exact tested candidate and inputs; changing a tool, route, or topology requires the corresponding complete execution.
+An optional exact intermediate check records whether a declared field changed to its expected value on at least one complete repeat.
+All repeat-level matches, contradictions, and unknowns remain visible.
+A semantic expectation is not automatically verified, and a changed recorded field is not proof of a correct causal explanation or improved overall judgment.
 
-\begin{samepage}
-Component attribution requires paired interventions with all other
-interfaces held fixed, including tool on/off, evolved versus seed tool, and
-adaptive versus static routing. If disabling a dependency makes a program
-invalid, report that limitation and use a compatible control where justified.
-System confirmation and attribution answer different questions.\par
-\end{samepage}
+\paragraph{Acceptance and working-state inheritance.}
+Candidate acceptance requires complete, comparable execution, a strict development-agreement gain over the best evaluator, nondecreasing coverage, and the prespecified worst-stratum guard.
+These are development selection rules rather than statistical significance claims.
+Working-state inheritance is a separate decision.
+Accepted candidates and candidates with no observed damage can be inherited when their required measurements are complete and comparable.
+For this decision, damage includes a local ordering regression, deterioration on a declared protection case, or more regressed than corrected sealed-Train comparisons against either the parent or the best evaluator.
+An unaccepted candidate with damage is eligible only when fresh measurement supplies new progress and the declared protection cases do not deteriorate.
 
-A scoped refutation records the contradicted prediction and the evidence that
-rules out relevant implementation alternatives. Missing observations, an
-unselected tool, incorrect interpretation, or insufficient resources leave
-different conclusions. Neither one unsuccessful implementation nor a
-nonsignificant difference alone refutes the direction.
+Qualifying progress is either a first-time repair of an error present at the direction's root, still wrong in the parent, or a newly observed, predeclared exact intermediate-field change.
+Previously credited repairs and checks are retained across attempts, so breaking and repairing an already corrected case cannot renew this allowance.
+A missing protected case is unknown, not preserved.
+When inheritance fails, the next parent returns to the best evaluator, but the failed candidate and its diagnostics remain available.
+Keeping an intermediate candidate never changes the recorded best score.
+
+\paragraph{Failure interpretation and termination.}
+The implemented controller records continuation, revision, pausing, and resource limits; it does not assign a semantic refutation automatically.
+A research claim of scoped refutation must identify the contradicted prediction and examine relevant alternatives such as missing observations, unused tool output, or incorrect downstream interpretation.
+One unsuccessful implementation, a nonsignificant difference, or budget exhaustion alone is insufficient.
+These evidence requirements govern interpretation of the search record, not an unimplemented automatic hypothesis test.
+
+\paragraph{Terminal assessment and attribution.}
+The terminal shortlist includes eligible, previously accepted, complete programs with positive development gain over the seed and is ordered using Train evidence alone.
+Its membership and order are frozen before Val access.
+Terminal Val does not rerank the shortlist or guide another proposal.
+With no eligible improvement, the seed is retained without an additional Val query.
+Fresh system confirmation and independent Test/OOD assessment remain separate from adaptive development.
+
+A connected candidate receives one system-level outcome, not independent causal credit for each component.
+Component attribution requires paired interventions with the remaining interfaces fixed, such as tool on/off or evolved versus seed synthesis.
+If removing a dependency makes the program invalid, the comparison must report that limitation rather than substitute an unrelated whole-program control.
+Complete prompt templates, interaction traces, candidate changes, and execution settings belong in the reproducibility record rather than the main algorithm.
 
 \section{Semantic synthesis and anchored scoring}
 \label{app:synthesis}
 
-Semantic synthesis is an optional fusion procedure, compared with a declared
-numerical rule. A specialist report contains a finding identifier, supporting
-evidence, a dimension, uncertainty, and an anchored quality judgment.
-The synthesizer groups findings into factors while preserving overlap and
-contradiction. Duplicate descriptions of the same
-defect should not become independent penalties, and a favorable style judgment
-should not silently cancel a factual error when the domain standard prioritizes
-faithfulness.
+The default fusion procedure forms an overall judgment from specialist findings; a declared numerical rule is an explicit alternative.
+Each specialist produces findings with identifiers, supporting evidence, dimensions, and uncertainty, as well as its own rating and reason.
+The full specialist trace remains available for diagnosis, but the synthesizer's default input omits the structured specialist score, rating, and score scale.
+It retains the findings, reasons, and scope of each specialist and applies its own overall scale.
+This input separation does not remove value judgments expressed in the reasons.
 
-Let $a_k<a_{k+1}$ be adjacent declared anchors and $\lambda\in[0,1]$ locate
-quality between them. The resulting scalar is
+The synthesizer groups findings by their consequences for quality, including strengths, weaknesses, mixed effects, and uncertainty.
+Every finding reference must occur in exactly one group.
+This accounting rule makes omitted or multiply referenced findings detectable; it does not guarantee correct semantic grouping.
+Duplicate descriptions should not become independent penalties, and favorable style should not cancel a factual error when the domain standard prioritizes faithfulness.
+
+Let $a_k<a_{k+1}$ be adjacent overall anchors and $\lambda\in[0,1]$ locate quality between them.
+The resulting scalar is
 \begin{equation}
  s=(1-\lambda)a_k+\lambda a_{k+1}.
  \label{eq:anchors}
 \end{equation}
-The anchors have domain-specific verbal meanings. Finding-level scores with
-different meanings are not averaged merely because they are numeric.
-Reference completeness, semantic correctness, and calibration are separate
-properties and require separate checks. A synthetic arithmetic example uses
-$a_k=50$, $a_{k+1}=75$, and $\lambda=0.4$, giving $s=60$.
-These numbers do not prescribe a universal scale or report an evaluator result.
+The anchors have domain-specific verbal meanings; specialist scores with different meanings are not averaged.
+Reference completeness, semantic correctness, and calibration require separate checks.
+A synthetic arithmetic example uses $a_k=50$, $a_{k+1}=75$, and $\lambda=0.4$, giving $s=60$.
+These numbers illustrate interpolation, not a universal scale or an evaluator result.
 
 \section{Measurement and statistical analysis}
 \label{app:measurement}

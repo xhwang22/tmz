@@ -61,3 +61,11 @@ Its fixed-hash balanced synthetic subset and exact vector assets are recorded
 in data/simulated/landscape/manifest.json and independently checked by
 scripts/check_landscape_results.py. No real input identifiers, preferences,
 raw development logs, or reference JPEGs are included in these exports.
+
+## Method rewrite, 2026-09-19
+
+`method_implementation_audit.md` records the writing exemplars, current source-code checks, and file hashes used for the Method rewrite.
+It supersedes older implementation descriptions where the default synthesis input, patch requirements, edit guidance, inheritance checks, and automated-refutation status have changed.
+The acquisition formula now describes the implemented structural priority, with human-reliability qualification explicitly separate.
+The historical hashes above retain their original inspection meaning.
+No source-project files, experiments, private records, or numerical findings were imported or changed.

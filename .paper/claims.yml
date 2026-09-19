@@ -88,7 +88,8 @@
       "kind": "specification",
       "evidence_artifacts": [
         "sections/mining.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Tab3"
@@ -103,7 +104,8 @@
       "kind": "dependence definition",
       "evidence_artifacts": [
         "sections/mining.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Tab3"
@@ -113,12 +115,13 @@
     },
     {
       "id": "C8",
-      "text": "We sample three separately recorded semantic strata. \\emph{Within-dimension disagreement} occurs when reliable signals disagree about the same quality criterion. \\emph{Overall--dimension disagreement} indicates a possible mismatch in priorities or aggregation. \\emph{Cross-dimensional trade-offs} identify cases where different criteria favor different candidates; they are not contradictions between measurements of the same construct.",
+      "text": "The miner distinguishes three cases. \\emph{Within-dimension disagreement} occurs when signals from distinct source groups favor opposite candidates on the same criterion. \\emph{Overall--dimension disagreement} occurs when an overall signal opposes a dimensional signal. \\emph{Cross-dimensional trade-offs} occur when dimension-level preferences favor different candidates; these are not contradictory measurements of one criterion.",
       "source": "sections/mining.tex",
       "kind": "acquisition definition",
       "evidence_artifacts": [
         "sections/mining.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Tab3"
@@ -128,12 +131,13 @@
     },
     {
       "id": "C9",
-      "text": "The adaptation evidence table $Z(r,q)$ joins artifact provenance, human judgments and agreement, every source's direction and uncertainty, evaluator decisions, selected routes, tool evidence, and execution cost.",
+      "text": "The adaptation evidence table $Z(r,q)$ links artifact provenance, available human judgments, source signals, evaluator decisions, tool observations, and execution cost.",
       "source": "sections/mining.tex",
       "kind": "specification",
       "evidence_artifacts": [
         "sections/mining.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Fig1",
@@ -149,7 +153,8 @@
       "kind": "model boundary",
       "evidence_artifacts": [
         "sections/problem.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Fig3"
@@ -164,7 +169,8 @@
       "kind": "runtime boundary",
       "evidence_artifacts": [
         "sections/problem.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Fig3",
@@ -175,12 +181,13 @@
     },
     {
       "id": "C12",
-      "text": "Routing selects tools and sends their outputs to evaluator modules with explicit responsibilities.",
+      "text": "Evaluator modules apply their criteria and use routing rules to obtain tool observations, then return findings with supporting evidence and uncertainty.",
       "source": "sections/method.tex",
       "kind": "specification",
       "evidence_artifacts": [
         "sections/method.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Fig3"
@@ -190,12 +197,13 @@
     },
     {
       "id": "C13",
-      "text": "The complete candidate is measured once as a system, and its outcome is not credited separately to every edit.",
+      "text": "Connected changes, such as a tool, its route, and its consuming module, are assembled against one parent and evaluated as one complete candidate. Its outcome is not credited separately to every edit.",
       "source": "sections/method.tex",
       "kind": "attribution boundary",
       "evidence_artifacts": [
         "sections/method.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Tab5"
@@ -205,27 +213,29 @@
     },
     {
       "id": "C14",
-      "text": "The proposal subset $\\Dprop$ exposes authorized training artifacts, available human feedback, and versioned traces. A source-disjoint, sealed training subset $\\Ddev$ supplies aggregate development measurements only. Local checks on $\\Dprop$ assess predictions and regressions without estimating population performance. A frozen candidate is also measured on the common $\\Ddev$ cohort. Validation $\\Dval$ is terminal; Test/OOD remain locked until the method and analysis are frozen (Appendix~\\ref{app:boundaries}).",
+      "text": "A sealed training subset $\\Ddev$, disjoint from $\\Dprop$ by original input and artifact identity, returns aggregate development measurements without exposing its cases or labels.",
       "source": "sections/method.tex",
       "kind": "data access protocol",
       "evidence_artifacts": [
         "sections/method.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Tab4"
       ],
       "status": "draft",
-      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+      "risk": "The current controller enforces input and artifact separation and aggregate-only release. Adaptive development is not an unbiased final estimate; broader source-near-duplicate isolation remains a study requirement."
     },
     {
       "id": "C15",
-      "text": "Development promotion requires improved agreement, complete execution, nondecreasing coverage, and a prespecified stratum-regression guard.",
+      "text": "A candidate replaces $B$ only if development agreement strictly improves, execution is complete and comparable, coverage does not decrease, and the prespecified stratum-regression guard holds.",
       "source": "sections/method.tex",
       "kind": "development selection",
       "evidence_artifacts": [
         "sections/method.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Fig1"
@@ -235,40 +245,43 @@
     },
     {
       "id": "C16",
-      "text": "Search retains both a best development program and a working program for the active direction.",
+      "text": "Search retains a best evaluator $B$ and a working evaluator $W$ for the active direction.",
       "source": "sections/method.tex",
       "kind": "specification",
       "evidence_artifacts": [
         "sections/method.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Fig1"
       ],
       "status": "draft",
-      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+      "risk": "Best acceptance and working-state inheritance are distinct implemented decisions. An unaccepted damaged candidate requires fresh, previously uncredited measured progress and no damage to declared protection cases; no optimal-allocation benefit is established."
     },
     {
       "id": "C17",
-      "text": "Failure of one candidate or a nonsignificant interval is insufficient.",
+      "text": "A failed candidate does not by itself refute its direction's hypothesis. Refutation requires diagnostic results that contradict the hypothesis within its stated scope after relevant implementation alternatives have been examined. The current controller implements measurement, inheritance, and continuation or pausing; it does not automatically adjudicate semantic refutation.",
       "source": "sections/method.tex",
       "kind": "refutation boundary",
       "evidence_artifacts": [
         "sections/method.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [],
       "status": "draft",
-      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+      "risk": "Scoped refutation is a research evidence standard, not an implemented semantic oracle. The current decision path keeps mechanism_refuted false; failure may still supply negative evidence without proving a direction false."
     },
     {
       "id": "C18",
-      "text": "Each artifact receives $R\\geq3$ complete scores under a fixed protocol.",
+      "text": "Full-evaluator development and terminal validation request $R\\geq3$ executions per artifact under a fixed protocol.",
       "source": "sections/method.tex",
       "kind": "measurement definition",
       "evidence_artifacts": [
         "sections/method.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Tab11"
@@ -278,12 +291,13 @@
     },
     {
       "id": "C19",
-      "text": "References to findings must be accounted for, although correct reference bookkeeping does not establish semantic correctness.",
-      "source": "sections/method.tex",
+      "text": "This accounting rule makes omitted or multiply referenced findings detectable; it does not guarantee correct semantic grouping.",
+      "source": "sections/appendix.tex",
       "kind": "synthesis boundary",
       "evidence_artifacts": [
         "sections/method.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [],
       "status": "draft",
@@ -296,7 +310,8 @@
       "kind": "metric independence",
       "evidence_artifacts": [
         "sections/mining.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Tab4"
@@ -457,7 +472,8 @@
       "kind": "evolution object",
       "evidence_artifacts": [
         "sections/method.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Fig1",
@@ -468,20 +484,21 @@
     },
     {
       "id": "C32",
-      "text": "The hypothesis is the unit of exploration; the complete program is the unit of selection.",
+      "text": "The direction is the unit of continued exploration; the complete program is the unit of selection.",
       "source": "sections/method.tex",
       "kind": "search and selection definition",
       "evidence_artifacts": [
         "sections/method.tex",
         "sections/appendix.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
         "Fig1",
         "Tab5"
       ],
       "status": "draft",
-      "risk": "A procedural distinction, not a claim that hypothesis-guided exploration outperforms alternatives."
+      "risk": "A direction's intent motivates candidate edits; optional expectations are not a mandatory formal hypothesis packet. This search/selection distinction does not establish an empirical advantage."
     },
     {
       "id": "C33",
@@ -494,7 +511,8 @@
       ],
       "evidence_artifacts": [
         "sections/mining.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "status": "draft",
       "risk": "A definition or evaluation requirement; empirical claims require authorized observed outputs."
@@ -605,12 +623,13 @@
     {
       "id": "C39",
       "text": "Self-evolution means automated changes to this evaluation program under external human feedback, not self-definition of the human standard.",
-      "source": "sections/method.tex",
+      "source": "sections/problem.tex",
       "kind": "adaptation target and human-standard boundary",
       "evidence_artifacts": [
         "sections/method.tex",
         "sections/problem.tex",
-        ".paper/source_provenance.md"
+        ".paper/source_provenance.md",
+        ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [],
       "status": "draft",

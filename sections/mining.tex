@@ -1,85 +1,51 @@
-\section{Evaluator-gap-driven preference mining}
+\section{Disagreement-based preference acquisition}
 \label{sec:mining}
 
-\subsection{An evaluation semantic space}
+Preference acquisition allocates fewer annotations to comparisons on which existing evaluation signals consistently agree.
+It first makes these signals comparable, then identifies disagreements for human assessment while retaining random samples to check shared blind spots.
 
-Preference acquisition begins with a versioned inventory of evaluation knowledge,
-not with a convenient labeled dataset. For each domain, we record dimension
-definitions, human protocols, rubrics, published metrics, learned scorers,
-LLM/VLM judges, and external analysis tools. Each source has an input contract,
-provenance, known limitations, and an execution status. A coverage audit checks
-the resulting dimension--source matrix. Every core dimension needs executable
-evidence; conflict mining ordinarily needs two sources with different mechanisms.
-Several scorers sharing a model or training labels do not establish independent
-coverage.
+\subsection{Aligning evaluation signals}
 
-The unit of comparison is an \emph{output signal}, rather than an evaluator name.
-We freeze a many-to-many mapping $M_{jq}$ from signal $j$ to dimension $q$
-using its definition and measurement procedure before reading preference labels.
+For each domain, a versioned inventory links its quality dimensions to human protocols, rubrics, metrics, learned scorers, model judges, and analysis tools.
+Each source records its input requirements, provenance, limitations, and execution status.
+Only executable sources with compatible inputs supply signals; a coverage audit identifies dimensions lacking distinct sources.
+The comparison unit is an \emph{output signal}, not an evaluator name.
+We freeze a many-to-many mapping $M_{jq}$ from signal $j$ to dimension $q$ using its definition and measurement procedure before reading preference labels.
 A mixed score may connect to several dimensions, but remains one shared signal.
-Uninterpretable outputs are not assigned dimensions from post hoc correlations.
-Existing executable metrics can enter the candidate tool library. Metrics
-reserved for final independent assessment are frozen separately and never enter
-tools, routing, critique, or reward.
+Signals sharing a model, training labels, or underlying metric are assigned source groups so that duplicated prompts do not become independent votes.
+Existing executable metrics may enter the candidate tool library.
+Metrics reserved for final independent assessment are frozen separately and never enter tools, routing, critique, or reward.
 
-\subsection{Two routes to human feedback}
+\subsection{Identifying disagreements}
 
-Reusing a preference requires an aligned task, readable same-input candidates,
-and a judgment of the intended quality construct. Rankings, pointwise ratings,
-and error annotations need a validated adapter with conversion provenance.
-An input, reference, or automatic score alone is not human feedback.
+Candidate outputs are grouped by their original task input and deduplicated before comparison.
+For a pair $r=(x,y_a,y_b)$, signal $j$ supplies a direction $u_j(r)\in\{-1,0,+1,\bot\}$ from its own score difference and declared tie margin.
+Zero denotes a tie and $\bot$ missing or abstaining output; raw scores from different signals are never subtracted.
+Repeated-run variation and missingness are recorded separately from disagreement.
 
-When matching preferences are absent, we freeze the task and annotation protocol
-before collecting them. Existing candidates are retained when suitable; only
-missing candidate groups require fresh generation. Source-disjoint partitions
-are fixed before label-blind acquisition. New judgments are independent of old
-winners, model scores, and method identities. Their recency does not make them
-more reliable. Both settings report the annotator pool, supervision levels,
-agreement, ties, abstentions, and unresolved cases, with unavailable information
-marked as unknown (Appendix~\ref{app:annotation}). A protocol change defines a
-different measurement condition, not evidence that old labels were wrong.
+The miner distinguishes three cases.
+\emph{Within-dimension disagreement} occurs when signals from distinct source groups favor opposite candidates on the same criterion.
+\emph{Overall--dimension disagreement} occurs when an overall signal opposes a dimensional signal.
+\emph{Cross-dimensional trade-offs} occur when dimension-level preferences favor different candidates; these are not contradictory measurements of one criterion.
+Dimension preferences aggregate at most one consensus direction per source group, with internally opposed groups abstaining.
+The implemented miner ranks pairs by these structural conflicts, rather than treating disagreement as a known evaluator error.
+The priority score sums within-dimension and overall--dimension conflicts, gives the former twice the weight, and adds an indicator for cross-dimensional trade-offs.
+Appendix~\ref{app:annotation} specifies the ranking rule and separates this implementation from human-reliability calibration.
 
-\subsection{Semantic disagreement and structured annotation}
+The acquisition design combines targeted comparisons with a random anchor selected before signal-based ranking.
+Human judgments on the anchor assess signal reliability and shared blind spots before the targeted policy is frozen.
+Anchor annotations count toward the same human budget as targeted annotations.
+Only evolution data are disagreement-sampled; final evaluation uses independently specified random or stratified sampling.
+The test of acquisition is subsequent evaluator improvement at equal annotation cost, not the number of disagreements collected.
 
-Raw scores on incompatible scales are not directly subtracted. For a candidate
-pair $r=(x,y_a,y_b)$, each signal supplies a direction
-$u_j(r)\in\{-1,0,+1,\bot\}$, with a normalized margin, repeated-run variance,
-confidence, and availability. Zero denotes a tie and $\bot$ unavailable or
-abstaining evidence. A small random anchor estimates reliability and human
-disagreement before targeted sampling. For the reliable, nonabstaining signal
-pairs $\mathcal{P}_q(r)$ mapped to the same dimension, a conflict score is
-\begin{equation}
- c_q(r)=\frac{\sum_{(j,k)\in\mathcal{P}_q(r)}
-             w_{jkq}\,\ind[u_j(r)\ne u_k(r)]}
-            {\sum_{(j,k)\in\mathcal{P}_q(r)}w_{jkq}},
- \label{eq:conflict}
-\end{equation}
-where nonnegative weights reflect anchor reliability and cap the influence of
-dependent sources. An empty denominator gives no conflict estimate.
-This formulation leaves the calibration and dependence rule to be fixed before
-the sampling comparison; disagreement is not itself a correctness label.
+\subsection{From comparisons to evolution feedback}
 
-We sample three separately recorded semantic strata.
-\emph{Within-dimension disagreement} occurs when
-reliable signals disagree about the same quality criterion.
-\emph{Overall--dimension disagreement} indicates a possible mismatch in
-priorities or aggregation. \emph{Cross-dimensional trade-offs} identify cases
-where different criteria favor different candidates; they are not contradictions
-between measurements of the same construct. Model differences, repeated-run
-instability, and small margins further describe each stratum without replacing
-its semantic definition. Candidate groups cover generators, decoding choices,
-quality ranges, and failure types. After anchor calibration, the remaining pool's
-labels stay hidden until the sampling policy is fixed. Only evolution data are conflict-sampled; final
-evaluation uses prespecified random or stratified sampling.
+Existing preferences can be reused when the task, readable candidate outputs, and judged quality construct match.
+Derived comparisons retain their ranking, rating, or error-annotation provenance.
+When matching preferences are absent, the task and annotation protocol are fixed before collecting blinded judgments on existing or freshly generated candidates.
+The two settings retain separate provenance, agreement, ties, and abstentions (Appendix~\ref{app:annotation}).
 
-\subsection{The adaptation evidence table}
-
-Annotation targets overall and dimensional preferences, with localized
-diagnostics on a conflict or failure subset. All candidates derived from one
-input remain grouped. The adaptation evidence table $Z(r,q)$ joins artifact
-provenance, human judgments and agreement, every source's direction and
-uncertainty, evaluator decisions, selected routes, tool evidence, and execution
-cost. Both construction settings supply this interface to ERA, while retaining
-their label origins and annotation protocols. Neither model-generated
-explanations nor labels derived from a different
-quality construct are promoted to human $H_1$ or $H_2$.
+The adaptation evidence table $Z(r,q)$ links artifact provenance, available human judgments, source signals, evaluator decisions, tool observations, and execution cost.
+Both construction settings supply this interface to ERA, while retaining their label origins and annotation protocols.
+Overall and dimensional preferences identify errors to investigate; localized diagnostics and human rationales are included when available.
+Missing feedback levels remain absent, and model-generated explanations are not human $H_1$ or $H_2$.
