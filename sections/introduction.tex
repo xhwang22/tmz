@@ -1,84 +1,56 @@
 \section{Introduction}
 \label{sec:intro}
 
-Open-ended tasks expose a gap between what automated evaluators measure
-and what people value. A fluent summary may mislead, an appealing image may
-violate its request, and an original research proposal may fail to test its
-hypothesis. Metrics and model-based judges scale assessment, but studies of
-summarization, image preference, and model-based
-judging document limitations in their agreement with human judgments
-\citep{fabbri2021summeval,xu2023imagereward,zheng2023judging}.
-Improving generation against these evaluators therefore need not improve the
-qualities that matter to people.
+Open-ended tasks admit many plausible outputs, but their quality depends on which properties matter in context.
+A shorter summary may preserve the central argument better than a longer one, while an elaborate webpage may still fail its main purpose.
+Metrics and model-based judges capture useful aspects of quality, yet do not consistently match human preferences \citep{fabbri2021summeval,xu2023imagereward,zheng2023judging}.
+Adding more metrics leaves a judgment unresolved: which evidence should matter, and how should conflicting criteria be weighed for this task?
 
-The difficulty is turning observed preferences into a procedure for judging new outputs.
-Open-ended quality has no complete deterministic verifier. Criteria depend on
-the task, and even an agreed list of criteria leaves their interpretation and
-trade-offs unresolved. Visual similarity, for example, is central to screenshot
-reconstruction, whereas specification-conditioned web generation permits
-different appearances that satisfy the same requirements. An overall preference
-records a decision without fully specifying how to make such distinctions on
-new outputs. Aligning the evaluation criteria themselves is consequently part
-of the learning problem \citep{shankar2024evalgen}.
-
-We study whether human preference data can drive the self-evolution of an
-evaluation agent toward a task's evaluation standard. Existing evaluation
-knowledge supplies initial criteria and tools; human feedback supplies evidence
-about where their current use falls short. Our method, \ERA{}, evolves the
-executable evaluation program while keeping its base model fixed
-(Figure~\ref{fig:overview}). The human standard remains the target. What evolves
-is the agent's explicit approximation of that standard, including how it obtains
-evidence and turns that evidence into judgments.
+Human feedback offers evidence of these task-dependent standards without requiring people to specify them fully in advance \citep{shankar2024evalgen}.
+A preference identifies the better output, but leaves open what an evaluator should inspect and how its findings should affect future judgments.
+Learning from human feedback therefore requires a way to turn concrete judgments into an evaluation procedure.
+We study whether an evaluation agent can learn this procedure through self-evolution.
+The agent uses disagreements with human feedback to propose and test changes to how it gathers or interprets evidence.
+Program evolution directly modifies this procedure while keeping the base model fixed \citep{agrawal2026gepa,zhang2025dgm}.
+Its success depends both on the feedback available and on how search uses that feedback.
 
 \begin{figure}[t]
 \centering
 \input{figures/overview}
 \caption{Evaluation-agent self-evolution from human feedback.
 (a) Four artifact families retain distinct evaluation standards.
-(b) Reused and newly collected preferences enter a common evidence interface;
-their provenance and annotation quality remain separate. (c) \ERA{} evolves a six-component
-program with a fixed base model. (d) C1 selection, C2 refinement, and planned
-C3 reward training. Artifacts and feedback are constructed
-illustrations; the photograph is generated with GPT Image 2. Arrows denote
-information flow, not measured improvements.}
+(b) Reused and newly collected preferences enter a common evidence interface; their provenance and annotation quality remain separate.
+(c) \ERA{} evolves a six-component program with a fixed base model.
+(d) C1 selection, C2 refinement, and planned C3 reward training.
+Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2.
+Arrows denote information flow, not measured improvements.}
 \label{fig:overview}
 \end{figure}
 
-\begin{samepage}
-Why evolve the program rather than only tune parameters? Fine-tuning can improve
-judgment, as rubric-conditioned evaluators illustrate
-\citep{kim2024prometheus,kim2024prometheus2}. With a fixed observation path,
-however, tuning how evidence is interpreted leaves the evidence available to
-the judge unchanged. Calibration can adjust existing scores without acquiring
-new evidence.
-Program evolution exposes criteria, tools, and evidence use as objects that can
-be changed and tested. Fine-tuning can also learn criteria and tool use when its
-training interface permits them. A shared-observation control therefore separates
-changes to available evidence from changes to its interpretation. An explicit
-program is not automatically a faithful explanation. We therefore
-include evaluator fine-tuning and calibration as alternatives, without assuming
-an alignment or efficiency advantage (Appendix~\ref{app:adaptation}).
+Obtaining human feedback for a new task domain is difficult.
+Hand-designed examples can embed the designer's assumptions; unrestricted collection can burden annotators with easy, repetitive comparisons.
+Our approach spends fewer annotations on comparisons where existing evaluation signals agree, leaving more for disagreements.
+Disagreement-based preference acquisition implements this allocation, with a random anchor checking for shared errors \citep{seung1992committee}.
+The empirical question is whether these preferences improve the evaluator more than random sampling at the same human annotation cost.
 
-\end{samepage}
+Even with human feedback, evaluator evolution can stall.
+In the iterative optimizer configuration we tested, a candidate was retained only when it improved the development score.
+After unsuccessful candidates, the agent repeatedly returned to the best evaluator and proposed other changes instead of continuing the rejected implementation.
+Such redirection matters when a proposed improvement requires several parts of the evaluation procedure to work together.
+For example, checking whether a summary omits important content requires retrieving the relevant source evidence and deciding which omissions should affect its score.
+Changing only one of these steps may fail to improve the overall judgment.
+If immediate gain also determines whether to continue a direction, search can stop before the changes needed to make it work are complete.
 
-Preference-guided evolution requires both informative feedback and a way to act
-on it. We map existing signals to quality dimensions before inspecting labels,
-separating disagreement about one criterion from trade-offs between criteria.
-We hypothesize that disagreements among reliable, nonredundant signals can make
-a fixed annotation budget more informative than random sampling. Available
-dimensional judgments and localized errors then inform hypotheses about missing
-observations or inappropriate interpretation. For example, a stricter
-faithfulness criterion cannot assess a source qualification that the program
-never makes available to the judge. We hypothesize that such dependencies
-between evidence acquisition and judgment favor coordinated program evolution.
-ERA uses hypotheses as units of exploration and complete programs as units of
-selection, allowing a connected mechanism to be tested without equating one
-unsuccessful implementation with a refuted hypothesis.
+We therefore separate \emph{whether to accept a candidate} from \emph{whether to continue its direction}.
+\ERA{} implements this principle through falsification-guided depth-first evolution (Figure~\ref{fig:overview}c).
+Each direction specifies an intended improvement, supported by a hypothesis about how it would correct an evaluation error.
+ERA gives priority to developing that direction, using failed attempts to check whether the intended behavior occurred and whether the evaluator used the resulting evidence as intended.
+Continuation requires new diagnostic evidence.
+Evidence against the hypothesis can end a direction; budget exhaustion alone does not refute it.
+An unsuccessful candidate can thus remain a starting point for further work without replacing the best evaluator.
+We test whether this continuation produces more sustained gains than restarting proposals under the same search budget.
 
-Reusing existing preferences and collecting new judgments instantiate this same
-learning problem. Their provenance, agreement, and abstention remain separately
-reported; building a corpus does not establish the value of its sampling policy.
-The scope spans four domain families, with a separate evaluator for each
-evaluation standard. We distinguish alignment and selection on fixed candidates
-(C1), critic-guided refinement (C2), and planned reward-guided training (C3).
-Closer ranking agreement alone cannot establish useful feedback for generation.
+Our method connects the acquisition of human feedback with its use in developing an evaluator.
+Our evaluation protocol separates acquisition efficiency, evolutionary progress, and final evaluator agreement across structured visual artifacts, images and 3D, text generation, and automated research.
+It covers both reused and newly collected preferences, with a pointwise evaluator for each task standard.
+The planned comparisons include evaluator fine-tuning \citep{kim2024prometheus,kim2024prometheus2} and score calibration under controlled feedback and observation access.

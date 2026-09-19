@@ -79,10 +79,20 @@
       "reviewer": "Author feedback",
       "changed_claims": [],
       "changed_figures": [
-        "Fig1", "Fig2", "Fig3", "Fig4", "Fig5", "Fig6", "Fig7", "Fig8"
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8"
       ],
       "sections_touched": [
-        "Figure sources", "Figure captions", "AI use statement", "Figure provenance"
+        "Figure sources",
+        "Figure captions",
+        "AI use statement",
+        "Figure provenance"
       ],
       "summary": "Redesigns all eight figures after visually inspecting Self-Refine, Eureka, TextGrad, and Segment Anything. Replaces the decorative panorama with concrete native artifacts and a dominant ERA loop; distinguishes matrix, routed evidence, connected revision, matched controls, access timeline, and factor graph. GPT Image 2 provides a controlled source/add-mug/remove-bowl illustration with native evidence overlays. Captions, asset lineage, print widths, and memory are synchronized. Claims, scientific scope, empirical gaps, and the design-only C3 status are unchanged."
     },
@@ -92,15 +102,45 @@
       "trigger": "Author requests softer reference-informed visuals, the supplied five-color palette, insightful evolution framing, and visible domain diversity",
       "reviewer": "Author feedback",
       "changed_claims": [
-        "C2", "C3", "C4", "C5", "C11", "C14", "C19", "C20", "C22", "C28", "C30", "C31", "C32"
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C11",
+        "C14",
+        "C19",
+        "C20",
+        "C22",
+        "C28",
+        "C30",
+        "C31",
+        "C32"
       ],
       "changed_figures": [
-        "Fig1", "Fig2", "Fig3", "Fig4", "Fig5", "Fig6", "Fig7", "Fig8", "Fig9"
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9"
       ],
       "sections_touched": [
-        "Abstract", "Introduction", "Related work", "ERA", "Experimental design",
-        "Results captions", "Discussion", "Conclusion", "Appendices", "Statements",
-        "Figure sources", "Paper memory", "Visual provenance"
+        "Abstract",
+        "Introduction",
+        "Related work",
+        "ERA",
+        "Experimental design",
+        "Results captions",
+        "Discussion",
+        "Conclusion",
+        "Appendices",
+        "Statements",
+        "Figure sources",
+        "Paper memory",
+        "Visual provenance"
       ],
       "summary": "Reframes ERA as evolution of observation and judgment with a fixed base model, distinguishing hypothesis-level exploration from complete-program selection and separating alignment, critique, and reward use. Adopts the author's blue/mint/cream/peach/rose palette and illustrated grouping principles inspected in the requested post-training and full-stack safety surveys, Speculative RAG, and MMMR. Adds the four-family domain panorama as current Fig6, expands annotation examples to one per family as Fig7, and shifts the previous Figs6–8 to Figs7–9; figure IDs in earlier rounds retain their historical meanings. All nine figures use original native structure and previously disclosed photographs, with no new model calls. C31/C32 record procedural definitions; C27/C28 remain empirical gaps. No observed results or training execution are added."
     },
@@ -183,12 +223,38 @@
       "date": "2026-09-16",
       "trigger": "Author retires the project acronym and clarifies the plan's central motivation: aligning automated evaluation with contextual human preferences through preference-data-driven agent self-evolution, with an explicit comparison to parameter tuning.",
       "reviewer": "Author feedback",
-      "changed_claims": ["C1", "C22", "C27", "C28", "C39", "C40", "C41"],
-      "changed_figures": ["Fig1", "Fig2", "Fig3", "Fig5", "Fig6", "Fig7", "Fig8", "Fig9"],
+      "changed_claims": [
+        "C1",
+        "C22",
+        "C27",
+        "C28",
+        "C39",
+        "C40",
+        "C41"
+      ],
+      "changed_figures": [
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9"
+      ],
       "sections_touched": [
-        "Title", "Abstract", "Introduction", "Related work", "ERA definition",
-        "Experimental design", "Discussion", "Conclusion", "Appendices",
-        "Active chart/table labels and metadata", "Paper memory", "Offline checks"
+        "Title",
+        "Abstract",
+        "Introduction",
+        "Related work",
+        "ERA definition",
+        "Experimental design",
+        "Discussion",
+        "Conclusion",
+        "Appendices",
+        "Active chart/table labels and metadata",
+        "Paper memory",
+        "Offline checks"
       ],
       "summary": "Replaces the project-branded title with Evolving Evaluation Systems from Human Feedback while retaining ERA solely as the method name. Rewrites the abstract and introduction around the difficulty of translating human preferences into explicit, executable evaluation standards, following the source plan's two linked problems of structured preference acquisition and hypothesis-guided program evolution. Error diagnosis is a supporting mechanism rather than the primary research problem. Adds planned fixed-structure evaluator fine-tuning and score-calibration alternatives, a shared-observation control, and Table12; distinguishes evaluator tuning from C3 generator training and inspectable programs from faithful explanations. Updates active labels and simulation schemas without changing toy numerical values or visual styles. Preserves historical naming in archival provenance. C27/C28 remain empirical gaps; no experiments, tuning, training, new image calls, or source-project modifications are performed."
     },
@@ -197,12 +263,237 @@
       "date": "2026-09-16",
       "trigger": "Author approves the title scope and abstract argument before rewriting: open-ended preference alignment, the gap between feedback and executable evaluation, evaluation-agent evolution, and cross-task validation.",
       "reviewer": "Author feedback",
-      "changed_claims": ["C42"],
+      "changed_claims": [
+        "C42"
+      ],
       "changed_figures": [],
       "sections_touched": [
-        "Title and PDF metadata", "Abstract", "Introduction opening", "Paper memory", "README"
+        "Title and PDF metadata",
+        "Abstract",
+        "Introduction opening",
+        "Paper memory",
+        "README"
       ],
       "summary": "Adds for Open-Ended Tasks to the unbranded title and rewrites the abstract around the author-approved causal argument. C42 records the distinction between an observed preference and the criteria and evidence needed to judge new outputs. Structured acquisition is conditional on needing new feedback, and hypotheses guide coordinated evaluator changes assessed against separate human feedback. Removes the parameter-fitting contrast, search-state mechanics, provenance-reporting details, and domain/study-arm lists from the abstract while retaining substantive comparisons and protocols in the body. Lightly aligns the introduction opening, keeps its parameter-adaptation paragraph intact below the overview, and synchronizes title metadata and writing guidance. Figures, tables, simulated data, empirical-gap statuses, and prior history entries are unchanged; no experiments, training, model calls, or source-project edits are made."
+    },
+    {
+      "round": 8,
+      "date": "2026-09-16",
+      "trigger": "Author requests meaningful anime-reference acronyms with collision screening, followed by a main-figure typography and spacing pass.",
+      "reviewer": "Author feedback",
+      "changed_claims": [],
+      "changed_figures": [
+        "Fig1"
+      ],
+      "sections_touched": [
+        "Overview figure",
+        "Typography guidance",
+        "Naming candidates",
+        "Paper context"
+      ],
+      "summary": "Records SHIROE-Eval and HIMARI-Eval as unadopted framework-name candidates, including acronym expansions, bare-name conflicts, successful public searches, and unavailable search sources. Re-typesets Figure1 with scoped TeX Gyre Heros, a consistent type hierarchy, regular-weight action labels, explicit card padding, and aligned assessment rows. Enables local TikZ shape transforms so pictograms honor their requested scales, separates text from curves, and retains the native canvas without resizing the ICLR body. The existing palette and disclosed photograph are reused; the four-family scope, two feedback settings, six-component ERA loop, fixed base model, and planned-C3 qualifier remain. No caption, scientific claim, simulation fixture, manuscript name, or source-project file is changed; no experiment, training, or image-generation call is performed."
+    },
+    {
+      "round": 9,
+      "date": "2026-09-16",
+      "trigger": "Author finds the chart palette monotonous and the visual styles ordinary; requests improvements to both color and presentation.",
+      "reviewer": "Author feedback",
+      "changed_claims": [],
+      "changed_figures": [
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9"
+      ],
+      "sections_touched": [
+        "Shared figure palette",
+        "Quantitative figure generator",
+        "Appendix figure captions",
+        "Paper memory",
+        "Visual guidance",
+        "README"
+      ],
+      "summary": "Replaces the orange-dominant palette with mist blue, sea glass, warm sand, apricot, dusty rose, and lilac. Both conceptual figures share the revised colors; the earlier overview typography is preserved. Redesigns quantitative figures with a consistent panel-letter/title hierarchy, fine rules, compact simulation notices, aligned estimates, direct endpoint labels, thin annotation bars, horizontal rank ribbons, split violins with raw points and quantile segments, a diverging preference balance with separate abstention percentages, and shared-method cost/agreement profiles. Connectors in the cost plot pair settings rather than claiming a frontier. Updates corresponding captions and figure memory while preserving the scientific argument, all 13 numerical CSV files, the C1 numerical table, random streams, intervals, denominators, and null/negative contrasts. Empirical gaps C27/C28 remain open. No experiments, training, model/image calls, new name adoption, source-project changes, or reference-image redistribution occur."
+    },
+    {
+      "round": 10,
+      "date": "2026-09-17",
+      "trigger": "Author requests several genuinely different palette candidates and visually compelling quantitative figures in the main text.",
+      "reviewer": "Author feedback",
+      "changed_claims": [],
+      "changed_figures": [
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9",
+        "Fig10"
+      ],
+      "sections_touched": [
+        "Quantitative displays and appendix placement",
+        "Figure captions",
+        "Palette and chart code",
+        "Shared diagram colors",
+        "Figure review tooling",
+        "Paper memory",
+        "README"
+      ],
+      "summary": "Adds four isolated palette studies: lagoon/coral, indigo/iris, evergreen/copper, and midnight/mulberry, using byte-identical numerical fixtures and identical geometry. Lagoon/coral is provisional, not a final author choice. Introduces main Fig2 as a shared-task composite of existing C1 ID/OOD effects and C2 quality/preference distributions; common rows identify tasks, not paired C1/C2 inputs or a cross-study correlation. Promotes the conditional component heatmap and feedback-detail split violins to main Fig3, adds descriptive component sublabels with clear gaps, and labels the reused/new halves left/right. Moves the numerical C1 table and acquisition curves to the appendix; expanded C1/C2 views remain for numerical detail. The current order is overview, outcomes, ablation, runtime, alignment, acquisition, annotation, selection, refinement, cost; previous rounds retain their historical numbering. All current figure/table/claim links are synchronized without changing claim text or status. The same 13 CSVs and numerical table, random streams, intervals, denominators, null/negative effects, and simulation disclosures are preserved. Native vector fonts, bounds, major text-color contrast pairs, grayscale proofs, and full-page placement are reviewed; official ICLR body typography and the nine-page main limit remain unchanged. No experiments, model/image calls, training, new name adoption, source-project edits, push, or reference-image redistribution occur."
+    },
+    {
+      "round": 11,
+      "date": "2026-09-17",
+      "trigger": "Author rejects all four preceding palette directions and asks for more reliable candidates based directly on the supplied references.",
+      "reviewer": "Author feedback",
+      "changed_claims": [],
+      "changed_figures": [
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9",
+        "Fig10"
+      ],
+      "sections_touched": [
+        "Shared diagram palette",
+        "Quantitative color and contrast roles",
+        "Reference-based candidate tooling",
+        "Visual guidance",
+        "Paper context",
+        "README"
+      ],
+      "summary": "Replaces the active round-10 palette studies with three independent candidates drawn from the HEX values explicitly labeled in the author's color_reference.jpg, color_reference_1.jpg, and color_reference_2.jpg. The provisional paper uses the first reference's original blue, mint, cream, peach, and rose colors; alternatives preserve the second reference's blue/orange and third reference's teal/apricot sequences. No extra purple or copper base colors are introduced. White paper, neutral plot headings, and dark numeric labels preserve the source fill colors without deepening them for white text. Density fills use consistent source tints; signed heatmaps use source blue/white/warm scales; fine strokes and small diagram labels use hue-preserving dark companions. A separate new-preference ink keeps its diagram label aligned with the chart setting color. Adds local source-thumbnail and overview comparison boards, source hashes and role checks, 26 text/background contrast checks per palette, two-figure vector PDFs, and grayscale proofs under build/reference-palettes. The old preview directory remains a local archive. All 13 CSVs and the numerical table are byte-identical, and chart geometry, random streams, intervals, denominators, null/negative effects, captions, prose, scientific claims, and empirical gaps C27/C28 are unchanged. No experiments, training, model/image calls, source-project edits, push, or reference-image redistribution occur."
+    },
+    {
+      "round": 12,
+      "date": "2026-09-17",
+      "trigger": "Author clarifies that the five reference colors should form a complete ensemble, rather than isolated two-color comparisons.",
+      "reviewer": "Author feedback",
+      "changed_claims": [
+        "C26"
+      ],
+      "changed_figures": [
+        "Fig2",
+        "Fig3",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9",
+        "Fig10"
+      ],
+      "sections_touched": [
+        "Quantitative color roles",
+        "Main outcome composition",
+        "Figure captions",
+        "Palette candidate checks",
+        "Figure memory"
+      ],
+      "summary": "Uses the complete five-color sequence for static judge, static tools/seed, prompt optimization, program search, and ERA. The then-current eight-domain main display uses a five-method C1 macro comparison alongside C2 detail. Family, H-level, policy, rank, and outcome mappings remain explicit; the component heatmap uses all five colors with cream at zero, and every acquisition policy receives an equal-width line and percentile band. Split violins encode settings by side and hatching. The old 13 CSVs and numerical table remain byte-identical; C26 changes only its display link, not claim text or evidence status. Three source-bound palette candidates share the same geometry and numerical fixtures, with 29 contrast checks. No model/image calls, experiments, training, source-project changes, or push occur."
+    },
+    {
+      "round": 13,
+      "date": "2026-09-17",
+      "trigger": "Author identifies that eight plotted domains do not show the many-domain scope and requests complete domain coverage.",
+      "reviewer": "Author feedback",
+      "changed_claims": [
+        "C22",
+        "C26"
+      ],
+      "changed_figures": [
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9",
+        "Fig10"
+      ],
+      "sections_touched": [
+        "Full-domain C1 fixtures",
+        "Main quantitative display",
+        "Expanded alignment",
+        "C1 aggregate table and profiles",
+        "Results and appendix captions",
+        "Figure numbering and claim links",
+        "Paper memory",
+        "Coverage checks",
+        "Visual guidance",
+        "README"
+      ],
+      "summary": "Expands C1 to all 22 source-plan domains in 6/6/5/5 taxonomy order, adding fourteen synthetic cohorts and preserving every original eight-domain C1 group, summary, and exported interval. Seven diagnostic-only CSVs remain byte-identical. Main Fig2 becomes a 22-row atlas with five method-wise OOD agreement columns, common 0–100% micro-bars, and paired ERA-minus-seed intervals; appendix Fig4 gives all ID/OOD effects. C1 tables, selection, and costs now aggregate eleven domains per illustrative setting. Eight-domain annotation, component, and C2 diagnostics remain explicitly bounded. Moving ablation to the appendix yields two main and eight appendix figures: overview, atlas, runtime, alignment, acquisition, annotation, selection, ablation, refinement, cost. Earlier history retains its original numbering. C22 loses its Fig2 link because C2 is now separate; C26 regains its Fig2 interval link, and all other figure references are renumbered reciprocally. Scientific claim text and evidence status, title, abstract, and introduction are unchanged. Fourteen CSVs and the numerical table match across palette candidates; 110 atlas values and 22 paired effects are independently checked. Simulation disclosures remain in data, plots, captions, and metadata; C27/C28 remain gaps and neither evaluator tuning nor C3 is simulated. Full-page typography is reviewed within the unchanged ICLR nine-page main-text limit. No empirical execution, new model/image calls, source-project edits, push, or reference-image redistribution occur."
+    },
+    {
+      "round": 14,
+      "date": "2026-09-19",
+      "trigger": "Author approves the integrated preference-acquisition and falsification-guided depth-first story, requests rewritten abstract/introduction and one sentence per source line.",
+      "reviewer": "Author feedback",
+      "changed_claims": [
+        "C1",
+        "C27",
+        "C28",
+        "C42",
+        "C43"
+      ],
+      "changed_figures": [],
+      "sections_touched": [
+        "Abstract",
+        "Introduction",
+        "Method terminology",
+        "Results pagination only",
+        "Paper memory",
+        "Writing conventions"
+      ],
+      "summary": "Rewrites the abstract and introduction around the gap between human preference feedback and an executable evaluator. Explains the role of program evolution with a fixed base model and retains fine-tuning/calibration as substantive alternatives. Acquisition reduces redundant annotation and is tested against random sampling at equal human cost. The motivation for depth-first evolution uses bounded pointwise development evidence of rejection, incumbent retention, and redirection; continuation is separated from candidate adoption. Adds one method sentence for consistent depth-first terminology. C28 shifts from coordinated-component utility to the continuation hypothesis; C27/C28 remain empirical gaps. C43 records only the inspected qualitative search behavior, not causal proof or a DFS advantage. Preserves pointwise deployment, separate reused/new preference reporting, simulated-result disclosures, and existing figure content. Uses one sentence per source line in rewritten prose/captions and removes forced pagination constraints without changing ICLR typography or chart dimensions. Refreshes the evidence audit and provenance without importing private numerical results, samples, prompts, or logs. No experiments, training, image calls, source-project changes, commit, or push occur."
+    },
+    {
+      "round": 15,
+      "date": "2026-09-19",
+      "trigger": "Author requests GitHub update and integration of the newly approved landscape chart.",
+      "reviewer": "Author feedback",
+      "changed_claims": [
+        "C26",
+        "C37",
+        "C38",
+        "C44"
+      ],
+      "changed_figures": [
+        "Fig2"
+      ],
+      "sections_touched": [
+        "Figure 2 and caption",
+        "Results panel references",
+        "Appendix synthetic-subset protocol",
+        "Figure assets and checks",
+        "Paper memory",
+        "README"
+      ],
+      "summary": "Replaces the main 22-row atlas with the approved v20 landscape composite: a smaller four-quarter task ring, cost/agreement scatter, and four family bar panels in one row. Publishes the exact vector assets, preview, selected synthetic inputs, and numerical/geometry exports. Documents that its 2,880 OOD inputs are a fixed-hash balanced subset, not the full cohorts in appendix tables and paired-effect plots. Adds independent selection, bootstrap, denominator and coordinate checks; synchronizes caption and claim links, removing Fig2 from paired-effect claim C26 and adding synthetic-allocation claim C44. Keeps the approved abstract/introduction and one-sentence source formatting. Preserves official ICLR typography, nine-page main limit and all simulation disclosures. No empirical execution, source-project edits, image generation, or publication of private logs/reference images."
+    },
+    {
+      "round": 16,
+      "date": "2026-09-19",
+      "trigger": "Author approves the argument-level assessment of external model feedback and requests implementation and GitHub upload.",
+      "reviewer": "Author feedback",
+      "changed_claims": ["C1", "C13", "C27", "C28", "C31", "C42", "C43"],
+      "changed_figures": [],
+      "sections_touched": ["Abstract", "Introduction", "Method definitions", "Mining terminology", "Paper memory", "Writing conventions"],
+      "summary": "Reorganizes the abstract and introduction around learning an executable evaluation procedure from human feedback. Preference acquisition reduces redundant annotation; observed rejection and redirection motivate developing a direction through connected evaluation changes. Separates candidate acceptance from direction continuation without claiming that a failed implementation supplies no negative evidence. Bounds the observation to the tested iterative configuration and makes the omission example explicit. Moves fine-tuning and calibration positioning to the introduction's closing paragraph. Distinguishes direction, hypothesis, candidate, procedure and program in Methods, and uses preference acquisition consistently in Mining. Preserves one sentence per revised source line, pointwise deployment, simulation disclosures, and the empirical gaps C27/C28. Retains the previously integrated landscape composite and all prior changes for the authorized GitHub update; no new data, experiments, training or model calls."
     }
   ]
 }

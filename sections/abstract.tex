@@ -1,16 +1,11 @@
-Open-ended tasks admit multiple reasonable outputs, whose quality depends on
-context and trade-offs that automated evaluators do not consistently capture.
-Human preference data provide a reference for alignment, but a preference alone
-does not fully specify the criteria and evidence needed to judge new outputs.
-We introduce \ERA{}, a method for evolving evaluation agents from human
-feedback. ERA treats the agent's executable evaluation program as the object of
-learning, with task-specific human standards as the target. When new feedback
-is needed, we organize disagreements among existing evaluation signals by quality
-dimension to select cases for structured human judgments. ERA uses feedback to
-form hypotheses about evaluation failures and make coordinated changes to
-evaluation criteria, evidence acquisition, and judgment procedures. The resulting
-programs are assessed against separate human feedback to test whether these
-changes improve agreement. Across diverse open-ended tasks, our study design
-examines alignment with human preferences and the usefulness of evolved
-evaluators for selecting and improving outputs. Quantitative displays are
-simulated; empirical validation remains pending.
+Automated evaluators for open-ended tasks often miss the task-dependent trade-offs reflected in human preferences.
+Human feedback records judgments on concrete outputs, but does not specify an evaluation procedure for new ones.
+We study whether an evaluation agent can learn such a procedure by evolving how it gathers evidence and makes judgments.
+To obtain feedback for evolution, we use disagreement-based preference acquisition to reduce annotation of comparisons on which existing evaluation signals agree.
+Even with human feedback, search in the optimization traces we examined repeatedly discarded unsuccessful candidates and moved to other directions.
+Yet an evaluation procedure may need several connected changes before a direction produces a gain.
+We introduce \ERA{}, falsification-guided depth-first evolution that separates accepting a candidate from continuing its direction.
+ERA uses failures to guide further implementation without replacing the best evaluator with an unsuccessful candidate.
+Continuation depends on new evidence, distinguishing implementation obstacles from evidence against the direction's hypothesis.
+Our cross-domain evaluation protocol compares annotation efficiency, search progress, and agreement with human preferences under matched budgets.
+Quantitative displays are simulated; confirmatory evaluation remains pending.

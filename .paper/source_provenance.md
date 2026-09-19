@@ -39,3 +39,25 @@ The numerical displays are independently generated, author-authorized layout
 fixtures in `data/simulated/`, not outputs from the source project. Their seed,
 generator, CSV/PDF/TeX hashes, and limits are recorded in the simulation manifest.
 They cannot support empirical claims or close claims C27/C28.
+
+## Abstract and introduction update, 2026-09-19
+
+The current plan was re-read at SHA-256 `442b9e5f3350d994b1c60f354ad0837ff90e200a5a974a7c3139e22d668855f9`.
+The historical hashes above retain their original inspection meaning.
+The latest author-approved narrative combines reducing redundant annotation with sustained implementation of an evaluation direction.
+Pointwise evaluation is the primary interface; pairwise development is not presented as a second principal method.
+
+The private development report and original default-optimizer pointwise step records were also inspected read-only.
+`search_observation_audit.md` records their identities and the bounded qualitative observation used in C43.
+No private numerical results, sample records, prompts, or generated evaluators are imported.
+The observed rejection/redirection pattern motivates depth-first continuation but does not establish its benefit.
+Acquisition efficiency and the continuation advantage remain unverified (C27/C28); all quantitative displays retain their simulated status.
+Neither source-project files nor running experiments were changed.
+
+## September 19 landscape-figure publication
+
+The inserted Figure 2 is the previously approved v20 landscape preview.
+Its fixed-hash balanced synthetic subset and exact vector assets are recorded
+in data/simulated/landscape/manifest.json and independently checked by
+scripts/check_landscape_results.py. No real input identifiers, preferences,
+raw development logs, or reference JPEGs are included in these exports.

@@ -1,7 +1,8 @@
 # Paper context
 
-Updated: 2026-09-16. Status: method and study design with author-requested,
-explicitly simulated quantitative displays; empirical results pending.
+Updated: 2026-09-19. Status: method and study design with author-requested,
+explicitly simulated quantitative displays; confirmatory results pending.
+The abstract/introduction include a bounded qualitative development observation.
 
 ## Title and scope
 
@@ -30,10 +31,27 @@ self-evolution. The human standard remains the target; its explicit
 approximation in the evaluator is what evolves. Do not lead with error-diagnosis
 ambiguity as though that were the main problem.
 
-The author approved the abstract's argument before this rewrite: alignment
-difficulty, the gap between preference feedback and an executable evaluation
-procedure, feedback-driven agent evolution, and cross-task validation. Structured
-acquisition and coordinated changes are supporting method mechanisms.
+The author approved the revised argument: alignment difficulty, the gap between
+preference feedback and an executable evaluation procedure, why agent evolution
+is a useful candidate approach, then two connected learning obstacles.
+Acquisition reduces annotation of easy comparisons and recurring patterns;
+falsification-guided depth-first evolution develops directions beyond an initial
+unsuccessful implementation.
+The search principle is to separate accepting a candidate from continuing its
+direction, rather than assuming immediate gain determines the value of further work.
+The paper-level question remains learning an evaluation procedure from human
+feedback, not generic feedback efficiency. Acquisition and evolution address
+connected difficulties without claiming a new two-stage theory.
+The revised introduction explains rejection/redirection in the tested iterative
+optimizer configuration, then motivates continuation through interacting evaluation
+steps. A direction specifies an intended improvement; its hypothesis states a
+testable prediction, and a candidate is a complete evaluator implementation.
+One unsuccessful implementation is insufficient to reject a direction, but can
+still be negative evidence. Consensus among signals is not correctness.
+Use human feedback consistently as the umbrella term and human preferences only
+for preference judgments. Detailed adaptation controls stay in Experiments and
+the appendix, with a short alternative-method comparison at the end of the introduction.
+GEPA, Meta-Harness, and DGM guide the argument structure, not borrowed findings.
 Parameter-adaptation comparisons remain in the introduction and experiments;
 provenance protocols and detailed study-arm/domain lists do not belong in this
 abstract. The short simulation notice remains, without inventing a results
@@ -80,9 +98,15 @@ training is run. Evaluator tuning is distinct from C3 generator training.
 
 ## Hypotheses and studies
 
-Disagreement acquisition may improve annotation efficiency; coordinated evolution
-may address observation/routing/interpretation failures. Both remain unverified
-(claims C27/C28). Building a preference corpus does not establish acquisition
+Disagreement acquisition may improve final evaluator alignment at equal human
+cost; depth-first continuation may produce more sustained gains than restarting
+proposals at equal search resources. Both remain unverified (claims C27/C28).
+The inspected default pointwise workflow shows rejection, incumbent retention,
+and redirection (C43); related themes can recur without continuation of the
+rejected implementation. Accepted improvements also occurred.
+This observation is not a universal characterization of RSI, an explanation of
+all limited gains, or proof that ERA/DFS outperforms alternatives.
+Building a preference corpus does not establish acquisition
 efficiency, which requires a separate matched-budget random-sampling control.
 C1 assesses alignment and fixed-pool selection. C2 uses fresh shared initial
 outputs and new blinded human rankings. C3 specifies frozen-reward LoRA + GRPO,
@@ -97,36 +121,86 @@ C3 research design are in scope, superseding the older draft's exclusions.
 Optional teacher branches, historical optimizer names, private records, training
 execution, and unmeasured gains remain out of scope.
 
-No empirical results, sample IDs, logs, or generated evaluators were imported.
-The source working tree was already dirty and was not modified.
+The September 19 rewrite draws a qualitative motivation from inspected private
+development records; `search_observation_audit.md` records its scope and hashes.
+No private numerical results, sample IDs, prompts, logs, or generated evaluators
+were imported. The source working tree was already dirty and was not modified.
 Source documentation supports specifications, not performance or causality.
 Use claims.yml and figures.yml for subsequent audits; gap claims are hypotheses,
 never findings. Memory claim IDs C1/C2/etc. are a separate namespace from the
 paper's study labels C1/C2/C3.
 
-Current structure: 3 main figures, 6 appendix figures, 12 tables, 33 verified
-bibliographic identities, and 42 claim records. The overview and pointwise
-runtime remain conceptual; seven figures and Table 1 use simulated reporting
-fixtures. Figure 1 and the complete domain table preserve four-family diversity.
-The ICLR main-text limit remains 9 pages; official body typography is unchanged.
+Current structure: 2 main figures, 8 appendix figures, 12 tables, 33 verified
+bibliographic identities, and 44 claim records. The overview and pointwise
+runtime remain conceptual; eight figures and Table 10 use simulated reporting
+fixtures. The complete PDF is 30 pages; the main text remains within 9 pages.
+Official ICLR body fonts, margins, and heading rules are unchanged.
 
-The three author color references inform an ocean/sea-glass/sand/coral palette:
-blue #376795, sky #7BC0CD, teal #51999F, mint #BFDFD2, sand #DBCB92, cream #FFE6B7,
-peach #ECB66C, and coral #ED8D5A. Charts use TeX Gyre Heros at 7–8.5 pt on a native
-5.4-inch canvas; the two diagrams use scoped Helvetica-compatible typography.
-Native vector plots carry the quantitative encodings. GPT Image 2 supplies only
-the existing, disclosed overview photograph; this round makes no image calls.
+Main Figure 2 is now the approved v20 landscape composite: balanced task ring,
+cost/agreement scatter and four family bar panels in one row, covering all 22
+tasks. Its 2,880 OOD inputs are selected by fixed hash without reading outcomes,
+with 720 per family. Statistics are recomputed on this synthetic subset, not
+copied from the full-cohort appendix. Filled/open marks indicate illustrative
+reused/new feedback, not label readiness. Pale family ramps subordinate the
+baselines to ERA's common lake-green accent; Source Sans 3 and Source Serif 4
+are embedded. C44 records only the allocation. The old atlas stays archived.
+Appendix Figure 4 retains full-cohort paired ID/OOD effects, Figure 8 component
+detail, and Figure 9 C2. The subset exports, vector assets and independent
+bootstrap/coordinate audit are documented in data/simulated/landscape/README.md.
+Annotation, component, and C2 diagnostics retain their eight-domain scope.
+C1 tables, selection, and cost profiles now use 11 domains per setting.
+
+Three isolated candidates follow the author's reference images and their
+labeled HEX values. Use their five colors as coordinated ensembles, not only
+as opposing pairs. The provisional reference-1 method mapping is static judge
+blue #74A9C5, static tools/seed mint #C2E5CF, prompt optimization cream #EDDDAB,
+program search peach #F2B8AE, and ERA rose #DD7389. Metric-only references stay
+neutral. Family, H-level, policy, rank, and outcome plots have their own explicit
+legends; settings use position, labels, or hatching where color has another role.
+The component heatmap spans all five colors with cream at zero and fixed ±6
+limits. All five acquisition policies retain equal-width lines and individual
+percentile bands. Reference 2 supplies a cool-to-warm alternative; reference 3
+supplies teal/apricot. No final palette choice is assumed.
+
+Neutral ink and dark numerals preserve the source fills. Density fills use
+88% source color; darker companions serve fine strokes and small diagram
+labels only. Charts use TeX Gyre Heros on native 5.4-inch canvases; the diagrams
+use scoped Helvetica-compatible typography. GPT Image 2 supplies only the
+existing disclosed overview photograph; this pass makes no model/image calls.
 `visual_references.md` retains inspected paper versions and design choices.
+The old eight C1 cohorts' group records, summaries, and exported intervals,
+and all seven diagnostic-only CSVs, are preserved. Fourteen C1 cohorts are
+added for complete layout coverage, not to report completed experiments.
+Aggregate C1 tables, selection, and cost summaries consequently change.
+
+Candidate previews stay under `build/reference-palettes/`. Each uses the
+same 14 CSVs and numerical table as the canonical assets, with identical
+scales and geometry. Checks cover 110 atlas values, 22 paired intervals, and
+29 small-text/background contrast pairs per candidate. Source boards,
+vector PDFs, and grayscale proofs remain local review materials; original
+reference JPEGs are not redistributed. The historical main-figures preview
+filename now contains the main atlas plus an appendix diagnostic proof.
+Figure/caption/claim links are synchronized.
+The September 19 pass rewrites the abstract and introduction, aligns the method's
+depth-first terminology, and preserves the title and empirical-gap status.
+Revised abstract/introduction prose and captions use one sentence per source
+line, with blank lines only between paragraphs; PDF wrapping remains automatic.
+The main overview now uses scoped TeX Gyre Heros, regular-weight action labels,
+consistent card insets, and correctly scaled pictograms on the same native
+canvas. Its caption and scientific content are unchanged. Qualified framework
+name proposals and the limits of their collision checks are recorded in
+`naming_candidates.md`; none has been adopted in the manuscript.
 
 ## Simulation contract
 
-`scripts/render_simulated_results.py` generates 13 CSV files, seven vector PDFs,
+`scripts/render_simulated_results.py` generates 14 CSV files, eight vector PDFs,
 a numerical TeX table, and `data/simulated/manifest.json`. Every data row is
 marked SIMULATED; charts, captions, the title page, and PDF metadata disclose the
 status. The fixtures do not execute ERA, use actual labels, estimate expected
-performance, establish method rankings, or simulate C3. Toy assignments cover
-eight illustrative cohorts across both settings; they do not assert real label
-availability. The full scientific scope remains 22 domains.
+performance, establish method rankings, or simulate C3 or evaluator tuning.
+`c1_cohorts.csv` covers all 22 domains (11 per setting); `cohorts.csv` retains
+the eight diagnostic cohorts (four per setting). These assignments do not
+assert real label availability. Construction settings are not domain identities.
 
 `scripts/check_simulated_results.py` checks provenance, hashes, arithmetic,
 paired denominators, coverage, annotation outcomes, and the evidence boundary.

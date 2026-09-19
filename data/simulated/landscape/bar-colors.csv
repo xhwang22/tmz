@@ -1,0 +1,111 @@
+domain,method,fill
+TD-SV1,Static judge,#FCEEEC
+TD-SV1,Static tools,#FAE3DF
+TD-SV1,Prompt optimization,#F8D7D2
+TD-SV1,Program search,#F6CCC5
+TD-SV1,ERA,#63AAA4
+TD-SV2,Static judge,#FCEEEC
+TD-SV2,Static tools,#FAE3DF
+TD-SV2,Prompt optimization,#F8D7D2
+TD-SV2,Program search,#F6CCC5
+TD-SV2,ERA,#63AAA4
+TD-SV3,Static judge,#FCEEEC
+TD-SV3,Static tools,#FAE3DF
+TD-SV3,Prompt optimization,#F8D7D2
+TD-SV3,Program search,#F6CCC5
+TD-SV3,ERA,#63AAA4
+TD-SV4,Static judge,#FCEEEC
+TD-SV4,Static tools,#FAE3DF
+TD-SV4,Prompt optimization,#F8D7D2
+TD-SV4,Program search,#F6CCC5
+TD-SV4,ERA,#63AAA4
+TD-SV5,Static judge,#FCEEEC
+TD-SV5,Static tools,#FAE3DF
+TD-SV5,Prompt optimization,#F8D7D2
+TD-SV5,Program search,#F6CCC5
+TD-SV5,ERA,#63AAA4
+TD-SV6,Static judge,#FCEEEC
+TD-SV6,Static tools,#FAE3DF
+TD-SV6,Prompt optimization,#F8D7D2
+TD-SV6,Program search,#F6CCC5
+TD-SV6,ERA,#63AAA4
+TD-IG1,Static judge,#F0F9F3
+TD-IG1,Static tools,#E7F5EC
+TD-IG1,Prompt optimization,#DDF0E4
+TD-IG1,Program search,#D3ECDC
+TD-IG1,ERA,#63AAA4
+TD-IG2,Static judge,#F0F9F3
+TD-IG2,Static tools,#E7F5EC
+TD-IG2,Prompt optimization,#DDF0E4
+TD-IG2,Program search,#D3ECDC
+TD-IG2,ERA,#63AAA4
+TD-IG3,Static judge,#F0F9F3
+TD-IG3,Static tools,#E7F5EC
+TD-IG3,Prompt optimization,#DDF0E4
+TD-IG3,Program search,#D3ECDC
+TD-IG3,ERA,#63AAA4
+TD-IG4,Static judge,#F0F9F3
+TD-IG4,Static tools,#E7F5EC
+TD-IG4,Prompt optimization,#DDF0E4
+TD-IG4,Program search,#D3ECDC
+TD-IG4,ERA,#63AAA4
+TD-IG5,Static judge,#F0F9F3
+TD-IG5,Static tools,#E7F5EC
+TD-IG5,Prompt optimization,#DDF0E4
+TD-IG5,Program search,#D3ECDC
+TD-IG5,ERA,#63AAA4
+TD-IG6,Static judge,#F0F9F3
+TD-IG6,Static tools,#E7F5EC
+TD-IG6,Prompt optimization,#DDF0E4
+TD-IG6,Program search,#D3ECDC
+TD-IG6,ERA,#63AAA4
+TD-TG1,Static judge,#DEEAF1
+TD-TG1,Static tools,#C7DDE8
+TD-TG1,Prompt optimization,#B1CFDF
+TD-TG1,Program search,#9BC1D5
+TD-TG1,ERA,#63AAA4
+TD-TG2,Static judge,#DEEAF1
+TD-TG2,Static tools,#C7DDE8
+TD-TG2,Prompt optimization,#B1CFDF
+TD-TG2,Program search,#9BC1D5
+TD-TG2,ERA,#63AAA4
+TD-TG3,Static judge,#DEEAF1
+TD-TG3,Static tools,#C7DDE8
+TD-TG3,Prompt optimization,#B1CFDF
+TD-TG3,Program search,#9BC1D5
+TD-TG3,ERA,#63AAA4
+TD-TG4,Static judge,#DEEAF1
+TD-TG4,Static tools,#C7DDE8
+TD-TG4,Prompt optimization,#B1CFDF
+TD-TG4,Program search,#9BC1D5
+TD-TG4,ERA,#63AAA4
+TD-TG5,Static judge,#DEEAF1
+TD-TG5,Static tools,#C7DDE8
+TD-TG5,Prompt optimization,#B1CFDF
+TD-TG5,Program search,#9BC1D5
+TD-TG5,ERA,#63AAA4
+TD-AR1,Static judge,#FBF7EB
+TD-AR1,Static tools,#F8F1DD
+TD-AR1,Prompt optimization,#F5ECD0
+TD-AR1,Program search,#F2E7C3
+TD-AR1,ERA,#63AAA4
+TD-AR2,Static judge,#FBF7EB
+TD-AR2,Static tools,#F8F1DD
+TD-AR2,Prompt optimization,#F5ECD0
+TD-AR2,Program search,#F2E7C3
+TD-AR2,ERA,#63AAA4
+TD-AR3,Static judge,#FBF7EB
+TD-AR3,Static tools,#F8F1DD
+TD-AR3,Prompt optimization,#F5ECD0
+TD-AR3,Program search,#F2E7C3
+TD-AR3,ERA,#63AAA4
+TD-AR4,Static judge,#FBF7EB
+TD-AR4,Static tools,#F8F1DD
+TD-AR4,Prompt optimization,#F5ECD0
+TD-AR4,Program search,#F2E7C3
+TD-AR4,ERA,#63AAA4
+TD-AR5,Static judge,#FBF7EB
+TD-AR5,Static tools,#F8F1DD
+TD-AR5,Prompt optimization,#F5ECD0
+TD-AR5,Program search,#F2E7C3
+TD-AR5,ERA,#63AAA4

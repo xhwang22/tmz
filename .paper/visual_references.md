@@ -1,6 +1,7 @@
 # Visual references and redesign brief
 
-Reviewed 2026-09-16. These sources inform visual communication, not this paper's
+Source figures reviewed 2026-09-16; palette and composition update 2026-09-17.
+These sources inform visual communication, not this paper's
 empirical claims. Original figures are neither reproduced nor traced in the
 manuscript, and were not uploaded to the image-generation service.
 
@@ -39,36 +40,62 @@ structured human evidence, the editable program, and independent assessment.
 
 | Local reference, preserved outside the commit | Adopted principle | Current use |
 | --- | --- | --- |
-| `color_reference.jpg` | Soft blue/mint/sand/peach/rose family; color should not overpower data | Light surfaces, quiet grid lines, dark text; no copied example values |
-| `color_reference_1.jpg` | Blue-to-warm progression; show distributions and individual observations | Blue static seed versus coral ERA; box/strip plots and raw-value overlays; no copied significance annotations |
-| `color_reference_2.jpg` | Ocean blue, sea glass, sand, and coral with restrained contrast | Main shared palette and rank/outcome composition; no decorative radial plot |
+| `color_reference.jpg` | Its five labeled blue/mint/cream/peach/rose colors; white paper and dark labels | Candidate A, provisional manuscript treatment: `#74A9C5 #C2E5CF #EDDDAB #F2B8AE #DD7389` |
+| `color_reference_1.jpg` | Its labeled blue-to-orange progression; distributions and individual observations | Candidate B: `#72BCD5 #AADCE0 #FFE6B7 #F7AA58 #EF8A47`; no copied significance annotations |
+| `color_reference_2.jpg` | Its labeled mint/teal/sand/apricot palette | Candidate C: `#4198AC #BFDFD2 #DBCB92 #ECB66C #ED8D5A`; no decorative radial plot |
 
-The working palette reconciles these references: blue `#376795`, sky `#7BC0CD`,
-teal `#51999F`, mint `#BFDFD2`, sand `#DBCB92`, cream `#FFE6B7`, peach `#ECB66C`,
-and coral `#ED8D5A`. Ink is `#303C43`; darker companion colors carry small text
-and outlines. The author-owned reference images are not manuscript assets and
-are not automatically redistributed. Their plotted values are never used.
+The author rejected the four round-10 directions and asked for closer use of
+the supplied references. Each current candidate is confined to one reference's
+labeled swatches, without arbitrary purple, copper, or deeper-blue base fills.
+`palette_candidates.md` records all source HEX sequences and role mappings.
+Each method comparison uses the five colors together, in the order static
+judge, static tools/seed, prompt optimization, program search, and ERA.
+Use white paper, neutral ink `#25272B`, dark numerals `#202226`, source-colored
+marks, and only light source tints for larger surfaces. Colored plot headers
+are removed. Darker companions are confined to fine strokes, points, and small
+diagram labels; they preserve source hue through sRGB scaling. This is a review
+candidate, not a final author-approved identity. Local original thumbnails and
+source hashes are included in `build/reference-palettes/` for comparison only.
+The originals are not manuscript assets and are not automatically redistributed;
+their plotted values and significance annotations are never used.
 
 ### Quantitative visual language
 
 - Keep just two conceptual figures: the overview and pointwise runtime. The
   seven retired diagrams remain editable archives; their scientific definitions
   remain in the text, algorithm, and tables.
-- Give each quantity a suitable visual form: forest plots for paired effects;
-  matched-budget curves for acquisition; interval/lollipop/composition panels
-  for annotation; stacked columns for selected ranks; heatmap plus box/strip
-  plots for component and feedback comparisons; rainclouds plus outcome bars
-  for refinement; scatter for quality–cost trade-offs. Avoid chart variety that
+- Give the main text an all-domain C1 atlas: every one of the 22 tasks, grouped
+  6/6/5/5 in taxonomy order, with five method columns and aligned paired effects.
+  Printed percentages and 0–100% micro-bars share a quantitative scale; column
+  colors identify methods, not scores. Show positive, near-zero, and negative
+  contrasts. Expanded ID/OOD intervals, the C1 table, acquisition curves, and
+  mechanism/feedback-detail panels belong in the appendix. C2 stays separate:
+  shared task names do not establish shared C1/C2 input groups or correlation.
+  Eight quantitative figures use 14 CSVs. Fourteen C1 domains are added while
+  the original eight C1 records/intervals and diagnostic data remain intact.
+- Give each quantity a suitable visual form: paired-effect interval tables
+  with aligned signed means; matched-budget curves with endpoint labels;
+  interval/bar/composition panels for annotation; slim horizontal rank ribbons;
+  a heatmap plus split violins with raw observations for component and feedback
+  comparisons; rainclouds plus a diverging preference balance for refinement;
+  aligned cost and agreement profiles sharing named method rows. Abstentions
+  occupy a separate numeric column, with the same all-input denominator as
+  wins and ties. Cost connectors pair settings for one evaluator; they are not
+  a search trajectory or a Pareto frontier. Avoid chart variety that
   obscures a comparison, 3D effects, ornamental frames, or decorative p-values.
-- ERA remains coral and the static tool-augmented seed blue across method plots.
-  Reused/new preference settings use teal/peach when setting identity is encoded
-  by color. Rank and outcome plots have their own explicitly labeled ordinal
-  mappings. Markers, dash patterns, hatching, zero references, and direct labels
-  provide cues independent of color.
+- Candidate A uses the complete blue/mint/cream/peach/rose method ensemble;
+  static tools/seed is mint, ERA rose, and metric-only anchors neutral.
+  Family, feedback-level, policy, rank, and outcome mappings are explicitly
+  labeled where those quantities use color. Four H levels use four colors,
+  not an invented fifth level. The component heatmap uses all five with cream
+  at zero; all five acquisition policies retain equal-width lines and bands.
+  Markers, dash patterns, sparse hatching, zero references, and direct labels
+  provide cues independent of color; split-violin settings use left/right.
 - Keep four-family diversity in concrete artifacts, the full 22-domain table,
-  and named domain rows. Eight toy cohorts exercise the displays without
-  claiming that these domains have particular labels or that one judge covers
-  them universally. Reused/new preferences are construction settings.
+  and all 22 named C1 domain rows. Annotation, component, and C2 detail retains
+  eight clearly labeled diagnostic domains. Neither scope claims actual labels,
+  completed experiments, or universal transfer. Reused/new preferences are
+  construction settings; R/N tags are illustrative, not permanent domain classes.
 - The author authorized simulated data to review chart design. Each CSV row,
   image, and caption is explicitly marked; the generator uses no observed
   benchmark values, annotators, models, or ERA implementation. Null/negative
@@ -89,8 +116,25 @@ are not automatically redistributed. Their plotted values are never used.
   paths from text. This is a presentation change, not new scientific content.
 - Render quantitative charts on a true 5.4-inch canvas. Titles are 8.5 pt,
   axis labels 8 pt, ticks/legends 7.3–7.5 pt, and disclosure notes 6.8 pt.
+  A bold 9 pt panel letter, regular-weight title, and fine rule establish a
+  common header. White space, restrained row guides, white-edged markers, and
+  direct numeric labels carry the hierarchy; heavy frames are unnecessary.
+  Numerals on source fills use #202226 ink; colored method blocks do not need
+  white labels or arbitrary darkening. Setting and component sublabels
+  are 7 pt; component columns retain clear inter-label gaps.
+  A pale-accent simulation badge and companion notice remain visible in every
+  quantitative figure. The original eight C1 records and intervals and all
+  diagnostic-only CSVs remain intact; the 22-domain C1 aggregates are recomputed.
+  Each palette candidate uses identical data, denominators, scales, and geometry.
   Labels are bounds-checked before export; readable text is not sacrificed to
   automatic tight cropping. Native vector marks remain sharp when enlarged.
+- `make palettes` verifies exact source-to-role mapping and 29 text/background
+  contrast pairs per candidate, including diagrams, badges, and heatmaps, and
+  exports grayscale proofs. Direct values, signed effects,
+  separate ID/OOD panels, and explicit left/right split-violin labels complement color;
+  a contrast check is not a universal color-vision accessibility certification.
+  All 14 CSVs and the numerical table match the canonical fixtures byte for
+  byte; all 110 main-atlas values and 22 paired effects are checked.
 - Align numeric table columns, balance label and metric widths, and use booktabs
   rules with light row emphasis. Keep long prose columns left-aligned. Float
   placement should keep explanations near charts without isolated short tables.
@@ -115,3 +159,14 @@ image-family vignette. The source and omission images are archived with their
 prompts and hashes. They are constructed illustrations, not collected human H.
 This quantitative/typographic round uses native TikZ and vector plotting,
 reuses the disclosed photograph, and makes no new image-generation API calls.
+
+## Main composite integration (2026-09-19)
+
+The approved v20 UNI-style landscape composition supersedes the atlas guidance
+above for main Figure 2: task composition ring, cost/agreement scatter and four
+family bar panels in one row. It retains the source-derived family colors in
+Microsoft spatial order, light baseline ramps and a common lake-green ERA accent.
+Source Sans 3 / Source Serif 4 are embedded; no new imagery is generated.
+Exact PDF/SVG/PNG and numerical exports are published with a separate balanced
+synthetic-subset manifest. The full-cohort atlas remains a historical asset,
+not an active main-text figure. Raw author reference JPEGs are not redistributed.

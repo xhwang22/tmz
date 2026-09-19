@@ -1,12 +1,12 @@
 {
-  "updated_on": "2026-09-16",
+  "updated_on": "2026-09-19",
   "serialization": "JSON-compatible YAML",
   "id_namespace": "C1... here are memory claim IDs, separate from manuscript study labels C1/C2/C3.",
-  "evidence_policy": "Specification artifacts support design statements only. Explicit simulated reporting fixtures support provenance and arithmetic checks, never empirical effectiveness. Hypotheses C27/C28 remain gaps; no empirical outputs were imported.",
+  "evidence_policy": "Specification artifacts support design statements only. Explicit simulated reporting fixtures support provenance and arithmetic checks, never empirical effectiveness. C43 records a bounded qualitative observation from inspected development traces; no private numerical results or sample-level records are imported. Hypotheses C27/C28 remain gaps.",
   "claims": [
     {
       "id": "C1",
-      "text": "We study whether human preference data can drive the self-evolution of an evaluation agent toward a task's evaluation standard.",
+      "text": "We study whether an evaluation agent can learn this procedure through self-evolution.",
       "source": "sections/introduction.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -30,7 +30,7 @@
       ],
       "figure_or_table": [
         "Fig1",
-        "Tab2"
+        "Tab1"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -46,7 +46,7 @@
       ],
       "figure_or_table": [
         "Fig1",
-        "Tab2"
+        "Tab1"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -61,7 +61,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab3"
+        "Tab2"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -76,7 +76,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab3"
+        "Tab2"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -91,7 +91,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab4"
+        "Tab3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -106,7 +106,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab4"
+        "Tab3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -121,7 +121,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab4"
+        "Tab3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -137,7 +137,7 @@
       ],
       "figure_or_table": [
         "Fig1",
-        "Fig4"
+        "Fig3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -152,7 +152,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig4"
+        "Fig3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -167,8 +167,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig4",
-        "Tab5"
+        "Fig3",
+        "Tab4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -183,14 +183,14 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig4"
+        "Fig3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C13",
-      "text": "The complete candidate is measured once as a system; its outcome is not credited separately to every edit.",
+      "text": "The complete candidate is measured once as a system, and its outcome is not credited separately to every edit.",
       "source": "sections/method.tex",
       "kind": "attribution boundary",
       "evidence_artifacts": [
@@ -198,7 +198,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab6"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -213,7 +213,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab5"
+        "Tab4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -299,7 +299,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab5"
+        "Tab4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -314,8 +314,9 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab1",
-        "Fig6"
+        "Tab10",
+        "Fig7",
+        "Fig2"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -330,8 +331,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig8",
-        "Tab9"
+        "Fig9",
+        "Tab8"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -346,7 +347,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab7"
+        "Tab6"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -361,8 +362,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab7",
-        "Tab9"
+        "Tab6",
+        "Tab8"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -377,8 +378,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig3",
-        "Tab6"
+        "Fig5",
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -393,35 +394,35 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig2",
-        "Tab8"
+        "Fig4",
+        "Tab7"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C27",
-      "text": "We hypothesize that disagreements among reliable, nonredundant signals can make a fixed annotation budget more informative than random sampling.",
+      "text": "The empirical question is whether these preferences improve the evaluator more than random sampling at the same human annotation cost.",
       "source": "sections/introduction.tex",
       "kind": "hypothesis",
       "evidence_artifacts": [],
       "figure_or_table": [
-        "Tab6"
+        "Tab5"
       ],
       "status": "gap",
-      "gap_reason": "No matched-human-budget held-out acquisition experiment is incorporated. Simulated curves are reporting fixtures and cannot support this explicitly hedged hypothesis."
+      "gap_reason": "No matched-human-cost acquisition result on independently sampled post-evolution evaluation is incorporated. Building a corpus or finding disagreements does not establish acquisition efficiency; simulated curves cannot close this gap."
     },
     {
       "id": "C28",
-      "text": "We hypothesize that such dependencies between evidence acquisition and judgment favor coordinated program evolution.",
+      "text": "We test whether this continuation produces more sustained gains than restarting proposals under the same search budget.",
       "source": "sections/introduction.tex",
       "kind": "hypothesis",
       "evidence_artifacts": [],
       "figure_or_table": [
-        "Tab6"
+        "Tab5"
       ],
       "status": "gap",
-      "gap_reason": "No controlled component/evolution result is incorporated. Simulated ablations cannot establish coordinated evolution's benefit."
+      "gap_reason": "No matched-resource controlled result establishes that depth-first continuation improves sustained alignment. Observed rejection/redirection motivates the comparison but does not prove its cause or the proposed remedy; simulated ablations cannot close this gap."
     },
     {
       "id": "C29",
@@ -451,7 +452,7 @@
     },
     {
       "id": "C31",
-      "text": "ERA treats the evaluator's observation and judgment mechanisms as the objects of evolution.",
+      "text": "ERA evolves an evaluation procedure by changing the program that implements it.",
       "source": "sections/method.tex",
       "kind": "evolution object",
       "evidence_artifacts": [
@@ -460,7 +461,7 @@
       ],
       "figure_or_table": [
         "Fig1",
-        "Fig4"
+        "Fig3"
       ],
       "status": "draft",
       "risk": "A statement of the method's editable mechanisms, not evidence that evolution improves evaluation."
@@ -477,7 +478,7 @@
       ],
       "figure_or_table": [
         "Fig1",
-        "Tab6"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "A procedural distinction, not a claim that hypothesis-guided exploration outperforms alternatives."
@@ -489,7 +490,7 @@
       "kind": "shared algorithm and data provenance",
       "figure_or_table": [
         "Fig1",
-        "Tab3"
+        "Tab2"
       ],
       "evidence_artifacts": [
         "sections/mining.tex",
@@ -504,7 +505,7 @@
       "source": "sections/problem.tex",
       "kind": "data availability boundary",
       "figure_or_table": [
-        "Tab3"
+        "Tab2"
       ],
       "evidence_artifacts": [
         "sections/problem.tex",
@@ -519,8 +520,8 @@
       "source": "sections/appendix.tex",
       "kind": "annotation reliability boundary",
       "figure_or_table": [
-        "Tab3",
-        "Fig5"
+        "Tab2",
+        "Fig6"
       ],
       "evidence_artifacts": [
         "sections/appendix.tex",
@@ -535,8 +536,8 @@
       "source": "sections/experiments.tex",
       "kind": "acquisition inference boundary",
       "figure_or_table": [
-        "Tab6",
-        "Fig3"
+        "Tab5",
+        "Fig5"
       ],
       "evidence_artifacts": [
         "sections/experiments.tex",
@@ -551,15 +552,16 @@
       "source": "sections/results.tex",
       "kind": "simulation provenance",
       "figure_or_table": [
-        "Fig2",
-        "Fig3",
+        "Fig4",
         "Fig5",
         "Fig6",
         "Fig7",
         "Fig8",
         "Fig9",
-        "Tab1",
-        "Tab10"
+        "Fig10",
+        "Tab10",
+        "Tab9",
+        "Fig2"
       ],
       "evidence_artifacts": [
         "scripts/render_simulated_results.py",
@@ -570,7 +572,9 @@
         "data/simulated/annotation_groups.csv",
         "data/simulated/component_effects.csv",
         "data/simulated/granularity.csv",
-        "data/simulated/refinement_groups.csv"
+        "data/simulated/refinement_groups.csv",
+        "data/simulated/landscape/manifest.json",
+        "scripts/check_landscape_results.py"
       ],
       "status": "supported",
       "risk": "Verified only as provenance of artificial reporting examples. No method ordering, effect, cost, or annotation reliability generalizes to an experiment."
@@ -581,16 +585,19 @@
       "source": "sections/appendix.tex",
       "kind": "simulation denominator definition",
       "figure_or_table": [
-        "Tab1",
-        "Fig2",
-        "Fig6"
+        "Tab10",
+        "Fig4",
+        "Fig7",
+        "Fig2"
       ],
       "evidence_artifacts": [
         "data/simulated/c1_groups.csv",
         "data/simulated/c1_summary.csv",
         "data/simulated/alignment_effects.csv",
         "data/simulated/selection_ranks.csv",
-        "scripts/check_simulated_results.py"
+        "scripts/check_simulated_results.py",
+        "data/simulated/landscape/manifest.json",
+        "scripts/check_landscape_results.py"
       ],
       "status": "supported",
       "risk": "Arithmetic consistency of toy displays, not evidence of evaluator effectiveness; selection shares use the separate all-input denominator."
@@ -639,7 +646,7 @@
     },
     {
       "id": "C42",
-      "text": "Human preference data provide a reference for alignment, but a preference alone does not fully specify the criteria and evidence needed to judge new outputs.",
+      "text": "Human feedback records judgments on concrete outputs, but does not specify an evaluation procedure for new ones.",
       "source": "sections/abstract.tex",
       "kind": "problem framing",
       "evidence_artifacts": [
@@ -650,6 +657,36 @@
       "figure_or_table": [],
       "status": "draft",
       "risk": "The distinction between a preference outcome and an explicit evaluation procedure motivates the method; it does not establish that human criteria can be fully recovered, that explanations are faithful, or that evolution improves alignment."
+    },
+    {
+      "id": "C43",
+      "text": "After unsuccessful candidates, the agent repeatedly returned to the best evaluator and proposed other changes instead of continuing the rejected implementation.",
+      "source": "sections/introduction.tex",
+      "kind": "bounded development observation",
+      "evidence_artifacts": [
+        ".paper/search_observation_audit.md",
+        ".paper/source_provenance.md"
+      ],
+      "figure_or_table": [],
+      "status": "supported",
+      "risk": "Observed in the inspected default SkillOpt pointwise workflow, not a universal property of RSI. Raw traces remain private; the public-facing evidence presentation is pending. Accepted candidates and positive development changes also occurred. This observation does not establish that abandonment caused limited gains, or that ERA/DFS is better."
+    },
+    {
+      "id": "C44",
+      "text": "Figure~\\ref{fig:outcomes} uses a subset of the OOD fixtures, with 720 input groups per family.",
+      "source": "sections/appendix.tex",
+      "kind": "synthetic display allocation",
+      "evidence_artifacts": [
+        "data/simulated/landscape/selected-inputs.csv",
+        "data/simulated/landscape/domain-composition.csv",
+        "data/simulated/landscape/manifest.json",
+        "scripts/check_landscape_results.py"
+      ],
+      "figure_or_table": [
+        "Fig2"
+      ],
+      "status": "supported",
+      "risk": "Verifies synthetic allocation and arithmetic only; not observed task prevalence, a proposed empirical sampling strategy, or an effectiveness result."
     }
   ]
 }

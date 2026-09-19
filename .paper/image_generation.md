@@ -1,6 +1,6 @@
 # Illustration provenance
 
-Updated 2026-09-16 for the quantitative and typographic redesign. See
+Updated 2026-09-17 for the palette-candidate and main-text composition pass. See
 [visual_references.md](visual_references.md) for the inspected papers and
 the specific communication choices adopted. Their figures were not copied,
 traced, or uploaded to the image service.
@@ -63,9 +63,17 @@ human annotation records, observed metrics, credentials, or experiment logs were
 sent to the service. Building the PDF and figure previews uses committed assets
 and makes no model API calls.
 
-The present round reconciles all three author palettes into ocean blue,
-sea glass, sand, and coral, and replaces redundant conceptual callouts with
-seven explicitly simulated quantitative figures. The photograph files, model
+The present round uses three complete vector-chart palettes based on the
+author's labeled color references, provisionally retaining reference 1's
+blue/mint/cream/peach/rose ensemble. The main C1 atlas now covers all 22 domains;
+the unchanged eight-domain annotation/component/C2 diagnostics are explicitly
+bounded appendix details.
+Original reference thumbnails appear only in local review boards; they are
+not manuscript assets or inputs to an image-generation service.
+Eight explicitly simulated quantitative figures use 14 CSVs. Fourteen C1
+domains were added for coverage; original C1 records/intervals and diagnostic
+data are preserved. This is not evidence of 22 executed evaluations.
+The photograph files, model
 provenance, lineage, and hashes are unchanged; this round makes no new model
 calls. The working Azure route was already recorded in the author-requested
 API guide outside this paper repository.
@@ -73,3 +81,10 @@ API guide outside this paper repository.
 The round-2 `domain-panorama-final.png` and its prompts remain an explicitly
 archived asset, not an active manuscript graphic. Earlier overviews remain in
 git history. Final author review is still required.
+
+## September 19 chart insertion
+
+Main Figure 2 now uses the approved native-vector v20 landscape composition.
+It is not an image-model output. PDF/SVG/PNG and balanced synthetic exports live
+under figures/simulated/landscape_outcomes.* and data/simulated/landscape/.
+Earlier atlas descriptions above are historical. No new image calls were made.

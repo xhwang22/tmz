@@ -4,9 +4,8 @@
 \subsection{An executable evaluator}
 \label{sec:runtime}
 
-ERA treats the evaluator's observation and judgment mechanisms as the objects
-of evolution. Self-evolution means automated changes to this evaluation program
-under external human feedback, not self-definition of the human standard.
+ERA evolves an evaluation procedure by changing the program that implements it.
+Self-evolution means automated changes to this evaluation program under external human feedback, not self-definition of the human standard.
 Artifact adapters determine what the program can inspect, from
 rendered views and source text to spatial structure or interaction traces.
 Routing selects tools and sends their outputs to evaluator modules with explicit
@@ -27,25 +26,25 @@ correctness. Appendix~\ref{app:synthesis} illustrates this distinction.
 \subsection{Mechanism hypotheses guide program variation}
 \label{sec:proposal}
 
-An evolution direction is a hypothesis about why the current program disagrees
-with human judgment. A summary evaluator, for example, may check individual facts
-without comparing their scope against the source. The direction predicts that
-making source qualifications available to the faithfulness module will change
-its ordering on scope errors while preserving judgments on faithful summaries.
-Original training artifacts and repeated traces ground the hypothesis, its
-competing explanations, target and protection cases, and editable components.
+An evolution direction specifies an intended improvement to the evaluation procedure.
+A hypothesis states why that improvement should correct an evaluation error and what observable change is expected.
+A summary evaluator, for example, may check individual facts without comparing their scope against the source.
+The direction is to make source qualifications available to the faithfulness module.
+Its hypothesis predicts better ordering on scope errors while preserving judgments on faithful summaries.
+Original training artifacts and repeated traces ground the hypothesis, its competing explanations, target and protection cases, and editable components.
 
-The hypothesis is the unit of exploration; the complete program is the unit of
-selection. Each elementary edit changes an attributable component of
-$(A,K,V,T,\Pi,G)$. A mechanism that needs a new tool, a route, and a consumer change
-can be instantiated as one connected candidate with a fixed parent. The complete
-candidate is measured once as a system; its outcome is not credited separately
-to every edit. Edit-size and component constraints bound variation, but do not
-guarantee a small semantic change. Modules may be split, merged, or removed as
-their responsibilities evolve.
+The hypothesis is the unit of exploration; the complete program is the unit of selection.
+A candidate is a complete evaluator version implementing a direction, not an individual edit.
+Each elementary edit changes an attributable component of $(A,K,V,T,\Pi,G)$.
+A mechanism that needs a new tool, a route, and a consumer change can be implemented as one connected candidate with a fixed parent.
+The complete candidate is measured once as a system, and its outcome is not credited separately to every edit.
+Edit-size and component constraints bound variation, but do not guarantee a small semantic change.
+Modules may be split, merged, or removed as their responsibilities evolve.
 
 \subsection{Selection and evidence-guided continuation}
 \label{sec:search}
+
+Falsification-guided depth-first evolution gives priority to developing the active direction, using new failure evidence to guide continuation rather than requiring every intermediate candidate to improve the best score.
 
 ERA separates proposal evidence from candidate selection. The proposal subset
 $\Dprop$ exposes authorized training artifacts, available human feedback, and

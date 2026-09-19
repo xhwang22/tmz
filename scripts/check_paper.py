@@ -140,6 +140,14 @@ for asset in assets["generated_images"]:
 manifest = json.loads((ROOT / "data/simulated/manifest.json").read_text())
 if manifest.get("simulation_only") is not True or manifest.get("empirical_evidence") is not False:
     errors.append("Quantitative fixture provenance does not disclose simulation.")
+landscape_manifest = json.loads((ROOT / "data/simulated/landscape/manifest.json").read_text())
+if landscape_manifest.get("simulation_only") is not True or landscape_manifest.get("empirical_evidence") is not False:
+    errors.append("Balanced-subset figure provenance does not disclose simulation.")
+vector_files = dict(manifest["files"])
+for relative, digest in landscape_manifest["files"].items():
+    if relative in vector_files and vector_files[relative] != digest:
+        errors.append(f"Conflicting figure provenance: {relative}")
+    vector_files[relative] = digest
 for relative in sorted(graphics):
     if not relative.endswith(".pdf"):
         continue
@@ -156,7 +164,7 @@ for relative in sorted(graphics):
     data = path.read_bytes()
     if not data.startswith(b"%PDF-"):
         errors.append(f"Expected vector PDF: {relative}")
-    if hashlib.sha256(data).hexdigest() != manifest["files"].get(relative):
+    if hashlib.sha256(data).hexdigest() != vector_files.get(relative):
         errors.append(f"Vector figure does not match data manifest: {relative}")
     if any(abs(width - 5.4) > 1e-6 for width in print_widths.get(relative, [])):
         errors.append(f"Vector chart does not retain its 5.4-inch native width: {relative}")

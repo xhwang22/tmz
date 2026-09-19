@@ -1,68 +1,43 @@
 \section{Quantitative evaluation: simulated displays}
 \label{sec:results}
 
-All numerical displays in this section use \emph{simulated data}, not measured
-evaluator performance or collected human judgments. They instantiate the reporting
-protocol (Appendix~\ref{app:simulation}); their assigned outcomes provide no
-evidence for either research hypothesis.
+All numerical displays in this section use \emph{simulated data}, not measured evaluator performance or collected human judgments.
+They instantiate the reporting protocol (Appendix~\ref{app:simulation}); their assigned outcomes provide no evidence for either research hypothesis.
 
-\begin{table}[t]
-\caption{\textbf{Simulated C1 reporting example; not experimental results.}
-Each setting averages four equally weighted toy cohorts. Pair = pairwise
-agreement; Top = top-region agreement; Bo4 = Best-of-4 accuracy (all in \%);
-Reg = normalized rank regret (lower is better). Cohort assignments do not
-assert actual label availability. Coverage and domain summaries accompany the
-reproducible fixtures.}
-\label{tab:results}
-\centering\small
-\setlength{\tabcolsep}{3.6pt}
-\renewcommand{\arraystretch}{1.06}
-\input{figures/simulated/c1_table}
-\end{table}
-
-\paragraph{Alignment under distinct standards.}
-Comparisons concern evolution within a task, not the effect of label origin.
-Table~\ref{tab:results} separates the two construction
-settings and the ID/OOD endpoints. Figure~\ref{fig:alignment}a--b retains
-domain-level paired effects between ERA and the static tool-augmented seed on
-jointly completed input groups. The rank-composition display in
-Figure~\ref{fig:selection} distinguishes ordering agreement from selection.
-
-\begin{figure}[t]
+\begin{figure}[!t]
 \centering
-\input{figures/simulated_alignment}
-\caption{\textbf{Simulated domain-level alignment; not experimental results.}
-Panels (a) and (b) compare ERA with the static tool-augmented seed on ID and OOD
-inputs. Diamonds are paired mean differences; whiskers are 95\% bootstrap
-intervals over jointly completed synthetic input groups. Zero denotes no
-difference. The two row groups indicate illustrative feedback-construction
-settings, not permanent domain categories or measured data readiness.}
-\label{fig:alignment}
+\input{figures/simulated_landscape}
+\caption{\textbf{Simulated task coverage and evaluator comparisons; not experimental results.}
+Panel (a) summarizes 22 tasks and 2,880 input groups, balanced to 720 per family with four candidates per input.
+A fixed hash selects this subset without reading outcomes; the appendix reports the full synthetic cohorts.
+Sector angles encode input counts; task codes follow Table~\ref{tab:domains}.
+Panel (b) plots assigned cost units, not measured runtime, against OOD agreement with synthetic human rankings.
+Small marks denote 110 domain--method combinations; large marks equally average 11 domains per feedback setting.
+Shapes identify methods, and filled/open marks denote illustrative reused/new preferences, not label reliability.
+Panel (c) reports agreement from pointwise scores and 95\% input-group bootstrap intervals on a common 0--100\% scale.
+Baseline bars follow the displayed order in each family's hue; ERA is lake green.
+Cost includes all selected inputs; agreement uses method-complete inputs.
+Marginal intervals do not establish paired differences.}
+\label{fig:outcomes}
 \end{figure}
 
-\paragraph{Acquisition as a separate test.}
-Figure~\ref{fig:acquisition}a--b compares acquisition policies against random
-sampling at equal human budgets. Held-out agreement after evolution is the
-endpoint; each policy pays for the same reliability anchor. Annotation
-granularity remains fixed and is varied separately in Figure~\ref{fig:ablation}b.
+\paragraph{Alignment across evaluation standards.}
+Average agreement can conceal opposing effects across tasks.
+Figure~\ref{fig:outcomes}c retains all 22 domains in four families, comparing five evaluator fixtures on OOD inputs.
+Panel (a) reports their balanced input composition, while panel (b) relates agreement to assigned evaluation cost without pooling the two feedback settings.
+Task order follows the taxonomy, not performance.
+The two metric-only references remain in Table~\ref{tab:results}; Figure~\ref{fig:alignment} reports paired ERA-minus-seed effects on the full ID/OOD cohorts.
 
-\begin{figure}[t]
-\centering
-\input{figures/simulated_acquisition}
-\caption{\textbf{Simulated acquisition curves; not experimental results.}
-Panels (a) and (b) compare five policies under reused and newly collected
-preferences. Lines average 12 toy runs; bands mark the 10th--90th percentiles
-for random and multi-source sampling, not confidence intervals. Budgets count
-original-input annotation units, including a shared 10-unit random anchor.}
-\label{fig:acquisition}
-\end{figure}
+\paragraph{What changes in the evaluator, and what feedback supports it?}
+Figure~\ref{fig:ablation}a reports six conditional full-minus-fixed component contrasts in eight diagnostic tasks, not additive contributions.
+Panel (b) varies cumulative feedback detail on the same input groups.
+Granularity comparisons must also account for annotation time and unequal label availability; they do not test acquisition efficiency.
 
-\begin{samepage}
-\paragraph{Feedback quality and unresolved judgments.}
-Label origin does not determine reliability. Figure~\ref{fig:annotation-quality}a--c
-separates valid-pair agreement, requested-rating abstention, and group consensus,
-preserving their distinct denominators. Unreported reliability in reused
-sources is marked unknown. C2 distributions and deployment-cost displays appear
-in Figures~\ref{fig:refinement} and~\ref{fig:cost}; C3 remains entirely unmeasured.
-\par
-\end{samepage}
+\paragraph{Feedback utility, acquisition, and resources.}
+Alignment does not establish useful critique.
+Figure~\ref{fig:refinement}a--b retains C2 quality distributions and unresolved judgments for the eight diagnostic tasks, on inputs distinct from C1.
+Both feedback settings require fresh blinded endpoint judgments for C2.
+Figure~\ref{fig:acquisition}a--b isolates acquisition policy at equal human budgets, including a common random anchor.
+Figure~\ref{fig:annotation-quality}a--c keeps agreement, abstention, and consensus denominators distinct; label origin does not establish reliability.
+Selection profiles (Figure~\ref{fig:selection}) and deployment costs (Figure~\ref{fig:cost}) retain separate denominators.
+C3 remains entirely unmeasured.

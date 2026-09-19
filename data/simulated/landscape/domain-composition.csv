@@ -1,0 +1,23 @@
+provenance,domain,code,domain_name,display_name,family,setting,split,requested_input_groups,candidates_per_input,candidate_slots
+SIMULATED,TD-SV1,SV1,Brief → single slide,Brief→slide,Structured visuals,Reuse,OOD,120,4,480
+SIMULATED,TD-SV2,SV2,Screenshot → webpage,Screenshot→web,Structured visuals,Collect,OOD,120,4,480
+SIMULATED,TD-SV3,SV3,Data → visualization,Data→chart,Structured visuals,Reuse,OOD,120,4,480
+SIMULATED,TD-SV4,SV4,Specification → webpage,Spec.→webpage,Structured visuals,Reuse,OOD,120,4,480
+SIMULATED,TD-SV5,SV5,Sources → slide deck,Sources→deck,Structured visuals,Collect,OOD,120,4,480
+SIMULATED,TD-SV6,SV6,Topic → slide deck,Topic→deck,Structured visuals,Collect,OOD,120,4,480
+SIMULATED,TD-IG1,IG1,Detailed captioning,Captioning,Images / 3D,Reuse,OOD,120,4,480
+SIMULATED,TD-IG2,IG2,Text → image,Text→image,Images / 3D,Reuse,OOD,120,4,480
+SIMULATED,TD-IG3,IG3,Instruction-based editing,Instruction edit,Images / 3D,Collect,OOD,120,4,480
+SIMULATED,TD-IG4,IG4,Super-resolution,Super-resolution,Images / 3D,Collect,OOD,120,4,480
+SIMULATED,TD-IG5,IG5,Text → 3D,Text→3D,Images / 3D,Reuse,OOD,120,4,480
+SIMULATED,TD-IG6,IG6,Image → 3D,Image→3D,Images / 3D,Collect,OOD,120,4,480
+SIMULATED,TD-TG1,TG1,Document summarization,Summarization,Text generation,Reuse,OOD,144,4,576
+SIMULATED,TD-TG2,TG2,RAG long-form answers,RAG long-form,Text generation,Collect,OOD,144,4,576
+SIMULATED,TD-TG3,TG3,Translation,Translation,Text generation,Reuse,OOD,144,4,576
+SIMULATED,TD-TG4,TG4,Instruction constraints,Instr. constraints,Text generation,Collect,OOD,144,4,576
+SIMULATED,TD-TG5,TG5,Open dialogue,Dialogue,Text generation,Reuse,OOD,144,4,576
+SIMULATED,TD-AR1,AR1,Research ideas,Research ideas,Automated research,Reuse,OOD,144,4,576
+SIMULATED,TD-AR2,AR2,Ablation plans,Ablation plans,Automated research,Collect,OOD,144,4,576
+SIMULATED,TD-AR3,AR3,Table → insight,Table→insight,Automated research,Reuse,OOD,144,4,576
+SIMULATED,TD-AR4,AR4,Related work,Related work,Automated research,Collect,OOD,144,4,576
+SIMULATED,TD-AR5,AR5,Peer-review critique,Review critique,Automated research,Collect,OOD,144,4,576

@@ -59,9 +59,18 @@
   every paragraph. Avoid promotional novelty claims and universal dismissals
   of existing program optimizers.
 - Prefer quantitative displays over redundant conceptual diagrams. Retain the
-  overview and pointwise runtime; use paired-effect forest plots, budget curves,
-  an annotation audit, rank composition, an annotated heatmap with box/strip
-  plots, raincloud distributions, and quality–cost scatter for distinct questions.
+  overview and pointwise runtime. Main Figure 2 shows every one of the 22 C1
+  domains in fixed 6/6/5/5 taxonomy order: five OOD method columns with printed
+  values and common-scale micro-bars, followed by paired ERA-minus-seed intervals.
+  Method color is categorical, not a score heatmap. Keep all-domain ID/OOD
+  intervals in appendix Figure 4. The mechanism/feedback-detail display is
+  appendix Figure 8; C2 is separate in Figure 9. Keep the C1 numerical table and
+  acquisition curves in the appendix. Use paired-effect interval tables, budget
+  curves, an annotation audit, horizontal rank ribbons, an annotated heatmap
+  with split violins and raw points, rainclouds with diverging preference bars,
+  and aligned cost/agreement profiles for distinct questions. Keep abstentions
+  separate from either winner in preference balances; all-input denominators
+  remain unchanged. Cost connectors pair settings, not evolution steps.
   Chart variety must follow the quantity, not decoration. Avoid unnecessary 3D,
   radial charts, heavy frames, and decorative significance markers.
 - The author explicitly authorized simulated data for reporting/layout review.
@@ -79,14 +88,32 @@
   gallery, not their artwork, data, or results. Earlier Self-Refine, Eureka,
   TextGrad, and SAM examples remain secondary references for evidence alignment.
   Record figure/page/source and the mapping in `visual_references.md`.
-- Reconcile all three author references through blue #376795, sky #7BC0CD,
-  teal #51999F, mint #BFDFD2, sand #DBCB92, cream #FFE6B7, peach #ECB66C, and coral
-  #ED8D5A. Dark ink #303C43 and darker companion colors keep small text readable.
-  ERA is coral and the static tool-augmented seed is blue. Setting comparisons
-  use teal for reused preferences and peach for new preferences. Where color
-  instead encodes ranks, signed effects, or outcomes, state that mapping in the
-  legend/caption. Keep labels, shapes, line patterns, and hatching as redundant
+- Use the three supplied color references independently; the author rejected
+  the previous four invented palette directions. `palette_candidates.md`
+  records exact labeled HEX values and source-to-role mappings. The provisional
+  manuscript uses reference 1: blue #74A9C5, mint #C2E5CF, cream #EDDDAB,
+  peach #F2B8AE, and rose #DD7389. Alternatives follow reference 2's blue/orange
+  and reference 3's teal/apricot sequences. Do not add purple or copper fills,
+  or arbitrarily deepen the primary blue. No final author choice is assumed.
+  Use white paper and neutral ink #25272B; small numerals use #202226.
+  Use the complete five-color ensemble for the five non-metric methods:
+  static judge blue, static tools/seed mint, prompt optimization cream,
+  program search peach, and ERA rose. Metric-only references stay gray.
+  Where color instead encodes families, H levels, policies, ranks, or outcomes,
+  state that mapping explicitly. Settings use left/right position and sparse
+  hatching in split violins, not another competing color scale.
+  Keep labels, shapes, line patterns, and hatching as redundant
   cues. Preserve softly tinted surfaces and original pictograms in diagrams.
+  Keep source base fills intact; use dark numerals instead of deepening fills
+  for white labels. Density fills use 88% source color over white. The heatmap
+  uses the complete five-color sequence, cream at zero, and fixed ±6 limits. Derive
+  darker companions only for fine strokes and small diagram labels; do not
+  add chromatic plot headings. In split violins, label halves left/right.
+  All five acquisition policies use equal-width strokes and individual bands.
+  Audit grayscale proofs and 29 small-text contrast pairs in each palette.
+  Palette previews stay in `build/` and must match all 14 CSVs and the numerical
+  table byte for byte; changing colors cannot change any simulated observation.
+  Check all 110 atlas values and 22 paired intervals against canonical CSVs.
 - Keep ICLR body fonts, margins, and heading rules unchanged. Figures use
   Helvetica-compatible typography: scoped TeX Gyre Heros (`qhv`) in the main
   overview, `phv` in the runtime diagram, and TeX Gyre Heros in Matplotlib.
@@ -96,8 +123,13 @@
   spacing, and the figure-local `transform shape` setting so pictograms respect
   their specified scales. Do not shrink the entire figure to hide crowding.
   Main chart titles are 8.5 pt, axis labels 8 pt, tick/legend labels
-  about 7.3–7.5 pt; 6.8 pt is reserved for fixture-disclosure notes. The native
+  about 7.3–7.5 pt; 6.8 pt is reserved for fixture-disclosure notes. Component
+  sublabels and setting labels use 7 pt with explicit spacing. The native
   chart canvas is 5.4 inches wide and is not silently cropped or reduced.
+  Separate bold panel letters from regular-weight headings; use fine header
+  rules, direct endpoint labels, quiet row guides, and aligned estimates.
+  The compact simulation badge and its companion notice remain visible and
+  text-extractable in every quantitative figure.
   Use aligned numeric columns, booktabs rules, light row emphasis, and readable
   row spacing. Inspect complete pages as well as individual charts for orphaned
   text, detached captions, icon collisions, excessive whitespace, and font
@@ -105,7 +137,80 @@
 - Show domain diversity through concrete artifacts and different quality
   criteria, not modality names alone. The overview, complete 22-domain table,
   and per-domain quantitative panels share a procedure while retaining distinct
-  evaluation standards. Eight toy cohorts are display choices, not scope cuts.
+  evaluation standards. Main C1 and expanded alignment must show all 22 tasks,
+  not just four family averages. C1 summaries use 11 domains per setting.
+  Eight-domain annotation/component/C2 details are explicitly bounded diagnostic
+  subsets; neither full nor subset fixtures imply empirical completion.
+  R/N tags are synthetic construction assignments, not verified label availability.
 - Shared palette, panel markers, candidate tokens, and component styles live in
   `figures/visual_style.tex` and `preamble.tex`. Review standalone figures and
   final manuscript pages; a successful TeX build does not detect label collisions.
+
+## Latest composite-preview color direction (2026-09-17)
+
+For the UNI-style integrated review figure, the author's latest instruction
+supersedes the earlier five-hue method mapping: keep ERA as a single chromatic
+accent and the four baselines as a subordinate, single-hue light-to-dark ramp.
+Choose those hues to harmonize with the task ring; do not restore five equally
+prominent colors per bar group. Apply the same mapping to bars, scatterplots,
+and their shared key. Keep the ring's four family hues and its clockwise
+light-to-dark progression within each family. These are categorical colors,
+not performance encodings. Preview approval does not replace manuscript assets.
+
+## Approved writing direction (2026-09-19)
+
+- In revised LaTeX prose, put one complete sentence on each source line, with a blank line between paragraphs.
+  Do not wrap sentences at an arbitrary character width or insert forced PDF line breaks.
+  Apply this to the abstract, introduction, and their captions now; preserve unrelated sections until they are revised.
+- Use the approved chain: difficulty of human-aligned open-ended evaluation, preference/procedure gap, why agent evolution is a useful candidate approach, acquisition and optimization obstacles, then the method principle and its empirical tests.
+  GEPA, Meta-Harness, and DGM guide argument structure, not borrowed results or a claim that all prior optimizers are greedy.
+- Explain acquisition by reducing redundant annotation of easy comparisons and recurring patterns, not by claiming the agent knows which samples intrinsically deserve human judgment.
+  Consensus is not truth; preserve the random anchor and compare final evaluator gains at equal human cost.
+- Motivate depth-first search with observed default rejection/redirection, not an imagined generic generalization failure.
+  Distinguish a direction's initial implementation from its attainable value.
+  Separate adopting a candidate from continuing its direction; refutation requires evidence against the hypothesis, while resource exhaustion is not refutation.
+  These are design principles, not proof that DFS is necessary in every task or already superior.
+- Keep pointwise scoring as the main interface and avoid reciting the pairwise development chronology.
+  Give mining and depth-first evolution distinct roles in the same learning problem, without a component inventory in the abstract.
+- Keep C27/C28 as explicit open comparisons.
+  A qualitative development observation may motivate the method, but must not turn simulated displays or unsuccessful confirmatory comparisons into favorable results.
+
+## Inserted landscape composite (2026-09-19)
+
+The author-approved v20 landscape figure now replaces the atlas in main Fig2.
+This supersedes earlier atlas and five-hue-method instructions for Fig2 only.
+Keep the four-quarter task ring, right cost/agreement scatter and four family
+bar panels in one row. Baselines use pale family ramps; ERA uses one lake-green
+accent. Keep Source Sans 3 / Source Serif 4 and the native 5.4 × 3.57-inch canvas.
+The selected 2,880 synthetic inputs are a fixed-hash subset, not the full appendix
+cohorts; document that distinction and retain all simulation disclosures.
+Do not retune data to improve visual rankings. Full-cohort paired effects remain
+in Fig4, not Fig2. Other chart styles are unchanged in this integration pass.
+
+## Approved argument refinement (2026-09-19)
+
+- Keep learning human-aligned evaluation procedures as the paper-level question.
+  Feedback efficiency connects acquisition and evolution but does not replace
+  that question. Do not brand them as a new two-stage theory or rigid pipeline.
+- Give ERA more explanatory space than acquisition. Introduce the observed
+  rejection/redirection pattern, then why interacting evaluation steps can
+  require further implementation, then candidate acceptance versus continuation.
+  Bound the observation to the tested optimizer configuration.
+- One unsuccessful implementation is insufficient to reject its direction;
+  it is not devoid of negative evidence. Unfinished implementation alone does
+  not justify indefinite continuation. Budget exhaustion is not refutation.
+- Consensus does not establish correctness. Use agreement among existing signals,
+  not claims that those signals already understand or resolve human judgments.
+- Use human feedback as the umbrella term and human preferences for preference
+  judgments. Use preference acquisition for the process and disagreement-based
+  preference acquisition for this allocation. Avoid cycling through supervision,
+  feedback, and preferences as stylistic substitutes.
+- An evaluation procedure describes what the evaluator does; an evaluation
+  program is its editable implementation. A candidate is a complete evaluator
+  version. A direction specifies an intended improvement; its hypothesis states
+  a testable prediction. Use implementation rather than rotating synonyms.
+- Move detailed adaptation controls and annotation provenance out of the early
+  introduction. Preserve them in Methods/Experiments and the appendix.
+  Keep the abstract a single paragraph and revised source one sentence per line.
+- Do not remove simulation disclosures or turn planned comparisons into completed
+  studies to make the prose sound more conclusive.

@@ -8,7 +8,7 @@
 - US Letter; official font sizes, margins and text area unchanged.
 - Natbib author–year citations; supplied `.bst`; single-paragraph abstract.
 - Figure captions below; table captions above; vector artwork for diagrams,
-  quantitative marks, and text. Seven chart PDFs have native 5.4-inch canvases;
+  quantitative marks, and text. Eight chart PDFs have native 5.4-inch canvases;
   figure typography is scoped and does not replace the official Times body.
   Fonts must be embedded, with no Type 3 fallbacks. This draft checks active
   raster assets at a minimum of 600 DPI at print width. The only active photo

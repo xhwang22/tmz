@@ -21,7 +21,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data/simulated"
-CHARTS = ("alignment", "acquisition", "annotation", "selection", "ablation", "refinement", "cost")
+CHARTS = ("outcomes", "alignment", "acquisition", "annotation", "selection", "ablation", "refinement", "cost")
 METHODS = ("Single metric", "Metric ensemble", "Static judge", "Static tools",
            "Prompt optimization", "Program search", "ERA")
 METRICS = ("pairwise", "top_region", "best_of_4", "rank_regret")
@@ -90,6 +90,11 @@ def check_manifest():
         text = " ".join(text.split())
         require("SIMULATED DATA" in text and "NOT EXPERIMENTAL RESULTS" in text,
                 f"Missing visible disclosure inside chart: {name}")
+        if name in ("outcomes", "alignment"):
+            expected_codes = {f"{family}{i}" for family, count in (("SV", 6), ("IG", 6), ("TG", 5), ("AR", 5))
+                              for i in range(1, count + 1)}
+            plotted_codes = set(re.findall(r"\b(?:SV|IG|TG|AR)\d+\b", text))
+            require(plotted_codes == expected_codes, f"{name}: not all 22 domain labels are visible")
         wrapper = (ROOT / f"figures/simulated_{name}.tex").read_text()
         require(r"\includegraphics[width=5.4in]" in wrapper,
                 f"Native figure width changed: {name}")
@@ -319,11 +324,23 @@ def main():
     try:
         check_manifest()
         cohorts = {r["domain"]: r for r in rows("cohorts.csv")}
-        require(len(cohorts) == 8, "Eight illustrative cohorts are required")
+        require(len(cohorts) == 8, "Eight illustrative diagnostic cohorts are required")
         require(Counter(c["setting"] for c in cohorts.values()) == {"Reuse": 4, "Collect": 4},
-                "Both settings must have four toy cohorts")
+                "Both settings must have four toy diagnostic cohorts")
         require(all(int(c["groups"]) == GROUPS for c in cohorts.values()), "Cohort groups changed")
-        check_c1(cohorts)
+        c1_cohorts = {r["domain"]: r for r in rows("c1_cohorts.csv")}
+        expected_domains = {f"TD-{family}{i}" for family, count in (("SV", 6), ("IG", 6), ("TG", 5), ("AR", 5))
+                            for i in range(1, count + 1)}
+        require(set(c1_cohorts) == expected_domains, "C1 must cover all 22 source-plan domains")
+        require(Counter(c["setting"] for c in c1_cohorts.values()) == {"Reuse": 11, "Collect": 11},
+                "C1 must have eleven illustrative cohorts per setting")
+        require(Counter(c["family"] for c in c1_cohorts.values()) == {
+            "Structured visuals": 6, "Images / 3D": 6, "Text generation": 5, "Automated research": 5},
+            "The C1 taxonomy must retain the 6/6/5/5 family structure")
+        require(all(int(c["groups"]) == GROUPS for c in c1_cohorts.values()), "C1 cohort groups changed")
+        require(all(c1_cohorts[d]["setting"] == c["setting"] for d, c in cohorts.items()),
+                "Diagnostic and C1 cohort assignments disagree")
+        check_c1(c1_cohorts)
         check_annotation(cohorts)
         check_other_fixtures(cohorts)
         check_evidence_boundary()
@@ -334,7 +351,8 @@ def main():
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
     print("Simulation audit passed: provenance, hashes, paired metrics, denominators, tables, and disclosures.")
-    print("Seven vector charts; no empirical claims, model execution, or human study established.")
+    print(f"Simulated C1 coverage: {len(c1_cohorts)} domains; diagnostic subset: {len(cohorts)} domains.")
+    print(f"{len(CHARTS)} vector charts; no empirical claims, model execution, or human study established.")
     if args.submission:
         print("SUBMISSION BLOCKED: replace simulated fixtures with authorized measurements and re-audit claims.", file=sys.stderr)
         return 2

@@ -636,7 +636,8 @@ these fixtures provides evidence for acquisition efficiency, component
 effectiveness, or human-label reliability. No C3 training outcomes are simulated.
 
 \begin{table}[t]
-\caption{Illustrative cohorts in the simulated displays. Assignments are
+\caption{Eight diagnostic cohorts for the simulated C2, annotation, and
+component displays. The C1 displays cover all 22 domains separately. Assignments are
 layout examples, not verified data availability or fixed domain categories.
 Each C1 domain/split contains 160 synthetic input groups and four candidates.}
 \label{tab:simulation-cohorts}
@@ -658,8 +659,11 @@ Automated research & TD-AR1: research ideas & TD-AR2: ablation plans \\
 \end{table}
 
 \paragraph{Construction and uncertainty.}
-Table~\ref{tab:simulation-cohorts} maps the eight toy cohorts to the full domain
-taxonomy. Gaussian latent utilities define synthetic C1 rankings. Noisy scores
+The C1 fixtures cover all 22 domains in Table~\ref{tab:domains}, with 11
+illustrative cohorts per feedback setting. Table~\ref{tab:simulation-cohorts}
+retains eight fixed tasks for C2 and diagnostic detail; it does not define
+the study's scope. A domain may use both feedback settings in an actual study.
+Gaussian latent utilities define synthetic C1 rankings. Noisy scores
 are repeated three times per artifact and reduced to medians before strict
 comparison. Incomplete groups remain in coverage denominators. The C1 table
 averages domain-level metrics equally within each setting. Its means use each
@@ -670,6 +674,65 @@ They quantify resampling variation in the fixtures, not uncertainty about ERA.
 The acquisition generator assigns budget responses for five policies and 12
 toy runs; its bands are percentile ranges across runs, not bootstrap intervals.
 
+\paragraph{Balanced subset in the main figure.}
+Figure~\ref{fig:outcomes} uses a subset of the OOD fixtures, with 720 input groups per family.
+The six-task families contain 120 inputs per task; the five-task families contain 144.
+Within each task, input identifiers are ranked by SHA256 with fixed seed 20260918, without reference to outcomes.
+The same selected inputs, including incomplete responses, are retained for every method.
+Agreement and its 1,000-replicate bootstrap intervals are recomputed on each method's complete inputs; cost retains all selected inputs.
+Setting means weight their 11 domains equally, rather than pooling inputs.
+The ring's equal quarters reflect this synthetic allocation, not measured domain prevalence or a proposed empirical sampling rule.
+The released selection list and numerical exports distinguish this display from the full-cohort tables and appendix plots.
+
+\begin{table}[!htbp]
+\caption{\textbf{Simulated C1 reporting example; not experimental results.}
+Each setting averages eleven equally weighted toy cohorts. Pair = pairwise
+agreement; Top = top-region agreement; Bo4 = Best-of-4 accuracy (all in \%);
+Reg = normalized rank regret (lower is better). Cohort assignments do not
+assert actual label availability. Coverage and domain summaries accompany the
+reproducible fixtures.}
+\label{tab:results}
+\centering\small
+\setlength{\tabcolsep}{3.6pt}
+\renewcommand{\arraystretch}{1.06}
+\input{figures/simulated/c1_table}
+\end{table}
+
+\FloatBarrier
+\paragraph{Expanded alignment and acquisition displays.}
+Figure~\ref{fig:alignment}a--b reports per-domain ERA-minus-seed effects with paired intervals for all 22 domains on the full synthetic cohorts.
+These paired contrasts complement the marginal means for the balanced OOD subset in Figure~\ref{fig:outcomes}c.
+Figure~\ref{fig:acquisition}a--b
+compares acquisition policies against random sampling at equal human budgets;
+all policies include the same reliability anchor. Annotation granularity is
+held fixed here and varied separately in Figure~\ref{fig:ablation}b.
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/simulated_alignment}
+\caption{\textbf{Simulated domain-level alignment; not experimental results.}
+Panels (a) and (b) compare ERA with the static tool-augmented seed on ID and OOD
+inputs. Diamonds are paired mean differences; whiskers are 95\% bootstrap
+intervals over jointly completed synthetic input groups. Zero denotes no
+difference. All 22 domains retain the 6/6/5/5 taxonomy order. Colors identify
+domain families; R/N denote illustrative reused/new feedback assignments,
+not permanent domain categories or measured data readiness.}
+\label{fig:alignment}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/simulated_acquisition}
+\caption{\textbf{Simulated acquisition curves; not experimental results.}
+Panels (a) and (b) compare five policies under reused and newly collected
+preferences. Lines average 12 toy runs; bands mark each policy's 10th--90th
+percentiles, not confidence intervals. Budgets count
+original-input annotation units, including a shared 10-unit random anchor.}
+\label{fig:acquisition}
+\end{figure}
+
+\FloatBarrier
+\paragraph{Annotation outcomes.}
 The annotation fixture assigns three simulated raters per group. Candidate
 preferences are encoded as 0/1, a tie as 2, and abstention as $-1$.
 Agreement is computed within each group from all available non-abstaining rater
@@ -703,7 +766,7 @@ denominators so missingness cannot masquerade as better selection.
 \centering
 \input{figures/simulated_selection}
 \caption{\textbf{Simulated C1 selection; not experimental results.}
-Panels (a) and (b) show selected ranks for four evaluator fixtures in the two
+Panels (a) and (b) show horizontal rank profiles for four evaluator fixtures in the two
 construction settings, using ID inputs. Rank 1 is best. Labels give its share
 of all input groups, including unscored groups in the denominator. Colors
 encode ranks, not methods. Equal cohort sizes permit pooling within a setting;
@@ -723,12 +786,13 @@ studies must also account for annotation time and unequal label availability.
 \centering
 \input{figures/simulated_ablation}
 \caption{\textbf{Simulated ablations; not experimental results.}
-Panel (a) gives mean full-minus-fixed agreement differences in percentage
-points for the six components $(A,K,V,T,\Pi,G)$. Panel (b) compares cumulative
-$H_0$--$H_3$ detail. Dots denote synthetic input groups; boxes show quartiles,
-central lines medians, and whiskers the 10th--90th percentiles. Colors in
-panel (a) encode signed differences; in panel (b) they identify construction
-settings. No displayed contrast establishes a component's benefit.}
+Panel (a) gives mean full-minus-fixed agreement (percentage points) for
+$(A,K,V,T,\Pi,G)$ across eight diagnostic domains, with cream at zero.
+Panel (b) colors cumulative $H_0$--$H_3$ levels. Left/right halves denote
+reused/new preferences; right halves are hatched. Dots are synthetic groups,
+white markers medians, thick segments quartiles, and thin segments the
+10th--90th percentiles. Domain codes follow Table~\ref{tab:simulation-cohorts}.
+Conditional contrasts are not additive contributions or evidence of component benefits.}
 \label{fig:ablation}
 \end{figure}
 
@@ -749,16 +813,18 @@ are retained in the data for the full reporting contract.
 \caption{\textbf{Simulated C2 outcomes; not experimental results.}
 Panel (a) combines half-violin densities, all synthetic group values, median
 markers, and interquartile segments for ERA-refined minus Seed-refined quality.
-The horizontal scale is an arbitrary latent unit, not a human score.
-Panel (b) retains every win, tie, loss, and abstention under the toy rule.
+Density colors identify domain families. The horizontal scale is an arbitrary
+latent unit, not a human score.
+Panel (b) centers ties between seed and ERA wins, with abstentions in a separate
+percentage column. Every share uses all input groups under the toy rule.
 Both construction settings would require fresh blinded human endpoint
 judgments in an actual C2 study.}
 \label{fig:refinement}
 \end{figure}
 
-Figure~\ref{fig:cost}a--b pairs agreement with assigned relative deployment
-costs, keeping the two settings separate. Dashed paths connect nondominated
-toy points only. A real resource comparison must report search and annotation
+Figure~\ref{fig:cost}a--b aligns assigned relative deployment costs and agreement
+on common evaluator rows, keeping both settings visible. Connecting segments
+pair settings, not steps of evolution. A real resource comparison must report search and annotation
 costs separately from deployment cost; the artificial costs here cannot
 establish practical efficiency.
 
@@ -766,9 +832,11 @@ establish practical efficiency.
 \centering
 \input{figures/simulated_cost}
 \caption{\textbf{Simulated quality--cost trade-offs; not measured costs.}
-Panels (a) and (b) give equal-weight means across four ID cohorts per setting.
-Markers identify evaluator fixtures and dashed paths join their nondominated
-points. Cost units are assigned to the toy generator, not timed API calls or
+Panel (a) gives assigned costs and panel (b) gives agreement, each averaging
+eleven ID cohorts equally per setting. Colors identify evaluators; metric-only
+references are gray. Filled circles denote reused preferences and hollow squares
+new preferences; connecting segments pair the settings for one evaluator.
+Cost units are assigned to the toy generator, not timed API calls or
 measured compute. The plot does not establish an efficiency frontier for ERA.}
 \label{fig:cost}
 \end{figure}
