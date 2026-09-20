@@ -6,9 +6,11 @@ It applies to current manuscript prose, headings, captions, and figure labels.
 
 | Concept | Preferred term | Boundary |
 |---|---|---|
-| Paper-level learning process | evaluator self-evolution | Use evaluator evolution once the context is clear. Do not invent a framework acronym. |
+| Project and complete framework | IterEval | Tagline: iterative evaluator self-improvement from human feedback. Use for the complete framework and experimental system, not as a name for either component alone. |
+| Paper title | Dive Deeper, Branch Later: Self-Evolving Evaluators across Open-Ended Tasks | The opening phrase expresses the search insight, not another method name. |
+| Paper-level learning process | evaluator self-evolution | Use evaluator evolution once the context is clear. The title and first introduction use self-evolving evaluators. |
 | Tested baseline in Abstract and Introduction | default evaluator-evolution setup | Introduce as the default evaluator-evolution setup we tested; then use default setup. Do not alternate with default iterative optimizer or default model-driven evolution setup for this same configuration. |
-| Upstream method | Informative Preference Mining (IPM) | Covers existing datasets and newly generated outputs; reuse compatible preferences or collect missing ones. Use IPM after definition, not disagreement-based data mining or preference acquisition. |
+| Upstream method | disagreement-based preference mining | Use preference mining after the full name when the context is clear. No component acronym. Covers existing datasets and newly generated outputs; reuse compatible preferences or collect missing ones. |
 | Selecting comparisons | sampling; sampling policy | Data mining is the broader process; sampling is its selection operation. |
 | Collecting human judgments | annotation | Not a synonym for mining, which can reuse labels. Distinguish annotation units from annotation time. |
 | Evaluation information from people | human feedback | Umbrella for H0–H3; do not alternate with supervision for the same object. |
@@ -16,8 +18,8 @@ It applies to current manuscript prose, headings, captions, and figure labels.
 | The procedure being learned | evaluation procedure | What the evaluator inspects, computes, and uses to judge. |
 | Editable executable implementation | evaluation program | Not evaluator program, evaluation policy, or judging logic as stylistic alternatives. |
 | Complete evaluation system | evaluator | Evaluation agent only where agent behavior is relevant. |
-| ERA method | depth-first evaluator evolution | Short form depth-first evolution is allowed in context. No falsification-guided, evidence-guided, or diagnostic-guided rebranding. |
-| Persistent correction explored by ERA | direction | Not hypothesis, idea, or correction problem as interchangeable names. |
+| Search method | depth-first evaluator evolution | Use the search or our search when the referent is clear. No component acronym or falsification-guided, evidence-guided, or diagnostic-guided rebranding. |
+| Persistent correction explored by the search | direction | Not hypothesis, idea, or correction problem as interchangeable names. |
 | Testable rationale for a direction | hypothesis | Explains the expected correction; diagnostic results do not automatically verify it. |
 | Proposed complete evaluation program | candidate | Distinguish from an edit or component. A proposed artifact is a candidate output, then simply output. |
 | A modification to the evaluation procedure | revision | A revision produces a candidate; use candidate when discussing measured performance or acceptance. Attempt is a general description, not an alternative name for the candidate. |
@@ -41,7 +43,8 @@ It applies to current manuscript prose, headings, captions, and figure labels.
 - Preserve historical revision entries and audit quotations; this glossary governs new writing.
 - Ordinary verbs and genuinely different objects need not share a single word. Do not replace every occurrence of evidence with feedback or every candidate with output.
 - Diagnosing incomplete implementation supports further work within the implemented eligibility and budget rules; it does not guarantee continuation or prove the direction useful.
-- Motivate IPM by lowering the relative priority of repetitive comparisons on which existing signals agree. Disagreement is the implemented ranking mechanism, not a guarantee of human information value; no detected conflict can also reflect ties or missing signals. Retain the random anchor and matched-human-cost test.
+- Retire IPM and ERA from current reader-facing text. Preserve legacy data keys and code identifiers, with explicit display-name mappings where needed.
+- Motivate disagreement-based preference mining by lowering the relative priority of repetitive comparisons on which existing signals agree. Disagreement is the implemented ranking mechanism, not a guarantee of human information value; no detected conflict can also reflect ties or missing signals. Retain the random anchor and matched-human-cost test.
 - Keep uncertainty and simulation disclosures unchanged. A vocabulary revision is not new empirical evidence.
 - Revised LaTeX prose uses one complete sentence per source line, with blank lines between paragraphs.
 

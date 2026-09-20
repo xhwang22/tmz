@@ -9,8 +9,8 @@
       "caption_source": "sections/introduction.tex",
       "panels": [
         "(a) four domain families",
-        "(b) IPM with existing datasets or new outputs and compatible preference reuse",
-        "(c) ERA acceptance and continuation",
+        "(b) disagreement-based preference mining with existing datasets or new outputs and compatible preference reuse",
+        "(c) depth-first evaluator evolution acceptance and continuation",
         "(d) C1 alignment/selection, C2 refinement, planned C3"
       ],
       "key_numbers": [
@@ -31,7 +31,7 @@
         "C33",
         "C49"
       ],
-      "caption_in_manuscript": "Evaluator self-evolution from human feedback. (a) Four artifact families retain distinct evaluation standards. (b) Informative Preference Mining (IPM) selects comparisons from existing datasets or fresh outputs, reusing matching preferences and collecting missing ones. Both routes retain their provenance and annotation quality. (c) \\ERA{} evolves a six-component program with a fixed base model, separating candidate acceptance from direction continuation. (d) C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training. Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
+      "caption_in_manuscript": "IterEval: iterative evaluator self-improvement from human feedback. (a) Four artifact families retain distinct evaluation standards. (b) Disagreement-based preference mining selects comparisons from existing datasets or fresh outputs, reusing matching preferences and collecting missing ones. Both routes retain their provenance and annotation quality. (c) Depth-first evaluator evolution revises a six-component evaluation procedure with a fixed base model, separating candidate acceptance from direction continuation. (d) C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training. Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
       "evidence_status": "Conceptual specification with constructed examples; no measured results"
     },
     {
@@ -39,7 +39,7 @@
       "file": "figures/c1_landscape.tex",
       "panels": [
         "(a) 22-task taxonomy, not measured sample composition",
-        "(b) seed and ERA agreement versus Best-of-4 family means",
+        "(b) seed and IterEval agreement versus Best-of-4 family means",
         "(c) common-cohort OOD agreement across all 22 tasks"
       ],
       "key_numbers": [
@@ -56,7 +56,7 @@
       "data_manifest": "data/simulated/c1_landscape/manifest.json",
       "id": "Fig2",
       "caption_source": "sections/results.tex",
-      "caption_in_manuscript": "\\textbf{C1 across tasks: simulated reporting layout, not experimental results.} Panel (a) maps 22 tasks into four families; equal family quadrants indicate taxonomy, not sample shares. Panel (b) links seed and ERA family means for pairwise agreement and Best-of-4 selection, without implying a causal relation. Panel (c) reports five methods on each task using their jointly complete OOD inputs. Whiskers are 95\\% input-bootstrap intervals; selection counts failed scoring as failure. Table~\\ref{tab:main-alignment} specifies the full empirical comparison. Appendix~\\ref{app:simulation} documents denominators and provenance."
+      "caption_in_manuscript": "\\textbf{C1 across tasks: simulated reporting layout, not experimental results.} Panel (a) maps 22 tasks into four families; equal family quadrants indicate taxonomy, not sample shares. Panel (b) links seed and IterEval family means for pairwise agreement and Best-of-4 selection, without implying a causal relation. Panel (c) reports five methods on each task using their jointly complete OOD inputs. Whiskers are 95\\% input-bootstrap intervals; selection counts failed scoring as failure. Table~\\ref{tab:main-alignment} specifies the full empirical comparison. Appendix~\\ref{app:simulation} documents denominators and provenance."
     },
     {
       "id": "Fig3",
@@ -100,7 +100,7 @@
       "file": "figures/budget_tests.tex",
       "panels": [
         "(a) search under equal total budgets",
-        "(b) IPM versus alternative sampling under equal human budgets"
+        "(b) disagreement-based preference mining versus alternative sampling under equal human budgets"
       ]
     },
     {
@@ -131,7 +131,7 @@
       ],
       "evidence_status": "Balanced synthetic OOD subset for layout, distinct from full-cohort appendix data; no empirical efficacy or label availability established",
       "id": "Fig5",
-      "caption_in_manuscript": "\\textbf{Simulated task coverage and evaluator comparisons; not experimental results.} Panel (a) summarizes 22 tasks and 2,880 input groups, balanced to 720 per family with four outputs per input. A fixed hash selects this subset without reading outcomes; the appendix reports the full synthetic cohorts. Sector angles encode input counts; task codes follow Table~\\ref{tab:domains}. Panel (b) plots assigned cost units, not measured runtime, against OOD agreement with synthetic human rankings. Small marks denote 110 domain--method combinations; large marks equally average 11 domains per feedback setting. Shapes identify methods, and filled/open marks denote illustrative reused/new preferences, not label reliability. Panel (c) reports agreement from pointwise scores and 95\\% input-group bootstrap intervals on a common 0--100\\% scale. Baseline bars follow the displayed order in each family's hue; ERA is lake green. Cost includes all selected inputs; agreement uses method-complete inputs. Marginal intervals do not establish paired differences."
+      "caption_in_manuscript": "\\textbf{Simulated task coverage and evaluator comparisons; not experimental results.} Panel (a) summarizes 22 tasks and 2,880 input groups, balanced to 720 per family with four outputs per input. A fixed hash selects this subset without reading outcomes; the appendix reports the full synthetic cohorts. Sector angles encode input counts; task codes follow Table~\\ref{tab:domains}. Panel (b) plots assigned cost units, not measured runtime, against OOD agreement with synthetic human rankings. Small marks denote 110 domain--method combinations; large marks equally average 11 domains per feedback setting. Shapes identify methods, and filled/open marks denote illustrative reused/new preferences, not label reliability. Panel (c) reports agreement from pointwise scores and 95\\% input-group bootstrap intervals on a common 0--100\\% scale. Baseline bars follow the displayed order in each family's hue; IterEval is lake green. Cost includes all selected inputs; agreement uses method-complete inputs. Marginal intervals do not establish paired differences."
     },
     {
       "id": "Fig6",
@@ -155,7 +155,7 @@
         "C37",
         "C38"
       ],
-      "caption_in_manuscript": "\\textbf{Simulated domain-level alignment; not experimental results.} Panels (a) and (b) compare ERA with the static tool-augmented seed on ID and OOD inputs. Diamonds are paired mean differences; whiskers are 95\\% bootstrap intervals over jointly completed synthetic input groups. Zero denotes no difference. All 22 domains retain the 6/6/5/5 taxonomy order. Colors identify domain families; R/N denote illustrative reused/new feedback assignments, not permanent domain categories or measured data readiness.",
+      "caption_in_manuscript": "\\textbf{Simulated domain-level alignment; not experimental results.} Panels (a) and (b) compare IterEval with the static tool-augmented seed on ID and OOD inputs. Diamonds are paired mean differences; whiskers are 95\\% bootstrap intervals over jointly completed synthetic input groups. Zero denotes no difference. All 22 domains retain the 6/6/5/5 taxonomy order. Colors identify domain families; R/N denote illustrative reused/new feedback assignments, not permanent domain categories or measured data readiness.",
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
@@ -275,7 +275,7 @@
         "C22",
         "C37"
       ],
-      "caption_in_manuscript": "\\textbf{Simulated C2 outcomes; not experimental results.} Panel (a) combines half-violin densities, all synthetic group values, median markers, and interquartile segments for ERA-refined minus Seed-refined quality. Density colors identify domain families. The horizontal scale is an arbitrary latent unit, not a human score. Panel (b) centers ties between seed and ERA wins, with abstentions in a separate percentage column. Every share uses all input groups under the toy rule. Both construction settings would require fresh blinded human endpoint judgments in an actual C2 study.",
+      "caption_in_manuscript": "\\textbf{Simulated C2 outcomes; not experimental results.} Panel (a) combines half-violin densities, all synthetic group values, median markers, and interquartile segments for IterEval-refined minus Seed-refined quality. Density colors identify domain families. The horizontal scale is an arbitrary latent unit, not a human score. Panel (b) centers ties between seed and IterEval wins, with abstentions in a separate percentage column. Every share uses all input groups under the toy rule. Both construction settings would require fresh blinded human endpoint judgments in an actual C2 study.",
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
@@ -298,7 +298,7 @@
       "supports_claims": [
         "C37"
       ],
-      "caption_in_manuscript": "\\textbf{Simulated quality--cost trade-offs; not measured costs.} Panel (a) gives assigned costs and panel (b) gives agreement, each averaging eleven ID cohorts equally per setting. Colors identify evaluators; metric-only references are gray. Filled circles denote reused preferences and hollow squares new preferences; connecting segments pair the settings for one evaluator. Cost units are assigned to the toy generator, not timed API calls or measured compute. The plot does not establish an efficiency frontier for ERA.",
+      "caption_in_manuscript": "\\textbf{Simulated quality--cost trade-offs; not measured costs.} Panel (a) gives assigned costs and panel (b) gives agreement, each averaging eleven ID cohorts equally per setting. Colors identify evaluators; metric-only references are gray. Filled circles denote reused preferences and hollow squares new preferences; connecting segments pair the settings for one evaluator. Cost units are assigned to the toy generator, not timed API calls or measured compute. The plot does not establish an efficiency frontier for IterEval.",
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     }
   ],
@@ -388,7 +388,7 @@
       "id": "Tab8",
       "label": "tab:downstream-results",
       "file": "sections/appendix.tex",
-      "caption_in_manuscript": "\\textbf{Downstream human outcomes: unmeasured placeholders.} C2 compares ERA-refined with Seed-refined; C3 compares ERA-GRPO with Seed-GRPO. Preference cells await tie-aware estimates, input-group 95\\% intervals, and counts. Each $\\Delta$Reg cell is the ERA-minus-seed difference in major-regression rate against $y_0$ (C2) or Base (C3), with ID and OOD separate. Appendix~\\ref{app:results} specifies per-arm rates and completion. Dashes await new blinded judgments; C3 is design-only.",
+      "caption_in_manuscript": "\\textbf{Downstream human outcomes: unmeasured placeholders.} C2 compares IterEval-refined with Seed-refined; C3 compares IterEval-GRPO with Seed-GRPO. Preference cells await tie-aware estimates, input-group 95\\% intervals, and counts. Each $\\Delta$Reg cell is the IterEval-minus-seed difference in major-regression rate against $y_0$ (C2) or Base (C3), with ID and OOD separate. Appendix~\\ref{app:results} specifies per-arm rates and completion. Dashes await new blinded judgments; C3 is design-only.",
       "supports_claims": [
         "C22",
         "C24",

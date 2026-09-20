@@ -2224,7 +2224,7 @@ z
     <text style="fill: #25272b; font: 7.3px 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="344.16" y="48.581086" transform="rotate(-0 344.16 48.581086)">Program search</text>
    </g>
    <g id="text_54">
-    <text style="fill: #25272b; font: 7.3px 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="374.4" y="61.628344" transform="rotate(-0 374.4 61.628344)">ERA</text>
+    <text style="fill: #25272b; font: 7.3px 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="374.4" y="61.628344" transform="rotate(-0 374.4 61.628344)">IterEval</text>
    </g>
    <g id="text_55">
     <text style="fill: #25272b; font: 7.3px 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="240.48" y="153.770664" transform="rotate(-0 240.48 153.770664)">Reused</text>
@@ -3979,7 +3979,7 @@ L 376.844405 197.452187
     <text style="fill: #25272b; font: 7.4px 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="372.06" y="240.196016" transform="rotate(-0 372.06 240.196016)">AR5</text>
    </g>
    <g id="text_89">
-    <text style="fill: #62666b; font: 7.3px 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.8" y="251.621086" transform="rotate(-0 28.8 251.621086)">Static judge · Static tools · Prompt opt. · Program search · ERA</text>
+    <text style="fill: #62666b; font: 7.3px 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="28.8" y="251.621086" transform="rotate(-0 28.8 251.621086)">Static judge · Static tools · Prompt opt. · Program search · IterEval</text>
    </g>
    <g id="macro-Static judge-Reuse">
     <defs>

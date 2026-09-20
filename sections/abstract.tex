@@ -1,13 +1,14 @@
 Evaluating open-ended outputs requires task-dependent judgments over multiple aspects of quality that must be balanced in context.
 Existing proxy metrics and model-based evaluators remain imperfect on such judgments and do not consistently align with human preferences \citep{fabbri2021summeval,hu2024criteria}.
 Humans can often tell which of two concrete outputs is better, but it is much harder to turn that ability into a comprehensive and effective evaluation procedure \citep{shankar2024evalgen}.
-So we study evaluator self-evolution by treating the evaluation procedure itself as the object of iterative improvement from human preferences.
+We present IterEval, a framework for self-evolving evaluators across open-ended tasks.
+IterEval selects human preferences through disagreement-based preference mining and uses them to iteratively improve the evaluation procedure.
 An evaluation error revealed by human preferences often suggests several plausible ways to improve the evaluator, while limited human feedback provides only weak evidence for deciding which direction to pursue.
 This ambiguity matters especially in open-ended evaluation, where a useful direction may require several related revisions before producing a measurable gain.
 An unsuccessful early candidate evaluator therefore leaves the optimizer uncertain whether the direction is wrong or simply underdeveloped.
 In the default evaluator-evolution setup we tested, this uncertainty often led subsequent revisions toward alternative directions rather than deeper development of the current one.
-We therefore introduce \ERA{}, a depth-first evolution method that explicitly maintains an improvement direction across revisions and continues developing it until diagnostic results provide a clear reason to move on or its search budget is exhausted.
-ERA keeps candidate acceptance separate from direction continuation, allowing diagnostic results from unsuccessful candidates to guide further implementation without replacing the best evaluator found so far.
-Across diverse open-ended tasks, our qualitative analyses show that ERA develops promising directions more thoroughly, produces more sustained improvements, and yields evaluators that better reflect human preferences under matched search budgets.
+Depth-first evaluator evolution explicitly maintains an improvement direction across revisions and continues developing it until diagnostic results provide a clear reason to move on or its search budget is exhausted.
+The search keeps candidate acceptance separate from direction continuation, allowing diagnostic results from unsuccessful candidates to guide further implementation without replacing the best evaluator found so far.
+Across diverse open-ended tasks, our qualitative analyses show that IterEval develops promising directions more thoroughly, produces more sustained improvements, and yields evaluators that better reflect human preferences under matched search budgets.
 These improvements also transfer downstream: evolved evaluators support better output selection and more effective critic-guided refinement.
 On representative tasks, using their scores as training rewards further improves generation quality.

@@ -158,6 +158,8 @@ def main():
     pdf = ROOT / "figures/simulated/landscape_outcomes.pdf"
     text = subprocess.check_output(["pdftotext", str(pdf), "-"], text=True)
     require("SIMULATED" in text and "not experimental results" in text, "Visible disclosure missing")
+    require("IterEval" in text and not re.search(r"\b(?:ERA|IPM)\b", text),
+            "Framework display label is missing or retired")
     expected_codes = {d.removeprefix("TD-") if hasattr(d, "removeprefix") else d[3:] for d, in composition}
     require(set(re.findall(r"\b(?:SV|IG|TG|AR)\d+\b", text)) == expected_codes, "Missing visible task codes")
     print("Balanced landscape: 2,880 synthetic inputs, 110 bars and intervals, 120 scatter points verified.")

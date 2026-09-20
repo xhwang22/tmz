@@ -1,10 +1,14 @@
 # Manuscript style
 
-## Current terminology precedence (2026-09-20, round 27)
+## Current terminology precedence (2026-09-20, round 32)
 
 Follow `terminology.md` for current wording; it supersedes conflicting terms in all earlier notes below.
-Use Informative Preference Mining (IPM) and ERA: depth-first evaluator evolution.
-Motivate IPM from reducing the priority of repetitive comparisons on which signals agree; do not assert that disagreement guarantees useful human feedback or that zero conflict establishes simplicity.
+Use IterEval for the complete framework, with the tagline "iterative evaluator self-improvement from human feedback".
+Use the title "Dive Deeper, Branch Later: Self-Evolving Evaluators across Open-Ended Tasks".
+The two components are disagreement-based preference mining and depth-first evaluator evolution, without component acronyms.
+Introduce the framework with "We present IterEval, a framework for self-evolving evaluators across open-ended tasks."
+These instructions supersede the earlier unbranded-title requirement and IPM/ERA names below; historical records and implementation identifiers remain unchanged.
+Motivate preference mining from reducing the priority of repetitive comparisons on which signals agree; do not assert that disagreement guarantees useful human feedback or that zero conflict establishes simplicity.
 Keep candidate acceptance, program inheritance, and direction continuation distinct.
 Use human feedback, human preferences, evaluation procedure, and evaluation program for their defined objects, not as stylistic substitutes.
 Diagnostics support continued implementation; do not restore falsification-guided or another guided method name.

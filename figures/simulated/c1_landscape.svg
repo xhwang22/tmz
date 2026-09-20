@@ -1445,7 +1445,7 @@ z
     <text style="fill: #25272b; font: 7.3px 'Source Sans 3'; text-anchor: start" x="244.08" y="153.770664" transform="rotate(-0 244.08 153.770664)">Static tools (seed)</text>
    </g>
    <g id="text_55">
-    <text style="fill: #25272b; font: 7.3px 'Source Sans 3'; text-anchor: start" x="344.16" y="153.770664" transform="rotate(-0 344.16 153.770664)">ERA</text>
+    <text style="fill: #25272b; font: 7.3px 'Source Sans 3'; text-anchor: start" x="344.16" y="153.770664" transform="rotate(-0 344.16 153.770664)">IterEval</text>
    </g>
    <g id="text_56">
     <text style="fill: #25272b; font: 9.2px 'Source Sans 3'; text-anchor: start" x="9.36" y="165.074625" transform="rotate(-0 9.36 165.074625)">c</text>
@@ -3194,7 +3194,7 @@ L 376.812 197.480481
     <text style="fill: #25272b; font: 7.3px 'Source Sans 3'; text-anchor: middle" x="372.06" y="238.730664" transform="rotate(-0 372.06 238.730664)">AR5</text>
    </g>
    <g id="text_88">
-    <text style="fill: #62666b; font: 7.3px 'Source Sans 3'; text-anchor: start" x="28.8" y="251.261086" transform="rotate(-0 28.8 251.261086)">Static judge · Static tools · Prompt opt. · Program search · ERA</text>
+    <text style="fill: #62666b; font: 7.3px 'Source Sans 3'; text-anchor: start" x="28.8" y="251.261086" transform="rotate(-0 28.8 251.261086)">Static judge · Static tools · Prompt opt. · Program search · IterEval</text>
    </g>
    <g id="line2d_348">
     <defs>

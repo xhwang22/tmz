@@ -3,6 +3,135 @@
   "policy": "Prefer verified published records; otherwise cite the verified arXiv version explicitly as a preprint. Bibliographic identity is not a full-text claim audit. Unrelated search matches and failed metadata requests were discarded. Later incremental checks carry per-reference checked_on dates; the top-level date describes the original verification pass.",
   "references": [
     {
+      "key": "shankar2024spade",
+      "title": "spade: Synthesizing Data Quality Assertions for Large Language Model Pipelines",
+      "authors": "Shankar, Shreya and Li, Haotian and Asawa, Parth and Hulsebos, Madelon and Lin, Yiming and Zamfirescu-Pereira, J. D. and Chase, Harrison and Fu-Hinthorn, Will and Parameswaran, Aditya G. and Wu, Eugene",
+      "year": "2024",
+      "venue": "Proceedings of the VLDB Endowment",
+      "doi": "10.14778/3685800.3685835",
+      "pages": "4173--4186",
+      "checked_on": "2026-09-20",
+      "status": "PVLDB 17(12), 4173--4186, 2024. Journal article; publisher PDF and Crossref agree.",
+      "primary_sources": [
+        "https://api.crossref.org/works/10.14778/3685800.3685835",
+        "https://www.vldb.org/pvldb/vol17/p4173-shankar.pdf"
+      ],
+      "claim_support": {
+        "supported_scope": "Abstract and Figure 1: assertions synthesized from prompt histories, then selected using labeled outputs. Does not establish that criteria learning never iterates."
+      }
+    },
+    {
+      "key": "ke2024critiquellm",
+      "title": "CritiqueLLM: Towards an Informative Critique Generation Model for Evaluation of Large Language Model Generation",
+      "authors": "Ke, Pei and Wen, Bosi and Feng, Andrew and Liu, Xiao and Lei, Xuanyu and Cheng, Jiale and Wang, Shengyuan and Zeng, Aohan and Dong, Yuxiao and Wang, Hongning and Tang, Jie and Huang, Minlie",
+      "year": "2024",
+      "venue": "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+      "doi": "10.18653/v1/2024.acl-long.704",
+      "pages": "13034--13054",
+      "checked_on": "2026-09-20",
+      "status": "ACL 2024, Volume 1: Long Papers. ACL/Crossref name Andrew Feng; PDF says Zhuoer Feng. Current bibliographic record retained; discrepancy documented.",
+      "primary_sources": [
+        "https://aclanthology.org/2024.acl-long.704.bib",
+        "https://aclanthology.org/2024.acl-long.704.pdf",
+        "https://api.crossref.org/works/10.18653/v1/2024.acl-long.704"
+      ],
+      "claim_support": {
+        "supported_scope": "Abstract and Eval-Instruct method: trains critiques and pointwise/pairwise judgments. Counterexample to scalar-only characterization of trained judges."
+      }
+    },
+    {
+      "key": "park2024offsetbias",
+      "title": "OffsetBias: Leveraging Debiased Data for Tuning Evaluators",
+      "authors": "Park, Junsoo and Jwa, Seungyeon and Ren, Meiying and Kim, Daeyoung and Choi, Sanghyuk",
+      "year": "2024",
+      "venue": "Findings of the Association for Computational Linguistics: EMNLP 2024",
+      "doi": "10.18653/v1/2024.findings-emnlp.57",
+      "pages": "1043--1067",
+      "checked_on": "2026-09-20",
+      "status": "Findings of EMNLP 2024, not main conference. Third author's name follows the published PDF and arXiv BibTeX (Meiying Ren), correcting the inverted given/family fields in ACL/Crossref. Publication fields retain the official Findings record.",
+      "primary_sources": [
+        "https://aclanthology.org/2024.findings-emnlp.57.bib",
+        "https://aclanthology.org/2024.findings-emnlp.57.pdf",
+        "https://api.crossref.org/works/10.18653/v1/2024.findings-emnlp.57",
+        "https://arxiv.org/bibtex/2407.06551"
+      ],
+      "claim_support": {
+        "supported_scope": "Abstract and Sections 2--3: bias-targeted preference-data construction and evaluator fine-tuning. No claim of inability to generalize beyond named biases."
+      }
+    },
+    {
+      "key": "verga2024poll",
+      "arxiv_id": "2404.18796",
+      "title": "Replacing Judges with Juries: Evaluating LLM Generations with a Panel of Diverse Models",
+      "authors": "Pat Verga and Sebastian Hofstatter and Sophia Althammer and Yixuan Su and Aleksandra Piktus and Arkady Arkhangorodsky and Minjie Xu and Naomi White and Patrick Lewis",
+      "year": "2024",
+      "venue": "arXiv preprint arXiv:2404.18796",
+      "checked_on": "2026-09-20",
+      "status": "Verified 2024 arXiv preprint; no formal venue verified. OpenAlex corroborates identity; DBLP blocked and Crossref returned irrelevant matches.",
+      "primary_sources": [
+        "https://arxiv.org/abs/2404.18796",
+        "https://arxiv.org/bibtex/2404.18796",
+        "https://arxiv.org/pdf/2404.18796"
+      ],
+      "claim_support": {
+        "supported_scope": "Sections 2.2 and 3.1: aggregates different model-family judgments through max or average pooling. Not a general inability claim about ensembles."
+      }
+    },
+    {
+      "key": "luo2026harnessbank",
+      "arxiv_id": "2607.13683",
+      "title": "HarnessBank: Semantic Gene-Bank Search with Gated Verification for Agent-Harness Self-Evolution",
+      "authors": "Xiaotian Luo and Dizhan Xue and Fengxingyu Wang and Chuanrui Hu and Yafeng Deng",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2607.13683",
+      "checked_on": "2026-09-20",
+      "status": "Verified 2026 arXiv preprint, v2; no formal venue asserted.",
+      "primary_sources": [
+        "https://arxiv.org/abs/2607.13683v2",
+        "https://arxiv.org/bibtex/2607.13683",
+        "https://arxiv.org/pdf/2607.13683v2"
+      ],
+      "claim_support": {
+        "supported_scope": "Sections 3.2--3.3: semantically distinct harnesses and gated screening. Already performs failure diagnosis and verification."
+      }
+    },
+    {
+      "key": "feng2026skillhex",
+      "arxiv_id": "2608.05628",
+      "title": "SkillHEX: Improving Agent Skills via Hypothesis-Driven Autonomous Exploration and Exploitation",
+      "authors": "Yuru Feng and Yaoqi Chen and Beidi Zhao and Qianxi Zhang and Xinjiang Wang and Jianan Lu and Zhirui Wang and Shusen Xu and Zengzhong Li and Qi Chen",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2608.05628",
+      "checked_on": "2026-09-20",
+      "status": "Verified 2026 arXiv preprint; no formal venue asserted.",
+      "primary_sources": [
+        "https://arxiv.org/abs/2608.05628",
+        "https://arxiv.org/bibtex/2608.05628",
+        "https://arxiv.org/pdf/2608.05628"
+      ],
+      "claim_support": {
+        "supported_scope": "Sections 3.1--3.2: executable hypothesis tests, persistent patch-tree exploration/exploitation. Section 4: deterministic SkillsBench verifiers. Close comparator; not evidence that continuation or diagnostics are new."
+      }
+    },
+    {
+      "key": "chen2026webgrader",
+      "arxiv_id": "2608.06474",
+      "title": "WebGrader: Training LLMs for Web Development with Self-Evolving Programmatic Grader",
+      "authors": "Boshui Chen and Huiping Liu and Shaolei Zhang",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2608.06474",
+      "checked_on": "2026-09-20",
+      "status": "Verified 2026 arXiv preprint; no formal venue asserted.",
+      "primary_sources": [
+        "https://arxiv.org/abs/2608.06474",
+        "https://arxiv.org/bibtex/2608.06474",
+        "https://arxiv.org/pdf/2608.06474"
+      ],
+      "claim_support": {
+        "supported_scope": "Abstract and method: residual-driven verifier-skill evolution for browser flows, disjoint validation pages and grader freeze before policy training. Tool-using evaluators are not universally static."
+      }
+    },
+    {
       "key": "ye2024flask",
       "arxiv_id": "2307.10928",
       "title": "FLASK: Fine-grained Language Model Evaluation based on Alignment Skill Sets",
@@ -645,7 +774,7 @@
       ],
       "claim_support": {
         "location": "Section 2 (proxy-based alignment and Proxy Compression Hypothesis); Sections 3–7 (surveyed mechanisms and defenses).",
-        "supported_scope": "Cited as a survey organizing proxy-optimization risks; not empirical proof that ERA avoids reward hacking."
+        "supported_scope": "Optimization can exploit errors in an imperfect evaluation objective, motivating the study of human-feedback-driven improvement of the evaluation procedure itself. This supports the research motivation, not a proof that evaluator learning is the only remedy, that ERA is necessary, or that ERA prevents reward hacking."
       }
     },
     {

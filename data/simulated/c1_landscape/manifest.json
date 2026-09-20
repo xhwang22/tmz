@@ -5,7 +5,7 @@
   "source_files": {
     "data/simulated/c1_groups.csv": "9bca6bc96441c5db7a3104482d8d1477eb17fed5e15c3a08d2ec8a12f19029ac",
     "data/simulated/c1_cohorts.csv": "75db68bfcd1d2ef2669fbdd6bbb71ee6b386ce9b4ddcef20ec364db1d4e44ce1",
-    "figures/simulated/landscape_outcomes.pdf": "9fc904f4454765bcd6a778c1488e80fd1ee8768898130119c18b95e83d08a84f"
+    "figures/simulated/landscape_outcomes.pdf": "ba6615ae0bbf4b1d9596961916ca8db9be7df0591e29a89f1c24b10775025698"
   },
   "output_files": {
     "data/simulated/c1_landscape/selection.csv": "dc85d0b16cbcf011c1d55c2833d242c1fb337f7a1b071425d9128e04d551d2ed",
@@ -13,10 +13,10 @@
     "data/simulated/c1_landscape/input-cohorts.csv": "8327aef3aa61fd3df03c3b0806494300fac7c6468e9379e3d9a268afb26fae39",
     "data/simulated/c1_landscape/bar-geometry.csv": "810240d0b76f822953d65784a70ab809036de235e738e0a234c95b0cfed2e480",
     "data/simulated/c1_landscape/bars.csv": "0fb291a55421dfa937cbd54fa776f8263aadd9630992ffde31c55c5b8cc3ed96",
-    "figures/simulated/c1_landscape.pdf": "d60239d4c3ea165da84159e2267b246808de997059ed29e212c1836c174c3fd3",
-    "figures/simulated/c1_landscape.svg": "f447545df81e9886816fcc0ab06d560e08ad383b47eead2ab72c7bdb466f20c8",
-    "figures/simulated/c1_landscape.png": "5049e1e68776fa19efaa6f855b8efc90edfe0f71ec095ed944ca546d78e8d5ef",
-    "scripts/render_c1_landscape.py": "ebb5a17b1a03cd1ef07601d40723efa7f49f34561fe4a475228e16b1d2276acd",
+    "figures/simulated/c1_landscape.pdf": "1ecdadce495f9a5de3de36dbc8a952bafad2a60c72911198508b0470bdf1c30c",
+    "figures/simulated/c1_landscape.svg": "0e943adc0252b1aeadfcbf5d309888f169953dc627ec88edcd8e314c117886e5",
+    "figures/simulated/c1_landscape.png": "630ef3cf0ca01b974bac623920d1beafc122d9ca9fe7bf32291ff8f5de8dcf86",
+    "scripts/render_c1_landscape.py": "c427c847aa4442d33b6acc0eceb8d26b760f750a945a1ce6fc9a24eb312de192",
     "figures/c1_landscape.tex": "692106db3447cda2931df2a05aac5c721985a82f64b4f0a1ec395f950f7e66fb"
   },
   "canvas_inches": [
@@ -55,5 +55,8 @@
       "source-serif",
       "9d2950a8f1da66e21502c35d646a1d2148e79f9ea43fd2158cf02f5232e7f430"
     ]
+  },
+  "display_names": {
+    "ERA": "IterEval"
   }
 }

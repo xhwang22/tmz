@@ -4,7 +4,7 @@
   "seed": 20260916,
   "palette": "reference_pastel",
   "palette_status": "Provisional author-review candidate, not a final author choice.",
-  "main_composite": "outcomes.pdf covers all 22 domains with five method-wise OOD agreement columns and paired ERA-minus-seed intervals; C2 and component details remain separate eight-domain fixtures.",
+  "main_composite": "outcomes.pdf covers all 22 domains with five method-wise OOD agreement columns and paired IterEval-minus-seed intervals; C2 and component details remain separate eight-domain fixtures.",
   "coverage": {
     "c1_domains": 22,
     "diagnostic_domains": 8,
@@ -27,13 +27,13 @@
     "training outcomes"
   ],
   "domain_assignment": "Illustrative only. Reuse/Collect are construction settings, not fixed domain classes.",
-  "algorithm": "Independent toy data generators, not ERA execution. No models, APIs, real artifacts, or annotators.",
+  "algorithm": "Independent toy data generators, not IterEval execution. No models, APIs, real artifacts, or annotators.",
   "cohort_groups": 160,
   "candidates_per_c1_group": 4,
   "complete_scores_per_candidate": 3,
   "bootstrap_replicates": 1000,
   "intervals": "95% resampling intervals over synthetic input groups only",
-  "acquisition": "12 toy runs; bands are 10\u201390% quantiles, not confidence intervals; N_H includes a 10-unit anchor.",
+  "acquisition": "12 toy runs; bands are 10–90% quantiles, not confidence intervals; N_H includes a 10-unit anchor.",
   "annotation": "0/1 are candidate preferences, 2 is a tie, -1 is abstention; 3 toy raters per group.",
   "versions": {
     "matplotlib": "3.7.5",
@@ -56,14 +56,14 @@
     "data/simulated/selection_ranks.csv": "675b615b95a2f4a7e066c9d4e669e0015d95793ff08a0abbe1d47ad95bb1b2e8",
     "figures/simulated/ablation.pdf": "df5085b99b61d48f03838307b510ac928c15269ab0f7b4155be8f5bf424cbf01",
     "figures/simulated/acquisition.pdf": "398ba867422ee35e0642f306eaf1c5e78b0560b02ffa0fa8bb285263748dd2fd",
-    "figures/simulated/alignment.pdf": "db90c7f5f3571215ac338e0954e963e68bcc4a482bf6770e8a5c06cceb35d133",
+    "figures/simulated/alignment.pdf": "92be71d42662b4fa19225e144f3551ca58818d8cce7bc007157d4a25a195c8c9",
     "figures/simulated/annotation.pdf": "a01ba3b8d882cd1097b9a560316471de86cbb098492d485ca2fd74f4b9b51b51",
-    "figures/simulated/cost.pdf": "3d4dafdfbcf982f949a3c3e6bc6a941f580633e7416c4f7d268b35116c2c7f9c",
-    "figures/simulated/outcomes.pdf": "aa8aaf3a42afa2bf04670c51587a0abed7993ac9ae2da40830742d870b55c426",
-    "figures/simulated/refinement.pdf": "493d530d660f4199d11b4abf33b04b18854f3e6fd90b5ed6d6c88f7b883fef66",
-    "figures/simulated/selection.pdf": "7f29d6b25a11c39eb7e5e2065d82768952cb227cc308144d788daa29af68fea6",
-    "figures/simulated/c1_table.tex": "dc49d77abc4cf488cf90793e8b28582094ad5be444226ae926ec387d1c87a9d1",
-    "scripts/render_simulated_results.py": "458716df8e2a7635b0b6e598aab8635754e531d7095ae01480780189a0194f29",
+    "figures/simulated/cost.pdf": "9ad67af2fffcb2925fb3d88cf84199da13df50900f9259a6c8e59af976b0319e",
+    "figures/simulated/outcomes.pdf": "f6b89517feba3de18ba230bad5acde46c7e65c5585d318e5e626eb894dbfd481",
+    "figures/simulated/refinement.pdf": "049119631e6bed34ca4ef427008d2f4e2805032a990e19e3c3b0f1bc0ca46290",
+    "figures/simulated/selection.pdf": "3d71c183577234872333c34514847d91e304d3de03f38ed14582f8b3861dece7",
+    "figures/simulated/c1_table.tex": "e236315908903eb43d76931ddc47c200d10d01bca3b0fa731413dda18ac5c534",
+    "scripts/render_simulated_results.py": "dda4c6556165820e52d08df391c469bb27c39530237cc4d96f00bb6e67ce141c",
     "figures/simulated_outcomes.tex": "3a9f5539132ddbedf8f6d1da332ba03bbd3ee321225a847abeee34c092595f94",
     "figures/simulated_alignment.tex": "8979832841bc498a3f48db09472abb6a342752e88a31a18250c262f32a0e1863",
     "figures/simulated_acquisition.tex": "16629561e5a181ac5e04dbe8f6edffe75bece3e5f6e6925db09983c03411edba",
@@ -72,5 +72,8 @@
     "figures/simulated_ablation.tex": "9df419811326903a8f089344e0dee8e63956ac4ad5c263a0c7aaa05e42dc2615",
     "figures/simulated_refinement.tex": "fdd8b22e00c4c2b2dcabaea71921b75f403f17e606425b5a6869f7f85f8e3b20",
     "figures/simulated_cost.tex": "f37e2a2f7e022178f1a8c790c948f6908482c3dfdd38ad0d9fa1c11e5098ebd1"
+  },
+  "display_names": {
+    "ERA": "IterEval"
   }
 }

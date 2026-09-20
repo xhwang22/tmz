@@ -1,9 +1,9 @@
-\section{Informative Preference Mining}
+\section{Disagreement-based preference mining}
 \label{sec:mining}
 
-Informative Preference Mining (IPM) lowers the sampling priority of comparisons on which existing evaluation signals consistently agree.
+Disagreement-based preference mining lowers the sampling priority of comparisons on which existing evaluation signals consistently agree.
 Repeated annotations of these comparisons may add little information about evaluation errors.
-IPM selects comparisons from existing datasets or newly generated outputs, reusing compatible human preferences and collecting missing ones while retaining a random anchor.
+IterEval selects comparisons from existing datasets or newly generated outputs, reusing compatible human preferences and collecting missing ones while retaining a random anchor.
 
 \subsection{Comparable evaluation signals}
 
@@ -31,15 +31,15 @@ Writing their indicators as $I_{\mathrm{within},q}$, $I_{\mathrm{overall},q}$, a
       +I_{\mathrm{tradeoff}}(r).
  \label{eq:conflict}
 \end{equation}
-IPM ranks pairs by decreasing $P(r)$.
+Pairs are ranked by decreasing $P(r)$.
 This structural score does not estimate information gain or human reliability.
 In particular, $P(r)=0$ can reflect missing signals or ties rather than agreement, and agreement itself need not be correct.
 
 The random anchor precedes ranking, allowing checks for shared blind spots even among low-priority comparisons.
 Anchor annotations count toward the same human budget as targeted annotations.
 Human-reliability qualification remains separate from the implemented ranking (Appendix~\ref{app:annotation}).
-Only evolution data undergo IPM; final evaluation uses independently specified random or stratified sampling.
-Whether IPM produces more informative preferences is tested by subsequent evaluator improvement at equal human cost, not by the number of disagreements collected.
+Only evolution data undergo preference mining; final evaluation uses independently specified random or stratified sampling.
+Whether preference mining produces more informative preferences is tested by subsequent evaluator improvement at equal human cost, not by the number of disagreements collected.
 
 \subsection{Human feedback for evolution}
 
@@ -48,6 +48,6 @@ Derived comparisons retain their ranking, rating, or error-annotation provenance
 When matching preferences are absent, the task and annotation protocol are fixed before collecting blinded judgments on existing or freshly generated outputs.
 
 The feedback table $Z(r,q)$ links artifact provenance, available human judgments, source signals, evaluator decisions, tool observations, and execution cost.
-Both construction settings supply this interface to ERA, while retaining their label origins and annotation protocols.
-Overall and dimensional preferences reveal evaluation errors for ERA to investigate, with localized diagnostics and human rationales included when available.
+Both construction settings supply this interface to depth-first evaluator evolution, while retaining their label origins and annotation protocols.
+Overall and dimensional preferences reveal evaluation errors for the search to investigate, with localized diagnostics and human rationales included when available.
 Missing feedback levels remain absent, and model-generated explanations are not human $H_1$ or $H_2$.

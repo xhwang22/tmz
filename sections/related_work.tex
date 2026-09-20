@@ -1,30 +1,31 @@
 \section{Related work}
 \label{sec:related}
 
-\paragraph{Evaluators and data mining.}
-G-Eval and MT-Bench study model-based judgment and human agreement \citep{liu2023geval,zheng2023judging}.
-Prometheus, Prometheus~2, and Self-Taught Evaluators improve judges through rubric-conditioned or synthetic training data \citep{kim2024prometheus,kim2024prometheus2,wang2024selftaught}.
-AutoCalibrate refines evaluation criteria from human-labeled examples, while EvalGen helps users define criteria and select evaluation functions using human grades \citep{liu2024autocalibrate,shankar2024evalgen}.
-For DeepResearch reports, \citet{lv2026queryrubrics} train query-specific rubric generators from human preferences and use the learned rubrics as training rewards.
-Our optimization target includes both the criteria and the procedure for gathering and using evaluation evidence.
+\paragraph{Learning evaluation procedures from human feedback.}
+Reward hacking exposes a limitation of improving generators against an imperfect evaluator: optimization can increase evaluator scores by exploiting errors in how quality is assessed \citep{wang2026rewardhacking}.
+This motivates using human feedback to improve the evaluation procedure itself, rather than treating it as a fixed objective.
+We share the goal of aligning judgments with human preferences with learned reward models and trained judges \citep{xu2023imagereward,kim2024prometheus,ke2024critiquellm}.
+Evaluator fine-tuning changes model weights, whereas our search changes an executable evaluation program with the base model fixed.
+Criteria-learning methods, including preference-grounded query-specific rubrics, are closer to our approach because they use human feedback to develop explicit evaluation rules \citep{shankar2024spade,liu2024autocalibrate,shankar2024evalgen,lv2026queryrubrics}.
+Our search also changes how evidence is gathered and how it affects the final judgment, allowing a correction to span several steps of the evaluation procedure.
+Tool-based inspection and evolving verifier skills already appear in Agent-as-a-Judge and WebGrader \citep{zhuge2025agentjudge,chen2026webgrader}; our question is how to adapt that procedure to human quality trade-offs that execution checks alone do not specify.
 
-RewardBench and JudgeBench assess evaluators on preference comparisons \citep{lambert2024rewardbench,tan2025judgebench}.
-Benchmark$^2$ instead examines benchmark quality through ranking consistency, discriminability, and capability alignment, and studies selective test-set construction \citep{qian2026benchmark2}.
-Our data-mining question concerns which comparisons to select for evaluator improvement, reusing matching preferences or collecting missing ones, drawing on query-by-committee and active preference learning \citep{seung1992committee,muldrew2024activepreference}.
-Because our evaluation signals can measure different properties, IPM distinguishes conflicts within a dimension from trade-offs across dimensions and retains random sampling to check shared blind spots.
+\paragraph{Continuing directions in program evolution.}
+Our depth-first evaluator evolution builds on methods for revising prompts, modules, and agent code \citep{khattab2024dspy,yuksekgonul2025textgrad,agrawal2026gepa,hu2025adas,zhang2025dgm}.
+Its focus is how search proceeds after a candidate fails to improve the score.
+SkillOpt already uses a rejected-edit buffer to inform later proposals while accepting only score-improving edits \citep{yang2026skillopt}.
+Our search makes a further distinction between retaining that history, continuing the same direction, and inheriting the rejected implementation.
+An eligible candidate can remain the working program without becoming the best program, and a direction can remain active even when inheritance fails.
 
-\paragraph{Optimizing language-model programs.}
-DSPy exposes compositional pipelines to optimization \citep{khattab2024dspy}.
-ProTeGi, OPRO, TextGrad, and GEPA use model-generated feedback or proposals to improve instructions and programs \citep{pryzant2023protegi,yang2024opro,yuksekgonul2025textgrad,agrawal2026gepa}.
-ADAS, AFlow, and the Darwin G\"odel Machine investigate automated construction or evolution of agentic systems \citep{hu2025adas,zhang2025aflow,zhang2025dgm}.
-GEPA retains candidates with complementary strengths, while DGM explores an archive of agent implementations.
-Studying the path from experience generation through skill extraction to consumption, \citet{huang2026skillconsumption} report average gains alongside negative transfer and differences between a model's ability to extract and use skills.
-Their study tests whether extracted skills help a target agent; ERA examines how to continue an evaluator-improvement direction after an unsuccessful implementation, separately from accepting that candidate.
+Persistent search is likewise not unique to IterEval: HarnessBank maintains distinct harnesses, and SkillHEX uses executable hypothesis tests and a persistent revision tree \citep{luo2026harnessbank,feng2026skillhex}.
+SkillHEX addresses similarly ambiguous failures through test-time branch selection under sparse terminal rewards, without training or validation sets.
+Our depth-first evaluator evolution instead allocates successive revisions to an active direction, subject to diagnostic and budget checks, while measuring complete evaluation programs against a development cohort of human preferences.
+SkillLens's distinction between extracting a skill and successfully consuming it reinforces the need to examine executed behavior, not merely the plausibility of a proposed revision \citep{huang2026skillconsumption}.
+Our comparison tests whether depth-first direction continuation improves evaluator alignment over alternative search allocations under matched budgets.
 
-\paragraph{Domain quality and downstream use.}
-SummEval and BERTScore address summarization evaluation and text similarity \citep{fabbri2021summeval,zhang2020bertscore}; ImageReward, Pick-a-Pic, and GenEval capture different aspects of image preference and alignment \citep{xu2023imagereward,kirstain2023pickapic,ghosh2023geneval}.
-These signals are useful evidence, not interchangeable definitions of quality.
-ReAct, Reflexion, and Self-Refine connect observations, reflection, and iterative improvement \citep{yao2023react,shinn2023reflexion,madaan2023selfrefine}.
-Human-feedback summarization, instruction tuning, and direct preference optimization connect evaluation to model learning \citep{stiennon2020summarize,ouyang2022instruct,rafailov2023dpo}.
-The reward-hacking survey of \citet{wang2026rewardhacking} organizes risks of proxy optimization around objective compression, optimization amplification, and evaluator--policy co-adaptation.
-An evaluator's agreement on fixed outputs therefore needs to be distinguished from its behavior under optimization, motivating separate tests of fixed-pool selection, critic-guided refinement, and reward-guided training.
+\paragraph{Mining preferences for evaluator evolution.}
+Disagreement-based preference mining follows active preference learning in allocating limited human feedback selectively, with disagreement-based sampling rooted in query-by-committee \citep{seung1992committee,muldrew2024activepreference,oh2025activepreference}.
+It applies this principle to evaluator evolution by reducing the priority of repeated comparisons on which existing evaluation signals agree, while retaining a random anchor for shared blind spots.
+Unlike Benchmark$^2$, which selects test sets to preserve ranking consistency, discriminability, and capability alignment \citep{qian2026benchmark2}, our preference mining selects comparisons to improve the evaluator rather than measure competing models.
+Existing datasets can supply both comparisons and reusable preferences; new annotation fills missing feedback.
+The relevant endpoint is the resulting evaluator's agreement at matched human cost, rather than the selected set's disagreement or discriminability.

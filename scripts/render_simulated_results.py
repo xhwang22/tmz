@@ -128,7 +128,9 @@ SETTING_TITLES = {"Reuse": "Reused preferences", "Collect": "New preferences"}
 METHODS = ("Single metric", "Metric ensemble", "Static judge", "Static tools",
            "Prompt optimization", "Program search", "ERA")
 SHORT_METHODS = ("Metric", "Ensemble", "Static judge", "Static tools",
-                 "Prompt opt.", "Program search", "ERA")
+                 "Prompt opt.", "Program search", "IterEval")
+# Frozen fixture keys retain their original names; only reader-facing labels change.
+METHOD_LABELS = {method: ("IterEval" if method == "ERA" else method) for method in METHODS}
 DISPLAY_METHODS = METHODS[2:]
 POLICIES = ("Random", "Uncertainty", "Model conflict", "Run instability", "Multi-source")
 POLICY_STYLES = ["--", "-.", ":", (0, (4, 1, 1, 1)), "-"]
@@ -418,7 +420,7 @@ def alignment(records):
         ax.axvline(0, color=MUTED, lw=.7, ls=(0, (2, 2)), zorder=1)
         ax.grid(axis="x")
         panel(ax, letter, f"{split} test")
-        ax.set_xlabel("ERA − seed (pp)", fontsize=7.5)
+        ax.set_xlabel("IterEval − seed (pp)", fontsize=7.5)
     fig.text(.025, .914, "22 DOMAINS / 4 FAMILIES", fontsize=8, weight="bold")
     save(fig, "alignment", "R: reused / N: new preferences (illustrative assignments only).\n"
          "Diamonds: paired means. Whiskers: 95% bootstrap intervals over synthetic input groups.")
@@ -575,7 +577,7 @@ def selection(records,summary):
                 rows.append(dict(setting=setting,method=method,selected_rank=str(rank+1) if rank<4 else "unscored",
                                  count=int(n),denominator=len(ranks),share_pct=value))
         ax.set(xlim=(0,100),xticks=[0,25,50,75,100],ylim=(3.6,-.6),yticks=range(4),
-               yticklabels=chosen if letter=="a" else [],xlabel="Share of all inputs (%)")
+               yticklabels=[METHOD_LABELS[m] for m in chosen] if letter=="a" else [],xlabel="Share of all inputs (%)")
         ax.grid(axis="x")
         panel(ax,letter,SETTING_TITLES[setting])
     handles=[Patch(facecolor=color,label=label,hatch="///" if i==4 else None)
@@ -740,9 +742,9 @@ def refinement():
     a.set_yticklabels([c[1].replace("TD-","") for c in COHORTS])
     setting_brackets(fig,.022,.28,.52)
     handles=[Patch(facecolor=METHOD_COLORS["Static tools"],label="Seed wins"),Patch(facecolor=CREAM,label="Tie"),
-             Patch(facecolor=ROSE,label="ERA wins")]
+             Patch(facecolor=ROSE,label="IterEval wins")]
     compact_legend(fig,handles,3,y=.12)
-    save(fig,"refinement","Difference = ERA-refined minus Seed-refined. All artifacts and judgments here are synthetic.")
+    save(fig,"refinement","Difference = IterEval-refined minus Seed-refined. All artifacts and judgments here are synthetic.")
 
 
 def read_fixture(name):
@@ -781,13 +783,13 @@ def outcomes():
     for j, method in enumerate(DISPLAY_METHODS):
         color = METHOD_COLORS[method]
         a.axvspan(j+.035, j+.965, color=tint(color, .13), lw=0, zorder=0)
-        name = ("Static\njudge", "Static\ntools", "Prompt\nopt.", "Prog.\nsearch", "ERA")[j]
+        name = ("Static\njudge", "Static\ntools", "Prompt\nopt.", "Prog.\nsearch", "IterEval")[j]
         a.text(j+.5, 1.02, name, transform=a.get_xaxis_transform(), ha="center",
                va="bottom", fontsize=7.3, weight="bold" if method == "ERA" else "normal",
                linespacing=1.2)
         a.plot([j+.13, j+.87], [1.006, 1.006], transform=a.get_xaxis_transform(),
                color=color, lw=3.0, clip_on=False)
-    b.text(.5, 1.023, "ERA − seed\n95% interval", transform=b.transAxes,
+    b.text(.5, 1.023, "IterEval − seed\n95% interval", transform=b.transAxes,
            ha="center", va="bottom", fontsize=7.1, color=MUTED, linespacing=1.2)
     display_values, display_effects = [], []
     for i, (setting, domain, *_) in enumerate(DOMAIN_ORDER):
@@ -885,7 +887,7 @@ def tables(summary):
                     val=np.mean([summary[(c[1],split,method)][metric][0] for c in cohort])
                     values.append(f"{val:.2f}" if metric=="rank_regret" else f"{100*val:.1f}")
             if method=="ERA":lines.append(r"\rowcolor{pEvoWash}")
-            lines.append(method+" & "+" & ".join(values)+r" \\")
+            lines.append(METHOD_LABELS[method]+" & "+" & ".join(values)+r" \\")
     lines.extend([r"\bottomrule",r"\end{tabularx}"])
     (OUT/"c1_table.tex").write_text("\n".join(lines)+"\n",encoding="utf-8")
     coverage=[]
@@ -922,13 +924,14 @@ def main(palette=DEFAULT_PALETTE, preview_root=None):
     manifest={
         "simulation_only":True,"empirical_evidence":False,"seed":SEED,
         "palette":palette,"palette_status":"Provisional author-review candidate, not a final author choice.",
-        "main_composite":"outcomes.pdf covers all 22 domains with five method-wise OOD agreement columns and paired ERA-minus-seed intervals; C2 and component details remain separate eight-domain fixtures.",
+        "main_composite":"outcomes.pdf covers all 22 domains with five method-wise OOD agreement columns and paired IterEval-minus-seed intervals; C2 and component details remain separate eight-domain fixtures.",
+        "display_names":{"ERA":"IterEval"},
         "coverage":{"c1_domains":22,"diagnostic_domains":8,"families":[6,6,5,5],"c1_domains_per_setting":11},
         "purpose":"Author-requested quantitative layout examples; never evidence of method effectiveness.",
         "not_valid_for":["empirical claims","power analysis","method ranking","actual data availability",
                          "annotation quality claims","acquisition effectiveness","training outcomes"],
         "domain_assignment":"Illustrative only. Reuse/Collect are construction settings, not fixed domain classes.",
-        "algorithm":"Independent toy data generators, not ERA execution. No models, APIs, real artifacts, or annotators.",
+        "algorithm":"Independent toy data generators, not IterEval execution. No models, APIs, real artifacts, or annotators.",
         "cohort_groups":N_GROUPS,"candidates_per_c1_group":4,"complete_scores_per_candidate":N_REPEATS,
         "bootstrap_replicates":N_BOOT,"intervals":"95% resampling intervals over synthetic input groups only",
         "acquisition":"12 toy runs; bands are 10–90% quantiles, not confidence intervals; N_H includes a 10-unit anchor.",

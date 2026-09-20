@@ -24,6 +24,8 @@ DATA = ROOT / "data/simulated"
 CHARTS = ("outcomes", "alignment", "acquisition", "annotation", "selection", "ablation", "refinement", "cost")
 METHODS = ("Single metric", "Metric ensemble", "Static judge", "Static tools",
            "Prompt optimization", "Program search", "ERA")
+# Historical fixture keys remain fixed; only manuscript-facing labels change.
+METHOD_LABELS = {method: "IterEval" if method == "ERA" else method for method in METHODS}
 METRICS = ("pairwise", "top_region", "best_of_4", "rank_regret")
 SETTINGS = ("Reuse", "Collect")
 SPLITS = ("ID", "OOD")
@@ -90,6 +92,9 @@ def check_manifest():
         text = " ".join(text.split())
         require("SIMULATED DATA" in text and "NOT EXPERIMENTAL RESULTS" in text,
                 f"Missing visible disclosure inside chart: {name}")
+        require(not re.search(r"\b(?:ERA|IPM)\b", text), f"Retired method acronym in chart: {name}")
+        if name in ("outcomes", "alignment", "selection", "refinement", "cost"):
+            require("IterEval" in text, f"Missing framework label in chart: {name}")
         if name in ("outcomes", "alignment"):
             expected_codes = {f"{family}{i}" for family, count in (("SV", 6), ("IG", 6), ("TG", 5), ("AR", 5))
                               for i in range(1, count + 1)}
@@ -198,7 +203,8 @@ def check_c1(cohorts):
 
     # Build an independent textual expectation for the generated numerical table.
     table = (ROOT / "figures/simulated/c1_table.tex").read_text()
-    actual = [line.strip() for line in table.splitlines() if any(line.startswith(m + " & ") for m in METHODS)]
+    actual = [line.strip() for line in table.splitlines()
+              if any(line.startswith(label + " & ") for label in METHOD_LABELS.values())]
     expected = []
     for setting, method in itertools.product(SETTINGS, METHODS):
         cells = []
@@ -207,7 +213,7 @@ def check_c1(cohorts):
                       for d, c in cohorts.items() if c["setting"] == setting]
             mean = statistics.mean(values)
             cells.append(f"{mean:.2f}" if metric == "rank_regret" else f"{100 * mean:.1f}")
-        expected.append(method + " & " + " & ".join(cells) + r" \\")
+        expected.append(METHOD_LABELS[method] + " & " + " & ".join(cells) + r" \\")
     require(actual == expected, "Numerical TeX table and C1 data disagree")
     require(table.count(r"\textbf{SIMULATED}") == 2, "Table setting disclosures missing")
 

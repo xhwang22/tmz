@@ -23,7 +23,7 @@ from render_simulated_results import (DEFAULT_PALETTE, DISPLAY_METHODS, ON_FILL,
 
 OUT = ROOT / "build/reference-palettes"
 ROLES = (("BLUE", "Static judge"), ("MINT", "Static tools"), ("CREAM", "Prompt opt."),
-         ("PEACH", "Program search"), ("ROSE", "ERA"))
+         ("PEACH", "Program search"), ("ROSE", "IterEval"))
 WASHES = {"pBlueWash": ("pSky", 17), "pTealWash": ("pMint", 28),
           "pGoldWash": ("pCream", 38), "pResearchWash": ("pLilac", 16),
           "pEvoWash": ("pRose", 10), "pRedWash": ("pRose", 13)}

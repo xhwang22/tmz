@@ -6,7 +6,7 @@
   "claims": [
     {
       "id": "C1",
-      "text": "We study how an evaluation agent can evolve an evaluation procedure from human feedback by changing how it gathers evidence and makes judgments.",
+      "text": "We present IterEval, a framework for self-evolving evaluators across open-ended tasks.",
       "source": "sections/introduction.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -339,7 +339,7 @@
     },
     {
       "id": "C22",
-      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed and ERA critics inspect that same output with matched evidence and critique formats. The same generator refines each once under identical prompts, decoding, tools, and token budgets.",
+      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed and IterEval critics inspect that same output with matched evidence and critique formats. The same generator refines each once under identical prompts, decoding, tools, and token budgets.",
       "source": "sections/experiments.tex",
       "kind": "C2 study protocol",
       "evidence_artifacts": [
@@ -421,9 +421,9 @@
     },
     {
       "id": "C27",
-      "text": "We test whether these preferences support greater evaluator improvement than random sampling at equal human annotation cost.",
+      "text": "Disagreement-based preference mining identifies preference subsets that lead to stronger evaluator improvement than standard sampling from the same data source.",
       "source": "sections/introduction.tex",
-      "kind": "hypothesis",
+      "kind": "unverified empirical claim",
       "evidence_artifacts": [],
       "figure_or_table": [
         "Tab11",
@@ -434,9 +434,9 @@
     },
     {
       "id": "C28",
-      "text": "We test whether this continuation produces more sustained gains than restarting proposals under the same search budget.",
+      "text": "Under matched search budgets, depth-first evaluator evolution continues developing directions after unsuccessful early candidates and produces more sustained improvement than the default setup.",
       "source": "sections/introduction.tex",
-      "kind": "hypothesis",
+      "kind": "unverified empirical claim",
       "evidence_artifacts": [],
       "figure_or_table": [
         "Tab11",
@@ -474,7 +474,7 @@
     },
     {
       "id": "C31",
-      "text": "ERA uses errors revealed by human feedback to search over executable evaluation programs with a fixed base model.",
+      "text": "IterEval uses depth-first evaluator evolution to search over executable evaluation programs with a fixed base model, using errors revealed by human feedback.",
       "source": "sections/method.tex",
       "kind": "evolution object",
       "evidence_artifacts": [
@@ -509,7 +509,7 @@
     },
     {
       "id": "C33",
-      "text": "Both construction settings supply this interface to ERA, while retaining their label origins and annotation protocols.",
+      "text": "Both construction settings supply this interface to depth-first evaluator evolution, while retaining their label origins and annotation protocols.",
       "source": "sections/mining.tex",
       "kind": "shared algorithm and data provenance",
       "figure_or_table": [
@@ -681,7 +681,7 @@
     },
     {
       "id": "C42",
-      "text": "Humans can often tell which of two concrete outputs is better, but it is much harder to turn that ability into a comprehensive and effective evaluation procedure.",
+      "text": "Humans can often tell which of two concrete outputs is better, but it is much harder to turn that ability into a comprehensive and effective evaluation procedure \\citep{shankar2024evalgen}.",
       "source": "sections/abstract.tex",
       "kind": "problem framing",
       "evidence_artifacts": [
@@ -695,7 +695,7 @@
     },
     {
       "id": "C43",
-      "text": "After rejections, search repeatedly returned to that evaluator and proposed other directions instead of further developing the rejected implementation.",
+      "text": "We observed a tendency for unsuccessful early candidates to be followed by revisions in alternative directions rather than deeper development of the current one.",
       "source": "sections/introduction.tex",
       "kind": "bounded development observation",
       "evidence_artifacts": [
@@ -704,7 +704,7 @@
       ],
       "figure_or_table": [],
       "status": "supported",
-      "risk": "Observed in the inspected default SkillOpt pointwise workflow, not a universal property of RSI. Raw traces remain private; the public-facing evidence presentation is pending. Accepted candidates and positive development changes also occurred. This observation does not establish that abandonment caused limited gains, or that ERA/DFS is better."
+      "risk": "Observed in the inspected default SkillOpt pointwise workflow, not a universal property of RSI. Raw traces remain private; the public-facing evidence presentation is pending. Accepted candidates and positive development changes also occurred. This observation does not establish that abandonment caused limited gains, or that IterEval/DFS is better."
     },
     {
       "id": "C44",
@@ -787,10 +787,12 @@
     },
     {
       "id": "C49",
-      "text": "Informative Preference Mining (IPM) lowers the sampling priority of comparisons on which existing evaluation signals consistently agree. Repeated annotations of these comparisons may add little information about evaluation errors. IPM selects comparisons from existing datasets or newly generated outputs, reusing compatible human preferences and collecting missing ones while retaining a random anchor.",
+      "text": "Disagreement-based preference mining lowers the sampling priority of comparisons on which existing evaluation signals consistently agree. Repeated annotations of these comparisons may add little information about evaluation errors. IterEval selects comparisons from existing datasets or newly generated outputs, reusing compatible human preferences and collecting missing ones while retaining a random anchor.",
       "source": "sections/mining.tex",
-      "kind": "IPM design and reverse-selection motivation",
-      "figure_or_table": ["Fig1"],
+      "kind": "preference-mining design and reverse-selection motivation",
+      "figure_or_table": [
+        "Fig1"
+      ],
       "evidence_artifacts": [
         "sections/mining.tex",
         "sections/appendix.tex",

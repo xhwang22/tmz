@@ -106,6 +106,7 @@ def main():
     pdf = ROOT / "figures/simulated/c1_landscape.pdf"
     txt = subprocess.check_output(["pdftotext", str(pdf), "-"], text=True)
     assert "SIMULATED" in txt and "not experimental results" in txt
+    assert "IterEval" in txt and not re.search(r"\b(?:ERA|IPM)\b", txt)
     assert set(re.findall(r"\b(?:SV|IG|TG|AR)\d+\b", txt)) == {r["domain"][3:] for r in cohorts}
     fonts = subprocess.check_output(["pdffonts", str(pdf)], text=True)
     assert "Type 3" not in fonts and "SourceSans3" in fonts and "SourceSerif4" in fonts

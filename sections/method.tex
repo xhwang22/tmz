@@ -1,7 +1,7 @@
-\section{ERA: depth-first evaluator evolution}
+\section{Depth-first evaluator evolution}
 \label{sec:method}
 
-ERA uses errors revealed by human feedback to search over executable evaluation programs with a fixed base model.
+IterEval uses depth-first evaluator evolution to search over executable evaluation programs with a fixed base model, using errors revealed by human feedback.
 Its central distinction is between candidate acceptance and direction continuation: an unsuccessful candidate need not replace the best evaluator for its direction to receive further work.
 Program inheritance separately determines which implementation that work starts from.
 

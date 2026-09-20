@@ -1,7 +1,7 @@
 \section{Experiments}
 \label{sec:experiments}
 
-The experiments ask whether the evaluator improves judgments and downstream outputs (C1--C3), and whether IPM and direction continuation account for those improvements under matched resources.
+The experiments ask whether the evaluator improves judgments and downstream outputs (C1--C3), and whether preference mining and direction continuation account for those improvements under matched resources.
 Readiness determines inclusion from the 22-domain scope, with a separate evaluator per standard (Appendix~\ref{app:domains}).
 Existing datasets supply candidate outputs for mining or reusable preferences; missing preferences are collected on existing or new outputs.
 
@@ -9,7 +9,7 @@ Existing datasets supply candidate outputs for mining or reusable preferences; m
 \label{sec:core}
 
 \paragraph{C1: evaluator alignment and selection.}
-Table~\ref{tab:main-alignment} compares ERA with metric references, static judges, and alternative adaptation methods.
+Table~\ref{tab:main-alignment} compares IterEval with metric references, static judges, and alternative adaptation methods.
 Controlled learned comparisons share feedback and the initial model (Appendices~\ref{app:adaptation} and~\ref{app:ablations}).
 For each test input, all evaluators receive the same output group, with a default design of $N=4$.
 Complete human rankings support global pairwise agreement, top-region agreement involving the human top-two outputs, Best-of-$N$ selection, and selection regret.
@@ -22,13 +22,13 @@ Appendix~\ref{app:measurement} specifies coverage, worst strata, repeated scorin
 
 \paragraph{C2: critic-guided refinement.}
 For each unseen input, a frozen generator produces one fresh output $y_0$.
-The seed and ERA critics inspect that same output with matched evidence and critique formats.
+The seed and IterEval critics inspect that same output with matched evidence and critique formats.
 The same generator refines each once under identical prompts, decoding, tools, and token budgets.
-New blinded rankings compare ERA-refined with Seed-refined and assess both against $y_0$, including major regressions.
+New blinded rankings compare IterEval-refined with Seed-refined and assess both against $y_0$, including major regressions.
 SV4 and IG1 are priorities, with TG1 testing continuity across tasks (Table~\ref{tab:downstream-results}).
 
 \paragraph{C3: reward-guided training.}
-Base, Seed-GRPO, and ERA-GRPO share an initial checkpoint, with LoRA and group relative policy optimization for the trained arms \citep{hu2022lora,shao2024deepseekmath}.
+Base, Seed-GRPO, and IterEval-GRPO share an initial checkpoint, with LoRA and group relative policy optimization for the trained arms \citep{hu2022lora,shao2024deepseekmath}.
 Rewards are frozen before training.
 Rollouts are sampled online by each arm's own evolving policy and are not shared.
 The arms match training inputs, policy-update resources, and reward-call budgets.
@@ -44,7 +44,7 @@ The decisive contrast is direction continuation versus history-matched proposals
 The primary matching variable is total model-and-tool cost under frozen prices, not the number of attempts.
 Sampling policies are compared at equal human budgets $N_H\in\{20,50,100,200\}$, measured in original-input annotation units.
 The endpoint is final held-out alignment under the same evolution budget, with random anchors charged to every arm (Figure~\ref{fig:budget-tests}b).
-The decisive sampling contrast is IPM versus random sampling with fixed feedback detail.
+The decisive sampling contrast is preference mining versus random sampling with fixed feedback detail.
 Equal units test label efficiency; measured annotation time is needed to test human efficiency.
 Same-pair feedback-granularity tests and compatible component replacements complete the comparisons in Appendix~\ref{app:ablations}.
 

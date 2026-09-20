@@ -199,7 +199,7 @@ def render(bars, points):
         dx, dy = offsets[family]
         text(coords[1][0]+dx, coords[1][1]+dy, family, size=7.3)
     for x, marker, label, color in ((3.30, "o", "Static tools (seed)", "#C6CFD0"),
-                                   (4.69, "D", "ERA", ERA)):
+                                   (4.69, "D", "IterEval", ERA)):
         ax.plot(x, 1.46, marker=marker, ms=4.2, mfc=color, mec=MUTED, mew=.55, linestyle="none")
         text(x+.09, 1.46, label)
 
@@ -236,7 +236,7 @@ def render(bars, points):
                                      lower_inches=lo, upper_inches=hi))
             text(center, bottom-.13, domain[3:], ha="center", size=7.3)
         pos += width+gap
-    text(.40, .105, "Static judge · Static tools · Prompt opt. · Program search · ERA", color=MUTED)
+    text(.40, .105, "Static judge · Static tools · Prompt opt. · Program search · IterEval", color=MUTED)
     fig.savefig(ASSET.with_suffix(".pdf"), metadata={"Title": "SIMULATED C1 layout fixture",
                 "Subject": "Not experimental results; full synthetic cohorts, not the historical subset.",
                 "CreationDate": None, "ModDate": None})
@@ -263,7 +263,7 @@ def main():
     artifacts += [Path(__file__).resolve(), ROOT / "figures/c1_landscape.tex"]
     manifest = dict(simulation_only=True, empirical_evidence=False, generates_observations=False,
                     source_files=original, output_files={str(p.relative_to(ROOT)): digest(p) for p in artifacts},
-                    canvas_inches=[WIDTH, HEIGHT], methods=list(METHODS), domains=22,
+                    canvas_inches=[WIDTH, HEIGHT], methods=list(METHODS), display_names={"ERA": "IterEval"}, domains=22,
                     requested_ood_inputs=len(retained), bootstrap_replicates=N_BOOT,
                     agreement_cohort="Jointly complete inputs across five displayed methods, within domain.",
                     selection_cohort="All 160 inputs per domain; failed scoring is failed selection.",

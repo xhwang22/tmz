@@ -17,9 +17,10 @@ IDENTIFIER = re.compile(
     r"(?:\[[^\]]*\])*\{[^}]*\}"
 )
 RULES = (
-    (r"\bacquisition\b", "Use IPM, data mining, or sampling for the defined operation."),
-    (r"\bdisagreement-based (?:data|preference) mining\b", "The method is Informative Preference Mining (IPM)."),
-    (r"\b(?:falsification|evidence|diagnostic)-guided\b", "ERA is depth-first evaluator evolution."),
+    (r"\bacquisition\b", "Use preference mining or sampling for the defined operation."),
+    (r"\b(?:ERA|IPM)\b|\bInformative Preference Mining\b", "Use IterEval for the framework; component names have no acronyms."),
+    (r"\bdisagreement-based data mining\b", "Use disagreement-based preference mining."),
+    (r"\b(?:falsification|evidence|diagnostic)-guided\b", "Use depth-first evaluator evolution without guided branding."),
     (r"\b(?:refutation|refuted|falsification)\b", "Describe diagnostic results without restoring the retired framing."),
     (r"\bworking[- ](?:state|version)\b", "Use working program or program inheritance."),
     (r"\b(?:candidate (?:promotion|adoption)|development promotion)\b", "Use candidate acceptance."),

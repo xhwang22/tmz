@@ -176,7 +176,7 @@ A changed rubric or visible evidence defines a changed protocol; resulting
 differences do not by themselves establish errors in the older labels.\par
 \end{samepage}
 
-\paragraph{Label-blind IPM.}
+\paragraph{Label-blind preference mining.}
 Freeze domain knowledge, signal definitions, semantic mappings, and the calibration recipe before accessing preference labels.
 Select a random anchor, reveal only its authorized training judgments to estimate reliability, then freeze the targeted sampling policy before opening labels in the remaining pool.
 Charge anchor annotations to every strategy's human budget.
@@ -184,7 +184,7 @@ An existing labeled dataset must simulate the same access order.
 The final cohort is sampled independently of conflicts and never contributes to reliability calibration.
 
 \paragraph{Implemented conflict ranking.}
-IPM computes structural disagreement without reading the pair's human preference.
+Preference mining computes structural disagreement without reading the pair's human preference.
 Let $I_{\mathrm{within},q}(r)$ indicate opposing signals from distinct source groups on dimension $q$, $I_{\mathrm{overall},q}(r)$ indicate opposition between an overall and a dimensional signal, and $I_{\mathrm{tradeoff}}(r)$ indicate opposed dimension-level preferences.
 Equation~\ref{eq:conflict} ranks these conflicts, assigning twice the weight to within-dimension disagreement.
 Pairs are ranked by decreasing $P(r)$, with stable pair identifiers breaking ties.
@@ -202,7 +202,7 @@ Label-blind execution does not establish label-blind upstream cohort selection; 
 
 \paragraph{Human qualification and implementation boundary.}
 The implemented miner supplies the structural queue and its source-dependence records.
-The full IPM protocol additionally requires human-annotated anchors to qualify signals before targeted annotation; cross-domain human-reliability calibration and the equal-budget advantage remain unverified.
+The full preference-mining protocol additionally requires human-annotated anchors to qualify signals before targeted annotation; cross-domain human-reliability calibration and the equal-budget advantage remain unverified.
 Model-annotated pilot anchors measure agreement with that model, not human reliability.
 The annotation fraction, qualification thresholds, and targeted policy must be frozen for the human study, rather than inherited silently from a pilot.
 The feedback table $Z$ is a logical join over feedback, artifact, signal, and execution records; absent human dimensions or rationales remain absent.
@@ -294,7 +294,7 @@ was used for optimization, it loses independent-assessment status and must be
 replaced or explicitly reported as an optimization metric. This restriction
 does not forbid using other existing metrics as tools.
 
-\section{ERA algorithm and attribution contract}
+\section{Depth-first evaluator evolution and attribution contract}
 \label{app:algorithm}
 
 Figure~\ref{fig:runtime} separates the editable observation and judgment
@@ -315,7 +315,7 @@ Artifact evidence and judgment remain separate; the summary and findings are a c
 \end{figure}
 
 \begin{algorithm}[htbp]
-\caption{ERA: separate candidate acceptance from direction continuation}
+\caption{Depth-first evaluator evolution: separate candidate acceptance from direction continuation}
 \label{alg:era}
 \small
 \begin{algorithmic}[1]
@@ -499,7 +499,7 @@ Evaluator fine-tuning & Judge weights from the common base checkpoint; seed
 adapters, tools, routes, and output interface fixed & Whether learning a new
 mapping from the same observations to judgments is sufficient.\\
 \rowcolor{pEvoWash}
-ERA program evolution & Artifact adapters, criteria, evaluator modules, tools,
+IterEval & Artifact adapters, criteria, evaluator modules, tools,
 routing, and fusion; base-model weights fixed & Whether changing the evaluation procedure improves
 alignment beyond parameter adaptation.\\
 \bottomrule
@@ -516,10 +516,10 @@ Human units, annotation time, unsuccessful trials, optimization compute, tool ca
 Adaptation and deployment costs are reported separately, with matched-budget comparisons wherever feasible and unmatched resources explicitly identified.
 
 \paragraph{Separating observation from interpretation.}
-The end-to-end comparison permits ERA to change its observation path. It cannot
+The end-to-end comparison permits IterEval to change its observation path. It cannot
 by itself attribute a difference to better interpretation of identical evidence.
 A shared-observation control therefore freezes $(A,T,\Pi)$ and supplies the same
-artifact evidence to fine-tuning and ERA restricted to $(K,V,G)$. This control,
+artifact evidence to fine-tuning and IterEval restricted to $(K,V,G)$. This control,
 together with the component comparisons in Table~\ref{tab:full-ablations}, tests
 whether changed observations account for any advantage. Neither lower annotation
 cost nor superiority to fine-tuning is assumed. A combined weight-and-program
@@ -586,7 +586,7 @@ simulated C2 illustration.
 \paragraph{C1 disaggregation.}
 Each populated main-table result will be accompanied by domain, feedback origin, split, original-input count, output count, and completion rate.
 Within the same registered cohort, report overall and dimensional agreement, top-region agreement, selection accuracy, rank regret, worst-stratum agreement, and repeated-score variation.
-Report equal-domain summaries separately for reused and new preferences, with their paired ERA-minus-baseline effects.
+Report equal-domain summaries separately for reused and new preferences, with their paired IterEval-minus-baseline effects.
 A main-table summary uses equal-domain weights and a common registered domain set across methods for each endpoint.
 Report the eligible-domain count for each endpoint; pair-only domains cannot silently change the domain set used for selection metrics.
 Missing domains remain visible rather than being removed according to performance.
@@ -598,9 +598,9 @@ Report independent-search means, dispersion, and run counts alongside this fixed
 
 \begin{table}[!htbp]
 \caption{\textbf{Downstream human outcomes: unmeasured placeholders.}
-C2 compares ERA-refined with Seed-refined; C3 compares ERA-GRPO with Seed-GRPO.
+C2 compares IterEval-refined with Seed-refined; C3 compares IterEval-GRPO with Seed-GRPO.
 Preference cells await tie-aware estimates, input-group 95\% intervals, and counts.
-Each $\Delta$Reg cell is the ERA-minus-seed difference in major-regression rate against $y_0$ (C2) or Base (C3), with ID and OOD separate.
+Each $\Delta$Reg cell is the IterEval-minus-seed difference in major-regression rate against $y_0$ (C2) or Base (C3), with ID and OOD separate.
 Appendix~\ref{app:results} specifies per-arm rates and completion.
 Dashes await new blinded judgments; C3 is design-only.}
 \label{tab:downstream-results}
@@ -622,9 +622,9 @@ C3 & IG1: primary candidate & \pending & \pending & \pending & \pending\\
 \end{table}
 
 \paragraph{C2 output comparisons.}
-For each input, retain the fresh $y_0$, Seed-refined output, and ERA-refined output as one blinded ranking group.
-Report the ERA-versus-seed preference with ties and abstentions separate, each arm's improvement and regression relative to $y_0$, major regressions, and core $H_1$ changes.
-For Table~\ref{tab:downstream-results}, each regression contrast subtracts the seed arm's major-regression rate from the ERA arm's rate within one domain and split.
+For each input, retain the fresh $y_0$, Seed-refined output, and IterEval-refined output as one blinded ranking group.
+Report the IterEval-versus-seed preference with ties and abstentions separate, each arm's improvement and regression relative to $y_0$, major regressions, and core $H_1$ changes.
+For Table~\ref{tab:downstream-results}, each regression contrast subtracts the seed arm's major-regression rate from the IterEval arm's rate within one domain and split.
 The C3 contrast uses the same definition relative to Base, rather than relative to a C2 starting output.
 Per-arm rates, paired uncertainty, and missing-outcome bounds accompany both contrasts.
 The generator, critique interface, observation access, decoding, and revision budget remain identical across arms.
@@ -683,7 +683,7 @@ in the experiment manifest.}
 \toprule
 Control & Contract \\
 \midrule
-Arms & Base is untrained; Seed-GRPO and ERA-GRPO start from the identical base checkpoint.\\
+Arms & Base is untrained; Seed-GRPO and IterEval-GRPO start from the identical base checkpoint.\\
 Training data & Same unlabeled training inputs and order; source-level deduplication
 and contamination audit.\\
 Policy updates & Same LoRA structure, optimizer, learning rate, update count,
@@ -699,7 +699,7 @@ and checks reward exploitation; final metrics and final human labels remain lock
 Pilot gate & Prespecified acceptable validity, reward variance, KL, length,
 stability, held-out quality, and reward-hacking diagnostics before expansion.\\
 Final generation & Freeze checkpoints and decoding, then generate new Base,
-Seed-GRPO, and ERA-GRPO outputs on the same unseen ID/OOD inputs.\\
+Seed-GRPO, and IterEval-GRPO outputs on the same unseen ID/OOD inputs.\\
 Final judgment & New blinded $H_0$ and core $H_1$, reserved external metrics,
 invalid/major-regression rates, length and format shifts, and total cost.\\
 \bottomrule
@@ -749,14 +749,14 @@ The static model judge uses a fixed prompt and no added tools, while the static 
 Score calibration and evaluator fine-tuning follow Appendix~\ref{app:adaptation}.
 Evaluator fine-tuning changes model weights; score calibration changes numerical mappings over frozen seed signals.
 Prompt optimization uses the history-only allocation defined below, restricted to instructions in $(K,V,G)$ with adapters, tools, and routes fixed.
-Program search uses that allocation with the same full editable scope as ERA.
+Program search uses that allocation with the same full editable scope as IterEval.
 These internal controls do not stand for all implementations of GEPA, SkillOpt, or other published optimizers.
 Exact model/checkpoint versions, metric sets and normalizations, tuning configurations, and monetary caps remain pending in Appendix~\ref{app:manifest} and must be frozen before runs.
 
 \paragraph{Search allocation contract.}
 All four conditions use the same initial program, proposal-Train pool, agent model, edit interface, permitted diagnostics, acceptance guard, and terminal selection rule.
 Independent proposals always edit the current best program and receive no previous failed-attempt diagnostics.
-History-only proposals also edit the current best program, but can inspect their own run's accumulated diagnostic history under the same access rules as ERA, without an active direction receiving priority or an unaccepted program becoming the parent.
+History-only proposals also edit the current best program, but can inspect their own run's accumulated diagnostic history under the same access rules as IterEval, without an active direction receiving priority or an unaccepted program becoming the parent.
 Depth-first allocation keeps the active direction and the program-inheritance rule of Section~\ref{sec:search}, without returning to a paused direction.
 The pause/resume extension additionally allows reopening a saved direction and its history, subject to the same eligibility rules.
 Its reopening policy remains to be frozen, and the row is design-only.
@@ -781,7 +781,7 @@ An oracle condition is diagnostic, not a deployable comparator.}
 Factor & Conditions & Endpoint or interpretation \\
 \midrule
 Data mining & Random; judge uncertainty; cross-model conflict; run instability;
-IPM (semantic multi-source disagreement) &
+Disagreement-based preference mining &
 Final held-out alignment at equal $N_H\in\{20,50,100,200\}$; the number of selected disagreements alone is insufficient.\\
 Human detail & Same pairs with $H_0$, $H_0+H_1$, $H_0+H_1+H_2$, and
 $H_0+H_1+H_2+H_3$ &
@@ -892,7 +892,7 @@ The intervals resample original inputs jointly across methods with 2,000 bootstr
 Panel (b) averages these task means with equal weights within each family.
 Its selection endpoint uses all 160 requested inputs per task, counting failed scoring as failed Best-of-4 selection.
 The different endpoint denominators are recorded in \texttt{data/simulated/c1\_landscape/}; no task is selected or omitted according to its outcomes.
-Connecting seed and ERA points identifies the same family, not a search trajectory or a causal effect.
+Connecting seed and IterEval points identifies the same family, not a search trajectory or a causal effect.
 The four equal ring quadrants represent the task taxonomy, not measured sample proportions.
 The figure does not simulate calibration, fine-tuning, sampling efficiency, search progress, C2, or C3.
 The main table retains the full comparator specification, and no empirical claim is supported by this layout fixture.
@@ -901,7 +901,7 @@ The main table retains the full comparator specification, and no empirical claim
 \paragraph{Purpose and limits.}
 The quantitative figures in this appendix and Table~\ref{tab:results} are generated from
 explicitly simulated data for reviewing the reporting design. The generator
-does not execute ERA, run a model, consult benchmark outcomes, or recruit
+does not execute IterEval, run a model, consult benchmark outcomes, or recruit
 annotators. Its assigned noise, effects, costs, and cohort labels are not
 estimates of expected performance, a power analysis, or evidence for method
 ranking. Positive, near-zero, and negative contrasts are retained. None of
@@ -941,7 +941,7 @@ Incomplete groups remain in coverage denominators.
 The C1 table averages domain-level metrics equally within each setting.
 Its means use each method's complete groups, whereas the paired differences in Figure~\ref{fig:alignment} use the intersection of completed groups.
 Intervals use 1,000 input-group bootstrap replicates of these artificial observations.
-They quantify resampling variation in the fixtures, not uncertainty about ERA.
+They quantify resampling variation in the fixtures, not uncertainty about IterEval.
 The sampling-fixture generator assigns budget responses for five policies and 12 toy runs; its bands are percentile ranges across runs, not bootstrap intervals.
 
 \begin{figure}[!htbp]
@@ -955,7 +955,7 @@ Panel (b) plots assigned cost units, not measured runtime, against OOD agreement
 Small marks denote 110 domain--method combinations; large marks equally average 11 domains per feedback setting.
 Shapes identify methods, and filled/open marks denote illustrative reused/new preferences, not label reliability.
 Panel (c) reports agreement from pointwise scores and 95\% input-group bootstrap intervals on a common 0--100\% scale.
-Baseline bars follow the displayed order in each family's hue; ERA is lake green.
+Baseline bars follow the displayed order in each family's hue; IterEval is lake green.
 Cost includes all selected inputs; agreement uses method-complete inputs.
 Marginal intervals do not establish paired differences.}
 \label{fig:outcomes}
@@ -986,7 +986,7 @@ reproducible fixtures.}
 \end{table}
 
 \paragraph{Expanded alignment and sampling displays.}
-Figure~\ref{fig:alignment}a--b reports per-domain ERA-minus-seed effects with paired intervals for all 22 domains on the full synthetic cohorts.
+Figure~\ref{fig:alignment}a--b reports per-domain IterEval-minus-seed effects with paired intervals for all 22 domains on the full synthetic cohorts.
 These paired contrasts complement the marginal means for the balanced OOD subset in Figure~\ref{fig:outcomes}c.
 Figure~\ref{fig:acquisition}a--b compares sampling policies against random sampling at equal human budgets; all policies include the same reliability anchor.
 Annotation granularity is held fixed here and varied separately in Figure~\ref{fig:ablation}b.
@@ -995,7 +995,7 @@ Annotation granularity is held fixed here and varied separately in Figure~\ref{f
 \centering
 \input{figures/simulated_alignment}
 \caption{\textbf{Simulated domain-level alignment; not experimental results.}
-Panels (a) and (b) compare ERA with the static tool-augmented seed on ID and OOD
+Panels (a) and (b) compare IterEval with the static tool-augmented seed on ID and OOD
 inputs. Diamonds are paired mean differences; whiskers are 95\% bootstrap
 intervals over jointly completed synthetic input groups. Zero denotes no
 difference. All 22 domains retain the 6/6/5/5 taxonomy order. Colors identify
@@ -1091,10 +1091,10 @@ are retained in the data for the full reporting contract.
 \input{figures/simulated_refinement}
 \caption{\textbf{Simulated C2 outcomes; not experimental results.}
 Panel (a) combines half-violin densities, all synthetic group values, median
-markers, and interquartile segments for ERA-refined minus Seed-refined quality.
+markers, and interquartile segments for IterEval-refined minus Seed-refined quality.
 Density colors identify domain families. The horizontal scale is an arbitrary
 latent unit, not a human score.
-Panel (b) centers ties between seed and ERA wins, with abstentions in a separate
+Panel (b) centers ties between seed and IterEval wins, with abstentions in a separate
 percentage column. Every share uses all input groups under the toy rule.
 Both construction settings would require fresh blinded human endpoint
 judgments in an actual C2 study.}
@@ -1116,7 +1116,7 @@ eleven ID cohorts equally per setting. Colors identify evaluators; metric-only
 references are gray. Filled circles denote reused preferences and hollow squares
 new preferences; connecting segments pair the settings for one evaluator.
 Cost units are assigned to the toy generator, not timed API calls or
-measured compute. The plot does not establish an efficiency frontier for ERA.}
+measured compute. The plot does not establish an efficiency frontier for IterEval.}
 \label{fig:cost}
 \end{figure}
 

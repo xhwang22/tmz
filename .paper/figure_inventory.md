@@ -6,8 +6,8 @@ No display reports measured performance.
 
 | ID / location | Source | Purpose / status |
 | --- | --- | --- |
-| Fig1 / main | figures/overview.tex | (a) four domain families; (b) IPM with existing datasets or new outputs and compatible preference reuse; (c) ERA acceptance and continuation; (d) C1 alignment/selection, C2 refinement, planned C3; Conceptual specification with constructed examples; no measured results |
-| Fig2 / main | figures/c1_landscape.tex | (a) 22-task taxonomy, not measured sample composition; (b) seed and ERA agreement versus Best-of-4 family means; (c) common-cohort OOD agreement across all 22 tasks; Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, sampling, search, C2, or C3 efficacy |
+| Fig1 / main | figures/overview.tex | (a) four domain families; (b) disagreement-based preference mining with existing datasets or new outputs and compatible preference reuse; (c) depth-first evaluator evolution with separate acceptance and continuation; (d) C1 alignment/selection, C2 refinement, planned C3; Conceptual specification with constructed examples; no measured results |
+| Fig2 / main | figures/c1_landscape.tex | (a) 22-task taxonomy, not measured sample composition; (b) seed and IterEval agreement versus Best-of-4 family means; (c) common-cohort OOD agreement across all 22 tasks; Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, sampling, search, C2, or C3 efficacy |
 | Fig3 / appendix | figures/evaluator.tex | (a) one artifact; (b) routed observations; (c) dimensional criteria; (d) synthesis; Conceptual specification with constructed examples; no measured results |
 | Fig4 / appendix | figures/budget_tests.tex | (a) search under equal total budgets; (b) sampling under equal human budgets; Unmeasured reporting placeholders; no empirical result or expected effect size |
 | Fig5 / appendix | figures/simulated_landscape.tex | (a) balanced input composition across 22 tasks; (b) assigned cost versus OOD agreement, 110 domain points and ten setting means; (c) four family bar panels in one row, five methods per task; Balanced synthetic OOD subset for layout, distinct from full-cohort appendix data; no empirical efficacy or label availability established |
@@ -37,8 +37,8 @@ No display reports measured performance.
 | Tab14 | tab:results | sections/appendix.tex; Explicit simulated C1 numerical example; not experimental results |
 | Tab15 | tab:manifest | sections/appendix.tex; Experiment fields requiring author decisions |
 
-Main Figure 2 is on page 8 at its native 5.4 × 3.57-inch size, alongside main Table 1.
-It preserves the approved task ring, family palettes, Source fonts, and lake-green ERA accent.
+Main Figure 2 is on page 9 at its native 5.4 × 3.57-inch size, alongside main Table 1.
+It preserves the approved task ring, family palettes, Source fonts, and lake-green IterEval accent.
 Its new scatter connects alignment and Best-of-4 selection, rather than assigned cost.
 The new bars use all jointly complete OOD inputs per domain; this differs from the historical balanced subset.
 The original landscape remains unchanged as appendix Figure 5; full-cohort paired effects are Figure 6.

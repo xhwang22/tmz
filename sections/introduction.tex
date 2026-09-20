@@ -10,7 +10,8 @@ Human preferences are therefore better treated as iterative feedback for improvi
 
 Existing approaches use human feedback to train evaluator models \citep{xu2023imagereward}, learn or refine evaluation criteria \citep{liu2024autocalibrate,lv2026queryrubrics}, and select evaluation functions \citep{shankar2024evalgen}.
 Prompt and skill optimizers offer a complementary mechanism for revising instructions from execution feedback \citep{agrawal2026gepa,yang2026skillopt}.
-We focus on evaluator self-evolution, which directly revises an explicit evaluation procedure while building on the base model's existing semantic and reasoning capabilities.
+We present IterEval, a framework for self-evolving evaluators across open-ended tasks.
+IterEval directly revises an explicit evaluation procedure while building on the base model's existing semantic and reasoning capabilities.
 This allows the evaluator to adapt without updating the base model parameters and makes individual changes easier to inspect and test.
 
 Extending evaluator self-evolution to new open-ended domains, however, raises two challenges: obtaining useful human preferences and reliably turning them into improvements to the evaluation procedure.
@@ -18,11 +19,11 @@ Extending evaluator self-evolution to new open-ended domains, however, raises tw
 \begin{figure}[t]
 \centering
 \input{figures/overview}
-\caption{Evaluator self-evolution from human feedback.
+\caption{IterEval: iterative evaluator self-improvement from human feedback.
 (a) Four artifact families retain distinct evaluation standards.
-(b) Informative Preference Mining (IPM) selects comparisons from existing datasets or fresh outputs, reusing matching preferences and collecting missing ones.
+(b) Disagreement-based preference mining selects comparisons from existing datasets or fresh outputs, reusing matching preferences and collecting missing ones.
 Both routes retain their provenance and annotation quality.
-(c) \ERA{} evolves a six-component evaluation procedure with a fixed base model, separating candidate acceptance from direction continuation.
+(c) Depth-first evaluator evolution revises a six-component evaluation procedure with a fixed base model, separating candidate acceptance from direction continuation.
 (d) C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training.
 Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2.
 Arrows denote information flow, not measured improvements.}
@@ -31,10 +32,10 @@ Arrows denote information flow, not measured improvements.}
 
 Obtaining preference data that is useful for evolution is itself nontrivial: under a limited human feedback budget, the choice of comparisons can affect learning efficiency \citep{muldrew2024activepreference,oh2025activepreference}.
 Hand-designed comparisons tend to reflect the cases and failure modes anticipated by the designer, while broad collections can contain many easy or redundant comparisons that reveal little about where the evaluator still falls short.
-We therefore use Informative Preference Mining (IPM) to prioritize comparisons on which existing evaluation signals disagree.
-When preference labels already exist, IPM selects informative examples from the available data; otherwise, it prioritizes comparisons for new human annotation.
+We therefore use disagreement-based preference mining to prioritize comparisons on which existing evaluation signals disagree.
+When preference labels already exist, preference mining selects informative examples from the available data; otherwise, it prioritizes comparisons for new human annotation.
 
-IPM selects the comparisons used for evaluator evolution, but does not specify how the evaluator should be revised.
+Preference mining selects the comparisons used for evaluator evolution, but does not specify how the evaluator should be revised.
 Pairwise preferences identify the better output without specifying the fine-grained criteria behind that choice \citep{ye2024flask,lv2026queryrubrics}.
 The same evaluation error revealed by human preferences can therefore suggest several plausible improvement directions, while limited human feedback often provides little basis for choosing among them.
 This ambiguity is especially important in open-ended evaluation, where a useful direction may require several related revisions before producing a measurable gain.
@@ -45,24 +46,24 @@ In the default evaluator-evolution setup we tested, each new revision was propos
 We observed a tendency for unsuccessful early candidates to be followed by revisions in alternative directions rather than deeper development of the current one.
 Over repeated iterations, evolution can therefore spread effort across multiple plausible directions before any one of them has been developed far enough to judge reliably.
 
-We introduce \ERA{}, a depth-first evaluator evolution method that explicitly maintains an improvement direction across revisions (Figure~\ref{fig:overview}c).
-ERA continues developing the current direction after unsuccessful intermediate candidates, using their diagnostic results to guide the next revision.
+IterEval uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:overview}c).
+The search continues developing the current direction after unsuccessful intermediate candidates, using their diagnostic results to guide the next revision.
 The best evaluator is maintained separately and replaced only by an improved candidate.
 Evolution moves to a new direction when diagnostic results provide sufficient evidence against the current one or when its search budget is exhausted.
 
 
-We evaluate this framework across structured visual artifacts, images and 3D, text generation, and automated research, covering both reused preference datasets and newly collected human preferences.
-IPM identifies preference subsets that lead to stronger evaluator improvement than standard sampling from the same data source.
-Under matched search budgets, \ERA{} continues developing directions after unsuccessful early candidates and produces more sustained improvement than the default setup.
+We evaluate IterEval across structured visual artifacts, images and 3D, text generation, and automated research, covering both reused preference datasets and newly collected human preferences.
+Disagreement-based preference mining identifies preference subsets that lead to stronger evaluator improvement than standard sampling from the same data source.
+Under matched search budgets, depth-first evaluator evolution continues developing directions after unsuccessful early candidates and produces more sustained improvement than the default setup.
 The resulting evaluators also achieve stronger agreement with held-out human preferences and improve downstream output selection and critic-guided refinement.
 On representative tasks, their scores further provide useful training rewards for improving generation quality.
 
 Our contributions are as follows:
 \begin{itemize}
-\item We extend evaluator self-evolution to a broader open-ended setting, developing a unified framework that learns from human preferences and revises the full evaluation procedure across heterogeneous task domains.
+\item We introduce IterEval, a framework that learns from human preferences and revises the full evaluation procedure across heterogeneous open-ended task domains.
 
-\item We introduce \ERA{}, a depth-first evolution method that explicitly maintains an improvement direction across revisions, preventing an unsuccessful intermediate candidate from automatically ending development of that direction.
-We complement \ERA{} with IPM for selecting informative preferences from existing labeled data or prioritizing comparisons for new human annotation.
+\item Depth-first evaluator evolution explicitly maintains an improvement direction across revisions, preventing an unsuccessful intermediate candidate from automatically ending development of that direction.
+Disagreement-based preference mining selects informative preferences from existing labeled data or prioritizes comparisons for new human annotation.
 
 \item We provide a cross-domain evaluation of preference mining, evaluator evolution, final agreement with human preferences, and downstream utility under controlled annotation and search budgets.
 

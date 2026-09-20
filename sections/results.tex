@@ -11,7 +11,7 @@ Downstream and budget placeholders appear in Appendices~\ref{app:results} and~\r
 \input{figures/c1_landscape}
 \caption{\textbf{C1 across tasks: simulated reporting layout, not experimental results.}
 Panel (a) maps 22 tasks into four families; equal family quadrants indicate taxonomy, not sample shares.
-Panel (b) links seed and ERA family means for pairwise agreement and Best-of-4 selection, without implying a causal relation.
+Panel (b) links seed and IterEval family means for pairwise agreement and Best-of-4 selection, without implying a causal relation.
 Panel (c) reports five methods on each task using their jointly complete OOD inputs.
 Whiskers are 95\% input-bootstrap intervals; selection counts failed scoring as failure.
 Table~\ref{tab:main-alignment} specifies the full empirical comparison.
@@ -48,7 +48,7 @@ Evaluator fine-tuning & \pending & \pending & \pending & \pending & \pending & \
 Prompt optimization & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
 Program search & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
 \rowcolor{pEvoWash}
-ERA & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+IterEval & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -64,7 +64,7 @@ Changes relative to $y_0$ would distinguish genuine improvement from a less dama
 
 \begin{samepage}
 \paragraph{C3: reward that improves generation.}
-A favorable outcome would combine human preference for ERA-GRPO over Seed-GRPO with retained factuality, coverage, and validity.
+A favorable outcome would combine human preference for IterEval-GRPO over Seed-GRPO with retained factuality, coverage, and validity.
 Higher reward alone would be insufficient; comparison with Base must also establish whether training improves generation.
 Conclusions would remain task- and policy-specific, with external checks reported separately (Table~\ref{tab:external-endpoints}).
 \par

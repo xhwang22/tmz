@@ -3,19 +3,18 @@
 Updated: 2026-09-20. Status: method and study design with author-requested,
 explicitly simulated quantitative displays; confirmatory results pending.
 The introduction includes a bounded qualitative development observation.
-The latest author-edited abstract retains ERA's method principle and adds an explicit
-hypothesis about alignment and sustained improvement, followed by downstream tests
-of output selection, critic-guided refinement, and reward-guided training on
-representative tasks. These effects are not reported as verified results.
+The latest author-edited Abstract and Introduction state gains in alignment, sustained improvement, and downstream applications.
+These claims remain unverified; the naming revision preserves the author text without treating it as evidence.
+The title-page simulation notice and the conditional Results/Conclusion remain in place.
 Its broader wording about existing evolution methods does not extend the scope of that observation.
 
 ## Title and scope
 
-**Evolving Evaluation Systems from Human Feedback for Open-Ended Tasks**
+**Dive Deeper, Branch Later: Self-Evolving Evaluators across Open-Ended Tasks**
 
-The paper currently has no project acronym. ERA names only the depth-first
-evaluator evolution method; do not invent an expanded acronym. The author has
-retired P2E from the active paper, not from archival history or source filenames.
+IterEval is the complete framework: iterative evaluator self-improvement from human feedback.
+Its two components are disagreement-based preference mining and depth-first evaluator evolution, with no component acronyms.
+The author has retired P2E, IPM, and ERA from active manuscript wording, not from archival history, source filenames, or data keys.
 The historical source-repository name does not restrict the paper to slides.
 Do not rename that repository or local source directory.
 
@@ -41,13 +40,13 @@ because quality depends on task-specific criteria and trade-offs; preferences
 provide concrete judgments without specifying an executable evaluation procedure.
 Agent evolution is a candidate approach to learning that procedure, with two
 connected learning obstacles.
-Informative Preference Mining (IPM) lowers the sampling priority of comparisons on which existing signals agree;
+Disagreement-based preference mining lowers the sampling priority of comparisons on which existing signals agree;
 depth-first evaluator evolution develops directions beyond an initial
 unsuccessful implementation.
 The search principle is to separate accepting a candidate from continuing its
 direction, rather than assuming immediate gain determines the value of further work.
 The paper-level question remains learning an evaluation procedure from human
-feedback, not generic feedback efficiency. IPM and evolution address
+feedback, not generic feedback efficiency. Preference mining and evolution address
 connected difficulties without claiming a new two-stage theory.
 The revised introduction explains rejection/redirection in the tested iterative
 optimizer configuration, then motivates continuation through interacting evaluation
@@ -74,11 +73,11 @@ GEPA, Meta-Harness, and DGM guide the argument structure, not borrowed findings.
 The introduction's literature bridge cites AutoCalibrate for feedback-driven
 criteria refinement and EvalGen for evaluation-function selection, Agent-as-a-Judge for tool-based
 evidence gathering, and active preference learning alongside query-by-committee
-for selective data mining. These establish relevant prior capabilities, not ERA
+for selective data mining. These establish relevant prior capabilities, not IterEval
 novelty or effectiveness. These sources use verified published records.
 Related Work now includes all four author-requested 2026 preprints: query-specific
 rubrics, Benchmark2, skill extraction/consumption, and the reward-hacking survey.
-They support distinct comparisons, not ERA's effectiveness claims.
+They support distinct comparisons, not IterEval's effectiveness claims.
 The citation audit checks identities, publication fields and cited scope separately.
 DGM is updated to ICLR 2026 and RewardBench to Findings of NAACL 2025.
 Official proceedings/PDF conflicts are resolved field by field; index matches
@@ -86,9 +85,7 @@ never override the primary record without review. See citation_audit.md for
 the 40-entry venue inventory, verification dates and remaining limitations.
 Parameter-adaptation comparisons remain in the introduction and experiments;
 provenance protocols and detailed study-arm/domain lists do not belong in this
-abstract. The short simulation notice remains; unverified effects are expressed
-as a hypothesis and downstream tests, not reported findings or validated
-interpretability. C42 records the framing claim.
+abstract. The title-page simulation notice remains. Unverified effects in the author-edited summary sections require a separate claim-evidence revision; naming changes do not validate them. C42 records the framing claim.
 
 The shared question is whether an evaluator can evolve toward a task's human
 evaluation standard given that task and its human feedback. Reusing existing
@@ -109,9 +106,9 @@ The implemented miner supplies structural priorities and source-group records;
 human-reliability qualification is a separate, still unverified step.
 H1 is central. H0-only settings do not possess uncollected H1/H2.
 The feedback table Z connects feedback, artifacts, source signals, routes,
-tool output, uncertainty, and cost to ERA.
+tool output, uncertainty, and cost to IterEval.
 
-ERA evolves observation and judgment through (A, K, V, T, Pi, G) with a fixed
+IterEval evolves observation and judgment through (A, K, V, T, Pi, G) with a fixed
 base model. Pointwise scoring excludes opponents and labels. Full development
 and terminal validation request at least three executions per artifact before
 median comparison, with completeness checked separately. The direction is
@@ -135,25 +132,25 @@ The detailed implementation/exemplar audit is in method_implementation_audit.md.
 
 Parameter adaptation is a substantive alternative. The planned C1 controls add
 fixed-structure evaluator fine-tuning and score calibration. An additional
-shared-observation comparison freezes (A,T,Pi) and restricts ERA to (K,V,G),
+shared-observation comparison freezes (A,T,Pi) and restricts IterEval to (K,V,G),
 separating changed observations from changed interpretation. Fine-tuning can
 learn criteria or tool use under suitable interfaces; the control is not a
 general capability claim. Human feedback, development access, and adaptation and
-deployment costs are accounted for. ERA's explicit criteria and traces permit
+deployment costs are accounted for. IterEval's explicit criteria and traces permit
 inspection, not an automatic claim of faithful explanation. No advantage over
 parameter adaptation is asserted, no tuning results are simulated, and no
 training is run. Evaluator tuning is distinct from C3 generator training.
 
 ## Hypotheses and studies
 
-IPM may improve final evaluator alignment at equal human
+preference mining may improve final evaluator alignment at equal human
 cost; depth-first continuation may produce more sustained gains than restarting
 proposals at equal search resources. Both remain unverified (claims C27/C28).
 The inspected default pointwise workflow shows rejection, incumbent retention,
 and redirection (C43); related themes can recur without continuation of the
 rejected implementation. Accepted improvements also occurred.
 This observation is not a universal characterization of RSI, an explanation of
-all limited gains, or proof that ERA/DFS outperforms alternatives.
+all limited gains, or proof that IterEval/DFS outperforms alternatives.
 Building a preference corpus does not establish sampling
 efficiency, which requires a separate matched-budget random-sampling control.
 C1 assesses alignment and fixed-pool selection. C2 uses fresh shared initial
@@ -178,12 +175,12 @@ Use claims.yml and figures.yml for subsequent audits; gap claims are hypotheses,
 never findings. Memory claim IDs C1/C2/etc. are a separate namespace from the
 paper's study labels C1/C2/C3.
 
-Current structure: 2 main figures, 10 appendix figures, 15 tables, 40 verified
-bibliographic identities, and 48 claim records.
-Main Figure 2 is the adapted C1 landscape on page 8, alongside the ID/OOD
+Current structure: 2 main figures, 10 appendix figures, 15 tables, 52 bibliography
+records (35 cited), and 49 claim records.
+Main Figure 2 is the adapted C1 landscape on page 9, alongside the ID/OOD
 alignment-and-selection main table. Its original 5.4 × 3.57-inch layout,
 family palettes and Source fonts are retained.
-The ring is a taxonomy of 22 tasks, the scatter links seed/ERA agreement
+The ring is a taxonomy of 22 tasks, the scatter links seed/IterEval agreement
 and Best-of-4 family means, and all 110 bars share method-complete OOD
 cohorts within each domain across the five shown methods.
 The new summaries derive only from unchanged existing synthetic input records.
@@ -193,9 +190,9 @@ The new data and audit are in data/simulated/c1_landscape/.
 No new experiment, simulated observation, C2/C3 outcome, or efficacy claim is added.
 The budget placeholder is appendix Figure 4 and downstream placeholders are
 Table 8; main-text interpretations remain conditional.
-The main text remains nine pages using unchanged ICLR typography.
+The main text is ten pages using unchanged ICLR typography, exceeding the initial-submission limit of nine.
 
-The historical landscape remains unchanged as appendix Figure 5.
+The historical landscape remains appendix Figure 5; only two display labels now read IterEval, with all other text and vector drawing paths preserved.
 Its 2,880 OOD inputs are selected by fixed hash, 720 per family, and differ
 from the full-cohort main Figure 2. Figure 6 retains full-cohort paired
 ID/OOD effects, Figure 10 component detail, and Figure 11 C2.
@@ -207,7 +204,7 @@ Three isolated candidates follow the author's reference images and their
 labeled HEX values. Use their five colors as coordinated ensembles, not only
 as opposing pairs. The provisional reference-1 method mapping is static judge
 blue #74A9C5, static tools/seed mint #C2E5CF, prompt optimization cream #EDDDAB,
-program search peach #F2B8AE, and ERA rose #DD7389. Metric-only references stay
+program search peach #F2B8AE, and IterEval rose #DD7389. Metric-only references stay
 neutral. Family, H-level, policy, rank, and outcome plots have their own explicit
 legends; settings use position, labels, or hatching where color has another role.
 The component heatmap spans all five colors with cream at zero and fixed ±6
@@ -249,7 +246,7 @@ name proposals and the limits of their collision checks are recorded in
 `scripts/render_simulated_results.py` generates 14 CSV files, eight vector PDFs,
 a numerical TeX table, and `data/simulated/manifest.json`. Every data row is
 marked SIMULATED; charts, captions, the title page, and PDF metadata disclose the
-status. The fixtures do not execute ERA, use actual labels, estimate expected
+status. The fixtures do not execute IterEval, use actual labels, estimate expected
 performance, establish method rankings, or simulate C3 or evaluator tuning.
 `c1_cohorts.csv` covers all 22 domains (11 per setting); `cohorts.csv` retains
 the eight diagnostic cohorts (four per setting). These assignments do not
@@ -329,8 +326,8 @@ No abstract, Method, bibliography, engineering-source, commit, or push change is
 ## Whole-manuscript terminology consistency (round 26)
 
 `terminology.md` is the current naming authority and supersedes conflicting terminology in earlier rounds above.
-Round 26 used disagreement-based data mining; the current name is Informative Preference Mining (IPM), including mining existing datasets and reusing compatible preferences.
-ERA remains depth-first evaluator evolution.
+Round 26 used disagreement-based data mining; the current name is Disagreement-based preference mining, including mining existing datasets and reusing compatible preferences.
+IterEval remains depth-first evaluator evolution.
 Keep candidate acceptance, program inheritance, and direction continuation distinct; use best program and working program for B and W.
 Reserve candidate for a proposed evaluation program and use output for an artifact being evaluated; preference sign does not mean an evolution direction.
 Human feedback, human preferences, evaluation procedure, evaluation program, diagnostic results, artifact evidence, and feedback table Z retain their separate definitions.
@@ -338,14 +335,27 @@ Human feedback, human preferences, evaluation procedure, evaluation program, dia
 The author-edited abstract, 40 references, numerical records, and both landscape assets are unchanged; C27/C28 remain gaps.
 The manuscript remains 9 main pages and 36 total pages. No experiments, engineering changes, commit, or push occur in this round.
 
-## IPM and Method argument (round 27)
+## preference mining and Method argument (round 27)
 
-The upstream method is Informative Preference Mining (IPM), not disagreement-based data mining.
+The upstream method is Disagreement-based preference mining, not disagreement-based data mining.
 Lead with lowering the relative sampling priority of repeated comparisons on which existing signals agree, then define comparable signs and the implemented structural priority.
 The score is twice the count of within-dimension conflicts plus overall--dimension conflicts plus a cross-dimensional trade-off indicator.
 It estimates neither information gain nor human reliability; zero conflict may reflect ties or missingness, and consensus can hide shared errors.
 The random anchor is selected before ranking and charged to the same budget, with human qualification still separate from the implemented ranking.
 Existing datasets and new outputs supply the same feedback table through compatible preference reuse or missing-label annotation.
-ERA proceeds through objective/measurement, directions/candidates, acceptance/inheritance, and direction continuation.
+IterEval proceeds through objective/measurement, directions/candidates, acceptance/inheritance, and direction continuation.
 Preserve the pre-update best-program fallback and all inheritance prerequisites; direction continuation can use retained diagnostics even when the rejected candidate cannot be inherited.
 The author-edited abstract, citations, empirical gaps, numerical assets, and landscape layouts are unchanged.
+
+## IterEval naming and current verification (round 32)
+
+The current title is Dive Deeper, Branch Later: Self-Evolving Evaluators across Open-Ended Tasks.
+IterEval names the complete framework, not either component; disagreement-based preference mining and depth-first evaluator evolution have no component acronyms.
+The first introduction uses the author's exact sentence, and all active prose, captions, charts, tables, and diagrams follow the naming hierarchy.
+Earlier rounds above describe historical revisions; current counts are 36 PDF pages, 10 main pages, 52 bibliography records with 35 cited, and 49 claim records.
+Figure 2 and Table 1 are on main-text page 9.
+All 30 tracked CSVs remain byte-identical; legacy ERA keys map to IterEval only for display.
+The historical landscape has two label changes with its other text and vector paths preserved.
+Compilation, terminology, memory, numerical and landscape checks pass; the initial-submission page limit and 17 unused bibliography records still fail the structural check.
+Author-edited summary claims remain unverified, and C27/C28 remain gaps. Naming changes establish no empirical result.
+See `itereval_naming_audit_20260920.md` for the scope, provenance and checks; no commit or push was performed.
