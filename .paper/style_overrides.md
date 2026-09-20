@@ -1,5 +1,11 @@
 # Manuscript style
 
+## Title layout and abstract citations (2026-09-20)
+
+Keep the abstract citation-free; retain literature support in the Introduction and Related Work.
+Preserve the exact approved title, with title-local ragged-right alignment and semantic line breaks after the colon and after Evaluators.
+Keep the official title font, size, margins, and template file unchanged; do not stretch word spacing or leave Tasks alone on a line.
+
 ## Current terminology precedence (2026-09-20, round 32)
 
 Follow `terminology.md` for current wording; it supersedes conflicting terms in all earlier notes below.

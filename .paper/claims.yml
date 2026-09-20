@@ -681,7 +681,7 @@
     },
     {
       "id": "C42",
-      "text": "Humans can often tell which of two concrete outputs is better, but it is much harder to turn that ability into a comprehensive and effective evaluation procedure \\citep{shankar2024evalgen}.",
+      "text": "Humans can often tell which of two concrete outputs is better, but it is much harder to turn that ability into a comprehensive and effective evaluation procedure.",
       "source": "sections/abstract.tex",
       "kind": "problem framing",
       "evidence_artifacts": [

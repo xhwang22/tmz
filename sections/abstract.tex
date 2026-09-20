@@ -1,6 +1,6 @@
 Evaluating open-ended outputs requires task-dependent judgments over multiple aspects of quality that must be balanced in context.
-Existing proxy metrics and model-based evaluators remain imperfect on such judgments and do not consistently align with human preferences \citep{fabbri2021summeval,hu2024criteria}.
-Humans can often tell which of two concrete outputs is better, but it is much harder to turn that ability into a comprehensive and effective evaluation procedure \citep{shankar2024evalgen}.
+Existing proxy metrics and model-based evaluators remain imperfect on such judgments and do not consistently align with human preferences.
+Humans can often tell which of two concrete outputs is better, but it is much harder to turn that ability into a comprehensive and effective evaluation procedure.
 We present IterEval, a framework for self-evolving evaluators across open-ended tasks.
 IterEval selects human preferences through disagreement-based preference mining and uses them to iteratively improve the evaluation procedure.
 An evaluation error revealed by human preferences often suggests several plausible ways to improve the evaluator, while limited human feedback provides only weak evidence for deciding which direction to pursue.

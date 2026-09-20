@@ -834,6 +834,16 @@
       "changed_figures": ["Fig1", "Fig2", "Fig4", "Fig5", "Fig6", "Fig9", "Fig11", "Fig12"],
       "sections_touched": ["Title and PDF metadata", "Abstract and Introduction", "Related work", "Method and preference mining", "Experiments, Results, Discussion and Conclusion", "Appendix, diagrams, charts and tables", "README, terminology, paper memory and fixture checks"],
       "summary": "Adopts IterEval only for the complete framework and experimental system, and descriptive names without acronyms for its mining and search components. Applies the author's introduction sentence, updates reader-facing labels, and preserves technical semantics and historical identifiers. Regenerates display labels with all 30 tracked CSVs byte-identical; the frozen landscape receives two text-only replacements with unchanged vector paths and other text. Adds display-name regression checks and explicit manifest mappings while retaining numerical keys. Synchronizes stale author-edited claims/captions; C27/C28 remain unverified gaps rather than inferred findings. Builds 36 total pages with 10 main pages; terminology, memory, arithmetic, landscape and whitespace checks pass. Structural checks still flag the 9-page initial-submission limit and 17 unused bibliography records. Reviews the title, overview, main results page and legacy landscape without altering official typography. No empirical observations, annotation, training, citation-metadata changes, engineering-source edits, commit or push. See itereval_naming_audit_20260920.md."
+    },
+    {
+      "round": 33,
+      "date": "2026-09-20",
+      "trigger": "Author flags awkward title rendering and requests no citations in the abstract.",
+      "reviewer": "Author feedback; local title-page visual check",
+      "changed_claims": ["C42"],
+      "changed_figures": [],
+      "sections_touched": ["Title layout", "Abstract citation markers", "Style guidance and claim memory"],
+      "summary": "Uses title-local ragged-right alignment with semantic breaks after the colon and Evaluators, removing stretched spaces and preserving Self-Evolving Evaluators as a phrase. Keeps the approved wording, official font/size, template file and PDF title metadata. Removes the abstract's two citation commands covering three papers without changing its prose; all three remain cited in the Introduction. Synchronizes C42 and records the citation-free abstract preference. Rebuilds and visually checks the first page; no undefined citations or overfull boxes, and memory/terminology/whitespace checks pass. The PDF remains 36 pages with 10 main pages; existing page-limit, unused-reference and empirical-evidence issues remain. No data, figures, bibliography metadata, commit or push changes."
     }
   ],
   "updated_on": "2026-09-20"
