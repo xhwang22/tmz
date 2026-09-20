@@ -1,9 +1,9 @@
 \section{Experiments}
 \label{sec:experiments}
 
-The experiments ask whether the evaluator improves judgments and downstream outputs (C1--C3), and whether acquisition and continuation account for those improvements under matched resources.
+The experiments ask whether the evaluator improves judgments and downstream outputs (C1--C3), and whether IPM and direction continuation account for those improvements under matched resources.
 Readiness determines inclusion from the 22-domain scope, with a separate evaluator per standard (Appendix~\ref{app:domains}).
-Existing datasets supply candidates for mining or reusable preferences; missing preferences are collected on existing or new candidates.
+Existing datasets supply candidate outputs for mining or reusable preferences; missing preferences are collected on existing or new outputs.
 
 \subsection{Core results}
 \label{sec:core}
@@ -11,8 +11,8 @@ Existing datasets supply candidates for mining or reusable preferences; missing 
 \paragraph{C1: evaluator alignment and selection.}
 Table~\ref{tab:main-alignment} compares ERA with metric references, static judges, and alternative adaptation methods.
 Controlled learned comparisons share feedback and the initial model (Appendices~\ref{app:adaptation} and~\ref{app:ablations}).
-For each test input, all evaluators receive the same candidate group, with a default design of $N=4$.
-Complete human rankings support global pairwise agreement, top-region agreement involving the human top-two candidates, Best-of-$N$ selection, and selection regret.
+For each test input, all evaluators receive the same output group, with a default design of $N=4$.
+Complete human rankings support global pairwise agreement, top-region agreement involving the human top-two outputs, Best-of-$N$ selection, and selection regret.
 When only ranks are available, normalized regret is $(\operatorname{rank}(\hat y)-1)/(N-1)$ for the selected output $\hat y$.
 A pair-only dataset supports pairwise evaluation, not an $N$-way selection claim.
 
@@ -42,9 +42,9 @@ C3 remains a design-only study here; no parameter training or training benefit i
 Search comparisons hold feedback fixed and count all proposal, diagnostic, measurement, and validation costs.
 The decisive contrast is direction continuation versus history-matched proposals that always edit the best program (Figure~\ref{fig:budget-tests}a).
 The primary matching variable is total model-and-tool cost under frozen prices, not the number of attempts.
-Mining strategies are compared at equal human budgets $N_H\in\{20,50,100,200\}$, measured in original-input annotation units.
+Sampling policies are compared at equal human budgets $N_H\in\{20,50,100,200\}$, measured in original-input annotation units.
 The endpoint is final held-out alignment under the same evolution budget, with random anchors charged to every arm (Figure~\ref{fig:budget-tests}b).
-The decisive acquisition contrast is disagreement versus random sampling with fixed feedback detail.
+The decisive sampling contrast is IPM versus random sampling with fixed feedback detail.
 Equal units test label efficiency; measured annotation time is needed to test human efficiency.
 Same-pair feedback-granularity tests and compatible component replacements complete the comparisons in Appendix~\ref{app:ablations}.
 

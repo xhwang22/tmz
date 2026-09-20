@@ -1,5 +1,17 @@
 # Manuscript style
 
+## Current terminology precedence (2026-09-20, round 27)
+
+Follow `terminology.md` for current wording; it supersedes conflicting terms in all earlier notes below.
+Use Informative Preference Mining (IPM) and ERA: depth-first evaluator evolution.
+Motivate IPM from reducing the priority of repetitive comparisons on which signals agree; do not assert that disagreement guarantees useful human feedback or that zero conflict establishes simplicity.
+Keep candidate acceptance, program inheritance, and direction continuation distinct.
+Use human feedback, human preferences, evaluation procedure, and evaluation program for their defined objects, not as stylistic substitutes.
+Diagnostics support continued implementation; do not restore falsification-guided or another guided method name.
+Historical audit quotations and revision entries retain their original wording.
+
+## General constraints and earlier guidance
+
 - Use formal, direct academic prose with a scientific argument. Do not narrate
   debugging, historical runs, infrastructure work, or abandoned intermediate methods.
 - Distinguish specifications, hypotheses, implementation availability, and findings.

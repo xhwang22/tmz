@@ -1,14 +1,15 @@
-\section{ERA: evidence-guided evaluator evolution}
+\section{ERA: depth-first evaluator evolution}
 \label{sec:method}
 
-ERA treats evaluator evolution as search over executable programs with a fixed base model.
-It separates two decisions: whether a candidate improves the best evaluator, and whether its direction warrants further implementation.
+ERA uses errors revealed by human feedback to search over executable evaluation programs with a fixed base model.
+Its central distinction is between candidate acceptance and direction continuation: an unsuccessful candidate need not replace the best evaluator for its direction to receive further work.
+Program inheritance separately determines which implementation that work starts from.
 
-\subsection{Optimization objective and measurements}
+\subsection{Objective and measurement}
 \label{sec:runtime}
 \label{sec:measurement}
 
-For domain $D$, let $\mathcal{P}_D$ sample an input and then uniformly sample a strict human preference within its candidate group.
+For domain $D$, let $\mathcal{P}_D$ sample an input and then uniformly sample a strict human preference within its output group.
 With a fixed repeated-scoring protocol, the target is
 \begin{equation}
  J_D(\theta)=
@@ -20,8 +21,7 @@ where $\xi$ includes randomness in the $R$ executions used for each median score
 Each execution is pointwise (Equation~\ref{eq:program}), without access to the opponent or preference label.
 The default synthesizer receives specialist findings, reasons, and scopes, but not structured scores or scales (Figure~\ref{fig:runtime}; Appendix~\ref{app:synthesis}).
 
-Search observes a finite-cohort estimate, not $J_D$.
-Full-evaluator measurements request $R\geq3$ executions per artifact.
+Search estimates agreement on a finite cohort, requesting $R\geq3$ executions per artifact for full-evaluator measurements.
 For complete executions on input groups $\mathcal S$ with nonempty strict-preference sets $P_g$, define
 \begin{equation}
  \begin{aligned}
@@ -35,25 +35,26 @@ Input groups receive equal weight; predicted ties count as incorrect.
 The native development proxy uses one fixed pair per input and need not represent every within-group preference.
 Missing executions retain their denominators through coverage and missing-outcome bounds (Appendix~\ref{app:measurement}).
 
-\subsection{Directions and candidate programs}
+\subsection{Directions and candidates}
 \label{sec:proposal}
 
 A direction $d$ specifies a correction to the evaluation procedure, motivated by a hypothesis about how it would repair an observed error.
-Its implementation may require coordinated changes across $(A,K,V,T,\Pi,G)$.
+Implementing that correction may require coordinated changes across $(A,K,V,T,\Pi,G)$.
 For example, correcting omission judgments can require finding missing content, assessing its importance, and making that assessment affect the score.
+Changing only one step may leave the error unresolved.
 A candidate $C$ is one complete program implementing the direction, not an individual edit.
 
-The agent constructs candidates from inspectable proposal data $\Dprop$, including artifacts, human feedback, and execution traces.
+The agent constructs candidates from inspectable proposal data $\Dprop$, using the feedback table to connect evaluation errors to artifacts and execution traces.
 A disjoint sealed subset $\Ddev$ returns aggregate measurements only.
 The direction is the unit of continued exploration; the complete program is the unit of selection.
 Connected edits share one parent and one measured outcome, so a bundle's gain is not independent evidence for each edit.
 
-\subsection{Candidate acceptance and working-state updates}
+\subsection{Candidate acceptance and program inheritance}
 \label{sec:search}
 
-Let $B_t$ be the best accepted program and $W_t$ the working program for the active direction.
+Let $B_t$ be the best program accepted so far and $W_t$ the working program for the active direction.
 A new direction starts with $W_t=B_t$; within that direction, the next candidate edits $W_t$ using retained diagnostics.
-Every valid, distinct candidate receives the common development measurement.
+Every valid, distinct candidate receives the same development measurement protocol.
 
 Define $\Gamma_t(C)$ as the acceptance guard: complete and comparable execution, nondecreasing coverage, and the prespecified stratum-regression check.
 Writing $\widehat J_{\mathrm{dev}}(C)$ for the recorded agreement of program $C$, acceptance is
@@ -80,19 +81,19 @@ Both decisions use the pre-update state, so failed inheritance returns to $B_t$ 
 Equation~\ref{eq:search-update} preserves nondecreasing recorded development agreement for $B_t$ while allowing $W_t$ to pass through candidates that do not improve it.
 This is a selection invariant, not a guarantee of unseen agreement or statistical significance.
 
-\subsection{Diagnostic continuation and termination}
+\subsection{Continuing a direction}
 
-Depth-first allocation gives the active direction the next editing opportunity, independently of candidate acceptance.
-The agent can request diagnostics, submit another implementation, or pause when it cannot propose a different informative test.
-The controller enforces working-state eligibility and resource limits, not the agent's interpretation of failure.
-Thus, a direction can continue from the prior best program when its latest candidate cannot be inherited.
-Diagnostics check whether the proposed behavior occurred and affected the judgment as hypothesized.
-Detecting omissions without using their importance in the score would motivate testing that missing step.
+Depth-first allocation gives the active direction the next editing opportunity rather than treating candidate rejection as a reason to switch directions.
+The agent uses diagnostic results to distinguish an incomplete implementation from a correction that did not help despite being implemented.
+These diagnostics guide further edits without guaranteeing eventual improvement.
 
-Refutation requires results that contradict the hypothesis within its stated scope after relevant implementation alternatives have been examined.
-The controller does not automatically adjudicate semantic refutation.
-Resource exhaustion leaves an unresolved direction, not a refuted one.
+Direction continuation does not require inheriting the latest candidate.
+When inheritance fails, the agent can keep working on the same direction from $B_t$, retaining the rejected candidate's diagnostic history.
+It can request diagnostics, submit another implementation, or pause when no different informative test is proposed.
+The controller enforces program-inheritance eligibility and resource limits, not the agent's interpretation of failure.
 
+Judging a direction unhelpful requires diagnostic results that contradict its hypothesis within its stated scope, after relevant implementation problems have been examined.
+The controller does not make this judgment automatically, and resource exhaustion leaves the direction unresolved.
 Adaptive reuse makes $\Ddev$ development data, not an independent test.
 On normal completion, Train orders eligible candidates; terminal $\Dval$ assesses the frozen shortlist without reranking or edits.
 The seed remains if no eligible improvement exists, and independent Test/OOD assessment follows method freeze (Algorithm~\ref{alg:era}; Appendix~\ref{app:boundaries}).

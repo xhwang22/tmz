@@ -1,6 +1,6 @@
 # Paper context
 
-Updated: 2026-09-19. Status: method and study design with author-requested,
+Updated: 2026-09-20. Status: method and study design with author-requested,
 explicitly simulated quantitative displays; confirmatory results pending.
 The introduction includes a bounded qualitative development observation.
 The latest author-edited abstract retains ERA's method principle and adds an explicit
@@ -13,7 +13,7 @@ Its broader wording about existing evolution methods does not extend the scope o
 
 **Evolving Evaluation Systems from Human Feedback for Open-Ended Tasks**
 
-The paper currently has no project acronym. ERA names only the evidence-guided
+The paper currently has no project acronym. ERA names only the depth-first
 evaluator evolution method; do not invent an expanded acronym. The author has
 retired P2E from the active paper, not from archival history or source filenames.
 The historical source-repository name does not restrict the paper to slides.
@@ -41,13 +41,13 @@ because quality depends on task-specific criteria and trade-offs; preferences
 provide concrete judgments without specifying an executable evaluation procedure.
 Agent evolution is a candidate approach to learning that procedure, with two
 connected learning obstacles.
-Acquisition reduces repeated annotation of comparisons on which existing signals agree;
-falsification-guided depth-first evolution develops directions beyond an initial
+Informative Preference Mining (IPM) lowers the sampling priority of comparisons on which existing signals agree;
+depth-first evaluator evolution develops directions beyond an initial
 unsuccessful implementation.
 The search principle is to separate accepting a candidate from continuing its
 direction, rather than assuming immediate gain determines the value of further work.
 The paper-level question remains learning an evaluation procedure from human
-feedback, not generic feedback efficiency. Acquisition and evolution address
+feedback, not generic feedback efficiency. IPM and evolution address
 connected difficulties without claiming a new two-stage theory.
 The revised introduction explains rejection/redirection in the tested iterative
 optimizer configuration, then motivates continuation through interacting evaluation
@@ -55,25 +55,26 @@ steps. A direction specifies an intended improvement; its hypothesis states a
 testable prediction, and a candidate is a complete evaluator implementation.
 One unsuccessful implementation is insufficient to reject a direction, but can
 still be negative evidence. Consensus among signals is not correctness.
+Follow `terminology.md`, which supersedes all earlier naming guidance.
 Use human feedback consistently as the umbrella term and human preferences only
 for preference judgments. Detailed adaptation controls stay in Experiments and
 the appendix, with a short alternative-method comparison at the end of the introduction.
 Preferences are introduced as a form of human feedback. Disagreement refers to
 conflict among existing evaluation signals; diagnostic results refer to search-level
 implementation checks, distinct from evidence gathered about an artifact.
-The acquisition-to-evolution link is explicit: acquire informative preferences,
+The data-mining-to-evolution link is explicit: acquire informative preferences,
 then turn the problems they reveal into working evaluation-procedure changes.
 The observation of rejection/redirection motivates the explicit design principle
 that rejecting a candidate need not end work on its direction. It does not
 establish that immediate gain governed the optimizer's continuation decisions.
-The research question precedes the literature bridge, and acquisition references
+The research question precedes the literature bridge, and data mining references
 follow the allocation rule they support. The two linked steps are introduced
 once, without adding a separate feedback-waste theory or expanding the overview.
 GEPA, Meta-Harness, and DGM guide the argument structure, not borrowed findings.
 The introduction's literature bridge cites AutoCalibrate for feedback-driven
 criteria refinement and EvalGen for evaluation-function selection, Agent-as-a-Judge for tool-based
 evidence gathering, and active preference learning alongside query-by-committee
-for selective acquisition. These establish relevant prior capabilities, not ERA
+for selective data mining. These establish relevant prior capabilities, not ERA
 novelty or effectiveness. These sources use verified published records.
 Related Work now includes all four author-requested 2026 preprints: query-specific
 rubrics, Benchmark2, skill extraction/consumption, and the reward-hacking survey.
@@ -99,15 +100,15 @@ agreement, abstention, and results must be reported separately; newly collected
 labels are not inherently more reliable.
 
 The same wrong ordering may arise from missing observations, unused evidence,
-or inappropriate interpretation and priorities. Human evidence helps locate
+or inappropriate interpretation and priorities. Human feedback helps locate
 these evaluation gaps and supplies a selection standard; an ordering alone does
-not identify its cause. The acquisition design inventories domain evaluation knowledge,
+not identify its cause. The data mining design inventories domain evaluation knowledge,
 freezes signal–dimension mappings, uses a random reliability anchor, separates
-three semantic disagreement strata, and acquires available H0–H3.
+three semantic disagreement strata, and supplies available H0–H3 feedback.
 The implemented miner supplies structural priorities and source-group records;
 human-reliability qualification is a separate, still unverified step.
-H1 is central. H0-only instantiations do not possess uncollected H1/H2.
-The evidence table Z connects feedback, artifacts, source signals, routes,
+H1 is central. H0-only settings do not possess uncollected H1/H2.
+The feedback table Z connects feedback, artifacts, source signals, routes,
 tool output, uncertainty, and cost to ERA.
 
 ERA evolves observation and judgment through (A, K, V, T, Pi, G) with a fixed
@@ -115,21 +116,21 @@ base model. Pointwise scoring excludes opponents and labels. Full development
 and terminal validation request at least three executions per artifact before
 median comparison, with completeness checked separately. The direction is
 the unit of continued exploration; the complete program is the unit of selection.
-Connected changes instantiate a mechanism hypothesis, not an empirical finding.
+Connected changes implement a direction's proposed correction, not an empirical finding.
 Proposal evidence, sealed Train measurement, and allocation are separate.
-Working and best programs differ. Evidence-bound continuation, protection guards,
+Working and best programs differ. Diagnostic results for direction continuation, protection guards,
 terminal Val, independent Test/OOD, and component attribution remain explicit.
 The Method now follows executable evaluation and measurement, error-to-candidate
 revision, independent best/working updates, and failure interpretation and freeze.
 Default synthesis hides structured specialist scores, ratings, and scales while
 retaining findings, reasons, and scopes. Patch sessions require actual edits,
 intent, and inspected Train references; expectations and checks are optional.
-Working inheritance distinguishes accepted, undamaged, and unaccepted damaged
+Program inheritance distinguishes accepted, undamaged, and unaccepted damaged
 candidates; the last needs fresh, uncredited progress and preserved protection
 cases. Exact recorded-field changes, not semantic claims, can earn such progress.
-The controller does not automatically assign semantic refutation. Falsification
-remains a research standard for interpreting diagnostic results, distinct from
-pausing or budget exhaustion. Terminal Val never reranks the Train shortlist.
+The controller does not automatically judge a direction unhelpful.
+Diagnostic results support further implementation or motivate ending a direction;
+pausing or budget exhaustion leaves its value unresolved. Terminal Val never reranks the Train shortlist.
 The detailed implementation/exemplar audit is in method_implementation_audit.md.
 
 Parameter adaptation is a substantive alternative. The planned C1 controls add
@@ -137,7 +138,7 @@ fixed-structure evaluator fine-tuning and score calibration. An additional
 shared-observation comparison freezes (A,T,Pi) and restricts ERA to (K,V,G),
 separating changed observations from changed interpretation. Fine-tuning can
 learn criteria or tool use under suitable interfaces; the control is not a
-general capability claim. Supervision, development access, and adaptation and
+general capability claim. Human feedback, development access, and adaptation and
 deployment costs are accounted for. ERA's explicit criteria and traces permit
 inspection, not an automatic claim of faithful explanation. No advantage over
 parameter adaptation is asserted, no tuning results are simulated, and no
@@ -145,7 +146,7 @@ training is run. Evaluator tuning is distinct from C3 generator training.
 
 ## Hypotheses and studies
 
-Disagreement acquisition may improve final evaluator alignment at equal human
+IPM may improve final evaluator alignment at equal human
 cost; depth-first continuation may produce more sustained gains than restarting
 proposals at equal search resources. Both remain unverified (claims C27/C28).
 The inspected default pointwise workflow shows rejection, incumbent retention,
@@ -153,7 +154,7 @@ and redirection (C43); related themes can recur without continuation of the
 rejected implementation. Accepted improvements also occurred.
 This observation is not a universal characterization of RSI, an explanation of
 all limited gains, or proof that ERA/DFS outperforms alternatives.
-Building a preference corpus does not establish acquisition
+Building a preference corpus does not establish sampling
 efficiency, which requires a separate matched-budget random-sampling control.
 C1 assesses alignment and fixed-pool selection. C2 uses fresh shared initial
 outputs and new blinded human rankings. C3 specifies frozen-reward LoRA + GRPO,
@@ -210,7 +211,7 @@ program search peach #F2B8AE, and ERA rose #DD7389. Metric-only references stay
 neutral. Family, H-level, policy, rank, and outcome plots have their own explicit
 legends; settings use position, labels, or hatching where color has another role.
 The component heatmap spans all five colors with cream at zero and fixed ±6
-limits. All five acquisition policies retain equal-width lines and individual
+limits. All five data mining policies retain equal-width lines and individual
 percentile bands. Reference 2 supplies a cool-to-warm alternative; reference 3
 supplies teal/apricot. No final palette choice is assumed.
 
@@ -264,7 +265,7 @@ measurements and all associated claims are audited.
 
 ## Remaining author decisions
 
-Freeze execution scope, data permissions, real supervision, models, budgets,
+Freeze execution scope, data permissions, available human feedback, models, budgets,
 contrasts, human protocols, analysis, authorship, and disclosures.
 Add empirical outputs only from authorized source-traceable measurements.
 
@@ -324,3 +325,27 @@ The independent checker covers 110 bars and intervals, eight family points, comp
 The paper has 9 main pages and 36 total pages; no template scaling or body-font change was needed.
 C27/C28 remain empirical gaps; C3 is not run or simulated.
 No abstract, Method, bibliography, engineering-source, commit, or push change is part of this task.
+
+## Whole-manuscript terminology consistency (round 26)
+
+`terminology.md` is the current naming authority and supersedes conflicting terminology in earlier rounds above.
+Round 26 used disagreement-based data mining; the current name is Informative Preference Mining (IPM), including mining existing datasets and reusing compatible preferences.
+ERA remains depth-first evaluator evolution.
+Keep candidate acceptance, program inheritance, and direction continuation distinct; use best program and working program for B and W.
+Reserve candidate for a proposed evaluation program and use output for an artifact being evaluated; preference sign does not mean an evolution direction.
+Human feedback, human preferences, evaluation procedure, evaluation program, diagnostic results, artifact evidence, and feedback table Z retain their separate definitions.
+`make check` now includes an active-TeX terminology regression check that preserves legacy paths and citation identifiers.
+The author-edited abstract, 40 references, numerical records, and both landscape assets are unchanged; C27/C28 remain gaps.
+The manuscript remains 9 main pages and 36 total pages. No experiments, engineering changes, commit, or push occur in this round.
+
+## IPM and Method argument (round 27)
+
+The upstream method is Informative Preference Mining (IPM), not disagreement-based data mining.
+Lead with lowering the relative sampling priority of repeated comparisons on which existing signals agree, then define comparable signs and the implemented structural priority.
+The score is twice the count of within-dimension conflicts plus overall--dimension conflicts plus a cross-dimensional trade-off indicator.
+It estimates neither information gain nor human reliability; zero conflict may reflect ties or missingness, and consensus can hide shared errors.
+The random anchor is selected before ranking and charged to the same budget, with human qualification still separate from the implemented ranking.
+Existing datasets and new outputs supply the same feedback table through compatible preference reuse or missing-label annotation.
+ERA proceeds through objective/measurement, directions/candidates, acceptance/inheritance, and direction continuation.
+Preserve the pre-update best-program fallback and all inheritance prerequisites; direction continuation can use retained diagnostics even when the rejected candidate cannot be inherited.
+The author-edited abstract, citations, empirical gaps, numerical assets, and landscape layouts are unchanged.

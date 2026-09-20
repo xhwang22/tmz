@@ -9,7 +9,7 @@
       "caption_source": "sections/introduction.tex",
       "panels": [
         "(a) four domain families",
-        "(b) existing-dataset mining and new preference collection",
+        "(b) IPM with existing datasets or new outputs and compatible preference reuse",
         "(c) ERA acceptance and continuation",
         "(d) C1 alignment/selection, C2 refinement, planned C3"
       ],
@@ -28,9 +28,10 @@
         "C16",
         "C31",
         "C32",
-        "C33"
+        "C33",
+        "C49"
       ],
-      "caption_in_manuscript": "Evaluation-agent self-evolution from human feedback. (a) Four artifact families retain distinct evaluation standards. (b) Existing datasets supply candidates for mining and matching preferences for reuse; missing preferences are collected on existing or fresh outputs. Both routes retain their provenance and annotation quality. (c) \\ERA{} evolves a six-component program with a fixed base model, separating candidate acceptance from direction continuation. (d) C1 alignment and selection, C2 refinement, and planned C3 reward training. Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
+      "caption_in_manuscript": "Evaluator self-evolution from human feedback. (a) Four artifact families retain distinct evaluation standards. (b) Informative Preference Mining (IPM) selects comparisons from existing datasets or fresh outputs, reusing matching preferences and collecting missing ones. Both routes retain their provenance and annotation quality. (c) \\ERA{} evolves a six-component program with a fixed base model, separating candidate acceptance from direction continuation. (d) C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training. Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
       "evidence_status": "Conceptual specification with constructed examples; no measured results"
     },
     {
@@ -43,7 +44,7 @@
       ],
       "key_numbers": [
         "22 tasks in four families; schematic equal family quadrants",
-        "3,520 requested OOD input groups; 160 per task; four candidates per input",
+        "3,520 requested OOD input groups; 160 per task; four outputs per input",
         "110 method-task means and 95% input-bootstrap intervals; 2,000 paired draws",
         "Eight equal-domain family points; incomplete scoring counts as failed selection"
       ],
@@ -51,7 +52,7 @@
         "C37",
         "C48"
       ],
-      "evidence_status": "Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, acquisition, search, C2, or C3 efficacy",
+      "evidence_status": "Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, sampling, search, C2, or C3 efficacy",
       "data_manifest": "data/simulated/c1_landscape/manifest.json",
       "id": "Fig2",
       "caption_source": "sections/results.tex",
@@ -78,7 +79,7 @@
         "C12",
         "C31"
       ],
-      "caption_in_manuscript": "The six-component evaluation program. (a) Read one candidate and permitted task evidence. (b) Route tool observations. (c) Apply dimensional criteria. (d) Fuse sourced findings into a score and critique. The lower rail identifies the editable components. Human feedback supervises evolution, never the deployed scorer. Evidence and judgment remain separate; the summary and findings are a constructed example.",
+      "caption_in_manuscript": "The six-component evaluation program. (a) Read one output and permitted task evidence. (b) Route tool observations. (c) Apply dimensional criteria. (d) Fuse sourced findings into a score and critique. The lower rail identifies the editable components. Human feedback guides evaluator evolution, never the deployed scorer. Artifact evidence and judgment remain separate; the summary and findings are a constructed example.",
       "evidence_status": "Conceptual specification with constructed examples; no measured results"
     },
     {
@@ -99,7 +100,7 @@
       "file": "figures/budget_tests.tex",
       "panels": [
         "(a) search under equal total budgets",
-        "(b) acquisition under equal human budgets"
+        "(b) IPM versus alternative sampling under equal human budgets"
       ]
     },
     {
@@ -112,7 +113,7 @@
         "(c) four family bar panels in one row, five methods per task"
       ],
       "key_numbers": [
-        "2,880 synthetic OOD input groups; 720 per family; four candidates per input",
+        "2,880 synthetic OOD input groups; 720 per family; four outputs per input",
         "120 groups/task for six-task families; 144 for five-task families",
         "110 bars and 95% input-group bootstrap intervals; 11 domains per setting"
       ],
@@ -130,7 +131,7 @@
       ],
       "evidence_status": "Balanced synthetic OOD subset for layout, distinct from full-cohort appendix data; no empirical efficacy or label availability established",
       "id": "Fig5",
-      "caption_in_manuscript": "\\textbf{Simulated task coverage and evaluator comparisons; not experimental results.} Panel (a) summarizes 22 tasks and 2,880 input groups, balanced to 720 per family with four candidates per input. A fixed hash selects this subset without reading outcomes; the appendix reports the full synthetic cohorts. Sector angles encode input counts; task codes follow Table~\\ref{tab:domains}. Panel (b) plots assigned cost units, not measured runtime, against OOD agreement with synthetic human rankings. Small marks denote 110 domain--method combinations; large marks equally average 11 domains per feedback setting. Shapes identify methods, and filled/open marks denote illustrative reused/new preferences, not label reliability. Panel (c) reports agreement from pointwise scores and 95\\% input-group bootstrap intervals on a common 0--100\\% scale. Baseline bars follow the displayed order in each family's hue; ERA is lake green. Cost includes all selected inputs; agreement uses method-complete inputs. Marginal intervals do not establish paired differences."
+      "caption_in_manuscript": "\\textbf{Simulated task coverage and evaluator comparisons; not experimental results.} Panel (a) summarizes 22 tasks and 2,880 input groups, balanced to 720 per family with four outputs per input. A fixed hash selects this subset without reading outcomes; the appendix reports the full synthetic cohorts. Sector angles encode input counts; task codes follow Table~\\ref{tab:domains}. Panel (b) plots assigned cost units, not measured runtime, against OOD agreement with synthetic human rankings. Small marks denote 110 domain--method combinations; large marks equally average 11 domains per feedback setting. Shapes identify methods, and filled/open marks denote illustrative reused/new preferences, not label reliability. Panel (c) reports agreement from pointwise scores and 95\\% input-group bootstrap intervals on a common 0--100\\% scale. Baseline bars follow the displayed order in each family's hue; ERA is lake green. Cost includes all selected inputs; agreement uses method-complete inputs. Marginal intervals do not establish paired differences."
     },
     {
       "id": "Fig6",
@@ -178,7 +179,7 @@
         "C36",
         "C37"
       ],
-      "caption_in_manuscript": "\\textbf{Simulated acquisition curves; not experimental results.} Panels (a) and (b) compare five policies under reused and newly collected preferences. Lines average 12 toy runs; bands mark each policy's 10th--90th percentiles, not confidence intervals. Budgets count original-input annotation units, including a shared 10-unit random anchor.",
+      "caption_in_manuscript": "\\textbf{Simulated sampling curves; not experimental results.} Panels (a) and (b) compare five sampling policies under reused and newly collected preferences. Lines average 12 toy runs; bands mark each policy's 10th--90th percentiles, not confidence intervals. Budgets count original-input annotation units, including a shared 10-unit random anchor.",
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
@@ -329,7 +330,7 @@
       "id": "Tab3",
       "label": "tab:human-provenance",
       "file": "sections/appendix.tex",
-      "caption_in_manuscript": "Two routes to human feedback. Report each source's protocol, agreement, abstention, and available supervision separately. An adapter changes representation, not the quality construct or the provenance of a judgment.",
+      "caption_in_manuscript": "Two routes to human feedback. Report each source's protocol, agreement, abstention, and available human feedback separately. An adapter changes representation, not the quality construct or the provenance of a judgment.",
       "supports_claims": [
         "C4",
         "C5",
@@ -367,7 +368,7 @@
       "id": "Tab6",
       "label": "tab:adaptation",
       "file": "sections/appendix.tex",
-      "caption_in_manuscript": "Adaptation choices for the planned C1 comparison. Rows specify what changes, not a ranking of effectiveness. All use the same permitted human supervision; observed evidence and total adaptation cost must also be reported.",
+      "caption_in_manuscript": "Adaptation choices for the planned C1 comparison. Rows specify what changes, not a ranking of effectiveness. All use the same permitted human feedback; observed evidence and total adaptation cost must also be reported.",
       "supports_claims": [
         "C40"
       ],
@@ -450,7 +451,7 @@
       "id": "Tab13",
       "label": "tab:simulation-cohorts",
       "file": "sections/appendix.tex",
-      "caption_in_manuscript": "Eight diagnostic cohorts for the simulated C2, annotation, and component displays. The C1 displays cover all 22 domains separately. Assignments are layout examples, not verified data availability or fixed domain categories. Each C1 domain/split contains 160 synthetic input groups and four candidates.",
+      "caption_in_manuscript": "Eight diagnostic cohorts for the simulated C2, annotation, and component displays. The C1 displays cover all 22 domains separately. Assignments are layout examples, not verified data availability or fixed domain categories. Each C1 domain/split contains 160 synthetic input groups and four outputs.",
       "supports_claims": [
         "C37"
       ],

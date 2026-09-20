@@ -1,7 +1,7 @@
 \section{Related work}
 \label{sec:related}
 
-\paragraph{Evaluators and feedback acquisition.}
+\paragraph{Evaluators and data mining.}
 G-Eval and MT-Bench study model-based judgment and human agreement \citep{liu2023geval,zheng2023judging}.
 Prometheus, Prometheus~2, and Self-Taught Evaluators improve judges through rubric-conditioned or synthetic training data \citep{kim2024prometheus,kim2024prometheus2,wang2024selftaught}.
 AutoCalibrate refines evaluation criteria from human-labeled examples, while EvalGen helps users define criteria and select evaluation functions using human grades \citep{liu2024autocalibrate,shankar2024evalgen}.
@@ -10,8 +10,8 @@ Our optimization target includes both the criteria and the procedure for gatheri
 
 RewardBench and JudgeBench assess evaluators on preference comparisons \citep{lambert2024rewardbench,tan2025judgebench}.
 Benchmark$^2$ instead examines benchmark quality through ranking consistency, discriminability, and capability alignment, and studies selective test-set construction \citep{qian2026benchmark2}.
-Our acquisition question concerns which comparisons to annotate for evaluator improvement, drawing on query-by-committee and active preference learning \citep{seung1992committee,muldrew2024activepreference}.
-Because our evaluation signals can measure different properties, acquisition distinguishes conflicts within a dimension from trade-offs across dimensions and retains random sampling to check shared blind spots.
+Our data-mining question concerns which comparisons to select for evaluator improvement, reusing matching preferences or collecting missing ones, drawing on query-by-committee and active preference learning \citep{seung1992committee,muldrew2024activepreference}.
+Because our evaluation signals can measure different properties, IPM distinguishes conflicts within a dimension from trade-offs across dimensions and retains random sampling to check shared blind spots.
 
 \paragraph{Optimizing language-model programs.}
 DSPy exposes compositional pipelines to optimization \citep{khattab2024dspy}.

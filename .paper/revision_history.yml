@@ -730,6 +730,60 @@
         "Paper memory and numerical checks"
       ],
       "summary": "Restores the approved 5.4-by-3.57-inch landscape design to main page 8 while keeping the main C1 table and the nine-page main limit. Changes the ring from balanced-sample composition to task taxonomy, replaces assigned-cost scatter with seed/ERA family agreement versus Best-of-4 selection, and computes all 110 task-method bars from jointly complete full OOD cohorts. Existing synthetic records and the historical landscape assets remain unchanged; no observations or training results are generated. New exports retain all 3,520 requested inputs and count failed scoring as failed selection. An independent checker verifies cohort denominators, means, paired input-bootstrap intervals, family aggregation, geometry, hashes, fonts and disclosures. Moves the empty budget figure and downstream placeholder table into their relevant appendices while retaining their main-text interpretations. Updates display IDs and provenance without changing empirical gaps C27/C28 or the author abstract, Method, and bibliography. Figures are simulation-only; the submission guard remains active. No commit or push requested for this revision."
+    },
+    {
+      "round": 26,
+      "date": "2026-09-20",
+      "trigger": "Author requests stable terminology throughout the manuscript, following the rejection of guided ERA branding and preference-acquisition naming.",
+      "reviewer": "Author terminology guidance; local prose, source, and layout audit",
+      "changed_claims": [
+        "C4",
+        "C5",
+        "C8",
+        "C9",
+        "C11",
+        "C16",
+        "C17",
+        "C21",
+        "C25",
+        "C27",
+        "C31",
+        "C36"
+      ],
+      "changed_figures": [
+        "Fig1",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig7"
+      ],
+      "sections_touched": [
+        "Introduction",
+        "Related work",
+        "Problem formulation",
+        "Data mining",
+        "ERA method",
+        "Experiments",
+        "Results and analysis",
+        "Discussion",
+        "Conclusion",
+        "Reproducibility statement",
+        "Appendix and algorithm",
+        "Figure 1 labels and captions",
+        "Figure 4 labels",
+        "Paper memory and terminology checks"
+      ],
+      "summary": "Standardizes disagreement-based data mining and depth-first evaluator evolution across active prose, headings, captions, and diagrams. Separates data mining from sampling and annotation, including existing-dataset mining and preference reuse. Stabilizes human feedback versus human preferences, evaluation procedure versus evaluation program, direction versus candidate, preference sign versus evolution direction, candidate acceptance versus program inheritance and direction continuation, and diagnostic results versus artifact evidence. Replaces the retired refutation framing with scoped diagnostic interpretation without changing update equations, eligibility, budgets, or evidence status. Adds a terminology glossary and an active-TeX regression check, synchronizes claim/caption memory, and preserves historical revision entries and legacy identifiers. The author-edited abstract, all 40 bibliography entries, original synthetic records, and both landscape figure assets are unchanged. Builds 9 main pages and 36 total pages; structural, terminology, memory, simulation, and landscape checks pass. C27/C28 remain gaps and the submission guard remains active. No experiments, training, model calls, engineering-source edits, commit, or push."
+    },
+    {
+      "round": 27,
+      "date": "2026-09-20",
+      "trigger": "Author selects Informative Preference Mining and requests a Method rewrite motivated by reverse selection of repetitive, consistently ranked comparisons.",
+      "reviewer": "Author feedback; local implementation, prose, and layout audit",
+      "changed_claims": ["C8", "C14", "C17", "C18", "C20", "C31", "C49"],
+      "changed_figures": ["Fig1", "Fig4"],
+      "sections_touched": ["Informative Preference Mining", "ERA method", "Introduction and Figure 1 caption", "Related work, Experiments, and Conclusion name alignment", "Annotation appendix", "Figures 1 and 4 labels", "Terminology checker and paper memory"],
+      "summary": "Rewrites IPM around lowering the sampling priority of comparisons on which existing signals agree, while retaining the random anchor and compatible preference reuse from existing datasets or new outputs. Moves the implemented structural priority equation into the main Method and distinguishes zero conflict from genuine agreement, information gain, or human reliability. Reorganizes ERA around objective/measurement, directions/candidates, acceptance/inheritance, and direction continuation, preserving the pre-update best fallback and all eligibility rules. Aligns current method names in prose and figure labels and adds design claim C49 without closing empirical gaps C27/C28. Compile and structural, terminology, memory, simulation, and landscape checks pass; the main text remains nine pages and the full PDF 36 pages without typography changes. Visually reviews Method pages, overview, main landscape, and main table. The author-edited abstract, 40 references, simulation records, both landscape assets, and engineering sources remain unchanged. No experiments, model calls, annotation, training, commit, or push."
     }
   ],
   "updated_on": "2026-09-20"

@@ -53,7 +53,7 @@
     },
     {
       "id": "C4",
-      "text": "Feedback has four levels: $H_0$ gives overall preference; $H_1$ gives dimension-wise preference; $H_2$ identifies error type, severity, and location; $H_3$ optionally supplies a free-form rationale.",
+      "text": "Human feedback has four levels: $H_0$ gives overall preferences; $H_1$ gives dimensional preferences; $H_2$ identifies error type, severity, and location; $H_3$ optionally supplies a free-form rationale.",
       "source": "sections/problem.tex",
       "kind": "definition",
       "evidence_artifacts": [
@@ -70,7 +70,7 @@
       "id": "C5",
       "text": "$H_1$ is central to the dimension-guided design. An $H_0$-only corpus remains usable, but it supplies neither human dimensional judgments nor human explanations.",
       "source": "sections/problem.tex",
-      "kind": "supervision boundary",
+      "kind": "human-feedback boundary",
       "evidence_artifacts": [
         "sections/problem.tex",
         ".paper/source_provenance.md"
@@ -115,9 +115,9 @@
     },
     {
       "id": "C8",
-      "text": "The miner distinguishes three cases. \\emph{Within-dimension disagreement} occurs when signals from distinct source groups favor opposite candidates on the same criterion. \\emph{Overall--dimension disagreement} occurs when an overall signal opposes a dimensional signal. \\emph{Cross-dimensional trade-offs} occur when dimension-level preferences favor different candidates; these are not contradictory measurements of one criterion.",
+      "text": "The ranking distinguishes three cases. \\emph{Within-dimension disagreement} occurs when signals from distinct source groups favor opposite outputs on the same criterion. \\emph{Overall--dimension disagreement} occurs when an overall signal opposes a dimensional signal. \\emph{Cross-dimensional trade-offs} occur when dimension-level preferences favor different outputs; these are not contradictory measurements of one criterion.",
       "source": "sections/mining.tex",
-      "kind": "acquisition definition",
+      "kind": "data-mining definition",
       "evidence_artifacts": [
         "sections/mining.tex",
         ".paper/source_provenance.md",
@@ -131,7 +131,7 @@
     },
     {
       "id": "C9",
-      "text": "The adaptation evidence table $Z(r,q)$ links artifact provenance, available human judgments, source signals, evaluator decisions, tool observations, and execution cost.",
+      "text": "The feedback table $Z(r,q)$ links artifact provenance, available human judgments, source signals, evaluator decisions, tool observations, and execution cost.",
       "source": "sections/mining.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -164,7 +164,7 @@
     },
     {
       "id": "C11",
-      "text": "At deployment, the evaluator receives one candidate and its permitted evidence; opponents, human labels, generator identity, split labels, and mining strata are excluded.",
+      "text": "At deployment, the evaluator receives one candidate output and its permitted evidence; opponents, human labels, generator identity, split labels, and mining strata are excluded.",
       "source": "sections/problem.tex",
       "kind": "runtime boundary",
       "evidence_artifacts": [
@@ -213,7 +213,7 @@
     },
     {
       "id": "C14",
-      "text": "The agent constructs candidates from inspectable proposal data $\\Dprop$, including artifacts, human feedback, and execution traces. A disjoint sealed subset $\\Ddev$ returns aggregate measurements only.",
+      "text": "The agent constructs candidates from inspectable proposal data $\\Dprop$, using the feedback table to connect evaluation errors to artifacts and execution traces. A disjoint sealed subset $\\Ddev$ returns aggregate measurements only.",
       "source": "sections/method.tex",
       "kind": "data access protocol",
       "evidence_artifacts": [
@@ -245,7 +245,7 @@
     },
     {
       "id": "C16",
-      "text": "Let $B_t$ be the best accepted program and $W_t$ the working program for the active direction.",
+      "text": "Let $B_t$ be the best program accepted so far and $W_t$ the working program for the active direction.",
       "source": "sections/method.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -257,13 +257,13 @@
         "Fig1"
       ],
       "status": "draft",
-      "risk": "Best acceptance and working-state inheritance are distinct implemented decisions. An unaccepted damaged candidate requires fresh, previously uncredited measured progress and no damage to declared protection cases; no optimal-allocation benefit is established."
+      "risk": "Candidate acceptance and program inheritance are distinct implemented decisions. An unaccepted damaged candidate requires fresh, previously uncredited measured progress and no damage to declared protection cases; no optimal-allocation benefit is established."
     },
     {
       "id": "C17",
-      "text": "Refutation requires results that contradict the hypothesis within its stated scope after relevant implementation alternatives have been examined. The controller does not automatically adjudicate semantic refutation. Resource exhaustion leaves an unresolved direction, not a refuted one.",
+      "text": "Judging a direction unhelpful requires diagnostic results that contradict its hypothesis within its stated scope, after relevant implementation problems have been examined. The controller does not make this judgment automatically, and resource exhaustion leaves the direction unresolved.",
       "source": "sections/method.tex",
-      "kind": "refutation boundary",
+      "kind": "direction-assessment boundary",
       "evidence_artifacts": [
         "sections/method.tex",
         ".paper/source_provenance.md",
@@ -271,11 +271,11 @@
       ],
       "figure_or_table": [],
       "status": "draft",
-      "risk": "Scoped refutation is a research evidence standard, not an implemented semantic oracle. The current decision path keeps mechanism_refuted false; failure may still supply negative evidence without proving a direction false."
+      "risk": "Judging a direction unhelpful requires interpretation of diagnostic results, not an implemented automatic decision. The current decision path keeps mechanism_refuted false; failure may still supply negative evidence without proving a direction false."
     },
     {
       "id": "C18",
-      "text": "Full-evaluator measurements request $R\\geq3$ executions per artifact.",
+      "text": "Search estimates agreement on a finite cohort, requesting $R\\geq3$ executions per artifact for full-evaluator measurements.",
       "source": "sections/method.tex",
       "kind": "measurement definition",
       "evidence_artifacts": [
@@ -305,7 +305,7 @@
     },
     {
       "id": "C20",
-      "text": "Metrics reserved for final independent assessment are frozen separately and never enter tools, routing, critique, or reward.",
+      "text": "Metrics reserved for final independent assessment remain outside mining, evaluator tools, critique, and reward.",
       "source": "sections/mining.tex",
       "kind": "metric independence",
       "evidence_artifacts": [
@@ -321,7 +321,7 @@
     },
     {
       "id": "C21",
-      "text": "For each test input, all evaluators receive the same candidate group, with a default design of $N=4$. Complete human rankings support global pairwise agreement, top-region agreement involving the human top-two candidates, Best-of-$N$ selection, and selection regret. When only ranks are available, normalized regret is $(\\operatorname{rank}(\\hat y)-1)/(N-1)$ for the selected output $\\hat y$. A pair-only dataset supports pairwise evaluation, not an $N$-way selection claim.",
+      "text": "For each test input, all evaluators receive the same output group, with a default design of $N=4$. Complete human rankings support global pairwise agreement, top-region agreement involving the human top-two outputs, Best-of-$N$ selection, and selection regret. When only ranks are available, normalized regret is $(\\operatorname{rank}(\\hat y)-1)/(N-1)$ for the selected output $\\hat y$. A pair-only dataset supports pairwise evaluation, not an $N$-way selection claim.",
       "source": "sections/experiments.tex",
       "kind": "C1 study protocol",
       "evidence_artifacts": [
@@ -388,7 +388,7 @@
     },
     {
       "id": "C25",
-      "text": "Mining strategies are compared at equal human budgets $N_H\\in\\{20,50,100,200\\}$, measured in original-input annotation units.",
+      "text": "Sampling policies are compared at equal human budgets $N_H\\in\\{20,50,100,200\\}$, measured in original-input annotation units.",
       "source": "sections/experiments.tex",
       "kind": "ablation design",
       "evidence_artifacts": [
@@ -430,7 +430,7 @@
         "Fig4"
       ],
       "status": "gap",
-      "gap_reason": "No matched-human-cost acquisition result on independently sampled post-evolution evaluation is incorporated. Building a corpus or finding disagreements does not establish acquisition efficiency; simulated curves cannot close this gap."
+      "gap_reason": "No matched-human-cost sampling result on independently sampled post-evolution evaluation is incorporated. Building a corpus or finding disagreements does not establish sampling efficiency; simulated curves cannot close this gap."
     },
     {
       "id": "C28",
@@ -474,7 +474,7 @@
     },
     {
       "id": "C31",
-      "text": "ERA treats evaluator evolution as search over executable programs with a fixed base model.",
+      "text": "ERA uses errors revealed by human feedback to search over executable evaluation programs with a fixed base model.",
       "source": "sections/method.tex",
       "kind": "evolution object",
       "evidence_artifacts": [
@@ -559,7 +559,7 @@
       "id": "C36",
       "text": "Equal units test label efficiency; measured annotation time is needed to test human efficiency.",
       "source": "sections/experiments.tex",
-      "kind": "acquisition inference boundary",
+      "kind": "sampling inference boundary",
       "figure_or_table": [
         "Tab11",
         "Fig7"
@@ -784,6 +784,20 @@
       ],
       "status": "supported",
       "risk": "Arithmetic and provenance only; a display of synthetic values cannot establish evaluator improvement. Bar intervals condition on fixed synthetic evaluators, not independent search runs."
+    },
+    {
+      "id": "C49",
+      "text": "Informative Preference Mining (IPM) lowers the sampling priority of comparisons on which existing evaluation signals consistently agree. Repeated annotations of these comparisons may add little information about evaluation errors. IPM selects comparisons from existing datasets or newly generated outputs, reusing compatible human preferences and collecting missing ones while retaining a random anchor.",
+      "source": "sections/mining.tex",
+      "kind": "IPM design and reverse-selection motivation",
+      "figure_or_table": ["Fig1"],
+      "evidence_artifacts": [
+        "sections/mining.tex",
+        "sections/appendix.tex",
+        ".paper/method_implementation_audit.md"
+      ],
+      "status": "draft",
+      "risk": "Structural ranking is implemented, not human information gain. Zero priority can arise from ties or missingness, and agreement can hide shared errors. The random anchor and separate human qualification remain necessary; equal-human-cost evaluator gains remain the C27 gap. This is not a new hard exclusion filter."
     }
   ]
 }

@@ -19,6 +19,7 @@ paper.pdf: build/main.pdf
 check: paper.pdf
 	python3 scripts/check_paper.py
 	python3 scripts/check_memory.py
+	python3 scripts/check_terminology.py
 	python3 scripts/check_simulated_results.py
 	python3 scripts/check_landscape_results.py
 	python3 scripts/check_c1_landscape.py

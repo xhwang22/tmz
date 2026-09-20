@@ -10,14 +10,14 @@ plan-to-manuscript map is `plan_coverage.md`.
 
 | Claim family | Manuscript / evidence | Allowed status |
 | --- | --- | --- |
-| Preference-supervised evaluation-agent evolution and domain standard | Introduction, problem, Fig1, Tab2 | Research question and scope, not achieved alignment or universal transfer |
+| Evaluator self-evolution from human feedback and domain standard | Introduction, problem, Fig1, Tab2 | Research question and scope, not achieved alignment or universal transfer |
 | Preference outcomes versus criteria and evidence for new outputs | Abstract, introduction, problem; C42 | Problem framing, not a claim that all human preferences can be recovered or explained |
 | Two feedback-construction settings; no H0 admission prerequisite | Problem/mining, Fig1, Tab3; C33/C34 | Shared algorithm with separately reported data provenance |
 | New labels are not presumed more reliable | Annotation protocol, Fig8, Tab3; C35 | Reporting requirement; simulated raters supply no reliability evidence |
-| Semantic mapping, dependence, three strata | Mining, Tab4 | Acquisition design, not validated information efficiency |
-| H0–H3 and evidence table Z | Problem/mining, Figs1/3, Tab3 | Protocol; availability must be reported per source |
+| Semantic mapping, dependence, three strata | Mining, Tab4 | Data-mining design, not validated information efficiency |
+| H0–H3 and feedback table Z | Problem/mining, Figs1/3, Tab3 | Protocol; availability must be reported per source |
 | Six components, fixed model, pointwise access | Problem/method, Fig3, Tab5 | Method specification, not immunity to leakage |
-| Evolution of observation and judgment; hypothesis/program units | Method, Figs1/3, Tab11; C31/C32 | Procedural definitions, not evidence of improved judgment |
+| Evolution of observation and judgment; direction/program units | Method, Figs1/3, Tab11; C31/C32 | Procedural definitions, not evidence of improved judgment |
 | Directions, connected edits, best/working, outcomes | Method, Algorithm1, Tab11 | Search procedure; utility requires controlled ablation |
 | Train/Val/Test and metric reserve | Method/mining, Tab5 | Access contract; adaptive development is not final evidence |
 | Optional semantic synthesis | Method/appendix | Defined grouping and anchor arithmetic, not semantic accuracy |
@@ -25,7 +25,7 @@ plan-to-manuscript map is `plan_coverage.md`.
 | External human standard; automated program changes | Method; C39 | Self-evolution definition, not self-definition of human preferences |
 | Fine-tuning/calibration alternatives and shared-observation control | Experiments, adaptation appendix, Tab6; C40 | Planned evaluator comparison; no superiority, data-efficiency, or cost result; distinct from C3 |
 | Explicit criteria and traces versus faithful explanation | Adaptation appendix; C41 | Inspection affordance and evidential boundary, not validated interpretability |
-| Corpus construction versus acquisition efficiency | Experiments, Fig7, Tab11; C36 | Separate matched-budget random-sampling comparison required |
+| Corpus construction versus sampling efficiency | Experiments, Fig7, Tab11; C36 | Separate matched-budget random-sampling comparison required |
 | Annotation efficiency and sustained gains from depth-first continuation | Introduction; C27/C28 | Material empirical gaps; retain as open comparisons only |
 | Default pointwise rejection, incumbent retention, and redirection | Introduction; search_observation_audit.md; C43 | Bounded qualitative development observation, not universal RSI behavior or proof of the DFS remedy |
 | Simulated display provenance | Generator, manifest, CSVs, PDFs; C37 | Supported only as artificial reporting examples, not effects |
@@ -201,3 +201,22 @@ C37/C48 support simulation provenance and denominator arithmetic only, not empir
 The new exports retain 3,520 requested OOD inputs; bars use the five-method completeness intersection within each domain, while selection counts incomplete scoring as failure.
 A new independent checker validates all 110 bars/intervals and eight family points, with original records and assets unchanged.
 C27/C28 remain empirical gaps, and no C2/C3 outcome is added.
+
+## Terminology consistency (round 26)
+
+Current naming follows `terminology.md`; earlier round notes above retain their historical wording.
+Data mining includes mining existing datasets and reusing preferences, not only collecting new annotations.
+ERA is depth-first evaluator evolution, separating candidate acceptance, program inheritance, and direction continuation.
+C17 now states the diagnostic requirements for judging a direction unhelpful without presenting an automatic semantic decision rule.
+C4/C8/C9/C11/C16/C21/C25/C31 retain their definitions with consistent terms; no evidence status changes.
+C27/C28 remain material empirical gaps. Abstract, citations, simulation records, and both landscape assets are unchanged.
+
+## Informative Preference Mining and Method rewrite (round 27)
+
+C49 records IPM's reverse-selection motivation and existing/new data routes as a design claim, not a measured information advantage.
+C8 retains the three implemented conflict types; the structural priority equation moves from the appendix into the main Method without changing its weights.
+Zero conflict is not equated with simplicity: ties, missingness, and shared errors remain explicit, with a random anchor and separate human qualification.
+C14/C17/C18/C20/C31 are synchronized to the revised exposition; their evidence status is unchanged.
+C45--C47 retain the recorded-development invariant, canonical-pair proxy boundary, and pre-update inheritance fallback.
+Figures 1 and 4 adopt IPM labels without changing geometry or numerical assets.
+C27/C28 still require matched-human-cost and matched-search-cost empirical comparisons.

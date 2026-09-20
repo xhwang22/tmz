@@ -115,3 +115,21 @@ No source edits or empirical execution were performed by this review.
 | `harness_evolution/multidomain/revision_session.py` | `4e53d1620e79e646a3563c534d5ef2098256045b18580538c0a3522680259c17` |
 | `harness_evolution/multidomain/era_search.py` | `2c1b95b5247a3a3423901229accd2233b21bdfef05b5cf6ea2874822018b11c8` |
 | `harness_evolution/multidomain/intervention_revision.py` | `39cf7b7e0cb247911cf0b2ecb1298929d1e69abf41d651607fbe6ab4d4d77eff` |
+
+## IPM reverse-selection exposition (2026-09-20, round 27)
+
+The author selected Informative Preference Mining (IPM) and requested the Method be argued from reducing low-value repetition rather than presuming disagreement valuable.
+The revised opening therefore lowers the priority of comparisons on which existing evaluation signals agree, while treating information value as an empirical question.
+The implementation is unchanged: `mining.py:100–285` ranks structural conflicts, breaking ties by pair identifier, with a separately sampled random anchor.
+The main text now displays the existing priority equation; it does not introduce a hard filter, entropy estimate, or learned reliability weights.
+Within-dimension conflicts use opposing cross-source signals, including when a group has internal conflict; the group-consensus abstention rule applies to dimension aggregation for trade-offs.
+Overall--dimension conflict is signal-level opposition, not necessarily a conflict between group consensuses.
+Missingness and ties can yield zero priority, so zero priority does not establish agreement or simplicity.
+The full human-qualification protocol and matched-human-cost benefit remain unverified.
+The repeated-signal margin in `mining_runner.py:147–172` remains the median of same-repeat pair differences, distinct from the evaluator's median-then-compare measurement.
+
+The ERA rewrite preserves the objective, estimator, acceptance and inheritance equations, and the pre-update best fallback.
+`revision_control.py:214–265` still requires known, complete, comparable local and development comparisons before inheritance branches.
+Direction continuation can retain diagnostic history even when program inheritance fails; diagnostics do not constitute an automatic semantic decision about the direction.
+No engineering source, numerical fixture, model execution, annotation, or training is changed.
+The three source hashes for `mining.py`, `mining_runner.py`, and `revision_control.py` were rechecked and match the original Source identity table above.

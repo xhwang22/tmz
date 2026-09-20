@@ -89,7 +89,7 @@
   \path[pSurface,fill=pGoldWash] (0,.05) rectangle (3.94,5.28);
   \path[pSurface,fill=pEvoWash,draw=pEvo!18,line width=.5pt]
     (4.24,.05) rectangle (10.32,5.28);
-  \pPanel{b}{Human feedback}{.12}{4.99}
+  \pPanel{b}{IPM}{.12}{4.99}
   \pPanel{c}{Evolve the evaluator}{4.39}{4.99}
   \pPanel{d}{Assess}{10.79}{4.99}
 
@@ -98,7 +98,7 @@
   \path[fill=white,rounded corners=4pt] (.22,3.26) rectangle (3.49,4.60);
   \pIcon{database}{pTeal}{.54}{4.27}{.50}
   \node[pLabel,text=pTeal,anchor=west] at (.84,4.27) {Existing datasets};
-  \node[pText,anchor=west] at (.44,3.90) {Mine candidate comparisons};
+  \node[pText,anchor=west] at (.44,3.90) {Mine output comparisons};
   \node[pSmall,anchor=west] at (.44,3.57) {Reuse matching preferences.};
   \path[fill=white,rounded corners=4pt] (.22,1.70) rectangle (3.49,3.04);
   \pIcon{person}{pNew}{.54}{2.75}{.44}
@@ -108,7 +108,7 @@
   \path[draw=pGold!30,fill=white,rounded corners=4pt]
     (.22,.25) rectangle (3.49,1.49);
   \node[pLabel,text=pGold,anchor=west] at (.44,1.20)
-    {Human evidence {\fontsize{7}{9}\selectfont $\rightarrow Z$}};
+    {Feedback table {\fontsize{7}{9}\selectfont $\rightarrow Z$}};
   \node[pSmall,anchor=west] at (.44,.89) {$H_0$--$H_3$ as available};
   \node[pSmall,anchor=west] at (.44,.58) {Provenance + uncertainty};
   \draw[pGold!55,line width=.6pt,rounded corners=3pt]
@@ -128,7 +128,7 @@
   \pIcon{cards}{pEvo}{9.04}{1.77}{.70}
   \node[ovStep] at (9.04,1.24) {Accept? Continue?};
   \pIcon{loupe}{pGold}{5.64}{1.77}{.73}
-  \node[ovStep] at (5.64,1.24) {Test hypotheses};
+  \node[ovStep] at (5.64,1.24) {Diagnose failures};
   \draw[pEvolution] (6.00,3.32) .. controls (6.74,3.79) and (7.83,3.79) .. (8.56,3.32);
   \draw[pEvidence] (9.58,3.02) .. controls (10.10,2.79) and (10.10,2.10) .. (9.58,1.91);
   \draw[pEvolution] (8.56,1.80) .. controls (7.80,1.30) and (6.83,1.30) .. (6.08,1.80);

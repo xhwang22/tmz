@@ -1,51 +1,53 @@
-\section{Disagreement-based preference acquisition}
+\section{Informative Preference Mining}
 \label{sec:mining}
 
-Preference acquisition allocates fewer annotations to comparisons on which existing evaluation signals consistently agree.
-It first makes these signals comparable, then identifies disagreements for human assessment while retaining random samples to check shared blind spots.
+Informative Preference Mining (IPM) lowers the sampling priority of comparisons on which existing evaluation signals consistently agree.
+Repeated annotations of these comparisons may add little information about evaluation errors.
+IPM selects comparisons from existing datasets or newly generated outputs, reusing compatible human preferences and collecting missing ones while retaining a random anchor.
 
-\subsection{Aligning evaluation signals}
+\subsection{Comparable evaluation signals}
 
-For each domain, a versioned inventory links its quality dimensions to human protocols, rubrics, metrics, learned scorers, model judges, and analysis tools.
-Each source records its input requirements, provenance, limitations, and execution status.
-Only executable sources with compatible inputs supply signals; a coverage audit identifies dimensions lacking distinct sources.
-The comparison unit is an \emph{output signal}, not an evaluator name.
+Outputs are grouped by their original task input and deduplicated before comparison.
+For a pair $r=(x,y_a,y_b)$, signal $j$ supplies a preference sign $u_j(r)\in\{-1,0,+1,\bot\}$ from its own score difference and declared tie margin.
+Zero denotes a tie and $\bot$ missing or abstaining output; raw scores from different signals are never subtracted.
+Signals require executable sources with compatible inputs; provenance, repeated-run variation, and missingness are recorded separately.
+
 We freeze a many-to-many mapping $M_{jq}$ from signal $j$ to dimension $q$ using its definition and measurement procedure before reading preference labels.
 A mixed score may connect to several dimensions, but remains one shared signal.
 Signals sharing a model, training labels, or underlying metric are assigned source groups so that duplicated prompts do not become independent votes.
-Existing executable metrics may enter the candidate tool library.
-Metrics reserved for final independent assessment are frozen separately and never enter tools, routing, critique, or reward.
+Metrics reserved for final independent assessment remain outside mining, evaluator tools, critique, and reward.
 
-\subsection{Identifying disagreements}
+\subsection{Sampling priority}
 
-Candidate outputs are grouped by their original task input and deduplicated before comparison.
-For a pair $r=(x,y_a,y_b)$, signal $j$ supplies a direction $u_j(r)\in\{-1,0,+1,\bot\}$ from its own score difference and declared tie margin.
-Zero denotes a tie and $\bot$ missing or abstaining output; raw scores from different signals are never subtracted.
-Repeated-run variation and missingness are recorded separately from disagreement.
-
-The miner distinguishes three cases.
-\emph{Within-dimension disagreement} occurs when signals from distinct source groups favor opposite candidates on the same criterion.
+The ranking distinguishes three cases.
+\emph{Within-dimension disagreement} occurs when signals from distinct source groups favor opposite outputs on the same criterion.
 \emph{Overall--dimension disagreement} occurs when an overall signal opposes a dimensional signal.
-\emph{Cross-dimensional trade-offs} occur when dimension-level preferences favor different candidates; these are not contradictory measurements of one criterion.
-Dimension preferences aggregate at most one consensus direction per source group, with internally opposed groups abstaining.
-The implemented miner ranks pairs by these structural conflicts, rather than treating disagreement as a known evaluator error.
-The priority score sums within-dimension and overall--dimension conflicts, gives the former twice the weight, and adds an indicator for cross-dimensional trade-offs.
-Appendix~\ref{app:annotation} specifies the ranking rule and separates this implementation from human-reliability calibration.
+\emph{Cross-dimensional trade-offs} occur when dimension-level preferences favor different outputs; these are not contradictory measurements of one criterion.
+Dimensional preferences aggregate at most one consensus sign per source group, with internally opposed groups abstaining.
+Writing their indicators as $I_{\mathrm{within},q}$, $I_{\mathrm{overall},q}$, and $I_{\mathrm{tradeoff}}$, the implemented priority is
+\begin{equation}
+ P(r)=2\sum_q I_{\mathrm{within},q}(r)
+      +\sum_q I_{\mathrm{overall},q}(r)
+      +I_{\mathrm{tradeoff}}(r).
+ \label{eq:conflict}
+\end{equation}
+IPM ranks pairs by decreasing $P(r)$.
+This structural score does not estimate information gain or human reliability.
+In particular, $P(r)=0$ can reflect missing signals or ties rather than agreement, and agreement itself need not be correct.
 
-The acquisition design combines targeted comparisons with a random anchor selected before signal-based ranking.
-Human judgments on the anchor assess signal reliability and shared blind spots before the targeted policy is frozen.
+The random anchor precedes ranking, allowing checks for shared blind spots even among low-priority comparisons.
 Anchor annotations count toward the same human budget as targeted annotations.
-Only evolution data are disagreement-sampled; final evaluation uses independently specified random or stratified sampling.
-The test of acquisition is subsequent evaluator improvement at equal annotation cost, not the number of disagreements collected.
+Human-reliability qualification remains separate from the implemented ranking (Appendix~\ref{app:annotation}).
+Only evolution data undergo IPM; final evaluation uses independently specified random or stratified sampling.
+Whether IPM produces more informative preferences is tested by subsequent evaluator improvement at equal human cost, not by the number of disagreements collected.
 
-\subsection{From comparisons to evolution feedback}
+\subsection{Human feedback for evolution}
 
 Existing preferences can be reused when the task, readable candidate outputs, and judged quality construct match.
 Derived comparisons retain their ranking, rating, or error-annotation provenance.
-When matching preferences are absent, the task and annotation protocol are fixed before collecting blinded judgments on existing or freshly generated candidates.
-The two settings retain separate provenance, agreement, ties, and abstentions (Appendix~\ref{app:annotation}).
+When matching preferences are absent, the task and annotation protocol are fixed before collecting blinded judgments on existing or freshly generated outputs.
 
-The adaptation evidence table $Z(r,q)$ links artifact provenance, available human judgments, source signals, evaluator decisions, tool observations, and execution cost.
+The feedback table $Z(r,q)$ links artifact provenance, available human judgments, source signals, evaluator decisions, tool observations, and execution cost.
 Both construction settings supply this interface to ERA, while retaining their label origins and annotation protocols.
-Overall and dimensional preferences identify errors to investigate; localized diagnostics and human rationales are included when available.
+Overall and dimensional preferences reveal evaluation errors for ERA to investigate, with localized diagnostics and human rationales included when available.
 Missing feedback levels remain absent, and model-generated explanations are not human $H_1$ or $H_2$.

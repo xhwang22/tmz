@@ -6,10 +6,10 @@ No display reports measured performance.
 
 | ID / location | Source | Purpose / status |
 | --- | --- | --- |
-| Fig1 / main | figures/overview.tex | (a) four domain families; (b) existing-dataset mining and new preference collection; (c) ERA acceptance and continuation; (d) C1 alignment/selection, C2 refinement, planned C3; Conceptual specification with constructed examples; no measured results |
-| Fig2 / main | figures/c1_landscape.tex | (a) 22-task taxonomy, not measured sample composition; (b) seed and ERA agreement versus Best-of-4 family means; (c) common-cohort OOD agreement across all 22 tasks; Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, acquisition, search, C2, or C3 efficacy |
+| Fig1 / main | figures/overview.tex | (a) four domain families; (b) IPM with existing datasets or new outputs and compatible preference reuse; (c) ERA acceptance and continuation; (d) C1 alignment/selection, C2 refinement, planned C3; Conceptual specification with constructed examples; no measured results |
+| Fig2 / main | figures/c1_landscape.tex | (a) 22-task taxonomy, not measured sample composition; (b) seed and ERA agreement versus Best-of-4 family means; (c) common-cohort OOD agreement across all 22 tasks; Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, sampling, search, C2, or C3 efficacy |
 | Fig3 / appendix | figures/evaluator.tex | (a) one artifact; (b) routed observations; (c) dimensional criteria; (d) synthesis; Conceptual specification with constructed examples; no measured results |
-| Fig4 / appendix | figures/budget_tests.tex | (a) search under equal total budgets; (b) acquisition under equal human budgets; Unmeasured reporting placeholders; no empirical result or expected effect size |
+| Fig4 / appendix | figures/budget_tests.tex | (a) search under equal total budgets; (b) sampling under equal human budgets; Unmeasured reporting placeholders; no empirical result or expected effect size |
 | Fig5 / appendix | figures/simulated_landscape.tex | (a) balanced input composition across 22 tasks; (b) assigned cost versus OOD agreement, 110 domain points and ten setting means; (c) four family bar panels in one row, five methods per task; Balanced synthetic OOD subset for layout, distinct from full-cohort appendix data; no empirical efficacy or label availability established |
 | Fig6 / appendix | figures/simulated_alignment.tex | (a) ID paired effects; (b) OOD paired effects; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
 | Fig7 / appendix | figures/simulated_acquisition.tex | (a) reused preferences; (b) new preferences; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
@@ -44,5 +44,5 @@ The new bars use all jointly complete OOD inputs per domain; this differs from t
 The original landscape remains unchanged as appendix Figure 5; full-cohort paired effects are Figure 6.
 The blank budget comparison is appendix Figure 4, and downstream reporting placeholders are Table 8 in the detailed core-results appendix.
 Main-text C1/C2/C3 interpretation and matched-budget questions are retained.
-No C2/C3 result, acquisition gain, or search advantage is inferred from the new C1 layout.
+No C2/C3 result, sampling gain, or search advantage is inferred from the new C1 layout.
 Historical revision records retain their contemporary display IDs.

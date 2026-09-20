@@ -22,16 +22,16 @@ completion claim. No private results are imported.
 | Many-to-many mapping and shared signals (§3.4) | Mining | Tab4 source-independence requirements | Shared/mixed scores do not become independent votes |
 | Same-dimension, overall–dimension and trade-off strata (§3.4) | Mining | Tab4 semantic readiness | Different constructs are not scorer contradictions |
 | Random anchor, source dependence and readiness (§3.4) | Mining; annotation appendix | Fig7 matched-budget fixture; Tab4 | Sampling benefit remains a hypothesis |
-| Adaptation evidence table Z (§3.5) | Mining | Fig1 common evidence interface | Human labels are proposal-only |
+| Feedback table Z (source plan: adaptation evidence table, §3.5) | Mining | Fig1 common feedback interface | Human labels are proposal-only |
 | Six-component executable program (§4.1) | ERA method | Fig3 runtime architecture | Fixed base model; illustrative artifact |
-| Direction versus implementation; continuation (§4.2) | ERA method; algorithm appendix | Fig1 cycle; Tab11 search-allocation controls | Hypothesis is exploration unit, program is selection unit; utility unmeasured |
-| EXHAUSTED, PAUSED and REFUTED (§§4.2,4.5) | ERA method; algorithm appendix | Algorithm1 outcome branches | Failure or nonsignificance is not refutation |
+| Direction versus implementation; continuation (§4.2) | ERA method; algorithm appendix | Fig1 cycle; Tab11 search-allocation controls | Direction is exploration unit, program is selection unit; utility unmeasured |
+| Source plan's EXHAUSTED, PAUSED and REFUTED terminology (§§4.2,4.5) | Current direction-continuation and termination rules | Algorithm1 agent actions and resource limits | Historical terms, not implemented semantic outcome classes; the controller does not automatically judge a direction unhelpful |
 | Atomic edits and connected mechanism candidates (§4.3) | ERA method | Tab11 attribution design; Fig9a fixture | Bundle gain is not per-edit attribution; simulated contrasts are not causal evidence |
 | Development, confirmation and component attribution (§4.4) | ERA; experimental design | Tab5 access; Tab11 ablations | Adaptive development is not test evidence |
 | C1 alignment and fixed-pool selection (§5.1.2) | Core results design | Tab14, Figs5/6/9 simulated displays covering 22 domains | Pair-only data cannot support Best-of-N; denominator rules remain explicit |
 | C2 fresh shared start and new blinded H (§5.1.3) | Core results design | Fig11 eight-domain diagnostic fixture; Tab8 empirical status | Fresh endpoints need new judgments in both construction settings; C2 inputs are distinct from C1 |
 | C3 frozen rewards and LoRA+GRPO (§5.1.4) | Core results design; training appendix | Fig1d; Tabs10/8 | Planned only; no training authorized, run, or simulated |
-| Corpus construction versus acquisition efficiency (§3.2 patch, §5.2) | Experiments; quantitative-display discussion | Fig7 random-controlled budget curves | New data alone do not establish sampling efficiency |
+| Corpus construction versus sampling efficiency (§3.2 patch, §5.2) | Experiments; quantitative-display discussion | Fig7 random-controlled budget curves | New data alone do not establish sampling efficiency |
 | Editable components, allocation and H granularity (§5.2) | Ablation studies | Tab11 controls; Fig10 fixture | Equal evidence/budgets; paired H comparison also accounts for human time |
 | Trajectories, failure regimes, H efficiency and adapter fidelity (§5.3) | Analysis and studies | Tab7 reporting; Fig12 cost fixture | Observations required; assigned costs and schematic trajectories prove no efficiency |
 

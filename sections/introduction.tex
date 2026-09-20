@@ -10,17 +10,17 @@ Human preferences provide feedback on which output is better, but leave open wha
 We study how an evaluation agent can evolve an evaluation procedure from human feedback by changing how it gathers evidence and makes judgments.
 Prior work uses human feedback to refine evaluation criteria or select evaluation functions \citep{liu2024autocalibrate,shankar2024evalgen}, while agentic judges gather evidence with tools \citep{zhuge2025agentjudge}.
 Methods that propose and test changes to prompts and agent code provide a starting point for evolving this procedure \citep{agrawal2026gepa,zhang2025dgm}.
-Evolving the procedure requires two linked steps: acquiring informative preferences and turning the problems they reveal into working changes.
+Evolving the procedure requires two linked steps: obtaining informative preferences and turning the problems they reveal into working changes.
 
 \begin{figure}[t]
 \centering
 \input{figures/overview}
-\caption{Evaluation-agent self-evolution from human feedback.
+\caption{Evaluator self-evolution from human feedback.
 (a) Four artifact families retain distinct evaluation standards.
-(b) Existing datasets supply candidates for mining and matching preferences for reuse; missing preferences are collected on existing or fresh outputs.
+(b) Informative Preference Mining (IPM) selects comparisons from existing datasets or fresh outputs, reusing matching preferences and collecting missing ones.
 Both routes retain their provenance and annotation quality.
 (c) \ERA{} evolves a six-component program with a fixed base model, separating candidate acceptance from direction continuation.
-(d) C1 alignment and selection, C2 refinement, and planned C3 reward training.
+(d) C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training.
 Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2.
 Arrows denote information flow, not measured improvements.}
 \label{fig:overview}
@@ -28,7 +28,7 @@ Arrows denote information flow, not measured improvements.}
 
 Obtaining informative preferences is difficult in a new domain.
 Hand-designed comparisons can embed the designer's assumptions; unrestricted collection can produce repetitive judgments.
-Our disagreement-based preference acquisition allocates fewer annotations to comparisons on which existing evaluation signals agree, drawing on query-by-committee and active preference learning \citep{seung1992committee,muldrew2024activepreference}.
+Informative Preference Mining (IPM) lowers the sampling priority of comparisons on which existing evaluation signals agree, drawing on query-by-committee and active preference learning \citep{seung1992committee,muldrew2024activepreference}.
 Random sampling checks for shared blind spots among these signals.
 We test whether these preferences support greater evaluator improvement than random sampling at equal human annotation cost.
 
@@ -40,15 +40,15 @@ For example, evaluating omissions in a summary requires detecting missing conten
 Changing only one step may leave the overall judgment unchanged.
 
 Rejecting a candidate need not end work on its direction.
-\ERA{} separates \emph{candidate acceptance} from \emph{direction continuation} through falsification-guided depth-first evolution (Figure~\ref{fig:overview}c).
+\ERA{} separates \emph{candidate acceptance} from \emph{direction continuation} through depth-first evaluator evolution (Figure~\ref{fig:overview}c).
 Each direction is motivated by a hypothesis about how a change would correct an evaluation error.
-A failed candidate does not by itself refute that hypothesis.
+A failed candidate does not by itself establish that the direction is unhelpful.
 ERA first checks whether the proposed behavior was implemented and affected the final judgment as hypothesized.
 New diagnostic results guide further work on the implementation.
-Results contradicting the hypothesis can end a direction; budget exhaustion alone does not refute it.
+Results contradicting the hypothesis can justify ending a direction; budget exhaustion leaves its value unresolved.
 We test whether this continuation produces more sustained gains than restarting proposals under the same search budget.
 
-Preference acquisition and ERA target two obstacles to learning an evaluation procedure from human feedback: redundant annotation and premature abandonment of corrective directions.
-The cross-domain evaluation separates acquisition efficiency, search progress, and final evaluator agreement across structured visual artifacts, images and 3D, text generation, and automated research.
+IPM and ERA target two obstacles to learning an evaluation procedure from human feedback: redundant annotation and premature abandonment of corrective directions.
+The cross-domain evaluation separates sampling efficiency, search progress, and final evaluator agreement across structured visual artifacts, images and 3D, text generation, and automated research.
 It includes reused and newly collected preferences, with a pointwise evaluator for each task standard.
 The comparisons include evaluator fine-tuning \citep{kim2024prometheus,kim2024prometheus2} and score calibration under controlled feedback and observation access.
