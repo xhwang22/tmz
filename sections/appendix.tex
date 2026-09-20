@@ -620,6 +620,31 @@ Table~\ref{tab:main-alignment} is conditional on a fixed, preregistered search r
 Its paired intervals resample original-input/source groups within domains with the evaluators fixed.
 Report independent-search means, dispersion, and run counts alongside this fixed-evaluator comparison; scoring repeats do not increase the independent-search count.
 
+\begin{table}[!htbp]
+\caption{\textbf{Downstream human outcomes: unmeasured placeholders.}
+C2 compares ERA-refined with Seed-refined; C3 compares ERA-GRPO with Seed-GRPO.
+Preference cells await tie-aware estimates, input-group 95\% intervals, and counts.
+Each $\Delta$Reg cell is the ERA-minus-seed difference in major-regression rate against $y_0$ (C2) or Base (C3), with ID and OOD separate.
+Appendix~\ref{app:results} specifies per-arm rates and completion.
+Dashes await new blinded judgments; C3 is design-only.}
+\label{tab:downstream-results}
+\centering\small
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\linewidth}{@{}P{0.85cm}Ycccc@{}}
+\toprule
+Study & Domain / role & ID pref. $\uparrow$ & OOD pref. $\uparrow$ & ID $\Delta$Reg $\downarrow$ & OOD $\Delta$Reg $\downarrow$\\
+\midrule
+C2 & SV4: specification-to-web & \pending & \pending & \pending & \pending\\
+& IG1: detailed image captions & \pending & \pending & \pending & \pending\\
+& TG1: summarization & \pending & \pending & \pending & \pending\\
+\addlinespace
+C3 & IG1: primary candidate & \pending & \pending & \pending & \pending\\
+& SV2: second candidate & \pending & \pending & \pending & \pending\\
+& TG4: verifiable control & \pending & \pending & \pending & \pending\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \paragraph{C2 output comparisons.}
 For each input, retain the fresh $y_0$, Seed-refined output, and ERA-refined output as one blinded ranking group.
 Report the ERA-versus-seed preference with ties and abstentions separate, each arm's improvement and regression relative to $y_0$, major regressions, and core $H_1$ changes.
@@ -728,6 +753,17 @@ labels.\par
 
 \section{Full ablation matrix}
 \label{app:ablations}
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/budget_tests}
+\caption{\textbf{Matched-budget comparisons awaiting measurements.}
+(a) Search progress under equal total model-and-tool cost at frozen prices; locked ID/OOD checkpoint assessment occurs after search and never guides it.
+(b) Final agreement under equal human budgets and a fixed evolution budget.
+No curves or gains are supplied.
+Table~\ref{tab:full-ablations} specifies the controls.}
+\label{fig:budget-tests}
+\end{figure}
 
 \paragraph{C1 comparator contract.}
 The rows in Table~\ref{tab:main-alignment} are controlled comparison specifications, not claims that every baseline configuration has been executed.
@@ -872,6 +908,19 @@ A cost--agreement profile is not an evolution trajectory, and a longer direction
 
 \section{Simulated reporting fixtures}
 \label{app:simulation}
+
+\paragraph{Main-text C1 layout.}
+Figure~\ref{fig:c1-landscape} retains the landscape layout but uses all 3,520 requested OOD input groups in the existing synthetic records, not the 2,880-input subset in Figure~\ref{fig:outcomes}.
+Within each task, pairwise agreement uses the intersection of complete inputs across the five displayed methods; all five bars therefore share the same denominator.
+The intervals resample original inputs jointly across methods with 2,000 bootstrap draws, rather than treating pairs or scoring repeats as independent observations.
+Panel (b) averages these task means with equal weights within each family.
+Its selection endpoint uses all 160 requested inputs per task, counting failed scoring as failed Best-of-4 selection.
+The different endpoint denominators are recorded in \texttt{data/simulated/c1\_landscape/}; no task is selected or omitted according to its outcomes.
+Connecting seed and ERA points identifies the same family, not a search trajectory or a causal effect.
+The four equal ring quadrants represent the task taxonomy, not measured sample proportions.
+The figure does not simulate calibration, fine-tuning, acquisition efficiency, search progress, C2, or C3.
+The main table retains the full comparator specification, and no empirical claim is supported by this layout fixture.
+
 
 \paragraph{Purpose and limits.}
 The quantitative figures in this appendix and Table~\ref{tab:results} are generated from

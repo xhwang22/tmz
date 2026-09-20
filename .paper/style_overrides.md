@@ -59,13 +59,14 @@
 - Keep caveats near relevant claims without repeating draft-status notices in
   every paragraph. Avoid promotional novelty claims and universal dismissals
   of existing program optimizers.
-- The current main displays are Figure 1 (overview), Figure 2 (matched-budget
-  placeholder), Table 1 (C1 alignment/selection), and Table 2 (C2/C3 outcomes).
-  The approved landscape composite is appendix Figure 4; preserve its assets,
-  data, palette and provenance. Full-cohort paired effects are Figure 5,
-  components Figure 9, and refinement Figure 10. Do not confuse the balanced
-  synthetic subset with full-cohort plots. All simulated displays remain in
-  the appendix. Keep placeholder results visibly unmeasured; ideal analysis
+- The current main displays are Figure 1 (overview), Figure 2 (the revised C1
+  landscape), and Table 1 (C1 alignment/selection). Preserve Figure 2 in the
+  main text at its native size. The budget placeholder is appendix Figure 4,
+  and C2/C3 placeholders are appendix Table 8. The original landscape is
+  appendix Figure 5; preserve its assets, data, palette and provenance.
+  Full-cohort paired effects are Figure 6, components Figure 10, and refinement
+  Figure 11. Do not confuse the historical balanced subset with the new full-
+  cohort C1 display. Keep placeholder results visibly unmeasured; ideal analysis
   uses conditional language rather than fictional findings. Do not shrink
   official typography to fit new tables or formulas.
 - The author explicitly authorized simulated data for reporting/layout review.
@@ -170,17 +171,20 @@ not performance encodings. Preview approval does not replace manuscript assets.
 - Keep C27/C28 as explicit open comparisons.
   A qualitative development observation may motivate the method, but must not turn simulated displays or unsuccessful confirmatory comparisons into favorable results.
 
-## Landscape composite style (inserted 2026-09-19; now appendix)
+## Landscape composite style (updated 2026-09-20)
 
-The author-approved v20 landscape figure replaced the old atlas and is now appendix Figure 4.
-The following palette instructions apply to that landscape only.
-Keep the four-quarter task ring, right cost/agreement scatter and four family
+The author-approved v20 landscape remains unchanged as appendix Figure 5.
+Its adapted version is main Figure 2; both use the following palette and layout.
+Keep the four-quarter task ring, upper-right scatter and four family
 bar panels in one row. Baselines use pale family ramps; ERA uses one lake-green
 accent. Keep Source Sans 3 / Source Serif 4 and the native 5.4 × 3.57-inch canvas.
-The selected 2,880 synthetic inputs are a fixed-hash subset, not the full appendix
-cohorts; document that distinction and retain all simulation disclosures.
+The original 2,880 synthetic inputs are a fixed-hash subset, not the full cohorts.
+Main Figure 2 instead uses all jointly complete OOD inputs per task for agreement,
+and all requested inputs for Best-of-4, counting failed scoring as failed selection.
+Its ring denotes taxonomy, not sample proportions; its scatter links agreement
+and selection rather than assigned cost. Retain every simulation disclosure.
 Do not retune data to improve visual rankings. Full-cohort paired effects remain
-in Figure 5, not the landscape. Its underlying numerical assets are unchanged.
+in Figure 6. The historical landscape and underlying observations are unchanged.
 
 ## Approved argument refinement (2026-09-19)
 

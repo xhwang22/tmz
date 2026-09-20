@@ -2,9 +2,22 @@
 \label{sec:results}
 
 \noindent\textit{Draft status.}
-Tables~\ref{tab:main-alignment}--\ref{tab:downstream-results} and Figure~\ref{fig:budget-tests} are unmeasured placeholders.
-The paragraphs below specify favorable outcomes and the comparisons needed to interpret them, not observed findings.
-Previously generated numerical illustrations remain explicitly simulated in Appendix~\ref{app:simulation}.
+Table~\ref{tab:main-alignment} is unmeasured; Figure~\ref{fig:c1-landscape} uses simulated records to illustrate task-level reporting.
+The interpretations below are conditional, not observed findings.
+Downstream and budget placeholders appear in Appendices~\ref{app:results} and~\ref{app:ablations}.
+
+\begin{figure}[!t]
+\centering
+\input{figures/c1_landscape}
+\caption{\textbf{C1 across tasks: simulated reporting layout, not experimental results.}
+Panel (a) maps 22 tasks into four families; equal family quadrants indicate taxonomy, not sample shares.
+Panel (b) links seed and ERA family means for pairwise agreement and Best-of-4 selection, without implying a causal relation.
+Panel (c) reports five methods on each task using their jointly complete OOD inputs.
+Whiskers are 95\% input-bootstrap intervals; selection counts failed scoring as failure.
+Table~\ref{tab:main-alignment} specifies the full empirical comparison.
+Appendix~\ref{app:simulation} documents denominators and provenance.}
+\label{fig:c1-landscape}
+\end{figure}
 
 \begin{table}[!htbp]
 \caption{\textbf{C1 main comparison: unmeasured placeholders.}
@@ -42,33 +55,8 @@ ERA & \pending & \pending & \pending & \pending & \pending & \pending & \pending
 
 \paragraph{C1: agreement that improves selection.}
 The favorable pattern would be higher ID/OOD agreement together with better Best-of-$N$ selection and lower regret (Table~\ref{tab:main-alignment}).
-Top-region agreement links judgment to selection, while an agreement gain without better selection would limit the downstream claim.
+Figure~\ref{fig:c1-landscape}b--c separates selection from task-level agreement; an agreement gain without better selection would limit the downstream claim.
 Cross-domain gains would support adapting the procedure to different standards, not transferring one evaluator universally.
-
-\begin{table}[!htbp]
-\caption{\textbf{Downstream human outcomes: unmeasured placeholders.}
-C2 compares ERA-refined with Seed-refined; C3 compares ERA-GRPO with Seed-GRPO.
-Preference cells await tie-aware estimates, input-group 95\% intervals, and counts.
-Each $\Delta$Reg cell is the ERA-minus-seed difference in major-regression rate against $y_0$ (C2) or Base (C3), with ID and OOD separate.
-Appendix~\ref{app:results} specifies per-arm rates and completion.
-Dashes await new blinded judgments; C3 is design-only.}
-\label{tab:downstream-results}
-\centering\small
-\renewcommand{\arraystretch}{1.08}
-\begin{tabularx}{\linewidth}{@{}P{0.85cm}Ycccc@{}}
-\toprule
-Study & Domain / role & ID pref. $\uparrow$ & OOD pref. $\uparrow$ & ID $\Delta$Reg $\downarrow$ & OOD $\Delta$Reg $\downarrow$\\
-\midrule
-C2 & SV4: specification-to-web & \pending & \pending & \pending & \pending\\
-& IG1: detailed image captions & \pending & \pending & \pending & \pending\\
-& TG1: summarization & \pending & \pending & \pending & \pending\\
-\addlinespace
-C3 & IG1: primary candidate & \pending & \pending & \pending & \pending\\
-& SV2: second candidate & \pending & \pending & \pending & \pending\\
-& TG4: verifiable control & \pending & \pending & \pending & \pending\\
-\bottomrule
-\end{tabularx}
-\end{table}
 
 \paragraph{C2: critique that improves the output.}
 More human-preferred refinements, accompanied by fewer major regressions, would indicate that the evolved evaluator provides more useful guidance (Table~\ref{tab:downstream-results}).
@@ -81,17 +69,6 @@ Higher reward alone would be insufficient; comparison with Base must also establ
 Conclusions would remain task- and policy-specific, with external checks reported separately (Table~\ref{tab:external-endpoints}).
 \par
 \end{samepage}
-
-\begin{figure}[!htbp]
-\centering
-\input{figures/budget_tests}
-\caption{\textbf{Matched-budget comparisons awaiting measurements.}
-(a) Search progress under equal total model-and-tool cost at frozen prices; locked ID/OOD checkpoint assessment occurs after search and never guides it.
-(b) Final agreement under equal human budgets and a fixed evolution budget.
-No curves or gains are supplied.
-Table~\ref{tab:full-ablations} specifies the controls.}
-\label{fig:budget-tests}
-\end{figure}
 
 \paragraph{Continuation rather than extra search.}
 Higher held-out agreement than restarting and history-only proposals at matched total cost would support depth-first allocation (Figure~\ref{fig:budget-tests}a).

@@ -14,20 +14,20 @@
 - [main.tex](main.tex)：主入口，Overleaf 选择此文件。
 - [sections/](sections/)：正文和附录，新增独立的偏好挖掘章节。
 - [figures/](figures/)：11 张图，2 张正文图、9 张附录图；其中 2 张概念图、1 张预算对比占位图、8 张模拟定量图。
-- [data/simulated/](data/simulated/)：14 个全量模拟 CSV，以及 `landscape/` 中新组图的均衡子集、数值和几何导出，不含真实标注或实验结果。
+- [data/simulated/](data/simulated/)：14 个全量模拟 CSV，`landscape/` 中原组图的均衡子集，以及 `c1_landscape/` 中正文新图的全量队列汇总和几何导出，不含真实标注或实验结果。
 - [可视化参考与设计说明](.paper/visual_references.md)：指定的 post-training survey（2503.06072）、full-stack safety survey、Speculative RAG、MMMR 图例，以及本项目采用的具体表达方式。
 - [三张参考图对应的配色候选](.paper/palette_candidates.md)：直接采用原图标注色值的浅蓝—玫瑰粉、蓝—橙、青蓝—杏橙方案；不混入新的色系。
 - [完整覆盖映射](.paper/plan_coverage.md)：计划条目与正文、图表、证据边界的对应。
 - [主张索引](.paper/claims.yml)、[图表索引](.paper/figures.yml)：后续写作与图文一致性校验的结构化记忆。
 - [references.bib](references.bib)：40 条引文，含作者指定的四篇 2026 年论文；来源见 [reference_sources.json](.paper/reference_sources.json)，出版处核验、全文支持范围及未决项见 [citation_audit.md](.paper/citation_audit.md)。
 
-正文现保留 Figure 1 总览、Figure 2 等预算对比占位图、Table 1 对齐与选择主表，以及 Table 2 下游人类评价表。主表按 ID/OOD 分列，覆盖静态指标、judge、校准、微调、prompt 优化、程序搜索和 ERA；单元格均待测，结果分析采用条件式的理想结果解释。实验按 C1 广域评价与选择 → C2 重点任务修改 → C3 代表任务训练组织，正文保持 9 页。
+正文保留 Figure 1 总览、Figure 2 横版 C1 组图，以及 Table 1 对齐与选择主表。新版 Figure 2 位于第 8 页，沿用任务环、右上散点、下方四族柱图、Source 字体和湖绿色 ERA；右上改为偏好一致性与 Best-of-4 选择的关系，下方覆盖全部 22 个任务。主表按 ID/OOD 分列，完整比较指标、judge、校准、微调、prompt 优化、程序搜索和 ERA，单元格仍待测。正文保持 9 页，结果解释仍为条件式。
 
-确认的横版模拟组图已移到附录 Figure 4，数据与图形不变：左上任务组成环图、右上成本—一致性点图、下方四族柱状图，覆盖 22 个任务。其 2,880 个 OOD 输入按固定哈希抽取，四族各 720 个，区别于全量模拟结果。附录 Figure 5 是全量 ID/OOD 配对增益，Figure 9 是组件／反馈粒度，Figure 10 是 C2。全稿共 15 张表；新增的外部指标表和搜索消融表均为待测占位。
+新图由现有模拟记录重新汇总，未生成新的观测，也未修改原始数据。柱图使用每个任务上五个方法共同完成的全量 OOD 输入；选择准确率保留全部请求输入，将评分失败计为选择失败。原来的 2,880 输入均衡子集组图完整保留为附录 Figure 5。空白预算图移为附录 Figure 4，下游 C2/C3 待测表移为附录 Table 8，正文分析仍保留。全稿共 12 张图、15 张表、36 页；不含实测结果或模拟 C3 训练。
 
-![附录 Figure 4：横版模拟组图，不是实验结果](figures/simulated/landscape_outcomes.png)
+![正文 Figure 2：跨域评价与选择，模拟布局，不是实验结果](figures/simulated/c1_landscape.png)
 
-[矢量 PDF](figures/simulated/landscape_outcomes.pdf) · [矢量 SVG](figures/simulated/landscape_outcomes.svg) · [子集与复核说明](data/simulated/landscape/README.md)
+[正文组图 PDF](figures/simulated/c1_landscape.pdf) · [正文组图 SVG](figures/simulated/c1_landscape.svg) · [数据与复核说明](data/simulated/c1_landscape/README.md) · [保留的原图](figures/simulated/landscape_outcomes.pdf)
 
 C1 模拟数据现覆盖全部 22 个领域，每个构建设置 11 个；保留原有 8 个领域的数据和区间，新增 14 个领域的布局数据，并重算 C1 汇总、排名和成本。标注、组件和 C2 仍使用明确标注的 8 个诊断领域，不再代替全域覆盖。R/N 是复用／新收偏好的示意分配，不代表真实标签可用性、固定领域类别或完成了 22 个实验；同一领域实际可以兼有两种数据来源。
 
@@ -59,6 +59,8 @@ make check
 
 生成器固定种子为 `20260916`，不调用模型、不执行 ERA、不读取 benchmark 结果。数值、区间和成本仅用于布局示例，不能用于预测效果、功效分析或方法排名。本轮生成环境为 Python 3.8.10、NumPy 1.24.4、Matplotlib 3.7.5、fontTools 4.57.0；相同环境可确定性再生成。隔离环境中的字体处理依赖也可能改变 PDF 字节，因此跨环境再生成后需重新审阅版面和清单。
 
+`python3 scripts/render_c1_landscape.py` 可单独重建正文 Figure 2，`scripts/check_c1_landscape.py` 检查其全量队列、区间和选择分母。普通编译直接使用已保存的矢量图。
+
 `make simulated` 重建全量模拟图表，保留旧 atlas 作为归档，不覆盖附录的横版组图。新图的 PDF/SVG 是已冻结的绘图产物，普通编译不依赖本地预览目录或绘图字体；`scripts/check_landscape_results.py` 独立验证其固定哈希抽样、数值、区间和导出坐标。若改变全量模拟数据，需要重新生成并审阅横版图，不能仅改哈希使检查通过。
 
 逐图视觉检查（额外需要 Pillow、`standalone.cls` 和 `pdftoppm`）：
@@ -83,7 +85,7 @@ make palettes
 各候选目录中包含 `main-figures.png`、两页原生矢量 `main-figures.pdf`（正文全域图＋附录诊断图）、`overview.pdf`
 和灰度预览。`review.json` 记录原图哈希、色值映射、文字对比度与数据一致性检查。
 候选使用隔离目录，不覆盖正式图表；14 份 CSV 与数值表须与当前正式数据逐字节一致，并核对 110 个全域图数值和 22 个配对区间。
-除附录 Figure 4 横版组图外，其余图表暂用 A（第一张参考的浅蓝—玫瑰粉）；该组图使用各任务族浅色基线与统一湖绿强调，不再采用五种等权方法色。
+除正文 Figure 2 和附录 Figure 5 横版组图外，其余图表暂用 A（第一张参考的浅蓝—玫瑰粉）；该组图使用各任务族浅色基线与统一湖绿强调，不再采用五种等权方法色。
 上一轮被否定的四套方案只留在旧的 `build/palette-review/` 本地归档中。
 
 构建中间文件位于 `build/`，最终文件为 `paper.pdf`。已提交的矢量图可直接编译，不要求本地重新生成模拟数据，也不需要 Azure 登录或模型 API。Overleaf 上传 TeX、BibTeX、模板、`figures/`、`output/imagegen/` 即可。`.paper/*.yml` 使用 JSON 兼容的 YAML，便于标准库检查，仍可由 YAML 工具读取。
@@ -94,7 +96,7 @@ make palettes
 
 ## 配色、字体与图表
 
-本节记录其余图表的参考色方案。附录 Figure 4 保留上方展示的横版组图，配色与 Source Sans 3 / Source Serif 4 字体以该图说明为准。
+本节记录其余图表的参考色方案。正文 Figure 2 与附录 Figure 5 保留横版布局，配色与 Source Sans 3 / Source Serif 4 字体以该图说明为准。
 
 本轮按三张参考图分别建立候选，在相同数据、尺度、字体和布局下比较。正文暂用 A，将五色完整用于五种方法：静态 judge 浅蓝 `#74A9C5`、静态工具种子薄荷 `#C2E5CF`、prompt 优化奶油黄 `#EDDDAB`、程序搜索浅桃 `#F2B8AE`、ERA 玫瑰粉 `#DD7389`；两种纯指标参照用灰色。B 采用第二张图的蓝—橙序列，C 采用第三张图的青蓝—杏橙序列，也均使用完整的五色组合。色值来自图片中明确标注的 HEX，不靠 JPEG 像素估色，不额外混入紫色或铜色。原图只出现在本地来源对照页，不进入论文或自动提交，也不使用其数值和显著性标记。
 

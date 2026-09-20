@@ -2,7 +2,7 @@
 
 SIMULATED layout fixture, not experimental evidence or expected performance.
 This is the author's approved v20 landscape composition, inserted in the paper
-on 2026-09-19; now shown as appendix Figure 4. The full-cohort displays remain separate.
+on 2026-09-19; now shown as appendix Figure 5. The full-cohort displays remain separate.
 
 ## Data and denominators
 
@@ -47,3 +47,8 @@ The 2026-09-19 appendix move changes the manifest's display ID to Fig4 and
 replaces the checker's obsolete Figure 2 wording in its docstring and status
 message. Only that checker hash is refreshed; the audit logic and every data,
 geometry, and figure-asset hash remain unchanged.
+
+The 2026-09-20 main-text restoration adapts the layout in a separate asset,
+`figures/simulated/c1_landscape.pdf`. This historical asset remains unchanged;
+its display ID is now Fig5. The adapted figure uses different, full-cohort
+summaries documented in `../c1_landscape/README.md`.

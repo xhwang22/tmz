@@ -144,6 +144,10 @@ landscape_manifest = json.loads((ROOT / "data/simulated/landscape/manifest.json"
 if landscape_manifest.get("simulation_only") is not True or landscape_manifest.get("empirical_evidence") is not False:
     errors.append("Balanced-subset figure provenance does not disclose simulation.")
 vector_files = dict(manifest["files"])
+c1_landscape = json.loads((ROOT / "data/simulated/c1_landscape/manifest.json").read_text())
+if c1_landscape.get("simulation_only") is not True or c1_landscape.get("empirical_evidence") is not False:
+    errors.append("Main-text C1 figure provenance does not disclose simulation.")
+vector_files.update(c1_landscape["output_files"])
 for relative, digest in landscape_manifest["files"].items():
     if relative in vector_files and vector_files[relative] != digest:
         errors.append(f"Conflicting figure provenance: {relative}")

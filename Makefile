@@ -21,6 +21,7 @@ check: paper.pdf
 	python3 scripts/check_memory.py
 	python3 scripts/check_simulated_results.py
 	python3 scripts/check_landscape_results.py
+	python3 scripts/check_c1_landscape.py
 	git diff --check
 
 # Optional regeneration; committed vector assets keep normal compilation offline.

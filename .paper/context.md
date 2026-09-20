@@ -177,19 +177,27 @@ Use claims.yml and figures.yml for subsequent audits; gap claims are hypotheses,
 never findings. Memory claim IDs C1/C2/etc. are a separate namespace from the
 paper's study labels C1/C2/C3.
 
-Current structure: 2 main figures, 9 appendix figures, 15 tables, 40 verified
-bibliographic identities, and 47 claim records.
-The main table reports C1 alignment and selection by ID/OOD; Table 2 reserves
-downstream human outcomes, and Figure 2 reserves matched-budget comparisons.
-All are unmeasured placeholders with conditional ideal-result interpretation.
-The main text remains within nine pages using unchanged ICLR typography.
+Current structure: 2 main figures, 10 appendix figures, 15 tables, 40 verified
+bibliographic identities, and 48 claim records.
+Main Figure 2 is the adapted C1 landscape on page 8, alongside the ID/OOD
+alignment-and-selection main table. Its original 5.4 × 3.57-inch layout,
+family palettes and Source fonts are retained.
+The ring is a taxonomy of 22 tasks, the scatter links seed/ERA agreement
+and Best-of-4 family means, and all 110 bars share method-complete OOD
+cohorts within each domain across the five shown methods.
+The new summaries derive only from unchanged existing synthetic input records.
+All 3,520 requested inputs are retained in provenance; failed scoring counts
+as failed selection. C48 supports only these denominator/arithmetic facts.
+The new data and audit are in data/simulated/c1_landscape/.
+No new experiment, simulated observation, C2/C3 outcome, or efficacy claim is added.
+The budget placeholder is appendix Figure 4 and downstream placeholders are
+Table 8; main-text interpretations remain conditional.
+The main text remains nine pages using unchanged ICLR typography.
 
-The approved landscape composite is now appendix Figure 4, unchanged: task ring,
-cost/agreement scatter and four family bar panels covering all 22 tasks.
-Its 2,880 OOD inputs are selected by fixed hash without reading outcomes, with
-720 per family; its statistics are separate from full-cohort appendix displays.
-Figure 5 retains full-cohort paired ID/OOD effects, Figure 9 component detail,
-and Figure 10 C2. No numerical assets or data were changed in this revision.
+The historical landscape remains unchanged as appendix Figure 5.
+Its 2,880 OOD inputs are selected by fixed hash, 720 per family, and differ
+from the full-cohort main Figure 2. Figure 6 retains full-cohort paired
+ID/OOD effects, Figure 10 component detail, and Figure 11 C2.
 The subset exports and audit remain in data/simulated/landscape/README.md.
 Annotation, component, and C2 diagnostics retain their eight-domain scope.
 C1 tables, selection, and cost profiles now use 11 domains per setting.
@@ -305,3 +313,14 @@ C27/C28, downstream benefits, and exact executable comparator configurations rem
 The submission guard still rejects the simulated draft.
 The author-edited Abstract and all 40 bibliography entries were preserved, not re-certified by this focused review.
 No experiments, training, engineering-source edits, new image generation, commit, or push occurred.
+
+
+## Main-text landscape restoration (round 25)
+
+The author explicitly requests the attractive landscape layout in the main text.
+Figure 2 now uses full-cohort C1 agreement and selection instead of the old balanced-subset cost illustration.
+The original figure and every original numerical record remain intact.
+The independent checker covers 110 bars and intervals, eight family points, complete/all-input denominators, geometry, hashes, fonts, and visible disclosures.
+The paper has 9 main pages and 36 total pages; no template scaling or body-font change was needed.
+C27/C28 remain empirical gaps; C3 is not run or simulated.
+No abstract, Method, bibliography, engineering-source, commit, or push change is part of this task.

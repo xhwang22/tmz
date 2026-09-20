@@ -699,7 +699,38 @@
       "changed_figures": ["Fig2"],
       "sections_touched": ["Method", "Experiments", "Results and analysis", "Discussion", "Conclusion", "Algorithm and measurement appendices", "Comparator and reporting appendices", "Figure 2 axis and caption", "Main table captions", "Paper memory and reviewer responses"],
       "summary": "Completes independent review, revision, re-review, and a targeted third-pass verification. Defines the input-weighted stochastic objective and distinguishes the canonical-pair development proxy; aligns weighted coverage and missing-outcome bounds. Separates acceptance, inheritance eligibility, and direction allocation, correcting a discovered state-order mismatch so failed inheritance returns to the pre-update best even when the candidate is accepted. Defines controlled comparator parent/history/editing rules and frozen-price model-and-tool budgets, while leaving exact execution configurations pending. Separates label efficiency from measured human-time efficiency and fixed-evaluator intervals from independent-search variation. Clarifies main-table aggregation, eligible cohorts, and ID/OOD regression contrasts. Replaces the Discussion checklist with conditional interpretations of continuation cost, diagnostic-history alternatives, and distinct selection/critique/reward requirements. Records all reviewer dispositions and current source hashes; preserves prior audit snapshots. The third reviewer pass finds no remaining writing/definition blocker in scope, not empirical acceptance. Synchronizes 47 claims, 11 figures, and 15 tables, with C27/C28 still gaps. Compiles 9 main pages and 35 total pages without smaller typography; structural, memory, provenance, and whitespace checks pass, and PDF pages are visually inspected. Preserves the author-edited abstract, all 40 bibliography entries, and all simulated numerical assets. No empirical studies, training, new image generation, engineering-source edits, commit, or push."
+    },
+    {
+      "round": 25,
+      "date": "2026-09-20",
+      "trigger": "Author asks to adapt the approved landscape figure with plan-compatible data and explicitly restore it to the main text.",
+      "reviewer": "Author feedback; local figure and numerical audit",
+      "changed_claims": [
+        "C37",
+        "C48"
+      ],
+      "changed_figures": [
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9",
+        "Fig10",
+        "Fig11",
+        "Fig12"
+      ],
+      "sections_touched": [
+        "Main Figure 2 and caption",
+        "Results and analysis",
+        "Detailed core-results and ablation appendices",
+        "Simulation provenance appendix",
+        "Paper memory and numerical checks"
+      ],
+      "summary": "Restores the approved 5.4-by-3.57-inch landscape design to main page 8 while keeping the main C1 table and the nine-page main limit. Changes the ring from balanced-sample composition to task taxonomy, replaces assigned-cost scatter with seed/ERA family agreement versus Best-of-4 selection, and computes all 110 task-method bars from jointly complete full OOD cohorts. Existing synthetic records and the historical landscape assets remain unchanged; no observations or training results are generated. New exports retain all 3,520 requested inputs and count failed scoring as failed selection. An independent checker verifies cohort denominators, means, paired input-bootstrap intervals, family aggregation, geometry, hashes, fonts and disclosures. Moves the empty budget figure and downstream placeholder table into their relevant appendices while retaining their main-text interpretations. Updates display IDs and provenance without changing empirical gaps C27/C28 or the author abstract, Method, and bibliography. Figures are simulation-only; the submission guard remains active. No commit or push requested for this revision."
     }
   ],
-  "updated_on": "2026-09-19"
+  "updated_on": "2026-09-20"
 }

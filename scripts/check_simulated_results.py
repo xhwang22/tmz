@@ -313,6 +313,9 @@ def check_evidence_boundary():
     for block in re.findall(r"\\begin\{figure\}[\s\S]*?\\end\{figure\}", sources):
         if r"\input{figures/simulated_" in block:
             require(r"\caption{\textbf{Simulated" in block, "Simulated chart caption lost its disclosure")
+        if r"\input{figures/c1_landscape}" in block:
+            require("simulated reporting layout, not experimental results" in block,
+                    "Main-text C1 chart caption lost its disclosure")
     main = (ROOT / "main.tex").read_text()
     disclosures = (
         "quantitative displays use simulated data",

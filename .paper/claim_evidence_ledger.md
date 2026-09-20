@@ -10,22 +10,22 @@ plan-to-manuscript map is `plan_coverage.md`.
 
 | Claim family | Manuscript / evidence | Allowed status |
 | --- | --- | --- |
-| Preference-supervised evaluation-agent evolution and domain standard | Introduction, problem, Fig1, Tab3 | Research question and scope, not achieved alignment or universal transfer |
+| Preference-supervised evaluation-agent evolution and domain standard | Introduction, problem, Fig1, Tab2 | Research question and scope, not achieved alignment or universal transfer |
 | Preference outcomes versus criteria and evidence for new outputs | Abstract, introduction, problem; C42 | Problem framing, not a claim that all human preferences can be recovered or explained |
-| Two feedback-construction settings; no H0 admission prerequisite | Problem/mining, Fig1, Tab4; C33/C34 | Shared algorithm with separately reported data provenance |
-| New labels are not presumed more reliable | Annotation protocol, Fig7, Tab4; C35 | Reporting requirement; simulated raters supply no reliability evidence |
-| Semantic mapping, dependence, three strata | Mining, Tab5 | Acquisition design, not validated information efficiency |
-| H0–H3 and evidence table Z | Problem/mining, Figs1/3, Tab4 | Protocol; availability must be reported per source |
-| Six components, fixed model, pointwise access | Problem/method, Fig3, Tab6 | Method specification, not immunity to leakage |
+| Two feedback-construction settings; no H0 admission prerequisite | Problem/mining, Fig1, Tab3; C33/C34 | Shared algorithm with separately reported data provenance |
+| New labels are not presumed more reliable | Annotation protocol, Fig8, Tab3; C35 | Reporting requirement; simulated raters supply no reliability evidence |
+| Semantic mapping, dependence, three strata | Mining, Tab4 | Acquisition design, not validated information efficiency |
+| H0–H3 and evidence table Z | Problem/mining, Figs1/3, Tab3 | Protocol; availability must be reported per source |
+| Six components, fixed model, pointwise access | Problem/method, Fig3, Tab5 | Method specification, not immunity to leakage |
 | Evolution of observation and judgment; hypothesis/program units | Method, Figs1/3, Tab11; C31/C32 | Procedural definitions, not evidence of improved judgment |
 | Directions, connected edits, best/working, outcomes | Method, Algorithm1, Tab11 | Search procedure; utility requires controlled ablation |
-| Train/Val/Test and metric reserve | Method/mining, Tab6 | Access contract; adaptive development is not final evidence |
+| Train/Val/Test and metric reserve | Method/mining, Tab5 | Access contract; adaptive development is not final evidence |
 | Optional semantic synthesis | Method/appendix | Defined grouping and anchor arithmetic, not semantic accuracy |
-| C1/C2/C3 and controlled ablations | Experimental design, Tabs11/10/8/2/15 | Study design; no measured effect; C3 design-only |
+| C1/C2/C3 and controlled ablations | Experimental design, Tabs11/10/7/8/15 | Study design; no measured effect; C3 design-only |
 | External human standard; automated program changes | Method; C39 | Self-evolution definition, not self-definition of human preferences |
-| Fine-tuning/calibration alternatives and shared-observation control | Experiments, adaptation appendix, Tab7; C40 | Planned evaluator comparison; no superiority, data-efficiency, or cost result; distinct from C3 |
+| Fine-tuning/calibration alternatives and shared-observation control | Experiments, adaptation appendix, Tab6; C40 | Planned evaluator comparison; no superiority, data-efficiency, or cost result; distinct from C3 |
 | Explicit criteria and traces versus faithful explanation | Adaptation appendix; C41 | Inspection affordance and evidential boundary, not validated interpretability |
-| Corpus construction versus acquisition efficiency | Experiments, Fig6, Tab11; C36 | Separate matched-budget random-sampling comparison required |
+| Corpus construction versus acquisition efficiency | Experiments, Fig7, Tab11; C36 | Separate matched-budget random-sampling comparison required |
 | Annotation efficiency and sustained gains from depth-first continuation | Introduction; C27/C28 | Material empirical gaps; retain as open comparisons only |
 | Default pointwise rejection, incumbent retention, and redirection | Introduction; search_observation_audit.md; C43 | Bounded qualitative development observation, not universal RSI behavior or proof of the DFS remedy |
 | Simulated display provenance | Generator, manifest, CSVs, PDFs; C37 | Supported only as artificial reporting examples, not effects |
@@ -189,3 +189,15 @@ This loop corrects definitions and interpretation, not empirical status.
 The history-only versus depth-first contrast tests allocation and inheritance jointly; isolating inheritance requires an additional control.
 Future equivalence language requires adequate precision or a prespecified criterion, not merely a nonsignificant difference.
 No numerical fixture, bibliography entry, publication field, or empirical claim status was changed in this reviewer cycle.
+
+
+## Main-text landscape restoration (round 25)
+
+Main Figure 2 adapts the approved landscape to plan §5.1.2: task taxonomy, C1 agreement versus Best-of-4 selection, and all 22 task-level agreement panels.
+Main Table 1 retains the full ID/OOD comparator specification; it is not populated with synthetic numbers.
+Appendix Table 8 holds downstream placeholders, and Figure 4 reserves matched-budget comparisons.
+The original balanced-subset figure remains Figure 5; full-cohort paired effects are Figure 6.
+C37/C48 support simulation provenance and denominator arithmetic only, not empirical gains.
+The new exports retain 3,520 requested OOD inputs; bars use the five-method completeness intersection within each domain, while selection counts incomplete scoring as failure.
+A new independent checker validates all 110 bars/intervals and eight family points, with original records and assets unchanged.
+C27/C28 remain empirical gaps, and no C2/C3 outcome is added.
