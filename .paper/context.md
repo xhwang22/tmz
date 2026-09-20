@@ -1,5 +1,18 @@
 # Paper context
 
+## Current figure layout (round 35)
+
+Figure 1 is the constructed author-v6 image-editing teaser, reflowed for print
+with 7-point labels. The three-column SVG, its wording and nine insets remain
+available as a reference; the print layout uses its three unchanged photos.
+Figure 2 presents preference mining above depth-first evolution, with explicit
+acceptance, inheritance, continuation, fallback, and direction switching.
+Both use lake-green method accents matching Figure 3, the unchanged main-text
+C1 landscape. Main Table 1 remains the comparator matrix. There are now 13
+figures (three main, ten appendix) and 15 tables; all previous figures shift
+one number, and historical revision entries retain their original IDs.
+No numerical data or empirical status changes accompany this layout revision.
+
 Updated: 2026-09-20. Status: method and study design with author-requested,
 explicitly simulated quantitative displays; confirmatory results pending.
 The introduction includes a bounded qualitative development observation.

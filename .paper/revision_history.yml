@@ -844,6 +844,62 @@
       "changed_figures": [],
       "sections_touched": ["Title layout", "Abstract citation markers", "Style guidance and claim memory"],
       "summary": "Uses title-local ragged-right alignment with semantic breaks after the colon and Evaluators, removing stretched spaces and preserving Self-Evolving Evaluators as a phrase. Keeps the approved wording, official font/size, template file and PDF title metadata. Removes the abstract's two citation commands covering three papers without changing its prose; all three remain cited in the Introduction. Synchronizes C42 and records the citation-free abstract preference. Rebuilds and visually checks the first page; no undefined citations or overfull boxes, and memory/terminology/whitespace checks pass. The PDF remains 36 pages with 10 main pages; existing page-limit, unused-reference and empirical-evidence issues remain. No data, figures, bibliography metadata, commit or push changes."
+    },
+    {
+      "round": 34,
+      "date": "2026-09-20",
+      "trigger": "Author rejects the forced three-line title layout.",
+      "reviewer": "Author feedback; local first-page visual review",
+      "changed_claims": [],
+      "changed_figures": [],
+      "sections_touched": [
+        "Title layout",
+        "Style guidance"
+      ],
+      "summary": "Removes both forced title breaks and retains title-local ragged-right alignment. The exact approved wording now wraps naturally into two lines with normal word spacing and unchanged official font, size and margins. Rebuilds and visually checks the first page; the abstract stays citation-free and all manuscript prose, figures and data are unchanged. Terminology, memory and whitespace checks pass. No commit or push."
+    },
+    {
+      "round": 35,
+      "date": "2026-09-20",
+      "trigger": "Author supplies an updated teaser SVG, requests figure/table reorganization, clearer depth-first search and green method blocks, and authorizes automatic GitHub upload.",
+      "reviewer": "Author guidance; local method-semantics, asset-provenance and print-layout checks",
+      "changed_claims": [
+        "C1",
+        "C2",
+        "C3",
+        "C9",
+        "C15",
+        "C16",
+        "C31",
+        "C32",
+        "C33",
+        "C47",
+        "C49"
+      ],
+      "changed_figures": [
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9",
+        "Fig10",
+        "Fig11",
+        "Fig12",
+        "Fig13"
+      ],
+      "sections_touched": [
+        "Introduction figure and panel references",
+        "Preference-mining overview float",
+        "AI use statement",
+        "Native diagrams and teaser print layout",
+        "Figure provenance and checks",
+        "README and paper memory"
+      ],
+      "summary": "Integrates the author-v6 image-editing teaser as main Fig1, moves the rebuilt method overview to Fig2, and retains the unchanged C1 landscape as main Fig3 with Table1. All prior figures shift one number; table IDs and historical revision IDs stay unchanged. Preserves the editable three-column SVG with lake-green method colors and unchanged wording, geometry and nine images; creates a native 7-point print reflow using its three unchanged task photos. The overview separates acceptance, inheritance and continuation, visualizes repeated same-direction revisions and direction switching, retains pre-update fallback diagnostics, and includes existing-dataset mining, compatible preference reuse, new annotation and a random anchor. Shared method blocks use lake green matching the main performance figure. Synchronizes claim/figure links without changing claim prose or empirical status. Compilation and memory, terminology, teaser, simulation and landscape audits pass; no overfull boxes or undefined citations. The PDF has 37 pages, 11 main pages, with the existing 9-page submission limit and 17 unused references still flagged. All 30 tracked CSVs and quantitative artwork are unchanged; C27/C28 remain gaps. No model calls, experiments, training or engineering-source changes. See figure_layout_audit_20260920.md."
     }
   ],
   "updated_on": "2026-09-20"

@@ -1,9 +1,25 @@
 # Manuscript style
 
+## Current figure organization and method color (2026-09-20, round 35)
+
+Main Figure 1 is the author-v6 image-editing teaser; Figure 2 is the method
+overview; Figure 3 is the existing C1 landscape. Keep Table 1 in the main text.
+The ten appendix figures follow these three; table numbering is unchanged.
+Use lake green `#62AAA5` and dark companion `#477D79` for method blocks and
+search paths, matching the main performance figure. Reserve red for error
+statuses, not method identity. This supersedes older rose-method instructions.
+Preserve the updated three-column teaser SVG as an editable reference. Its
+paper-specific native-size layout stacks the task above the breadth/depth
+comparison, uses at least 7-point labels, and reuses the same three photos.
+Illustrative success on one pair is not candidate acceptance or measured gain.
+The overview must show repeated revisions, a possible direction switch, and
+separate acceptance, inheritance, and continuation decisions; fallback uses
+the pre-update best program without discarding diagnostic history.
+
 ## Title layout and abstract citations (2026-09-20)
 
 Keep the abstract citation-free; retain literature support in the Introduction and Related Work.
-Preserve the exact approved title, with title-local ragged-right alignment and semantic line breaks after the colon and after Evaluators.
+Preserve the exact approved title with title-local ragged-right alignment and natural wrapping into two lines. The author rejected the forced three-line layout; do not restore manual breaks after the colon or Evaluators.
 Keep the official title font, size, margins, and template file unchanged; do not stretch word spacing or leave Tasks alone on a line.
 
 ## Current terminology precedence (2026-09-20, round 32)

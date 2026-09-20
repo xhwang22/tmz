@@ -2,7 +2,7 @@
   "provenance": "SIMULATED",
   "simulation_only": true,
   "empirical_evidence": false,
-  "figure": "Fig5",
+  "figure": "Fig6",
   "selection_seed": 20260918,
   "bootstrap_replicates": 1000,
   "canvas_inches": [

@@ -18,16 +18,15 @@ Extending evaluator self-evolution to new open-ended domains, however, raises tw
 
 \begin{figure}[t]
 \centering
-\input{figures/overview}
-\caption{IterEval: iterative evaluator self-improvement from human feedback.
-(a) Four artifact families retain distinct evaluation standards.
-(b) Disagreement-based preference mining selects comparisons from existing datasets or fresh outputs, reusing matching preferences and collecting missing ones.
-Both routes retain their provenance and annotation quality.
-(c) Depth-first evaluator evolution revises a six-component evaluation procedure with a fixed base model, separating candidate acceptance from direction continuation.
-(d) C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training.
-Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2.
-Arrows denote information flow, not measured improvements.}
-\label{fig:overview}
+\input{figures/teaser}
+\caption{Dive deeper, branch later.
+Panel (a) contrasts layout fidelity with visual richness.
+Panel (b) branches across plausible corrections; dashed arrows show attempt order.
+Panel (c) develops one correction through detection, scoring, and severity weighting.
+Nodes denote complete evaluation programs; hollow nodes are unexplored alternatives.
+The corrected ordering is local to this example, not candidate acceptance or generalization.
+Images, preferences, and paths are constructed illustrations, not experimental evidence.}
+\label{fig:teaser}
 \end{figure}
 
 Obtaining preference data that is useful for evolution is itself nontrivial: under a limited human feedback budget, the choice of comparisons can affect learning efficiency \citep{muldrew2024activepreference,oh2025activepreference}.
@@ -46,7 +45,7 @@ In the default evaluator-evolution setup we tested, each new revision was propos
 We observed a tendency for unsuccessful early candidates to be followed by revisions in alternative directions rather than deeper development of the current one.
 Over repeated iterations, evolution can therefore spread effort across multiple plausible directions before any one of them has been developed far enough to judge reliably.
 
-IterEval uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:overview}c).
+IterEval uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:teaser}c; Figure~\ref{fig:overview}b).
 The search continues developing the current direction after unsuccessful intermediate candidates, using their diagnostic results to guide the next revision.
 The best evaluator is maintained separately and replaced only by an improved candidate.
 Evolution moves to a new direction when diagnostic results provide sufficient evidence against the current one or when its search budget is exhausted.

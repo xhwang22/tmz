@@ -1,0 +1,73 @@
+{
+  "source": "figures/candidates/teaser-v6-paper-wording/teaser.svg",
+  "source_sha256": "72622a9cfa680bb7df13677a04286c8916e2447474005305b8bd2d6096009d11",
+  "author_wording_preserved": true,
+  "geometry_preserved": true,
+  "method_accent": "#62AAA5",
+  "error_status_colors_preserved": true,
+  "empirical_evidence": false,
+  "constructed_illustration": true,
+  "new_generation": false,
+  "print_width_in": 5.4,
+  "paper_layout": "figures/teaser-print.tex",
+  "paper_photos": {
+    "figures/teaser/source-street.png": "27cc44694a30957ac47b7a908ac617a7ed7cc00687e9cbd77bb0e695bae7e43b",
+    "figures/teaser/edit-a.png": "4d9329f3b9128bd4a9df484951f05f65380c1c7905bbf9c660a0f0d1be390a2c",
+    "figures/teaser/edit-b.png": "3bd396a7ece565dd52913deb3bbd32ecc34ccc75312b075b0ec09381dc0c7a06"
+  },
+  "image_source": "output/imagegen/teaser-flat-search-image25-20260920-v5.png",
+  "image_source_sha256": "ddbb263d08926b758183a8943c0e8ee82ca04d6c7299aa6cb80bb1973146b60f",
+  "embedded_images": [
+    {
+      "sha256": "27cc44694a30957ac47b7a908ac617a7ed7cc00687e9cbd77bb0e695bae7e43b",
+      "svg_width": 200.0,
+      "svg_height": 298.0
+    },
+    {
+      "sha256": "4d9329f3b9128bd4a9df484951f05f65380c1c7905bbf9c660a0f0d1be390a2c",
+      "svg_width": 200.0,
+      "svg_height": 298.0
+    },
+    {
+      "sha256": "3bd396a7ece565dd52913deb3bbd32ecc34ccc75312b075b0ec09381dc0c7a06",
+      "svg_width": 200.0,
+      "svg_height": 298.0
+    },
+    {
+      "sha256": "4f53b6f65730d5699c9138d6bd1ac9769ff66c2cbe8629bd82f7bb82e8da7c3e",
+      "svg_width": 130.0,
+      "svg_height": 85.0
+    },
+    {
+      "sha256": "499cf163960d852558927d1a0ac57f60cb74025b37626da6b39a9d0e5bc0833f",
+      "svg_width": 130.0,
+      "svg_height": 85.0
+    },
+    {
+      "sha256": "785c9dcdce3eb1bc6533c30676e2148aa93d46b2425cad510f23f816389bbf8c",
+      "svg_width": 130.0,
+      "svg_height": 85.0
+    },
+    {
+      "sha256": "9294ce442d671ef8e11fe63be60ea92a1eee99c3c6a90d17b0abe4ee65e759f2",
+      "svg_width": 220.0,
+      "svg_height": 88.0
+    },
+    {
+      "sha256": "d665e27a637fd90b4c831114f8e032e2b0fd25d69fa44ef2016e421e08349aec",
+      "svg_width": 220.0,
+      "svg_height": 88.0
+    },
+    {
+      "sha256": "dd8966df05d715ea6093e3b42d768235c4f2966e594b8071c1c48b07cfa809e1",
+      "svg_width": 220.0,
+      "svg_height": 88.0
+    }
+  ],
+  "files": {
+    "figures/teaser.svg": "72622a9cfa680bb7df13677a04286c8916e2447474005305b8bd2d6096009d11",
+    "figures/teaser.pdf": "db595f984075a27ac6dae19ab0522196da9e499638663fef4a6872848fde482c",
+    "figures/teaser.png": "370d7681720403f4f342920692c9e1820d05d96ade28dc167b33d6296d7ddc1d"
+  },
+  "limitations": "The preserved three-column SVG is a reference version, not the print layout. The paper uses native 7-point labels and three unchanged photos in teaser-print.tex; diagnostic insets remain in the full reference. All preferences and paths are constructed illustrations."
+}

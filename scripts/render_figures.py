@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 FIGURES = (
-    "overview", "simulated_landscape", "evaluator",
+    "teaser", "overview", "c1_landscape", "evaluator", "budget_tests", "simulated_landscape",
     "simulated_alignment", "simulated_acquisition", "simulated_annotation",
     "simulated_selection", "simulated_ablation", "simulated_refinement", "simulated_cost",
 )

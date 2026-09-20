@@ -1,20 +1,43 @@
 {
   "generated_images": [
     {
-      "path": "output/imagegen/edit-preserved.png",
-      "sha256": "2adc4138148c451c4af2e803afa0d00f68ac671062ec12a54388185ab593bc75",
-      "width": 1536,
-      "height": 1024,
-      "max_print_width_cm": 3,
-      "model": "gpt-image-2",
-      "deployment_model_version": "2026-04-21",
-      "quality": "high",
-      "operation": "edit",
-      "input_image": "output/imagegen/edit-source.png",
-      "role": "Synthetic image-family example in Figure 1(a); no empirical data",
-      "prompts": [
-        ".paper/prompts/edit-scene-preserved.txt"
-      ]
+      "path": "figures/teaser/source-street.png",
+      "sha256": "27cc44694a30957ac47b7a908ac617a7ed7cc00687e9cbd77bb0e695bae7e43b",
+      "width": 218,
+      "height": 324,
+      "max_print_width_cm": 1.38,
+      "content_type": "photograph",
+      "operation": "unchanged extraction from author-provided SVG",
+      "role": "Constructed image-editing example in Figure 1(a), not an experimental sample",
+      "prompts": [],
+      "source_svg": "figures/candidates/teaser-v6-paper-wording/teaser.svg",
+      "source_manifest": "figures/teaser.manifest.json"
+    },
+    {
+      "path": "figures/teaser/edit-a.png",
+      "sha256": "4d9329f3b9128bd4a9df484951f05f65380c1c7905bbf9c660a0f0d1be390a2c",
+      "width": 217,
+      "height": 324,
+      "max_print_width_cm": 1.38,
+      "content_type": "photograph",
+      "operation": "unchanged extraction from author-provided SVG",
+      "role": "Constructed image-editing example in Figure 1(a), not an experimental sample",
+      "prompts": [],
+      "source_svg": "figures/candidates/teaser-v6-paper-wording/teaser.svg",
+      "source_manifest": "figures/teaser.manifest.json"
+    },
+    {
+      "path": "figures/teaser/edit-b.png",
+      "sha256": "3bd396a7ece565dd52913deb3bbd32ecc34ccc75312b075b0ec09381dc0c7a06",
+      "width": 219,
+      "height": 324,
+      "max_print_width_cm": 1.38,
+      "content_type": "photograph",
+      "operation": "unchanged extraction from author-provided SVG",
+      "role": "Constructed image-editing example in Figure 1(a), not an experimental sample",
+      "prompts": [],
+      "source_svg": "figures/candidates/teaser-v6-paper-wording/teaser.svg",
+      "source_manifest": "figures/teaser.manifest.json"
     }
   ],
   "archived_images": [
@@ -62,6 +85,29 @@
         ".paper/prompts/domain-panorama.txt",
         ".paper/prompts/domain-panorama-cleanup.txt"
       ]
+    },
+    {
+      "path": "output/imagegen/edit-preserved.png",
+      "sha256": "2adc4138148c451c4af2e803afa0d00f68ac671062ec12a54388185ab593bc75",
+      "width": 1536,
+      "height": 1024,
+      "max_print_width_cm": 3,
+      "model": "gpt-image-2",
+      "deployment_model_version": "2026-04-21",
+      "quality": "high",
+      "operation": "edit",
+      "input_image": "output/imagegen/edit-source.png",
+      "role": "Archived former overview illustration; no longer referenced by the manuscript",
+      "prompts": [
+        ".paper/prompts/edit-scene-preserved.txt"
+      ]
+    }
+  ],
+  "conceptual_figures": [
+    {
+      "path": "figures/teaser-print.tex",
+      "source_manifest": "figures/teaser.manifest.json",
+      "role": "Native-size print reflow; preserved reference SVG and photo hashes audited by check_teaser.py"
     }
   ]
 }

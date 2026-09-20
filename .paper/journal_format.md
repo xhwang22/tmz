@@ -10,11 +10,13 @@
 - Figure captions below; table captions above; vector artwork for diagrams,
   quantitative marks, and text. Eight chart PDFs have native 5.4-inch canvases;
   figure typography is scoped and does not replace the official Times body.
-  Fonts must be embedded, with no Type 3 fallbacks. This draft checks active
-  raster assets at a minimum of 600 DPI at print width. The only active photo
-  is 1536 pixels wide and prints at 1.96 cm in Figure 1, about 1990 DPI.
-  Its declared maximum 3 cm width provides about 1300 DPI. Other generated
-  images and unused conceptual diagrams remain archived, not manuscript assets.
+  Fonts must be embedded, with no Type 3 fallbacks. Audit photos at 300 DPI
+  and raster line art at 600 DPI; text and diagram linework remain vector.
+  These are repository quality thresholds, not an additional official ICLR rule.
+  Figure 1 uses three unchanged author-supplied photo crops at 1.38 cm width
+  (399–403 DPI) with native 7-point labels. The original three-column SVG
+  remains a reference asset; its smaller labels are not used for print.
+  The former overview photo and unused generated images remain archived.
 - Simulated quantitative fixtures are expressly marked, not empirical results.
   The author-requested layout draft is not a results-bearing submission;
   `scripts/check_simulated_results.py --submission` must reject it while these

@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 TEXFLAGS := -interaction=nonstopmode -halt-on-error -file-line-error -output-directory=build
-INPUTS := Makefile main.tex preamble.tex references.bib iclr2027_conference.sty iclr2027_conference.bst $(wildcard sections/*.tex figures/*.tex figures/simulated/*.tex figures/simulated/*.pdf output/imagegen/*.png)
+INPUTS := Makefile main.tex preamble.tex references.bib iclr2027_conference.sty iclr2027_conference.bst $(wildcard sections/*.tex figures/*.tex figures/*.pdf figures/teaser/*.png figures/simulated/*.tex figures/simulated/*.pdf output/imagegen/*.png)
 
 .PHONY: all check figures simulated palettes clean
 all: paper.pdf

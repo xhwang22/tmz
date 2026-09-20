@@ -14,7 +14,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig1"
+        "Fig2"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -29,7 +29,6 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig1",
         "Tab2"
       ],
       "status": "draft",
@@ -45,7 +44,6 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig1",
         "Tab2"
       ],
       "status": "draft",
@@ -140,8 +138,8 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Fig1",
-        "Fig3"
+        "Fig2",
+        "Fig4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -157,7 +155,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Fig3"
+        "Fig4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -173,7 +171,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Fig3",
+        "Fig4",
         "Tab5"
       ],
       "status": "draft",
@@ -190,7 +188,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Fig3"
+        "Fig4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -238,7 +236,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Fig1"
+        "Fig2"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -254,7 +252,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Fig1"
+        "Fig2"
       ],
       "status": "draft",
       "risk": "Candidate acceptance and program inheritance are distinct implemented decisions. An unaccepted damaged candidate requires fresh, previously uncredited measured progress and no damage to declared protection cases; no optimal-allocation benefit is established."
@@ -330,8 +328,8 @@
       ],
       "figure_or_table": [
         "Tab14",
-        "Fig9",
-        "Fig5",
+        "Fig10",
+        "Fig6",
         "Tab1"
       ],
       "status": "draft",
@@ -347,7 +345,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig11",
+        "Fig12",
         "Tab8",
         "Tab9"
       ],
@@ -396,9 +394,9 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig7",
+        "Fig8",
         "Tab11",
-        "Fig4"
+        "Fig5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -413,7 +411,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig6",
+        "Fig7",
         "Tab7"
       ],
       "status": "draft",
@@ -427,7 +425,7 @@
       "evidence_artifacts": [],
       "figure_or_table": [
         "Tab11",
-        "Fig4"
+        "Fig5"
       ],
       "status": "gap",
       "gap_reason": "No matched-human-cost sampling result on independently sampled post-evolution evaluation is incorporated. Building a corpus or finding disagreements does not establish sampling efficiency; simulated curves cannot close this gap."
@@ -440,7 +438,7 @@
       "evidence_artifacts": [],
       "figure_or_table": [
         "Tab11",
-        "Fig4",
+        "Fig5",
         "Tab12"
       ],
       "status": "gap",
@@ -483,8 +481,8 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Fig1",
-        "Fig3"
+        "Fig2",
+        "Fig4"
       ],
       "status": "draft",
       "risk": "A statement of the method's editable mechanisms, not evidence that evolution improves evaluation."
@@ -502,6 +500,7 @@
       ],
       "figure_or_table": [
         "Fig1",
+        "Fig2",
         "Tab11"
       ],
       "status": "draft",
@@ -513,7 +512,7 @@
       "source": "sections/mining.tex",
       "kind": "shared algorithm and data provenance",
       "figure_or_table": [
-        "Fig1",
+        "Fig2",
         "Tab3"
       ],
       "evidence_artifacts": [
@@ -546,7 +545,7 @@
       "kind": "annotation reliability boundary",
       "figure_or_table": [
         "Tab3",
-        "Fig8"
+        "Fig9"
       ],
       "evidence_artifacts": [
         "sections/appendix.tex",
@@ -562,7 +561,7 @@
       "kind": "sampling inference boundary",
       "figure_or_table": [
         "Tab11",
-        "Fig7"
+        "Fig8"
       ],
       "evidence_artifacts": [
         "sections/experiments.tex",
@@ -577,22 +576,22 @@
       "source": "sections/results.tex",
       "kind": "simulation provenance",
       "figure_or_table": [
-        "Fig6",
         "Fig7",
         "Fig8",
         "Fig9",
         "Fig10",
         "Fig11",
         "Fig12",
+        "Fig13",
         "Tab14",
         "Tab13",
+        "Fig6",
         "Fig5",
-        "Fig4",
         "Tab1",
         "Tab8",
         "Tab9",
         "Tab12",
-        "Fig2"
+        "Fig3"
       ],
       "evidence_artifacts": [
         "scripts/render_simulated_results.py",
@@ -620,9 +619,9 @@
       "kind": "simulation denominator definition",
       "figure_or_table": [
         "Tab14",
-        "Fig6",
-        "Fig9",
-        "Fig5"
+        "Fig7",
+        "Fig10",
+        "Fig6"
       ],
       "evidence_artifacts": [
         "data/simulated/c1_groups.csv",
@@ -718,7 +717,7 @@
         "scripts/check_landscape_results.py"
       ],
       "figure_or_table": [
-        "Fig5"
+        "Fig6"
       ],
       "status": "supported",
       "risk": "Verifies synthetic allocation and arithmetic only; not observed task prevalence, a proposed empirical sampling strategy, or an effectiveness result."
@@ -762,7 +761,9 @@
         ".paper/method_implementation_audit.md",
         ".paper/reviewer_round1_20260919.md"
       ],
-      "figure_or_table": [],
+      "figure_or_table": [
+        "Fig2"
+      ],
       "status": "draft",
       "risk": "Summarizes the inspected controller's update order, including accepted-but-ineligible candidates; it neither adds an execution experiment nor guarantees population improvement."
     },
@@ -772,7 +773,7 @@
       "source": "sections/appendix.tex",
       "kind": "simulation cohort and reporting definition",
       "figure_or_table": [
-        "Fig2"
+        "Fig3"
       ],
       "evidence_artifacts": [
         "data/simulated/c1_landscape/manifest.json",
@@ -791,7 +792,7 @@
       "source": "sections/mining.tex",
       "kind": "preference-mining design and reverse-selection motivation",
       "figure_or_table": [
-        "Fig1"
+        "Fig2"
       ],
       "evidence_artifacts": [
         "sections/mining.tex",

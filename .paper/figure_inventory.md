@@ -1,23 +1,24 @@
 # Figure and table inventory
 
-Authoritative captions and claim links are in `figures.yml`: 12 figures (two main, ten appendix) and 15 tables.
-Two figures are conceptual, one is an unmeasured budget placeholder, and nine are explicitly simulated quantitative displays.
+Authoritative captions and claim links are in `figures.yml`: 13 figures (three main, ten appendix) and 15 tables.
+Three figures are conceptual, one is an unmeasured budget placeholder, and nine are explicitly simulated quantitative displays.
 No display reports measured performance.
 
 | ID / location | Source | Purpose / status |
 | --- | --- | --- |
-| Fig1 / main | figures/overview.tex | (a) four domain families; (b) disagreement-based preference mining with existing datasets or new outputs and compatible preference reuse; (c) depth-first evaluator evolution with separate acceptance and continuation; (d) C1 alignment/selection, C2 refinement, planned C3; Conceptual specification with constructed examples; no measured results |
-| Fig2 / main | figures/c1_landscape.tex | (a) 22-task taxonomy, not measured sample composition; (b) seed and IterEval agreement versus Best-of-4 family means; (c) common-cohort OOD agreement across all 22 tasks; Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, sampling, search, C2, or C3 efficacy |
-| Fig3 / appendix | figures/evaluator.tex | (a) one artifact; (b) routed observations; (c) dimensional criteria; (d) synthesis; Conceptual specification with constructed examples; no measured results |
-| Fig4 / appendix | figures/budget_tests.tex | (a) search under equal total budgets; (b) sampling under equal human budgets; Unmeasured reporting placeholders; no empirical result or expected effect size |
-| Fig5 / appendix | figures/simulated_landscape.tex | (a) balanced input composition across 22 tasks; (b) assigned cost versus OOD agreement, 110 domain points and ten setting means; (c) four family bar panels in one row, five methods per task; Balanced synthetic OOD subset for layout, distinct from full-cohort appendix data; no empirical efficacy or label availability established |
-| Fig6 / appendix | figures/simulated_alignment.tex | (a) ID paired effects; (b) OOD paired effects; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
-| Fig7 / appendix | figures/simulated_acquisition.tex | (a) reused preferences; (b) new preferences; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
-| Fig8 / appendix | figures/simulated_annotation.tex | (a) valid-pair agreement; (b) requested-rating abstention; (c) group consensus outcomes; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
-| Fig9 / appendix | figures/simulated_selection.tex | (a) reused preferences; (b) new preferences; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
-| Fig10 / appendix | figures/simulated_ablation.tex | (a) conditional component effects; (b) cumulative feedback detail; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
-| Fig11 / appendix | figures/simulated_refinement.tex | (a) paired quality differences; (b) diverging preference shares and a separate abstention column; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
-| Fig12 / appendix | figures/simulated_cost.tex | (a) paired-setting deployment costs; (b) paired-setting agreement; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
+| Fig1 / main | figures/teaser.tex | (a) image-editing task: layout fidelity versus visual richness; (b) successive plausible directions in the default setup; (c) continued layout-fidelity revisions: detection, penalty and severity; Constructed illustration of the search distinction; no observed human preferences, optimizer trajectories, acceptance or gains |
+| Fig2 / main | figures/overview.tex | (a) existing-dataset or fresh-output mining, random anchor, compatible preference reuse or new annotation; (b) depth-first allocation with separate candidate acceptance, program inheritance and direction continuation; Conceptual specification with constructed examples; no measured results |
+| Fig3 / main | figures/c1_landscape.tex | (a) 22-task taxonomy, not measured sample composition; (b) seed and IterEval agreement versus Best-of-4 family means; (c) common-cohort OOD agreement across all 22 tasks; Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, sampling, search, C2, or C3 efficacy |
+| Fig4 / appendix | figures/evaluator.tex | (a) one artifact; (b) routed observations; (c) dimensional criteria; (d) synthesis; Conceptual specification with constructed examples; no measured results |
+| Fig5 / appendix | figures/budget_tests.tex | (a) search under equal total budgets; (b) disagreement-based preference mining versus alternative sampling under equal human budgets; Unmeasured reporting placeholders; no empirical result or expected effect size |
+| Fig6 / appendix | figures/simulated_landscape.tex | (a) balanced input composition across 22 tasks; (b) assigned cost versus OOD agreement, 110 domain points and ten setting means; (c) four family bar panels in one row, five methods per task; Balanced synthetic OOD subset for layout, distinct from full-cohort appendix data; no empirical efficacy or label availability established |
+| Fig7 / appendix | figures/simulated_alignment.tex | (a) ID paired effects; (b) OOD paired effects; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
+| Fig8 / appendix | figures/simulated_acquisition.tex | (a) reused preferences; (b) new preferences; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
+| Fig9 / appendix | figures/simulated_annotation.tex | (a) valid-pair agreement; (b) requested-rating abstention; (c) group consensus outcomes; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
+| Fig10 / appendix | figures/simulated_selection.tex | (a) reused preferences; (b) new preferences; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
+| Fig11 / appendix | figures/simulated_ablation.tex | (a) conditional component effects; (b) cumulative feedback detail; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
+| Fig12 / appendix | figures/simulated_refinement.tex | (a) paired quality differences; (b) diverging preference shares and a separate abstention column; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
+| Fig13 / appendix | figures/simulated_cost.tex | (a) paired-setting deployment costs; (b) paired-setting agreement; Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency |
 
 | ID | Label | Source / status |
 | --- | --- | --- |
@@ -37,12 +38,9 @@ No display reports measured performance.
 | Tab14 | tab:results | sections/appendix.tex; Explicit simulated C1 numerical example; not experimental results |
 | Tab15 | tab:manifest | sections/appendix.tex; Experiment fields requiring author decisions |
 
-Main Figure 2 is on page 9 at its native 5.4 × 3.57-inch size, alongside main Table 1.
-It preserves the approved task ring, family palettes, Source fonts, and lake-green IterEval accent.
-Its new scatter connects alignment and Best-of-4 selection, rather than assigned cost.
-The new bars use all jointly complete OOD inputs per domain; this differs from the historical balanced subset.
-The original landscape remains unchanged as appendix Figure 5; full-cohort paired effects are Figure 6.
-The blank budget comparison is appendix Figure 4, and downstream reporting placeholders are Table 8 in the detailed core-results appendix.
-Main-text C1/C2/C3 interpretation and matched-budget questions are retained.
-No C2/C3 result, sampling gain, or search advantage is inferred from the new C1 layout.
-Historical revision records retain their contemporary display IDs.
+Figure 1 motivates depth through the author-v6 image-editing case. Its native-size print layout uses 7-point labels; the original three-column reference SVG and all nine embedded insets are preserved.
+Figure 2 explains implementation: a mining strip feeds a depth-first revision lane and separate acceptance/inheritance/continuation decisions, including fallback and switching.
+Figure 3 and main Table 1 retain the C1 landscape and complete comparator matrix. The landscape artwork and numerical records are unchanged.
+The former runtime, budget placeholder, and balanced-subset landscape are now appendix Figures 4, 5, and 6. Remaining appendix figures shift accordingly; all table numbers stay unchanged.
+Lake-green method identity matches the main landscape. Red denotes error status, not the method.
+Teaser preferences, scores, and paths are constructed examples, not evidence for empirical gaps C27/C28. Historical revision records retain their contemporary figure numbers.

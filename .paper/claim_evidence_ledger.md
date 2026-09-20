@@ -1,5 +1,36 @@
 # Claim–evidence ledger
 
+## Current display map (round 35)
+
+Current sentence-level claims and reciprocal display links are in `claims.yml`
+and `figures.yml`. The older ledger sections below are historical snapshots:
+their figure numbers and descriptions of earlier abstracts must not be used as
+the current manuscript state. The author-edited Abstract/Introduction now assert
+benefits that remain unverified; C27/C28 are still material evidence gaps.
+
+| Current display | Evidence role |
+| --- | --- |
+| Fig1 teaser | Constructed case illustrating C32; no observed preferences, acceptance or gains |
+| Fig2 overview | Mining and evolution specification, including C47 pre-update fallback |
+| Fig3 main C1 landscape | 22-task taxonomy, eight family points, 110 task-method means/intervals; unchanged simulated records |
+| Fig4 evaluator | Six-component pointwise runtime specification |
+| Fig5 budget comparison | Unmeasured search and preference-mining placeholders |
+| Fig6 original landscape | 2,880-input balanced simulated subset; 110 bars and 120 cost/agreement points |
+| Fig7 alignment | Full-cohort simulated paired ID/OOD effects |
+| Fig8 preference mining | Simulated five-policy cost curves, not measured information efficiency |
+| Fig9 annotation | Simulated agreement, abstention and group-consensus denominators |
+| Fig10 selection | Simulated rank shares with unscored outcomes retained |
+| Fig11 ablation | Simulated conditional component effects and cumulative feedback levels |
+| Fig12 refinement | Simulated eight-domain C2 diagnostic fixture |
+| Fig13 cost | Assigned deployment costs, not measured compute |
+| Tab1 / Tab8 / Tab14 | Unmeasured main C1 matrix / unmeasured downstream outcomes / simulated numerical summary |
+
+All other table IDs are unchanged. No numerical data or quantitative artwork
+was modified in round 35; simulation checkers verify the original denominators.
+The teaser and overview do not support empirical gap closure.
+
+## Historical ledger and revision snapshots
+
 The authoritative current sentence-level memory is `claims.yml`.
 Its artifact paths are relative to this paper repository. Specification evidence
 shows what the method defines, not that the method works. The source plan and

@@ -124,13 +124,14 @@ for asset in assets["generated_images"]:
         errors.append(f"Missing positive max_print_width_cm: {relative}")
     else:
         declared_in = declared_cm / 2.54
-        if width / declared_in < 600:
-            errors.append(f"Figure below 600 DPI at declared maximum print width: {relative}")
+        minimum_dpi = 300 if asset.get("content_type") == "photograph" else 600
+        if width / declared_in < minimum_dpi:
+            errors.append(f"Figure below {minimum_dpi} DPI at declared maximum print width: {relative}")
         for printed_in in print_widths.get(relative, []):
             if printed_in > declared_in + 1e-6:
                 errors.append(f"TeX width exceeds the recorded print-width budget: {relative}")
-            if printed_in <= 0 or width / printed_in < 600:
-                errors.append(f"Figure below 600 DPI at its actual TeX width: {relative}")
+            if printed_in <= 0 or width / printed_in < minimum_dpi:
+                errors.append(f"Figure below {minimum_dpi} DPI at its actual TeX width: {relative}")
     for prompt in asset["prompts"]:
         if not (ROOT / prompt).is_file():
             errors.append(f"Missing figure prompt: {prompt}")
@@ -188,6 +189,12 @@ for asset in assets.get("archived_images", []):
     for prompt in asset["prompts"]:
         if not (ROOT / prompt).is_file():
             errors.append(f"Missing archived prompt: {prompt}")
+
+try:
+    from check_teaser import audit as audit_teaser
+    audit_teaser()
+except (AssertionError, OSError, ValueError) as exc:
+    errors.append(f"Teaser provenance or print-size check failed: {exc}")
 
 aux_path = ROOT / "build/main.aux"
 if aux_path.exists():

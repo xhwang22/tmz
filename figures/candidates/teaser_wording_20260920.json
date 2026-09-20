@@ -1,0 +1,55 @@
+{
+  "manuscript_basis": "bafe259; ICLR session naming instruction 2026-09-20 20:31 UTC and latest completed turn 21:06 UTC",
+  "manuscript_sources": [
+    ".paper/terminology.md",
+    ".paper/context.md",
+    ".paper/claims.yml",
+    ".paper/figures.yml",
+    "sections/problem.tex",
+    "sections/method.tex",
+    "sections/introduction.tex"
+  ],
+  "title": "IterEval: an illustrative comparison of evaluator-evolution search paths",
+  "description": "Constructed illustration, not measured trajectories or an empirical comparison. IterEval names the complete framework; this panel depicts its depth-first evaluator evolution component, not preference mining. The default evaluator-evolution setup is illustrated by shallow direction switching, not a formal breadth-first-search algorithm or a universal baseline stopping rule. Each output is scored separately with a fixed base model. Numbered nodes are complete evaluation programs produced by revisions. Depth-first search continues the layout-fidelity direction. Candidate acceptance, program inheritance, and direction continuation are separate decisions; the central path illustrates eligible inheritance, not unconditional inheritance of every unsuccessful candidate. Per-pair score orderings do not establish development-cohort acceptance or generalization. Images stay fixed. The human preference and search outcomes are constructed, not collected labels or measured results.",
+  "replacements": {
+    "Task: rank image edits": "Task: evaluate image edits",
+    "Reference: A": "Human prefers A",
+    "Evaluator picks B": "Scores favor B",
+    "Prettier, but wider": "More vivid, but wider",
+    "Default search": "Default setup",
+    "Try a different evaluation check": "Try a different direction",
+    "Initial program": "Initial evaluation program",
+    "next attempt": "next candidate",
+    "Add street-layout\ncomparison": "Compare layout\nwith the source",
+    "Street widened;\nnot used in ranking": "Wider street found;\nnot used in scoring",
+    "Not developed further": "Direction left undeveloped",
+    "ERA": "IterEval: depth-first evaluator evolution",
+    "Deepen one idea: layout fidelity": "Continue one direction: layout fidelity",
+    "Report layout drift": "Detect layout changes",
+    "Drift found;\nignored in scoring.": "Changes detected,\nbut unused in scoring.",
+    "Add a layout-drift penalty": "Penalize layout changes",
+    "Penalty too weak;\nranking unchanged.": "Penalty too small;\nerror remains.",
+    "Scale penalty by drift severity": "Scale the penalty by severity",
+    "Larger layout change,\nlarger penalty.": "Larger layout changes,\nlarger score penalties.",
+    "Still picks B": "Still favors B",
+    "Now picks A": "Now favors A",
+    "Illustrative example. Nodes are program revisions; images stay fixed.": "Illustrative search paths. Nodes are complete evaluation programs; images stay fixed."
+  },
+  "extra_labels": [
+    {
+      "x": 344,
+      "baseline": 607,
+      "content": "Each edit is scored separately.",
+      "size": 14,
+      "color": "#4F6070",
+      "anchor": "middle"
+    },
+    {
+      "x": 1270,
+      "baseline": 108,
+      "content": "Candidate acceptance and program inheritance are checked separately.",
+      "size": 14,
+      "color": "#4F6070"
+    }
+  ]
+}

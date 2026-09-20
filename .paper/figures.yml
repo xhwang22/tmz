@@ -4,34 +4,49 @@
   "figures": [
     {
       "id": "Fig1",
-      "label": "fig:overview",
-      "file": "figures/overview.tex",
+      "label": "fig:teaser",
+      "file": "figures/teaser.tex",
       "caption_source": "sections/introduction.tex",
       "panels": [
-        "(a) four domain families",
-        "(b) disagreement-based preference mining with existing datasets or new outputs and compatible preference reuse",
-        "(c) depth-first evaluator evolution acceptance and continuation",
-        "(d) C1 alignment/selection, C2 refinement, planned C3"
+        "(a) image-editing task: layout fidelity versus visual richness",
+        "(b) successive plausible directions in the default setup",
+        "(c) continued layout-fidelity revisions: detection, penalty and severity"
       ],
-      "key_numbers": [
-        "Four domain families (scope, not completed evaluations)"
-      ],
+      "key_numbers": [],
       "raster_assets": [
-        "output/imagegen/edit-preserved.png"
+        "figures/teaser/source-street.png",
+        "figures/teaser/edit-a.png",
+        "figures/teaser/edit-b.png"
       ],
       "supports_claims": [
+        "C32"
+      ],
+      "caption_in_manuscript": "Dive deeper, branch later. Panel (a) contrasts layout fidelity with visual richness. Panel (b) branches across plausible corrections; dashed arrows show attempt order. Panel (c) develops one correction through detection, scoring, and severity weighting. Nodes denote complete evaluation programs; hollow nodes are unexplored alternatives. The corrected ordering is local to this example, not candidate acceptance or generalization. Images, preferences, and paths are constructed illustrations, not experimental evidence.",
+      "evidence_status": "Constructed illustration of the search distinction; no observed human preferences, optimizer trajectories, acceptance or gains"
+    },
+    {
+      "id": "Fig2",
+      "label": "fig:overview",
+      "file": "figures/overview.tex",
+      "caption_source": "sections/mining.tex",
+      "panels": [
+        "(a) existing-dataset or fresh-output mining, random anchor, compatible preference reuse or new annotation",
+        "(b) depth-first allocation with separate candidate acceptance, program inheritance and direction continuation"
+      ],
+      "key_numbers": [],
+      "raster_assets": [],
+      "supports_claims": [
         "C1",
-        "C2",
-        "C3",
         "C9",
         "C15",
         "C16",
         "C31",
         "C32",
         "C33",
+        "C47",
         "C49"
       ],
-      "caption_in_manuscript": "IterEval: iterative evaluator self-improvement from human feedback. (a) Four artifact families retain distinct evaluation standards. (b) Disagreement-based preference mining selects comparisons from existing datasets or fresh outputs, reusing matching preferences and collecting missing ones. Both routes retain their provenance and annotation quality. (c) Depth-first evaluator evolution revises a six-component evaluation procedure with a fixed base model, separating candidate acceptance from direction continuation. (d) C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training. Artifacts and feedback are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
+      "caption_in_manuscript": "IterEval: from human preferences to an improved evaluation procedure. Panel (a) mines existing datasets or new outputs, reusing compatible preferences or collecting missing ones. Panel (b) shows successive revisions within a direction, with alternatives deferred until it pauses or closes. The green spine denotes editing opportunities, not automatic inheritance. Acceptance, inheritance, and continuation are separate decisions; fallback uses the pre-update best program and retains diagnostics. Terminal validation does not trigger edits or reranking. This is a method specification, not a result.",
       "evidence_status": "Conceptual specification with constructed examples; no measured results"
     },
     {
@@ -54,12 +69,12 @@
       ],
       "evidence_status": "Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, sampling, search, C2, or C3 efficacy",
       "data_manifest": "data/simulated/c1_landscape/manifest.json",
-      "id": "Fig2",
+      "id": "Fig3",
       "caption_source": "sections/results.tex",
       "caption_in_manuscript": "\\textbf{C1 across tasks: simulated reporting layout, not experimental results.} Panel (a) maps 22 tasks into four families; equal family quadrants indicate taxonomy, not sample shares. Panel (b) links seed and IterEval family means for pairwise agreement and Best-of-4 selection, without implying a causal relation. Panel (c) reports five methods on each task using their jointly complete OOD inputs. Whiskers are 95\\% input-bootstrap intervals; selection counts failed scoring as failure. Table~\\ref{tab:main-alignment} specifies the full empirical comparison. Appendix~\\ref{app:simulation} documents denominators and provenance."
     },
     {
-      "id": "Fig3",
+      "id": "Fig4",
       "label": "fig:runtime",
       "file": "figures/evaluator.tex",
       "caption_source": "sections/appendix.tex",
@@ -95,7 +110,7 @@
       ],
       "evidence_status": "Unmeasured reporting placeholders; no empirical result or expected effect size",
       "caption_in_manuscript": "\\textbf{Matched-budget comparisons awaiting measurements.} (a) Search progress under equal total model-and-tool cost at frozen prices; locked ID/OOD checkpoint assessment occurs after search and never guides it. (b) Final agreement under equal human budgets and a fixed evolution budget. No curves or gains are supplied. Table~\\ref{tab:full-ablations} specifies the controls.",
-      "id": "Fig4",
+      "id": "Fig5",
       "caption_source": "sections/appendix.tex",
       "file": "figures/budget_tests.tex",
       "panels": [
@@ -130,11 +145,11 @@
         "C44"
       ],
       "evidence_status": "Balanced synthetic OOD subset for layout, distinct from full-cohort appendix data; no empirical efficacy or label availability established",
-      "id": "Fig5",
+      "id": "Fig6",
       "caption_in_manuscript": "\\textbf{Simulated task coverage and evaluator comparisons; not experimental results.} Panel (a) summarizes 22 tasks and 2,880 input groups, balanced to 720 per family with four outputs per input. A fixed hash selects this subset without reading outcomes; the appendix reports the full synthetic cohorts. Sector angles encode input counts; task codes follow Table~\\ref{tab:domains}. Panel (b) plots assigned cost units, not measured runtime, against OOD agreement with synthetic human rankings. Small marks denote 110 domain--method combinations; large marks equally average 11 domains per feedback setting. Shapes identify methods, and filled/open marks denote illustrative reused/new preferences, not label reliability. Panel (c) reports agreement from pointwise scores and 95\\% input-group bootstrap intervals on a common 0--100\\% scale. Baseline bars follow the displayed order in each family's hue; IterEval is lake green. Cost includes all selected inputs; agreement uses method-complete inputs. Marginal intervals do not establish paired differences."
     },
     {
-      "id": "Fig6",
+      "id": "Fig7",
       "label": "fig:alignment",
       "file": "figures/simulated_alignment.tex",
       "caption_source": "sections/appendix.tex",
@@ -159,7 +174,7 @@
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
-      "id": "Fig7",
+      "id": "Fig8",
       "label": "fig:acquisition",
       "file": "figures/simulated_acquisition.tex",
       "caption_source": "sections/appendix.tex",
@@ -183,7 +198,7 @@
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
-      "id": "Fig8",
+      "id": "Fig9",
       "label": "fig:annotation-quality",
       "file": "figures/simulated_annotation.tex",
       "caption_source": "sections/appendix.tex",
@@ -208,7 +223,7 @@
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
-      "id": "Fig9",
+      "id": "Fig10",
       "label": "fig:selection",
       "file": "figures/simulated_selection.tex",
       "caption_source": "sections/appendix.tex",
@@ -233,7 +248,7 @@
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
-      "id": "Fig10",
+      "id": "Fig11",
       "label": "fig:ablation",
       "file": "figures/simulated_ablation.tex",
       "caption_source": "sections/appendix.tex",
@@ -256,7 +271,7 @@
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
-      "id": "Fig11",
+      "id": "Fig12",
       "label": "fig:refinement",
       "file": "figures/simulated_refinement.tex",
       "caption_source": "sections/appendix.tex",
@@ -279,7 +294,7 @@
       "evidence_status": "Explicit simulated reporting fixture; not evidence of effectiveness, reliability, or efficiency"
     },
     {
-      "id": "Fig12",
+      "id": "Fig13",
       "label": "fig:cost",
       "file": "figures/simulated_cost.tex",
       "caption_source": "sections/appendix.tex",

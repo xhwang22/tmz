@@ -5,6 +5,19 @@ Disagreement-based preference mining lowers the sampling priority of comparisons
 Repeated annotations of these comparisons may add little information about evaluation errors.
 IterEval selects comparisons from existing datasets or newly generated outputs, reusing compatible human preferences and collecting missing ones while retaining a random anchor.
 
+\begin{figure}[t]
+\centering
+\input{figures/overview}
+\caption{IterEval: from human preferences to an improved evaluation procedure.
+Panel (a) mines existing datasets or new outputs, reusing compatible preferences or collecting missing ones.
+Panel (b) shows successive revisions within a direction, with alternatives deferred until it pauses or closes.
+The green spine denotes editing opportunities, not automatic inheritance.
+Acceptance, inheritance, and continuation are separate decisions; fallback uses the pre-update best program and retains diagnostics.
+Terminal validation does not trigger edits or reranking.
+This is a method specification, not a result.}
+\label{fig:overview}
+\end{figure}
+
 \subsection{Comparable evaluation signals}
 
 Outputs are grouped by their original task input and deduplicated before comparison.

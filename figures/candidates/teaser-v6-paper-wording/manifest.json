@@ -1,0 +1,337 @@
+{
+  "source": "output/imagegen/teaser-flat-search-image25-20260920-v5.png",
+  "source_sha256": "ddbb263d08926b758183a8943c0e8ee82ca04d6c7299aa6cb80bb1973146b60f",
+  "canvas": [
+    2206,
+    713
+  ],
+  "viewBox": [
+    0,
+    0,
+    2048,
+    662
+  ],
+  "elements": {
+    "svg": 1,
+    "title": 1,
+    "desc": 1,
+    "defs": 1,
+    "style": 1,
+    "marker": 5,
+    "path": 40,
+    "g": 9,
+    "rect": 31,
+    "text": 59,
+    "clipPath": 9,
+    "image": 9,
+    "circle": 39
+  },
+  "font": "TeX Gyre Heros",
+  "grid": {
+    "panel_y": 8,
+    "panel_height": 610,
+    "panel_gap": 8,
+    "b_centers": [
+      776,
+      944,
+      1112
+    ],
+    "c_axis": 1344,
+    "c_levels": [
+      222,
+      374,
+      526
+    ],
+    "c_side_offsets": [
+      -94,
+      94
+    ],
+    "revision_card_size": [
+      544,
+      140
+    ],
+    "revision_image_size": [
+      220,
+      88
+    ]
+  },
+  "mirror_checks": [
+    {
+      "axis_x": 944,
+      "root_y": 151,
+      "target_y": 222,
+      "offsets": [
+        -168,
+        168
+      ],
+      "mirrored": true
+    },
+    {
+      "axis_x": 776,
+      "root_y": 518,
+      "target_y": 568,
+      "offsets": [
+        -46,
+        46
+      ],
+      "mirrored": true
+    },
+    {
+      "axis_x": 944,
+      "root_y": 518,
+      "target_y": 568,
+      "offsets": [
+        -46,
+        46
+      ],
+      "mirrored": true
+    },
+    {
+      "axis_x": 1112,
+      "root_y": 518,
+      "target_y": 568,
+      "offsets": [
+        -46,
+        46
+      ],
+      "mirrored": true
+    },
+    {
+      "axis_x": 1344,
+      "root_y": 151,
+      "target_y": 222,
+      "offsets": [
+        -94,
+        -47.0,
+        47.0,
+        94
+      ],
+      "mirrored": true
+    },
+    {
+      "axis_x": 1344,
+      "root_y": 241,
+      "target_y": 374,
+      "offsets": [
+        -94,
+        94
+      ],
+      "mirrored": true
+    },
+    {
+      "axis_x": 1344,
+      "root_y": 393,
+      "target_y": 526,
+      "offsets": [
+        -94,
+        94
+      ],
+      "mirrored": true
+    }
+  ],
+  "alignment_checks": "pass",
+  "text_collision_check": "pass",
+  "photos": [
+    {
+      "id": "source-street",
+      "source_box": [
+        31,
+        160,
+        249,
+        484
+      ],
+      "target": [
+        30,
+        152,
+        200,
+        298
+      ],
+      "pixel_size": [
+        218,
+        324
+      ],
+      "sha256": "27cc44694a30957ac47b7a908ac617a7ed7cc00687e9cbd77bb0e695bae7e43b"
+    },
+    {
+      "id": "edit-a",
+      "source_box": [
+        262,
+        160,
+        479,
+        484
+      ],
+      "target": [
+        244,
+        152,
+        200,
+        298
+      ],
+      "pixel_size": [
+        217,
+        324
+      ],
+      "sha256": "4d9329f3b9128bd4a9df484951f05f65380c1c7905bbf9c660a0f0d1be390a2c"
+    },
+    {
+      "id": "edit-b",
+      "source_box": [
+        492,
+        160,
+        711,
+        484
+      ],
+      "target": [
+        458,
+        152,
+        200,
+        298
+      ],
+      "pixel_size": [
+        219,
+        324
+      ],
+      "sha256": "3bd396a7ece565dd52913deb3bbd32ecc34ccc75312b075b0ec09381dc0c7a06"
+    },
+    {
+      "id": "layout-check",
+      "source_box": [
+        770,
+        348,
+        904,
+        435
+      ],
+      "target": [
+        711,
+        326,
+        130,
+        85
+      ],
+      "pixel_size": [
+        134,
+        87
+      ],
+      "sha256": "4f53b6f65730d5699c9138d6bd1ac9769ff66c2cbe8629bd82f7bb82e8da7c3e"
+    },
+    {
+      "id": "night-rain-check",
+      "source_box": [
+        951,
+        348,
+        1085,
+        435
+      ],
+      "target": [
+        879,
+        326,
+        130,
+        85
+      ],
+      "pixel_size": [
+        134,
+        87
+      ],
+      "sha256": "499cf163960d852558927d1a0ac57f60cb74025b37626da6b39a9d0e5bc0833f"
+    },
+    {
+      "id": "visual-defect-check",
+      "source_box": [
+        1126,
+        348,
+        1259,
+        435
+      ],
+      "target": [
+        1047,
+        326,
+        130,
+        85
+      ],
+      "pixel_size": [
+        133,
+        87
+      ],
+      "sha256": "785c9dcdce3eb1bc6533c30676e2148aa93d46b2425cad510f23f816389bbf8c"
+    },
+    {
+      "id": "report-layout-drift",
+      "source_box": [
+        1661,
+        163,
+        1907,
+        261
+      ],
+      "target": [
+        1500,
+        194.0,
+        220,
+        88
+      ],
+      "pixel_size": [
+        246,
+        98
+      ],
+      "sha256": "9294ce442d671ef8e11fe63be60ea92a1eee99c3c6a90d17b0abe4ee65e759f2"
+    },
+    {
+      "id": "add-layout-penalty",
+      "source_box": [
+        1661,
+        327,
+        1907,
+        452
+      ],
+      "target": [
+        1500,
+        346.0,
+        220,
+        88
+      ],
+      "pixel_size": [
+        246,
+        125
+      ],
+      "sha256": "d665e27a637fd90b4c831114f8e032e2b0fd25d69fa44ef2016e421e08349aec"
+    },
+    {
+      "id": "scale-penalty-by-severity",
+      "source_box": [
+        1661,
+        516,
+        1907,
+        625
+      ],
+      "target": [
+        1500,
+        498.0,
+        220,
+        88
+      ],
+      "pixel_size": [
+        246,
+        109
+      ],
+      "sha256": "dd8966df05d715ea6093e3b42d768235c4f2966e594b8071c1c48b07cfa809e1"
+    }
+  ],
+  "embedded_images": true,
+  "new_generation": false,
+  "canonical_integration": true,
+  "style": "flat solid fills; single moderate outlines; no gradients, shadows, or highlights",
+  "flat_style_check": "pass",
+  "wording_profile": "figures/candidates/teaser_wording_20260920.json",
+  "wording_profile_sha256": "ecd8523eb0d685b36071da85ca60cf42ae2a53ea35ec4279f4a1eaea6b27af2c",
+  "manuscript_basis": "bafe259; ICLR session naming instruction 2026-09-20 20:31 UTC and latest completed turn 21:06 UTC",
+  "wording_source_hashes": {
+    ".paper/terminology.md": "4e8ff47380d20c43b3f19e5119a77da25bb3cdcdd7773ed6a5175cd8ad7e3448",
+    ".paper/context.md": "ece1163f96fd1154fbd280f314c25487d2e1d7bf35e211d1d3cdac6ec6d24631",
+    ".paper/claims.yml": "236a1973e4f1bbe553d655a72b1218c6beb1ed778a492e4160fbf7af98cdf1e0",
+    ".paper/figures.yml": "4599774a4379621b624d473afbfdee0b09d41bc433f13076368b5bca06e772aa",
+    "sections/problem.tex": "769e9e77066b877c812a9ba4668c97838eab4124667c0647b866f966ff24a0b5",
+    "sections/method.tex": "a1c771bc6e4068f55591c35e39b8396e8bca6d64ed2ff1744f5c47e952688b97",
+    "sections/introduction.tex": "9c29ac446bdfe9dbfe63a194cd5ee7b8a203406253a341ca64cc18bd61d2a560"
+  },
+  "terminology_check": "pass",
+  "evidence_boundary": "Constructed example; no empirical-gain or candidate-acceptance claim from one pair",
+  "method_accent": "#62AAA5",
+  "palette_check": "text, geometry and embedded images unchanged"
+}
