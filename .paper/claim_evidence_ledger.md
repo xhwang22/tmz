@@ -10,22 +10,22 @@ plan-to-manuscript map is `plan_coverage.md`.
 
 | Claim family | Manuscript / evidence | Allowed status |
 | --- | --- | --- |
-| Preference-supervised evaluation-agent evolution and domain standard | Introduction, problem, Fig1, Tab1 | Research question and scope, not achieved alignment or universal transfer |
+| Preference-supervised evaluation-agent evolution and domain standard | Introduction, problem, Fig1, Tab3 | Research question and scope, not achieved alignment or universal transfer |
 | Preference outcomes versus criteria and evidence for new outputs | Abstract, introduction, problem; C42 | Problem framing, not a claim that all human preferences can be recovered or explained |
-| Two feedback-construction settings; no H0 admission prerequisite | Problem/mining, Fig1, Tab2; C33/C34 | Shared algorithm with separately reported data provenance |
-| New labels are not presumed more reliable | Annotation protocol, Fig6, Tab2; C35 | Reporting requirement; simulated raters supply no reliability evidence |
-| Semantic mapping, dependence, three strata | Mining, Tab3 | Acquisition design, not validated information efficiency |
-| H0–H3 and evidence table Z | Problem/mining, Figs1/3, Tab2 | Protocol; availability must be reported per source |
-| Six components, fixed model, pointwise access | Problem/method, Fig3, Tab4 | Method specification, not immunity to leakage |
-| Evolution of observation and judgment; hypothesis/program units | Method, Figs1/3, Tab5; C31/C32 | Procedural definitions, not evidence of improved judgment |
-| Directions, connected edits, best/working, outcomes | Method, Algorithm1, Tab5 | Search procedure; utility requires controlled ablation |
-| Train/Val/Test and metric reserve | Method/mining, Tab4 | Access contract; adaptive development is not final evidence |
+| Two feedback-construction settings; no H0 admission prerequisite | Problem/mining, Fig1, Tab4; C33/C34 | Shared algorithm with separately reported data provenance |
+| New labels are not presumed more reliable | Annotation protocol, Fig7, Tab4; C35 | Reporting requirement; simulated raters supply no reliability evidence |
+| Semantic mapping, dependence, three strata | Mining, Tab5 | Acquisition design, not validated information efficiency |
+| H0–H3 and evidence table Z | Problem/mining, Figs1/3, Tab4 | Protocol; availability must be reported per source |
+| Six components, fixed model, pointwise access | Problem/method, Fig3, Tab6 | Method specification, not immunity to leakage |
+| Evolution of observation and judgment; hypothesis/program units | Method, Figs1/3, Tab11; C31/C32 | Procedural definitions, not evidence of improved judgment |
+| Directions, connected edits, best/working, outcomes | Method, Algorithm1, Tab11 | Search procedure; utility requires controlled ablation |
+| Train/Val/Test and metric reserve | Method/mining, Tab6 | Access contract; adaptive development is not final evidence |
 | Optional semantic synthesis | Method/appendix | Defined grouping and anchor arithmetic, not semantic accuracy |
-| C1/C2/C3 and controlled ablations | Experimental design, Tabs5–8/11 | Study design; no measured effect; C3 design-only |
+| C1/C2/C3 and controlled ablations | Experimental design, Tabs11/10/8/2/15 | Study design; no measured effect; C3 design-only |
 | External human standard; automated program changes | Method; C39 | Self-evolution definition, not self-definition of human preferences |
-| Fine-tuning/calibration alternatives and shared-observation control | Experiments, adaptation appendix, Tab12; C40 | Planned evaluator comparison; no superiority, data-efficiency, or cost result; distinct from C3 |
+| Fine-tuning/calibration alternatives and shared-observation control | Experiments, adaptation appendix, Tab7; C40 | Planned evaluator comparison; no superiority, data-efficiency, or cost result; distinct from C3 |
 | Explicit criteria and traces versus faithful explanation | Adaptation appendix; C41 | Inspection affordance and evidential boundary, not validated interpretability |
-| Corpus construction versus acquisition efficiency | Experiments, Fig5, Tab5; C36 | Separate matched-budget random-sampling comparison required |
+| Corpus construction versus acquisition efficiency | Experiments, Fig6, Tab11; C36 | Separate matched-budget random-sampling comparison required |
 | Annotation efficiency and sustained gains from depth-first continuation | Introduction; C27/C28 | Material empirical gaps; retain as open comparisons only |
 | Default pointwise rejection, incumbent retention, and redirection | Introduction; search_observation_audit.md; C43 | Bounded qualitative development observation, not universal RSI behavior or proof of the DFS remedy |
 | Simulated display provenance | Generator, manifest, CSVs, PDFs; C37 | Supported only as artificial reporting examples, not effects |
@@ -47,29 +47,29 @@ C28 now expresses the author-approved continuation hypothesis; the prior coordin
 | Token or quantity | Trace | Meaning |
 | --- | --- | --- |
 | ERA, H0–H3, C1/C2/C3 | Definitions in problem, introduction and experiments | Method name and level/study identifiers |
-| 22 domains; four families of 6/6/5/5 | Tab1, full domain IDs; Figs1/2/4 | Full planned scope and synthetic C1 coverage, not readiness or completed experiments |
-| Two construction settings | Mining; Fig1; Tab2 | Reused/new feedback, not permanent domain classes |
+| 22 domains; four families of 6/6/5/5 | Tab3, full domain IDs; Figs1/4/5 | Full planned scope and synthetic C1 coverage, not readiness or completed experiments |
+| Two construction settings | Mining; Fig1; Tab4 | Reused/new feedback, not permanent domain classes |
 | Six components | Eq. program; Fig3 | (A, K, V, T, Pi, G), not an effect size |
-| Three semantic strata | Mining; Tab3 | Within-dimension, overall–dimension, trade-off |
+| Three semantic strata | Mining; Tab5 | Within-dimension, overall–dimension, trade-off |
 | At least 3 repeats | Eq. measurement; Appendix measurement | Fixed measurement requirement, not observed reliability |
 | Default N=4; top-two | C1 design and measurement appendix | Planned candidate-pool and ranking endpoints |
-| 95% intervals | Experimental design, Figs2/4/6; bootstrap code | Planned interval level; displayed intervals resample toy input groups only |
-| H budgets 20, 50, 100, 200 | Ablation paragraph; Tab5; acquisition.csv | Matched-budget design; plotted outcomes are assigned toy responses |
+| 95% intervals | Experimental design, Figs4/5/7; bootstrap code | Planned interval level; displayed intervals resample toy input groups only |
+| H budgets 20, 50, 100, 200 | Ablation paragraph; Tab11; acquisition.csv | Matched-budget design; plotted outcomes are assigned toy responses |
 | Two development / three final annotators | Annotation appendix | Planned independent annotation protocol |
 | 50, 75, 100; lambda=0.4; result 60 | Semantic-synthesis appendix and anchor equation | Synthetic scale arithmetic, not a performance result |
-| 22 C1 cohorts, 11 per setting; eight diagnostic cohorts | c1_cohorts.csv; Tab9/cohorts.csv; manifest | Full C1 layout coverage and bounded diagnostic subset; assignments do not assert label availability |
+| 22 C1 cohorts, 11 per setting; eight diagnostic cohorts | c1_cohorts.csv; Tab13/cohorts.csv; manifest | Full C1 layout coverage and bounded diagnostic subset; assignments do not assert label availability |
 | 160 groups; four candidates; three repeats | c1_groups.csv, manifest | Toy generator settings, not experimental sample sizes |
-| Seven methods in Tab10/Fig10; five in Fig2; four in Fig7 | C1 summary, selected-rank and cost CSVs | Reporting fixtures, not evaluated implementations; Fig2 is a fixed non-metric subset |
-| 1,000 bootstrap replicates | Generator, manifest, Appendix J | Resampling variation in fixtures, not uncertainty about ERA |
-| Five policies; 12 runs; 10-unit anchor; 10–90% bands | Fig5, acquisition.csv | Matched toy inputs; run percentiles are not confidence intervals |
-| Three raters; two-of-three consensus; four outcomes | Fig6, annotation_groups.csv, annotation_summary.csv | Artificial votes, with valid-pair / requested-rating / input-group denominators |
-| Four cumulative H levels; conditional component differences | Fig8, component_effects.csv, granularity.csv | Paired synthetic group contrasts in eight diagnostic domains, not independent search runs or additive causal effects |
-| C2 tie threshold 0.15; regression threshold −0.8 | Fig9; refinement_groups.csv; generator/checker | Arbitrary latent units, not universal human thresholds |
-| Relative deployment-cost units | Fig10, cost_summary.csv | Assigned costs, not timed calls or measured compute |
-| Main-text balanced C1 composite: 22 tasks, 2,880 inputs, 720/family | Fig2; C44; data/simulated/landscape/ | Fixed-hash synthetic subset; 120/task in six-task families, 144/task in five-task families; not empirical prevalence |
-| 110 bars/intervals and 120 cost/agreement points | Fig2b--c; method-summaries.csv, displayed-macros.csv, check_landscape_results.py | Method-complete agreement; all-input assigned cost; ten equally weighted 11-domain means; marginal intervals are not paired contrasts |
-| Tab10 values; Fig4 effects; Fig7 rank shares | C1/selection CSVs and check_simulated_results.py | Method-complete, jointly complete, and all-input denominators respectively; the balanced Fig2 subset is audited separately above |
-| Dashes in empirical downstream status | Tab8 | Unmeasured, not zero; no C3 fixtures |
+| Seven methods in Tab14/Fig11; five in Fig4; four in Fig8 | C1 summary, selected-rank and cost CSVs | Reporting fixtures, not evaluated implementations; Fig4 is a fixed non-metric subset |
+| 1,000 bootstrap replicates | Generator, manifest, Appendix L | Resampling variation in fixtures, not uncertainty about ERA |
+| Five policies; 12 runs; 10-unit anchor; 10–90% bands | Fig6, acquisition.csv | Matched toy inputs; run percentiles are not confidence intervals |
+| Three raters; two-of-three consensus; four outcomes | Fig7, annotation_groups.csv, annotation_summary.csv | Artificial votes, with valid-pair / requested-rating / input-group denominators |
+| Four cumulative H levels; conditional component differences | Fig9, component_effects.csv, granularity.csv | Paired synthetic group contrasts in eight diagnostic domains, not independent search runs or additive causal effects |
+| C2 tie threshold 0.15; regression threshold −0.8 | Fig10; refinement_groups.csv; generator/checker | Arbitrary latent units, not universal human thresholds |
+| Relative deployment-cost units | Fig11, cost_summary.csv | Assigned costs, not timed calls or measured compute |
+| Appendix balanced C1 composite: 22 tasks, 2,880 inputs, 720/family | Fig4; C44; data/simulated/landscape/ | Fixed-hash synthetic subset; 120/task in six-task families, 144/task in five-task families; not empirical prevalence |
+| 110 bars/intervals and 120 cost/agreement points | Fig4b--c; method-summaries.csv, displayed-macros.csv, check_landscape_results.py | Method-complete agreement; all-input assigned cost; ten equally weighted 11-domain means; marginal intervals are not paired contrasts |
+| Tab14 values; Fig5 effects; Fig8 rank shares | C1/selection CSVs and check_simulated_results.py | Method-complete, jointly complete, and all-input denominators respectively; the balanced Fig4 subset is audited separately above |
+| Dashes in empirical downstream status | Tab2 | Unmeasured, not zero; no C3 fixtures |
 
 No claim of measured accuracy, selection, refinement, training gain,
 statistical significance, annotation efficiency, superiority to existing
@@ -160,3 +160,32 @@ C27 is refreshed verbatim after Introduction compression; it remains a gap.
 C28 remains a gap as well. Neither cited studies nor simulated reporting fixtures
 provide evidence of our equal-cost acquisition or search advantage.
 No figures, data, empirical claims or study execution status change in this round.
+
+## Plan-aligned reporting and formalization (round 23)
+
+Main Tables 1/2 and Figure 2 are unmeasured placeholders, not simulated wins.
+Tables 9/12 reserve external checks and equal-budget search comparisons.
+Conditional ideal-result interpretations describe what a favorable outcome would support and what it would not establish.
+C45 is a selection invariant over recorded development measurements, justified by the best/working update equations, not evidence of unseen gains.
+C27/C28 remain empirical gaps; C3 remains unrun.
+The unchanged numerical landscape is appendix Figure 4.
+
+## Independent reviewer loop (round 24)
+
+Three reviewer passes and their dispositions are recorded in `reviewer_comments.md`.
+This loop corrects definitions and interpretation, not empirical status.
+
+| Claim / reporting contract | Current evidence | Allowed inference / remaining requirement |
+| --- | --- | --- |
+| C12, C46: stochastic preference objective and input weighting | Method Equations 3–4; Appendix F; native `partition_train` | Reporting definition includes finite-repeat randomness and equal input weights. Native one-pair-per-input development remains an explicit proxy. |
+| C17, C47: inheritance eligibility and pre-update fallback | Method Equation 6; Algorithm 1; current source hashes in `method_implementation_audit.md`; round-3 branch check | Correct correspondence to the inspected controller, not evidence of search effectiveness. |
+| C18, C45: continuation and the recorded-best invariant | Method §§5.3–5.4; Discussion | Working can continue without reducing the recorded best score. Unseen agreement, significance, and downstream quality are not guaranteed. |
+| C22, C29: resource and acquisition contrasts | Experiments; Appendix J | Frozen-price model-and-tool cost matches search; annotation units and measured human time are distinct endpoints. Historical replay alone measures label efficiency. |
+| C26: uncertainty | Method; Appendix F/H/J | Input-group intervals condition on fixed evaluators; independent-search variation needs actual independent runs. Missing-outcome bounds are not sampling intervals. |
+| Tab1/Tab2 | Main captions; Appendix H | Equal-domain summaries require eligible-domain counts and endpoint-specific common cohorts. Regression cells are ERA-minus-seed rates, separately by ID/OOD. |
+| C27/C28 | No empirical artifacts | Remain `gap`. Favorable conditional interpretation and a passed writing review do not supply evidence. |
+| C2/C3 downstream study labels | Experimental designs only | Selection, critique, and reward-guided training need separate evidence; C3 remains unrun. |
+
+The history-only versus depth-first contrast tests allocation and inheritance jointly; isolating inheritance requires an additional control.
+Future equivalence language requires adequate precision or a prespecified criterion, not merely a nonsignificant difference.
+No numerical fixture, bibliography entry, publication field, or empirical claim status was changed in this reviewer cycle.

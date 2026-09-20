@@ -30,7 +30,7 @@
       ],
       "figure_or_table": [
         "Fig1",
-        "Tab1"
+        "Tab3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -46,7 +46,7 @@
       ],
       "figure_or_table": [
         "Fig1",
-        "Tab1"
+        "Tab3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -61,7 +61,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab2"
+        "Tab4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -76,7 +76,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab2"
+        "Tab4"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -92,7 +92,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab3"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -108,7 +108,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab3"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -124,7 +124,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab3"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -174,14 +174,14 @@
       ],
       "figure_or_table": [
         "Fig3",
-        "Tab4"
+        "Tab6"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C12",
-      "text": "Evaluator modules apply their criteria and use routing rules to obtain tool observations, then return findings with supporting evidence and uncertainty.",
+      "text": "The default synthesizer receives specialist findings, reasons, and scopes, but not structured scores or scales (Figure~\\ref{fig:runtime}; Appendix~\\ref{app:synthesis}).",
       "source": "sections/method.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -197,7 +197,7 @@
     },
     {
       "id": "C13",
-      "text": "Connected changes, such as a tool, its route, and its consuming module, are assembled against one parent and evaluated as one complete candidate. Its outcome is not credited separately to every edit.",
+      "text": "Connected edits share one parent and one measured outcome, so a bundle's gain is not independent evidence for each edit.",
       "source": "sections/method.tex",
       "kind": "attribution boundary",
       "evidence_artifacts": [
@@ -206,14 +206,14 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab5"
+        "Tab11"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C14",
-      "text": "A sealed training subset $\\Ddev$, disjoint from $\\Dprop$ by original input and artifact identity, returns aggregate development measurements without exposing its cases or labels.",
+      "text": "The agent constructs candidates from inspectable proposal data $\\Dprop$, including artifacts, human feedback, and execution traces. A disjoint sealed subset $\\Ddev$ returns aggregate measurements only.",
       "source": "sections/method.tex",
       "kind": "data access protocol",
       "evidence_artifacts": [
@@ -222,14 +222,14 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab4"
+        "Tab6"
       ],
       "status": "draft",
       "risk": "The current controller enforces input and artifact separation and aggregate-only release. Adaptive development is not an unbiased final estimate; broader source-near-duplicate isolation remains a study requirement."
     },
     {
       "id": "C15",
-      "text": "A candidate replaces $B$ only if development agreement strictly improves, execution is complete and comparable, coverage does not decrease, and the prespecified stratum-regression guard holds.",
+      "text": "Define $\\Gamma_t(C)$ as the acceptance guard: complete and comparable execution, nondecreasing coverage, and the prespecified stratum-regression check.",
       "source": "sections/method.tex",
       "kind": "development selection",
       "evidence_artifacts": [
@@ -245,7 +245,7 @@
     },
     {
       "id": "C16",
-      "text": "Search retains a best evaluator $B$ and a working evaluator $W$ for the active direction.",
+      "text": "Let $B_t$ be the best accepted program and $W_t$ the working program for the active direction.",
       "source": "sections/method.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -261,7 +261,7 @@
     },
     {
       "id": "C17",
-      "text": "A failed candidate does not by itself refute its direction's hypothesis. Refutation requires diagnostic results that contradict the hypothesis within its stated scope after relevant implementation alternatives have been examined. The current controller implements measurement, inheritance, and continuation or pausing; it does not automatically adjudicate semantic refutation.",
+      "text": "Refutation requires results that contradict the hypothesis within its stated scope after relevant implementation alternatives have been examined. The controller does not automatically adjudicate semantic refutation. Resource exhaustion leaves an unresolved direction, not a refuted one.",
       "source": "sections/method.tex",
       "kind": "refutation boundary",
       "evidence_artifacts": [
@@ -275,7 +275,7 @@
     },
     {
       "id": "C18",
-      "text": "Full-evaluator development and terminal validation request $R\\geq3$ executions per artifact under a fixed protocol.",
+      "text": "Full-evaluator measurements request $R\\geq3$ executions per artifact.",
       "source": "sections/method.tex",
       "kind": "measurement definition",
       "evidence_artifacts": [
@@ -284,7 +284,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab11"
+        "Tab15"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -314,7 +314,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab4"
+        "Tab6"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -329,16 +329,17 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab10",
-        "Fig7",
-        "Fig2"
+        "Tab14",
+        "Fig8",
+        "Fig4",
+        "Tab1"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C22",
-      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed critic and ERA critic each inspect that same output and permitted evidence, then return the same critique format. A common generator performs one refinement step under identical prompts, decoding, tool access, and token budgets.",
+      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed and ERA critics inspect that same output with matched evidence and critique formats. The same generator refines each once under identical prompts, decoding, tools, and token budgets.",
       "source": "sections/experiments.tex",
       "kind": "C2 study protocol",
       "evidence_artifacts": [
@@ -346,8 +347,9 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig9",
-        "Tab8"
+        "Fig10",
+        "Tab2",
+        "Tab9"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -362,7 +364,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab6"
+        "Tab10",
+        "Tab9"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -377,8 +380,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab6",
-        "Tab8"
+        "Tab10",
+        "Tab2"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -393,15 +396,16 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig5",
-        "Tab5"
+        "Fig6",
+        "Tab11",
+        "Fig2"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C26",
-      "text": "Paired effects use grouped 95\\% intervals.",
+      "text": "For a fixed evaluator, paired effects use 95\\% intervals over original-input groups; independent searches assess optimizer variation separately.",
       "source": "sections/experiments.tex",
       "kind": "analysis design",
       "evidence_artifacts": [
@@ -409,8 +413,8 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Fig4",
-        "Tab7"
+        "Fig5",
+        "Tab8"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -422,7 +426,8 @@
       "kind": "hypothesis",
       "evidence_artifacts": [],
       "figure_or_table": [
-        "Tab5"
+        "Tab11",
+        "Fig2"
       ],
       "status": "gap",
       "gap_reason": "No matched-human-cost acquisition result on independently sampled post-evolution evaluation is incorporated. Building a corpus or finding disagreements does not establish acquisition efficiency; simulated curves cannot close this gap."
@@ -434,14 +439,16 @@
       "kind": "hypothesis",
       "evidence_artifacts": [],
       "figure_or_table": [
-        "Tab5"
+        "Tab11",
+        "Fig2",
+        "Tab12"
       ],
       "status": "gap",
       "gap_reason": "No matched-resource controlled result establishes that depth-first continuation improves sustained alignment. Observed rejection/redirection motivates the comparison but does not prove its cause or the proposed remedy; simulated ablations cannot close this gap."
     },
     {
       "id": "C29",
-      "text": "This interval bounds full-cohort agreement under arbitrary missing outcomes; it is not a statistical confidence interval.",
+      "text": "The interval bounds full-cohort agreement under arbitrary missing outcomes; it is not a statistical confidence interval.",
       "source": "sections/appendix.tex",
       "kind": "mathematical definition",
       "evidence_artifacts": [
@@ -467,7 +474,7 @@
     },
     {
       "id": "C31",
-      "text": "ERA evolves an evaluation procedure by changing the program that implements it.",
+      "text": "ERA treats evaluator evolution as search over executable programs with a fixed base model.",
       "source": "sections/method.tex",
       "kind": "evolution object",
       "evidence_artifacts": [
@@ -495,7 +502,7 @@
       ],
       "figure_or_table": [
         "Fig1",
-        "Tab5"
+        "Tab11"
       ],
       "status": "draft",
       "risk": "A direction's intent motivates candidate edits; optional expectations are not a mandatory formal hypothesis packet. This search/selection distinction does not establish an empirical advantage."
@@ -507,7 +514,7 @@
       "kind": "shared algorithm and data provenance",
       "figure_or_table": [
         "Fig1",
-        "Tab2"
+        "Tab4"
       ],
       "evidence_artifacts": [
         "sections/mining.tex",
@@ -523,7 +530,7 @@
       "source": "sections/problem.tex",
       "kind": "data availability boundary",
       "figure_or_table": [
-        "Tab2"
+        "Tab4"
       ],
       "evidence_artifacts": [
         "sections/problem.tex",
@@ -538,8 +545,8 @@
       "source": "sections/appendix.tex",
       "kind": "annotation reliability boundary",
       "figure_or_table": [
-        "Tab2",
-        "Fig6"
+        "Tab4",
+        "Fig7"
       ],
       "evidence_artifacts": [
         "sections/appendix.tex",
@@ -550,12 +557,12 @@
     },
     {
       "id": "C36",
-      "text": "Corpus construction alone cannot establish sampling efficiency.",
+      "text": "Equal units test label efficiency; measured annotation time is needed to test human efficiency.",
       "source": "sections/experiments.tex",
       "kind": "acquisition inference boundary",
       "figure_or_table": [
-        "Tab5",
-        "Fig5"
+        "Tab11",
+        "Fig6"
       ],
       "evidence_artifacts": [
         "sections/experiments.tex",
@@ -566,20 +573,25 @@
     },
     {
       "id": "C37",
-      "text": "All numerical displays in this section use \\emph{simulated data}, not measured evaluator performance or collected human judgments.",
+      "text": "Tables~\\ref{tab:main-alignment}--\\ref{tab:downstream-results} and Figure~\\ref{fig:budget-tests} are unmeasured placeholders. The paragraphs below specify favorable outcomes and the comparisons needed to interpret them, not observed findings. Previously generated numerical illustrations remain explicitly simulated in Appendix~\\ref{app:simulation}.",
       "source": "sections/results.tex",
       "kind": "simulation provenance",
       "figure_or_table": [
-        "Fig4",
         "Fig5",
         "Fig6",
         "Fig7",
         "Fig8",
         "Fig9",
         "Fig10",
-        "Tab10",
+        "Fig11",
+        "Tab14",
+        "Tab13",
+        "Fig4",
+        "Fig2",
+        "Tab1",
+        "Tab2",
         "Tab9",
-        "Fig2"
+        "Tab12"
       ],
       "evidence_artifacts": [
         "scripts/render_simulated_results.py",
@@ -603,10 +615,10 @@
       "source": "sections/appendix.tex",
       "kind": "simulation denominator definition",
       "figure_or_table": [
-        "Tab10",
-        "Fig4",
-        "Fig7",
-        "Fig2"
+        "Tab14",
+        "Fig5",
+        "Fig8",
+        "Fig4"
       ],
       "evidence_artifacts": [
         "data/simulated/c1_groups.csv",
@@ -637,15 +649,15 @@
     },
     {
       "id": "C40",
-      "text": "Fixed-structure evaluator fine-tuning and score calibration test parameter adaptation as alternatives (Appendix~\\ref{app:adaptation}).",
-      "source": "sections/experiments.tex",
+      "text": "Evaluator fine-tuning changes model weights; score calibration changes numerical mappings over frozen seed signals.",
+      "source": "sections/appendix.tex",
       "kind": "parameter-adaptation comparison protocol",
       "evidence_artifacts": [
         "sections/experiments.tex",
         "sections/appendix.tex"
       ],
       "figure_or_table": [
-        "Tab12"
+        "Tab7"
       ],
       "status": "draft",
       "risk": "Planned C1 evaluator controls, not C3 generator training. No tuning execution or simulated tuning outcomes; no superiority or cost-efficiency claim. The shared-observation control is required to separate observation changes from interpretation changes."
@@ -665,7 +677,7 @@
     },
     {
       "id": "C42",
-      "text": "Human preferences provide judgments on concrete outputs, but do not specify what an evaluator should inspect or how its findings should affect future judgments.",
+      "text": "Humans can often tell which of two concrete outputs is better, but it is much harder to turn that ability into a comprehensive and effective evaluation procedure.",
       "source": "sections/abstract.tex",
       "kind": "problem framing",
       "evidence_artifacts": [
@@ -702,10 +714,53 @@
         "scripts/check_landscape_results.py"
       ],
       "figure_or_table": [
-        "Fig2"
+        "Fig4"
       ],
       "status": "supported",
       "risk": "Verifies synthetic allocation and arithmetic only; not observed task prevalence, a proposed empirical sampling strategy, or an effectiveness result."
+    },
+    {
+      "id": "C45",
+      "text": "Equation~\\ref{eq:search-update} preserves nondecreasing recorded development agreement for $B_t$ while allowing $W_t$ to pass through candidates that do not improve it. This is a selection invariant, not a guarantee of unseen agreement or statistical significance.",
+      "source": "sections/method.tex",
+      "kind": "selection invariant",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        "sections/appendix.tex",
+        ".paper/method_implementation_audit.md"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "Follows from the specified updates for recorded, comparable development measurements only. Does not imply monotone population quality, an unbiased development estimate, convergence, or automatic semantic verification."
+    },
+    {
+      "id": "C46",
+      "text": "Input groups receive equal weight; predicted ties count as incorrect. The native development proxy uses one fixed pair per input and need not represent every within-group preference.",
+      "source": "sections/method.tex",
+      "kind": "statistical target and development proxy",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        "sections/appendix.tex",
+        ".paper/method_implementation_audit.md"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "The target averages a frozen repeated-scoring protocol over domain inputs and strict pairs. The canonical-pair development proxy is not a guarantee of unbiased population estimation; input intervals and between-search variation remain separate."
+    },
+    {
+      "id": "C47",
+      "text": "Both decisions use the pre-update state, so failed inheritance returns to $B_t$ even if $C$ becomes $B_{t+1}$.",
+      "source": "sections/method.tex",
+      "kind": "pre-update inheritance state",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        "sections/appendix.tex",
+        ".paper/method_implementation_audit.md",
+        ".paper/reviewer_round1_20260919.md"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "Summarizes the inspected controller's update order, including accepted-but-ineligible candidates; it neither adds an execution experiment nor guarantees population improvement."
     }
   ]
 }

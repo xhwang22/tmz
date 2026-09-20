@@ -1,14 +1,12 @@
-Open-ended evaluation is difficult because quality depends on task-specific criteria and trade-offs.
-Human preferences provide judgments on concrete outputs, but do not specify what an evaluator should inspect or how its findings should affect future judgments.
-We study how an evaluation agent can evolve an evaluation procedure from human feedback.
-Doing so requires acquiring informative preferences and turning the problems they reveal into working changes to the evaluation procedure.
-A limited annotation budget can be spent on repetitive comparisons that provide little guidance for improving the evaluator.
-Disagreement-based preference acquisition allocates fewer annotations to comparisons on which existing evaluation signals agree.
-In the iterative optimizer we tested, rejected candidates were repeatedly followed by new proposals rather than further development of the rejected implementation.
-Yet a direction may require coordinated changes across the evaluation procedure before it produces a gain.
-We introduce \ERA{}, falsification-guided depth-first evolution that separates candidate acceptance from direction continuation.
-A failed candidate does not by itself refute a direction's hypothesis.
-ERA checks whether the proposed behavior occurred before treating its outcome as a test of the hypothesis.
-Diagnostic results guide further implementation or support refutation.
-Our cross-domain evaluation design tests acquisition and evolution separately and end-to-end under matched annotation and search budgets.
-Quantitative displays are simulated; confirmatory evaluation remains pending.
+Evaluating open-ended outputs requires task-dependent judgments over multiple, often competing, aspects of quality.
+Existing proxy metrics and model-based evaluators remain imperfect on such judgments and do not consistently align with human preferences.
+Humans can often tell which of two concrete outputs is better, but it is much harder to turn that ability into a comprehensive and effective evaluation procedure.
+So we study evaluator self-evolution by treating the evaluation procedure itself as the object of iterative improvement from human preferences.
+Existing evolution methods largely leave each next revision to the optimizer model based on previous outcomes.
+Yet on complex evaluation tasks, this often leads evolution away from a reasonable direction after an early failure, even when that direction may simply be underdeveloped.
+This suggests that an early failure may reflect incomplete implementation rather than a flawed direction.
+We introduce \ERA{}, a depth-first evolution method that uses diagnostic results to guide continued work on a direction within a fixed search budget.
+ERA separates candidate acceptance from direction continuation, allowing failed attempts to guide further implementation without replacing the best evaluator found so far.
+We hypothesize that ERA yields closer agreement with human preferences and more sustained improvement under matched search budgets.
+Downstream comparisons will test whether the evolved evaluators improve output selection and critic-guided refinement.
+On representative tasks, we will also test whether using their scores as training rewards improves generation quality.

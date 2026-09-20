@@ -1,43 +1,102 @@
-\section{Quantitative evaluation: simulated displays}
+\section{Results and analysis}
 \label{sec:results}
 
-All numerical displays in this section use \emph{simulated data}, not measured evaluator performance or collected human judgments.
-They instantiate the reporting protocol (Appendix~\ref{app:simulation}); their assigned outcomes provide no evidence for either research hypothesis.
+\noindent\textit{Draft status.}
+Tables~\ref{tab:main-alignment}--\ref{tab:downstream-results} and Figure~\ref{fig:budget-tests} are unmeasured placeholders.
+The paragraphs below specify favorable outcomes and the comparisons needed to interpret them, not observed findings.
+Previously generated numerical illustrations remain explicitly simulated in Appendix~\ref{app:simulation}.
 
-\begin{figure}[!t]
+\begin{table}[!htbp]
+\caption{\textbf{C1 main comparison: unmeasured placeholders.}
+Pair/Top: global/top-region agreement; Bo$N$: Best-of-$N$ accuracy; Reg: normalized rank regret.
+Cells await equal-domain means and input-group 95\% intervals for one fixed search replicate.
+Methods share cohorts per endpoint; eligible-domain counts must accompany results, with pair-only corpora entering Pair only.
+Dashes are pending, not zeros; shading is not a ranking.
+Appendix~\ref{app:results} specifies disaggregation and separate search variation.}
+\label{tab:main-alignment}
 \centering
-\input{figures/simulated_landscape}
-\caption{\textbf{Simulated task coverage and evaluator comparisons; not experimental results.}
-Panel (a) summarizes 22 tasks and 2,880 input groups, balanced to 720 per family with four candidates per input.
-A fixed hash selects this subset without reading outcomes; the appendix reports the full synthetic cohorts.
-Sector angles encode input counts; task codes follow Table~\ref{tab:domains}.
-Panel (b) plots assigned cost units, not measured runtime, against OOD agreement with synthetic human rankings.
-Small marks denote 110 domain--method combinations; large marks equally average 11 domains per feedback setting.
-Shapes identify methods, and filled/open marks denote illustrative reused/new preferences, not label reliability.
-Panel (c) reports agreement from pointwise scores and 95\% input-group bootstrap intervals on a common 0--100\% scale.
-Baseline bars follow the displayed order in each family's hue; ERA is lake green.
-Cost includes all selected inputs; agreement uses method-complete inputs.
-Marginal intervals do not establish paired differences.}
-\label{fig:outcomes}
+\small
+\setlength{\tabcolsep}{3.8pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\linewidth}{@{}Y*{8}{c}@{}}
+\toprule
+& \multicolumn{4}{c}{ID test} & \multicolumn{4}{c}{OOD test}\\
+\cmidrule(lr){2-5}\cmidrule(l){6-9}
+Evaluator & Pair $\uparrow$ & Top $\uparrow$ & Bo$N$ $\uparrow$ & Reg $\downarrow$ &
+Pair $\uparrow$ & Top $\uparrow$ & Bo$N$ $\uparrow$ & Reg $\downarrow$\\
+\midrule
+Best single metric & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+Metric ensemble & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+Static model judge & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+Static tool judge (seed) & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+\addlinespace
+Score calibration & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+Evaluator fine-tuning & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+Prompt optimization & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+Program search & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+\rowcolor{pEvoWash}
+ERA & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{C1: agreement that improves selection.}
+The favorable pattern would be higher ID/OOD agreement together with better Best-of-$N$ selection and lower regret (Table~\ref{tab:main-alignment}).
+Top-region agreement links judgment to selection, while an agreement gain without better selection would limit the downstream claim.
+Cross-domain gains would support adapting the procedure to different standards, not transferring one evaluator universally.
+
+\begin{table}[!htbp]
+\caption{\textbf{Downstream human outcomes: unmeasured placeholders.}
+C2 compares ERA-refined with Seed-refined; C3 compares ERA-GRPO with Seed-GRPO.
+Preference cells await tie-aware estimates, input-group 95\% intervals, and counts.
+Each $\Delta$Reg cell is the ERA-minus-seed difference in major-regression rate against $y_0$ (C2) or Base (C3), with ID and OOD separate.
+Appendix~\ref{app:results} specifies per-arm rates and completion.
+Dashes await new blinded judgments; C3 is design-only.}
+\label{tab:downstream-results}
+\centering\small
+\renewcommand{\arraystretch}{1.08}
+\begin{tabularx}{\linewidth}{@{}P{0.85cm}Ycccc@{}}
+\toprule
+Study & Domain / role & ID pref. $\uparrow$ & OOD pref. $\uparrow$ & ID $\Delta$Reg $\downarrow$ & OOD $\Delta$Reg $\downarrow$\\
+\midrule
+C2 & SV4: specification-to-web & \pending & \pending & \pending & \pending\\
+& IG1: detailed image captions & \pending & \pending & \pending & \pending\\
+& TG1: summarization & \pending & \pending & \pending & \pending\\
+\addlinespace
+C3 & IG1: primary candidate & \pending & \pending & \pending & \pending\\
+& SV2: second candidate & \pending & \pending & \pending & \pending\\
+& TG4: verifiable control & \pending & \pending & \pending & \pending\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{C2: critique that improves the output.}
+More human-preferred refinements, accompanied by fewer major regressions, would indicate that the evolved evaluator provides more useful guidance (Table~\ref{tab:downstream-results}).
+Changes relative to $y_0$ would distinguish genuine improvement from a less damaging revision.
+
+\begin{samepage}
+\paragraph{C3: reward that improves generation.}
+A favorable outcome would combine human preference for ERA-GRPO over Seed-GRPO with retained factuality, coverage, and validity.
+Higher reward alone would be insufficient; comparison with Base must also establish whether training improves generation.
+Conclusions would remain task- and policy-specific, with external checks reported separately (Table~\ref{tab:external-endpoints}).
+\par
+\end{samepage}
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/budget_tests}
+\caption{\textbf{Matched-budget comparisons awaiting measurements.}
+(a) Search progress under equal total model-and-tool cost at frozen prices; locked ID/OOD checkpoint assessment occurs after search and never guides it.
+(b) Final agreement under equal human budgets and a fixed evolution budget.
+No curves or gains are supplied.
+Table~\ref{tab:full-ablations} specifies the controls.}
+\label{fig:budget-tests}
 \end{figure}
 
-\paragraph{Alignment across evaluation standards.}
-Average agreement can conceal opposing effects across tasks.
-Figure~\ref{fig:outcomes}c retains all 22 domains in four families, comparing five evaluator fixtures on OOD inputs.
-Panel (a) reports their balanced input composition, while panel (b) relates agreement to assigned evaluation cost without pooling the two feedback settings.
-Task order follows the taxonomy, not performance.
-The two metric-only references remain in Table~\ref{tab:results}; Figure~\ref{fig:alignment} reports paired ERA-minus-seed effects on the full ID/OOD cohorts.
+\paragraph{Continuation rather than extra search.}
+Higher held-out agreement than restarting and history-only proposals at matched total cost would support depth-first allocation (Figure~\ref{fig:budget-tests}a).
+To support the proposed mechanism, trajectories must also connect a failed implementation, a diagnosed obstacle, and a later correction within the same direction.
 
-\paragraph{What changes in the evaluator, and what feedback supports it?}
-Figure~\ref{fig:ablation}a reports six conditional full-minus-fixed component contrasts in eight diagnostic tasks, not additive contributions.
-Panel (b) varies cumulative feedback detail on the same input groups.
-Granularity comparisons must also account for annotation time and unequal label availability; they do not test acquisition efficiency.
-
-\paragraph{Feedback utility, acquisition, and resources.}
-Alignment does not establish useful critique.
-Figure~\ref{fig:refinement}a--b retains C2 quality distributions and unresolved judgments for the eight diagnostic tasks, on inputs distinct from C1.
-Both feedback settings require fresh blinded endpoint judgments for C2.
-Figure~\ref{fig:acquisition}a--b isolates acquisition policy at equal human budgets, including a common random anchor.
-Figure~\ref{fig:annotation-quality}a--c keeps agreement, abstention, and consensus denominators distinct; label origin does not establish reliability.
-Selection profiles (Figure~\ref{fig:selection}) and deployment costs (Figure~\ref{fig:cost}) retain separate denominators.
-C3 remains entirely unmeasured.
+\paragraph{Informative preferences rather than more labels.}
+A favorable acquisition result would reach the same held-out agreement with fewer annotation units, or higher agreement at the same units (Figure~\ref{fig:budget-tests}b).
+Equal-label gains that disappear at equal annotation time would not establish greater human efficiency.

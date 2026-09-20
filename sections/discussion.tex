@@ -1,19 +1,16 @@
 \section{Discussion}
 \label{sec:discussion}
 
-ERA makes the program's approximation of human evaluation standards editable
-through feedback. Explicit criteria and evidence paths permit inspection, but
-whether they faithfully explain judgments requires intervention tests.
-Comparison with parameter adaptation asks whether evolving this structure is
-useful; not all disagreement is a structural failure.
+ERA permits continuation without lowering the recorded best development score, but continuation has an opportunity cost.
+If history-only search beats independent proposals yet matches ERA at equal cost, retained diagnostics may explain gains without direction persistence.
+Development-only gains would instead suggest adaptation to repeatedly inspected feedback, not better evaluation of unseen outputs.
+Neither outcome supports a general advantage for depth-first allocation.
+
+Downstream use changes which errors matter.
+Selection depends on ordering the best candidates; critique requires actionable diagnoses.
+Training shifts outputs toward whatever the reward favors, so C1 agreement or C2 refinement cannot substitute for C3 evaluation.
 
 \subsection{Limitations and future work}
-
-First, simulated displays support no effectiveness claim and must be replaced
-with frozen empirical cohorts. Second, dimensional judgments require additional
-annotation and construct validation. Third, shared signal bias and interacting
-components require dependence audits and controlled attribution. Finally,
-pointwise scoring assumes a useful within-domain ordering, while repeated
-development can overfit aggregate feedback. Independent ID/OOD and generation-level
-studies must test evaluation gains and downstream utility; transfer across
-standards remains a separate question.
+First, consensus can hide shared errors, requiring random checks and measured human-time comparisons.
+Second, diagnostics do not verify a hypothesis; independent trajectory review must include failed and exhausted directions.
+Finally, acquisition efficiency and continuation benefits remain unmeasured, requiring matched-budget runs before empirical claims.

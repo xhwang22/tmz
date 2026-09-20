@@ -67,3 +67,51 @@ These SHA-256 values identify selected inspected files, not a frozen experiment:
 | `harness_evolution/multidomain/example_search.py` | `1105def8a5489b6558a0088f9b441a77f8bc7b1fd5b0df83b1280b7c6019e34a` |
 | `docs/era_main_search.md` | `afdb02ef36572230007904fe4c789a98888e3a7b5fe6335f2912a8d930cec58a` |
 | `docs/plans/p2e_v2_plan.md` | `442b9e5f3350d994b1c60f354ad0837ff90e200a5a974a7c3139e22d668855f9` |
+
+## Formal-exposition pass (2026-09-19, round 23)
+
+SkillOpt's official full text, https://arxiv.org/html/2605.23904v2, §§3.1–3.7, was reread for this author-requested pass.
+Its object/measurement/update/gate/deployment progression informs the Method; its textual learning rate, slow/meta update, and empirical findings are not imported.
+No bibliography entry or publication-venue field is changed; only verified preprint status is used for this exemplar.
+
+The population objective states the desired agreement of median pointwise scores on a domain's strict-preference distribution.
+The estimator is explicitly restricted to complete cohorts; missingness retains the existing coverage/bounds policy.
+The acceptance predicate combines strict recorded development gain with existing completeness, comparability, coverage, and stratum guards.
+The two update equations summarize best-program acceptance and working-program inheritance; they are not new controller behavior.
+The nondecreasing development-score invariant (C45) holds for the recorded measurements used by selection, not an independently remeasured or unseen score.
+No convergence, positive expected improvement, causal identification, or automatic semantic-refutation guarantee is claimed.
+Detailed progress credits and damage/protection checks remain in the unchanged algorithm contract.
+
+## Independent reviewer corrections (2026-09-19, round 24)
+
+Three reviewer passes are recorded in `reviewer_round1_20260919.md` through `reviewer_round3_20260919.md`; responses are in `reviewer_comments.md`.
+The equation now includes finite-repeat execution randomness and equal original-input weighting, with a uniform strict pair within each input.
+This reporting target is not silently equated with the native sealed-development proxy: `era_search.partition_train:291–314` selects one canonical pair per input.
+Coverage and missing-outcome bounds use predetermined input/pair weights; the complete-execution estimator does not drop failures and call the remainder an unconditional estimate.
+
+The state-order check found a real paper/implementation mismatch.
+`example_search.py:1588` passes the pre-update `best.id` into inheritance.
+Its completion step updates best and then restores working from the recorded `next_parent_id`, checking against `best_before_id` (`:535–548`).
+Thus a candidate can be accepted on development measurements but fail inheritance because local comparisons are unknown.
+Equation 6 now returns working to the old `B_t` in that case, and Algorithm 1 saves `B_old` explicitly.
+The reviewer verified this branch through both the core function and native `patch_revision.inheritance_decision` with a synthetic record, not a dataset or model call.
+This branch correspondence says nothing about the frequency or benefit of continuation.
+
+`revision_session.py:28–86` exposes tools, submit, repair, and pause actions; the agent proposes diagnostics and further work.
+`revision_control.py:214–259` enforces common known/complete/comparable prerequisites before inheritance branches.
+`patch_revision.py:305–307` makes damage review advisory rather than requiring a separate model review.
+Native intermediate checks use per-repeat exact changes; semantic expectations remain unverified.
+The manuscript now separates those mechanical conditions from direction allocation and scientific refutation.
+
+The engineering HEAD is still `5814194eb4469e302438b20d6cf368a3d6928cfc`, with pre-existing uncommitted changes.
+The following hashes identify files inspected for this reviewer cycle; they supplement, not replace, the earlier snapshot above.
+No source edits or empirical execution were performed by this review.
+
+| Source path | SHA-256 at round-24 close |
+| --- | --- |
+| `harness_evolution/multidomain/revision_control.py` | `bea3de6852661922e3af2824253d04d7b7c5ef905fcf43bd34b7081a5cbebfe2` |
+| `harness_evolution/multidomain/example_search.py` | `2616be465314aabd5bb0bc8cf4012e068944f4827c5d89ef7d85cfec7ac5d9c2` |
+| `harness_evolution/multidomain/patch_revision.py` | `2d64dc6120e9c4f3a7738e76a0df3814e3a11f0b6dba3ab7b971d760ffa64ce1` |
+| `harness_evolution/multidomain/revision_session.py` | `4e53d1620e79e646a3563c534d5ef2098256045b18580538c0a3522680259c17` |
+| `harness_evolution/multidomain/era_search.py` | `2c1b95b5247a3a3423901229accd2233b21bdfef05b5cf6ea2874822018b11c8` |
+| `harness_evolution/multidomain/intervention_revision.py` | `39cf7b7e0cb247911cf0b2ecb1298929d1e69abf41d651607fbe6ab4d4d77eff` |

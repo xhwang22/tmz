@@ -97,13 +97,13 @@
   % a left inset; the evidence card has room for all three lines and descenders.
   \path[fill=white,rounded corners=4pt] (.22,3.26) rectangle (3.49,4.60);
   \pIcon{database}{pTeal}{.54}{4.27}{.50}
-  \node[pLabel,text=pTeal,anchor=west] at (.84,4.27) {Reused preferences};
-  \node[pText,anchor=west] at (.44,3.90) {Artifacts + human labels};
-  \node[pSmall,anchor=west] at (.44,3.57) {Retain original protocol.};
+  \node[pLabel,text=pTeal,anchor=west] at (.84,4.27) {Existing datasets};
+  \node[pText,anchor=west] at (.44,3.90) {Mine candidate comparisons};
+  \node[pSmall,anchor=west] at (.44,3.57) {Reuse matching preferences.};
   \path[fill=white,rounded corners=4pt] (.22,1.70) rectangle (3.49,3.04);
   \pIcon{person}{pNew}{.54}{2.75}{.44}
   \node[pLabel,text=pNew,anchor=west] at (.84,2.71) {New preferences};
-  \node[pText,anchor=west] at (.44,2.34) {Freeze task + protocol};
+  \node[pText,anchor=west] at (.44,2.34) {Existing or fresh outputs};
   \node[pSmall,anchor=west] at (.44,2.01) {Collect blinded judgments.};
   \path[draw=pGold!30,fill=white,rounded corners=4pt]
     (.22,.25) rectangle (3.49,1.49);
@@ -121,12 +121,12 @@
     \pComponent{\s}{\col}{\t}{\x}{4.40}
   }
   \pIcon{edit}{pEvo}{5.64}{3.19}{.72}
-  \node[ovStep] at (5.64,2.64) {Vary mechanisms};
+  \node[ovStep] at (5.64,2.64) {Implement direction};
   \pIcon{database}{pTeal}{9.04}{3.19}{.78}
   \pLock{9.38}{3.36}{pTeal}
   \node[ovStep] at (9.04,2.64) {Sealed Train};
   \pIcon{cards}{pEvo}{9.04}{1.77}{.70}
-  \node[ovStep] at (9.04,1.24) {Select / continue};
+  \node[ovStep] at (9.04,1.24) {Accept? Continue?};
   \pIcon{loupe}{pGold}{5.64}{1.77}{.73}
   \node[ovStep] at (5.64,1.24) {Test hypotheses};
   \draw[pEvolution] (6.00,3.32) .. controls (6.74,3.79) and (7.83,3.79) .. (8.56,3.32);
@@ -151,8 +151,8 @@
   }
   \pIcon{cards}{pBlue}{11.28}{4.17}{.54}
   \node[pTitle,text=pBlue,anchor=west] at (11.73,4.33) {C1\; Select};
-  \node[pSmall,anchor=west] at (11.73,3.96) {Fixed pool};
-  \node[pSmall,anchor=west] at (11.15,3.60) {Blinded full ranking};
+  \node[pSmall,anchor=west] at (11.73,3.96) {Test alignment};
+  \node[pSmall,anchor=west] at (11.15,3.60) {Select from fixed pools};
   \pIcon{edit}{pTeal}{11.28}{2.67}{.55}
   \node[pTitle,text=pTeal,anchor=west] at (11.73,2.83) {C2\; Refine};
   \node[pSmall,anchor=west] at (11.73,2.46) {Shared $y_0$};

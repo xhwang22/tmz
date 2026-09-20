@@ -1,8 +1,8 @@
-# Figure 2: balanced synthetic display
+# Landscape composite: balanced synthetic display
 
 SIMULATED layout fixture, not experimental evidence or expected performance.
 This is the author's approved v20 landscape composition, inserted in the paper
-on 2026-09-19. The full-cohort appendix displays remain separate.
+on 2026-09-19; now shown as appendix Figure 4. The full-cohort displays remain separate.
 
 ## Data and denominators
 
@@ -42,3 +42,8 @@ coordinates, and verifies hashes against the published assets. It does not
 render a new plot or validate an empirical claim. Editing any source fixture
 requires reviewing the resulting chart and updating its provenance, not merely
 refreshing hashes. `make check` runs this audit too.
+
+The 2026-09-19 appendix move changes the manifest's display ID to Fig4 and
+replaces the checker's obsolete Figure 2 wording in its docstring and status
+message. Only that checker hash is refreshed; the audit logic and every data,
+geometry, and figure-asset hash remain unchanged.

@@ -314,7 +314,13 @@ def check_evidence_boundary():
         if r"\input{figures/simulated_" in block:
             require(r"\caption{\textbf{Simulated" in block, "Simulated chart caption lost its disclosure")
     main = (ROOT / "main.tex").read_text()
-    require("quantitative displays use simulated data" in main, "Title-page draft disclosure missing")
+    disclosures = (
+        "quantitative displays use simulated data",
+        "results are placeholders or simulated illustrations",
+    )
+    require(any(disclosure in main for disclosure in disclosures)
+            and "empirical evaluation pending" in main,
+            "Title-page draft disclosure missing")
 
 
 def main():

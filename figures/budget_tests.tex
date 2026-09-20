@@ -1,0 +1,30 @@
+\begingroup
+\renewcommand{\sfdefault}{qhv}
+\begin{tikzpicture}[x=1cm,y=1cm,line cap=round,line join=round,
+  every node/.style={font=\sffamily\fontsize{7.4}{9.2}\selectfont,text=pInk}]
+\path[use as bounding box] (0,0) rectangle (13.7,4.25);
+\path[pSurface,fill=pEvoWash] (0,.12) rectangle (6.66,4.22);
+\path[pSurface,fill=pGoldWash] (6.94,.12) rectangle (13.7,4.22);
+\node[pTitle,anchor=west] at (.22,3.94) {a\quad Search: continue or restart?};
+\node[pTitle,anchor=west] at (7.16,3.94) {b\quad Acquisition: which preferences?};
+\foreach \x/\right in {.88/6.36,7.82/13.40}{
+  \draw[pMuted,line width=.55pt,-{Stealth[length=1.2mm]}] (\x,1.10) -- (\right,1.10);
+  \draw[pMuted,line width=.55pt,-{Stealth[length=1.2mm]}] (\x,1.10) -- (\x,3.49);
+  \foreach \y in {1.7,2.3,2.9}{\draw[pLine] (\x,\y) -- (\right-.10,\y);}
+}
+\node[rotate=90,font=\sffamily\fontsize{7}{8}\selectfont] at (.33,2.35) {Preference agreement};
+\node[rotate=90,font=\sffamily\fontsize{7}{8}\selectfont] at (7.27,2.35) {Final held-out agreement};
+\node[align=center,fill=white,rounded corners=4pt,inner sep=7pt,text=pMuted] at (3.58,2.43)
+  {Pending matched-budget runs\\Train trajectory + locked ID/OOD};
+\node[align=center,fill=white,rounded corners=4pt,inner sep=7pt,text=pMuted] at (10.60,2.43)
+  {Pending acquisition comparison\\Same pool, feedback detail, and search};
+\node at (3.62,.75) {Total model-and-tool cost (frozen prices)};
+\foreach \x/\n in {8.05/20,9.65/50,11.25/100,12.85/200}{
+  \draw[pMuted] (\x,1.10) -- (\x,1.01);
+  \node[anchor=north,font=\sffamily\fontsize{7}{8}\selectfont] at (\x,.99) {\n};
+}
+\node at (10.60,.47) {Human annotation units (anchor included)};
+\node[font=\sffamily\fontsize{6.8}{8}\selectfont,text=pMuted] at (3.54,.31)
+  {PLACEHOLDER \textperiodcentered\ no measured or simulated trajectory};
+\end{tikzpicture}
+\endgroup

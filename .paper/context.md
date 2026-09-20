@@ -2,7 +2,12 @@
 
 Updated: 2026-09-19. Status: method and study design with author-requested,
 explicitly simulated quantitative displays; confirmatory results pending.
-The abstract/introduction include a bounded qualitative development observation.
+The introduction includes a bounded qualitative development observation.
+The latest author-edited abstract retains ERA's method principle and adds an explicit
+hypothesis about alignment and sustained improvement, followed by downstream tests
+of output selection, critic-guided refinement, and reward-guided training on
+representative tasks. These effects are not reported as verified results.
+Its broader wording about existing evolution methods does not extend the scope of that observation.
 
 ## Title and scope
 
@@ -80,8 +85,9 @@ never override the primary record without review. See citation_audit.md for
 the 40-entry venue inventory, verification dates and remaining limitations.
 Parameter-adaptation comparisons remain in the introduction and experiments;
 provenance protocols and detailed study-arm/domain lists do not belong in this
-abstract. The short simulation notice remains, without inventing a results
-sentence or implying validated interpretability. C42 records the framing claim.
+abstract. The short simulation notice remains; unverified effects are expressed
+as a hypothesis and downstream tests, not reported findings or validated
+interpretability. C42 records the framing claim.
 
 The shared question is whether an evaluator can evolve toward a task's human
 evaluation standard given that task and its human feedback. Reusing existing
@@ -171,23 +177,20 @@ Use claims.yml and figures.yml for subsequent audits; gap claims are hypotheses,
 never findings. Memory claim IDs C1/C2/etc. are a separate namespace from the
 paper's study labels C1/C2/C3.
 
-Current structure: 2 main figures, 8 appendix figures, 12 tables, 40 verified
-bibliographic identities, and 44 claim records. The overview and pointwise
-runtime remain conceptual; eight figures and Table 10 use simulated reporting
-fixtures. The complete PDF is 32 pages; the main text remains within 9 pages.
-Official ICLR body fonts, margins, and heading rules are unchanged.
+Current structure: 2 main figures, 9 appendix figures, 15 tables, 40 verified
+bibliographic identities, and 47 claim records.
+The main table reports C1 alignment and selection by ID/OOD; Table 2 reserves
+downstream human outcomes, and Figure 2 reserves matched-budget comparisons.
+All are unmeasured placeholders with conditional ideal-result interpretation.
+The main text remains within nine pages using unchanged ICLR typography.
 
-Main Figure 2 is now the approved v20 landscape composite: balanced task ring,
-cost/agreement scatter and four family bar panels in one row, covering all 22
-tasks. Its 2,880 OOD inputs are selected by fixed hash without reading outcomes,
-with 720 per family. Statistics are recomputed on this synthetic subset, not
-copied from the full-cohort appendix. Filled/open marks indicate illustrative
-reused/new feedback, not label readiness. Pale family ramps subordinate the
-baselines to ERA's common lake-green accent; Source Sans 3 and Source Serif 4
-are embedded. C44 records only the allocation. The old atlas stays archived.
-Appendix Figure 4 retains full-cohort paired ID/OOD effects, Figure 8 component
-detail, and Figure 9 C2. The subset exports, vector assets and independent
-bootstrap/coordinate audit are documented in data/simulated/landscape/README.md.
+The approved landscape composite is now appendix Figure 4, unchanged: task ring,
+cost/agreement scatter and four family bar panels covering all 22 tasks.
+Its 2,880 OOD inputs are selected by fixed hash without reading outcomes, with
+720 per family; its statistics are separate from full-cohort appendix displays.
+Figure 5 retains full-cohort paired ID/OOD effects, Figure 9 component detail,
+and Figure 10 C2. No numerical assets or data were changed in this revision.
+The subset exports and audit remain in data/simulated/landscape/README.md.
 Annotation, component, and C2 diagnostics retain their eight-domain scope.
 C1 tables, selection, and cost profiles now use 11 domains per setting.
 
@@ -224,11 +227,11 @@ filename now contains the main atlas plus an appendix diagnostic proof.
 Figure/caption/claim links are synchronized.
 The September 19 pass rewrites the abstract and introduction, aligns the method's
 depth-first terminology, and preserves the title and empirical-gap status.
-Revised abstract/introduction prose and captions use one sentence per source
+Revised manuscript prose and captions use one sentence per source
 line, with blank lines only between paragraphs; PDF wrapping remains automatic.
 The main overview now uses scoped TeX Gyre Heros, regular-weight action labels,
 consistent card insets, and correctly scaled pictograms on the same native
-canvas. Its caption and scientific content are unchanged. Qualified framework
+canvas. Its caption now makes existing-dataset mining and the two search decisions explicit. Qualified framework
 name proposals and the limits of their collision checks are recorded in
 `naming_candidates.md`; none has been adopted in the manuscript.
 
@@ -256,3 +259,49 @@ measurements and all associated claims are audited.
 Freeze execution scope, data permissions, real supervision, models, budgets,
 contrasts, human protocols, analysis, authorship, and disclosures.
 Add empirical outputs only from authorized source-traceable measurements.
+
+## Current plan-aligned revision (round 23)
+
+C1 is broad across ready domains; C2 prioritizes SV4, IG1, and TG1; C3 prioritizes IG1 with SV2 as a second candidate and TG4 as a control.
+C3 requires target-policy reward diagnostics and remains design-only.
+Existing datasets supply mining candidates as well as reusable labels; acquisition replay hides unselected human labels.
+The appendices now run from foundations through adaptation, detailed core reporting, C3, ablations, analysis, simulation fixtures, and the experiment manifest.
+
+SkillOpt §§3.1–3.7 supply an exposition model: define the optimized object and score, then state updates and deployment boundaries.
+The Method adds a population preference-alignment target, its complete-cohort estimator, an acceptance predicate, and independent best/working updates.
+C45 records only the nondecreasing recorded-development-score invariant; no generalization, convergence, or automated-refutation theorem is asserted.
+Implementation contracts stay in the algorithm appendix.
+The working abstract and all bibliography entries are preserved.
+
+Final verification: 9 main-text pages, 34 PDF pages; `make check` passes structural,
+memory, simulation, landscape, and whitespace checks.
+The main pages and appendix contact sheets were visually reviewed; the C3 result
+paragraph stays together on page 8 and the budget figure starts page 9.
+The submission guard still exits with code 2 because simulated fixtures remain.
+The landscape manifest updates only its display ID and the checker hash after
+wording changes; numerical data and figure-asset hashes are unchanged.
+No commit or push was performed in this round.
+
+## Independent reviewer revision (round 24)
+
+The author requested a reviewer subagent and repeated iteration on Method, Experiments, Results, and Discussion.
+Three passes are complete; `reviewer_comments.md` maps every first- and second-round issue to a manuscript change and the third-round disposition.
+The reviewer found no remaining writing/definition blocker in those sections, not unconditional acceptance of the paper.
+
+The method now uses an input-weighted stochastic objective and distinguishes the native canonical-pair development proxy.
+Best acceptance, working-state inheritance, and direction allocation have distinct rules.
+Failed inheritance returns to the pre-update best even when the candidate updates best; the equation, pseudocode, and implementation now agree.
+Agent-proposed actions and controller eligibility are separated from semantic refutation.
+
+Experiments define the history-only control, the combined allocation/inheritance contrast, and frozen-price model-and-tool search budgets.
+Label efficiency is separated from measured human-time efficiency, and fixed-evaluator uncertainty from independent-search variability.
+Main tables specify equal-domain aggregation, eligible cohorts, and ID/OOD regression contrasts.
+Discussion interprets opportunity cost, alternative explanations, and the distinct C1/C2/C3 requirements instead of repeating a risk checklist.
+
+Final checks: 9 main-text pages, 35 total PDF pages; `make check` passes.
+Main and appendix layouts were visually checked; source prose retains one sentence per line where revised.
+Claims and captions are synchronized (47 claims, 11 figures, 15 tables).
+C27/C28, downstream benefits, and exact executable comparator configurations remain unresolved evidence/design requirements.
+The submission guard still rejects the simulated draft.
+The author-edited Abstract and all 40 bibliography entries were preserved, not re-certified by this focused review.
+No experiments, training, engineering-source edits, new image generation, commit, or push occurred.

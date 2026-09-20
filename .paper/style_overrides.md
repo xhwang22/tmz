@@ -59,21 +59,15 @@
 - Keep caveats near relevant claims without repeating draft-status notices in
   every paragraph. Avoid promotional novelty claims and universal dismissals
   of existing program optimizers.
-- Prefer quantitative displays over redundant conceptual diagrams. Retain the
-  overview and pointwise runtime. Main Figure 2 shows every one of the 22 C1
-  domains in fixed 6/6/5/5 taxonomy order: five OOD method columns with printed
-  values and common-scale micro-bars, followed by paired ERA-minus-seed intervals.
-  Method color is categorical, not a score heatmap. Keep all-domain ID/OOD
-  intervals in appendix Figure 4. The mechanism/feedback-detail display is
-  appendix Figure 8; C2 is separate in Figure 9. Keep the C1 numerical table and
-  acquisition curves in the appendix. Use paired-effect interval tables, budget
-  curves, an annotation audit, horizontal rank ribbons, an annotated heatmap
-  with split violins and raw points, rainclouds with diverging preference bars,
-  and aligned cost/agreement profiles for distinct questions. Keep abstentions
-  separate from either winner in preference balances; all-input denominators
-  remain unchanged. Cost connectors pair settings, not evolution steps.
-  Chart variety must follow the quantity, not decoration. Avoid unnecessary 3D,
-  radial charts, heavy frames, and decorative significance markers.
+- The current main displays are Figure 1 (overview), Figure 2 (matched-budget
+  placeholder), Table 1 (C1 alignment/selection), and Table 2 (C2/C3 outcomes).
+  The approved landscape composite is appendix Figure 4; preserve its assets,
+  data, palette and provenance. Full-cohort paired effects are Figure 5,
+  components Figure 9, and refinement Figure 10. Do not confuse the balanced
+  synthetic subset with full-cohort plots. All simulated displays remain in
+  the appendix. Keep placeholder results visibly unmeasured; ideal analysis
+  uses conditional language rather than fictional findings. Do not shrink
+  official typography to fit new tables or formulas.
 - The author explicitly authorized simulated data for reporting/layout review.
   This is an exception for transparently labeled fixtures, never permission to
   fabricate evidence. Disclose simulation in the title-page notice, section,
@@ -176,17 +170,17 @@ not performance encodings. Preview approval does not replace manuscript assets.
 - Keep C27/C28 as explicit open comparisons.
   A qualitative development observation may motivate the method, but must not turn simulated displays or unsuccessful confirmatory comparisons into favorable results.
 
-## Inserted landscape composite (2026-09-19)
+## Landscape composite style (inserted 2026-09-19; now appendix)
 
-The author-approved v20 landscape figure now replaces the atlas in main Fig2.
-This supersedes earlier atlas and five-hue-method instructions for Fig2 only.
+The author-approved v20 landscape figure replaced the old atlas and is now appendix Figure 4.
+The following palette instructions apply to that landscape only.
 Keep the four-quarter task ring, right cost/agreement scatter and four family
 bar panels in one row. Baselines use pale family ramps; ERA uses one lake-green
 accent. Keep Source Sans 3 / Source Serif 4 and the native 5.4 × 3.57-inch canvas.
 The selected 2,880 synthetic inputs are a fixed-hash subset, not the full appendix
 cohorts; document that distinction and retain all simulation disclosures.
 Do not retune data to improve visual rankings. Full-cohort paired effects remain
-in Fig4, not Fig2. Other chart styles are unchanged in this integration pass.
+in Figure 5, not the landscape. Its underlying numerical assets are unchanged.
 
 ## Approved argument refinement (2026-09-19)
 
@@ -303,3 +297,11 @@ in Fig4, not Fig2. Other chart styles are unchanged in this integration pass.
   from still-unverified human-reliability qualification. Do not restore the
   unimplemented reliability-weighted formula or inherit a model-pilot anchor
   fraction as the human-study setting. Preserve absent feedback levels.
+
+## SkillOpt-style formal exposition (round 23)
+
+Use stable objects, an explicit objective and measured estimate, and state-update equations before low-level implementation checks.
+SkillOpt is an exposition reference, not evidence for ERA and not an algorithm to copy.
+Distinguish the recorded development selection invariant from unknown population performance.
+Keep diagnostic continuation, working-state inheritance, and semantic refutation distinct; a rejected working state can still supply diagnostic history.
+No theoretical guarantee is added beyond what follows from the stated update rules.

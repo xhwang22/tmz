@@ -2,7 +2,7 @@
   "provenance": "SIMULATED",
   "simulation_only": true,
   "empirical_evidence": false,
-  "figure": "Fig2",
+  "figure": "Fig4",
   "selection_seed": 20260918,
   "bootstrap_replicates": 1000,
   "canvas_inches": [
@@ -32,6 +32,6 @@
     "figures/simulated/landscape_outcomes.png": "e055c266276b4934a725a14948f3f5a35e5a69f49514a9b7ab90440ecc203930",
     "figures/simulated/landscape_outcomes.svg": "99853f9a5eff3b2cecd97cf865d14e83e8b20734b66df7ae08c2a41942a4bbfc",
     "figures/simulated_landscape.tex": "c97091332521def6280b41c20371a7f72e7b9812b59f1128d4c4080224a215b1",
-    "scripts/check_landscape_results.py": "3ea20403113e94d5f264c64a20b34950e78a8a9524414ed4578bf306852e68ed"
+    "scripts/check_landscape_results.py": "0e07d773fe2d7caabccfb2e8046b8cd5e57ec11fd8da59067254153fdde9fb2e"
   }
 }

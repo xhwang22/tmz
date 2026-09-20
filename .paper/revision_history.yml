@@ -490,9 +490,24 @@
       "date": "2026-09-19",
       "trigger": "Author approves the argument-level assessment of external model feedback and requests implementation and GitHub upload.",
       "reviewer": "Author feedback",
-      "changed_claims": ["C1", "C13", "C27", "C28", "C31", "C42", "C43"],
+      "changed_claims": [
+        "C1",
+        "C13",
+        "C27",
+        "C28",
+        "C31",
+        "C42",
+        "C43"
+      ],
       "changed_figures": [],
-      "sections_touched": ["Abstract", "Introduction", "Method definitions", "Mining terminology", "Paper memory", "Writing conventions"],
+      "sections_touched": [
+        "Abstract",
+        "Introduction",
+        "Method definitions",
+        "Mining terminology",
+        "Paper memory",
+        "Writing conventions"
+      ],
       "summary": "Reorganizes the abstract and introduction around learning an executable evaluation procedure from human feedback. Preference acquisition reduces redundant annotation; observed rejection and redirection motivate developing a direction through connected evaluation changes. Separates candidate acceptance from direction continuation without claiming that a failed implementation supplies no negative evidence. Bounds the observation to the tested iterative configuration and makes the omission example explicit. Moves fine-tuning and calibration positioning to the introduction's closing paragraph. Distinguishes direction, hypothesis, candidate, procedure and program in Methods, and uses preference acquisition consistently in Mining. Preserves one sentence per revised source line, pointwise deployment, simulation disclosures, and the empirical gaps C27/C28. Retains the previously integrated landscape composite and all prior changes for the authorized GitHub update; no new data, experiments, training or model calls."
     },
     {
@@ -500,9 +515,21 @@
       "date": "2026-09-19",
       "trigger": "Author requests tighter terminology and argument compression, explicitly connecting acquisition to evolution and sharpening candidate acceptance versus direction continuation; earlier feedback also requests targeted introduction references.",
       "reviewer": "Author feedback",
-      "changed_claims": ["C1", "C42", "C43"],
+      "changed_claims": [
+        "C1",
+        "C42",
+        "C43"
+      ],
       "changed_figures": [],
-      "sections_touched": ["Abstract", "Introduction", "Method terminology", "Bibliography and source provenance", "Paper memory", "Writing conventions", "README"],
+      "sections_touched": [
+        "Abstract",
+        "Introduction",
+        "Method terminology",
+        "Bibliography and source provenance",
+        "Paper memory",
+        "Writing conventions",
+        "README"
+      ],
       "summary": "Makes the acquisition-to-evolution link explicit: informative preferences must lead to working evaluation-procedure changes. Establishes preferences as a form of human feedback, reserves disagreement for existing evaluation signals, and distinguishes search diagnostics from artifact evidence. Binds rejection/redirection to the inspected optimizer and states immediate-gain-based direction abandonment conditionally, without asserting a formal stopping rule or usefulness of rejected directions. Simplifies the abstract's implementation check and hypothesis test, preserves the distinction between refutation and budget exhaustion, and closes the introduction with the two obstacles to evaluator learning. Adds verified published versions of AutoCalibrate, Agent-as-a-Judge and Active Preference Learning at their supported claims, with full-text scope boundaries and incremental verification dates; bibliography grows from 33 to 36 entries. Preserves pointwise scoring, richer feedback levels, matched-budget questions C27/C28, the approved figures, one sentence per revised source line, and all simulation/pending-evaluation disclosures. No new experiments, data, training, model calls, source-project changes, commit or push."
     },
     {
@@ -510,9 +537,18 @@
       "date": "2026-09-19",
       "trigger": "Author requires the four supplied arXiv papers in Related Work and a citation-hallucination audit including publication venue fields, using reference-audit.",
       "reviewer": "Author feedback",
-      "changed_claims": ["C27"],
+      "changed_claims": [
+        "C27"
+      ],
       "changed_figures": [],
-      "sections_touched": ["Related Work", "Introduction citation scope and compression", "Bibliography and publication metadata", "Citation audit", "Paper memory", "README"],
+      "sections_touched": [
+        "Related Work",
+        "Introduction citation scope and compression",
+        "Bibliography and publication metadata",
+        "Citation audit",
+        "Paper memory",
+        "README"
+      ],
       "summary": "Includes all four requested papers in thematic Related Work discussions, with verified arXiv metadata and full-text scope boundaries. Corrects DGM to ICLR 2026 and RewardBench to Findings of NAACL 2025; adds official ICLR volume/page records and resolves published-PDF versus index author/title conflicts without blindly copying automated matches. Runs the pinned reference-audit CLI and a reproducible identity screen, documenting 40 cited entries, field-level conflicts, verification tiers, unavailable formal venues and unresolved index checks. Narrows EvalGen and GEPA attribution in the introduction and compresses acquisition prose without changing the learning argument. Refreshes C27 exactly while retaining C27/C28 as empirical gaps. Preserves one sentence per revised source line, pointwise deployment, approved figures and all simulated-result disclosures. Compiles a 31-page PDF with 9 main-text pages and visually reviews the affected prose and bibliography. No experiments, training, image calls, private-data import, source-project edits, commit or push."
     },
     {
@@ -520,9 +556,18 @@
       "date": "2026-09-19",
       "trigger": "Author approves the focused assessment of external writing feedback and requests manuscript changes and GitHub push.",
       "reviewer": "Author feedback",
-      "changed_claims": ["C1", "C42", "C43"],
+      "changed_claims": [
+        "C1",
+        "C42",
+        "C43"
+      ],
       "changed_figures": [],
-      "sections_touched": ["Abstract", "Introduction", "Paper memory", "Writing conventions"],
+      "sections_touched": [
+        "Abstract",
+        "Introduction",
+        "Paper memory",
+        "Writing conventions"
+      ],
       "summary": "Opens with the intrinsic difficulty of open-ended evaluation and makes the preference/procedure gap concrete. Moves the research question before the introduction's literature bridge and places acquisition references after the allocation rule. Preserves the two linked learning steps without adding another overview paragraph. States the observed rejection/redirection pattern directly and replaces the conditional immediate-gain explanation with the design principle that rejecting a candidate need not end work on its direction. Keeps candidate acceptance and direction continuation as the central distinction, without asserting a baseline stopping rule or benefit from abandoned directions. Refreshes C1/C42/C43 verbatim without changing their evidence status; C27/C28 remain empirical gaps. Preserves pointwise deployment, all verified citations, approved figure assets, the simulation disclosure and one sentence per revised source line. Recompiles a 31-page PDF with 9 main-text pages and passes structural, citation-link, memory and simulated-data checks. Visually reviews pages 1-3 and 9 for text flow, figure readability and overflow; independent prose and publication-safety reviews find no blockers. No experiments, training, figure regeneration, new citations or private-data imports."
     },
     {
@@ -530,10 +575,131 @@
       "date": "2026-09-19",
       "trigger": "Author asks to write Method using the requested papers as structural exemplars and grounding technical statements in the current implementation.",
       "reviewer": "Author feedback",
-      "changed_claims": ["C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13", "C14", "C15", "C16", "C17", "C18", "C19", "C20", "C31", "C32", "C33", "C39"],
-      "changed_figures": ["Fig3"],
-      "sections_touched": ["Method", "Preference acquisition", "Problem definition boundary", "Appendices B-F", "Runtime figure and algorithm placement", "Implementation audit", "Paper memory", "Writing conventions"],
+      "changed_claims": [
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C31",
+        "C32",
+        "C33",
+        "C39"
+      ],
+      "changed_figures": [
+        "Fig3"
+      ],
+      "sections_touched": [
+        "Method",
+        "Preference acquisition",
+        "Problem definition boundary",
+        "Appendices B-F",
+        "Runtime figure and algorithm placement",
+        "Implementation audit",
+        "Paper memory",
+        "Writing conventions"
+      ],
       "summary": "Rewrites Method around pointwise execution and measurement, error-driven candidate changes, independent best/working updates, and failure interpretation and freeze. Uses GEPA, Meta-Harness and DGM as structural exemplars with SkillOpt as an auxiliary reference, without importing results or caricaturing their search policies. Grounds the prose in the current native patch implementation: hidden structured specialist scores, optional diagnostic expectations, complete-program selection, exact progress accounting, distinct inheritance rules, and terminal Val without reranking or further edits. Separates falsification as a research evidence standard from implemented continuation and pausing; no automatic semantic-refutation oracle is claimed. Rewrites preference acquisition around the implemented structural conflict ranking, source dependence, and random anchor, distinguishing these from unverified human-reliability qualification. Moves detailed pseudocode and checks to the appendix and restores the human-standard boundary to the problem definition. Refreshes claim excerpts and source-hash evidence; C27/C28 remain empirical gaps. Rebuilds a 32-page PDF with 9 main-text pages and passes structural, citation-link, memory and simulated-data checks. Visually reviews pages 4-9, 16-22 and 31-32; adjusts only Fig3 placement and the algorithm placement so they follow the introducing section, without changing any figure asset or caption. Preserves all 40 bibliography entries, the four requested Related Work papers, one sentence per revised prose line and simulation disclosures. No experiments, model calls, source-project changes, private-data imports, commit or push."
+    },
+    {
+      "round": 21,
+      "date": "2026-09-19",
+      "trigger": "Author requests a self-contained ending for their revised abstract without reporting numerical or qualitative experimental results.",
+      "reviewer": "Author feedback",
+      "changed_claims": [
+        "C42"
+      ],
+      "changed_figures": [],
+      "sections_touched": [
+        "Abstract",
+        "Paper memory"
+      ],
+      "summary": "Preserves the first seven author-edited abstract sentences, apart from trailing whitespace. Replaces the exclusive evidence-only stopping claim with diagnostic-guided continuation within a fixed search budget, then closes on the distinction between candidate acceptance and direction continuation. Adds no simulated findings, empirical gains, or claims of completed cross-domain evaluation. Synchronizes C42 to the author's current preference/procedure framing without changing its evidence status. C27/C28 remain gaps; C43 remains a bounded development observation, not support for universal claims about prior evolution methods. Retains all simulation disclosures elsewhere in the manuscript, one sentence per source line, and the single-paragraph abstract. No figure, bibliography, experiment, or engineering changes; no commit or push."
+    },
+    {
+      "round": 22,
+      "date": "2026-09-19",
+      "trigger": "Author clarifies that the abstract should close with qualitative outcomes rather than numerical reporting, including downstream selection, refinement and training uses, and asks to implement that scope.",
+      "reviewer": "Author feedback",
+      "changed_claims": [],
+      "changed_figures": [],
+      "sections_touched": [
+        "Abstract",
+        "Paper context",
+        "Revision history"
+      ],
+      "summary": "Preserves the author's abstract opening and the acceptance/continuation distinction. Adds an explicit hypothesis about preference agreement and sustained progress under matched search budgets, followed by prospective tests of output selection, critic-guided refinement, and use of evaluator scores as training rewards on representative tasks. The requested qualitative-result scope is retained, but unverified gains are not presented as findings. C27/C28 remain gaps and C1/C2/C3 remain study protocols rather than outcome evidence; no claim evidence status is upgraded. Keeps one sentence per source line, a single abstract paragraph, and existing simulation disclosures. No figures, references, experiments, training, engineering files, commit or push are changed."
+    },
+    {
+      "round": 23,
+      "date": "2026-09-19",
+      "trigger": "Author requests plan-aligned experimental and figure/table organization, a main results table, placeholders with ideal-result interpretation, overview-style Fig1 refinement, layout repairs, and a more theoretical Method modeled on SkillOpt.",
+      "reviewer": "Author feedback",
+      "changed_claims": [
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C31",
+        "C37",
+        "C21",
+        "C22",
+        "C23",
+        "C25",
+        "C27",
+        "C28",
+        "C45"
+      ],
+      "changed_figures": [
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9",
+        "Fig10",
+        "Fig11"
+      ],
+      "sections_touched": [
+        "Method",
+        "Experiments",
+        "Results and analysis",
+        "Discussion",
+        "Conclusion",
+        "Appendix",
+        "Figure 1 and caption",
+        "Main results tables",
+        "Budget-comparison placeholder",
+        "Paper memory"
+      ],
+      "summary": "Reorganizes the study around broad C1 alignment/selection, focused C2 refinement, and representative-task C3 training diagnostics without running training. Adds main ID/OOD alignment-selection and downstream human-outcome tables, plus external-endpoint and search-ablation placeholders; ideal interpretations remain conditional, not findings. Moves the approved numerical landscape composite to the simulation appendix with unchanged data and vector assets. Reorders detailed adaptation, core, training, ablation, analysis, and simulation material. Refines the native overview's dataset-mining route and acceptance/continuation labels while preserving palette and illustrations. Following SkillOpt's object-first exposition, defines the preference-alignment objective and independent best/working updates; records the development-selection invariant as C45, without population guarantees or semantic-refutation oracle. Current display IDs follow the new manuscript order; earlier revisions retain historical IDs. Preserves the author-edited abstract, all 40 bibliography entries, existing simulated numerical assets, pointwise deployment, and empirical gaps C27/C28. No experiments, training, new image generation, engineering-project edits, commit or push."
+    },
+    {
+      "round": 24,
+      "date": "2026-09-19",
+      "trigger": "Author requests an independent reviewer subagent to audit Method, Experiments, and Discussion through repeated revision and re-review.",
+      "reviewer": "/root/reviewer_method_experiments: three review passes",
+      "changed_claims": ["C12", "C17", "C18", "C22", "C26", "C29", "C36", "C37", "C40", "C46", "C47"],
+      "changed_figures": ["Fig2"],
+      "sections_touched": ["Method", "Experiments", "Results and analysis", "Discussion", "Conclusion", "Algorithm and measurement appendices", "Comparator and reporting appendices", "Figure 2 axis and caption", "Main table captions", "Paper memory and reviewer responses"],
+      "summary": "Completes independent review, revision, re-review, and a targeted third-pass verification. Defines the input-weighted stochastic objective and distinguishes the canonical-pair development proxy; aligns weighted coverage and missing-outcome bounds. Separates acceptance, inheritance eligibility, and direction allocation, correcting a discovered state-order mismatch so failed inheritance returns to the pre-update best even when the candidate is accepted. Defines controlled comparator parent/history/editing rules and frozen-price model-and-tool budgets, while leaving exact execution configurations pending. Separates label efficiency from measured human-time efficiency and fixed-evaluator intervals from independent-search variation. Clarifies main-table aggregation, eligible cohorts, and ID/OOD regression contrasts. Replaces the Discussion checklist with conditional interpretations of continuation cost, diagnostic-history alternatives, and distinct selection/critique/reward requirements. Records all reviewer dispositions and current source hashes; preserves prior audit snapshots. The third reviewer pass finds no remaining writing/definition blocker in scope, not empirical acceptance. Synchronizes 47 claims, 11 figures, and 15 tables, with C27/C28 still gaps. Compiles 9 main pages and 35 total pages without smaller typography; structural, memory, provenance, and whitespace checks pass, and PDF pages are visually inspected. Preserves the author-edited abstract, all 40 bibliography entries, and all simulated numerical assets. No empirical studies, training, new image generation, engineering-source edits, commit, or push."
     }
-  ]
+  ],
+  "updated_on": "2026-09-19"
 }
