@@ -3,6 +3,111 @@
   "policy": "Prefer verified published records; otherwise cite the verified arXiv version explicitly as a preprint. Bibliographic identity is not a full-text claim audit. Unrelated search matches and failed metadata requests were discarded. Later incremental checks carry per-reference checked_on dates; the top-level date describes the original verification pass.",
   "references": [
     {
+      "key": "ye2024flask",
+      "arxiv_id": "2307.10928",
+      "title": "FLASK: Fine-grained Language Model Evaluation based on Alignment Skill Sets",
+      "authors": "Ye, Seonghyeon and Kim, Doyoung and Kim, Sungdong and Hwang, Hyeonbin and Kim, Seungone and Jo, Yongrae and Thorne, James and Kim, Juho and Seo, Minjoon",
+      "year": "2024",
+      "venue": "International Conference on Learning Representations",
+      "volume": "2024",
+      "pages": "55361--55414",
+      "checked_on": "2026-09-20",
+      "status": "Official ICLR proceedings BibTeX, landing metadata and published PDF verified; arXiv v4 independently confirms ICLR 2024. Cite the conference version, not the 2023 preprint year.",
+      "primary_sources": [
+        "https://proceedings.iclr.cc/paper_files/paper/5286-/bibtex",
+        "https://proceedings.iclr.cc/paper_files/paper/2024/hash/f41b4a6b202adcd8e150a9d4f124d8f6-Abstract-Conference.html",
+        "https://proceedings.iclr.cc/paper_files/paper/2024/file/f41b4a6b202adcd8e150a9d4f124d8f6-Paper-Conference.pdf",
+        "https://arxiv.org/abs/2307.10928v4"
+      ],
+      "claim_support": {
+        "location": "Introduction, Section 3 and Figure 1.",
+        "supported_scope": "Instance-dependent combinations of evaluation dimensions and the limited diagnostic detail in overall preference scores; not evidence for ERA continuation gains."
+      }
+    },
+    {
+      "key": "kim2024evallm",
+      "arxiv_id": "2309.13633",
+      "title": "EvalLM: Interactive Evaluation of Large Language Model Prompts on User-Defined Criteria",
+      "authors": "Kim, Tae Soo and Lee, Yoonjoo and Shin, Jamin and Kim, Young-Ho and Kim, Juho",
+      "year": "2024",
+      "venue": "Proceedings of the CHI Conference on Human Factors in Computing Systems",
+      "pages": "1--21",
+      "doi": "10.1145/3613904.3642216",
+      "checked_on": "2026-09-20",
+      "status": "Publisher-deposited Crossref metadata and BibTeX agree with the CHI 2024 venue, DOI, author list and 21-page citation printed in the author manuscript. ACM landing access returned HTTP 403; this is not a missing-paper verdict.",
+      "primary_sources": [
+        "https://api.crossref.org/works/10.1145/3613904.3642216",
+        "https://api.crossref.org/works/10.1145/3613904.3642216/transform/application/x-bibtex",
+        "https://arxiv.org/abs/2309.13633v2",
+        "https://arxiv.org/pdf/2309.13633v2"
+      ],
+      "claim_support": {
+        "location": "Introduction and Section 3 (formative interviews).",
+        "supported_scope": "Application-specific and subjective evaluation criteria in prompt development; not automatic evaluator-program evolution."
+      }
+    },
+    {
+      "key": "hu2024criteria",
+      "title": "Are LLM-based Evaluators Confusing NLG Quality Criteria?",
+      "authors": "Hu, Xinyu and Gao, Mingqi and Hu, Sen and Zhang, Yang and Chen, Yicheng and Xu, Teng and Wan, Xiaojun",
+      "year": "2024",
+      "venue": "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+      "pages": "9530--9570",
+      "doi": "10.18653/v1/2024.acl-long.516",
+      "checked_on": "2026-09-20",
+      "status": "ACL Anthology BibTeX and published PDF checked against Crossref; main-conference long paper, not Findings.",
+      "primary_sources": [
+        "https://aclanthology.org/2024.acl-long.516/",
+        "https://aclanthology.org/2024.acl-long.516.bib",
+        "https://aclanthology.org/2024.acl-long.516.pdf",
+        "https://api.crossref.org/works/10.18653/v1/2024.acl-long.516"
+      ],
+      "claim_support": {
+        "location": "Introduction; Sections 3--5, especially Sections 5.1--5.4.",
+        "supported_scope": "Behavioral perturbation tests show that evaluated LLM judges can confuse quality dimensions and diverge from human judgments. Does not establish that every current evaluator fails."
+      }
+    },
+    {
+      "key": "oh2025activepreference",
+      "title": "Comparison-based Active Preference Learning for Multi-dimensional Personalization",
+      "authors": "Oh, Minhyeon and Lee, Seungjoon and Ok, Jungseul",
+      "year": "2025",
+      "venue": "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+      "pages": "33145--33166",
+      "doi": "10.18653/v1/2025.acl-long.1590",
+      "checked_on": "2026-09-20",
+      "status": "ACL Anthology BibTeX and published PDF checked against Crossref; main-conference long paper, not Findings.",
+      "primary_sources": [
+        "https://aclanthology.org/2025.acl-long.1590/",
+        "https://aclanthology.org/2025.acl-long.1590.bib",
+        "https://aclanthology.org/2025.acl-long.1590.pdf",
+        "https://api.crossref.org/works/10.18653/v1/2025.acl-long.1590"
+      ],
+      "claim_support": {
+        "location": "Sections 3.2--3.3, 4.2 and 5.",
+        "supported_scope": "Selecting comparisons for feedback-efficient learning of multi-dimensional user preferences. Linear preference-space assumptions and guarantees do not transfer to IPM or evaluator-program evolution."
+      }
+    },
+    {
+      "key": "yang2026skillopt",
+      "arxiv_id": "2605.23904",
+      "title": "SkillOpt: Executive Strategy for Self-Evolving Agent Skills",
+      "authors": "Yifan Yang and Ziyang Gong and Weiquan Huang and Qihao Yang and Ziwei Zhou and Zisu Huang and Yan Li and Xuemei Gao and Qi Dai and Bei Liu and Kai Qiu and Yuqing Yang and Dongdong Chen and Xue Yang and Chong Luo",
+      "year": "2026",
+      "venue": "arXiv preprint arXiv:2605.23904",
+      "checked_on": "2026-09-20",
+      "status": "arXiv BibTeX, landing metadata and v2 full text verified; OpenAlex independently finds the same title and arXiv DOI. No formal publication venue verified; retained as a preprint.",
+      "primary_sources": [
+        "https://arxiv.org/bibtex/2605.23904",
+        "https://arxiv.org/abs/2605.23904v2",
+        "https://arxiv.org/pdf/2605.23904v2"
+      ],
+      "claim_support": {
+        "location": "Sections 3.1--3.7, especially 3.5 (rejected-edit buffer) and 3.6 (slow/meta update).",
+        "supported_scope": "Execution-feedback-driven edits to skills with fixed target-model weights. The method retains failed-edit information; it does not support a claim that rejection erases all memory or universally forces direction abandonment."
+      }
+    },
+    {
       "key": "agrawal2026gepa",
       "arxiv_id": "2507.19457",
       "title": "{GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning}",
@@ -602,6 +707,6 @@
       "author_note": "Jie Zhou appears twice in both official arXiv BibTeX and v3 PDF. Preserved; identity/deduplication requires author clarification."
     }
   ],
-  "last_incremental_audit": "2026-09-19",
-  "audit_report": ".paper/citation_audit.md"
+  "last_incremental_audit": "2026-09-20",
+  "audit_report": ".paper/intro_citation_audit_20260920.md"
 }

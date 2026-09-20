@@ -7,6 +7,7 @@ It applies to current manuscript prose, headings, captions, and figure labels.
 | Concept | Preferred term | Boundary |
 |---|---|---|
 | Paper-level learning process | evaluator self-evolution | Use evaluator evolution once the context is clear. Do not invent a framework acronym. |
+| Tested baseline in Abstract and Introduction | default evaluator-evolution setup | Introduce as the default evaluator-evolution setup we tested; then use default setup. Do not alternate with default iterative optimizer or default model-driven evolution setup for this same configuration. |
 | Upstream method | Informative Preference Mining (IPM) | Covers existing datasets and newly generated outputs; reuse compatible preferences or collect missing ones. Use IPM after definition, not disagreement-based data mining or preference acquisition. |
 | Selecting comparisons | sampling; sampling policy | Data mining is the broader process; sampling is its selection operation. |
 | Collecting human judgments | annotation | Not a synonym for mining, which can reuse labels. Distinguish annotation units from annotation time. |
@@ -19,6 +20,7 @@ It applies to current manuscript prose, headings, captions, and figure labels.
 | Persistent correction explored by ERA | direction | Not hypothesis, idea, or correction problem as interchangeable names. |
 | Testable rationale for a direction | hypothesis | Explains the expected correction; diagnostic results do not automatically verify it. |
 | Proposed complete evaluation program | candidate | Distinguish from an edit or component. A proposed artifact is a candidate output, then simply output. |
+| A modification to the evaluation procedure | revision | A revision produces a candidate; use candidate when discussing measured performance or acceptance. Attempt is a general description, not an alternative name for the candidate. |
 | Concrete work on a direction | implementation | Do not rotate with realization or instantiation. A statistical realization is a distinct, permitted use. |
 | Accepting a candidate | candidate acceptance | Not promotion or adoption for this decision. |
 | Continuing work on a direction | direction continuation | Not direction persistence or hypothesis continuation. |
@@ -27,6 +29,7 @@ It applies to current manuscript prose, headings, captions, and figure labels.
 | Choosing the next working program | program inheritance | Separate from candidate acceptance and direction continuation; failed inheritance can still leave the direction active. |
 | Search-level checks | diagnostic results | Not ambiguous new evidence; artifact evidence refers to information used to evaluate outputs. |
 | Numerical/structured outputs of existing evaluation sources | evaluation signals | A preference sign is not an evolution direction. Disagreement refers to conflicts among these signals; use evaluation error for mismatches with human preferences. |
+| Evaluator judgment inconsistent with a human preference | evaluation error | Defined relative to the supplied preference, not proof of an objectively wrong judgment. Do not use disagreement with human preferences as a second meaning of disagreement. |
 | Z, shared input to evolution | feedback table | Logical join of human feedback with artifact, signal, and execution records. Not human evidence or adaptation evidence table. |
 | Sampling endpoint | sampling efficiency | Evaluate final held-out agreement at matched annotation units or time, not just disagreement counts. |
 | Alternative adaptation methods | score calibration; evaluator fine-tuning | Do not alternate with scorer calibration or evaluator weight fine-tuning. |
