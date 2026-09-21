@@ -16,8 +16,11 @@
   Figure 1 directly prints the approved three-column SVG export at 5.4 inches,
   preserving all nine photographic insets (at least 300 DPI). Its vector labels
   are approximately 2.5–4.7 points, an acknowledged readability limitation;
-  the author rejected the separate print reflow. Figure 2 retains the original
-  overview photograph and pictograms. Unused generated images remain archived.
+  the author rejected the separate print reflow. Figure 2 prints the approved
+  horizontal three-panel overview at 5.4 inches, with vector labels/connectors
+  and reused AI-generated pictograms. Labels are approximately 3.4–7.2 points;
+  some pictograms fall below the raster-line-art target. These are documented
+  limitations, not a claim of print readiness. Unused images remain archived.
 - Simulated quantitative fixtures are expressly marked, not empirical results.
   The author-requested layout draft is not a results-bearing submission;
   `scripts/check_simulated_results.py --submission` must reject it while these

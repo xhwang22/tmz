@@ -16,15 +16,17 @@
     "title": 1,
     "desc": 1,
     "defs": 1,
-    "style": 1,
+    "style": 2,
     "marker": 5,
-    "path": 40,
-    "g": 9,
-    "rect": 31,
-    "text": 59,
+    "path": 42,
+    "linearGradient": 2,
+    "stop": 4,
+    "g": 21,
+    "rect": 63,
+    "circle": 48,
+    "text": 64,
     "clipPath": 9,
-    "image": 9,
-    "circle": 39
+    "image": 9
   },
   "font": "TeX Gyre Heros",
   "grid": {
@@ -316,8 +318,8 @@
   "embedded_images": true,
   "new_generation": false,
   "canonical_integration": true,
-  "style": "flat solid fills; single moderate outlines; no gradients, shadows, or highlights",
-  "flat_style_check": "pass",
+  "style": "soft panel surfaces, shallow paper shadows, fine outlines and graded search nodes",
+  "flat_style_check": "superseded by author-requested surface styling",
   "wording_profile": "figures/candidates/teaser_wording_20260920.json",
   "wording_profile_sha256": "ecd8523eb0d685b36071da85ca60cf42ae2a53ea35ec4279f4a1eaea6b27af2c",
   "manuscript_basis": "bafe259; ICLR session naming instruction 2026-09-20 20:31 UTC and latest completed turn 21:06 UTC",
@@ -333,5 +335,37 @@
   "terminology_check": "pass",
   "evidence_boundary": "Constructed example; no empirical-gain or candidate-acceptance claim from one pair",
   "method_accent": "#62AAA5",
-  "palette_check": "text, geometry and embedded images unchanged"
+  "palette_check": "current source text, geometry and embedded images unchanged by export",
+  "surface_polish": {
+    "date": "2026-09-21",
+    "reference": "build/overview-layout-current/overview.png",
+    "changes": [
+      "matched pale panel surfaces",
+      "fine photo mattes and shallow shadows",
+      "tinted revision-card headers",
+      "navy panel markers and softly shaded node rims"
+    ],
+    "preserved_at_surface_revision": [
+      "59 original labels",
+      "9 embedded images and their crops",
+      "all original path coordinates",
+      "panel, card and node positions"
+    ],
+    "scope": "decorative styling only; subsequent panel-a annotations are recorded separately"
+  },
+  "panel_a_revision": {
+    "date": "2026-09-21",
+    "purpose": "make the criterion trade-off and opposite overall rankings explicit",
+    "changes": [
+      "two aligned qualitative comparison rows",
+      "explicit Human: A > B versus Evaluator: B > A"
+    ],
+    "preserved": [
+      "all nine embedded images and crops",
+      "panel geometry",
+      "panels b/c",
+      "pointwise-scoring note"
+    ],
+    "evidence_status": "constructed illustration; not measured metric scores or collected human preferences"
+  }
 }

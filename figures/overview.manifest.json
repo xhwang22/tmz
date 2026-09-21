@@ -1,0 +1,1637 @@
+{
+  "status": "canonical manuscript figure",
+  "canvas": [
+    1840,
+    800
+  ],
+  "layout": "wide persistent direction; one unaccepted trial feeds a prominent retained diagnostic record and a targeted next revision; independent lower acceptance band",
+  "supersedes": "tall 1680 x 1060 review proof, overwritten at the author's request",
+  "aspect_ratio": 2.3,
+  "source_image": "output/imagegen/overview-panel-c-action-cycle-20260921-v12.png",
+  "source_sha256": "f3169240b9af4d0fb3f4ea9d892082e701793c36014a16afa03da45a5190bf40",
+  "generator": "scripts/render_overview_layout_review.py",
+  "generation_provenance": ".paper/overview-panel-c-action-cycle-20260921.md",
+  "constructed_illustration": true,
+  "empirical_evidence": false,
+  "new_generation": false,
+  "print_width_in": 5.4,
+  "font_size_pt": [
+    3.3808695652173912,
+    7.184347826086957
+  ],
+  "embedded_images": [
+    {
+      "name": "visual",
+      "box": [
+        50,
+        143,
+        50,
+        46
+      ],
+      "pixels": [
+        159,
+        127
+      ],
+      "sha256": "25dc2cd33744db8e565c4b81880226019e2624265d078c13295e33de66a651eb",
+      "effective_ppi": 1083.5555555555557
+    },
+    {
+      "name": "image",
+      "box": [
+        130,
+        143,
+        50,
+        46
+      ],
+      "pixels": [
+        105,
+        105
+      ],
+      "sha256": "c4f08431c046a80bbad5cc22afa981109ccfd74fa05b8715a835820d5ef90fc8",
+      "effective_ppi": 777.7777777777777
+    },
+    {
+      "name": "text",
+      "box": [
+        210,
+        143,
+        50,
+        46
+      ],
+      "pixels": [
+        108,
+        122
+      ],
+      "sha256": "519dcd009a2dfbc8a06092f9bb239c91fe16ec74f7685381551f57e48314801c",
+      "effective_ppi": 903.7037037037037
+    },
+    {
+      "name": "research",
+      "box": [
+        290,
+        143,
+        50,
+        46
+      ],
+      "pixels": [
+        122,
+        111
+      ],
+      "sha256": "d457bea6c2fd37c2129a47e6152ddb91e6ccd8cbf3df864f5d220bbb39c5e3ef",
+      "effective_ppi": 831.4074074074073
+    },
+    {
+      "name": "database",
+      "box": [
+        80,
+        220,
+        40,
+        44
+      ],
+      "pixels": [
+        55,
+        67
+      ],
+      "sha256": "4c3178a96dae993cc09a3f73a4d048c8957efb3cf6ca85e087b1cb7ecf337611",
+      "effective_ppi": 518.8552188552188
+    },
+    {
+      "name": "outputs",
+      "box": [
+        245,
+        220,
+        40,
+        44
+      ],
+      "pixels": [
+        57,
+        70
+      ],
+      "sha256": "7130d00ec3d6a0f6b87fa7dbedfd03d3ee4817d230992b1303a979c6eaea802a",
+      "effective_ppi": 542.087542087542
+    },
+    {
+      "name": "human",
+      "box": [
+        57,
+        550,
+        79,
+        86
+      ],
+      "pixels": [
+        128,
+        131
+      ],
+      "sha256": "f3ac9f79b7942bf2f78fd6ee2706eb964abab213f872f415b3f2f427092b5ecd",
+      "effective_ppi": 552.0862634786685
+    },
+    {
+      "name": "direction",
+      "box": [
+        434,
+        155,
+        67,
+        67
+      ],
+      "pixels": [
+        104,
+        104
+      ],
+      "sha256": "5a6c2d339a88d08dfdc9be12e2d9691b0abb447cb65266e6be01e32708d152a3",
+      "effective_ppi": 528.9110005527916
+    },
+    {
+      "name": "program",
+      "box": [
+        457,
+        351,
+        56,
+        68
+      ],
+      "pixels": [
+        105,
+        102
+      ],
+      "sha256": "40c0c2dd7140a5c0a0ee6e82b06c47499417251f1a545746c7c66de18274e5a6",
+      "effective_ppi": 638.8888888888888
+    },
+    {
+      "name": "program",
+      "box": [
+        1201,
+        351,
+        56,
+        68
+      ],
+      "pixels": [
+        105,
+        102
+      ],
+      "sha256": "40c0c2dd7140a5c0a0ee6e82b06c47499417251f1a545746c7c66de18274e5a6",
+      "effective_ppi": 638.8888888888888
+    },
+    {
+      "name": "diagnostics",
+      "box": [
+        762,
+        276,
+        44,
+        47
+      ],
+      "pixels": [
+        97,
+        108
+      ],
+      "sha256": "2465fe8655fdfad65997757ff968cea56bcb1744b66af2ff5a7b073932051a2f",
+      "effective_ppi": 782.9787234042552
+    },
+    {
+      "name": "direction",
+      "box": [
+        1385,
+        589,
+        48,
+        48
+      ],
+      "pixels": [
+        104,
+        104
+      ],
+      "sha256": "5a6c2d339a88d08dfdc9be12e2d9691b0abb447cb65266e6be01e32708d152a3",
+      "effective_ppi": 738.2716049382715
+    },
+    {
+      "name": "checking",
+      "box": [
+        752,
+        659,
+        75,
+        65
+      ],
+      "pixels": [
+        46,
+        44
+      ],
+      "sha256": "d3c0baeb37529bb482d6106d2975262f69bc9544b27dcb4f45dc6606a078bcc1",
+      "effective_ppi": 230.65527065527067
+    },
+    {
+      "name": "best",
+      "box": [
+        1305,
+        653,
+        91,
+        77
+      ],
+      "pixels": [
+        90,
+        82
+      ],
+      "sha256": "20f593553d596f4fa3772221ce57f04db5c106753e75c70897cf94d4901523a4",
+      "effective_ppi": 362.86676286676277
+    },
+    {
+      "name": "lock",
+      "box": [
+        1474,
+        670,
+        27,
+        31
+      ],
+      "pixels": [
+        34,
+        37
+      ],
+      "sha256": "a148d00b8dec907376bce972b53b59e8e091a8a7d416f7d145f13f69e388c675",
+      "effective_ppi": 429.08093278463645
+    },
+    {
+      "name": "selection",
+      "box": [
+        1544,
+        187,
+        232,
+        87
+      ],
+      "pixels": [
+        242,
+        95
+      ],
+      "sha256": "31c5510d2c8c435397af9d1394e86a1d41d86a43fb9b98ac74ce45a148eb1537",
+      "effective_ppi": 372.07322264793527
+    },
+    {
+      "name": "refinement",
+      "box": [
+        1544,
+        411,
+        232,
+        87
+      ],
+      "pixels": [
+        242,
+        95
+      ],
+      "sha256": "403707ed573e075d3ecf6d9553e1ca35591a580f41598b9bce01325dc1d38c0f",
+      "effective_ppi": 372.07322264793527
+    },
+    {
+      "name": "training",
+      "box": [
+        1544,
+        623,
+        232,
+        87
+      ],
+      "pixels": [
+        242,
+        95
+      ],
+      "sha256": "738b7d3da7ed7ce01d446307facd729cbd39143ae0ca7e70d726832b5acbe998",
+      "effective_ppi": 372.07322264793527
+    }
+  ],
+  "method_palette": [
+    "#62AAA5",
+    "#477D79"
+  ],
+  "crop_reference_canvas": [
+    1300,
+    770
+  ],
+  "crop_boxes": {
+    "visual": [
+      52,
+      78,
+      180,
+      182
+    ],
+    "image": [
+      357,
+      87,
+      445,
+      174
+    ],
+    "text": [
+      702,
+      83,
+      789,
+      182
+    ],
+    "research": [
+      1081,
+      87,
+      1183,
+      183
+    ],
+    "database": [
+      46,
+      302,
+      90,
+      355
+    ],
+    "outputs": [
+      200,
+      301,
+      246,
+      357
+    ],
+    "human": [
+      34,
+      574,
+      136,
+      678
+    ],
+    "direction": [
+      385,
+      445,
+      468,
+      528
+    ],
+    "program": [
+      536,
+      447,
+      620,
+      528
+    ],
+    "diagnostics": [
+      833,
+      448,
+      910,
+      534
+    ],
+    "checking": [
+      648,
+      352,
+      684,
+      387
+    ],
+    "best": [
+      820,
+      250,
+      892,
+      315
+    ],
+    "lock": [
+      951,
+      279,
+      978,
+      309
+    ],
+    "selection": [
+      1073,
+      339,
+      1266,
+      415
+    ],
+    "refinement": [
+      1073,
+      493,
+      1266,
+      569
+    ],
+    "training": [
+      1073,
+      651,
+      1266,
+      727
+    ]
+  },
+  "text": [
+    {
+      "text": "a",
+      "size": 27,
+      "weight": 600,
+      "x": 50,
+      "baseline": 62,
+      "left": 40.890625,
+      "width": 18.21875,
+      "ink_box": [
+        40.890625,
+        47,
+        58.890625,
+        62
+      ]
+    },
+    {
+      "text": "Disagreement-based",
+      "size": 23,
+      "weight": 600,
+      "x": 80,
+      "baseline": 50,
+      "left": 80,
+      "width": 269.40625,
+      "ink_box": [
+        80,
+        33,
+        349,
+        55
+      ]
+    },
+    {
+      "text": "preference mining",
+      "size": 23,
+      "weight": 600,
+      "x": 80,
+      "baseline": 83,
+      "left": 80,
+      "width": 238.515625,
+      "ink_box": [
+        80,
+        66,
+        319,
+        88
+      ]
+    },
+    {
+      "text": "b",
+      "size": 27,
+      "weight": 600,
+      "x": 423,
+      "baseline": 62,
+      "left": 413.3359375,
+      "width": 19.328125,
+      "ink_box": [
+        413.3359375,
+        41,
+        432.3359375,
+        62
+      ]
+    },
+    {
+      "text": "Depth-first evaluator evolution",
+      "size": 34,
+      "weight": 600,
+      "x": 459,
+      "baseline": 64,
+      "left": 459,
+      "width": 595.5625,
+      "ink_box": [
+        459,
+        38,
+        1055,
+        71
+      ]
+    },
+    {
+      "text": "Reject the candidate, retain the direction and diagnostics",
+      "size": 27,
+      "weight": 400,
+      "x": 418,
+      "baseline": 107,
+      "left": 418,
+      "width": 775.96875,
+      "ink_box": [
+        418,
+        86,
+        1194,
+        113
+      ]
+    },
+    {
+      "text": "c",
+      "size": 27,
+      "weight": 600,
+      "x": 1533,
+      "baseline": 62,
+      "left": 1525.0,
+      "width": 16.0,
+      "ink_box": [
+        1525.0,
+        47,
+        1541.0,
+        62
+      ]
+    },
+    {
+      "text": "Downstream",
+      "size": 28,
+      "weight": 600,
+      "x": 1566,
+      "baseline": 51,
+      "left": 1566,
+      "width": 199.21875,
+      "ink_box": [
+        1566,
+        31,
+        1765,
+        51
+      ]
+    },
+    {
+      "text": "applications",
+      "size": 28,
+      "weight": 600,
+      "x": 1566,
+      "baseline": 85,
+      "left": 1566,
+      "width": 192.484375,
+      "ink_box": [
+        1566,
+        64,
+        1758,
+        91
+      ]
+    },
+    {
+      "text": "Open-ended tasks",
+      "size": 26,
+      "weight": 400,
+      "x": 195,
+      "baseline": 126,
+      "left": 76.5703125,
+      "width": 236.859375,
+      "ink_box": [
+        76.5703125,
+        106,
+        313.5703125,
+        131
+      ]
+    },
+    {
+      "text": "Visuals",
+      "size": 16,
+      "weight": 400,
+      "x": 75,
+      "baseline": 212,
+      "left": 46.921875,
+      "width": 56.15625,
+      "ink_box": [
+        46.921875,
+        200,
+        102.921875,
+        212
+      ]
+    },
+    {
+      "text": "Image/3D",
+      "size": 16,
+      "weight": 400,
+      "x": 155,
+      "baseline": 212,
+      "left": 115.984375,
+      "width": 78.03125,
+      "ink_box": [
+        115.984375,
+        200,
+        193.984375,
+        215
+      ]
+    },
+    {
+      "text": "Text",
+      "size": 16,
+      "weight": 400,
+      "x": 235,
+      "baseline": 212,
+      "left": 218.8125,
+      "width": 32.375,
+      "ink_box": [
+        217.8125,
+        200,
+        250.8125,
+        212
+      ]
+    },
+    {
+      "text": "Research",
+      "size": 16,
+      "weight": 400,
+      "x": 315,
+      "baseline": 212,
+      "left": 278.2890625,
+      "width": 73.421875,
+      "ink_box": [
+        278.2890625,
+        200,
+        351.2890625,
+        212
+      ]
+    },
+    {
+      "text": "Existing",
+      "size": 24,
+      "weight": 400,
+      "x": 100,
+      "baseline": 286,
+      "left": 52.4609375,
+      "width": 95.078125,
+      "ink_box": [
+        52.4609375,
+        268,
+        147.4609375,
+        291
+      ]
+    },
+    {
+      "text": "datasets",
+      "size": 24,
+      "weight": 400,
+      "x": 100,
+      "baseline": 312,
+      "left": 48.390625,
+      "width": 103.21875,
+      "ink_box": [
+        48.390625,
+        294,
+        151.390625,
+        312
+      ]
+    },
+    {
+      "text": "New",
+      "size": 24,
+      "weight": 400,
+      "x": 265,
+      "baseline": 286,
+      "left": 238.828125,
+      "width": 52.34375,
+      "ink_box": [
+        238.828125,
+        268,
+        290.828125,
+        286
+      ]
+    },
+    {
+      "text": "outputs",
+      "size": 24,
+      "weight": 400,
+      "x": 265,
+      "baseline": 312,
+      "left": 219.1640625,
+      "width": 91.671875,
+      "ink_box": [
+        219.1640625,
+        295,
+        311.1640625,
+        317
+      ]
+    },
+    {
+      "text": "Metrics and judges",
+      "size": 24,
+      "weight": 600,
+      "x": 195,
+      "baseline": 367,
+      "left": 66.1484375,
+      "width": 257.703125,
+      "ink_box": [
+        66.1484375,
+        349,
+        324.1484375,
+        372
+      ]
+    },
+    {
+      "text": "S1",
+      "size": 23,
+      "weight": 400,
+      "x": 79,
+      "baseline": 397,
+      "left": 64.3828125,
+      "width": 29.234375,
+      "ink_box": [
+        64.3828125,
+        380,
+        93.3828125,
+        397
+      ]
+    },
+    {
+      "text": "S2",
+      "size": 23,
+      "weight": 400,
+      "x": 137,
+      "baseline": 397,
+      "left": 122.3828125,
+      "width": 29.234375,
+      "ink_box": [
+        122.3828125,
+        380,
+        151.3828125,
+        397
+      ]
+    },
+    {
+      "text": "S3",
+      "size": 23,
+      "weight": 400,
+      "x": 195,
+      "baseline": 397,
+      "left": 180.3828125,
+      "width": 29.234375,
+      "ink_box": [
+        180.3828125,
+        380,
+        209.3828125,
+        397
+      ]
+    },
+    {
+      "text": "Sample",
+      "size": 22,
+      "weight": 400,
+      "x": 289,
+      "baseline": 397,
+      "left": 247.75,
+      "width": 82.5,
+      "ink_box": [
+        247.75,
+        380,
+        330.75,
+        402
+      ]
+    },
+    {
+      "text": "A>B",
+      "size": 20,
+      "weight": 400,
+      "x": 79,
+      "baseline": 426,
+      "left": 56.9140625,
+      "width": 44.171875,
+      "ink_box": [
+        56.9140625,
+        411,
+        100.9140625,
+        426
+      ]
+    },
+    {
+      "text": "A>B",
+      "size": 20,
+      "weight": 400,
+      "x": 137,
+      "baseline": 426,
+      "left": 114.9140625,
+      "width": 44.171875,
+      "ink_box": [
+        114.9140625,
+        411,
+        158.9140625,
+        426
+      ]
+    },
+    {
+      "text": "A>B",
+      "size": 20,
+      "weight": 400,
+      "x": 195,
+      "baseline": 426,
+      "left": 172.9140625,
+      "width": 44.171875,
+      "ink_box": [
+        172.9140625,
+        411,
+        216.9140625,
+        426
+      ]
+    },
+    {
+      "text": "Less",
+      "size": 23,
+      "weight": 600,
+      "x": 289,
+      "baseline": 426,
+      "left": 260.1875,
+      "width": 57.625,
+      "ink_box": [
+        260.1875,
+        409,
+        318.1875,
+        426
+      ]
+    },
+    {
+      "text": "A>B",
+      "size": 20,
+      "weight": 400,
+      "x": 79,
+      "baseline": 462,
+      "left": 56.9140625,
+      "width": 44.171875,
+      "ink_box": [
+        56.9140625,
+        447,
+        100.9140625,
+        462
+      ]
+    },
+    {
+      "text": "B>A",
+      "size": 20,
+      "weight": 400,
+      "x": 137,
+      "baseline": 462,
+      "left": 114.9140625,
+      "width": 44.171875,
+      "ink_box": [
+        114.9140625,
+        447,
+        158.9140625,
+        462
+      ]
+    },
+    {
+      "text": "A>B",
+      "size": 20,
+      "weight": 400,
+      "x": 195,
+      "baseline": 462,
+      "left": 172.9140625,
+      "width": 44.171875,
+      "ink_box": [
+        172.9140625,
+        447,
+        216.9140625,
+        462
+      ]
+    },
+    {
+      "text": "More",
+      "size": 23,
+      "weight": 600,
+      "x": 289,
+      "baseline": 462,
+      "left": 256.1875,
+      "width": 65.625,
+      "ink_box": [
+        256.1875,
+        445,
+        322.1875,
+        462
+      ]
+    },
+    {
+      "text": "+ random sample",
+      "size": 24,
+      "weight": 400,
+      "x": 195,
+      "baseline": 508,
+      "left": 87.1484375,
+      "width": 215.703125,
+      "ink_box": [
+        87.1484375,
+        490,
+        303.1484375,
+        513
+      ]
+    },
+    {
+      "text": "Reuse labels",
+      "size": 24,
+      "weight": 400,
+      "x": 151,
+      "baseline": 568,
+      "left": 151,
+      "width": 151.015625,
+      "ink_box": [
+        151,
+        550,
+        302,
+        568
+      ]
+    },
+    {
+      "text": "or ask humans",
+      "size": 24,
+      "weight": 400,
+      "x": 151,
+      "baseline": 599,
+      "left": 151,
+      "width": 177.15625,
+      "ink_box": [
+        151,
+        581,
+        328,
+        599
+      ]
+    },
+    {
+      "text": "for new ones",
+      "size": 24,
+      "weight": 400,
+      "x": 151,
+      "baseline": 630,
+      "left": 151,
+      "width": 155.046875,
+      "ink_box": [
+        151,
+        612,
+        306,
+        630
+      ]
+    },
+    {
+      "text": "Human feedback",
+      "size": 27,
+      "weight": 600,
+      "x": 195,
+      "baseline": 687,
+      "left": 67.0,
+      "width": 256.0,
+      "ink_box": [
+        67.0,
+        666,
+        324.0,
+        687
+      ]
+    },
+    {
+      "text": "Signals can share errors",
+      "size": 22,
+      "weight": 400,
+      "x": 195,
+      "baseline": 741,
+      "left": 62.3671875,
+      "width": 265.265625,
+      "ink_box": [
+        62.3671875,
+        724,
+        327.3671875,
+        746
+      ]
+    },
+    {
+      "text": "One direction, successive revisions",
+      "size": 27,
+      "weight": 600,
+      "x": 518,
+      "baseline": 174,
+      "left": 518,
+      "width": 535.640625,
+      "ink_box": [
+        518,
+        153,
+        1054,
+        178
+      ]
+    },
+    {
+      "text": "Example: make layout errors count in the final score",
+      "size": 27,
+      "weight": 400,
+      "x": 518,
+      "baseline": 214,
+      "left": 518,
+      "width": 708.421875,
+      "ink_box": [
+        518,
+        193,
+        1226,
+        220
+      ]
+    },
+    {
+      "text": "Base model fixed",
+      "size": 22,
+      "weight": 400,
+      "x": 1430,
+      "baseline": 173,
+      "left": 1240.21875,
+      "width": 189.78125,
+      "ink_box": [
+        1240.21875,
+        156,
+        1430.21875,
+        173
+      ]
+    },
+    {
+      "text": "Candidate",
+      "size": 25,
+      "weight": 600,
+      "x": 565,
+      "baseline": 286,
+      "left": 493.4296875,
+      "width": 143.140625,
+      "ink_box": [
+        493.4296875,
+        267,
+        636.4296875,
+        286
+      ]
+    },
+    {
+      "text": "Complete program",
+      "size": 18,
+      "weight": 400,
+      "x": 460,
+      "baseline": 331,
+      "left": 460,
+      "width": 169.3125,
+      "ink_box": [
+        460,
+        317,
+        629,
+        335
+      ]
+    },
+    {
+      "text": "Example edit",
+      "size": 16,
+      "weight": 400,
+      "x": 532,
+      "baseline": 365,
+      "left": 532,
+      "width": 105.265625,
+      "ink_box": [
+        532,
+        353,
+        637,
+        368
+      ]
+    },
+    {
+      "text": "Add a layout",
+      "size": 18,
+      "weight": 400,
+      "x": 532,
+      "baseline": 390,
+      "left": 532,
+      "width": 113.484375,
+      "ink_box": [
+        532,
+        376,
+        645,
+        394
+      ]
+    },
+    {
+      "text": "error detector",
+      "size": 18,
+      "weight": 400,
+      "x": 532,
+      "baseline": 414,
+      "left": 532,
+      "width": 125.34375,
+      "ink_box": [
+        532,
+        400,
+        658,
+        414
+      ]
+    },
+    {
+      "text": "Next revision",
+      "size": 25,
+      "weight": 600,
+      "x": 1309,
+      "baseline": 286,
+      "left": 1215.3984375,
+      "width": 187.203125,
+      "ink_box": [
+        1215.3984375,
+        267,
+        1402.3984375,
+        286
+      ]
+    },
+    {
+      "text": "Complete program",
+      "size": 18,
+      "weight": 400,
+      "x": 1204,
+      "baseline": 331,
+      "left": 1204,
+      "width": 169.3125,
+      "ink_box": [
+        1204,
+        317,
+        1373,
+        335
+      ]
+    },
+    {
+      "text": "Example edit",
+      "size": 16,
+      "weight": 400,
+      "x": 1276,
+      "baseline": 365,
+      "left": 1276,
+      "width": 105.265625,
+      "ink_box": [
+        1276,
+        353,
+        1381,
+        368
+      ]
+    },
+    {
+      "text": "Pass findings",
+      "size": 18,
+      "weight": 400,
+      "x": 1276,
+      "baseline": 390,
+      "left": 1276,
+      "width": 116.921875,
+      "ink_box": [
+        1276,
+        376,
+        1393,
+        394
+      ]
+    },
+    {
+      "text": "into scoring",
+      "size": 18,
+      "weight": 400,
+      "x": 1276,
+      "baseline": 414,
+      "left": 1276,
+      "width": 105.71875,
+      "ink_box": [
+        1276,
+        400,
+        1382,
+        418
+      ]
+    },
+    {
+      "text": "Retain diagnostics",
+      "size": 25,
+      "weight": 600,
+      "x": 821,
+      "baseline": 300,
+      "left": 821,
+      "width": 261.359375,
+      "ink_box": [
+        821,
+        281,
+        1082,
+        305
+      ]
+    },
+    {
+      "text": "Observed in execution",
+      "size": 18,
+      "weight": 600,
+      "x": 769,
+      "baseline": 353,
+      "left": 769,
+      "width": 227.78125,
+      "ink_box": [
+        769,
+        339,
+        997,
+        353
+      ]
+    },
+    {
+      "text": "Layout errors detected.",
+      "size": 23,
+      "weight": 400,
+      "x": 769,
+      "baseline": 384,
+      "left": 769,
+      "width": 270.125,
+      "ink_box": [
+        769,
+        367,
+        1039,
+        389
+      ]
+    },
+    {
+      "text": "Final scores unchanged.",
+      "size": 23,
+      "weight": 400,
+      "x": 769,
+      "baseline": 413,
+      "left": 769,
+      "width": 277.140625,
+      "ink_box": [
+        769,
+        396,
+        1046,
+        418
+      ]
+    },
+    {
+      "text": "Agent’s next question",
+      "size": 18,
+      "weight": 600,
+      "x": 769,
+      "baseline": 454,
+      "left": 769,
+      "width": 224.359375,
+      "ink_box": [
+        769,
+        440,
+        993,
+        458
+      ]
+    },
+    {
+      "text": "Do these findings reach",
+      "size": 23,
+      "weight": 400,
+      "x": 769,
+      "baseline": 485,
+      "left": 769,
+      "width": 273.234375,
+      "ink_box": [
+        769,
+        468,
+        1042,
+        490
+      ]
+    },
+    {
+      "text": "the scoring step?",
+      "size": 23,
+      "weight": 400,
+      "x": 769,
+      "baseline": 514,
+      "left": 769,
+      "width": 198.046875,
+      "ink_box": [
+        769,
+        497,
+        967,
+        519
+      ]
+    },
+    {
+      "text": "No agreement gain",
+      "size": 21,
+      "weight": 400,
+      "x": 565,
+      "baseline": 486,
+      "left": 463.8125,
+      "width": 202.375,
+      "ink_box": [
+        463.8125,
+        470,
+        665.8125,
+        490
+      ]
+    },
+    {
+      "text": "Not accepted",
+      "size": 21,
+      "weight": 600,
+      "x": 565,
+      "baseline": 529,
+      "left": 486.4921875,
+      "width": 157.015625,
+      "ink_box": [
+        486.4921875,
+        513,
+        643.4921875,
+        533
+      ]
+    },
+    {
+      "text": "Run and inspect again",
+      "size": 20,
+      "weight": 400,
+      "x": 1309,
+      "baseline": 481,
+      "left": 1197.5,
+      "width": 223.0,
+      "ink_box": [
+        1197.5,
+        466,
+        1420.5,
+        485
+      ]
+    },
+    {
+      "text": "Test each candidate",
+      "size": 21,
+      "weight": 400,
+      "x": 811,
+      "baseline": 620,
+      "left": 811,
+      "width": 209.609375,
+      "ink_box": [
+        810,
+        604,
+        1021,
+        620
+      ]
+    },
+    {
+      "text": "Keep diagnostics after rollback",
+      "size": 19,
+      "weight": 400,
+      "x": 445,
+      "baseline": 620,
+      "left": 445,
+      "width": 292.484375,
+      "ink_box": [
+        445,
+        606,
+        737,
+        624
+      ]
+    },
+    {
+      "text": "End direction → start another",
+      "size": 20,
+      "weight": 400,
+      "x": 1368,
+      "baseline": 620,
+      "left": 1075.328125,
+      "width": 292.671875,
+      "ink_box": [
+        1075.328125,
+        605,
+        1368.328125,
+        620
+      ]
+    },
+    {
+      "text": "Candidate",
+      "size": 27,
+      "weight": 600,
+      "x": 445,
+      "baseline": 684,
+      "left": 445,
+      "width": 154.59375,
+      "ink_box": [
+        445,
+        663,
+        600,
+        684
+      ]
+    },
+    {
+      "text": "acceptance",
+      "size": 27,
+      "weight": 600,
+      "x": 445,
+      "baseline": 716,
+      "left": 445,
+      "width": 172.515625,
+      "ink_box": [
+        445,
+        697,
+        618,
+        722
+      ]
+    },
+    {
+      "text": "Same checking set",
+      "size": 22,
+      "weight": 400,
+      "x": 790,
+      "baseline": 746,
+      "left": 685.7734375,
+      "width": 208.453125,
+      "ink_box": [
+        685.7734375,
+        729,
+        894.7734375,
+        751
+      ]
+    },
+    {
+      "text": "Better agreement + passed checks",
+      "size": 19,
+      "weight": 400,
+      "x": 914,
+      "baseline": 667,
+      "left": 914,
+      "width": 336.21875,
+      "ink_box": [
+        914,
+        653,
+        1250,
+        671
+      ]
+    },
+    {
+      "text": "→ update best program",
+      "size": 19,
+      "weight": 400,
+      "x": 914,
+      "baseline": 694,
+      "left": 914,
+      "width": 223.234375,
+      "ink_box": [
+        914,
+        680,
+        1137,
+        698
+      ]
+    },
+    {
+      "text": "No gain → keep best program",
+      "size": 20,
+      "weight": 600,
+      "x": 915,
+      "baseline": 729,
+      "left": 915,
+      "width": 330.953125,
+      "ink_box": [
+        915,
+        714,
+        1246,
+        733
+      ]
+    },
+    {
+      "text": "Best program",
+      "size": 24,
+      "weight": 600,
+      "x": 1350,
+      "baseline": 749,
+      "left": 1257.7734375,
+      "width": 184.453125,
+      "ink_box": [
+        1257.7734375,
+        731,
+        1441.7734375,
+        754
+      ]
+    },
+    {
+      "text": "Output selection",
+      "size": 26,
+      "weight": 600,
+      "x": 1660,
+      "baseline": 158,
+      "left": 1537.796875,
+      "width": 244.40625,
+      "ink_box": [
+        1537.796875,
+        138,
+        1781.796875,
+        163
+      ]
+    },
+    {
+      "text": "Rank and select",
+      "size": 22,
+      "weight": 400,
+      "x": 1660,
+      "baseline": 293,
+      "left": 1572.1484375,
+      "width": 175.703125,
+      "ink_box": [
+        1572.1484375,
+        276,
+        1748.1484375,
+        293
+      ]
+    },
+    {
+      "text": "Critic-guided",
+      "size": 26,
+      "weight": 600,
+      "x": 1660,
+      "baseline": 360,
+      "left": 1565.3828125,
+      "width": 189.234375,
+      "ink_box": [
+        1565.3828125,
+        340,
+        1754.3828125,
+        365
+      ]
+    },
+    {
+      "text": "refinement",
+      "size": 26,
+      "weight": 600,
+      "x": 1660,
+      "baseline": 390,
+      "left": 1579.21875,
+      "width": 161.5625,
+      "ink_box": [
+        1579.21875,
+        370,
+        1741.21875,
+        390
+      ]
+    },
+    {
+      "text": "Reward-guided",
+      "size": 26,
+      "weight": 600,
+      "x": 1660,
+      "baseline": 572,
+      "left": 1548.828125,
+      "width": 222.34375,
+      "ink_box": [
+        1548.828125,
+        552,
+        1770.828125,
+        577
+      ]
+    },
+    {
+      "text": "training",
+      "size": 26,
+      "weight": 600,
+      "x": 1660,
+      "baseline": 602,
+      "left": 1601.875,
+      "width": 116.25,
+      "ink_box": [
+        1601.875,
+        582,
+        1717.875,
+        607
+      ]
+    },
+    {
+      "text": "Planned",
+      "size": 22,
+      "weight": 400,
+      "x": 1660,
+      "baseline": 726,
+      "left": 1615.8828125,
+      "width": 88.234375,
+      "ink_box": [
+        1615.8828125,
+        709,
+        1703.8828125,
+        726
+      ]
+    },
+    {
+      "text": "Constructed example, not an observed trajectory",
+      "size": 21,
+      "weight": 400,
+      "x": 20,
+      "baseline": 789,
+      "left": 20,
+      "width": 518.484375,
+      "ink_box": [
+        20,
+        773,
+        538,
+        793
+      ]
+    },
+    {
+      "text": "Best program fixed after search",
+      "size": 21,
+      "weight": 400,
+      "x": 1477,
+      "baseline": 789,
+      "left": 1143.453125,
+      "width": 333.546875,
+      "ink_box": [
+        1143.453125,
+        773,
+        1477.453125,
+        793
+      ]
+    }
+  ],
+  "task_icons": {
+    "single_object": true,
+    "centers": [
+      75,
+      155,
+      235,
+      315
+    ],
+    "image_box": [
+      50,
+      46
+    ],
+    "top": 143,
+    "label_baseline": 212
+  },
+  "revision_example": {
+    "evidence_status": "constructed illustration, not observed results",
+    "direction": "Make layout errors count in the final score",
+    "example_edits": [
+      "Add a layout error detector",
+      "Pass findings into scoring"
+    ],
+    "terminology_mapping": {
+      "Best program": "B",
+      "diagnostic history": "z"
+    },
+    "highlight_semantics": "the same unaccepted candidate contributes observed outcomes and a separate checking result; retained diagnostics survive program fallback and motivate the next revision",
+    "diagnostic_links": "observed outcomes and agent-proposed next tests inform a revision of W; subsequent observations return to the same record; the parent policy still applies",
+    "acceptance": "the first candidate illustrates non-acceptance with retained diagnostics; no acceptance or gain is asserted for the next revision",
+    "branching": "group-level exit after the agent ends the direction, not after rejection or a prescribed number of revisions"
+  },
+  "verification": {
+    "label_count": 79,
+    "text_ink_overlap": false,
+    "panel_and_local_width_checks": true
+  },
+  "limitations": [
+    "Labels are 3.4–7.2 pt at the approved 5.4-inch width; small-label readability remains limited",
+    "Some pictograms fall below the repository's 600-PPI raster-line-art target; labels and connectors remain vector",
+    "The next revision illustrates allowed continuation, not mandatory depth or measured gain",
+    "Working-parent policy and access guards remain in Method/caption",
+    "The agent's question is not a verified causal diagnosis; example edits are not an evaluator taxonomy"
+  ],
+  "paper_layout": "figures/overview.tex",
+  "paper_graphic": "figures/overview.pdf",
+  "files": {
+    "figures/overview.svg": "dd8ea6090dfd06439262ace54638696a4951585049ad40d4fb61497102784cc5",
+    "figures/overview.pdf": "0cadf97ab3c042dd773e93de977dd4a61493eafdf13a108457095186144f15f5",
+    "figures/overview.png": "ac0266e70381b9241fdde9e7049b6c0fb9379f9a1541d1aa31830a7fb00dcb02"
+  }
+}

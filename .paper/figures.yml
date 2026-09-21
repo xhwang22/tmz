@@ -8,7 +8,7 @@
       "file": "figures/teaser.tex",
       "caption_source": "sections/introduction.tex",
       "panels": [
-        "(a) image-editing task: layout fidelity versus visual richness",
+        "(a) image-editing task: layout fidelity versus visual richness and opposite human/evaluator rankings",
         "(b) successive plausible directions in the default setup",
         "(c) continued layout-fidelity revisions: detection, penalty and severity"
       ],
@@ -17,9 +17,10 @@
       "supports_claims": [
         "C32"
       ],
-      "caption_in_manuscript": "Dive deeper, branch later. Panel (a) contrasts layout fidelity with visual richness. Panel (b) branches across plausible corrections; dashed arrows show attempt order. Panel (c) develops one correction through detection, scoring, and severity weighting. Nodes denote complete evaluation programs; hollow nodes are unexplored alternatives. The corrected ordering is local to this example, not candidate acceptance or generalization. Images, preferences, and paths are constructed illustrations, not experimental evidence.",
+      "caption_in_manuscript": "Dive deeper, branch later. Panel (a) contrasts A's preserved layout with B's greater visual richness and illustrates opposite human and evaluator rankings. Panel (b) branches across plausible corrections; dashed arrows show attempt order. Panel (c) develops one correction through detection, scoring, and severity weighting. Nodes denote complete evaluation programs; hollow nodes are unexplored alternatives. The corrected ordering is local to this example, not candidate acceptance or generalization. Images, preferences, and paths are constructed illustrations, not experimental evidence.",
       "evidence_status": "Constructed illustration of the search distinction; no observed human preferences, optimizer trajectories, acceptance or gains",
-      "embedded_image_manifest": "figures/teaser.manifest.json"
+      "embedded_image_manifest": "figures/teaser.manifest.json",
+      "visual_update": "2026-09-21: paper-surface styling followed by a local panel-a clarification of the criterion trade-off and opposite overall rankings; nine images/crops, panel geometry and panels b/c preserved"
     },
     {
       "id": "Fig2",
@@ -27,14 +28,13 @@
       "file": "figures/overview.tex",
       "caption_source": "sections/method.tex",
       "panels": [
-        "(a) four artifact families with distinct evaluation standards",
-        "(b) existing-dataset mining and new-preference collection feeding a common feedback table",
-        "(c) icon-led evolution loop: implementation, sealed development measurement, separate decisions and failure diagnosis",
-        "(d) C1 alignment and selection, C2 refinement, planned C3 reward-guided training"
+        "(a) disagreement-based preference mining from existing datasets or new outputs, with label reuse or new annotation",
+        "(b) persistent direction and retained diagnostics across revisions, with independent candidate acceptance",
+        "(c) frozen best program for output selection, critic-guided refinement and planned reward-guided training"
       ],
       "key_numbers": [],
       "raster_assets": [
-        "output/imagegen/edit-preserved.png"
+        "output/imagegen/overview-panel-c-action-cycle-20260921-v12.png"
       ],
       "supports_claims": [
         "C1",
@@ -48,8 +48,10 @@
         "C33",
         "C49"
       ],
-      "caption_in_manuscript": "IterEval: iterative evaluator self-improvement from human feedback. Panel (a) illustrates four artifact families with distinct evaluation standards. Panel (b) mines comparisons from existing datasets or fresh outputs, reusing compatible preferences or collecting missing ones. Panel (c) separates candidate acceptance from direction continuation. Within a continuing direction, the next revision starts from the candidate or the best program; rejected candidates can still inform further revisions. Search starts a new direction after the agent ends the active one, retaining its diagnostic history. Terminal validation does not trigger edits or reranking. Panel (d) covers C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training. Artifacts are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
-      "evidence_status": "Conceptual specification with constructed examples; no measured results"
+      "caption_in_manuscript": "IterEval: iterative evaluator self-improvement from human feedback. Panel (a) mines comparisons from existing datasets or new outputs, reusing compatible preferences or collecting missing ones, with a random sample to check for shared signal errors. Panel (b) retains a rejected candidate's diagnostics to inform another revision within the same direction, separating observed outcomes from the agent's next question. Dashed links send each candidate to the same checking set for acceptance; green links carry diagnostic information, not automatic code inheritance. The agent can end the direction and start another if resources remain. Panel (c) uses the best program, fixed after search, for output selection, critic-guided refinement, and planned reward-guided training. The example and AI-generated pictograms are constructed illustrations, not observed trajectories or measured improvements.",
+      "evidence_status": "Conceptual specification with constructed examples; no measured results",
+      "embedded_image_manifest": "figures/overview.manifest.json",
+      "visual_update": "2026-09-21: author-approved 1840 × 800 three-panel overview replaces the circular TikZ figure; existing layout, palette and pictograms preserved; constructed-example disclosure retained"
     },
     {
       "label": "fig:c1-landscape",

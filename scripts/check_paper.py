@@ -210,6 +210,12 @@ try:
 except (AssertionError, OSError, ValueError) as exc:
     errors.append(f"Teaser provenance or print-size check failed: {exc}")
 
+try:
+    from check_overview import audit as audit_overview
+    audit_overview(check_paper=True)
+except (AssertionError, OSError, ValueError) as exc:
+    errors.append(f"Overview provenance or manuscript integration check failed: {exc}")
+
 aux_path = ROOT / "build/main.aux"
 if aux_path.exists():
     aux = aux_path.read_text()

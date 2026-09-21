@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Integrate the author-edited v6 teaser; change method colors, not its content.
+"""Export the author-edited v6 teaser and its current local refinements.
 
 The self-contained SVG is the source of truth: do not regenerate it from an
-older wording profile. This exporter checks that all text, geometry and nine
-embedded images survive recoloring. No image generation or data fabrication.
+older wording profile. Recoloring preserves the current source text, geometry
+and nine embedded images. Surface styling and panel-a conflict annotations are
+separate revisions; panels b/c are unchanged. No image generation.
 """
 import base64
+from collections import Counter
 import hashlib
 import json
 from pathlib import Path
@@ -64,14 +66,38 @@ def main():
     cairosvg.svg2png(bytestring=svg.encode(), write_to=str(SOURCE.parent / "teaser-2x.png"), scale=2)
     asset_manifest = json.loads((SOURCE.parent / "manifest.json").read_text())
     asset_manifest.update({"canonical_integration": True, "method_accent": "#62AAA5",
-                           "palette_check": "text, geometry and embedded images unchanged"})
+                           "palette_check": "current source text, geometry and embedded images unchanged by export",
+                           "elements": dict(Counter(el.tag.split('}')[-1] for el in doc.iter()))})
+    if doc.find(".//s:style[@id='surface-polish-style']", NS) is not None:
+        asset_manifest["surface_polish"] = {
+            "date": "2026-09-21",
+            "reference": "build/overview-layout-current/overview.png",
+            "changes": ["matched pale panel surfaces", "fine photo mattes and shallow shadows",
+                        "tinted revision-card headers", "navy panel markers and softly shaded node rims"],
+            "preserved_at_surface_revision": ["59 original labels", "9 embedded images and their crops",
+                                              "all original path coordinates", "panel, card and node positions"],
+            "scope": "decorative styling only; subsequent panel-a annotations are recorded separately",
+        }
+        asset_manifest["style"] = "soft panel surfaces, shallow paper shadows, fine outlines and graded search nodes"
+        asset_manifest["flat_style_check"] = "superseded by author-requested surface styling"
+    if doc.find(".//s:g[@id='task-ranking-conflict']", NS) is not None:
+        asset_manifest["panel_a_revision"] = {
+            "date": "2026-09-21",
+            "purpose": "make the criterion trade-off and opposite overall rankings explicit",
+            "changes": ["two aligned qualitative comparison rows", "explicit Human: A > B versus Evaluator: B > A"],
+            "preserved": ["all nine embedded images and crops", "panel geometry", "panels b/c", "pointwise-scoring note"],
+            "evidence_status": "constructed illustration; not measured metric scores or collected human preferences",
+        }
     (SOURCE.parent / "manifest.json").write_text(json.dumps(asset_manifest, indent=2) + "\n")
     info = {
         "source": str(SOURCE.relative_to(ROOT)), "source_sha256": digest(svg.encode()),
         "author_wording_preserved": True, "geometry_preserved": True,
+        "preservation_basis": "current editable SVG at export time, not the historical wording profile",
         "method_accent": "#62AAA5", "error_status_colors_preserved": True,
         "empirical_evidence": False, "constructed_illustration": True,
         "new_generation": False, "print_width_in": 5.4,
+        "surface_polish": asset_manifest.get("surface_polish"),
+        "panel_a_revision": asset_manifest.get("panel_a_revision"),
         "paper_layout": "figures/teaser.tex",
         "paper_graphic": "figures/teaser.pdf",
         "image_source": asset_manifest["source"],
@@ -81,10 +107,10 @@ def main():
                               "svg_height": float(el.get("height"))} for el in images],
         "files": {str((OUT / f"teaser.{ext}").relative_to(ROOT)):
                   digest((OUT / f"teaser.{ext}").read_bytes()) for ext in ("svg", "pdf", "png")},
-        "limitations": "The paper directly prints the author-approved three-column layout, including all nine images. At 5.4 inches, vector text is approximately 2.5–4.7 points; small labels remain a readability limitation, not permission to redesign the figure. All preferences and paths are constructed illustrations.",
+        "limitations": "The paper directly prints the author-approved three-column layout, including all nine images. At 5.4 inches, labels are approximately 2.5–4.7 points (the comparison symbol is 5.7 points); small labels remain a readability limitation, not permission to redesign the figure. All preferences and paths are constructed illustrations.",
     }
     (OUT / "teaser.manifest.json").write_text(json.dumps(info, indent=2) + "\n")
-    print("Teaser: green method palette; text, geometry and nine embedded images preserved.")
+    print("Teaser exported: current SVG content and all nine images preserved; panel-a conflict annotations included.")
 
 
 if __name__ == "__main__":

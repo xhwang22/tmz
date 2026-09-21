@@ -28,6 +28,19 @@ def audit():
     width = re.search(r"\\includegraphics\[width=([0-9.]+)in\]\{figures/teaser.pdf\}", layout)
     assert width and abs(float(width[1]) - info["print_width_in"]) < 1e-6
     root = ET.fromstring(source.read_text())
+    ns = {"s": "http://www.w3.org/2000/svg"}
+    tradeoff = root.find(".//s:g[@id='task-tradeoff']", ns)
+    rankings = root.find(".//s:g[@id='task-ranking-conflict']", ns)
+    if info.get("panel_a_revision"):
+        assert tradeoff is not None and rankings is not None
+        assert [el.text for el in tradeoff.findall("s:text", ns)] == [
+            "Layout fidelity", "Preserved", "Wider street",
+            "Visual richness", "Less vivid", "More vivid",
+        ]
+        assert [el.text for el in rankings.findall("s:text", ns)] == [
+            "Human: A > B", "≠", "Evaluator: B > A",
+        ]
+        print("Panel a: qualitative trade-off and opposite overall rankings are explicit.")
     scale = info["print_width_in"] / float(root.get("viewBox").split()[2])
     ppis, font_pts = [], []
     for el in root.iter():
@@ -47,7 +60,7 @@ def audit():
         assert re.search(r"\byes\s+yes\s+yes\b", line), line
     print(f"Paper teaser: author-approved layout, nine images at {min(ppis):.0f}–{max(ppis):.0f} PPI; embedded PDF fonts.")
     if min(font_pts) < 7:
-        print(f"Readability warning: preserved vector labels are {min(font_pts):.1f}–{max(font_pts):.1f} pt at print size; no layout reflow authorized.")
+        print(f"Readability warning: vector text/symbols are {min(font_pts):.1f}–{max(font_pts):.1f} pt at print size; small-label limitation remains.")
     assert min(ppis) >= 300, "Photographic insets below 300 PPI"
     return ppis
 

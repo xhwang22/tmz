@@ -1,9 +1,20 @@
 # Teaser: manuscript-aligned wording, 2026-09-20
 
-Text revision of `../teaser-v5-svg-flat-v3/teaser.svg`. The approved flat
-surfaces, moderate outlines, sparse branches, node positions, card geometry,
-and all nine raster insets are retained. The method panel now uses lake green
-(`#62AAA5`, dark strokes `#477D79`); red remains an error status. No image generation.
+Text revision of `../teaser-v5-svg-flat-v3/teaser.svg`. The approved sparse
+branches, node positions, card geometry, wording, and all nine raster insets
+are retained. On 2026-09-21 the author requested surface styling to match the
+current Figure 2 review: warm/cool pale panels, fine photo mattes, shallow
+paper shadows, tinted card headers and lightly shaded node rims. These are
+decorative `surface-*` SVG layers and styling rules, not a layout redesign.
+The method retains lake green (`#62AAA5`, dark strokes `#477D79`); red remains
+an error status. No image generation or photographic edits.
+
+The subsequent panel-a clarification replaces the two short image captions
+with aligned layout-fidelity and visual-richness comparisons, and makes the
+opposite overall rankings explicit: Human A > B versus Evaluator B > A.
+Only this annotation band changes; panel geometry, all photographs/crops,
+and panels b/c remain intact. The comparison is qualitative and constructed,
+not measured metric output or collected human feedback.
 
 ## Files and reproduction
 
@@ -45,7 +56,7 @@ preference mining and depth-first evaluator evolution, without IPM/ERA labels.
 This teaser depicts the evolution component only. Do not add preference
 mining machinery just to display the complete framework name.
 
-Preserve the flat style unless the author requests a visual change. Wording
+Preserve the updated paper-surface style unless the author requests a visual change. Wording
 revisions should not overwrite canonical figures, manuscript sources, claims,
 or shared figure memory without explicit integration approval. Keep candidate
 acceptance, program inheritance, and direction continuation separate, and do

@@ -20,7 +20,7 @@ Extending evaluator self-evolution to new open-ended domains, however, raises tw
 \centering
 \input{figures/teaser}
 \caption{Dive deeper, branch later.
-Panel (a) contrasts layout fidelity with visual richness.
+Panel (a) contrasts A's preserved layout with B's greater visual richness and illustrates opposite human and evaluator rankings.
 Panel (b) branches across plausible corrections; dashed arrows show attempt order.
 Panel (c) develops one correction through detection, scoring, and severity weighting.
 Nodes denote complete evaluation programs; hollow nodes are unexplored alternatives.
@@ -45,7 +45,7 @@ In the default evaluator-evolution setup we tested, each new revision was propos
 We observed a tendency for unsuccessful early candidates to be followed by revisions in alternative directions rather than deeper development of the current one.
 Over repeated iterations, evolution can therefore spread effort across multiple plausible directions before any one of them has been developed far enough to judge reliably.
 
-IterEval uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:teaser}c; Figure~\ref{fig:overview}c).
+IterEval uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:teaser}c; Figure~\ref{fig:overview}b).
 The search continues developing the current direction after unsuccessful intermediate candidates, using their diagnostic results to guide the next revision.
 The best evaluator is maintained separately and replaced only by an improved candidate.
 Evolution moves to a new direction when diagnostic results provide sufficient evidence against the current one or when its search budget is exhausted.

@@ -1,5 +1,40 @@
 # Manuscript style
 
+## Approved Fig2 integration (2026-09-21)
+
+- The author confirmed the horizontal three-panel overview as the manuscript
+  Figure 2. This supersedes the earlier circular-layout and review-only rules.
+- Preserve its 1840 × 800 composition, lake-green palette and reused pictograms.
+  Use canonical figures/overview.pdf, not a dependency on an ignored build path.
+  Regenerate with scripts/render_overview_layout_review.py --publish.
+- Mining is panel a, evolution panel b, and downstream applications panel c.
+  Keep the constructed-example disclosure and planned reward-training status.
+  Diagnostic links do not imply automatic code inheritance or guaranteed depth.
+- Small labels and low-resolution pictogram crops remain documented limitations;
+  they do not authorize a layout redesign. Overwrite stable previews.
+
+## Figure 1 panel-a conflict clarification (2026-09-21)
+
+- The author requested clearer conflict in panel a. Its local annotation band
+  now contrasts layout fidelity and visual richness under the unchanged A/B
+  photographs, followed by explicit opposite human/evaluator rankings.
+  This supersedes the 59-label preservation constraint for panel a only.
+  Preserve all images/crops, outer panel positions and panels b/c.
+- These qualitative comparisons and preferences remain a constructed example,
+  not measured signals, collected labels or a preference-mining demonstration.
+
+## Figure surface refinement (2026-09-21)
+
+- The author requested Figure 1 styling to match the current wide Figure 2
+  review. Preserve the approved three-column composition, 59 labels, nine
+  embedded images/crops, search paths and card/node positions. Fine photo
+  mattes, shallow shadows, pale card headers and styled node rims are allowed.
+  The new decorative `surface-*` layers supersede the older flat-only styling
+  constraint, not the prohibition against reflowing the teaser.
+- Figure 2's new three-panel composition remains a review proof at
+  `build/overview-layout-current/`, not a canonical manuscript replacement.
+  Overwrite this stable preview instead of accumulating numbered versions.
+
 ## Method language and implementation limits (2026-09-21, round 40)
 
 - Preserve round39's core-first structure; make local edits, not a new framework.

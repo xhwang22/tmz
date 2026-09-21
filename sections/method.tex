@@ -19,7 +19,7 @@ The search maintains
 where $B_t$ is the best accepted program, $W_t$ is the working program being revised, $d_t$ is the active direction, and $z_t$ retains observed outcomes, the agent's interpretations, and unresolved questions.
 Each revision belongs to $d_t$ and adds its outcomes to $z_t$, whether or not the candidate replaces $B_t$.
 Revisions continue within the active direction until the agent ends it or search resources are exhausted.
-Thus rejection can change which program is edited next without discarding the direction under investigation (Figure~\ref{fig:overview}c).
+Thus rejection can change which program is edited next without discarding the direction under investigation (Figure~\ref{fig:overview}b).
 
 For a task $x$, the evaluator scores each output $y$ separately, without seeing the competing output or human preference.
 Within a domain $D$ sharing an evaluation standard, the objective is agreement with human preferences on unseen inputs,
@@ -53,15 +53,12 @@ Sampling efficiency is measured by subsequent evaluator improvement, not by disa
 \centering
 \input{figures/overview}
 \caption{IterEval: iterative evaluator self-improvement from human feedback.
-Panel (a) illustrates four artifact families with distinct evaluation standards.
-Panel (b) mines comparisons from existing datasets or fresh outputs, reusing compatible preferences or collecting missing ones.
-Panel (c) separates candidate acceptance from direction continuation.
-Within a continuing direction, the next revision starts from the candidate or the best program; rejected candidates can still inform further revisions.
-Search starts a new direction after the agent ends the active one, retaining its diagnostic history.
-Terminal validation does not trigger edits or reranking.
-Panel (d) covers C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training.
-Artifacts are constructed illustrations; the photograph is generated with GPT Image 2.
-Arrows denote information flow, not measured improvements.}
+Panel (a) mines comparisons from existing datasets or new outputs, reusing compatible preferences or collecting missing ones, with a random sample to check for shared signal errors.
+Panel (b) retains a rejected candidate's diagnostics to inform another revision within the same direction, separating observed outcomes from the agent's next question.
+Dashed links send each candidate to the same checking set for acceptance; green links carry diagnostic information, not automatic code inheritance.
+The agent can end the direction and start another if resources remain.
+Panel (c) uses the best program, fixed after search, for output selection, critic-guided refinement, and planned reward-guided training.
+The example and AI-generated pictograms are constructed illustrations, not observed trajectories or measured improvements.}
 \label{fig:overview}
 \end{figure}
 

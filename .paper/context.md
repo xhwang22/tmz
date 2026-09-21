@@ -1,5 +1,44 @@
 # Paper context
 
+## Current Fig2 manuscript integration (2026-09-21)
+
+The author confirmed replacing the old circular overview with the approved
+1840 × 800 horizontal three-panel composition. Figure 2 now prints
+figures/overview.pdf at 5.4 inches; its self-contained SVG, PNG and manifest
+are canonical exports. The stable build preview is retained, not multiplied.
+Panel a covers preference mining and both label routes; panel b shows retained
+diagnostics within a direction and separate candidate acceptance; panel c shows
+downstream uses of the fixed best program, with reward-guided training planned.
+The geometry and palette are unchanged. Only the review-only footer prefix was
+removed; the constructed-example disclosure remains. Caption, panel references
+and AI-use statement are synchronized. Figure 1 and numerical data are unchanged.
+This supersedes the review-only and circular-layout restrictions below.
+Labels are approximately 3.4–7.2 points at print size; some reused pictograms
+remain below the repository's raster-line-art resolution target. Integration is
+not a claim of print readiness or empirical evidence. C27/C28 remain gaps.
+
+## Current Fig1 panel-a annotations (2026-09-21)
+
+The author requested a clearer conflict. Panel a now contrasts A's preserved
+layout / lower visual richness with B's wider street / higher visual richness,
+then displays opposite overall rankings: Human A > B, Evaluator B > A.
+Only the annotation band below the task photos changes; all nine images,
+their crops, outer panel positions and panels b/c remain unchanged.
+The caption describes the trade-off and reversed rankings. The example remains
+constructed, with no metric measurements or human labels added.
+
+## Current figure surface refinement (2026-09-21)
+
+Figure 1 now uses the approved Fig2 review palette and subtle paper-card styling:
+soft peach/blue/green panels, shallow shadows, image mattes and lightly graded
+search nodes. Its original geometry, 59 text elements, nine embedded images,
+image crops and search paths are unchanged. Canonical SVG/PDF/PNG exports are
+updated; no manuscript claims or captions change. The small-label limitation
+remains. This surface-only refinement supersedes the color-only description
+in the historical round-36 entry below, not its layout-preservation constraint.
+Figure 2's newer three-panel mechanism layout remains a review proof in
+build/overview-layout-current; it has not replaced the canonical paper figure.
+
 ## Current Method organization (round 40)
 
 Section 3, IterEval, has four subsections: Overview and setup;
