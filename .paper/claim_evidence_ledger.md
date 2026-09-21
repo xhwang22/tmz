@@ -1,5 +1,32 @@
 # Claim–evidence ledger
 
+## Active evidence boundary — round 41 (2026-09-21)
+
+Current IDs and exact sentences are in `claims.yml` (59 claims) and `figures.yml`.
+There are 7 figures / 21 tables; appendix display numbers have an A prefix.
+Historical figure numbers below belong to their original revision.
+
+| Claim / number | Current source | Permitted interpretation |
+| --- | --- | --- |
+| C27/C28; C58/C59 | Protected Introduction/Abstract | Material empirical gaps, not closed by this draft |
+| C37; C53–C57 | `data/ideal_scenario/scenario.json`, generated TeX, manifest and checker | Assigned scenario and arithmetic only |
+| C38/C44/C48 | Historical simulated assets, now removed from active inputs | Rejected active claims; retained audit history |
+| C43 | `search_observation_audit.md` | Bounded qualitative development observation, not optimizer efficacy |
+| 81.0 agreement; +12.0 vs Seed; +4.8 vs GEPA | Equal-domain means of the four assigned domain rows; `numbers.tex` | Ideal values, no estimates/intervals |
+| 1.12 × deployment cost | Assigned IterEval / Seed cost; same source as Fig3b and TableA8 | Not measured prices, latency or search cost |
+| 3.5 / 2.5 / 2.4 points | Four assigned controls in TableA11 | Parent retention / priority under same parent / history, not observed attribution |
+| 1.5-point interaction | TableA12 first four cells / FigA2c | Assigned difference-in-differences, no inference |
+| 61.3% C2; 62.5% C3 | Tie-adjusted assigned W/T/L counts; Table2/TableA14 | Neither real annotations nor training outcomes |
+| 22 candidates / 4 assigned domains / N=4 / 160 groups / 5 searches | Design fields and domain taxonomy | Candidate scope or scenario constants, not completed runs |
+| Annotation percentages/minutes and component effects | Assigned rows in same JSON | No individual rater or component-intervention observations |
+
+Future replacement requires authorized raw records, fixed cohorts, independent
+search estimates and new human judgments for new outputs. Preserve the scenario
+as such; update figure inputs and prose together. The Appendix leaves permissions,
+real trajectories, reserved endpoints, uncertainty and execution manifests pending.
+`check_ideal_scenario.py` checks consistency, not truth of scientific claims.
+
+
 ## Current display map (round 36)
 
 Current sentence-level claims and reciprocal display links are in `claims.yml`

@@ -1,79 +1,67 @@
-\section{Results and analysis}
-\label{sec:results}
-
-\noindent\textit{Draft status.}
-Table~\ref{tab:main-alignment} is unmeasured; Figure~\ref{fig:c1-landscape} uses simulated records to illustrate task-level reporting.
-The interpretations below are conditional, not observed findings.
-Downstream and budget placeholders appear in Appendices~\ref{app:results} and~\ref{app:ablations}.
-
-\begin{figure}[!t]
-\centering
-\input{figures/c1_landscape}
-\caption{\textbf{C1 across tasks: simulated reporting layout, not experimental results.}
-Panel (a) maps 22 tasks into four families; equal family quadrants indicate taxonomy, not sample shares.
-Panel (b) links seed and IterEval family means for pairwise agreement and Best-of-4 selection, without implying a causal relation.
-Panel (c) reports five methods on each task using their jointly complete OOD inputs.
-Whiskers are 95\% input-bootstrap intervals; selection counts failed scoring as failure.
-Table~\ref{tab:main-alignment} specifies the full empirical comparison.
-Appendix~\ref{app:simulation} documents denominators and provenance.}
-\label{fig:c1-landscape}
-\end{figure}
+\paragraph{C1: evaluator agreement and output selection.}
+Methods score the same outputs pointwise, without human labels or opponent information.
+Table~\ref{tab:main-alignment} separates strict preference agreement from Best-of-$N$ accuracy and normalized rank regret.
+Selection requires human-ranked groups, not pair-only data.
+The ideal scenario places IterEval at \ResultPair{}\% agreement, \ResultSeedGain{} percentage points above Seed and \ResultGepaGain{} above GEPA, with better selection and lower regret.
+This pattern would support gains in both judging pairs and choosing outputs; agreement alone would not establish the latter.
 
 \begin{table}[!htbp]
-\caption{\textbf{C1 main comparison: unmeasured placeholders.}
-Pair/Top: global/top-region agreement; Bo$N$: Best-of-$N$ accuracy; Reg: normalized rank regret.
-Cells await equal-domain means and input-group 95\% intervals for one fixed search replicate.
-Methods share cohorts per endpoint; eligible-domain counts must accompany results, with pair-only corpora entering Pair only.
-Dashes are pending, not zeros; shading is not a ranking.
-Appendix~\ref{app:results} specifies disaggregation and separate search variation.}
+\caption{\textbf{C1: final held-out performance.}
+Simulated ideal scenario; not experimental results.
+Pair: preference agreement (\%); Bo$N$: Best-of-$N$ accuracy (\%); Reg: normalized rank regret; coverage (\%) uses requested inputs.
+Values equally weight four domains with $N=4$; no confidence intervals are assigned.}
 \label{tab:main-alignment}
-\centering
-\small
-\setlength{\tabcolsep}{3.8pt}
-\renewcommand{\arraystretch}{1.08}
-\begin{tabularx}{\linewidth}{@{}Y*{8}{c}@{}}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}Ycccc@{}}
 \toprule
-& \multicolumn{4}{c}{ID test} & \multicolumn{4}{c}{OOD test}\\
-\cmidrule(lr){2-5}\cmidrule(l){6-9}
-Evaluator & Pair $\uparrow$ & Top $\uparrow$ & Bo$N$ $\uparrow$ & Reg $\downarrow$ &
-Pair $\uparrow$ & Top $\uparrow$ & Bo$N$ $\uparrow$ & Reg $\downarrow$\\
+Evaluator & Pair $\uparrow$ & Bo$N$ $\uparrow$ & Reg $\downarrow$ & Coverage $\uparrow$\\
 \midrule
-Best single metric & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
-Metric ensemble & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
-Static model judge & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
-Static tool judge (seed) & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
-\addlinespace
-Score calibration & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
-Evaluator fine-tuning & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
-Prompt optimization & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
-Program search & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
-\rowcolor{pEvoWash}
-IterEval & \pending & \pending & \pending & \pending & \pending & \pending & \pending & \pending\\
+\input{figures/ideal_scenario/main}
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\paragraph{C1: agreement that improves selection.}
-The favorable pattern would be higher ID/OOD agreement together with better Best-of-$N$ selection and lower regret (Table~\ref{tab:main-alignment}).
-Figure~\ref{fig:c1-landscape}b--c separates selection from task-level agreement; an agreement gain without better selection would limit the downstream claim.
-Cross-domain gains would support adapting the procedure to different standards, not transferring one evaluator universally.
+\begin{figure}[!htbp]
+\centering
+\input{figures/results_landscape_pending}
+\caption{\textbf{C1 breadth and deployment trade-offs.}
+Simulated ideal scenario; not experimental results.
+(a) Candidate task scope, not sample shares.
+(b) Assigned per-output cost versus agreement.
+(c) Domain gains over Seed and GEPA; dashes mark domains outside this scenario.
+The layout reuses Table~\ref{tab:main-alignment}'s values, not independent evidence.}
+\label{fig:c1-landscape}
+\end{figure}
 
-\paragraph{C2: critique that improves the output.}
-More human-preferred refinements, accompanied by fewer major regressions, would indicate that the evolved evaluator provides more useful guidance (Table~\ref{tab:downstream-results}).
-Changes relative to $y_0$ would distinguish genuine improvement from a less damaging revision.
+The assigned gains span all four domains rather than a single favorable task (Figure~\ref{fig:c1-landscape}c).
+IterEval's deployment cost is \ResultDeployCost{} times Seed's in panel (b), below the two full-program baselines.
+Actual cost measurements must determine whether this quality--cost relation holds.
 
-\begin{samepage}
-\paragraph{C3: reward that improves generation.}
-A favorable outcome would combine human preference for IterEval-GRPO over Seed-GRPO with retained factuality, coverage, and validity.
-Higher reward alone would be insufficient; comparison with Base must also establish whether training improves generation.
-Conclusions would remain task- and policy-specific, with external checks reported separately (Table~\ref{tab:external-endpoints}).
-\par
-\end{samepage}
+\paragraph{C2: critic-guided refinement.}
+A frozen generator refines the same fresh $y_0$ using Seed or IterEval critiques, or no critique \citep{madaan2023selfrefine}, at matched resources.
+The scenario favors IterEval over Seed on \ResultCtwoPreference{}\% of tie-adjusted comparisons across three domains, with fewer major regressions (Table~\ref{tab:downstream-results}).
+Comparisons with $y_0$ and no-critic revision distinguish useful critique from extra generation alone (Table~\ref{tab:downstream-detail}).
+Actual revisions require new blinded judgments.
 
-\paragraph{Continuation rather than extra search.}
-Higher held-out agreement than restarting and history-only proposals at matched total cost would support depth-first allocation (Figure~\ref{fig:budget-tests}a).
-To support the proposed mechanism, trajectories must also connect a failed implementation, a diagnosed obstacle, and a later correction within the same direction.
+\begin{table}[!htbp]
+\caption{\textbf{Downstream human-outcome reporting.}
+Simulated ideal scenario; no annotation or training was conducted.
+Pref.: tie-aware preference for IterEval over Seed (\%).
+$\Delta$Reg: major-regression difference against $y_0$ (C2) or Base (C3), in percentage points.
+Counts are assigned; C3 remains conditional.}
+\label{tab:downstream-results}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}P{0.8cm}Yccc@{}}
+\toprule
+Study & Domain & Pref. $\uparrow$ & $\Delta$Reg $\downarrow$ & Judged inputs\\
+\midrule
+\input{figures/ideal_scenario/downstream}
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\paragraph{Informative preferences rather than more labels.}
-A favorable sampling result would reach the same held-out agreement with fewer annotation units, or higher agreement at the same units (Figure~\ref{fig:budget-tests}b).
-Equal-label gains that disappear at equal annotation time would not establish greater human efficiency.
+\paragraph{C3: reward-guided training.}
+Matched policies train with frozen Seed or IterEval rewards and their own online rollouts using LoRA/GRPO \citep{hu2022lora,shao2024deepseekmath}.
+The assigned \ResultCthreePreference{}\% preference for IterEval-trained outputs illustrates the intended downstream test, not a training finding.
+Reward scores alone cannot establish this benefit; new human judgments and reserved attribute checks are required.
+C3 awaits preflight and separate training authorization (Appendix~\ref{app:training}).

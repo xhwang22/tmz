@@ -1,56 +1,53 @@
 \section{Experiments}
 \label{sec:experiments}
+\input{figures/ideal_scenario/numbers}
 
-The experiments ask whether the evaluator improves judgments and downstream outputs (C1--C3), and whether preference mining and direction continuation account for those improvements under matched resources.
-Readiness determines inclusion from the 22-domain scope, with a separate evaluator per standard (Appendix~\ref{app:domains}).
-Existing datasets supply candidate outputs for mining or reusable preferences; missing preferences are collected on existing or new outputs.
+We test evaluator agreement and selection (C1), refinement (C2), and reward-guided training (C3), with separate mechanism studies.
+Numerical displays use a simulated ideal scenario for reporting design, not observed outcomes.
+
+\paragraph{Tasks and assessment.}
+We prioritize webpages (SV4), detailed captions (IG1), summaries (TG1), and research ideas (AR1), separately adapting each evaluator.
+The 22-domain candidate scope is not a completed benchmark (Appendix~\ref{app:domains}).
+The primary test uses unseen within-domain inputs, independently of mining scores; derivatives and near-duplicate sources stay together.
+Out-of-distribution tests are optional.
+
+\paragraph{Comparisons and resources.}
+Table~\ref{tab:main-alignment} includes static judges, learned signal fusion, SkillOpt \citep{yang2026skillopt}, GEPA \citep{agrawal2026gepa}, and Meta-Harness \citep{lee2026metaharness}.
+Official optimizers retain their native history and search policies; GEPA receives a full-program interface.
+Adaptive methods share feedback, model access, tools, and resource caps; search cost includes reflection, diagnostics, failures, and validation.
+Independent searches measure variation.
+Text-only IterEval controls for SkillOpt's narrower edit space (Appendix~\ref{app:adaptation}).
 
 \subsection{Core results}
 \label{sec:core}
-
-\paragraph{C1: evaluator alignment and selection.}
-Table~\ref{tab:main-alignment} compares IterEval with metric references, static judges, and alternative adaptation methods.
-Controlled learned comparisons share feedback and the initial model (Appendices~\ref{app:adaptation} and~\ref{app:ablations}).
-For each test input, all evaluators receive the same output group, with a default design of $N=4$.
-Complete human rankings support global pairwise agreement, top-region agreement involving the human top-two outputs, Best-of-$N$ selection, and selection regret.
-When only ranks are available, normalized regret is $(\operatorname{rank}(\hat y)-1)/(N-1)$ for the selected output $\hat y$.
-A pair-only dataset supports pairwise evaluation, not an $N$-way selection claim.
-
-Source-disjoint ID/OOD tests preserve the evaluation standard and sample independently of mining conflicts.
-For a fixed evaluator, paired effects use 95\% intervals over original-input groups; independent searches assess optimizer variation separately.
-Appendix~\ref{app:measurement} specifies coverage, worst strata, repeated scoring, and uncertainty.
-
-\paragraph{C2: critic-guided refinement.}
-For each unseen input, a frozen generator produces one fresh output $y_0$.
-The seed and IterEval critics inspect that same output with matched evidence and critique formats.
-The same generator refines each once under identical prompts, decoding, tools, and token budgets.
-New blinded rankings compare IterEval-refined with Seed-refined and assess both against $y_0$, including major regressions.
-SV4 and IG1 are priorities, with TG1 testing continuity across tasks (Table~\ref{tab:downstream-results}).
-
-\paragraph{C3: reward-guided training.}
-Base, Seed-GRPO, and IterEval-GRPO share an initial checkpoint, with LoRA and group relative policy optimization for the trained arms \citep{hu2022lora,shao2024deepseekmath}.
-Rewards are frozen before training.
-Rollouts are sampled online by each arm's own evolving policy and are not shared.
-The arms match training inputs, policy-update resources, and reward-call budgets.
-New blinded judgments and reserved external metrics assess their fresh outputs.
-C3 targets IG1, SV2, and the TG4 control after reward diagnostics (Appendix~\ref{app:training}).
-C3 remains a design-only study here; no parameter training or training benefit is reported.
+\label{sec:results}
+\input{sections/results}
 
 \subsection{Ablation studies}
 \label{sec:ablations}
 
-Search comparisons hold feedback fixed and count all proposal, diagnostic, measurement, and validation costs.
-The decisive contrast is direction continuation versus history-matched proposals that always edit the best program (Figure~\ref{fig:budget-tests}a).
-The primary matching variable is total model-and-tool cost under frozen prices, not the number of attempts.
-Sampling policies are compared at equal human budgets $N_H\in\{20,50,100,200\}$, measured in original-input annotation units.
-The endpoint is final held-out alignment under the same evolution budget, with random anchors charged to every arm (Figure~\ref{fig:budget-tests}b).
-The decisive sampling contrast is preference mining versus random sampling with fixed feedback detail.
-Equal units test label efficiency; measured annotation time is needed to test human efficiency.
-Same-pair feedback-granularity tests and compatible component replacements complete the comparisons in Appendix~\ref{app:ablations}.
+\begin{figure}[!htbp]
+\centering
+\input{figures/search_dynamics_pending}
+\caption{\textbf{Search dynamics.} Simulated ideal scenario; not observed runs.
+(a) Best accepted development agreement versus total search cost.
+(b) Independent held-out checkpoint curves for the four history/parent controls, assessed only after search.
+(c) Assigned direction outcomes (definitions in Appendix~\ref{app:ablations}).
+No uncertainty estimates are assigned.}
+\label{fig:budget-tests}
+\end{figure}
+
+\paragraph{Direction continuation.}
+The four controls in Figure~\ref{fig:budget-tests}b isolate parent retention, direction priority, and history at equal cost.
+Their assigned contrasts are \ResultParentGain{}, \ResultDirectionGain{}, and \ResultHistoryGain{} points, respectively (Table~\ref{tab:search-results}); independent searches must confirm this ordering.
+
+\paragraph{Preference mining.}
+Compare mined and random feedback by held-out agreement at equal revealed-label budgets, and additionally at equal human time for new annotation.
+The random/mined $\times$ history-only/IterEval scenario gives a \ResultInteraction{}-point interaction, while its time-matched comparison remains favorable after charging harder annotations (Figure~\ref{fig:acquisition}).
+Both patterns require confirmation with actual label and time records.
 
 \subsection{Analysis and studies}
 \label{sec:analysis}
 
-Trajectory analysis links failed implementations, diagnoses, subsequent edits, and outcomes, including exhausted directions.
-Paired interventions test missing observations versus their incorrect use, while same-subset comparisons assess feedback conversion.
-Appendix~\ref{app:analysis-details} separates these analyses from annotation, search, and deployment costs.
+Figure~\ref{fig:trajectory} reserves a trace comparison; Table~\ref{tab:component-results} illustrates tests of evidence use and feedback detail.
+Appendices~\ref{app:measurement}--\ref{app:manifest} specify uncertainty, failures, and records for every display.

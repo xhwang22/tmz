@@ -1,0 +1,1 @@
+study_id,domain_id,input_id,source_group_id,output_a_hash,output_b_hash,dimension_id,annotator_id,preference,major_regression_a,major_regression_b,reference_output_hash,minutes,label_origin,protocol_hash,blind_batch_id,status

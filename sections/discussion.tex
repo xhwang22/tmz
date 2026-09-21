@@ -1,16 +1,12 @@
 \section{Discussion}
 \label{sec:discussion}
 
-Depth-first evaluator evolution permits continuation without lowering the recorded best development score, but continuation has an opportunity cost.
-If history-only search beats independent proposals yet matches our search at equal cost, retained diagnostics may explain gains without direction continuation.
-Development-only gains would instead suggest adaptation to repeatedly inspected feedback, not better evaluation of unseen outputs.
-Neither outcome supports a general advantage for depth-first allocation.
+\paragraph{What would support deeper search?}
+Later gains over history-matched search and better held-out selection would support retaining directions independently of candidate acceptance.
+Longer directions alone are insufficient; the parent-reset control separates direction priority from retaining intermediate implementations.
 
-Downstream use changes which errors matter.
-Selection depends on ordering the best outputs; critique requires actionable diagnoses.
-Training shifts outputs toward whatever the reward favors, so C1 agreement or C2 refinement cannot substitute for C3 evaluation.
-
-\subsection{Limitations and future work}
-First, consensus can hide shared errors, requiring random checks and measured human-time comparisons.
-Second, diagnostics do not verify a hypothesis; independent trajectory review must include failed and exhausted directions.
-Finally, sampling efficiency and continuation benefits remain unmeasured, requiring matched-budget runs before empirical claims.
+\paragraph{Scope and limitations.}
+Separately adapted, within-domain evaluators do not establish universal transfer.
+The controller retains direction identifiers and diagnostics but cannot verify semantic continuity or sufficient reasons to end; trace audits must separate observations from agent interpretation.
+Agreement also need not improve downstream quality, and reward optimization can amplify evaluator errors \citep{wang2026rewardhacking}.
+Fresh human judgments and reserved attribute checks remain necessary; the scenario establishes no empirical benefit.

@@ -162,6 +162,31 @@ c1_landscape = json.loads((ROOT / "data/simulated/c1_landscape/manifest.json").r
 if c1_landscape.get("simulation_only") is not True or c1_landscape.get("empirical_evidence") is not False:
     errors.append("Main-text C1 figure provenance does not disclose simulation.")
 vector_files.update(c1_landscape["output_files"])
+# Empty reporting artwork has provenance, but neither simulated nor real results.
+pending_manifest = json.loads((ROOT / "figures/c1_landscape_pending.manifest.json").read_text())
+if (pending_manifest.get("kind") != "unmeasured_reporting_template"
+        or pending_manifest.get("empirical_evidence") is not False
+        or pending_manifest.get("quantitative_marks") is not False):
+    errors.append("Pending landscape must not claim numerical evidence.")
+for relative, digest in pending_manifest["files"].items():
+    path = (ROOT / relative).resolve()
+    path.relative_to(ROOT)
+    if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+        errors.append(f"Pending landscape source hash mismatch: {relative}")
+vector_files.update(pending_manifest["files"])
+# Active ideal aggregates are layout assignments, never observed results.
+ideal_manifest = json.loads((ROOT / "data/ideal_scenario/manifest.json").read_text())
+if (ideal_manifest.get("simulation_only") is not True
+        or ideal_manifest.get("empirical_evidence") is not False
+        or ideal_manifest.get("aggregate_scenario_only") is not True
+        or ideal_manifest.get("no_statistical_inference") is not True):
+    errors.append("Ideal-scenario provenance must disclose assigned, non-empirical aggregates.")
+for relative, digest in ideal_manifest["files"].items():
+    path = (ROOT / relative).resolve()
+    path.relative_to(ROOT)
+    if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+        errors.append(f"Ideal-scenario source/output hash mismatch: {relative}; run make ideal")
+vector_files.update(ideal_manifest["files"])
 for relative, digest in landscape_manifest["files"].items():
     if relative in vector_files and vector_files[relative] != digest:
         errors.append(f"Conflicting figure provenance: {relative}")

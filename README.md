@@ -2,108 +2,120 @@
 
 IterEval — iterative evaluator self-improvement from human feedback.
 
-论文采用 ICLR 2027 匿名审稿模板。当前是含**明确标记的模拟定量图表**的工作稿，
-不是已完成实证验证的投稿稿。模板页眉不表示已经投稿。作者修改后的 Abstract /
-Introduction 中的收益表述仍未得到实证验证；C27/C28 保持证据缺口状态。
+ICLR 2027 匿名模板工作稿，**当前正文 10 页，完整 PDF 34 页**。
+Fig1 已收紧案例带、统一平面分组并加强文字／路径层级；正文仍超出初稿 9 页限制。
+当前定量展示是理想情景的 aggregate assignments，不是实测结果。
+图内不加模拟横幅，图注、首页和元数据保留来源说明。模板页眉不表示已经投稿。
+作者编辑的 Abstract / Introduction 未改，其中的效果主张仍有证据缺口。
 
-## 阅读与当前图表规划
+## 当前文件与图表
 
-- [paper.pdf](paper.pdf)：37 页编译预览，正文 11 页，尚超出初投稿的 9 页限制。
-- [main.tex](main.tex)：编译入口；Overleaf 选择此文件。
-- [sections/](sections/)：正文与附录。
-- [完整图表索引](.paper/figure_inventory.md)：13 张图、15 张表。
-- [计划覆盖映射](.paper/plan_coverage.md)：研究问题、实验设计、图表及证据边界。
-- [主张记忆](.paper/claims.yml) / [图表记忆](.paper/figures.yml)：写作与图文一致性校验。
-- [术语约定](.paper/terminology.md)：IterEval 为完整框架，两个子方法不另设缩写。
+- [paper.pdf](paper.pdf)：最新编译稿；[main.tex](main.tex) 为编译入口。
+- [实验填充总计划](.paper/experiment_fill_plan.md)：逐项实验、完整图表清单与执行先后。
+- [22 域 baseline 执行书](.paper/baseline_execution.md)：给执行 agent 的数据规模、评分底座、优化器、预算与验收要求；[逐域数据文档/指标入口](.paper/baseline_domain_data.md)。最新执行范围是全部 22 域，不再限于四个优先域。
+- [baseline / 数据源 / 出版字段审计](.paper/experiment_literature_audit.md)。
+- [占位数值唯一入口](data/ideal_scenario/scenario.json)与[替换说明](data/ideal_scenario/README.md)。
+- [真实记录空模板](data/experiment_templates/README.md)：保持空白；实际结果另建版本化目录。
+- [当前图表索引](.paper/figure_inventory.md)、[主张记忆](.paper/claims.yml)、[图表记忆](.paper/figures.yml)。
+- [术语约定](.paper/terminology.md)：IterEval 是完整框架，子方法不另设缩写。
 
-| 正文展示 | 作用 | 文件 |
+| 正文展示 | 分工 | 文件 |
 | --- | --- | --- |
-| Figure 1 | image-editing 案例；保留作者认可的三栏布局和九处图像细节 | [正文 PDF](figures/teaser.pdf) · [作者三栏 SVG](figures/candidates/teaser-v6-paper-wording/teaser.svg) |
-| Figure 2 | 原拟物化 overview：任务、偏好挖掘、环形进化流程、下游应用 | [overview.tex](figures/overview.tex) |
-| Figure 3 | C1 任务分类、偏好一致性与 Best-of-4、22 个任务的 OOD 汇总 | [PDF](figures/simulated/c1_landscape.pdf) · [SVG](figures/simulated/c1_landscape.svg) |
-| Table 1 | 完整 ID/OOD 对齐与选择对照；数值仍待测 | [Results](sections/results.tex) |
+| Fig. 1 | 上方案例带、下方左右对照；保留原分支画法及九处图像 | [teaser.pdf](figures/teaser.pdf) |
+| Fig. 2 | 三面板：偏好挖掘、持续方向与诊断、下游应用 | [overview.pdf](figures/overview.pdf) |
+| Table 1 | 七方法最终 held-out agreement、selection、regret、coverage | [results.tex](sections/results.tex) |
+| Fig. 3 | 原环形 taxonomy、部署成本与质量、各域增益 | [landscape.pdf](figures/ideal_scenario/landscape.pdf) |
+| Fig. 4 | 发展曲线、四个内部控制、方向结局 | [search.pdf](figures/ideal_scenario/search.pdf) |
+| Table 2 | C2 新输出盲评、条件 C3 的结果槽位 | [results.tex](sections/results.tex) |
 
-Figure 1 保留作者更新的 SVG 文字、几何与九张嵌入图，方法色改为湖绿色。
-正文直接使用该三栏版本，不再使用此前重排的 teaser-print.tex。
-九处照片在正文宽度下均不低于 300 DPI；文字与路径保留矢量。
-小标签在 5.4 英寸宽度下约 2.5–4.7 pt，是现有版本的可读性限制，
-不能因此擅自重排作者认可的布局。
+附录有 3 张图（A1–A3）和 19 张表（A1–A19），全部输入要求见填充计划。
+Fig3 保留原 5.4 × 3.57 inch 紧凑构图、四家族色与湖绿，不再重排。
+它重用 Table1 的底层数值来展示任务差异和部署代价，不构成独立证据。
+只有四个优先域在当前情景中赋值，其余任务以横杠标明未纳入。
 
-Figure 2 恢复原有四面板、拟物图标、照片、圆角卡片和环形进化流程。
-只调整局部标签换行和箭头间距，不替换为泳道或扁平状态机。
-接受候选、继承程序和继续方向的区别，以及停止后换方向的可能性保留在图注和方法中。
-
-方法块使用湖绿 `#62AAA5` 和深色 `#477D79`，与正文性能图呼应；红色只用于错误状态。
-Figure 3 的布局、数据和绘图产物未改。原 [landscape_outcomes.pdf](figures/simulated/landscape_outcomes.pdf)
-保留为附录 Figure 6。运行结构、预算占位分别是附录 Figure 4、5；其余附录图顺延，
-表号不变。三张概念图、一张预算占位和九张模拟定量图均不构成效果证据。
+Fig1 保留上方案例带、下方左右对照及原分支几何，画布从 1840 × 940 收紧为
+1840 × 880。默认搜索的三个检查用一块白色底板归组，右侧保留三次修订及薄荷绿标题带；
+放大行动／诊断文字、加强主路径，不加渐变，不改九处图像及裁剪。
+Fig2 未改。Fig1 印刷字号约 4.6–6.8 pt，照片 335–741 PPI；小标签及 Fig2 部分低分辨率图标的限制仍保留。
+原 [landscape_outcomes.pdf](figures/simulated/landscape_outcomes.pdf) 和
+[data/simulated/](data/simulated/) 都未改，现作为历史资源，不是当前正文数据。
 
 ## 方法与实验边界
 
-两个子方法统一为 **disagreement-based preference mining** 和
-**depth-first evaluator evolution**。前者降低现有信号反复一致的比较的采样优先级，
-保留随机锚点；从现成数据集或新产物中选比较，复用兼容的人类偏好或补收缺失标签。
-信号一致不保证正确，分歧也不保证有信息量。
+两个子方法是 disagreement-based preference mining 和 depth-first evaluator evolution。
+前者降低现有信号重复一致的比较的采样优先级，保留随机锚点；
+既能复用兼容标签，也能给已有或新生成的输出补收人类偏好。
 
-后者以 direction 为继续探索的单位、完整 evaluation program 为选择单位。
-候选接受、程序继承和方向继续是不同决定；base model 权重固定。
-公式表达实现中的更新与选择规则，不声称收敛、泛化保证或自动语义证伪。
+进化以 direction 为继续探索单位、完整 evaluation program 为选择单位。
+程序的 parent choice 是 continuation 内部策略，不另立第三个核心概念。
+方向 ID 不保证语义连续性，agent 结束方向的理由也不是自动验证的。
 
-研究范围为四族 22 个任务。C1 检验对齐和固定池选择；C2 从共享新输出出发比较
-critic-guided refinement，需要新收盲化判断；C3 为冻结 reward 下的生成器训练设计，
-没有执行或模拟训练。程序进化、校准与 evaluator fine-tuning 的对照不同于 C3。
+主测试使用**各域独立、未见原始输入/source groups**，不要求 OOD。
+每个域分别适配；22 个任务是候选范围，不是已完成覆盖。
+优先 SV4 网页、IG1 详细 caption、TG1 摘要、AR1 研究创意。
 
-[data/simulated/](data/simulated/) 保留全量模拟记录、旧图均衡子集及正文 C1 汇总。
-本次图表重排没有修改 30 份已跟踪 CSV 或任何定量图产物。
-复用／新收偏好是数据构建设置，不是固定领域分类或真实标签可用性的证明。
+主表：固定 judge、Seed、learned signal fusion、SkillOpt、全程序 GEPA、
+Meta-Harness、IterEval。保留官方优化器的原生历史和搜索能力；
+SkillOpt 另与 text-only IterEval 做同编辑空间比较。
+四个内部控制分别识别 parent retention、相同 parent 下的 direction priority、
+以及 history，不能混为一项收益。
 
-## 编译与检查
+C1 测 agreement 与固定池 selection。C2 需新输出和新盲评；
+C3 是独立授权后的冻结 reward 训练，不因填入理想数值而成为已执行实验。
+没有捏造真实轨迹、rater 记录、独立搜索结果、置信区间或许可。
 
-需要 TeX Live（pdfLaTeX、BibTeX、TikZ、algorithm、longtable 等）、TeX Gyre 字体、
-Python 3、NumPy 和 Poppler。普通编译不调用模型 API，不需重新生成图片或模拟数据。
+## 编译、替换与检查
+
+需要 TeX Live、TeX Gyre、Python 3、NumPy、Matplotlib 和 Poppler。
+正常编译不调用模型 API。
 
 ```bash
+make ideal
 make
 make check
 ```
 
-目前编译、图表来源、术语、论文记忆和模拟数值检查通过，无 overfull box 或未定义引用。
-`make check` 的结构检查仍报告正文超页和 17 条未使用的文献；不表示可直接投稿。
-`python3 scripts/check_simulated_results.py --submission` 必须拒绝当前模拟工作稿。
-
-逐图预览（需要 Pillow 和 `standalone.cls`）：
+`make ideal` 从唯一 JSON 生成图、数值表和正文宏。
+普通 `make` 也会在已登记的情景源或生成脚本变动后更新生成物。
+检查包括引用/图号、9 页限制、来源哈希、跨表数字、偏好率和证据边界。
+检查通过不代表实验证实。
 
 ```bash
-python3 scripts/render_figures.py teaser overview evaluator budget_tests
+python3 scripts/check_ideal_scenario.py --submission
 ```
 
-预览输出在 `build/figure-review/`。正文通过 `teaser.tex` 直接引用作者三栏版本的
-`teaser.pdf`，不使用已否决的 `teaser-print.tex`。重新导出：
+当前门禁必须失败。真实数据请另存版本化目录，依据空模板生成原始记录与
+可审计汇总，再接入现有布局；同时更新分母、区间、provenance 和结果解释。
+不要给理想情景改标签冒充实测，也不要将其数值填入真实记录。
+
+历史图的重建脚本只用于历史资源维护，不用来生成本轮实测结果。
+图稿预览使用稳定路径，不累积重复版本。
+
+Fig1 的 SVG 排版与导出可单独重建（导出需要 CairoSVG）：
 
 ```bash
+python3 scripts/layout_teaser.py
 uv run --with cairosvg python scripts/render_teaser.py
 python3 scripts/check_teaser.py
+make
 ```
 
-`make simulated` 重建全量模拟图；`python3 scripts/render_c1_landscape.py` 重建正文 C1
-汇总图。重新生成后需复核数值、字体、版面与清单，不能只更新哈希以通过检查。
-配色设计历史见 [.paper/palette_candidates.md](.paper/palette_candidates.md)，当前方法色
-及图号以 [style_overrides.md](.paper/style_overrides.md) 和图表索引为准。
+当前结构检查会如实报告正文超出 9 页；其余来源、数字及图形检查不替代该门禁。
 
-## 文献、来源与投稿准备
+## 来源与发布边界
 
-[references.bib](references.bib) 共 52 条记录，当前引用 35 条，保留作者指定的四篇
-2026 年论文。来源及出版处核验见 [reference_sources.json](.paper/reference_sources.json)、
-[citation_audit.md](.paper/citation_audit.md) 和 [相关工作审查](.paper/related_work_audit_20260920.md)。
-本轮没有改动文献元数据、Abstract 或 Introduction 的论证文本（仅更新图引用和图注）。
+当前 40 条参考文献全部被引用，保留作者指定的四篇 2026 年论文。
+出版字段及来源见实验文献审计和
+[reference_sources.json](.paper/reference_sources.json)。
+未使用条目保存在 [.paper/archive/](.paper/archive/)。
 
-工程来源为 [Auto-Evolve-Harness-for-Slide-Evaluation](https://github.com/Moore-Tian/Auto-Evolve-Harness-for-Slide-Evaluation)，
-其历史仓库名不限制论文任务范围。本轮只修改论文仓库，没有启动实验或改动工程实现。
-Teaser 图像、偏好与路径均为构造例子，不是实际标注或优化轨迹。
+工程来源为
+[Auto-Evolve-Harness-for-Slide-Evaluation](https://github.com/Moore-Tian/Auto-Evolve-Harness-for-Slide-Evaluation)。
+本次发布保留此前已整理的论文修订、实验规划和 22 域执行文档，并更新 Fig1 与编译稿。
+没有修改工程实现，也没有运行实验、标注或训练；旧候选图和运行缓存不纳入发布。
 
-官方模板来自 [ICLR/Master-Template](https://github.com/ICLR/Master-Template/tree/46ed6f4c6cef5b175dde23639e77d44c3463b230/iclr2027)，
-未修改模板文件、字号或页边距。标题自然排成两行，摘要不含引用。
-
-投稿前仍需替换模拟数据、验证收益主张、精简正文、审查引用、完成作者与伦理声明，
-并独立检查匿名性。本公开仓库含项目来源，不是匿名补充材料；不得上传凭据、私有运行
-路径、未经授权的样本、日志、生成评价器或实验结果。
+官方模板来自
+[ICLR/Master-Template](https://github.com/ICLR/Master-Template/tree/46ed6f4c6cef5b175dde23639e77d44c3463b230/iclr2027)；
+字号、页边距及模板文件不变。
+投稿前还需真实证据、声明和匿名审查。公开论文仓库不等同于匿名补充材料，
+不得放入凭据、私有运行路径或未经授权的样本和日志。

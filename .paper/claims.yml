@@ -2,7 +2,7 @@
   "updated_on": "2026-09-21",
   "serialization": "JSON-compatible YAML",
   "id_namespace": "C1... here are memory claim IDs, separate from manuscript study labels C1/C2/C3.",
-  "evidence_policy": "Specification artifacts support design statements only. Explicit simulated reporting fixtures support provenance and arithmetic checks, never empirical effectiveness. C43 records a bounded qualitative observation from inspected development traces; no private numerical results or sample-level records are imported. Hypotheses C27/C28 remain gaps.",
+  "evidence_policy": "Specification artifacts support design statements only. Explicit simulated reporting fixtures support provenance and arithmetic checks, never empirical effectiveness. C43 records a bounded qualitative observation from inspected development traces; no private numerical results or sample-level records are imported. Hypotheses C27/C28 remain gaps. Round 41: active displays now use assigned ideal aggregates without raw observations or inference; historical C38/C44/C48 are rejected. Abstract and Introduction are author-protected, with empirical gaps recorded explicitly.",
   "claims": [
     {
       "id": "C1",
@@ -31,7 +31,7 @@
       ],
       "figure_or_table": [
         "Fig2",
-        "Tab2"
+        "Tab3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -47,7 +47,7 @@
       ],
       "figure_or_table": [
         "Fig2",
-        "Tab2"
+        "Tab3"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -62,22 +62,22 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
-        "Tab3"
+        "Tab6"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C5",
-      "text": "$H_1$ is central to the dimension-guided design. An $H_0$-only corpus remains usable, but it supplies neither human dimensional judgments nor human explanations.",
+      "text": "An $H_0$-only corpus remains usable, but it supplies neither human dimensional judgments nor human explanations.",
       "source": "sections/appendix.tex",
       "kind": "human-feedback boundary",
       "evidence_artifacts": [
         "sections/appendix.tex",
-        ".paper/source_provenance.md"
+        ".paper/experiment_fill_plan.md"
       ],
       "figure_or_table": [
-        "Tab3"
+        "Tab6"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -93,7 +93,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab4"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -109,7 +109,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab4"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -125,7 +125,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab4"
+        "Tab5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -142,7 +142,7 @@
       ],
       "figure_or_table": [
         "Fig2",
-        "Fig4"
+        "Fig5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -158,25 +158,23 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Fig4"
+        "Fig5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C11",
-      "text": "At deployment, the evaluator receives one candidate output and its permitted evidence; opponents, human labels, generator identity, split labels, and mining strata are excluded.",
+      "text": "The deployed scorer always receives one output and permitted task evidence, without opponent outputs, human labels, generator identity, split names, or mining strata.",
       "source": "sections/appendix.tex",
       "kind": "runtime boundary",
       "evidence_artifacts": [
-        "sections/method.tex",
-        ".paper/source_provenance.md",
-        ".paper/method_implementation_audit.md",
-        "sections/appendix.tex"
+        "sections/appendix.tex",
+        ".paper/experiment_fill_plan.md"
       ],
       "figure_or_table": [
-        "Fig4",
-        "Tab5"
+        "Fig5",
+        "Tab8"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -192,7 +190,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Fig4"
+        "Fig5"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -209,7 +207,7 @@
         "sections/appendix.tex"
       ],
       "figure_or_table": [
-        "Tab11"
+        "Tab12"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -225,7 +223,7 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab5"
+        "Tab8"
       ],
       "status": "draft",
       "risk": "The current controller enforces input and artifact separation and aggregate-only release. Adaptive development is not an unbiased final estimate; broader source-near-duplicate isolation remains a study requirement."
@@ -278,16 +276,15 @@
     },
     {
       "id": "C18",
-      "text": "Search estimates agreement on a finite cohort, requesting $R\\geq3$ executions per artifact for full-evaluator measurements.",
+      "text": "Use the repeated-score protocol of the deployed evaluator, requesting $R\\geq3$ executions per artifact and freezing $R$, precision, retries, and cache identity before measurement.",
       "source": "sections/appendix.tex",
       "kind": "measurement definition",
       "evidence_artifacts": [
         "sections/appendix.tex",
-        ".paper/source_provenance.md",
-        ".paper/method_implementation_audit.md"
+        ".paper/experiment_fill_plan.md"
       ],
       "figure_or_table": [
-        "Tab15"
+        "Tab21"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -317,107 +314,104 @@
         ".paper/method_implementation_audit.md"
       ],
       "figure_or_table": [
-        "Tab5"
-      ],
-      "status": "draft",
-      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
-    },
-    {
-      "id": "C21",
-      "text": "For each test input, all evaluators receive the same output group, with a default design of $N=4$. Complete human rankings support global pairwise agreement, top-region agreement involving the human top-two outputs, Best-of-$N$ selection, and selection regret. When only ranks are available, normalized regret is $(\\operatorname{rank}(\\hat y)-1)/(N-1)$ for the selected output $\\hat y$. A pair-only dataset supports pairwise evaluation, not an $N$-way selection claim.",
-      "source": "sections/experiments.tex",
-      "kind": "C1 study protocol",
-      "evidence_artifacts": [
-        "sections/experiments.tex",
-        ".paper/source_provenance.md"
-      ],
-      "figure_or_table": [
-        "Tab14",
-        "Fig10",
-        "Fig6",
-        "Tab1"
-      ],
-      "status": "draft",
-      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
-    },
-    {
-      "id": "C22",
-      "text": "For each unseen input, a frozen generator produces one fresh output $y_0$. The seed and IterEval critics inspect that same output with matched evidence and critique formats. The same generator refines each once under identical prompts, decoding, tools, and token budgets.",
-      "source": "sections/experiments.tex",
-      "kind": "C2 study protocol",
-      "evidence_artifacts": [
-        "sections/experiments.tex",
-        ".paper/source_provenance.md"
-      ],
-      "figure_or_table": [
-        "Fig12",
-        "Tab8",
-        "Tab9"
-      ],
-      "status": "draft",
-      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
-    },
-    {
-      "id": "C23",
-      "text": "Rewards are frozen before training. Rollouts are sampled online by each arm's own evolving policy and are not shared.",
-      "source": "sections/experiments.tex",
-      "kind": "C3 study protocol",
-      "evidence_artifacts": [
-        "sections/experiments.tex",
-        ".paper/source_provenance.md"
-      ],
-      "figure_or_table": [
-        "Tab10",
-        "Tab9"
-      ],
-      "status": "draft",
-      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
-    },
-    {
-      "id": "C24",
-      "text": "C3 remains a design-only study here; no parameter training or training benefit is reported.",
-      "source": "sections/experiments.tex",
-      "kind": "evidence status",
-      "evidence_artifacts": [
-        "sections/experiments.tex",
-        ".paper/source_provenance.md"
-      ],
-      "figure_or_table": [
-        "Tab10",
         "Tab8"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
-      "id": "C25",
-      "text": "Sampling policies are compared at equal human budgets $N_H\\in\\{20,50,100,200\\}$, measured in original-input annotation units.",
-      "source": "sections/experiments.tex",
-      "kind": "ablation design",
+      "id": "C21",
+      "text": "Pair-only data cannot establish any of these multi-output endpoints.",
+      "source": "sections/appendix.tex",
+      "kind": "C1 study protocol",
       "evidence_artifacts": [
-        "sections/experiments.tex",
-        ".paper/source_provenance.md"
+        "sections/appendix.tex",
+        ".paper/experiment_fill_plan.md"
       ],
       "figure_or_table": [
-        "Fig8",
+        "Tab1",
         "Tab11",
-        "Fig5"
+        "Fig3"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C22",
+      "text": "On the same unseen inputs, generate a new $y_0$ and retain it unchanged as a reference arm. Compare no-critic revision, Seed-critic revision, and IterEval-critic revision. Use the same generator, decoding, revision instruction, critique format, evidence access, token cap, and number of revision steps.",
+      "source": "sections/appendix.tex",
+      "kind": "C2 study protocol",
+      "evidence_artifacts": [
+        "sections/appendix.tex",
+        ".paper/experiment_fill_plan.md"
+      ],
+      "figure_or_table": [
+        "Tab2",
+        "Tab16",
+        "Tab17"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C23",
+      "text": "Only the preflight pool is shared: once policies diverge, each samples its own online trajectories.",
+      "source": "sections/appendix.tex",
+      "kind": "C3 study protocol",
+      "evidence_artifacts": [
+        "sections/appendix.tex",
+        ".paper/experiment_fill_plan.md"
+      ],
+      "figure_or_table": [
+        "Tab18"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C24",
+      "text": "C3 remains design-only until separately authorized training and independent assessment are completed.",
+      "source": "sections/appendix.tex",
+      "kind": "evidence status",
+      "evidence_artifacts": [
+        "sections/appendix.tex",
+        ".paper/experiment_fill_plan.md"
+      ],
+      "figure_or_table": [
+        "Tab18",
+        "Tab2"
+      ],
+      "status": "draft",
+      "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
+    },
+    {
+      "id": "C25",
+      "text": "The tentative group-budget grid is 20, 50, 100, and 200, truncated or replaced before execution if the domain lacks enough independent groups. These are design values, not measured sample counts.",
+      "source": "sections/appendix.tex",
+      "kind": "ablation design",
+      "evidence_artifacts": [
+        "sections/appendix.tex",
+        ".paper/experiment_fill_plan.md"
+      ],
+      "figure_or_table": [
+        "Fig6",
+        "Tab14"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
     },
     {
       "id": "C26",
-      "text": "For a fixed evaluator, paired effects use 95\\% intervals over original-input groups; independent searches assess optimizer variation separately.",
-      "source": "sections/experiments.tex",
+      "text": "For fixed evaluators, compute paired 95\\% bootstrap intervals by resampling original-input/source groups jointly across methods, retaining all their outputs.",
+      "source": "sections/appendix.tex",
       "kind": "analysis design",
       "evidence_artifacts": [
-        "sections/experiments.tex",
-        ".paper/source_provenance.md"
+        "sections/appendix.tex",
+        ".paper/experiment_fill_plan.md"
       ],
       "figure_or_table": [
-        "Fig7",
-        "Tab7"
+        "Tab11",
+        "Tab20"
       ],
       "status": "draft",
       "risk": "Evidence supports the stated definition or protocol, not empirical effectiveness or completed execution."
@@ -429,8 +423,8 @@
       "kind": "unverified empirical claim",
       "evidence_artifacts": [],
       "figure_or_table": [
-        "Tab11",
-        "Fig5"
+        "Fig6",
+        "Tab14"
       ],
       "status": "gap",
       "gap_reason": "No matched-human-cost sampling result on independently sampled post-evolution evaluation is incorporated. Building a corpus or finding disagreements does not establish sampling efficiency; simulated curves cannot close this gap."
@@ -442,21 +436,21 @@
       "kind": "unverified empirical claim",
       "evidence_artifacts": [],
       "figure_or_table": [
-        "Tab11",
-        "Fig5",
-        "Tab12"
+        "Fig4",
+        "Tab13",
+        "Fig7"
       ],
       "status": "gap",
       "gap_reason": "No matched-resource controlled result establishes that depth-first continuation improves sustained alignment. Observed rejection/redirection motivates the comparison but does not prove its cause or the proposed remedy; simulated ablations cannot close this gap."
     },
     {
       "id": "C29",
-      "text": "The interval bounds full-cohort agreement under arbitrary missing outcomes; it is not a statistical confidence interval.",
+      "text": "the possible full-cohort agreement range under arbitrary missing outcomes. This is not a confidence interval.",
       "source": "sections/appendix.tex",
       "kind": "mathematical definition",
       "evidence_artifacts": [
         "sections/appendix.tex",
-        ".paper/source_provenance.md"
+        ".paper/experiment_fill_plan.md"
       ],
       "figure_or_table": [],
       "status": "draft",
@@ -487,7 +481,7 @@
       ],
       "figure_or_table": [
         "Fig2",
-        "Fig4"
+        "Fig5"
       ],
       "status": "draft",
       "risk": "A statement of the method's editable mechanisms, not evidence that evolution improves evaluation."
@@ -506,7 +500,7 @@
       "figure_or_table": [
         "Fig1",
         "Fig2",
-        "Tab11"
+        "Tab12"
       ],
       "status": "draft",
       "risk": "A direction's intent motivates candidate edits; optional expectations are not a mandatory formal hypothesis packet. This search/selection distinction does not establish an empirical advantage."
@@ -518,7 +512,7 @@
       "kind": "shared algorithm and data provenance",
       "figure_or_table": [
         "Fig2",
-        "Tab3"
+        "Tab6"
       ],
       "evidence_artifacts": [
         "sections/method.tex",
@@ -530,15 +524,15 @@
     },
     {
       "id": "C34",
-      "text": "Existing human preferences are not a domain-admission requirement. Their availability determines the missing data work, not the algorithm's definition.",
+      "text": "A resource without usable labels can still provide materials for new annotation.",
       "source": "sections/appendix.tex",
       "kind": "data availability boundary",
       "figure_or_table": [
-        "Tab3"
+        "Tab6"
       ],
       "evidence_artifacts": [
         "sections/appendix.tex",
-        ".paper/source_provenance.md"
+        ".paper/experiment_fill_plan.md"
       ],
       "status": "draft",
       "risk": "A definition or evaluation requirement; empirical claims require authorized observed outputs."
@@ -549,8 +543,7 @@
       "source": "sections/appendix.tex",
       "kind": "annotation reliability boundary",
       "figure_or_table": [
-        "Tab3",
-        "Fig9"
+        "Tab6"
       ],
       "evidence_artifacts": [
         "sections/appendix.tex",
@@ -561,73 +554,53 @@
     },
     {
       "id": "C36",
-      "text": "Equal units test label efficiency; measured annotation time is needed to test human efficiency.",
-      "source": "sections/experiments.tex",
+      "text": "New-annotation curves additionally use measured person-minutes, including anchors, extra raters, adjudication, and abstention. Existing-label replay cannot claim those minutes were saved unless comparable time records exist.",
+      "source": "sections/appendix.tex",
       "kind": "sampling inference boundary",
       "figure_or_table": [
-        "Tab11",
-        "Fig8"
+        "Fig6",
+        "Tab14"
       ],
       "evidence_artifacts": [
-        "sections/experiments.tex",
-        ".paper/source_provenance.md"
+        "sections/appendix.tex",
+        ".paper/experiment_fill_plan.md"
       ],
       "status": "draft",
       "risk": "A definition or evaluation requirement; empirical claims require authorized observed outputs."
     },
     {
       "id": "C37",
-      "text": "Table~\\ref{tab:main-alignment} is unmeasured; Figure~\\ref{fig:c1-landscape} uses simulated records to illustrate task-level reporting. The interpretations below are conditional, not observed findings. Downstream and budget placeholders appear in Appendices~\\ref{app:results} and~\\ref{app:ablations}.",
-      "source": "sections/results.tex",
+      "text": "Numerical displays use a simulated ideal scenario for reporting design, not observed outcomes.",
+      "source": "sections/experiments.tex",
       "kind": "simulation provenance",
       "figure_or_table": [
-        "Fig7",
-        "Fig8",
-        "Fig9",
-        "Fig10",
-        "Fig11",
-        "Fig12",
-        "Fig13",
-        "Tab14",
-        "Tab13",
+        "Fig3",
+        "Fig4",
         "Fig6",
-        "Fig5",
         "Tab1",
-        "Tab8",
-        "Tab9",
-        "Tab12",
-        "Fig3"
+        "Tab2",
+        "Tab7",
+        "Tab10",
+        "Tab11",
+        "Tab13",
+        "Tab14",
+        "Tab15",
+        "Tab16"
       ],
       "evidence_artifacts": [
-        "scripts/render_simulated_results.py",
-        "scripts/check_simulated_results.py",
-        "data/simulated/manifest.json",
-        "data/simulated/c1_groups.csv",
-        "data/simulated/acquisition.csv",
-        "data/simulated/annotation_groups.csv",
-        "data/simulated/component_effects.csv",
-        "data/simulated/granularity.csv",
-        "data/simulated/refinement_groups.csv",
-        "data/simulated/landscape/manifest.json",
-        "scripts/check_landscape_results.py",
-        "data/simulated/c1_landscape/manifest.json",
-        "scripts/render_c1_landscape.py",
-        "scripts/check_c1_landscape.py"
+        "data/ideal_scenario/scenario.json",
+        "data/ideal_scenario/manifest.json",
+        "scripts/check_ideal_scenario.py"
       ],
       "status": "supported",
-      "risk": "Verified only as provenance of artificial reporting examples. No method ordering, effect, cost, or annotation reliability generalizes to an experiment."
+      "risk": "Supported only as a statement about draft provenance and aggregate arithmetic. Assigned data do not support efficacy or statistical inference."
     },
     {
       "id": "C38",
       "text": "Its means use each method's complete groups, whereas the paired differences in Figure~\\ref{fig:alignment} use the intersection of completed groups.",
       "source": "sections/appendix.tex",
       "kind": "simulation denominator definition",
-      "figure_or_table": [
-        "Tab14",
-        "Fig7",
-        "Fig10",
-        "Fig6"
-      ],
+      "figure_or_table": [],
       "evidence_artifacts": [
         "data/simulated/c1_groups.csv",
         "data/simulated/c1_summary.csv",
@@ -637,8 +610,8 @@
         "data/simulated/landscape/manifest.json",
         "scripts/check_landscape_results.py"
       ],
-      "status": "supported",
-      "risk": "Arithmetic consistency of toy displays, not evidence of evaluator effectiveness; selection shares use the separate all-input denominator."
+      "status": "rejected",
+      "risk": "Retained as a historical claim; removed from active manuscript in round 41. Historical fixtures do not describe the new within-domain design."
     },
     {
       "id": "C39",
@@ -657,15 +630,15 @@
     },
     {
       "id": "C40",
-      "text": "Evaluator fine-tuning changes model weights; score calibration changes numerical mappings over frozen seed signals.",
+      "text": "A simple reproducible control fits a regularized pairwise logistic model to differences in frozen per-output signal features on proposal Train. Use its pointwise linear score for final ranking.",
       "source": "sections/appendix.tex",
       "kind": "parameter-adaptation comparison protocol",
       "evidence_artifacts": [
-        "sections/experiments.tex",
-        "sections/appendix.tex"
+        "sections/appendix.tex",
+        ".paper/experiment_fill_plan.md"
       ],
       "figure_or_table": [
-        "Tab6"
+        "Tab9"
       ],
       "status": "draft",
       "risk": "Planned C1 evaluator controls, not C3 generator training. No tuning execution or simulated tuning outcomes; no superiority or cost-efficiency claim. The shared-observation control is required to separate observation changes from interpretation changes."
@@ -680,8 +653,8 @@
         "sections/method.tex"
       ],
       "figure_or_table": [],
-      "status": "draft",
-      "risk": "An explicit representation permits inspection; faithful reasoning, interpretability benefits, and human alignment require independent evidence."
+      "status": "rejected",
+      "risk": "Retained as a historical claim; removed from active manuscript in round 41. Historical fixtures do not describe the new within-domain design."
     },
     {
       "id": "C42",
@@ -721,11 +694,9 @@
         "data/simulated/landscape/manifest.json",
         "scripts/check_landscape_results.py"
       ],
-      "figure_or_table": [
-        "Fig6"
-      ],
-      "status": "supported",
-      "risk": "Verifies synthetic allocation and arithmetic only; not observed task prevalence, a proposed empirical sampling strategy, or an effectiveness result."
+      "figure_or_table": [],
+      "status": "rejected",
+      "risk": "Retained as a historical claim; removed from active manuscript in round 41. Historical fixtures do not describe the new within-domain design."
     },
     {
       "id": "C45",
@@ -743,12 +714,12 @@
     },
     {
       "id": "C46",
-      "text": "Input groups receive equal weight; predicted ties count as incorrect. The native development proxy uses one fixed pair per input and need not represent every within-group preference.",
+      "text": "Input groups receive equal weight; predicted ties count as incorrect.",
       "source": "sections/appendix.tex",
       "kind": "statistical target and development proxy",
       "evidence_artifacts": [
         "sections/appendix.tex",
-        ".paper/method_implementation_audit.md"
+        ".paper/experiment_fill_plan.md"
       ],
       "figure_or_table": [],
       "status": "draft",
@@ -774,9 +745,7 @@
       "text": "Figure~\\ref{fig:c1-landscape} retains the landscape layout but uses all 3,520 requested OOD input groups in the existing synthetic records, not the 2,880-input subset in Figure~\\ref{fig:outcomes}. Within each task, pairwise agreement uses the intersection of complete inputs across the five displayed methods; all five bars therefore share the same denominator.",
       "source": "sections/appendix.tex",
       "kind": "simulation cohort and reporting definition",
-      "figure_or_table": [
-        "Fig3"
-      ],
+      "figure_or_table": [],
       "evidence_artifacts": [
         "data/simulated/c1_landscape/manifest.json",
         "data/simulated/c1_landscape/input-cohorts.csv",
@@ -785,8 +754,8 @@
         "data/simulated/c1_landscape/family-points.csv",
         "scripts/check_c1_landscape.py"
       ],
-      "status": "supported",
-      "risk": "Arithmetic and provenance only; a display of synthetic values cannot establish evaluator improvement. Bar intervals condition on fixed synthetic evaluators, not independent search runs."
+      "status": "rejected",
+      "risk": "Retained as a historical claim; removed from active manuscript in round 41. Historical fixtures do not describe the new within-domain design."
     },
     {
       "id": "C49",
@@ -845,6 +814,119 @@
       "figure_or_table": [],
       "status": "draft",
       "risk": "Configured search opportunities, session bounds and execution limits must not be conflated with mandatory cumulative per-direction edit or API/token caps."
+    },
+    {
+      "id": "C53",
+      "text": "The ideal scenario places IterEval at \\ResultPair{}\\% agreement, \\ResultSeedGain{} percentage points above Seed and \\ResultGepaGain{} above GEPA, with better selection and lower regret.",
+      "source": "sections/results.tex",
+      "status": "supported",
+      "kind": "conditional ideal-scenario description",
+      "evidence_artifacts": [
+        "data/ideal_scenario/scenario.json",
+        "data/ideal_scenario/manifest.json",
+        "scripts/check_ideal_scenario.py"
+      ],
+      "figure_or_table": [
+        "Tab1",
+        "Fig3"
+      ],
+      "risk": "Scenario arithmetic only; not measured agreement or selection."
+    },
+    {
+      "id": "C54",
+      "text": "The scenario favors IterEval over Seed on \\ResultCtwoPreference{}\\% of tie-adjusted comparisons across three domains, with fewer major regressions (Table~\\ref{tab:downstream-results}).",
+      "source": "sections/results.tex",
+      "status": "supported",
+      "kind": "conditional ideal-scenario description",
+      "evidence_artifacts": [
+        "data/ideal_scenario/scenario.json",
+        "data/ideal_scenario/manifest.json",
+        "scripts/check_ideal_scenario.py"
+      ],
+      "figure_or_table": [
+        "Tab2",
+        "Tab16"
+      ],
+      "risk": "Assigned aggregate counts, not human votes or generated revisions."
+    },
+    {
+      "id": "C55",
+      "text": "The assigned \\ResultCthreePreference{}\\% preference for IterEval-trained outputs illustrates the intended downstream test, not a training finding.",
+      "source": "sections/results.tex",
+      "status": "supported",
+      "kind": "conditional ideal-scenario description",
+      "evidence_artifacts": [
+        "data/ideal_scenario/scenario.json",
+        "data/ideal_scenario/manifest.json",
+        "scripts/check_ideal_scenario.py"
+      ],
+      "figure_or_table": [
+        "Tab2",
+        "Tab16"
+      ],
+      "risk": "No training or annotation took place; C3 requires separate authorization."
+    },
+    {
+      "id": "C56",
+      "text": "Their assigned contrasts are \\ResultParentGain{}, \\ResultDirectionGain{}, and \\ResultHistoryGain{} points, respectively (Table~\\ref{tab:search-results}); independent searches must confirm this ordering.",
+      "source": "sections/experiments.tex",
+      "status": "supported",
+      "kind": "conditional ideal-scenario description",
+      "evidence_artifacts": [
+        "data/ideal_scenario/scenario.json",
+        "data/ideal_scenario/manifest.json",
+        "scripts/check_ideal_scenario.py"
+      ],
+      "figure_or_table": [
+        "Fig4",
+        "Tab13"
+      ],
+      "risk": "Assigned contrasts only, not evidence for optimizer mechanisms."
+    },
+    {
+      "id": "C57",
+      "text": "The random/mined $\\times$ history-only/IterEval scenario gives a \\ResultInteraction{}-point interaction, while its time-matched comparison remains favorable after charging harder annotations (Figure~\\ref{fig:acquisition}).",
+      "source": "sections/experiments.tex",
+      "status": "supported",
+      "kind": "conditional ideal-scenario description",
+      "evidence_artifacts": [
+        "data/ideal_scenario/scenario.json",
+        "data/ideal_scenario/manifest.json",
+        "scripts/check_ideal_scenario.py"
+      ],
+      "figure_or_table": [
+        "Fig6",
+        "Tab14"
+      ],
+      "risk": "Assigned feedback/time scenario; no observed efficiency."
+    },
+    {
+      "id": "C58",
+      "text": "Across diverse open-ended tasks, IterEval produces more sustained improvement under matched search budgets and yields evaluators that better reflect human preferences.",
+      "source": "sections/abstract.tex",
+      "status": "gap",
+      "kind": "empirical claim awaiting evidence",
+      "evidence_artifacts": [],
+      "figure_or_table": [
+        "Tab1",
+        "Fig4"
+      ],
+      "risk": "Author-protected Abstract asserts efficacy; no confirmatory measurements. Scenario arithmetic does not close this gap.",
+      "gap_reason": "Author-protected Abstract asserts efficacy; no confirmatory measurements. Scenario arithmetic does not close this gap."
+    },
+    {
+      "id": "C59",
+      "text": "The evolved evaluators also improve downstream output selection and critic-guided refinement, while their scores provide useful training rewards on representative generation tasks.",
+      "source": "sections/abstract.tex",
+      "status": "gap",
+      "kind": "empirical claim awaiting evidence",
+      "evidence_artifacts": [],
+      "figure_or_table": [
+        "Tab2",
+        "Tab1"
+      ],
+      "risk": "Author-protected Abstract asserts downstream gains; real selection, new blind refinement judgments and separately authorized training are absent.",
+      "gap_reason": "Author-protected Abstract asserts downstream gains; real selection, new blind refinement judgments and separately authorized training are absent."
     }
   ]
 }

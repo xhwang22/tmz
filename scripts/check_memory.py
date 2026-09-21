@@ -148,7 +148,19 @@ try:
                 fail(f"Revision {revision['round']}: missing {field}")
         if set(revision.get("changed_claims", [])) - set(claim_ids):
             fail("Revision history references an unknown claim.")
-        if set(revision.get("changed_figures", [])) - set(figure_ids):
+        # Figure numbers are revision-local: do not rewrite old history when
+        # the author changes the active display inventory.
+        historical_scope = next((scope for scope in history.get("figure_id_scopes", [])
+                                 if revision["round"] <= scope["through_round"]), None)
+        snapshot = revision.get("figure_inventory_at_revision")
+        if snapshot:
+            valid_figure_ids = {entry["id"] for entry in snapshot}
+        elif historical_scope:
+            local_file(historical_scope["snapshot"])
+            valid_figure_ids = set(historical_scope["ids"])
+        else:
+            valid_figure_ids = set(figure_ids)
+        if set(revision.get("changed_figures", [])) - valid_figure_ids:
             fail("Revision history references an unknown figure.")
 
     domains = set(re.findall(r"\bTD-(?:SV|IG|TG|AR)\d+\b", read("sections/appendix.tex")))

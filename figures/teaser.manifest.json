@@ -1,8 +1,28 @@
 {
   "source": "figures/candidates/teaser-v6-paper-wording/teaser.svg",
-  "source_sha256": "f3ae7fa6da88a3befb3de77bb29b7bcd597585eebc2cd3dac101f7210025c289",
-  "author_wording_preserved": true,
-  "geometry_preserved": true,
+  "source_sha256": "8a6d17791f3afeda5c85fcf14dde65c73e9bbeff9aeaf8b79838e4acc70045a6",
+  "author_wording_preserved": false,
+  "geometry_preserved": false,
+  "branch_geometry_preserved": true,
+  "typography_polish": true,
+  "layout_revision": {
+    "layout": "shared-case-above-symmetric-method-panels",
+    "preserved": [
+      "all nine image payloads and original crops",
+      "branch path coordinates, node geometry and attempt order"
+    ],
+    "changed": [
+      "shared case strip above two equal-width method panels",
+      "uniform group transforms; repositioned task annotations",
+      "authorized label compression, font sizes and stroke weights"
+    ],
+    "not_changed": [
+      "branch topology",
+      "path coordinates inside groups",
+      "solid/dashed arrow semantics",
+      "case trade-off and local ordering outcomes"
+    ]
+  },
   "preservation_basis": "current editable SVG at export time, not the historical wording profile",
   "method_accent": "#62AAA5",
   "error_status_colors_preserved": true,
@@ -12,20 +32,14 @@
   "print_width_in": 5.4,
   "surface_polish": {
     "date": "2026-09-21",
-    "reference": "build/overview-layout-current/overview.png",
+    "reference": "figures/overview.png",
     "changes": [
-      "matched pale panel surfaces",
-      "fine photo mattes and shallow shadows",
-      "tinted revision-card headers",
-      "navy panel markers and softly shaded node rims"
+      "flat peach/blue/green panels",
+      "white revision cards with plain mint headers",
+      "stronger action headings, shorter diagnostics and heavier active paths",
+      "compact shared case strip and one flat surface grouping the default checks"
     ],
-    "preserved_at_surface_revision": [
-      "59 original labels",
-      "9 embedded images and their crops",
-      "all original path coordinates",
-      "panel, card and node positions"
-    ],
-    "scope": "decorative styling only; subsequent panel-a annotations are recorded separately"
+    "scope": "rejected gradient, fold and stacked-edge pass removed"
   },
   "panel_a_revision": {
     "date": "2026-09-21",
@@ -36,8 +50,7 @@
     ],
     "preserved": [
       "all nine embedded images and crops",
-      "panel geometry",
-      "panels b/c",
+      "comparison wording",
       "pointwise-scoring note"
     ],
     "evidence_status": "constructed illustration; not measured metric scores or collected human preferences"
@@ -94,9 +107,9 @@
     }
   ],
   "files": {
-    "figures/teaser.svg": "f3ae7fa6da88a3befb3de77bb29b7bcd597585eebc2cd3dac101f7210025c289",
-    "figures/teaser.pdf": "1809eda0fb445aebdb8af8d40f5cea8c67ea92937def1f896af2e6df267b115b",
-    "figures/teaser.png": "476c388e1e893f6630df4a3f0c81217b5ceb6c0893f40345f89378de1f0bf306"
+    "figures/teaser.svg": "8a6d17791f3afeda5c85fcf14dde65c73e9bbeff9aeaf8b79838e4acc70045a6",
+    "figures/teaser.pdf": "63f04df8557f504b7ea2ca127c6f2240d3a31bc44357ddacbcdf28d166aebbad",
+    "figures/teaser.png": "41cb1391470840300ac67a8d6047712a8d77c32ff3676bc372290d783ac0cc0c"
   },
-  "limitations": "The paper directly prints the author-approved three-column layout, including all nine images. At 5.4 inches, labels are approximately 2.5\u20134.7 points (the comparison symbol is 5.7 points); small labels remain a readability limitation, not permission to redesign the figure. All preferences and paths are constructed illustrations."
+  "limitations": "All nine original images/crops and both search-tree geometries are retained. Labels are shortened and enlarged, with thicker active paths on flat surfaces. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations."
 }

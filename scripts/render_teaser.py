@@ -4,7 +4,7 @@
 The self-contained SVG is the source of truth: do not regenerate it from an
 older wording profile. Recoloring preserves the current source text, geometry
 and nine embedded images. Surface styling and panel-a conflict annotations are
-separate revisions; panels b/c are unchanged. No image generation.
+separate revisions; surface edits preserve semantic groups. No image generation.
 """
 import base64
 from collections import Counter
@@ -68,30 +68,58 @@ def main():
     asset_manifest.update({"canonical_integration": True, "method_accent": "#62AAA5",
                            "palette_check": "current source text, geometry and embedded images unchanged by export",
                            "elements": dict(Counter(el.tag.split('}')[-1] for el in doc.iter()))})
-    if doc.find(".//s:style[@id='surface-polish-style']", NS) is not None:
+    reflowed = doc.get("data-layout") == "shared-case-above-symmetric-method-panels"
+    typography_polished = doc.get("data-polish") in {"strong-type-short-labels", "compact-flat-hierarchy"}
+    if reflowed:
+        asset_manifest["surface_polish"] = {
+            "date": "2026-09-21", "reference": "figures/overview.png",
+            "changes": ["flat peach/blue/green panels", "white revision cards with plain mint headers",
+                        "stronger action headings, shorter diagnostics and heavier active paths",
+                        "compact shared case strip and one flat surface grouping the default checks"],
+            "scope": "rejected gradient, fold and stacked-edge pass removed",
+        }
+        asset_manifest["layout_revision"] = {
+            "layout": doc.get("data-layout"),
+            "preserved": ["all nine image payloads and original crops",
+                          "branch path coordinates, node geometry and attempt order"],
+            "changed": ["shared case strip above two equal-width method panels",
+                        "uniform group transforms; repositioned task annotations",
+                        "authorized label compression, font sizes and stroke weights"],
+            "not_changed": ["branch topology", "path coordinates inside groups",
+                            "solid/dashed arrow semantics", "case trade-off and local ordering outcomes"],
+        }
+        asset_manifest["style"] = "flat pale panels and restrained outlines; no gradients, folds or layered shadows"
+        asset_manifest["flat_style_check"] = "no linear/radial gradients or filters"
+    elif doc.find(".//s:style[@id='surface-polish-style']", NS) is not None:
         asset_manifest["surface_polish"] = {
             "date": "2026-09-21",
-            "reference": "build/overview-layout-current/overview.png",
-            "changes": ["matched pale panel surfaces", "fine photo mattes and shallow shadows",
-                        "tinted revision-card headers", "navy panel markers and softly shaded node rims"],
-            "preserved_at_surface_revision": ["59 original labels", "9 embedded images and their crops",
+            "reference": "figures/overview.png",
+            "changes": ["graduated peach/blue/green paper surfaces",
+                        "layered default-check cards and stacked revision sheets",
+                        "mint header bands, folded corners and crisp paper edges",
+                        "photo mounts and shaded node rims"],
+            "preserved_at_surface_revision": ["all current labels, including panel-a conflict annotations",
+                                              "9 embedded images and their crops",
                                               "all original path coordinates", "panel, card and node positions"],
-            "scope": "decorative styling only; subsequent panel-a annotations are recorded separately",
+            "scope": "second surface-only pass; no change to content, layout or search semantics",
         }
-        asset_manifest["style"] = "soft panel surfaces, shallow paper shadows, fine outlines and graded search nodes"
+        asset_manifest["style"] = "layered paper cards, soft graduated surfaces, photo mounts and graded search nodes"
         asset_manifest["flat_style_check"] = "superseded by author-requested surface styling"
     if doc.find(".//s:g[@id='task-ranking-conflict']", NS) is not None:
         asset_manifest["panel_a_revision"] = {
             "date": "2026-09-21",
             "purpose": "make the criterion trade-off and opposite overall rankings explicit",
             "changes": ["two aligned qualitative comparison rows", "explicit Human: A > B versus Evaluator: B > A"],
-            "preserved": ["all nine embedded images and crops", "panel geometry", "panels b/c", "pointwise-scoring note"],
+            "preserved": ["all nine embedded images and crops", "comparison wording", "pointwise-scoring note"],
             "evidence_status": "constructed illustration; not measured metric scores or collected human preferences",
         }
     (SOURCE.parent / "manifest.json").write_text(json.dumps(asset_manifest, indent=2) + "\n")
     info = {
         "source": str(SOURCE.relative_to(ROOT)), "source_sha256": digest(svg.encode()),
-        "author_wording_preserved": True, "geometry_preserved": True,
+        "author_wording_preserved": not typography_polished, "geometry_preserved": not reflowed,
+        "branch_geometry_preserved": True,
+        "typography_polish": typography_polished,
+        "layout_revision": asset_manifest.get("layout_revision"),
         "preservation_basis": "current editable SVG at export time, not the historical wording profile",
         "method_accent": "#62AAA5", "error_status_colors_preserved": True,
         "empirical_evidence": False, "constructed_illustration": True,
@@ -107,7 +135,7 @@ def main():
                               "svg_height": float(el.get("height"))} for el in images],
         "files": {str((OUT / f"teaser.{ext}").relative_to(ROOT)):
                   digest((OUT / f"teaser.{ext}").read_bytes()) for ext in ("svg", "pdf", "png")},
-        "limitations": "The paper directly prints the author-approved three-column layout, including all nine images. At 5.4 inches, labels are approximately 2.5–4.7 points (the comparison symbol is 5.7 points); small labels remain a readability limitation, not permission to redesign the figure. All preferences and paths are constructed illustrations.",
+        "limitations": "All nine original images/crops and both search-tree geometries are retained. Labels are shortened and enlarged, with thicker active paths on flat surfaces. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations.",
     }
     (OUT / "teaser.manifest.json").write_text(json.dumps(info, indent=2) + "\n")
     print("Teaser exported: current SVG content and all nine images preserved; panel-a conflict annotations included.")

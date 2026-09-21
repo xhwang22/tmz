@@ -16,15 +16,13 @@
     "title": 1,
     "desc": 1,
     "defs": 1,
-    "style": 2,
+    "style": 1,
     "marker": 5,
-    "path": 42,
-    "linearGradient": 2,
-    "stop": 4,
-    "g": 21,
-    "rect": 63,
-    "circle": 48,
-    "text": 64,
+    "path": 40,
+    "rect": 37,
+    "g": 16,
+    "circle": 40,
+    "text": 67,
     "clipPath": 9,
     "image": 9
   },
@@ -318,8 +316,8 @@
   "embedded_images": true,
   "new_generation": false,
   "canonical_integration": true,
-  "style": "soft panel surfaces, shallow paper shadows, fine outlines and graded search nodes",
-  "flat_style_check": "superseded by author-requested surface styling",
+  "style": "flat pale panels and restrained outlines; no gradients, folds or layered shadows",
+  "flat_style_check": "no linear/radial gradients or filters",
   "wording_profile": "figures/candidates/teaser_wording_20260920.json",
   "wording_profile_sha256": "ecd8523eb0d685b36071da85ca60cf42ae2a53ea35ec4279f4a1eaea6b27af2c",
   "manuscript_basis": "bafe259; ICLR session naming instruction 2026-09-20 20:31 UTC and latest completed turn 21:06 UTC",
@@ -338,20 +336,14 @@
   "palette_check": "current source text, geometry and embedded images unchanged by export",
   "surface_polish": {
     "date": "2026-09-21",
-    "reference": "build/overview-layout-current/overview.png",
+    "reference": "figures/overview.png",
     "changes": [
-      "matched pale panel surfaces",
-      "fine photo mattes and shallow shadows",
-      "tinted revision-card headers",
-      "navy panel markers and softly shaded node rims"
+      "flat peach/blue/green panels",
+      "white revision cards with plain mint headers",
+      "stronger action headings, shorter diagnostics and heavier active paths",
+      "compact shared case strip and one flat surface grouping the default checks"
     ],
-    "preserved_at_surface_revision": [
-      "59 original labels",
-      "9 embedded images and their crops",
-      "all original path coordinates",
-      "panel, card and node positions"
-    ],
-    "scope": "decorative styling only; subsequent panel-a annotations are recorded separately"
+    "scope": "rejected gradient, fold and stacked-edge pass removed"
   },
   "panel_a_revision": {
     "date": "2026-09-21",
@@ -362,10 +354,27 @@
     ],
     "preserved": [
       "all nine embedded images and crops",
-      "panel geometry",
-      "panels b/c",
+      "comparison wording",
       "pointwise-scoring note"
     ],
     "evidence_status": "constructed illustration; not measured metric scores or collected human preferences"
+  },
+  "layout_revision": {
+    "layout": "shared-case-above-symmetric-method-panels",
+    "preserved": [
+      "all nine image payloads and original crops",
+      "branch path coordinates, node geometry and attempt order"
+    ],
+    "changed": [
+      "shared case strip above two equal-width method panels",
+      "uniform group transforms; repositioned task annotations",
+      "authorized label compression, font sizes and stroke weights"
+    ],
+    "not_changed": [
+      "branch topology",
+      "path coordinates inside groups",
+      "solid/dashed arrow semantics",
+      "case trade-off and local ordering outcomes"
+    ]
   }
 }

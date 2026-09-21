@@ -1,0 +1,582 @@
+{
+  "provenance": "SIMULATED_IDEAL_SCENARIO",
+  "empirical_evidence": false,
+  "note": "Author-requested idealized aggregate scenario for drafting. No observed outputs, human votes, model executions, training, or statistical inference. Ranges and costs are illustrative assignments, not confidence intervals or measured prices.",
+  "design": {
+    "domains": [
+      "SV4",
+      "IG1",
+      "TG1",
+      "AR1"
+    ],
+    "groups_per_domain": 160,
+    "searches": 5,
+    "N": 4,
+    "label_groups": 100,
+    "search_cost_units": 100
+  },
+  "methods": [
+    "Fixed model judge",
+    "Seed evaluator",
+    "Learned signal fusion",
+    "SkillOpt",
+    "GEPA",
+    "Meta-Harness",
+    "IterEval"
+  ],
+  "pair": [
+    [
+      62.5,
+      65,
+      66,
+      61.5
+    ],
+    [
+      68,
+      70,
+      71,
+      67
+    ],
+    [
+      70,
+      71.5,
+      73,
+      69.5
+    ],
+    [
+      73,
+      74,
+      75,
+      71
+    ],
+    [
+      75.5,
+      77,
+      78,
+      74.5
+    ],
+    [
+      76,
+      77.5,
+      78.5,
+      75
+    ],
+    [
+      80,
+      82,
+      83,
+      79
+    ]
+  ],
+  "bon": [
+    43,
+    49.5,
+    52,
+    56,
+    59,
+    60.5,
+    66
+  ],
+  "reg": [
+    0.325,
+    0.28,
+    0.259,
+    0.23,
+    0.209,
+    0.202,
+    0.158
+  ],
+  "coverage": [
+    99.5,
+    98.6,
+    98.6,
+    98.8,
+    98.9,
+    98.7,
+    99.1
+  ],
+  "top": [
+    60,
+    65,
+    67.1,
+    70.5,
+    73.2,
+    73.7,
+    78.4
+  ],
+  "cost": [
+    0.25,
+    1,
+    1.03,
+    1.05,
+    1.15,
+    1.2,
+    1.12
+  ],
+  "downstream": [
+    [
+      "C2",
+      "SV4",
+      [
+        "88/16/56",
+        "60.0",
+        "-5.0",
+        "160"
+      ]
+    ],
+    [
+      "C2",
+      "IG1",
+      [
+        "92/16/52",
+        "62.5",
+        "-6.3",
+        "160"
+      ]
+    ],
+    [
+      "C2",
+      "TG1",
+      [
+        "90/16/54",
+        "61.3",
+        "-4.4",
+        "160"
+      ]
+    ],
+    [
+      "C3",
+      "IG1",
+      [
+        "90/20/50",
+        "62.5",
+        "-5.0",
+        "160"
+      ]
+    ]
+  ],
+  "searchRows": [
+    [
+      "No-history, best-parent",
+      "72.6",
+      "-8.4",
+      "1.0",
+      "100"
+    ],
+    [
+      "History-only, best-parent",
+      "75.0",
+      "-6.0",
+      "1.0",
+      "100"
+    ],
+    [
+      "Active direction, best-parent",
+      "77.5",
+      "-3.5",
+      "3.2",
+      "100"
+    ],
+    [
+      "Full IterEval",
+      "81.0",
+      "0.0",
+      "3.8",
+      "100"
+    ],
+    [
+      "Text-only IterEval",
+      "74.3",
+      "-6.7",
+      "3.0",
+      "100"
+    ]
+  ],
+  "miningRows": [
+    [
+      "Random",
+      "History-only",
+      "100",
+      "300",
+      "73.0",
+      "102"
+    ],
+    [
+      "Mined",
+      "History-only",
+      "100",
+      "330",
+      "75.0",
+      "106"
+    ],
+    [
+      "Random",
+      "IterEval",
+      "100",
+      "300",
+      "77.5",
+      "102"
+    ],
+    [
+      "Mined",
+      "IterEval",
+      "100",
+      "330",
+      "81.0",
+      "106"
+    ],
+    [
+      "Uncertainty",
+      "IterEval",
+      "100",
+      "318",
+      "79.0",
+      "104"
+    ],
+    [
+      "Cross-model",
+      "IterEval",
+      "100",
+      "330",
+      "79.6",
+      "106"
+    ],
+    [
+      "Run instability",
+      "IterEval",
+      "100",
+      "345",
+      "78.7",
+      "108"
+    ]
+  ],
+  "componentRows": [
+    [
+      "Tool on/off",
+      "Compatible consumers",
+      "160",
+      "+3.2",
+      "+0.12"
+    ],
+    [
+      "Evolved/seed tool",
+      "Remaining program",
+      "160",
+      "+1.8",
+      "+0.05"
+    ],
+    [
+      "Evolved/fixed routes",
+      "Tool inventory",
+      "160",
+      "+1.3",
+      "-0.03"
+    ],
+    [
+      "Evolved/seed judgment",
+      "Artifact evidence",
+      "160",
+      "+2.6",
+      "0.00"
+    ],
+    [
+      "Semantic/numerical fusion",
+      "Specialist findings",
+      "160",
+      "+2.1",
+      "+0.02"
+    ],
+    [
+      "$H_0+H_1$ / $H_0$",
+      "Same labeled groups",
+      "100",
+      "+2.4",
+      "+30 min"
+    ],
+    [
+      "Additional $H_2/H_3$",
+      "Same groups",
+      "100",
+      "+1.0",
+      "+65 min"
+    ],
+    [
+      "Direct/converted labels",
+      "Same protocol",
+      "160",
+      "+0.4",
+      "N/A"
+    ]
+  ],
+  "downstreamDetail": [
+    [
+      "C2: Seed / $y_0$",
+      "252/48/180",
+      "57.5",
+      "10.0",
+      "1.0",
+      "480/480"
+    ],
+    [
+      "C2: IterEval / $y_0$",
+      "302/52/126",
+      "68.3",
+      "4.8",
+      "0.6",
+      "480/480"
+    ],
+    [
+      "C2: IterEval / Seed",
+      "270/48/162",
+      "61.3",
+      "4.8",
+      "0.6",
+      "480/480"
+    ],
+    [
+      "C2: IterEval / no critic",
+      "294/42/144",
+      "65.6",
+      "4.8",
+      "0.6",
+      "480/480"
+    ],
+    [
+      "C3: Seed / Base",
+      "80/24/56",
+      "57.5",
+      "12.5",
+      "1.3",
+      "160/160"
+    ],
+    [
+      "C3: IterEval / Base",
+      "96/24/40",
+      "67.5",
+      "7.5",
+      "0.6",
+      "160/160"
+    ],
+    [
+      "C3: IterEval / Seed",
+      "90/20/50",
+      "62.5",
+      "7.5",
+      "0.6",
+      "160/160"
+    ]
+  ],
+  "labelBudgets": [
+    20,
+    50,
+    100,
+    200
+  ],
+  "miningCurves": {
+    "Random": [
+      71.8,
+      74.7,
+      77.5,
+      79.8
+    ],
+    "Mined": [
+      73.5,
+      77.8,
+      81,
+      82.7
+    ],
+    "Uncertainty": [
+      72.5,
+      76,
+      79,
+      81
+    ]
+  },
+  "timeBudgets": [
+    90,
+    180,
+    330,
+    660
+  ],
+  "timeCurves": {
+    "Random": [
+      72.6,
+      75.1,
+      77.9,
+      80.1
+    ],
+    "Mined": [
+      73,
+      76.5,
+      81,
+      82.7
+    ]
+  },
+  "checkpoints": [
+    0,
+    25,
+    50,
+    75,
+    100
+  ],
+  "heldoutCurves": {
+    "No history": [
+      69,
+      70.5,
+      71.5,
+      72.2,
+      72.6
+    ],
+    "History only": [
+      69,
+      71.5,
+      73.4,
+      74.6,
+      75
+    ],
+    "Best-parent reset": [
+      69,
+      72,
+      74.5,
+      76.1,
+      77.5
+    ],
+    "IterEval": [
+      69,
+      72.4,
+      76,
+      79.2,
+      81
+    ]
+  },
+  "devCurves": {
+    "SkillOpt": [
+      70,
+      73,
+      75,
+      76,
+      76.5
+    ],
+    "GEPA": [
+      70,
+      74,
+      77,
+      79,
+      80
+    ],
+    "Meta-Harness": [
+      70,
+      74.4,
+      77.6,
+      79.8,
+      80.4
+    ],
+    "IterEval": [
+      70,
+      74,
+      78.7,
+      82,
+      84
+    ]
+  },
+  "directionOutcomes": {
+    "labels": [
+      "Gain",
+      "No gain",
+      "Early end",
+      "Budget stop"
+    ],
+    "counts": [
+      44,
+      28,
+      12,
+      16
+    ],
+    "definition": "Mutually exclusive: any accepted gain; agent-ended without gain after at least two revisions; agent-ended without gain after at most one revision; resource stop without gain. Assigned aggregate shares, not measured directions."
+  },
+  "resourceRows": [
+    [
+      "Fixed model judge",
+      "N/A",
+      "N/A",
+      "0.25",
+      "2.0"
+    ],
+    [
+      "Seed evaluator",
+      "N/A",
+      "N/A",
+      "1.00",
+      "8.0"
+    ],
+    [
+      "Learned signal fusion",
+      "5",
+      "0.04",
+      "1.03",
+      "8.2"
+    ],
+    [
+      "SkillOpt",
+      "100",
+      "0.9",
+      "1.05",
+      "8.5"
+    ],
+    [
+      "GEPA",
+      "100",
+      "1.1",
+      "1.15",
+      "9.4"
+    ],
+    [
+      "Meta-Harness",
+      "100",
+      "1.2",
+      "1.20",
+      "10.1"
+    ],
+    [
+      "IterEval",
+      "100",
+      "1.1",
+      "1.12",
+      "9.0"
+    ]
+  ],
+  "annotationRows": [
+    [
+      "SV4",
+      "200",
+      "3",
+      "86.0",
+      "3.0",
+      "660"
+    ],
+    [
+      "IG1",
+      "200",
+      "3",
+      "88.0",
+      "2.0",
+      "600"
+    ],
+    [
+      "TG1",
+      "200",
+      "3",
+      "87.0",
+      "2.5",
+      "630"
+    ],
+    [
+      "AR1",
+      "200",
+      "3",
+      "81.0",
+      "6.0",
+      "900"
+    ]
+  ]
+}

@@ -695,9 +695,34 @@
       "date": "2026-09-19",
       "trigger": "Author requests an independent reviewer subagent to audit Method, Experiments, and Discussion through repeated revision and re-review.",
       "reviewer": "/root/reviewer_method_experiments: three review passes",
-      "changed_claims": ["C12", "C17", "C18", "C22", "C26", "C29", "C36", "C37", "C40", "C46", "C47"],
-      "changed_figures": ["Fig2"],
-      "sections_touched": ["Method", "Experiments", "Results and analysis", "Discussion", "Conclusion", "Algorithm and measurement appendices", "Comparator and reporting appendices", "Figure 2 axis and caption", "Main table captions", "Paper memory and reviewer responses"],
+      "changed_claims": [
+        "C12",
+        "C17",
+        "C18",
+        "C22",
+        "C26",
+        "C29",
+        "C36",
+        "C37",
+        "C40",
+        "C46",
+        "C47"
+      ],
+      "changed_figures": [
+        "Fig2"
+      ],
+      "sections_touched": [
+        "Method",
+        "Experiments",
+        "Results and analysis",
+        "Discussion",
+        "Conclusion",
+        "Algorithm and measurement appendices",
+        "Comparator and reporting appendices",
+        "Figure 2 axis and caption",
+        "Main table captions",
+        "Paper memory and reviewer responses"
+      ],
       "summary": "Completes independent review, revision, re-review, and a targeted third-pass verification. Defines the input-weighted stochastic objective and distinguishes the canonical-pair development proxy; aligns weighted coverage and missing-outcome bounds. Separates acceptance, inheritance eligibility, and direction allocation, correcting a discovered state-order mismatch so failed inheritance returns to the pre-update best even when the candidate is accepted. Defines controlled comparator parent/history/editing rules and frozen-price model-and-tool budgets, while leaving exact execution configurations pending. Separates label efficiency from measured human-time efficiency and fixed-evaluator intervals from independent-search variation. Clarifies main-table aggregation, eligible cohorts, and ID/OOD regression contrasts. Replaces the Discussion checklist with conditional interpretations of continuation cost, diagnostic-history alternatives, and distinct selection/critique/reward requirements. Records all reviewer dispositions and current source hashes; preserves prior audit snapshots. The third reviewer pass finds no remaining writing/definition blocker in scope, not empirical acceptance. Synchronizes 47 claims, 11 figures, and 15 tables, with C27/C28 still gaps. Compiles 9 main pages and 35 total pages without smaller typography; structural, memory, provenance, and whitespace checks pass, and PDF pages are visually inspected. Preserves the author-edited abstract, all 40 bibliography entries, and all simulated numerical assets. No empirical studies, training, new image generation, engineering-source edits, commit, or push."
     },
     {
@@ -780,9 +805,28 @@
       "date": "2026-09-20",
       "trigger": "Author selects Informative Preference Mining and requests a Method rewrite motivated by reverse selection of repetitive, consistently ranked comparisons.",
       "reviewer": "Author feedback; local implementation, prose, and layout audit",
-      "changed_claims": ["C8", "C14", "C17", "C18", "C20", "C31", "C49"],
-      "changed_figures": ["Fig1", "Fig4"],
-      "sections_touched": ["Informative Preference Mining", "ERA method", "Introduction and Figure 1 caption", "Related work, Experiments, and Conclusion name alignment", "Annotation appendix", "Figures 1 and 4 labels", "Terminology checker and paper memory"],
+      "changed_claims": [
+        "C8",
+        "C14",
+        "C17",
+        "C18",
+        "C20",
+        "C31",
+        "C49"
+      ],
+      "changed_figures": [
+        "Fig1",
+        "Fig4"
+      ],
+      "sections_touched": [
+        "Informative Preference Mining",
+        "ERA method",
+        "Introduction and Figure 1 caption",
+        "Related work, Experiments, and Conclusion name alignment",
+        "Annotation appendix",
+        "Figures 1 and 4 labels",
+        "Terminology checker and paper memory"
+      ],
       "summary": "Rewrites IPM around lowering the sampling priority of comparisons on which existing signals agree, while retaining the random anchor and compatible preference reuse from existing datasets or new outputs. Moves the implemented structural priority equation into the main Method and distinguishes zero conflict from genuine agreement, information gain, or human reliability. Reorganizes ERA around objective/measurement, directions/candidates, acceptance/inheritance, and direction continuation, preserving the pre-update best fallback and all eligibility rules. Aligns current method names in prose and figure labels and adds design claim C49 without closing empirical gaps C27/C28. Compile and structural, terminology, memory, simulation, and landscape checks pass; the main text remains nine pages and the full PDF 36 pages without typography changes. Visually reviews Method pages, overview, main landscape, and main table. The author-edited abstract, 40 references, simulation records, both landscape assets, and engineering sources remain unchanged. No experiments, model calls, annotation, training, commit, or push."
     },
     {
@@ -792,7 +836,10 @@
       "reviewer": "Author guidance; local primary-source and claim-boundary audit",
       "changed_claims": [],
       "changed_figures": [],
-      "sections_touched": ["Related work", "Bibliography and reference provenance"],
+      "sections_touched": [
+        "Related work",
+        "Bibliography and reference provenance"
+      ],
       "summary": "Reorganizes Related Work around evaluator model learning, criteria refinement, agentic evaluation and ensembles, program evolution, and preference selection. Adds seven verified references and retains all four requested preprints in specific argumentative roles. Acknowledges prior critique generation, interactive refinement, verifier evolution and persistent hypothesis-driven search rather than claiming these capabilities are unique to ERA. Checks publication fields against primary records, including OffsetBias's Findings venue and author-name order. Abstract, introduction, methods, figures and empirical claim statuses remain unchanged. Build and terminology checks pass; main text remains ten pages. Full checks still report unused bibliography entries and pre-existing stale abstract/introduction and Figure 1 memory. No experiments, training, commit or push. See related_work_audit_20260920.md."
     },
     {
@@ -802,7 +849,9 @@
       "reviewer": "Author feedback; local structure, terminology and citation-support review",
       "changed_claims": [],
       "changed_figures": [],
-      "sections_touched": ["Related work"],
+      "sections_touched": [
+        "Related work"
+      ],
       "summary": "Consolidates five headings into Improving evaluators, Evolving evaluation programs, and Selecting preferences for evaluator improvement. Merges weight, criteria, and evidence-access routes while reducing repeated contrasts. Places the reward-hacking citation after WebGrader and query-specific rubrics as support for separately validating evaluators used in generation and training, without alleging failures in those methods or claiming ERA prevents reward hacking. Retains all four author-required references and leaves verified bibliography fields unchanged. Compilation, terminology, and whitespace checks pass; the PDF remains 37 pages with 10 main-text pages. Existing page-limit and memory issues remain outside this revision. No experiments, training, figure changes, commit or push."
     },
     {
@@ -812,7 +861,9 @@
       "reviewer": "Author feedback; local comparison, primary-text and method-consistency review",
       "changed_claims": [],
       "changed_figures": [],
-      "sections_touched": ["Related work"],
+      "sections_touched": [
+        "Related work"
+      ],
       "summary": "Rewrites the three passages around shared goals and concrete distinctions: updating weights/criteria versus the executable evaluation procedure, retained failure history versus direction continuation and program inheritance, and measurement-oriented selection versus feedback for evaluator improvement. Compares SkillOpt's acceptance and rejected-edit buffer and SkillHEX's test-time branch selection with ERA's development-cohort measurement and depth-first allocation. Retains SkillLens, query-specific rubrics, Benchmark2 and the reward-hacking citation in bounded roles. Removes peripheral method descriptions without changing bibliography metadata or empirical status. Compilation, terminology and whitespace checks pass; existing page-limit and stale-memory issues remain. No experiments, training, figure changes, commit or push."
     },
     {
@@ -822,7 +873,10 @@
       "reviewer": "Author feedback; local citation-support and prose audit",
       "changed_claims": [],
       "changed_figures": [],
-      "sections_touched": ["Related work", "Reference claim-scope provenance"],
+      "sections_touched": [
+        "Related work",
+        "Reference claim-scope provenance"
+      ],
       "summary": "Moves the reward-hacking citation to the opening of the evaluator-learning comparison. Optimization exploiting evaluation errors now motivates improving the evaluation procedure itself from human feedback. Integrates query-specific rubrics into the criteria-learning comparison and removes the former downstream-caveat ending. Rechecks the survey's overoptimization and iterative reward-model discussion, distinguishing research motivation from proof that ERA is necessary or effective. Retains all four required references, unchanged publication fields and empirical status. No experiments, training, commit or push."
     },
     {
@@ -830,9 +884,36 @@
       "date": "2026-09-20",
       "trigger": "Author names the complete framework IterEval, supplies the Dive Deeper, Branch Later title, and retires component acronyms in favor of disagreement-based preference mining and depth-first evaluator evolution.",
       "reviewer": "Author naming direction; local terminology, data-invariance, and visual checks",
-      "changed_claims": ["C1", "C22", "C27", "C28", "C31", "C33", "C42", "C43", "C49"],
-      "changed_figures": ["Fig1", "Fig2", "Fig4", "Fig5", "Fig6", "Fig9", "Fig11", "Fig12"],
-      "sections_touched": ["Title and PDF metadata", "Abstract and Introduction", "Related work", "Method and preference mining", "Experiments, Results, Discussion and Conclusion", "Appendix, diagrams, charts and tables", "README, terminology, paper memory and fixture checks"],
+      "changed_claims": [
+        "C1",
+        "C22",
+        "C27",
+        "C28",
+        "C31",
+        "C33",
+        "C42",
+        "C43",
+        "C49"
+      ],
+      "changed_figures": [
+        "Fig1",
+        "Fig2",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig9",
+        "Fig11",
+        "Fig12"
+      ],
+      "sections_touched": [
+        "Title and PDF metadata",
+        "Abstract and Introduction",
+        "Related work",
+        "Method and preference mining",
+        "Experiments, Results, Discussion and Conclusion",
+        "Appendix, diagrams, charts and tables",
+        "README, terminology, paper memory and fixture checks"
+      ],
       "summary": "Adopts IterEval only for the complete framework and experimental system, and descriptive names without acronyms for its mining and search components. Applies the author's introduction sentence, updates reader-facing labels, and preserves technical semantics and historical identifiers. Regenerates display labels with all 30 tracked CSVs byte-identical; the frozen landscape receives two text-only replacements with unchanged vector paths and other text. Adds display-name regression checks and explicit manifest mappings while retaining numerical keys. Synchronizes stale author-edited claims/captions; C27/C28 remain unverified gaps rather than inferred findings. Builds 36 total pages with 10 main pages; terminology, memory, arithmetic, landscape and whitespace checks pass. Structural checks still flag the 9-page initial-submission limit and 17 unused bibliography records. Reviews the title, overview, main results page and legacy landscape without altering official typography. No empirical observations, annotation, training, citation-metadata changes, engineering-source edits, commit or push. See itereval_naming_audit_20260920.md."
     },
     {
@@ -840,9 +921,15 @@
       "date": "2026-09-20",
       "trigger": "Author flags awkward title rendering and requests no citations in the abstract.",
       "reviewer": "Author feedback; local title-page visual check",
-      "changed_claims": ["C42"],
+      "changed_claims": [
+        "C42"
+      ],
       "changed_figures": [],
-      "sections_touched": ["Title layout", "Abstract citation markers", "Style guidance and claim memory"],
+      "sections_touched": [
+        "Title layout",
+        "Abstract citation markers",
+        "Style guidance and claim memory"
+      ],
       "summary": "Uses title-local ragged-right alignment with semantic breaks after the colon and Evaluators, removing stretched spaces and preserving Self-Evolving Evaluators as a phrase. Keeps the approved wording, official font/size, template file and PDF title metadata. Removes the abstract's two citation commands covering three papers without changing its prose; all three remain cited in the Introduction. Synchronizes C42 and records the citation-free abstract preference. Rebuilds and visually checks the first page; no undefined citations or overfull boxes, and memory/terminology/whitespace checks pass. The PDF remains 36 pages with 10 main pages; existing page-limit, unused-reference and empirical-evidence issues remain. No data, figures, bibliography metadata, commit or push changes."
     },
     {
@@ -963,8 +1050,21 @@
       "trigger": "Author asks to merge all Method TeX and explicitly requests a dedicated reviewer subagent for iterative improvements to fluency and clarity.",
       "reviewer": "method_readability_reviewer: two substantive passes and final verification; parent implementation-boundary and PDF review",
       "changed_claims": [
-        "C2", "C9", "C11", "C13", "C14", "C15", "C16", "C17",
-        "C31", "C33", "C39", "C45", "C49", "C50", "C51"
+        "C2",
+        "C9",
+        "C11",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C31",
+        "C33",
+        "C39",
+        "C45",
+        "C49",
+        "C50",
+        "C51"
       ],
       "changed_figures": [],
       "sections_touched": [
@@ -1030,7 +1130,144 @@
         "Paper glossary, claim memory, context and audit trail"
       ],
       "summary": "Keeps round39's core-first hierarchy and three equation blocks. Adds a verbal cycle before Algorithm 1 and an early preview of editable scope. Replaces branded inheritance with a conservative parent rule inside continuation while preserving pre-update best fallback, including accepted candidates with incomplete local measurements. Separates execution records from agent interpretations and questions. Existing-label budgets now mean revealed original-input groups; new annotation counts and time are separate, including anchors. Uses evaluation program and continue/end consistently. Source inspection confirms that identity/history persistence does not enforce semantic continuity or a sufficient ending reason; no minimum-depth or hard-direction-budget guarantee is invented. Reviewer draft passes with four small wording corrections applied. Build and memory/terminology/simulation/landscape checks pass; main text remains 10 pages against the nine-page initial limit, with 17 unused references and the preserved teaser readability warning. Abstract/Introduction, figure assets/geometry, numerical fixtures and engineering code are unchanged. C27/C28 remain empirical gaps. No new citations, empirical runs, commit or push. See method_readability_review_20260921_round40.md."
+    },
+    {
+      "round": 41,
+      "date": "2026-09-21",
+      "trigger": "Author requests a fully specified within-domain experiment plan, ideal-scenario displays, original Fig3 styling, unchanged Abstract/Introduction and nine-page main text.",
+      "reviewer": "Parent source/citation audit, offline consistency checks and visual review; no new subagents.",
+      "changed_claims": [
+        "C5",
+        "C11",
+        "C18",
+        "C21",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C29",
+        "C34",
+        "C36",
+        "C37",
+        "C38",
+        "C40",
+        "C41",
+        "C44",
+        "C46",
+        "C48",
+        "C53",
+        "C54",
+        "C55",
+        "C56",
+        "C57",
+        "C58",
+        "C59"
+      ],
+      "changed_figures": [
+        "Fig3",
+        "Fig4",
+        "Fig6",
+        "Fig7"
+      ],
+      "figure_inventory_at_revision": [
+        {
+          "id": "Fig1",
+          "label": "fig:teaser"
+        },
+        {
+          "id": "Fig2",
+          "label": "fig:overview"
+        },
+        {
+          "id": "Fig3",
+          "label": "fig:c1-landscape"
+        },
+        {
+          "id": "Fig4",
+          "label": "fig:budget-tests"
+        },
+        {
+          "id": "Fig5",
+          "label": "fig:runtime"
+        },
+        {
+          "id": "Fig6",
+          "label": "fig:acquisition"
+        },
+        {
+          "id": "Fig7",
+          "label": "fig:trajectory"
+        }
+      ],
+      "sections_touched": [
+        "Experiments, conditional results, Discussion and Conclusion",
+        "Complete experimental Appendix and display plan",
+        "Fig3 data with preserved annular layout/palette; search/mining scenario displays",
+        "Bibliography provenance, source templates, centralized data and arithmetic checks",
+        "Claim/display memory and historical-numbering boundary"
+      ],
+      "summary": "Replaces mandatory OOD evaluation with source-disjoint within-domain assessment and separately adapted domains. Defines seven native-capability baselines, four history/parent controls, feedback-by-search interaction, downstream blind judgments and conditional C3 training. Preserves author-edited Abstract/Introduction and conceptual artwork. Restores Fig3's compact annular taxonomy and family/lake palette; reuses main-table values for domain gains and deployment trade-offs rather than independent evidence. Centralizes ideal aggregate assignments and prose numbers, retaining captions/title-page disclosures without banners inside plots. No raw observations, statistical inference, successful traces, permissions or run configurations are fabricated. Main text is nine official-template pages; all real measurement and execution requirements remain pending. Historical fixture assets are unchanged. No implementation changes, experiments, training, commit or push."
+    },
+    {
+      "round": 42,
+      "date": "2026-09-21",
+      "trigger": "Author requests Fig1 material quality closer to Fig2 and publication to GitHub",
+      "changed_claims": [],
+      "changed_figures": ["Fig1"],
+      "sections_touched": ["Fig1 decorative SVG layers, exporter and figure memory"],
+      "summary": "Adds restrained graduated panels, blue default-check underlays, layered revision sheets with mint headers and folded corners, photo mounts and shaded node rims. All 64 current labels, nine images/crops and protected semantic groups are identical to commit 8892d9d. Original panel/card/node positions, search paths, captions, Abstract/Introduction, Fig2 and numerical data are unchanged. Canonical exports are overwritten in place; no new image generation or candidate versions. The existing small-label limitation remains.",
+      "disposition": "Author rejected the gradient/decorative treatment before commit or push; superseded by round43."
+    },
+    {
+      "round": 43,
+      "date": "2026-09-21",
+      "trigger": "Author requests a flat shared-case strip above symmetric method panels, explicitly retaining the existing branch visualization.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1"],
+      "sections_touched": ["Fig1 layout/export/check scripts and figure memory"],
+      "summary": "Reflows the same Source/A/B case above equal-width Default and IterEval panels. Preserves all descendants of default-tree, default-checks, era-tree and era-revisions relative to commit 8892d9d, using only parent translations/uniform scale. Nine image payloads and original crops remain. Removes gradients, folds, stacked shadows and added default containers. Abstract/Introduction, captions, Fig2 and quantitative data are untouched. The PDF preview has ten main pages and 34 total; the nine-page initial limit remains unmet. Fonts are embedded and photos have 335–662 PPI, while some vector labels remain small. No commit or push pending layout review."
+    },
+    {
+      "round": 44,
+      "date": "2026-09-21",
+      "trigger": "Author approves stronger typography and line weights after identifying thin outlines and small fragmented labels as the remaining Fig1 problem.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1"],
+      "sections_touched": ["Fig1 SVG typography, export metadata and figure memory"],
+      "summary": "Retains the case strip and lower symmetric panels. Enlarges action headings and diagnostics, shortens wording and ranking badges, and strengthens active paths/node outlines while keeping alternatives subdued. Branch geometry, node centers, solid/dashed semantics and all nine image payloads/crops match commit 8892d9d; flat style has no gradients or extra containers. Local ordering remains distinct from candidate acceptance. Abstract/Introduction, captions, Fig2 and quantitative sources are unchanged. Canonical assets and the stable page preview are overwritten. Regeneration is idempotent; embedded fonts and 335–662 PPI photos pass checks. Text spans 4.6–6.8 points at print size. The PDF remains 34 pages with ten main pages, exceeding the initial nine-page limit. No commit or push."
+    },
+    {
+      "round": 45,
+      "date": "2026-09-21",
+      "trigger": "Author requests further Fig1 refinement and GitHub publication.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1"],
+      "sections_touched": ["Fig1 layout/export/check scripts, canonical assets and figure memory"],
+      "summary": "Tightens the shared-case strip and header spacing to a 1840 × 880 canvas. Groups default checks on one flat white surface, keeps mint-headed revision cards, enlarges diagnostic labels and strengthens active paths. Original branches, node geometry, attempt order and all nine image payloads/crops match commit 8892d9d. No gradients, new image generation, caption changes, Abstract/Introduction edits, Fig2 edits or quantitative changes. Source regeneration is idempotent; fonts are embedded and photos are 335–741 PPI. Labels remain 4.6–6.8 points at print size. The compiled PDF remains 34 pages with ten main pages; initial page-limit compliance remains unresolved. Publication includes the previously pending coherent manuscript revision and execution-plan documents, excluding old untracked candidates/caches. No experiments are run."
     }
   ],
-  "updated_on": "2026-09-21"
+  "updated_on": "2026-09-21",
+  "figure_id_scopes": [
+    {
+      "through_round": 40,
+      "ids": [
+        "Fig1",
+        "Fig2",
+        "Fig3",
+        "Fig4",
+        "Fig5",
+        "Fig6",
+        "Fig7",
+        "Fig8",
+        "Fig9",
+        "Fig10",
+        "Fig11",
+        "Fig12",
+        "Fig13"
+      ],
+      "note": "Historical identifier namespace retained at round-41 renumbering; labels in early revisions differ. Do not interpret these as current display identities.",
+      "snapshot": ".paper/archive/figures-round40.yml"
+    }
+  ]
 }

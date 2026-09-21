@@ -43,22 +43,34 @@ def audit():
         print("Panel a: qualitative trade-off and opposite overall rankings are explicit.")
     scale = info["print_width_in"] / float(root.get("viewBox").split()[2])
     ppis, font_pts = [], []
+    parents = {child: parent for parent in root.iter() for child in parent}
+    def local_scale(el):
+        factor = 1.0
+        while el is not None:
+            transform = el.get("transform", "")
+            # This source uses translations and uniform scales only.
+            for match in re.finditer(r"scale\(\s*([0-9.]+)\s*\)", transform):
+                factor *= float(match[1])
+            assert not re.search(r"matrix\(|rotate\(|skew", transform), transform
+            el = parents.get(el)
+        return factor
     for el in root.iter():
+        effective_scale = scale * local_scale(el)
         if el.tag.endswith("}text"):
-            font_pts.append(float(el.get("font-size")) * scale * 72)
+            font_pts.append(float(el.get("font-size")) * effective_scale * 72)
         if not el.tag.endswith("}image"):
             continue
         raw = base64.b64decode(el.get("{http://www.w3.org/1999/xlink}href").split(",", 1)[1])
         w, h = struct.unpack(">II", raw[16:24])
         # 'slice' crops, rather than stretching, each inset to fill its viewport.
-        ppi = min(w / (float(el.get("width"))*scale), h / (float(el.get("height"))*scale))
+        ppi = min(w / (float(el.get("width"))*effective_scale), h / (float(el.get("height"))*effective_scale))
         ppis.append(ppi)
     assert len(ppis) == 9
     fonts = subprocess.check_output(["pdffonts", str(ROOT / "figures/teaser.pdf")], text=True)
     assert "Type 3" not in fonts
     for line in fonts.splitlines()[2:]:
         assert re.search(r"\byes\s+yes\s+yes\b", line), line
-    print(f"Paper teaser: author-approved layout, nine images at {min(ppis):.0f}–{max(ppis):.0f} PPI; embedded PDF fonts.")
+    print(f"Paper teaser: preserved search layout, nine images at {min(ppis):.0f}–{max(ppis):.0f} PPI; embedded PDF fonts.")
     if min(font_pts) < 7:
         print(f"Readability warning: vector text/symbols are {min(font_pts):.1f}–{max(font_pts):.1f} pt at print size; small-label limitation remains.")
     assert min(ppis) >= 300, "Photographic insets below 300 PPI"

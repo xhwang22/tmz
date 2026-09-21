@@ -1,0 +1,30 @@
+{
+  "simulation_only": true,
+  "empirical_evidence": false,
+  "aggregate_scenario_only": true,
+  "no_statistical_inference": true,
+  "files": {
+    "figures/ideal_scenario/main.tex": "92f8bc8df13f2df4081931a37442b85e01b8f8a65d7a9b0dd285cb8fe9e43566",
+    "figures/ideal_scenario/downstream.tex": "f4de3ae150e6734a40dd4b91afd45ceeed72a6dfec6bfd765941da8baddfd130",
+    "figures/ideal_scenario/search.tex": "1675d6d0be187f9d739bc57367e29341cd57a4030abdce267258d9e6d0e9481c",
+    "figures/ideal_scenario/mining.tex": "cf7ba84284f6bbade82493f643f51214ff681d0848b5cb8712ec2b395c2c0960",
+    "figures/ideal_scenario/components.tex": "7d99e03073c9f58343ac4bf02347c5105a1cb51586af69900373ccdb9f4dd886",
+    "figures/ideal_scenario/downstream_detail.tex": "19d4321b42242c37a384ed2ed6f2612bfe7507654eab948f0c2915c113a9985a",
+    "figures/ideal_scenario/domain.tex": "5673925236324c290d4c076fec517209972c056556dc4a676bfde26b665151d8",
+    "figures/ideal_scenario/cost.tex": "0adb4a595038422e77dbb5b9346520f81738d905710a4565b3089dd79b6b7b20",
+    "figures/ideal_scenario/annotation.tex": "12358c7f98a1c88a7f0e7a6cb7517be7753b707c3ff9a5e61fae58dcc2b51d29",
+    "figures/ideal_scenario/numbers.tex": "1e6debc51eff0ae12052b0e3c2450ae72c4ddb2bfd8cbf53032e9b423a496bc3",
+    "figures/ideal_scenario/landscape.pdf": "b82af55f3956c91ec68a00b29598ee830cb1afbf54d03d39e4462aa1935eef9f",
+    "figures/ideal_scenario/landscape.svg": "8520f6941a2ef0fcb4fa8e0b32ba34f313040f55b162345f08cf627f1b1b4907",
+    "figures/ideal_scenario/landscape.png": "bc0eb9543e4cbaf6faae8c99a32ab42cad1e015e16b50a56f63bda73541dceb8",
+    "figures/ideal_scenario/search.pdf": "5fc313526c9a22e0e221e5c08c9751ff8c7715fe4aaf11fe989b0aa199815330",
+    "figures/ideal_scenario/search.svg": "206fb2e3881ead1eaf54e3f3c7c39a69f2bec5b3fccaf0ed94432a6fd19c5d4f",
+    "figures/ideal_scenario/search.png": "63877e2289e973d22fc6578714095b50574b72b5434b10a632d26a549de9fcdf",
+    "figures/ideal_scenario/mining.pdf": "bd5040e00f3214c2f83d22892c7a2047525f1c51d2c4509950bfc169ae58957b",
+    "figures/ideal_scenario/mining.svg": "2795b6e0d3362f0451bd450c05ebe70d32af51c09388b8f94cd9d4df2467b6b4",
+    "figures/ideal_scenario/mining.png": "2694a6ffca72dd07215790f251889a9f2ac9328c8b114a506b5ee2967c9b2031",
+    "data/ideal_scenario/scenario.json": "cfeedf176a55c93f27aef72d643957b6d978a1431bbadb3cf61050ec8bb985f6",
+    "scripts/render_ideal_scenario.py": "1a677b8ba56823cef1426f74353c441fe18c63328168fb325d06313b7a05a109",
+    "scripts/render_c1_landscape.py": "c427c847aa4442d33b6acc0eceb8d26b760f750a945a1ce6fc9a24eb312de192"
+  }
+}

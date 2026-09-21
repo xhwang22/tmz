@@ -40,44 +40,6 @@
       }
     },
     {
-      "key": "park2024offsetbias",
-      "title": "OffsetBias: Leveraging Debiased Data for Tuning Evaluators",
-      "authors": "Park, Junsoo and Jwa, Seungyeon and Ren, Meiying and Kim, Daeyoung and Choi, Sanghyuk",
-      "year": "2024",
-      "venue": "Findings of the Association for Computational Linguistics: EMNLP 2024",
-      "doi": "10.18653/v1/2024.findings-emnlp.57",
-      "pages": "1043--1067",
-      "checked_on": "2026-09-20",
-      "status": "Findings of EMNLP 2024, not main conference. Third author's name follows the published PDF and arXiv BibTeX (Meiying Ren), correcting the inverted given/family fields in ACL/Crossref. Publication fields retain the official Findings record.",
-      "primary_sources": [
-        "https://aclanthology.org/2024.findings-emnlp.57.bib",
-        "https://aclanthology.org/2024.findings-emnlp.57.pdf",
-        "https://api.crossref.org/works/10.18653/v1/2024.findings-emnlp.57",
-        "https://arxiv.org/bibtex/2407.06551"
-      ],
-      "claim_support": {
-        "supported_scope": "Abstract and Sections 2--3: bias-targeted preference-data construction and evaluator fine-tuning. No claim of inability to generalize beyond named biases."
-      }
-    },
-    {
-      "key": "verga2024poll",
-      "arxiv_id": "2404.18796",
-      "title": "Replacing Judges with Juries: Evaluating LLM Generations with a Panel of Diverse Models",
-      "authors": "Pat Verga and Sebastian Hofstatter and Sophia Althammer and Yixuan Su and Aleksandra Piktus and Arkady Arkhangorodsky and Minjie Xu and Naomi White and Patrick Lewis",
-      "year": "2024",
-      "venue": "arXiv preprint arXiv:2404.18796",
-      "checked_on": "2026-09-20",
-      "status": "Verified 2024 arXiv preprint; no formal venue verified. OpenAlex corroborates identity; DBLP blocked and Crossref returned irrelevant matches.",
-      "primary_sources": [
-        "https://arxiv.org/abs/2404.18796",
-        "https://arxiv.org/bibtex/2404.18796",
-        "https://arxiv.org/pdf/2404.18796"
-      ],
-      "claim_support": {
-        "supported_scope": "Sections 2.2 and 3.1: aggregates different model-family judgments through max or average pooling. Not a general inability claim about ensembles."
-      }
-    },
-    {
       "key": "luo2026harnessbank",
       "arxiv_id": "2607.13683",
       "title": "HarnessBank: Semantic Gene-Bank Search with Gated Verification for Agent-Harness Self-Evolution",
@@ -333,19 +295,6 @@
       "volume": "2024"
     },
     {
-      "key": "kim2024prometheus2",
-      "arxiv_id": "2405.01535",
-      "title": "Prometheus 2: An Open Source Language Model Specialized in Evaluating Other Language Models",
-      "authors": "Kim, Seungone and Suk, Juyoung and Longpre, Shayne and Lin, Bill Yuchen and Shin, Jamin and Welleck, Sean and Neubig, Graham and Lee, Moontae and Lee, Kyungjae and Seo, Minjoon",
-      "year": "2024",
-      "venue": "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing",
-      "status": "published metadata verified against official proceedings",
-      "primary_sources": [
-        "https://arxiv.org/abs/2405.01535v2",
-        "https://aclanthology.org/2024.emnlp-main.248.bib"
-      ]
-    },
-    {
       "key": "kirstain2023pickapic",
       "arxiv_id": "2305.01569",
       "title": "Pick-a-Pic: An Open Dataset of User Preferences for Text-to-Image Generation",
@@ -359,36 +308,6 @@
       ]
     },
     {
-      "key": "lambert2024rewardbench",
-      "arxiv_id": "2403.13787",
-      "title": "{RewardBench: Evaluating Reward Models for Language Modeling}",
-      "authors": "Nathan Lambert and Valentina Pyatkin and Jacob Morrison and LJ Miranda and Bill Yuchen Lin and Khyathi Chandu and Nouha Dziri and Sachin Kumar and Tom Zick and Yejin Choi and Noah A. Smith and Hannaneh Hajishirzi",
-      "year": "2025",
-      "venue": "Findings of the Association for Computational Linguistics: NAACL 2025",
-      "status": "Updated from arXiv 2024 to Findings of NAACL 2025, not the main NAACL proceedings. Venue, year, pages and DOI verified against ACL Anthology; stable key retained.",
-      "primary_sources": [
-        "https://arxiv.org/abs/2403.13787v2",
-        "https://aclanthology.org/2025.findings-naacl.96.bib",
-        "https://aclanthology.org/2025.findings-naacl.96/"
-      ],
-      "checked_on": "2026-09-19",
-      "pages": "1755--1797",
-      "doi": "10.18653/v1/2025.findings-naacl.96"
-    },
-    {
-      "key": "liu2023geval",
-      "arxiv_id": "2303.16634",
-      "title": "{G}-Eval: {NLG} Evaluation using {GPT-4} with Better Human Alignment",
-      "authors": "Liu, Yang and Iter, Dan and Xu, Yichong and Wang, Shuohang and Xu, Ruochen and Zhu, Chenguang",
-      "year": "2023",
-      "venue": "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing",
-      "status": "published metadata verified against official proceedings",
-      "primary_sources": [
-        "https://arxiv.org/abs/2303.16634v3",
-        "https://aclanthology.org/2023.emnlp-main.153.bib"
-      ]
-    },
-    {
       "key": "madaan2023selfrefine",
       "arxiv_id": "2303.17651",
       "title": "Self-Refine: Iterative Refinement with Self-Feedback",
@@ -399,19 +318,6 @@
       "primary_sources": [
         "https://arxiv.org/abs/2303.17651v2",
         "https://papers.nips.cc/paper_files/paper/2023/hash/91edff07232fb1b55a505a9e9f6c0ff3-Abstract-Conference.html"
-      ]
-    },
-    {
-      "key": "ouyang2022instruct",
-      "arxiv_id": "2203.02155",
-      "title": "Training language models to follow instructions with human feedback",
-      "authors": "Ouyang, Long and Wu, Jeffrey and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and Schulman, John and Hilton, Jacob and Kelton, Fraser and Miller, Luke and Simens, Maddie and Askell, Amanda and Welinder, Peter and Christiano, Paul F and Leike, Jan and Lowe, Ryan",
-      "year": "2022",
-      "venue": "Advances in Neural Information Processing Systems",
-      "status": "published metadata verified against official proceedings",
-      "primary_sources": [
-        "https://arxiv.org/abs/2203.02155v1",
-        "https://papers.nips.cc/paper_files/paper/2022/hash/b1efde53be364a73914f58805a001731-Abstract-Conference.html"
       ]
     },
     {
@@ -440,32 +346,6 @@
       ]
     },
     {
-      "key": "pryzant2023protegi",
-      "arxiv_id": "2305.03495",
-      "title": "Automatic Prompt Optimization with ``Gradient Descent'' and Beam Search",
-      "authors": "Pryzant, Reid and Iter, Dan and Li, Jerry and Lee, Yin and Zhu, Chenguang and Zeng, Michael",
-      "year": "2023",
-      "venue": "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing",
-      "status": "published metadata verified against official proceedings",
-      "primary_sources": [
-        "https://arxiv.org/abs/2305.03495v2",
-        "https://aclanthology.org/2023.emnlp-main.494.bib"
-      ]
-    },
-    {
-      "key": "rafailov2023dpo",
-      "arxiv_id": "2305.18290",
-      "title": "Direct Preference Optimization: Your Language Model is Secretly a Reward Model",
-      "authors": "Rafailov, Rafael and Sharma, Archit and Mitchell, Eric and Manning, Christopher D and Ermon, Stefano and Finn, Chelsea",
-      "year": "2023",
-      "venue": "Advances in Neural Information Processing Systems",
-      "status": "published metadata verified against official proceedings",
-      "primary_sources": [
-        "https://arxiv.org/abs/2305.18290v3",
-        "https://papers.nips.cc/paper_files/paper/2023/hash/a85b405ed65c6477a4fe8302b5e06ce7-Abstract-Conference.html"
-      ]
-    },
-    {
       "key": "shankar2024evalgen",
       "arxiv_id": "2404.12272",
       "title": "Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences",
@@ -476,19 +356,6 @@
       "primary_sources": [
         "https://arxiv.org/abs/2404.12272v1",
         "https://doi.org/10.1145/3654777.3676450"
-      ]
-    },
-    {
-      "key": "shinn2023reflexion",
-      "arxiv_id": "2303.11366",
-      "title": "Reflexion: language agents with verbal reinforcement learning",
-      "authors": "Shinn, Noah and Cassano, Federico and Gopinath, Ashwin and Narasimhan, Karthik and Yao, Shunyu",
-      "year": "2023",
-      "venue": "Advances in Neural Information Processing Systems",
-      "status": "published metadata verified against official proceedings",
-      "primary_sources": [
-        "https://arxiv.org/abs/2303.11366v4",
-        "https://papers.nips.cc/paper_files/paper/2023/hash/1b44b878bb782e6954cd888628510e90-Abstract-Conference.html"
       ]
     },
     {
@@ -505,48 +372,6 @@
       ]
     },
     {
-      "key": "stiennon2020summarize",
-      "arxiv_id": "2009.01325",
-      "title": "Learning to summarize with human feedback",
-      "authors": "Stiennon, Nisan and Ouyang, Long and Wu, Jeffrey and Ziegler, Daniel and Lowe, Ryan and Voss, Chelsea and Radford, Alec and Amodei, Dario and Christiano, Paul F",
-      "year": "2020",
-      "venue": "Advances in Neural Information Processing Systems",
-      "status": "published metadata verified against official proceedings",
-      "primary_sources": [
-        "https://arxiv.org/abs/2009.01325v3",
-        "https://papers.nips.cc/paper_files/paper/2020/hash/1f89885d556929e98d3ef9b86448f951-Abstract.html"
-      ]
-    },
-    {
-      "key": "tan2025judgebench",
-      "arxiv_id": "2410.12784",
-      "title": "{JudgeBench: A Benchmark for Evaluating LLM-based Judges}",
-      "authors": "Sijun Tan and Siyuan Zhuang and Kyle Montgomery and William Y. Tang and Alejandro Cuadron and Chenguang Wang and Raluca Ada Popa and Ion Stoica",
-      "year": "2025",
-      "venue": "International Conference on Learning Representations",
-      "status": "Official ICLR 2025 proceedings metadata for venue/volume/pages; published PDF confirms full author names retained rather than shortened index names.",
-      "primary_sources": [
-        "https://arxiv.org/abs/2410.12784v2",
-        "https://proceedings.iclr.cc/paper_files/paper/1874-/bibtex",
-        "https://proceedings.iclr.cc/paper_files/paper/2025/file/9e720fce64f91114c49cfd640d821da3-Paper-Conference.pdf"
-      ],
-      "checked_on": "2026-09-19",
-      "pages": "63277--63303",
-      "volume": "2025"
-    },
-    {
-      "key": "wang2024selftaught",
-      "arxiv_id": "2408.02666",
-      "title": "Self-Taught Evaluators",
-      "authors": "Tianlu Wang and Ilia Kulikov and Olga Golovneva and Ping Yu and Weizhe Yuan and Jane Dwivedi-Yu and Richard Yuanzhe Pang and Maryam Fazel-Zarandi and Jason Weston and Xian Li",
-      "year": "2024",
-      "venue": "arXiv preprint arXiv:2408.02666",
-      "status": "verified arXiv preprint; formal venue not asserted",
-      "primary_sources": [
-        "https://arxiv.org/abs/2408.02666v2"
-      ]
-    },
-    {
       "key": "xu2023imagereward",
       "arxiv_id": "2304.05977",
       "title": "ImageReward: Learning and Evaluating Human Preferences for Text-to-Image Generation",
@@ -557,35 +382,6 @@
       "primary_sources": [
         "https://arxiv.org/abs/2304.05977v4",
         "https://papers.nips.cc/paper_files/paper/2023/hash/33646ef0ed554145eab65f6250fab0c9-Abstract-Conference.html"
-      ]
-    },
-    {
-      "key": "yang2024opro",
-      "arxiv_id": "2309.03409",
-      "title": "{Large Language Models as Optimizers}",
-      "authors": "Chengrun Yang and Xuezhi Wang and Yifeng Lu and Hanxiao Liu and Quoc V. Le and Denny Zhou and Xinyun Chen",
-      "year": "2024",
-      "venue": "International Conference on Learning Representations",
-      "status": "Official ICLR 2024 proceedings metadata; volume and pages added.",
-      "primary_sources": [
-        "https://arxiv.org/abs/2309.03409v3",
-        "https://proceedings.iclr.cc/paper_files/paper/5223-/bibtex",
-        "https://proceedings.iclr.cc/paper_files/paper/2024/hash/3339f19c5fcee3ad74502947a32be9e6-Abstract-Conference.html"
-      ],
-      "checked_on": "2026-09-19",
-      "pages": "12028--12068",
-      "volume": "2024"
-    },
-    {
-      "key": "yao2023react",
-      "arxiv_id": "2210.03629",
-      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
-      "authors": "Shunyu Yao and Jeffrey Zhao and Dian Yu and Nan Du and Izhak Shafran and Karthik Narasimhan and Yuan Cao",
-      "year": "2023",
-      "venue": "International Conference on Learning Representations",
-      "status": "ICLR venue verified in arXiv publication comment",
-      "primary_sources": [
-        "https://arxiv.org/abs/2210.03629v3"
       ]
     },
     {
@@ -600,18 +396,6 @@
         "https://arxiv.org/abs/2406.07496v1",
         "https://doi.org/10.1038/s41586-025-08661-4",
         "https://github.com/zou-group/textgrad"
-      ]
-    },
-    {
-      "key": "zhang2020bertscore",
-      "arxiv_id": "1904.09675",
-      "title": "BERTScore: Evaluating Text Generation with BERT",
-      "authors": "Tianyi Zhang and Varsha Kishore and Felix Wu and Kilian Q. Weinberger and Yoav Artzi",
-      "year": "2020",
-      "venue": "International Conference on Learning Representations",
-      "status": "ICLR venue verified in arXiv publication comment",
-      "primary_sources": [
-        "https://arxiv.org/abs/1904.09675v3"
       ]
     },
     {
@@ -834,6 +618,63 @@
         "supported_scope": "Learns query-specific rubric generators from preferences and uses learned rubrics for report-generator training; not a claim of evaluator-program evolution."
       },
       "author_note": "Jie Zhou appears twice in both official arXiv BibTeX and v3 PDF. Preserved; identity/deduplication requires author clarification."
+    },
+    {
+      "key": "lee2026metaharness",
+      "arxiv_id": "2603.28052",
+      "title": "Meta-Harness: End-to-End Optimization of Model Harnesses",
+      "authors": "Lee, Yoonho and Nair, Roshen and Zhang, Qizheng and Lee, Kangwook and Khattab, Omar and Finn, Chelsea",
+      "year": "2026",
+      "venue": "arXiv",
+      "checked_on": "2026-09-21",
+      "status": "arXiv preprint; no formal venue verified. Public release is not a reproduction of every reported result.",
+      "primary_sources": [
+        "https://arxiv.org/bibtex/2603.28052",
+        "https://github.com/stanford-iris-lab/meta-harness"
+      ],
+      "claim_support": {
+        "supported_scope": "Full-history harness code optimization; official examples and author release caveat inspected. Adaptation to IterEval tasks is pending."
+      }
+    },
+    {
+      "key": "onoe2025docci",
+      "arxiv_id": "2404.19753",
+      "title": "DOCCI: Descriptions of Connected and Contrasting Images",
+      "authors": "Onoe, Yasumasa and Rane, Sunayana and Berger, Zachary and Bitton, Yonatan and Cho, Jaemin and Garg, Roopal and Ku, Alexander and Parekh, Zarana and Pont-Tuset, Jordi and Tanzer, Garrett and Wang, Su and Baldridge, Jason",
+      "year": "2025",
+      "venue": "Computer Vision -- ECCV 2024",
+      "pages": "291--309",
+      "doi": "10.1007/978-3-031-73027-6_17",
+      "checked_on": "2026-09-21",
+      "status": "Publisher BibTeX gives publication year 2025 for ECCV 2024 proceedings. Crossref online date is 2024-11-26 and project cites 2024; publisher citation year retained explicitly, not confused with conference year.",
+      "primary_sources": [
+        "https://citation-needed.springer.com/v2/references/10.1007/978-3-031-73027-6_17?format=bibtex&flavour=citation",
+        "https://api.crossref.org/works/10.1007/978-3-031-73027-6_17",
+        "https://google.github.io/docci/"
+      ],
+      "claim_support": {
+        "supported_scope": "Images with detailed human descriptions and related-image metadata. Does not supply human comparisons between generated captions."
+      }
+    },
+    {
+      "key": "si2025ideas",
+      "arxiv_id": "2409.04109",
+      "title": "Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers",
+      "authors": "Si, Chenglei and Yang, Diyi and Hashimoto, Tatsunori",
+      "year": "2025",
+      "venue": "International Conference on Learning Representations",
+      "volume": "2025",
+      "pages": "94003--94092",
+      "checked_on": "2026-09-21",
+      "status": "ICLR 2025 proceedings BibTeX verified; unusually large pagination copied from official proceedings, not guessed.",
+      "primary_sources": [
+        "https://proceedings.iclr.cc/paper_files/paper/781-/bibtex",
+        "https://proceedings.iclr.cc/paper_files/paper/2025/hash/ea94957d81b1c1caf87ef5319fa6b467-Abstract-Conference.html",
+        "https://github.com/NoviScl/AI-Researcher"
+      ],
+      "claim_support": {
+        "supported_scope": "Research ideas and expert ratings/reviews; topic grouping and compatible annotation constructs require audit before deriving preferences."
+      }
     }
   ],
   "last_incremental_audit": "2026-09-20",

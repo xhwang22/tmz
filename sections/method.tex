@@ -163,7 +163,7 @@ In the ordinary revision loop, a new direction is proposed only after the agent 
 Neither rejecting a candidate nor returning to the best program automatically ends the direction.
 Configured search and execution limits can also stop exploration, leaving the direction unresolved.
 On normal completion, search returns the best program selected on Train, subject to the terminal checks in Appendix~\ref{app:algorithm}, or $E_0$ if no candidate qualifies.
-Terminal validation cannot change this choice or reopen search; independent Test/OOD assessment follows method freeze.
+Terminal validation cannot change this choice or reopen search; independent held-out assessment follows method freeze.
 
 \subsection{Revision space}
 \label{sec:runtime}

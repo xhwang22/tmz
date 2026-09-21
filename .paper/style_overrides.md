@@ -1,5 +1,86 @@
 # Manuscript style
 
+## Figure 1 compact flat refinement — round 45 (2026-09-21)
+
+- Continue the existing shared-case/side-by-side layout, not a new topology.
+  Use a shorter case strip, stronger action labels and grouped content to
+  reduce scattered small text. A single flat white surface groups the default
+  checks; it does not add another algorithm stage or imply sequential execution.
+- Preserve original branch paths, node geometry, dashed/solid meanings and
+  all nine image payloads/crops. Use flat peach/blue/lake-green tones; no
+  gradients, folds or stacked shadows. Keep local ranking and acceptance distinct.
+- Abstract/Introduction, captions, Fig2 and quantitative content stay fixed.
+  Overwrite canonical assets and the stable preview, without more versions.
+- The author now requests GitHub publication; earlier no-push notes are historical.
+  The current compact figure does not resolve the ten-page main-text overflow
+  or the small-label limitation. Do not label the draft submission-ready.
+
+## Figure 1 typography refinement — round 44 (2026-09-21)
+
+- Preserve round43's case strip, equal-width method panels and group placement.
+  The author now permits shortening labels and changing typography/line weight;
+  this supersedes round43's byte-for-byte descendant/wording preservation rule.
+- Keep branch path coordinates, node geometry, attempt order, dashed/solid
+  meanings and all nine image payloads/crops unchanged. No gradients, folds,
+  decorative containers or new layout. Abstract/Introduction and Fig2 stay fixed.
+- Make action headings stronger, shorten diagnostic lines and ranking badges,
+  and distinguish active paths from unexplored alternatives by stroke weight.
+  Local ordering is not candidate acceptance; do not imply measured success.
+- Replace canonical exports and the stable page preview in place. Do not create
+  additional candidate directories. This preview is not a request to push.
+- Labels now span 4.6–6.8 points at 5.4 inches; small-print readability and the
+  ten-page main-text preview remain unresolved submission constraints.
+
+## Figure 1 shared-case layout — round 43 (2026-09-21)
+
+- The author rejected the round42 gradient treatment and requested one flat
+  horizontal case strip above two equal-width comparison panels.
+- Keep the existing default-tree/default-checks and era-tree/era-revisions
+  descendants unchanged. Move and uniformly scale complete groups only; do not
+  redraw paths, change branch counts or replace trees with sequential cards.
+- Use solid pale peach/blue/green surfaces matching Fig2; no gradients, folded
+  corners, stacked paper edges or node highlights. Retain all nine images/crops.
+- The 1840 × 940 preview at 5.4 inches expands the main text to ten pages.
+  The initial nine-page requirement remains unsatisfied; do not shrink official
+  fonts/margins or edit protected Abstract/Introduction to hide the overflow.
+  No push is made pending author review of the new layout.
+
+## Rejected Figure 1 material refinement — round 42 (2026-09-21)
+
+- Rejected by the author; retained below as an audit trail, not current guidance.
+  Match the canonical Fig2's layered paper-card treatment without reflowing Fig1.
+  Use restrained peach/blue/green gradients, offset paper edges, mint headers,
+  photo mounts and shaded node rims. Preserve the 64 current labels, nine images
+  and crops, semantic paths, and original panel/card/node geometry.
+- Decorative underlays may group the existing default checks; they do not add
+  candidates, observations or search transitions. No generated image replacement.
+- Keep Fig2, Abstract/Introduction, captions and quantitative assets unchanged
+  during this visual pass. Replace canonical exports and stable previews in place.
+
+## Experiment display and evidence rules — round 41 (2026-09-21)
+
+- Preserve author-edited Abstract/Introduction and canonical Fig1/Fig2.
+- Initial main text stays within nine official-template pages; do not shrink
+  template fonts/margins or move required argumentation merely to evade the limit.
+- Fig3 retains its original compact annular taxonomy, family palette and lake
+  green. Changes are data/endpoint updates, not a layout redesign.
+- Primary generalization is independent within-domain inputs. OOD is optional.
+  Each domain gets a separately adapted evaluator; 22 tasks are candidate scope.
+- Ideal aggregate assignments may fill quantitative displays. No banners inside
+  plots; retain caption/title-page/metadata disclosures. Do not invent raw votes,
+  observed traces, run-level uncertainty, permissions or completed execution.
+- One numerical source (`data/ideal_scenario/scenario.json`) feeds figures,
+  numerical tables and prose macros; run the arithmetic/provenance checks.
+- Table1 is the absolute final comparison. Fig3 shows scope, deployment trade-offs
+  and domain gains from the same values; do not call these independent evidence.
+- Preserve native baseline capabilities and retain a SkillOpt/text-only IterEval
+  comparison. Priority-versus-history uses the same best-parent policy.
+- Source references and publication fields follow the literature audit. A source
+  dataset is not automatically a human preference dataset.
+- Historical rules below remain an audit trail; conflicting scope, numbering and
+  old OOD/simulation-layout descriptions do not override this section.
+
+
 ## Approved Fig2 integration (2026-09-21)
 
 - The author confirmed the horizontal three-panel overview as the manuscript

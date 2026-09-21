@@ -8,15 +8,18 @@
 - US Letter; official font sizes, margins and text area unchanged.
 - Natbib author–year citations; supplied `.bst`; single-paragraph abstract.
 - Figure captions below; table captions above; vector artwork for diagrams,
-  quantitative marks, and text. Eight chart PDFs have native 5.4-inch canvases;
+  quantitative marks, and text. Chart PDFs have native 5.4-inch canvases;
   figure typography is scoped and does not replace the official Times body.
   Fonts must be embedded, with no Type 3 fallbacks. Audit photos at 300 DPI
   and raster line art at 600 DPI; text and diagram linework remain vector.
   These are repository quality thresholds, not an additional official ICLR rule.
-  Figure 1 directly prints the approved three-column SVG export at 5.4 inches,
-  preserving all nine photographic insets (at least 300 DPI). Its vector labels
-  are approximately 2.5–4.7 points, an acknowledged readability limitation;
-  the author rejected the separate print reflow. Figure 2 prints the approved
+  Figure 1 previews the author-requested shared case strip above equal-width
+  method panels at 5.4 inches, retaining the original branch visualizations
+  and nine photographic insets (335–741 PPI). Vector labels are approximately
+  4.6–6.8 points after typography refinement, an acknowledged readability
+  limitation. The compact 1840 × 880 figure
+  currently produces ten main-text pages; the nine-page limit is not met.
+  Figure 2 prints the approved
   horizontal three-panel overview at 5.4 inches, with vector labels/connectors
   and reused AI-generated pictograms. Labels are approximately 3.4–7.2 points;
   some pictograms fall below the raster-line-art target. These are documented

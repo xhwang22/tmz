@@ -1,0 +1,1 @@
+display_label,study_id,domain_set_id,domain_id,feedback_route,method_id,comparator_id,endpoint,unit,estimate,lower,upper,interval_method,cohort_rule,n_requested,n_complete,n_domains,n_search_runs,pool_size,label_budget,human_minutes,total_cost,status,raw_manifest_hash,analysis_hash

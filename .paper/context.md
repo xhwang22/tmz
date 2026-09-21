@@ -1,5 +1,104 @@
 # Paper context
 
+## Current Fig1 compact flat refinement — round 45 (2026-09-21)
+
+The author requests further Fig1 refinement and a GitHub upload. The existing
+shared Source/A/B strip and equal-width comparison panels remain. The canvas
+is shortened from 1840 × 940 to 1840 × 880, with a tighter case strip and less
+header spacing. One white surface groups the default checks; mint-headed cards
+retain the three successive revisions on the right. Main paths are 4.6 SVG
+units, order dashes 2.8 and alternatives 2.2. Action labels and diagnostics are
+shorter and larger. No gradients, folds, new photographs or search mechanisms.
+The four protected method groups retain their path/node/image geometry against
+commit 8892d9d; all nine image payloads and crops match. Local ranking corrections
+are illustrative, not candidate acceptance or measured improvement.
+Abstract/Introduction, their caption, and Fig2 match that commit byte-for-byte.
+This pass does not change Fig3 or any quantitative assignments. Stable canonical
+exports and the page-2 preview are overwritten; no new candidate directory.
+At 5.4 inches, photos are 335–741 PPI and text remains 4.6–6.8 points. Fonts are
+embedded. The PDF remains 34 pages with ten main-text pages: the nine-page
+initial-submission limit is still unmet, and no template font/margin is reduced.
+The upload includes the existing pending manuscript/experiment-plan revision
+and its dependencies so that the source matches the compiled PDF. Old untracked
+candidate assets and caches are excluded. The 22-domain execution documents are
+plans, not records of completed experiments.
+This section supersedes earlier Fig1 size/style descriptions and upload holds.
+
+## Current Fig1 typography preview — round 44 (2026-09-21)
+
+The author approved a local type/line-weight pass, not another layout change.
+The shared-case strip and lower comparison panels retain round43's positions.
+Panel headings grow from 25 to 32 SVG units; default actions from 18 to 26;
+revision headings from 19 to 28; diagnostic text is now 22. Labels are shortened
+to fit their original spaces. Solid active paths are 3.8 units, attempt-order
+dashes 2.6, and unexplored branches 2. Branch geometry and all nine image
+payloads/crops match commit 8892d9d. No gradients or extra containers are added.
+The local-ordering note does not imply candidate acceptance or measured gains.
+Abstract/Introduction, captions, Fig2 and quantitative data remain unchanged.
+Canonical exports and build/fig1-page-current.png are overwritten in place;
+scripts/layout_teaser.py is idempotent. Labels span 4.6–6.8 points at 5.4 inches;
+the existing 335–662 PPI images are unchanged. The compiled PDF remains 34 pages,
+with ten main-text pages against the initial nine-page limit. No commit/push.
+This section supersedes round43's wording-preservation and font-size statements.
+
+## Current Fig1 shared-case preview — round 43 (2026-09-21)
+
+The author rejected the gradient/material pass and authorized a horizontal
+Source/A/B case strip above equal-width Default/IterEval panels. The source is
+reflowed by scripts/layout_teaser.py; export uses scripts/render_teaser.py.
+All four method visualization groups match commit 8892d9d in descendant content,
+geometry and wording. Only wrapper translations/uniform scale move them.
+All nine embedded images and original crops remain. Pure-color panels replace
+the rejected gradients, folds, multiple paper edges and highlight effects.
+Captions, Abstract/Introduction, Fig2 and numerical data are unchanged.
+The current PDF is 34 pages, with ten main-text pages against the nine-page
+initial limit; layout review does not establish submission readiness. Small
+labels remain 2.9–6.1 points; image resolution is 335–662 PPI at 5.4 inches.
+No commit or push was made for this unconfirmed preview.
+
+## Rejected Fig1 material treatment — round 42 (2026-09-21)
+
+The second surface-only pass matches canonical Fig2's layered paper cards.
+Fig1 now has restrained gradient panels, blue card underlays beneath the existing
+default checks, stacked revision sheets with mint headers/folded corners, photo
+mounts and shaded node rims. The 64 current labels, nine embedded images/crops
+and all semantic groups match commit 8892d9d exactly. Original panel, revision
+card, image and search-node positions are unchanged. This supersedes the older
+surface descriptions below. No caption, claim, Abstract/Introduction, Fig2 or
+quantitative data changed in this pass; the small-label limitation remains.
+
+## Current experiment and display state — round 41 (2026-09-21)
+
+This section supersedes older experimental scope and display-number references below.
+Main text is **nine pages** in the unchanged official ICLR template. Abstract and
+Introduction are author-protected and unchanged. Fig1/Fig2 artwork is untouched.
+The full experiment/display plan is `experiment_fill_plan.md`; baseline and venue
+verification is `experiment_literature_audit.md`.
+
+C1 uses independent unseen original-input/source groups **within each domain**;
+no mandatory OOD test or universal-transfer claim. SV4, IG1, TG1 and AR1 are
+priority candidates; the 22-task taxonomy is not completed coverage.
+Seven main rows retain native capabilities: fixed judge, Seed, learned signal
+fusion, SkillOpt, full-program GEPA, Meta-Harness and IterEval.
+Four internal controls distinguish parent retention, direction priority and history.
+C2 needs fresh outputs and blind judgments; C3 needs separate training authorization.
+
+Active numerical assets are assigned ideal aggregates from
+`data/ideal_scenario/scenario.json`, rendered once for tables, figures and prose
+macros. No observations, run-level distributions or confidence intervals exist.
+Fig3 preserves the original annular layout, family palette and lake accent;
+its cost/domain panels reuse Table1's values, not independent evidence.
+Figures: four main + three appendix. Tables: two main + nineteen appendix.
+`figures.yml` records exact current captions and stable labels.
+Historical numbered figures in older notes are not current IDs.
+
+`make ideal && make && make check` regenerates and checks the draft.
+Plots have no simulation banner; captions and title-page notice retain provenance.
+The submission gate must reject this ideal-scenario draft.
+C27/C28 and protected Abstract efficacy claims C58/C59 remain evidence gaps.
+No experimental execution, training, commit or push occurred in this revision.
+
+
 ## Current Fig2 manuscript integration (2026-09-21)
 
 The author confirmed replacing the old circular overview with the approved
