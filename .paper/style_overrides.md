@@ -1,6 +1,21 @@
 # Manuscript style
 
-## Current figure organization and method color (2026-09-20, round 35)
+## Preserve the approved figure layouts (2026-09-21, round 36)
+
+The author rejected the round-35 redesign of both main figures.
+Figure 1 must directly print the approved three-column author-v6 SVG export,
+including its wording, search trees and all nine images. Change method colors
+to lake green only; do not substitute teaser-print.tex or reflow its panels.
+Figure 2 retains the original four-panel pictorial overview: artifact cards,
+mining cards, icon-led circular evolution loop and downstream assessment cards.
+Keep its native canvas, pictograms, photographs, rounded surfaces and panel
+positions. Fix local text/arrow collisions only; do not replace it with a
+flat flowchart, strips, lanes or a state-machine diagram.
+Small teaser labels are a documented readability limit, not authorization to
+redesign. Method details remain in the caption and algorithm.
+This instruction supersedes the rejected layout guidance below.
+
+## Superseded layout guidance (2026-09-20, round 35)
 
 Main Figure 1 is the author-v6 image-editing teaser; Figure 2 is the method
 overview; Figure 3 is the existing C1 landscape. Keep Table 1 in the main text.

@@ -23,12 +23,13 @@ python3 scripts/render_figures.py teaser overview
 The current self-contained SVG is the source of truth; the older wording
 profile records its history, not a reason to overwrite later SVG edits.
 For live SVG editing, install TeX Gyre Heros to retain label metrics.
-The three-column reference is too dense at paper width. The manuscript uses
-`figures/teaser-print.tex`, which places the task above the comparison and uses
-native 7-point labels. It reuses the three original task photos and expresses
-the diagnostic steps in text; all nine original insets remain in this SVG.
-Paper previews are in `build/figure-review/teaser.{pdf,png}`; reference exports
-remain in this directory and `figures/teaser.{svg,pdf,png}`.
+The manuscript directly prints this three-column layout through
+`figures/teaser.tex` and `figures/teaser.pdf`, with all nine images intact.
+The author rejected the separate `teaser-print.tex` reflow; do not reinstate it.
+At 5.4 inches, small vector labels remain a readability limitation. Preserve
+the approved geometry instead of treating that limitation as permission to redesign.
+Paper previews are in `build/figure-review/teaser.{pdf,png}`; canonical exports
+are `figures/teaser.{svg,pdf,png}`.
 
 ## Continuing figure-side work
 

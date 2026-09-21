@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-09-20",
+  "updated_on": "2026-09-21",
   "serialization": "JSON-compatible YAML",
   "id_namespace": "C1... here are memory claim IDs, separate from manuscript study labels C1/C2/C3.",
   "evidence_policy": "Specification artifacts support design statements only. Explicit simulated reporting fixtures support provenance and arithmetic checks, never empirical effectiveness. C43 records a bounded qualitative observation from inspected development traces; no private numerical results or sample-level records are imported. Hypotheses C27/C28 remain gaps.",
@@ -29,6 +29,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
+        "Fig2",
         "Tab2"
       ],
       "status": "draft",
@@ -44,6 +45,7 @@
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
+        "Fig2",
         "Tab2"
       ],
       "status": "draft",
@@ -761,9 +763,7 @@
         ".paper/method_implementation_audit.md",
         ".paper/reviewer_round1_20260919.md"
       ],
-      "figure_or_table": [
-        "Fig2"
-      ],
+      "figure_or_table": [],
       "status": "draft",
       "risk": "Summarizes the inspected controller's update order, including accepted-but-ineligible candidates; it neither adds an execution experiment nor guarantees population improvement."
     },

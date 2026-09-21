@@ -7,7 +7,7 @@ No display reports measured performance.
 | ID / location | Source | Purpose / status |
 | --- | --- | --- |
 | Fig1 / main | figures/teaser.tex | (a) image-editing task: layout fidelity versus visual richness; (b) successive plausible directions in the default setup; (c) continued layout-fidelity revisions: detection, penalty and severity; Constructed illustration of the search distinction; no observed human preferences, optimizer trajectories, acceptance or gains |
-| Fig2 / main | figures/overview.tex | (a) existing-dataset or fresh-output mining, random anchor, compatible preference reuse or new annotation; (b) depth-first allocation with separate candidate acceptance, program inheritance and direction continuation; Conceptual specification with constructed examples; no measured results |
+| Fig2 / main | figures/overview.tex | (a) four artifact families; (b) existing-dataset mining and new preferences; (c) pictorial evolution loop; (d) C1/C2/planned C3 assessment; conceptual specification, not measured results |
 | Fig3 / main | figures/c1_landscape.tex | (a) 22-task taxonomy, not measured sample composition; (b) seed and IterEval agreement versus Best-of-4 family means; (c) common-cohort OOD agreement across all 22 tasks; Explicit full-cohort simulated reporting fixture; no empirical alignment, selection, sampling, search, C2, or C3 efficacy |
 | Fig4 / appendix | figures/evaluator.tex | (a) one artifact; (b) routed observations; (c) dimensional criteria; (d) synthesis; Conceptual specification with constructed examples; no measured results |
 | Fig5 / appendix | figures/budget_tests.tex | (a) search under equal total budgets; (b) disagreement-based preference mining versus alternative sampling under equal human budgets; Unmeasured reporting placeholders; no empirical result or expected effect size |
@@ -38,8 +38,8 @@ No display reports measured performance.
 | Tab14 | tab:results | sections/appendix.tex; Explicit simulated C1 numerical example; not experimental results |
 | Tab15 | tab:manifest | sections/appendix.tex; Experiment fields requiring author decisions |
 
-Figure 1 motivates depth through the author-v6 image-editing case. Its native-size print layout uses 7-point labels; the original three-column reference SVG and all nine embedded insets are preserved.
-Figure 2 explains implementation: a mining strip feeds a depth-first revision lane and separate acceptance/inheritance/continuation decisions, including fallback and switching.
+Figure 1 directly prints the approved three-column author-v6 image-editing teaser, including all nine images. Small vector labels remain a documented readability limit.
+Figure 2 restores the original pictorial four-panel layout, including artifact illustrations, the photo, component icons and circular loop; only local label/arrow spacing changes.
 Figure 3 and main Table 1 retain the C1 landscape and complete comparator matrix. The landscape artwork and numerical records are unchanged.
 The former runtime, budget placeholder, and balanced-subset landscape are now appendix Figures 4, 5, and 6. Remaining appendix figures shift accordingly; all table numbers stay unchanged.
 Lake-green method identity matches the main landscape. Red denotes error status, not the method.

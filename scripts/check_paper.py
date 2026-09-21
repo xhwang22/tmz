@@ -136,8 +136,21 @@ for asset in assets["generated_images"]:
         if not (ROOT / prompt).is_file():
             errors.append(f"Missing figure prompt: {prompt}")
 
+# Conceptual mixed-media PDFs have asset provenance, not numerical records.
+# Their embedded photos and vector labels are checked by check_teaser.py.
+conceptual_files = {}
+for asset in assets.get("conceptual_figures", []):
+    info = json.loads((ROOT / asset["source_manifest"]).read_text())
+    relative = asset["path"]
+    if info.get("paper_graphic") != relative or relative not in info["files"]:
+        errors.append(f"Conceptual figure not identified by its source manifest: {relative}")
+        continue
+    if not info.get("constructed_illustration") or info.get("empirical_evidence") is not False:
+        errors.append(f"Conceptual figure lacks an illustration disclosure: {relative}")
+    conceptual_files[relative] = info["files"][relative]
+
 # Vector charts have data/generator provenance, not image-model provenance.
-# Keep the two validation paths separate; PDFs have no meaningful raster DPI.
+# Keep numerical and conceptual validation separate; PDFs have no raster DPI.
 manifest = json.loads((ROOT / "data/simulated/manifest.json").read_text())
 if manifest.get("simulation_only") is not True or manifest.get("empirical_evidence") is not False:
     errors.append("Quantitative fixture provenance does not disclose simulation.")
@@ -169,8 +182,9 @@ for relative in sorted(graphics):
     data = path.read_bytes()
     if not data.startswith(b"%PDF-"):
         errors.append(f"Expected vector PDF: {relative}")
-    if hashlib.sha256(data).hexdigest() != vector_files.get(relative):
-        errors.append(f"Vector figure does not match data manifest: {relative}")
+    expected = conceptual_files.get(relative) if relative in conceptual_files else vector_files.get(relative)
+    if hashlib.sha256(data).hexdigest() != expected:
+        errors.append(f"Vector figure does not match its source manifest: {relative}")
     if any(abs(width - 5.4) > 1e-6 for width in print_widths.get(relative, [])):
         errors.append(f"Vector chart does not retain its 5.4-inch native width: {relative}")
 if graphics != recorded_graphics:

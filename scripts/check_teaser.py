@@ -24,16 +24,9 @@ def audit():
     assert info["constructed_illustration"] and not info["empirical_evidence"]
     layout = (ROOT / info["paper_layout"]).read_text()
     assert "scalebox" not in layout and "resizebox" not in layout
-    assert min(map(float, re.findall(r"\\fontsize\{([0-9.]+)\}", layout))) >= 7
-    print_ppis = []
-    for relative, digest in info["paper_photos"].items():
-        raw = (ROOT / relative).read_bytes()
-        assert hashlib.sha256(raw).hexdigest() == digest, relative
-        w, h = struct.unpack(">II", raw[16:24])
-        width = re.search(r"\\includegraphics\[width=([0-9.]+)cm\]\{" + re.escape(relative) + r"\}", layout)
-        assert width, relative
-        print_ppis.append(w * 2.54 / float(width[1]))
-    assert len(print_ppis) == 3 and min(print_ppis) >= 300
+    assert info["paper_graphic"] == "figures/teaser.pdf"
+    width = re.search(r"\\includegraphics\[width=([0-9.]+)in\]\{figures/teaser.pdf\}", layout)
+    assert width and abs(float(width[1]) - info["print_width_in"]) < 1e-6
     root = ET.fromstring(source.read_text())
     scale = info["print_width_in"] / float(root.get("viewBox").split()[2])
     ppis, font_pts = [], []
@@ -52,8 +45,9 @@ def audit():
     assert "Type 3" not in fonts
     for line in fonts.splitlines()[2:]:
         assert re.search(r"\byes\s+yes\s+yes\b", line), line
-    print(f"Reference SVG: nine unchanged images, embedded PDF fonts; not the print layout.")
-    print(f"Paper teaser: native labels at least 7 pt; three unchanged photos at {min(print_ppis):.0f}–{max(print_ppis):.0f} PPI.")
+    print(f"Paper teaser: author-approved layout, nine images at {min(ppis):.0f}–{max(ppis):.0f} PPI; embedded PDF fonts.")
+    if min(font_pts) < 7:
+        print(f"Readability warning: preserved vector labels are {min(font_pts):.1f}–{max(font_pts):.1f} pt at print size; no layout reflow authorized.")
     assert min(ppis) >= 300, "Photographic insets below 300 PPI"
     return ppis
 

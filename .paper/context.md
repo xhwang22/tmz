@@ -1,19 +1,22 @@
 # Paper context
 
-## Current figure layout (round 35)
+## Current figure layout (round 36)
 
-Figure 1 is the constructed author-v6 image-editing teaser, reflowed for print
-with 7-point labels. The three-column SVG, its wording and nine insets remain
-available as a reference; the print layout uses its three unchanged photos.
-Figure 2 presents preference mining above depth-first evolution, with explicit
-acceptance, inheritance, continuation, fallback, and direction switching.
+The author rejected the previous redesign of both figures.
+Figure 1 directly prints the approved three-column author-v6 teaser, preserving
+its wording, geometry and all nine images. Only method colors change to green.
+Figure 2 restores the original four-panel pictorial overview, including its
+artifact illustrations, photo, component icons and circular evolution loop.
+Local label wrapping and arrow clearance are the only geometry adjustments.
+Do not reinstate the rejected teaser reflow or the flat two-panel overview.
+Small teaser labels remain a documented readability limitation.
 Both use lake-green method accents matching Figure 3, the unchanged main-text
 C1 landscape. Main Table 1 remains the comparator matrix. There are now 13
 figures (three main, ten appendix) and 15 tables; all previous figures shift
 one number, and historical revision entries retain their original IDs.
 No numerical data or empirical status changes accompany this layout revision.
 
-Updated: 2026-09-20. Status: method and study design with author-requested,
+Updated: 2026-09-21. Status: method and study design with author-requested,
 explicitly simulated quantitative displays; confirmatory results pending.
 The introduction includes a bounded qualitative development observation.
 The latest author-edited Abstract and Introduction state gains in alignment, sustained improvement, and downstream applications.

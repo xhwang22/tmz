@@ -1,6 +1,6 @@
 # Claim–evidence ledger
 
-## Current display map (round 35)
+## Current display map (round 36)
 
 Current sentence-level claims and reciprocal display links are in `claims.yml`
 and `figures.yml`. The older ledger sections below are historical snapshots:
@@ -11,7 +11,7 @@ benefits that remain unverified; C27/C28 are still material evidence gaps.
 | Current display | Evidence role |
 | --- | --- |
 | Fig1 teaser | Constructed case illustrating C32; no observed preferences, acceptance or gains |
-| Fig2 overview | Mining and evolution specification, including C47 pre-update fallback |
+| Fig2 overview | Original pictorial task/mining/evolution/assessment overview; detailed C47 fallback remains in the algorithm, not depicted |
 | Fig3 main C1 landscape | 22-task taxonomy, eight family points, 110 task-method means/intervals; unchanged simulated records |
 | Fig4 evaluator | Six-component pointwise runtime specification |
 | Fig5 budget comparison | Unmeasured search and preference-mining placeholders |
@@ -26,7 +26,7 @@ benefits that remain unverified; C27/C28 are still material evidence gaps.
 | Tab1 / Tab8 / Tab14 | Unmeasured main C1 matrix / unmeasured downstream outcomes / simulated numerical summary |
 
 All other table IDs are unchanged. No numerical data or quantitative artwork
-was modified in round 35; simulation checkers verify the original denominators.
+was modified in rounds 35–36; simulation checkers verify the original denominators.
 The teaser and overview do not support empirical gap closure.
 
 ## Historical ledger and revision snapshots

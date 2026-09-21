@@ -18,19 +18,20 @@ Introduction 中的收益表述仍未得到实证验证；C27/C28 保持证据�
 
 | 正文展示 | 作用 | 文件 |
 | --- | --- | --- |
-| Figure 1，页 2 | image-editing 案例；对比换方向与沿同一方向继续修订 | [正文排版](figures/teaser-print.tex) · [作者三栏 SVG](figures/candidates/teaser-v6-paper-wording/teaser.svg) |
-| Figure 2，页 5 | preference mining → depth-first evolution；分别展示接受、继承、继续与换方向 | [overview.tex](figures/overview.tex) |
-| Figure 3，页 9 | C1 任务分类、偏好一致性与 Best-of-4、22 个任务的 OOD 汇总 | [PDF](figures/simulated/c1_landscape.pdf) · [SVG](figures/simulated/c1_landscape.svg) |
+| Figure 1 | image-editing 案例；保留作者认可的三栏布局和九处图像细节 | [正文 PDF](figures/teaser.pdf) · [作者三栏 SVG](figures/candidates/teaser-v6-paper-wording/teaser.svg) |
+| Figure 2 | 原拟物化 overview：任务、偏好挖掘、环形进化流程、下游应用 | [overview.tex](figures/overview.tex) |
+| Figure 3 | C1 任务分类、偏好一致性与 Best-of-4、22 个任务的 OOD 汇总 | [PDF](figures/simulated/c1_landscape.pdf) · [SVG](figures/simulated/c1_landscape.svg) |
 | Table 1 | 完整 ID/OOD 对齐与选择对照；数值仍待测 | [Results](sections/results.tex) |
 
 Figure 1 保留作者更新的 SVG 文字、几何与九张嵌入图，方法色改为湖绿色。
-正文另用原生 7 pt 字体重排：任务位于上方，默认设置与深搜在下方并排；三张
-任务照片直接从 SVG 提取，未重新生成。完整三栏版本仍保留作编辑参考。
-照片在正文宽度下约 399–403 DPI；路径、标注和文字为矢量。
+正文直接使用该三栏版本，不再使用此前重排的 teaser-print.tex。
+九处照片在正文宽度下均不低于 300 DPI；文字与路径保留矢量。
+小标签在 5.4 英寸宽度下约 2.5–4.7 pt，是现有版本的可读性限制，
+不能因此擅自重排作者认可的布局。
 
-Figure 2 将偏好挖掘压成上方信息流，把主要空间留给连续修订和三个独立决定。
-不合格的程序继承回退到更新前的 best，但保留诊断；停止当前方向后，预算允许
-时可以转向下一方向。继续深搜不等于接受失败候选，也不等于自动继承它。
+Figure 2 恢复原有四面板、拟物图标、照片、圆角卡片和环形进化流程。
+只调整局部标签换行和箭头间距，不替换为泳道或扁平状态机。
+接受候选、继承程序和继续方向的区别，以及停止后换方向的可能性保留在图注和方法中。
 
 方法块使用湖绿 `#62AAA5` 和深色 `#477D79`，与正文性能图呼应；红色只用于错误状态。
 Figure 3 的布局、数据和绘图产物未改。原 [landscape_outcomes.pdf](figures/simulated/landscape_outcomes.pdf)
@@ -76,8 +77,8 @@ make check
 python3 scripts/render_figures.py teaser overview evaluator budget_tests
 ```
 
-预览输出在 `build/figure-review/`。正文 teaser 使用 `teaser-print.tex`，原三栏 SVG
-及其独立 PDF/PNG 是参考版，两者不要混淆。重新导出 SVG 和照片：
+预览输出在 `build/figure-review/`。正文通过 `teaser.tex` 直接引用作者三栏版本的
+`teaser.pdf`，不使用已否决的 `teaser-print.tex`。重新导出：
 
 ```bash
 uv run --with cairosvg python scripts/render_teaser.py

@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-09-20",
+  "updated_on": "2026-09-21",
   "serialization": "JSON-compatible YAML",
   "figures": [
     {
@@ -13,16 +13,13 @@
         "(c) continued layout-fidelity revisions: detection, penalty and severity"
       ],
       "key_numbers": [],
-      "raster_assets": [
-        "figures/teaser/source-street.png",
-        "figures/teaser/edit-a.png",
-        "figures/teaser/edit-b.png"
-      ],
+      "raster_assets": [],
       "supports_claims": [
         "C32"
       ],
       "caption_in_manuscript": "Dive deeper, branch later. Panel (a) contrasts layout fidelity with visual richness. Panel (b) branches across plausible corrections; dashed arrows show attempt order. Panel (c) develops one correction through detection, scoring, and severity weighting. Nodes denote complete evaluation programs; hollow nodes are unexplored alternatives. The corrected ordering is local to this example, not candidate acceptance or generalization. Images, preferences, and paths are constructed illustrations, not experimental evidence.",
-      "evidence_status": "Constructed illustration of the search distinction; no observed human preferences, optimizer trajectories, acceptance or gains"
+      "evidence_status": "Constructed illustration of the search distinction; no observed human preferences, optimizer trajectories, acceptance or gains",
+      "embedded_image_manifest": "figures/teaser.manifest.json"
     },
     {
       "id": "Fig2",
@@ -30,23 +27,28 @@
       "file": "figures/overview.tex",
       "caption_source": "sections/mining.tex",
       "panels": [
-        "(a) existing-dataset or fresh-output mining, random anchor, compatible preference reuse or new annotation",
-        "(b) depth-first allocation with separate candidate acceptance, program inheritance and direction continuation"
+        "(a) four artifact families with distinct evaluation standards",
+        "(b) existing-dataset mining and new-preference collection feeding a common feedback table",
+        "(c) icon-led evolution loop: implementation, sealed development measurement, separate decisions and failure diagnosis",
+        "(d) C1 alignment and selection, C2 refinement, planned C3 reward-guided training"
       ],
       "key_numbers": [],
-      "raster_assets": [],
+      "raster_assets": [
+        "output/imagegen/edit-preserved.png"
+      ],
       "supports_claims": [
         "C1",
+        "C2",
+        "C3",
         "C9",
         "C15",
         "C16",
         "C31",
         "C32",
         "C33",
-        "C47",
         "C49"
       ],
-      "caption_in_manuscript": "IterEval: from human preferences to an improved evaluation procedure. Panel (a) mines existing datasets or new outputs, reusing compatible preferences or collecting missing ones. Panel (b) shows successive revisions within a direction, with alternatives deferred until it pauses or closes. The green spine denotes editing opportunities, not automatic inheritance. Acceptance, inheritance, and continuation are separate decisions; fallback uses the pre-update best program and retains diagnostics. Terminal validation does not trigger edits or reranking. This is a method specification, not a result.",
+      "caption_in_manuscript": "IterEval: iterative evaluator self-improvement from human feedback. Panel (a) illustrates four artifact families with distinct evaluation standards. Panel (b) mines comparisons from existing datasets or fresh outputs, reusing compatible preferences or collecting missing ones. Panel (c) revises a six-component evaluation procedure with a fixed base model. The loop can continue a direction after an unaccepted candidate; candidate acceptance, program inheritance, and direction continuation remain separate decisions. Search can switch directions when the current direction pauses or closes. Terminal validation does not trigger edits or reranking. Panel (d) covers C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training. Artifacts are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
       "evidence_status": "Conceptual specification with constructed examples; no measured results"
     },
     {

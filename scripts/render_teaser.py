@@ -55,16 +55,6 @@ def main():
     images = doc.findall(".//s:image", NS)
     assert len(images) == 9
     assert all(el.get(HREF, "").startswith("data:image/png;base64,") for el in images)
-    # The paper-specific native-size layout reuses the three unchanged photos.
-    photo_dir = OUT / "teaser"
-    photo_dir.mkdir(exist_ok=True)
-    photo_files = {}
-    for el in images:
-        if el.get("id") in {"source-street", "edit-a", "edit-b"}:
-            path = photo_dir / (el.get("id") + ".png")
-            raw = base64.b64decode(el.get(HREF).split(",", 1)[1])
-            path.write_bytes(raw)
-            photo_files[str(path.relative_to(ROOT))] = digest(raw)
     # Reproducible outputs include the user's editable source and both previews.
     SOURCE.write_text(svg)
     (OUT / "teaser.svg").write_text(svg)
@@ -82,8 +72,8 @@ def main():
         "method_accent": "#62AAA5", "error_status_colors_preserved": True,
         "empirical_evidence": False, "constructed_illustration": True,
         "new_generation": False, "print_width_in": 5.4,
-        "paper_layout": "figures/teaser-print.tex",
-        "paper_photos": photo_files,
+        "paper_layout": "figures/teaser.tex",
+        "paper_graphic": "figures/teaser.pdf",
         "image_source": asset_manifest["source"],
         "image_source_sha256": asset_manifest["source_sha256"],
         "embedded_images": [{"sha256": digest(base64.b64decode(el.get(HREF).split(",", 1)[1])),
@@ -91,7 +81,7 @@ def main():
                               "svg_height": float(el.get("height"))} for el in images],
         "files": {str((OUT / f"teaser.{ext}").relative_to(ROOT)):
                   digest((OUT / f"teaser.{ext}").read_bytes()) for ext in ("svg", "pdf", "png")},
-        "limitations": "The preserved three-column SVG is a reference version, not the print layout. The paper uses native 7-point labels and three unchanged photos in teaser-print.tex; diagnostic insets remain in the full reference. All preferences and paths are constructed illustrations.",
+        "limitations": "The paper directly prints the author-approved three-column layout, including all nine images. At 5.4 inches, vector text is approximately 2.5–4.7 points; small labels remain a readability limitation, not permission to redesign the figure. All preferences and paths are constructed illustrations.",
     }
     (OUT / "teaser.manifest.json").write_text(json.dumps(info, indent=2) + "\n")
     print("Teaser: green method palette; text, geometry and nine embedded images preserved.")

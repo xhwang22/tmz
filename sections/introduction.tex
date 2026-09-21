@@ -45,7 +45,7 @@ In the default evaluator-evolution setup we tested, each new revision was propos
 We observed a tendency for unsuccessful early candidates to be followed by revisions in alternative directions rather than deeper development of the current one.
 Over repeated iterations, evolution can therefore spread effort across multiple plausible directions before any one of them has been developed far enough to judge reliably.
 
-IterEval uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:teaser}c; Figure~\ref{fig:overview}b).
+IterEval uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:teaser}c; Figure~\ref{fig:overview}c).
 The search continues developing the current direction after unsuccessful intermediate candidates, using their diagnostic results to guide the next revision.
 The best evaluator is maintained separately and replaced only by an improved candidate.
 Evolution moves to a new direction when diagnostic results provide sufficient evidence against the current one or when its search budget is exhausted.

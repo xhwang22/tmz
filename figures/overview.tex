@@ -1,107 +1,169 @@
-% Native-size method diagram. Geometry encodes depth; green identifies IterEval.
 \begingroup
-\fontfamily{qhv}\selectfont
-\begin{tikzpicture}[x=1cm,y=1cm,
-  every node/.style={inner sep=0pt},
-  body/.style={font=\fontsize{7.2}{8.8}\selectfont,text=pInk,align=left},
-  note/.style={font=\fontsize{7}{8.3}\selectfont,text=pMuted,align=left},
-  head/.style={font=\bfseries\fontsize{8.5}{10}\selectfont,text=pInk,align=left},
-  card/.style={rounded corners=4pt,draw=pLine,fill=white,line width=.6pt},
-  flow/.style={-{Stealth[length=1.6mm]},draw=pEvo,line width=.85pt},
-  ghost/.style={draw=pMuted!32,line width=.6pt},
-  evoNode/.style={circle,draw=pEvo,fill=pLake!24,minimum size=.47cm,
-    font=\bfseries\fontsize{8}{9}\selectfont,text=pInk},
-  choice/.style={circle,draw=pMuted!35,fill=white,minimum size=.14cm}]
-\path[use as bounding box] (0,0) rectangle (13.7,9.15);
+\renewcommand{\sfdefault}{qhv}% TeX Gyre Heros; scoped to this figure.
+% A small, role-based type scale. Only headings carry bold weight.
+% Zero default node padding makes the explicit card insets predictable;
+% pills restore their own padding below. The ICLR body fonts are unchanged.
+\tikzset{
+  pTitle/.style={font=\sffamily\bfseries\fontsize{8.5}{10.4}\selectfont,
+    text=pInk,align=left},
+  pLabel/.style={font=\sffamily\bfseries\fontsize{7.4}{9.2}\selectfont,
+    text=pInk,align=left},
+  pText/.style={font=\sffamily\mdseries\fontsize{7.4}{9.4}\selectfont,
+    text=pInk,align=left},
+  pSmall/.style={font=\sffamily\mdseries\fontsize{7}{9}\selectfont,
+    text=pMuted,align=left},
+  pLead/.style={font=\sffamily\bfseries\fontsize{11}{13}\selectfont,text=pEvo},
+  pBadge/.style={circle,fill=pInk!7,text=pInk,inner sep=0pt,minimum size=3.8mm,
+    font=\sffamily\bfseries\fontsize{7.6}{9}\selectfont},
+  pPill/.style={pSmall,rounded corners=3pt,draw=pLine,line width=.5pt,
+    fill=white,minimum height=.43cm,inner xsep=4pt,inner ysep=2.5pt},
+  ovStep/.style={pText,align=center},
+  pEvolution/.style={pArrow,draw=pEvo,line width=.62pt},
+  pEvidence/.style={pArrow,draw=pTeal,line width=.62pt}
+}%
+% TikZ pics otherwise discard scale when their local transformation is reset.
+% This makes each pictogram respect the size requested by \pIcon.
+\begin{tikzpicture}[line cap=round,line join=round,transform shape,
+  every node/.style={inner sep=0pt,outer sep=0pt}]
+  \path[use as bounding box] (0,0) rectangle (13.7,8.1);
+  \pPanel{a}{Open-ended generation: domain-specific evaluation standards}{0}{7.88}
 
-% (a) Mining is a strip, leaving most of the canvas for search.
-\fill[pBlueWash,rounded corners=6pt] (0,6.88) rectangle (13.7,9.15);
-\node[head,anchor=west] at (.18,8.85) {a\quad Disagreement-based preference mining};
-\node[note,anchor=east] at (13.50,8.85) {Evolution data only};
-\draw[card] (.18,7.10) rectangle (2.65,8.49);
-% Native-size database icon; avoid a nested transformed pictogram.
-\draw[fill=pBlueWash,draw=pMuted,line width=.5pt]
-  (.38,8.30) -- (.38,8.08)
-  arc[start angle=180,end angle=360,x radius=.14,y radius=.045] -- (.66,8.30);
-\draw[draw=pMuted,line width=.5pt] (.52,8.30) ellipse (.14 and .045);
-\draw[draw=pMuted,line width=.5pt] (.38,8.20)
-  arc[start angle=180,end angle=360,x radius=.14,y radius=.045];
-\node[body,anchor=west,font=\bfseries\fontsize{7.2}{8.8}\selectfont] at (.81,8.16) {Comparisons};
-\node[body,anchor=north west,text width=2.15cm] at (.35,7.97)
-  {Existing datasets\\or fresh outputs\\Group by input};
-\draw[flow] (2.68,7.81) -- (2.99,7.81);
-\draw[card] (3.03,7.10) rectangle (6.40,8.49);
-\node[body,anchor=north west,text width=3.0cm] at (3.20,8.29)
-  {\textbf{Existing signals}\\Repeated agreement:\\lower sampling priority};
-\node[note,anchor=west] at (3.20,7.25) {Retain a random anchor};
-\draw[flow] (6.43,7.81) -- (6.74,7.81);
-\draw[card] (6.78,7.10) rectangle (10.14,8.49);
-\node[body,anchor=north west,text width=3.0cm] at (6.95,8.29)
-  {\textbf{Human preferences}\\Reuse compatible labels;\\collect missing labels.};
-\node[note,anchor=west] at (6.95,7.25) {Keep label provenance};
-\draw[flow] (10.17,7.81) -- (10.48,7.81);
-\draw[card,draw=pEvo!50,fill=pEvoWash] (10.52,7.10) rectangle (13.51,8.49);
-\node[body,anchor=north west,text width=2.65cm] at (10.69,8.29)
-  {\textbf{Feedback table $Z$}\\Preferences and\\available diagnostics};
+  % Original artifact illustrations, not benchmark outputs.
+  \foreach \x/\col in {0/pBlueWash,3.47/pTealWash,6.94/pGoldWash,10.41/pResearchWash}{
+    \path[pSurface,fill=\col] (\x,5.59) rectangle (\x+3.29,7.53);
+  }
+  \node[pLabel,text=pBlue,anchor=base west] at (.26,7.18) {Structured visuals};
+  \draw[pBlue!60,fill=white,rounded corners=2pt] (.26,6.20) rectangle (2.01,7.02);
+  \draw[pBlue!35] (.26,6.83) -- (2.01,6.83);
+  \foreach \x in {.39,.51,.63}{\fill[pBlue!45] (\x,6.92) circle (.025);}
+  \path[fill=pBlue!23,rounded corners=1pt] (.39,6.32) rectangle (.93,6.72);
+  \path[fill=pBlue!75] (.48,6.32) -- (.48,6.49)
+    arc[start angle=180,end angle=0,radius=.18] -- (.84,6.32) -- cycle;
+  \node[font=\sffamily\bfseries\fontsize{6}{7}\selectfont,text=pInk,anchor=west]
+    at (1.08,6.65) {Art};
+  \draw[pBlue!45,line width=.7pt] (1.09,6.47) -- (1.78,6.47);
+  \path[fill=pBlue!30,rounded corners=1pt] (1.09,6.30) rectangle (1.68,6.40);
+  \draw[pBlue!60,fill=white,rounded corners=2pt] (1.69,6.15) rectangle (3.01,6.76);
+  \draw[pBlue!55,line width=1pt] (1.84,6.60) -- (2.62,6.60);
+  \path[fill=pGold!26,draw=pGold!60] (1.98,6.40) circle (.11);
+  \draw[pBlue!50] (2.26,6.42) -- (2.84,6.42) (2.26,6.29) -- (2.70,6.29);
+  \node[pSmall,align=center] at (1.645,5.91)
+    {Slides\,\textperiodcentered\,web\,\textperiodcentered\,charts};
 
-% (b) Depth occupies a dedicated lane, not an undifferentiated loop.
-\fill[pEvoWash,rounded corners=6pt] (0,.91) rectangle (13.7,6.61);
-\node[head,anchor=west] at (.18,6.30) {b\quad Depth-first evaluator evolution};
-\node[note,anchor=east] at (13.50,6.30) {Fixed base model; edit $(A,K,V,T,\Pi,G)$};
-\draw[flow] (12.00,7.07) -- (12.00,6.65);
-\node[note,anchor=east,fill=white,inner sep=1pt] at (11.74,6.74) {errors + diagnostics};
-\draw[pLine] (5.80,1.12) -- (5.80,5.95);
+  \node[pLabel,text=pTeal,anchor=base west] at (3.73,7.18) {Images and 3D};
+  \begin{scope}
+    \clip[rounded corners=3pt] (3.73,6.15) rectangle (5.69,7.02);
+    \node[inner sep=0pt] at (4.71,6.58)
+      {\includegraphics[width=1.96cm]{output/imagegen/edit-preserved.png}};
+  \end{scope}
+  \pIcon{cube}{pTeal}{6.20}{6.58}{.83}
+  \node[pSmall,align=center] at (5.115,5.91)
+    {Synthesis\,\textperiodcentered\,editing\,\textperiodcentered\,3D};
 
-% One active direction with successive complete candidates.
-\node[body,anchor=west] at (.28,5.79) {Choose direction $d$; start from best $B$};
-\node[evoNode,minimum size=.34cm] (root) at (1.05,5.28) {$B$};
-\node[note,anchor=west] at (1.53,5.28) {Working program $W\leftarrow B$};
-\foreach \y/\n in {4.50/1,3.48/2,2.46/3}{
-  \node[evoNode] (c\n) at (1.05,\y) {\n};
-  \node[choice] at (.28,\y) {};
-  \node[choice] at (1.82,\y) {};
-}
-\draw[flow] (root) -- (c1);
-\draw[flow] (c1) -- (c2);
-\draw[flow] (c2) -- (c3);
-\foreach \a/\b in {5.1/4.60,4.25/3.58,3.23/2.56}{
-  \draw[ghost] (1.05,\a) .. controls (.70,\a-.12) and (.28,\a-.17) .. (.28,\b);
-  \draw[ghost] (1.05,\a) .. controls (1.4,\a-.12) and (1.82,\a-.17) .. (1.82,\b);
-}
-\node[body,anchor=north west,text width=3.42cm] at (2.12,4.76)
-  {\textbf{Implement correction}\\Complete candidate $C_{d,1}$};
-\node[body,anchor=north west,text width=3.42cm] at (2.12,3.74)
-  {\textbf{Revise the implementation}\\Use diagnostics; edit $W$.};
-\node[body,anchor=north west,text width=3.42cm] at (2.12,2.72)
-  {\textbf{Continue after early failure}\\Retain diagnostic history.};
-\node[note,rotate=90,anchor=south] at (.58,3.89) {same direction};
-\draw[flow,rounded corners=3pt] (c3.south) -- (1.05,1.64) -- (4.70,1.64);
-\node[evoNode,minimum size=.39cm] at (4.98,1.64) {$B$};
-\node[note,anchor=south] at (3.08,1.78) {Pause / close $d$};
-\node[note,anchor=north] at (3.18,1.39) {Next direction $d'$, if budget remains};
+  \node[pLabel,text=pGold,anchor=base west] at (7.20,7.18) {Text generation};
+  \pIcon{page}{pGold}{7.58}{6.61}{.90}
+  \draw[pSoftArrow,draw=pGold] (7.95,6.61) -- (8.23,6.61);
+  \path[draw=pGold!35,fill=white,rounded corners=3pt]
+    (8.34,6.21) rectangle (9.99,7.00);
+  \node[pSmall,text=pInk,align=left,text width=1.29cm]
+    at (9.165,6.61) {Fewer adult\\admissions.};
+  \node[pSmall,align=center] at (8.585,5.91)
+    {Summaries\,\textperiodcentered\,answers};
 
-% Separate acceptance, inheritance and allocation. No automatic acceptance.
-\draw[card,draw=pEvo!45] (6.05,5.06) rectangle (13.48,5.94);
-\node[body,anchor=north west,text width=7.03cm] at (6.23,5.76)
-  {\textbf{For each candidate: measure and diagnose}\\Sealed Train aggregates + inspectable proposal traces};
-\draw[flow] (9.77,5.02) -- (9.77,4.83);
-\foreach \lo/\hi in {3.82/4.80,2.58/3.58,1.16/2.34}{
-  \draw[card] (6.05,\lo) rectangle (13.48,\hi);
-}
-\node[body,anchor=north west,text width=6.94cm] at (6.23,4.61)
-  {\textbf{Accept candidate?}\quad Gain + guards $\rightarrow$ update $B$.\\Otherwise retain the best program.};
-\draw[flow] (9.77,3.78) -- (9.77,3.62);
-\node[body,anchor=north west,text width=6.94cm] at (6.23,3.39)
-  {\textbf{Inherit program?}\quad Use eligible $C$; else pre-update $B$.\\An unaccepted candidate may still be eligible.};
-\draw[flow] (9.77,2.54) -- (9.77,2.38);
-\node[body,anchor=north west,text width=6.94cm] at (6.23,2.15)
-  {\textbf{Continue direction?}\quad Diagnostics survive fallback.\\Further informative edit $\rightarrow$ keep $d$; else pause / close $d$.\\Resource limits can also stop exploration.};
+  \node[pLabel,text=pResearch,anchor=base west] at (10.67,7.18) {Automated research};
+  \pIcon{flask}{pResearch}{11.00}{6.59}{.78}
+  \node[pSmall,text=pInk] (same) at (12.25,6.93) {Same model};
+  \node[pPill,draw=pResearch!35,text=pResearch,minimum width=.74cm,
+    minimum height=.34cm,inner ysep=1pt] (on) at (11.66,6.53) {on};
+  \node[pPill,draw=pResearch!35,text=pResearch,minimum width=.74cm,
+    minimum height=.34cm,inner ysep=1pt] (off) at (12.91,6.53) {off};
+  \draw[pSoftArrow,draw=pResearch,shorten <=1pt,shorten >=1pt]
+    (same.south) to[out=-90,in=90] (on.north);
+  \draw[pSoftArrow,draw=pResearch,shorten <=1pt,shorten >=1pt]
+    (same.south) to[out=-90,in=90] (off.north);
+  \node[pSmall] at (12.25,6.21) {retrieval};
+  \node[pSmall,align=center] at (12.055,5.91)
+    {Studies\,\textperiodcentered\,reports\,\textperiodcentered\,review};
 
-% Deployment is downstream, never a feedback edge into development.
-\draw[flow] (9.77,.88) -- (9.77,.67);
-\fill[pBlueWash,rounded corners=4pt] (0,.03) rectangle (13.7,.65);
-\node[body,anchor=west] at (.19,.34)
-  {Freeze best $B$\enspace $\rightarrow$\enspace terminal Val\enspace $\rightarrow$\enspace Test / OOD};
-\node[note,anchor=east] at (13.48,.34) {C1 selection\enspace C2 refinement\enspace C3 planned};
-\end{tikzpicture}
-\endgroup
+  % Soft stage groupings; the evolution cycle itself is open and icon-led.
+  \path[pSurface,fill=pGoldWash] (0,.05) rectangle (3.94,5.28);
+  \path[pSurface,fill=pEvoWash,draw=pEvo!18,line width=.5pt]
+    (4.24,.05) rectangle (10.32,5.28);
+  \pPanel{b}{\shortstack[l]{Disagreement-based\\preference mining}}{.12}{4.99}
+  \pPanel{c}{Depth-first evaluator evolution}{4.39}{4.99}
+  \pPanel{d}{Assess}{10.79}{4.99}
+
+  % Two parallel construction routes, not a taxonomy of domains. Labels share
+  % a left inset; the evidence card has room for all three lines and descenders.
+  \path[fill=white,rounded corners=4pt] (.22,3.26) rectangle (3.49,4.60);
+  \pIcon{database}{pTeal}{.54}{4.27}{.50}
+  \node[pLabel,text=pTeal,anchor=west] at (.84,4.27) {Existing datasets};
+  \node[pText,anchor=west] at (.44,3.90) {Mine output comparisons};
+  \node[pSmall,anchor=west] at (.44,3.57) {Reuse matching preferences.};
+  \path[fill=white,rounded corners=4pt] (.22,1.70) rectangle (3.49,3.04);
+  \pIcon{person}{pNew}{.54}{2.75}{.44}
+  \node[pLabel,text=pNew,anchor=west] at (.84,2.71) {New preferences};
+  \node[pText,anchor=west] at (.44,2.34) {Existing or fresh outputs};
+  \node[pSmall,anchor=west] at (.44,2.01) {Collect blinded judgments.};
+  \path[draw=pGold!30,fill=white,rounded corners=4pt]
+    (.22,.25) rectangle (3.49,1.49);
+  \node[pLabel,text=pGold,anchor=west] at (.44,1.20)
+    {Feedback table {\fontsize{7}{9}\selectfont $\rightarrow Z$}};
+  \node[pSmall,anchor=west] at (.44,.89) {$H_0$--$H_3$ as available};
+  \node[pSmall,anchor=west] at (.44,.58) {Provenance + uncertainty};
+  \draw[pGold!55,line width=.6pt,rounded corners=3pt]
+    (3.49,3.93) -- (3.74,3.93) -- (3.74,.91);
+  \draw[pGold!55,line width=.6pt] (3.49,2.37) -- (3.74,2.37);
+  \draw[pSoftArrow,draw=pGold] (3.74,.91) -- (3.52,.91);
+
+  \foreach \s/\col/\t/\x in {A/pBlue/views/4.76,K/pGold/rubrics/5.73,V/pGold/modules/6.70,
+    T/pTeal/tools/7.67,\Pi/pTeal/routing/8.64,G/pEvo/fusion/9.61}{
+    \pComponent{\s}{\col}{\t}{\x}{4.40}
+  }
+  \pIcon{edit}{pEvo}{5.64}{3.19}{.72}
+  \node[ovStep] at (5.64,2.58) {Implement\\direction};
+  \pIcon{database}{pTeal}{9.04}{3.19}{.78}
+  \pLock{9.38}{3.36}{pTeal}
+  \node[ovStep] at (9.04,2.64) {Sealed Train};
+  \pIcon{cards}{pEvo}{9.04}{1.77}{.70}
+  \node[pSmall,text=pInk,align=center] at (9.04,1.22)
+    {Accept candidate?\\Continue direction?};
+  \pIcon{loupe}{pGold}{5.64}{1.77}{.73}
+  \node[ovStep] at (5.64,1.24) {Diagnose failures};
+  \draw[pEvolution] (6.00,3.32) .. controls (6.74,3.79) and (7.83,3.79) .. (8.56,3.32);
+  \draw[pEvidence] (9.58,3.02) .. controls (10.10,2.79) and (10.10,2.10) .. (9.58,1.91);
+  \draw[pEvolution] (8.56,1.80) .. controls (7.80,1.30) and (6.83,1.30) .. (6.08,1.80);
+  \draw[pEvolution] (5.07,1.98) .. controls (4.29,2.17) and (4.29,2.80) .. (5.07,3.01);
+  \draw[pEvidence] (3.51,.54) to[out=0,in=205] (5.03,1.75);
+  \pIcon{agent}{pEvo}{7.29}{2.99}{.64}
+  \node[pText,align=center,text=pEvo] at (7.29,2.34) {Continue\\the direction};
+  \node[pSmall,align=center] at (7.29,1.88) {Fixed base model};
+
+  \node[pPill,minimum width=1.76cm] (val) at (6.13,.45) {Terminal Val};
+  \node[pPill,draw=pEvo!35,fill=white,text=pEvo,
+    minimum width=1.76cm]
+    (frozen) at (9.04,.45) {Frozen $E^*$};
+  \draw[pEvolution] (8.61,.87) .. controls (8.05,.64) and (6.13,1.02) .. (val.north);
+  \draw[pEvolution] (val.east) -- (frozen.west);
+
+  % Assessment cards use the same title/body/note rhythm and left inset.
+  \foreach \lo/\hi/\col in {3.31/4.66/pBlueWash,1.81/3.16/pTealWash,.25/1.66/pEvoWash}{
+    \path[pSurface,fill=\col] (10.90,\lo) rectangle (13.70,\hi);
+  }
+  \pIcon{cards}{pBlue}{11.28}{4.17}{.54}
+  \node[pTitle,text=pBlue,anchor=west] at (11.73,4.33) {C1\; Select};
+  \node[pSmall,anchor=west] at (11.73,3.96) {Test alignment};
+  \node[pSmall,anchor=west] at (11.15,3.60) {Select from fixed pools};
+  \pIcon{edit}{pTeal}{11.28}{2.67}{.55}
+  \node[pTitle,text=pTeal,anchor=west] at (11.73,2.83) {C2\; Refine};
+  \node[pSmall,anchor=west] at (11.73,2.46) {Shared $y_0$};
+  \node[pSmall,anchor=west] at (11.15,2.10) {Matched resources};
+  \pIcon{agent}{pEvo}{11.28}{1.13}{.51}
+  \node[pTitle,text=pEvo,anchor=west] at (11.73,1.33) {C3\; Reward};
+  \node[pSmall,anchor=west] at (11.73,.96) {Own rollouts};
+  \node[pSmall,text=pEvo,anchor=west] at (11.15,.54) {Planned training};
+  \draw[pEvo!55,line width=.6pt,rounded corners=4pt]
+    (frozen.east) -- (10.61,.45) -- (10.61,4.17);
+  \foreach \y in {4.17,2.67,1.13}{\draw[pEvolution] (10.61,\y) -- (10.87,\y);}
+\end{tikzpicture}%
+\endgroup%

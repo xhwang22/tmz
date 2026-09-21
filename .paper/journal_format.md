@@ -13,10 +13,11 @@
   Fonts must be embedded, with no Type 3 fallbacks. Audit photos at 300 DPI
   and raster line art at 600 DPI; text and diagram linework remain vector.
   These are repository quality thresholds, not an additional official ICLR rule.
-  Figure 1 uses three unchanged author-supplied photo crops at 1.38 cm width
-  (399–403 DPI) with native 7-point labels. The original three-column SVG
-  remains a reference asset; its smaller labels are not used for print.
-  The former overview photo and unused generated images remain archived.
+  Figure 1 directly prints the approved three-column SVG export at 5.4 inches,
+  preserving all nine photographic insets (at least 300 DPI). Its vector labels
+  are approximately 2.5–4.7 points, an acknowledged readability limitation;
+  the author rejected the separate print reflow. Figure 2 retains the original
+  overview photograph and pictograms. Unused generated images remain archived.
 - Simulated quantitative fixtures are expressly marked, not empirical results.
   The author-requested layout draft is not a results-bearing submission;
   `scripts/check_simulated_results.py --submission` must reject it while these

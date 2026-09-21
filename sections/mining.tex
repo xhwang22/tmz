@@ -8,13 +8,16 @@ IterEval selects comparisons from existing datasets or newly generated outputs, 
 \begin{figure}[t]
 \centering
 \input{figures/overview}
-\caption{IterEval: from human preferences to an improved evaluation procedure.
-Panel (a) mines existing datasets or new outputs, reusing compatible preferences or collecting missing ones.
-Panel (b) shows successive revisions within a direction, with alternatives deferred until it pauses or closes.
-The green spine denotes editing opportunities, not automatic inheritance.
-Acceptance, inheritance, and continuation are separate decisions; fallback uses the pre-update best program and retains diagnostics.
+\caption{IterEval: iterative evaluator self-improvement from human feedback.
+Panel (a) illustrates four artifact families with distinct evaluation standards.
+Panel (b) mines comparisons from existing datasets or fresh outputs, reusing compatible preferences or collecting missing ones.
+Panel (c) revises a six-component evaluation procedure with a fixed base model.
+The loop can continue a direction after an unaccepted candidate; candidate acceptance, program inheritance, and direction continuation remain separate decisions.
+Search can switch directions when the current direction pauses or closes.
 Terminal validation does not trigger edits or reranking.
-This is a method specification, not a result.}
+Panel (d) covers C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training.
+Artifacts are constructed illustrations; the photograph is generated with GPT Image 2.
+Arrows denote information flow, not measured improvements.}
 \label{fig:overview}
 \end{figure}
 

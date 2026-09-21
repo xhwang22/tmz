@@ -900,7 +900,30 @@
         "README and paper memory"
       ],
       "summary": "Integrates the author-v6 image-editing teaser as main Fig1, moves the rebuilt method overview to Fig2, and retains the unchanged C1 landscape as main Fig3 with Table1. All prior figures shift one number; table IDs and historical revision IDs stay unchanged. Preserves the editable three-column SVG with lake-green method colors and unchanged wording, geometry and nine images; creates a native 7-point print reflow using its three unchanged task photos. The overview separates acceptance, inheritance and continuation, visualizes repeated same-direction revisions and direction switching, retains pre-update fallback diagnostics, and includes existing-dataset mining, compatible preference reuse, new annotation and a random anchor. Shared method blocks use lake green matching the main performance figure. Synchronizes claim/figure links without changing claim prose or empirical status. Compilation and memory, terminology, teaser, simulation and landscape audits pass; no overfull boxes or undefined citations. The PDF has 37 pages, 11 main pages, with the existing 9-page submission limit and 17 unused references still flagged. All 30 tracked CSVs and quantitative artwork are unchanged; C27/C28 remain gaps. No model calls, experiments, training or engineering-source changes. See figure_layout_audit_20260920.md."
+    },
+    {
+      "round": 36,
+      "date": "2026-09-21",
+      "trigger": "Author rejects the large Fig1/Fig2 redesign, specifically requests the original overview's pictorial style, and asks to push the correction.",
+      "reviewer": "Author correction; local source-diff, figure and PDF-page review",
+      "changed_claims": [
+        "C2",
+        "C3",
+        "C47"
+      ],
+      "changed_figures": [
+        "Fig1",
+        "Fig2"
+      ],
+      "sections_touched": [
+        "Introduction panel reference",
+        "Preference-mining overview caption",
+        "AI illustration disclosure",
+        "Figure inclusion, provenance and checks",
+        "README and paper memory"
+      ],
+      "summary": "Restores direct use of the approved three-column author-v6 teaser PDF with its unchanged SVG wording, geometry and nine images. Retains green method colors. Restores the bafe259 four-panel pictorial overview, including artifact illustrations, photograph, icon-led circular loop and original canvas; changes only local label wrapping, label spacing and one arrow clearance. The rejected print reflow is archived and inactive. Synchronizes four-panel references, conceptual versus quantitative provenance, and claim links without changing claim text or evidence status. Compilation and memory, terminology, teaser, simulation, both landscape and whitespace checks pass; PDF pages 2 and 5 were visually reviewed. The 37-page PDF still has 11 main pages and 17 unused bibliography records; teaser labels at 2.5–4.7 points remain a documented readability limitation. All nine embedded images meet 300 PPI, fonts are embedded, and no overfull boxes or undefined references occur. Abstract, quantitative data/artwork, official typography and method implementation remain unchanged. No generation, experiments, training or engineering-source edits. See figure_restore_audit_20260921.md."
     }
   ],
-  "updated_on": "2026-09-20"
+  "updated_on": "2026-09-21"
 }
