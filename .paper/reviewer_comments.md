@@ -1,4 +1,37 @@
-# Reviewer revision record — 2026-09-19
+# Reviewer revision record
+
+## Method language and operational boundaries — 2026-09-21, round 40
+
+The dedicated reviewer independently checked the implementation and revised
+Method. Verdict: no blocking Method defect. Four final wording corrections
+remove intrinsic-easiness language, cover first/new-direction sessions, scope
+branching to the ordinary loop, and unify ending terminology in the appendix.
+All four are applied. See [round-40 review](method_readability_review_20260921_round40.md).
+
+Two user concerns remain implementation limits, not prose defects: direction
+identifiers do not enforce semantic continuity, and a recorded ending reason
+does not guarantee adequate depth or exhaustive testing. The manuscript now
+states these limits rather than inventing a stronger continuation contract.
+
+## Core-first Method cycle — 2026-09-21, round 39
+
+Following the author's critique of excessive secondary formalism, the dedicated
+reviewer inspected the direction/session implementation, reviewed the new draft,
+and verified the corrections. Final verdict: no substantive blocking issues.
+The review caught missing pause-cost accounting in pseudocode and overly strong
+semantic stopping language in the appendix; both are corrected.
+See [round-39 review](method_readability_review_20260921_round39.md).
+The earlier cycle and its source anchors below are historical.
+
+## Current Method readability cycle — 2026-09-21
+
+At the author's request, `/root/method_readability_reviewer` completed two
+substantive passes and a final verification of the consolidated Method.
+Responses, revised-source anchors and remaining checks are recorded in
+[Method readability review](method_readability_review_20260921.md).
+The historical review below retains its original snapshot anchors and status.
+
+## Method and experiments review — 2026-09-19
 
 The author requested an independent reviewer subagent and repeated revision of Method, Experiments, Results, and Discussion.
 `/root/reviewer_method_experiments` completed three rounds: substantive review, review of the revised draft, and targeted verification of the remaining corrections.

@@ -923,6 +923,113 @@
         "README and paper memory"
       ],
       "summary": "Restores direct use of the approved three-column author-v6 teaser PDF with its unchanged SVG wording, geometry and nine images. Retains green method colors. Restores the bafe259 four-panel pictorial overview, including artifact illustrations, photograph, icon-led circular loop and original canvas; changes only local label wrapping, label spacing and one arrow clearance. The rejected print reflow is archived and inactive. Synchronizes four-panel references, conceptual versus quantitative provenance, and claim links without changing claim text or evidence status. Compilation and memory, terminology, teaser, simulation, both landscape and whitespace checks pass; PDF pages 2 and 5 were visually reviewed. The 37-page PDF still has 11 main pages and 17 unused bibliography records; teaser labels at 2.5–4.7 points remain a documented readability limitation. All nine embedded images meet 300 PPI, fonts are embedded, and no overfull boxes or undefined references occur. Abstract, quantitative data/artwork, official typography and method implementation remain unchanged. No generation, experiments, training or engineering-source edits. See figure_restore_audit_20260921.md."
+    },
+    {
+      "round": 37,
+      "date": "2026-09-21",
+      "trigger": "Author requests optimization semantics rather than insight-plus-engineering prose, then specifies Related Work followed directly by IterEval with overview/setup, brief mining, and an evolution-cycle exposition.",
+      "reviewer": "Author structural guidance; local implementation-to-equation, diagnostic-boundary, terminology, claim-memory and PDF review",
+      "changed_claims": [
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C10",
+        "C12",
+        "C14",
+        "C18",
+        "C20",
+        "C34",
+        "C46",
+        "C50",
+        "C51",
+        "C52"
+      ],
+      "changed_figures": [],
+      "sections_touched": [
+        "IterEval overview and setup",
+        "Disagreement-based preference mining",
+        "Depth-first evaluator evolution",
+        "Appendix domain/feedback/algorithm/measurement detail",
+        "Paper memory and implementation audit"
+      ],
+      "summary": "Consolidates Scope, Mining and Evolution into Section 3 IterEval with three subsections. Defines fixed M, editable E, agreement objective, data-access boundary and source-independent mining interface. Core exposition follows direction selection, revision, candidate measurement/diagnosis, and continuation/switching. Adds explicit (B,W,d,z), Revise and diagnostic Update notation without inventing a learned state or semantic oracle; preserves separate acceptance, inheritance and direction allocation plus pre-update best fallback. Moves ranking, H0–H3 provenance, repeated estimator and detailed resource controls to the appendix; synchronizes Algorithm 1. Current edit counts are advisory, not a hard direction budget. No new empirical claims or citations; C27/C28 remain gaps. Author-modified Abstract, Introduction, all figure sources/assets/captions and numerical fixtures are unchanged. Build, memory, terminology, simulation, both landscape and whitespace checks pass, with no overfull boxes or undefined references. Main text is 10 pages against the 9-page initial limit; 17 unused bibliography entries and the preserved teaser readability limitation remain. Method and algorithm/measurement PDF pages visually reviewed. No engineering edits, model calls, experiments, commits or push."
+    },
+    {
+      "round": 38,
+      "date": "2026-09-21",
+      "trigger": "Author asks to merge all Method TeX and explicitly requests a dedicated reviewer subagent for iterative improvements to fluency and clarity.",
+      "reviewer": "method_readability_reviewer: two substantive passes and final verification; parent implementation-boundary and PDF review",
+      "changed_claims": [
+        "C2", "C9", "C11", "C13", "C14", "C15", "C16", "C17",
+        "C31", "C33", "C39", "C45", "C49", "C50", "C51"
+      ],
+      "changed_figures": [],
+      "sections_touched": [
+        "Unified Method source and main input tree",
+        "Overview/setup, preference mining and depth-first evolution prose",
+        "Appendix implementation and measurement details",
+        "Paper memory, reviewer record and style guidance"
+      ],
+      "summary": "Merges problem, mining and method into sections/method.tex, retaining cross-reference labels and the unchanged overview caption. The consolidation-only extracted PDF text is identical. Reviewer-led revision then aligns acceptance with the best/working update, introduces the feedback table before its proposal subset, adds a concrete diagnostic example, and moves interrupting technical details to the appendix. Fixes failed-inheritance versus rejection wording, qualifies continuation as the default, and clarifies the random-anchor budget referent. Acceptance, inheritance, continuation, pre-update fallback, advisory edit counts and data-access rules are unchanged. Claims and figure source pointers are synchronized without upgrading evidence; C27/C28 remain gaps. Build, memory, terminology, simulation, both landscape and whitespace checks pass; no overfull boxes or undefined references. Pages 4–7 were visually inspected. PDF has 38 pages and 10 main-text pages; the 9-page limit, 17 unused bibliography records and preserved teaser readability remain unresolved. Author-modified Abstract, Introduction, figures/captions and quantitative fixtures are unchanged. No engineering edits, empirical runs, commit or push. See method_readability_review_20260921.md."
+    },
+    {
+      "round": 39,
+      "date": "2026-09-21",
+      "trigger": "Author requests core optimizer abstraction before secondary mechanisms, fewer decorative equations, brief mining, operational continuation and a final revision-space subsection.",
+      "reviewer": "method_readability_reviewer: implementation inspection, substantive draft review and final verification; parent compilation and PDF review",
+      "changed_claims": [
+        "C9",
+        "C10",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C31",
+        "C33",
+        "C45",
+        "C47",
+        "C50",
+        "C51"
+      ],
+      "changed_figures": [
+        "Fig2"
+      ],
+      "sections_touched": [
+        "Single-source Method hierarchy and main algorithm",
+        "Overview caption only; no figure geometry or assets",
+        "Appendix measurement, inheritance and pause interpretation",
+        "Paper memory, reviewer record and implementation audit"
+      ],
+      "summary": "Moves direction-as-exploration-unit and program-as-selection-unit into the opening, followed by persistent (B,W,d,z). Retains three equation blocks for state, objective and acceptance/best update; compresses mining to two paragraphs and moves revision space last. Main Algorithm 1 makes continued same-direction allocation and explicit pause/branching operational, counts pauses and reuses verified replay measurements. Inheritance is a continuation policy, with the actual accepted-but-not-inherited and pre-update-best fallback preserved. Removes appendix language implying certified semantic stopping; no hard direction budget or immutable hypothesis schema is invented. Reviewer final verification passes. Build, memory, terminology, simulation, landscape and whitespace checks pass; no overfull boxes or undefined references. Pages 4–7 visually reviewed. PDF has 36 pages and 10 main pages; existing nine-page initial limit, 17 unused references and teaser label warning remain. Author-edited Abstract/Introduction, all figure assets/geometry, numerical fixtures and empirical status are unchanged; only Fig2 caption hierarchy changes. C27/C28 remain gaps. No new citations, engineering edits, empirical runs, commit or push. See method_readability_review_20260921_round39.md."
+    },
+    {
+      "round": 40,
+      "date": "2026-09-21",
+      "trigger": "Author requests local Method simplification, operational direction/ending boundaries, subordinate parent choice, observed-versus-interpreted diagnostics and consistent language/budget terms.",
+      "reviewer": "method_readability_reviewer: independent source inspection, draft review and targeted final wording verification; parent build and PDF checks",
+      "changed_claims": [
+        "C9",
+        "C15",
+        "C16",
+        "C17",
+        "C47",
+        "C49",
+        "C50",
+        "C51"
+      ],
+      "changed_figures": [
+        "Fig2"
+      ],
+      "sections_touched": [
+        "Method overview, mining and depth-first evolution prose/pseudocode",
+        "Overview caption only; no artwork changes",
+        "Appendix parent/ending/diagnostic and budget explanations",
+        "Paper glossary, claim memory, context and audit trail"
+      ],
+      "summary": "Keeps round39's core-first hierarchy and three equation blocks. Adds a verbal cycle before Algorithm 1 and an early preview of editable scope. Replaces branded inheritance with a conservative parent rule inside continuation while preserving pre-update best fallback, including accepted candidates with incomplete local measurements. Separates execution records from agent interpretations and questions. Existing-label budgets now mean revealed original-input groups; new annotation counts and time are separate, including anchors. Uses evaluation program and continue/end consistently. Source inspection confirms that identity/history persistence does not enforce semantic continuity or a sufficient ending reason; no minimum-depth or hard-direction-budget guarantee is invented. Reviewer draft passes with four small wording corrections applied. Build and memory/terminology/simulation/landscape checks pass; main text remains 10 pages against the nine-page initial limit, with 17 unused references and the preserved teaser readability warning. Abstract/Introduction, figure assets/geometry, numerical fixtures and engineering code are unchanged. C27/C28 remain empirical gaps. No new citations, empirical runs, commit or push. See method_readability_review_20260921_round40.md."
     }
   ],
   "updated_on": "2026-09-21"

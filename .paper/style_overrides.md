@@ -1,5 +1,47 @@
 # Manuscript style
 
+## Method language and implementation limits (2026-09-21, round 40)
+
+- Preserve round39's core-first structure; make local edits, not a new framework.
+  Give a short complete cycle before Algorithm 1 so its actions are introduced.
+- Use evaluation program for the editable object and evaluator for the system.
+  Prefer propose, revise, evaluate, accept, continue/end, update and return.
+  Avoid search opportunity, allocation ends, eligible C and support a pause.
+- Keep acceptance and continuation as the two high-level decisions. Describe
+  the next working program as a conservative parent choice within continuation;
+  retain the actual pre-update best fallback and incomplete-local-data edge.
+- Distinguish recorded executions and outcomes from agent interpretations and
+  unresolved questions. Neither a model explanation nor a changed trace field
+  is a verified causal account.
+- A direction's error and intended correction guide revisions. The implementation
+  preserves the identifier/history, not immutable semantics. Ending requires an
+  explicit recorded action but no verified reason category or minimum depth.
+  Do not invent stronger semantic or continuation gates in prose.
+- Separate offline label-access budgets from new annotation counts and time.
+  Count random-anchor labels within the corresponding budget; ranking-derived
+  pairs do not create independent annotation units.
+- Preserve author-edited Abstract/Introduction and all artwork. Update only the
+  overview caption for terminology; keep detailed checks in the appendix.
+
+## Core-first Method hierarchy (2026-09-21, round 39)
+
+- Keep Method in one TeX source. Use Overview and setup, brief disagreement-based
+  preference mining, depth-first evaluator evolution, then Revision space.
+- Open with direction as exploration unit and complete program as selection unit.
+  Define persistent best/working programs, direction and diagnostic state before
+  the six-component architecture or detailed measurement protocol.
+- Keep only state, objective and acceptance/best update as main equations.
+  Explain the direction lifecycle in the main algorithm; avoid decorative
+  functions for prose operations.
+- The high-level distinction is candidate acceptance versus direction continuation.
+  Program inheritance is a working-program policy within continuation, not a
+  third equal-level contribution. Preserve the actual pre-update fallback.
+- Direction identity/history persist, while its intent may be refined. Pause
+  reasons are model assessments, not controller-certified semantic conclusions.
+  Preserve resource accounting for pauses and verified-record reuse for replays.
+- This hierarchy supersedes the three-subsection and joint-update exposition
+  guidance in rounds 37–38 below. Figure geometry and assets remain protected.
+
 ## Preserve the approved figure layouts (2026-09-21, round 36)
 
 The author rejected the round-35 redesign of both main figures.
@@ -362,3 +404,31 @@ SkillOpt is an exposition reference, not evidence for ERA and not an algorithm t
 Distinguish the recorded development selection invariant from unknown population performance.
 Keep diagnostic continuation, working-state inheritance, and semantic refutation distinct; a rejected working state can still supply diagnostic history.
 No theoretical guarantee is added beyond what follows from the stated update rules.
+
+## Algorithm-first Method (2026-09-21, round 37)
+
+- Related Work leads directly to Section 3, IterEval. Use Overview and setup,
+  a short disagreement-based preference mining subsection, and a substantially
+  longer depth-first evaluator evolution subsection. Do not restore separate
+  Scope, Motivation, or Design Principles sections.
+- Intro motivates the search principle; Method defines the optimizer. Follow
+  direction choice, revision, measurement/diagnosis, then acceptance, inheritance,
+  continuation and switching. Explain each design's purpose where it first appears.
+- Explicit direction and diagnostic state summarize the persisted implementation.
+  Do not present a mathematical state variable as a new learned representation,
+  guaranteed diagnosis or automatic semantic test.
+- Keep native six-component interfaces, detailed ranking, repeated measurement,
+  diagnostic declarations and resource-policy caveats in the appendix unless
+  needed to understand the state transition. Do not copy another optimizer's
+  hard update budgets into a description of our advisory edit counts.
+
+## Single-source Method and reading order (2026-09-21, round 38)
+
+- Keep the complete Method in `sections/method.tex`; do not restore the separate
+  `problem.tex` and `mining.tex` inputs. Preserve existing cross-reference labels.
+- Explain the feedback table before using its proposal subset in revision.
+  Keep candidate acceptance next to the best/working update, followed by
+  inheritance eligibility and direction continuation.
+- Use one concrete trace-to-revision example to explain diagnostic results.
+  Detailed record schemas, damage checks and budget caveats belong in the
+  appendix; their removal from the main flow cannot weaken the actual rules.

@@ -22,11 +22,12 @@
     {
       "id": "C2",
       "text": "A \\emph{domain} is a collection of tasks sharing core quality dimensions, their priorities, the overall decision rule, and the human annotation protocol.",
-      "source": "sections/problem.tex",
+      "source": "sections/appendix.tex",
       "kind": "scope",
       "evidence_artifacts": [
-        "sections/problem.tex",
-        ".paper/source_provenance.md"
+        "sections/method.tex",
+        ".paper/source_provenance.md",
+        "sections/appendix.tex"
       ],
       "figure_or_table": [
         "Fig2",
@@ -37,11 +38,11 @@
     },
     {
       "id": "C3",
-      "text": "Appendix~\\ref{app:domains} enumerates the full research scope of 22 domains in four families, without assuming that all are ready for experiments.",
-      "source": "sections/problem.tex",
+      "text": "Table~\\ref{tab:domains} lists 22 candidate domains in four families; inclusion does not establish experimental readiness.",
+      "source": "sections/appendix.tex",
       "kind": "scope",
       "evidence_artifacts": [
-        "sections/problem.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
@@ -54,10 +55,10 @@
     {
       "id": "C4",
       "text": "Human feedback has four levels: $H_0$ gives overall preferences; $H_1$ gives dimensional preferences; $H_2$ identifies error type, severity, and location; $H_3$ optionally supplies a free-form rationale.",
-      "source": "sections/problem.tex",
+      "source": "sections/appendix.tex",
       "kind": "definition",
       "evidence_artifacts": [
-        "sections/problem.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
@@ -69,10 +70,10 @@
     {
       "id": "C5",
       "text": "$H_1$ is central to the dimension-guided design. An $H_0$-only corpus remains usable, but it supplies neither human dimensional judgments nor human explanations.",
-      "source": "sections/problem.tex",
+      "source": "sections/appendix.tex",
       "kind": "human-feedback boundary",
       "evidence_artifacts": [
-        "sections/problem.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [
@@ -84,10 +85,10 @@
     {
       "id": "C6",
       "text": "We freeze a many-to-many mapping $M_{jq}$ from signal $j$ to dimension $q$ using its definition and measurement procedure before reading preference labels.",
-      "source": "sections/mining.tex",
+      "source": "sections/appendix.tex",
       "kind": "specification",
       "evidence_artifacts": [
-        "sections/mining.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md",
         ".paper/method_implementation_audit.md"
       ],
@@ -100,10 +101,10 @@
     {
       "id": "C7",
       "text": "A mixed score may connect to several dimensions, but remains one shared signal.",
-      "source": "sections/mining.tex",
+      "source": "sections/appendix.tex",
       "kind": "dependence definition",
       "evidence_artifacts": [
-        "sections/mining.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md",
         ".paper/method_implementation_audit.md"
       ],
@@ -116,10 +117,10 @@
     {
       "id": "C8",
       "text": "The ranking distinguishes three cases. \\emph{Within-dimension disagreement} occurs when signals from distinct source groups favor opposite outputs on the same criterion. \\emph{Overall--dimension disagreement} occurs when an overall signal opposes a dimensional signal. \\emph{Cross-dimensional trade-offs} occur when dimension-level preferences favor different outputs; these are not contradictory measurements of one criterion.",
-      "source": "sections/mining.tex",
+      "source": "sections/appendix.tex",
       "kind": "data-mining definition",
       "evidence_artifacts": [
-        "sections/mining.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md",
         ".paper/method_implementation_audit.md"
       ],
@@ -131,11 +132,11 @@
     },
     {
       "id": "C9",
-      "text": "The feedback table $Z(r,q)$ links artifact provenance, available human judgments, source signals, evaluator decisions, tool observations, and execution cost.",
-      "source": "sections/mining.tex",
+      "text": "Both routes supply the same feedback interface to evolution, preserving each label's source and its associated artifacts, signals, and execution records.",
+      "source": "sections/method.tex",
       "kind": "specification",
       "evidence_artifacts": [
-        "sections/mining.tex",
+        "sections/method.tex",
         ".paper/source_provenance.md",
         ".paper/method_implementation_audit.md"
       ],
@@ -148,11 +149,11 @@
     },
     {
       "id": "C10",
-      "text": "The base model is fixed outside $\\theta$.",
-      "source": "sections/problem.tex",
+      "text": "The base model remains fixed throughout.",
+      "source": "sections/method.tex",
       "kind": "model boundary",
       "evidence_artifacts": [
-        "sections/problem.tex",
+        "sections/method.tex",
         ".paper/source_provenance.md",
         ".paper/method_implementation_audit.md"
       ],
@@ -165,12 +166,13 @@
     {
       "id": "C11",
       "text": "At deployment, the evaluator receives one candidate output and its permitted evidence; opponents, human labels, generator identity, split labels, and mining strata are excluded.",
-      "source": "sections/problem.tex",
+      "source": "sections/appendix.tex",
       "kind": "runtime boundary",
       "evidence_artifacts": [
-        "sections/problem.tex",
+        "sections/method.tex",
         ".paper/source_provenance.md",
-        ".paper/method_implementation_audit.md"
+        ".paper/method_implementation_audit.md",
+        "sections/appendix.tex"
       ],
       "figure_or_table": [
         "Fig4",
@@ -181,11 +183,11 @@
     },
     {
       "id": "C12",
-      "text": "The default synthesizer receives specialist findings, reasons, and scopes, but not structured scores or scales (Figure~\\ref{fig:runtime}; Appendix~\\ref{app:synthesis}).",
-      "source": "sections/method.tex",
+      "text": "The full specialist trace remains available for diagnosis, but the synthesizer's default input omits the structured specialist score, rating, and score scale. It retains the findings, reasons, and scope of each specialist and applies its own overall scale.",
+      "source": "sections/appendix.tex",
       "kind": "specification",
       "evidence_artifacts": [
-        "sections/method.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md",
         ".paper/method_implementation_audit.md"
       ],
@@ -198,12 +200,13 @@
     {
       "id": "C13",
       "text": "Connected edits share one parent and one measured outcome, so a bundle's gain is not independent evidence for each edit.",
-      "source": "sections/method.tex",
+      "source": "sections/appendix.tex",
       "kind": "attribution boundary",
       "evidence_artifacts": [
         "sections/method.tex",
         ".paper/source_provenance.md",
-        ".paper/method_implementation_audit.md"
+        ".paper/method_implementation_audit.md",
+        "sections/appendix.tex"
       ],
       "figure_or_table": [
         "Tab11"
@@ -213,7 +216,7 @@
     },
     {
       "id": "C14",
-      "text": "The agent constructs candidates from inspectable proposal data $\\Dprop$, using the feedback table to connect evaluation errors to artifacts and execution traces. A disjoint sealed subset $\\Ddev$ returns aggregate measurements only.",
+      "text": "The proposal subset $\\Dprop$ exposes artifacts, human feedback, and execution traces; the disjoint checking subset $\\Ddev$ returns only aggregate candidate measurements. Both are development data.",
       "source": "sections/method.tex",
       "kind": "data access protocol",
       "evidence_artifacts": [
@@ -229,7 +232,7 @@
     },
     {
       "id": "C15",
-      "text": "Define $\\Gamma_t(C)$ as the acceptance guard: complete and comparable execution, nondecreasing coverage, and the prespecified stratum-regression check.",
+      "text": "The guard $\\Gamma_t$ requires valid execution and passes only when the coverage and regression checks in Appendix~\\ref{app:algorithm} are satisfied.",
       "source": "sections/method.tex",
       "kind": "development selection",
       "evidence_artifacts": [
@@ -245,7 +248,7 @@
     },
     {
       "id": "C16",
-      "text": "Let $B_t$ be the best program accepted so far and $W_t$ the working program for the active direction.",
+      "text": "where $B_t$ is the best accepted program, $W_t$ is the working program being revised, $d_t$ is the active direction, and $z_t$ retains observed outcomes, the agent's interpretations, and unresolved questions.",
       "source": "sections/method.tex",
       "kind": "specification",
       "evidence_artifacts": [
@@ -257,11 +260,11 @@
         "Fig2"
       ],
       "status": "draft",
-      "risk": "Candidate acceptance and program inheritance are distinct implemented decisions. An unaccepted damaged candidate requires fresh, previously uncredited measured progress and no damage to declared protection cases; no optimal-allocation benefit is established."
+      "risk": "Candidate acceptance selects the best program; a conservative parent rule operates within continuation. Observations and model interpretations are distinct. An unaccepted damaged candidate requires fresh, previously uncredited measured progress and no damage to declared protection cases; no optimal-allocation benefit is established."
     },
     {
       "id": "C17",
-      "text": "Judging a direction unhelpful requires diagnostic results that contradict its hypothesis within its stated scope, after relevant implementation problems have been examined. The controller does not make this judgment automatically, and resource exhaustion leaves the direction unresolved.",
+      "text": "The agent judges when to end a direction; the controller records this decision without verifying that its reason is sufficient.",
       "source": "sections/method.tex",
       "kind": "direction-assessment boundary",
       "evidence_artifacts": [
@@ -271,15 +274,15 @@
       ],
       "figure_or_table": [],
       "status": "draft",
-      "risk": "Judging a direction unhelpful requires interpretation of diagnostic results, not an implemented automatic decision. The current decision path keeps mechanism_refuted false; failure may still supply negative evidence without proving a direction false."
+      "risk": "Direction identity and histories are enforced, not semantic consistency or a sufficient reason to end. The parser permits a nonempty reason without a minimum-depth or exhaustive-test requirement. No automatic semantic stopping guarantee is claimed."
     },
     {
       "id": "C18",
       "text": "Search estimates agreement on a finite cohort, requesting $R\\geq3$ executions per artifact for full-evaluator measurements.",
-      "source": "sections/method.tex",
+      "source": "sections/appendix.tex",
       "kind": "measurement definition",
       "evidence_artifacts": [
-        "sections/method.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md",
         ".paper/method_implementation_audit.md"
       ],
@@ -306,10 +309,10 @@
     {
       "id": "C20",
       "text": "Metrics reserved for final independent assessment remain outside mining, evaluator tools, critique, and reward.",
-      "source": "sections/mining.tex",
+      "source": "sections/appendix.tex",
       "kind": "metric independence",
       "evidence_artifacts": [
-        "sections/mining.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md",
         ".paper/method_implementation_audit.md"
       ],
@@ -474,7 +477,7 @@
     },
     {
       "id": "C31",
-      "text": "IterEval uses depth-first evaluator evolution to search over executable evaluation programs with a fixed base model, using errors revealed by human feedback.",
+      "text": "Starting from a seed evaluator $E_0$, IterEval revises an executable evaluation program $E_\\theta$ using human feedback, with the base model $M$ fixed.",
       "source": "sections/method.tex",
       "kind": "evolution object",
       "evidence_artifacts": [
@@ -510,15 +513,15 @@
     },
     {
       "id": "C33",
-      "text": "Both construction settings supply this interface to depth-first evaluator evolution, while retaining their label origins and annotation protocols.",
-      "source": "sections/mining.tex",
+      "text": "For selected comparisons, compatible human preferences are reused when available; otherwise, blinded annotation supplies the missing preferences.",
+      "source": "sections/method.tex",
       "kind": "shared algorithm and data provenance",
       "figure_or_table": [
         "Fig2",
         "Tab3"
       ],
       "evidence_artifacts": [
-        "sections/mining.tex",
+        "sections/method.tex",
         ".paper/source_provenance.md",
         ".paper/method_implementation_audit.md"
       ],
@@ -528,13 +531,13 @@
     {
       "id": "C34",
       "text": "Existing human preferences are not a domain-admission requirement. Their availability determines the missing data work, not the algorithm's definition.",
-      "source": "sections/problem.tex",
+      "source": "sections/appendix.tex",
       "kind": "data availability boundary",
       "figure_or_table": [
         "Tab3"
       ],
       "evidence_artifacts": [
-        "sections/problem.tex",
+        "sections/appendix.tex",
         ".paper/source_provenance.md"
       ],
       "status": "draft",
@@ -640,13 +643,13 @@
     {
       "id": "C39",
       "text": "Self-evolution means automated changes to this evaluation program under external human feedback, not self-definition of the human standard.",
-      "source": "sections/problem.tex",
+      "source": "sections/appendix.tex",
       "kind": "adaptation target and human-standard boundary",
       "evidence_artifacts": [
         "sections/method.tex",
-        "sections/problem.tex",
         ".paper/source_provenance.md",
-        ".paper/method_implementation_audit.md"
+        ".paper/method_implementation_audit.md",
+        "sections/appendix.tex"
       ],
       "figure_or_table": [],
       "status": "draft",
@@ -687,7 +690,7 @@
       "kind": "problem framing",
       "evidence_artifacts": [
         "sections/introduction.tex",
-        "sections/problem.tex",
+        "sections/method.tex",
         ".paper/source_provenance.md"
       ],
       "figure_or_table": [],
@@ -726,7 +729,7 @@
     },
     {
       "id": "C45",
-      "text": "Equation~\\ref{eq:search-update} preserves nondecreasing recorded development agreement for $B_t$ while allowing $W_t$ to pass through candidates that do not improve it. This is a selection invariant, not a guarantee of unseen agreement or statistical significance.",
+      "text": "This rule preserves the recorded best development agreement. It does not decide whether the direction receives another revision.",
       "source": "sections/method.tex",
       "kind": "selection invariant",
       "evidence_artifacts": [
@@ -741,10 +744,9 @@
     {
       "id": "C46",
       "text": "Input groups receive equal weight; predicted ties count as incorrect. The native development proxy uses one fixed pair per input and need not represent every within-group preference.",
-      "source": "sections/method.tex",
+      "source": "sections/appendix.tex",
       "kind": "statistical target and development proxy",
       "evidence_artifacts": [
-        "sections/method.tex",
         "sections/appendix.tex",
         ".paper/method_implementation_audit.md"
       ],
@@ -754,7 +756,7 @@
     },
     {
       "id": "C47",
-      "text": "Both decisions use the pre-update state, so failed inheritance returns to $B_t$ even if $C$ becomes $B_{t+1}$.",
+      "text": "If local comparisons are incomplete, even an accepted candidate may not become the next working program; search then edits $B_t$ while retaining $C_t$ as the new best program. Changing the parent neither reverses candidate acceptance nor erases the candidate's diagnostic results.",
       "source": "sections/method.tex",
       "kind": "pre-update inheritance state",
       "evidence_artifacts": [
@@ -788,19 +790,61 @@
     },
     {
       "id": "C49",
-      "text": "Disagreement-based preference mining lowers the sampling priority of comparisons on which existing evaluation signals consistently agree. Repeated annotations of these comparisons may add little information about evaluation errors. IterEval selects comparisons from existing datasets or newly generated outputs, reusing compatible human preferences and collecting missing ones while retaining a random anchor.",
-      "source": "sections/mining.tex",
+      "text": "Broad preference pools can contain many repetitive comparisons that expose few new evaluation errors. Disagreement-based preference mining lowers the sampling priority of comparisons on which existing evaluation signals consistently agree.",
+      "source": "sections/method.tex",
       "kind": "preference-mining design and reverse-selection motivation",
       "figure_or_table": [
         "Fig2"
       ],
       "evidence_artifacts": [
-        "sections/mining.tex",
+        "sections/method.tex",
         "sections/appendix.tex",
         ".paper/method_implementation_audit.md"
       ],
       "status": "draft",
-      "risk": "Structural ranking is implemented, not human information gain. Zero priority can arise from ties or missingness, and agreement can hide shared errors. The random anchor and separate human qualification remain necessary; equal-human-cost evaluator gains remain the C27 gap. This is not a new hard exclusion filter."
+      "risk": "Structural ranking is implemented, not human information gain. Agreement can hide shared errors; zero priority can also reflect ties or missing signals. Offline revealed-label budgets and fresh annotation counts/time are distinct. The random anchor counts within the corresponding budget. Equal-budget improvement remains the C27 gap."
+    },
+    {
+      "id": "C50",
+      "text": "In the ordinary revision loop, a new direction is proposed only after the agent ends the active direction, starting from the current best program. Neither rejecting a candidate nor returning to the best program automatically ends the direction.",
+      "source": "sections/method.tex",
+      "kind": "persistent optimization state",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        "sections/appendix.tex",
+        ".paper/method_implementation_audit.md"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "Ordinary-loop scheduling keeps the direction active after rejection or parent fallback; only an explicit agent ending action opens another direction. Optional compression and execution interruptions are outside this ordinary loop. Persistence does not guarantee semantic consistency or minimum depth."
+    },
+    {
+      "id": "C51",
+      "text": "The diagnostic state $z_t$ retains these observations alongside the agent's interpretations and unresolved questions, linked to the candidate and its actual parent. Observed outcomes establish what the program produced, whereas interpretations explain what the agent proposes to test next.",
+      "source": "sections/method.tex",
+      "kind": "operational diagnostic record",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        "sections/appendix.tex",
+        ".paper/method_implementation_audit.md"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "Available proposal-level observations and aggregate checking-Train results, not guaranteed complete diagnostics or automatic semantic verification. Intended behavior and model explanations are not human rationales."
+    },
+    {
+      "id": "C52",
+      "text": "In the default implementation, edit size and cumulative direction edits are guidance, not a hard direction budget.",
+      "source": "sections/appendix.tex",
+      "kind": "resource-control implementation boundary",
+      "evidence_artifacts": [
+        "sections/method.tex",
+        "sections/appendix.tex",
+        ".paper/method_implementation_audit.md"
+      ],
+      "figure_or_table": [],
+      "status": "draft",
+      "risk": "Configured search opportunities, session bounds and execution limits must not be conflated with mandatory cumulative per-direction edit or API/token caps."
     }
   ]
 }

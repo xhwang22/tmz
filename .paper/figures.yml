@@ -25,7 +25,7 @@
       "id": "Fig2",
       "label": "fig:overview",
       "file": "figures/overview.tex",
-      "caption_source": "sections/mining.tex",
+      "caption_source": "sections/method.tex",
       "panels": [
         "(a) four artifact families with distinct evaluation standards",
         "(b) existing-dataset mining and new-preference collection feeding a common feedback table",
@@ -48,7 +48,7 @@
         "C33",
         "C49"
       ],
-      "caption_in_manuscript": "IterEval: iterative evaluator self-improvement from human feedback. Panel (a) illustrates four artifact families with distinct evaluation standards. Panel (b) mines comparisons from existing datasets or fresh outputs, reusing compatible preferences or collecting missing ones. Panel (c) revises a six-component evaluation procedure with a fixed base model. The loop can continue a direction after an unaccepted candidate; candidate acceptance, program inheritance, and direction continuation remain separate decisions. Search can switch directions when the current direction pauses or closes. Terminal validation does not trigger edits or reranking. Panel (d) covers C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training. Artifacts are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
+      "caption_in_manuscript": "IterEval: iterative evaluator self-improvement from human feedback. Panel (a) illustrates four artifact families with distinct evaluation standards. Panel (b) mines comparisons from existing datasets or fresh outputs, reusing compatible preferences or collecting missing ones. Panel (c) separates candidate acceptance from direction continuation. Within a continuing direction, the next revision starts from the candidate or the best program; rejected candidates can still inform further revisions. Search starts a new direction after the agent ends the active one, retaining its diagnostic history. Terminal validation does not trigger edits or reranking. Panel (d) covers C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training. Artifacts are constructed illustrations; the photograph is generated with GPT Image 2. Arrows denote information flow, not measured improvements.",
       "evidence_status": "Conceptual specification with constructed examples; no measured results"
     },
     {

@@ -1,6 +1,13 @@
 \section{Domain panorama and evaluation standards}
 \label{app:domains}
 
+A \emph{domain} is a collection of tasks sharing core quality dimensions, their priorities, the overall decision rule, and the human annotation protocol.
+A domain is defined by its evaluation standard rather than its artifact type.
+For example, screenshot-conditioned webpage reconstruction and specification-conditioned webpage generation require different standards.
+A change of source distribution that preserves the standard is instead a within-domain distribution shift.
+Table~\ref{tab:domains} lists 22 candidate domains in four families; inclusion does not establish experimental readiness.
+Closed tasks whose complete quality criterion is an executable postcondition fall outside this scope.
+
 The research scope is organized by evaluation standard, not by file format.
 Table~\ref{tab:domains} retains all 22 candidate domains. Its dimensions are a
 starting taxonomy to be refined from domain evaluation knowledge before selecting
@@ -109,6 +116,12 @@ A domain selected for confirmatory execution must pass the audit below; selectio
 \section{Feedback provenance, annotation, and readiness}
 \label{app:annotation}
 
+Existing human preferences are not a domain-admission requirement.
+Their availability determines the missing data work, not the algorithm's definition.
+An evaluation ecosystem can exist without a suitable preference dataset.
+We distinguish \emph{reused preferences}, which test improvement on established benchmarks, from \emph{new preferences}, which test applicability when matching human judgments must first be collected.
+One domain can support both settings.
+
 The two construction settings in Table~\ref{tab:human-provenance} share the
 same evaluator-evolution problem. They differ in the work needed to obtain
 matched human feedback. A domain may use both settings. Direct, derived, and
@@ -150,6 +163,18 @@ Preparation can precede annotation; final human-alignment claims cannot precede 
 \paragraph{Annotation units and levels.}
 One annotation unit is an original input and its anonymized output group, including permitted references.
 Pairs derived from that group remain dependent.
+For existing datasets, the label-access budget counts original-input groups whose preferences are revealed, not newly performed human work.
+For new annotation, we match annotated groups and the requested feedback levels and rater counts, and report annotation time separately.
+Expanding one ranking into several pairs does not create additional independent annotation units.
+For a domain with quality dimensions $\mathcal Q_D=\{q_1,\ldots,q_m\}$, a human comparison has the core form
+\begin{equation}
+ h=(x,y_a,y_b,q,p,a,\nu),
+ \label{eq:human}
+\end{equation}
+where $q$ is a dimension or overall quality, $p$ is a preference, tie, or abstention, $a$ records annotator agreement, and $\nu$ records provenance.
+Human feedback has four levels: $H_0$ gives overall preferences; $H_1$ gives dimensional preferences; $H_2$ identifies error type, severity, and location; $H_3$ optionally supplies a free-form rationale.
+$H_1$ is central to the dimension-guided design.
+An $H_0$-only corpus remains usable, but it supplies neither human dimensional judgments nor human explanations.
 The core tuple in Equation~\ref{eq:human} is retained together with dataset and license, source grouping, generator and prompt version, collection time, annotator pool, agreement, and conversion provenance.
 Generator identity is recorded for audit but hidden from annotators and the deployed scorer.
 
@@ -179,16 +204,35 @@ differences do not by themselves establish errors in the older labels.\par
 \paragraph{Label-blind preference mining.}
 Freeze domain knowledge, signal definitions, semantic mappings, and the calibration recipe before accessing preference labels.
 Select a random anchor, reveal only its authorized training judgments to estimate reliability, then freeze the targeted sampling policy before opening labels in the remaining pool.
-Charge anchor annotations to every strategy's human budget.
+Count anchor labels toward each strategy's label-access or new-annotation budget, as applicable.
 An existing labeled dataset must simulate the same access order.
 The final cohort is sampled independently of conflicts and never contributes to reliability calibration.
 
 \paragraph{Implemented conflict ranking.}
 Preference mining computes structural disagreement without reading the pair's human preference.
-Let $I_{\mathrm{within},q}(r)$ indicate opposing signals from distinct source groups on dimension $q$, $I_{\mathrm{overall},q}(r)$ indicate opposition between an overall and a dimensional signal, and $I_{\mathrm{tradeoff}}(r)$ indicate opposed dimension-level preferences.
-Equation~\ref{eq:conflict} ranks these conflicts, assigning twice the weight to within-dimension disagreement.
+Outputs are grouped by their original task input and deduplicated before comparison.
+For a pair $r=(x,y_a,y_b)$, signal $j$ supplies a preference sign $u_j(r)\in\{-1,0,+1,\bot\}$ from its own score difference and declared tie margin.
+Zero denotes a tie and $\bot$ missing or abstaining output; raw scores from different signals are never subtracted.
+Signals require executable sources with compatible inputs; provenance, repeated-run variation, and missingness are recorded separately.
+We freeze a many-to-many mapping $M_{jq}$ from signal $j$ to dimension $q$ using its definition and measurement procedure before reading preference labels.
+A mixed score may connect to several dimensions, but remains one shared signal.
+Signals sharing a model, training labels, or underlying metric are assigned source groups so that duplicated prompts do not become independent votes.
+Metrics reserved for final independent assessment remain outside mining, evaluator tools, critique, and reward.
+
+The ranking distinguishes three cases.
+\emph{Within-dimension disagreement} occurs when signals from distinct source groups favor opposite outputs on the same criterion.
+\emph{Overall--dimension disagreement} occurs when an overall signal opposes a dimensional signal.
+\emph{Cross-dimensional trade-offs} occur when dimension-level preferences favor different outputs; these are not contradictory measurements of one criterion.
+Writing their indicators as $I_{\mathrm{within},q}$, $I_{\mathrm{overall},q}$, and $I_{\mathrm{tradeoff}}$, the implemented priority is
+\begin{equation}
+ P(r)=2\sum_q I_{\mathrm{within},q}(r)
+      +\sum_q I_{\mathrm{overall},q}(r)
+      +I_{\mathrm{tradeoff}}(r).
+ \label{eq:conflict}
+\end{equation}
 Pairs are ranked by decreasing $P(r)$, with stable pair identifiers breaking ties.
 The coefficients define a structural ranking, not estimated signal reliability or a probability of evaluation error.
+In particular, $P(r)=0$ can reflect missing signals or ties rather than agreement, and agreement itself need not be correct.
 Overall--dimension comparisons retain whether their signals share a source group; they are not automatically independent evidence.
 Each source group contributes at most one preference sign to a dimension's aggregate preference, with opposing within-group signs yielding abstention.
 Missing outputs and small-margin ties remain distinct from opposing preferences.
@@ -257,6 +301,7 @@ Table~\ref{tab:access} separates proposal evidence, adaptive development
 measurements, and terminal assessment. The scorer always receives the same
 pointwise input contract, regardless of the cohort in which it is invoked.
 Only the authorized diagnostic process sees human labels and pair identities.
+At deployment, the evaluator receives one candidate output and its permitted evidence; opponents, human labels, generator identity, split labels, and mining strata are excluded.
 
 \begin{table}[t]
 \caption{Information available to evolution and assessment. Every invocation
@@ -268,7 +313,7 @@ of the deployed scorer remains pointwise and label-blind, including on Train.}
 Partition & Information released & Permitted decision \\
 \midrule
 Proposal Train & Authorized artifacts, feedback, and traces & Mechanism hypotheses and candidate evolution \\
-Sealed Train & Prespecified aggregates only & Candidate acceptance, program inheritance, and direction continuation \\
+Sealed Train & Prespecified aggregates only & Candidate acceptance and continuation, including the next working program \\
 Terminal Val & Frozen-shortlist measurements & Terminal assessment; no reranking or further edits \\
 Test/OOD & Locked until method and analysis freeze & Independent final reporting \\
 Metric reserve & No access during evolution & Final assessment only; no tools, critique, reward, or selection \\
@@ -299,6 +344,7 @@ does not forbid using other existing metrics as tools.
 
 Figure~\ref{fig:runtime} separates the editable observation and judgment
 mechanisms. Algorithm~\ref{alg:era} specifies their evolution and selection.
+Self-evolution means automated changes to this evaluation program under external human feedback, not self-definition of the human standard.
 
 \begin{figure}[htbp]
 \centering
@@ -314,34 +360,6 @@ Artifact evidence and judgment remain separate; the summary and findings are a c
 \label{fig:runtime}
 \end{figure}
 
-\begin{algorithm}[htbp]
-\caption{Depth-first evaluator evolution: separate candidate acceptance from direction continuation}
-\label{alg:era}
-\small
-\begin{algorithmic}[1]
-\Require Seed $E_0$, proposal feedback table $Z_{\mathrm{prop}}$, sealed $\Ddev$, fixed search and execution limits
-\State Measure $E_0$; initialize best program $B\gets E_0$, working program $W\gets E_0$, and history
-\While{search resources remain}
-  \State Start a direction from $B$, or continue the active direction from $W$
-  \State Inspect proposal-Train artifacts and history; request diagnostics as needed
-  \State Construct complete candidate $C$ with its intent and inspected Train references
-  \If{$C$ is valid and distinct}
-    \State Measure $C$ on $\Ddev$; retain local diagnostic outcomes
-    \State Save pre-update best $B_{\mathrm{old}}\gets B$; assess acceptance and inheritance against this state
-    \If{the candidate-acceptance conditions hold}
-      \State $B\gets C$
-    \EndIf
-    \State $W\gets C$ if measured inheritance is eligible; otherwise $W\gets B_{\mathrm{old}}$
-  \EndIf
-  \State Retain changes, outcomes, failed attempts, and resource use in history
-  \State Give the active direction the next opportunity to request diagnostics or submit an edit
-  \State Pause on the agent's explicit request or an enforced resource/execution limit
-\EndWhile
-\State On normal completion, freeze and order eligible candidates using Train only
-\State Assess a nonempty shortlist on terminal Val without reranking or further edits
-\State Retain the Train-selected evaluator, or the seed if no eligible improvement exists
-\end{algorithmic}
-\end{algorithm}
 
 \paragraph{Investigation and candidate construction.}
 The evolution agent reads original proposal-Train artifacts, installed component instructions, execution traces, and relevant history through a tool-driven editing session.
@@ -350,6 +368,11 @@ The submission contains actual edits, a short intent, and references to inspecte
 Predicted orderings, contrast cases, and intermediate checks are optional declarations, not controller-inferred scientific predictions.
 The controller records the exact parent, installed program, and measured outcomes.
 Local diagnostic success is not an admission requirement for the common development measurement.
+The state $(B,W,d,z)$ in Equation~\ref{eq:search-state} summarizes these persisted records.
+The direction identifier links its plan, root errors, previous trials, and unresolved questions.
+Root errors are evaluation errors present in the program from which the direction starts.
+Starting a new direction does not delete earlier direction histories.
+The native patch interface enforces the direction identifier, but allows the intent to be revised; it does not enforce an invariant target set or semantic correction.
 
 An elementary edit changes one component; a connected candidate can assemble a tool, its route, and its consumer against a fixed parent.
 Only the complete candidate is executed and measured, not its partially assembled versions.
@@ -358,36 +381,47 @@ Interface validity, fixed-model constraints, and execution limits remain mandato
 Unchanged programs and verified historical replays are distinguished from fresh trials, and failed calls remain in the cost record.
 
 \paragraph{Diagnostic results.}
+The diagnostic state retains execution records and repaired, unchanged, regressed, or unknown local outcomes, alongside the agent's intended changes, interpretations, and unresolved questions.
+Recorded outputs are distinguished from explanations of why they occurred.
+These descriptions need not form a complete structured checklist for every candidate.
+Human preferences establish the target ordering; the agent must investigate why the program fails to reproduce it.
 Fixed-input probes compare supported specialist or synthesis variants while holding their upstream inputs fixed.
 Such probes bind their observations to the exact tested candidate and inputs; changing a tool, route, or topology requires the corresponding complete execution.
 An optional exact intermediate check records whether a declared field changed to its expected value on at least one complete repeat.
 All repeat-level matches, contradictions, and unknowns remain visible.
 A semantic expectation is not automatically verified, and a changed recorded field is not proof of a correct causal explanation or improved overall judgment.
 
-\paragraph{Candidate acceptance and program inheritance.}
+\paragraph{Candidate acceptance and the next working program.}
 Candidate acceptance requires complete, comparable execution, a strict development-agreement gain over the best evaluator, nondecreasing coverage, and the prespecified worst-stratum guard.
 These are development selection rules rather than statistical significance claims.
-Program inheritance is a separate decision.
-Inheritance first requires known, complete, comparable local and development outcomes, including comparisons against both the parent and best program.
-Subject to that requirement, accepted candidates and candidates with no observed damage can be inherited.
+Within a continuing direction, the parent rule determines the next working program.
+Using the candidate as the next parent first requires known, complete, comparable local and development outcomes, including comparisons against both the parent and best program.
+Subject to that requirement, accepted candidates and candidates with no observed damage can become the next parent.
 For this decision, damage includes a local ordering regression, deterioration on a declared protection case, or more regressed than corrected sealed-Train comparisons against either the parent or the best evaluator.
 An unaccepted candidate with damage is eligible only when fresh measurement supplies new progress and the declared protection cases do not deteriorate.
 
 Qualifying progress is either a first-time repair of an error present at the direction's root, still wrong in the parent, or a newly observed, predeclared exact intermediate-field change.
 Previously credited repairs and checks are retained across attempts, so breaking and repairing an already corrected case cannot renew this allowance.
 A missing protected case is unknown, not preserved.
-When inheritance fails, the next parent returns to the pre-update best program, even if the candidate has just been accepted as the new best.
+When the candidate fails these checks, the next parent returns to the pre-update best program, even if the candidate has just been accepted as the new best.
 The candidate and its diagnostics remain available.
 Keeping an intermediate candidate never changes the recorded best score.
 
-\paragraph{Direction continuation and termination.}
-In the native editing session, the agent can request diagnostics, submit a candidate, repair an invalid submission, or explicitly pause with its unresolved question.
-The controller enforces parent eligibility, validity, and resource limits; a failed inheritance check returns the editable program to the pre-update best without erasing the direction's history.
-The next editing opportunity remains within the direction until a pause or an execution/resource limit ends that allocation.
-The controller does not automatically judge whether a direction is unhelpful, and the native workflow does not require a separate model reviewer to certify direction continuation.
-That judgment requires diagnostic results contradicting the hypothesis after checking for missing observations, unused tool output, or incorrect interpretation.
-One unsuccessful implementation, a nonsignificant difference, or budget exhaustion alone is insufficient.
-These requirements govern interpretation of diagnostic results, not an automatic hypothesis test.
+\paragraph{Continuing and ending a direction.}
+In the native editing session, the agent can request diagnostics, submit a candidate, repair an invalid submission, or end the active direction.
+Ending a direction uses the native \texttt{pause} action, which submits a no-change record with a nonempty reason.
+The session instruction asks for an unresolved question and why no different informative test is ready; the parser does not require a particular reason category or verify the explanation.
+The controller enforces the parent rule, validity, and resource limits without judging whether a direction is unhelpful.
+Revisions continue within the active direction until the agent ends it or an execution or resource limit stops the search.
+The history is retained in either case.
+An ending explanation may concern implementation problems or results suggesting that an implemented correction does not address the target errors.
+That explanation is the agent's assessment, not an automatically verified conclusion.
+The current implementation therefore does not prevent an agent from ending a direction early or guarantee a minimum exploration depth.
+One unsuccessful implementation, a nonsignificant difference, or budget exhaustion alone does not establish that the direction is unhelpful.
+In the default implementation, edit size and cumulative direction edits are guidance, not a hard direction budget.
+Edit-character counts, replacement fractions, and component counts are advisory.
+Configured proposal opportunities, session action bounds, and execution limits constrain the run; they should not be described as an implemented fixed depth per direction.
+An integrity interruption does not trigger the normal terminal-validation procedure.
 
 \paragraph{Terminal assessment and attribution.}
 The terminal shortlist includes eligible, previously accepted, complete programs with positive development gain over the seed and is ordered using Train evidence alone.
@@ -396,7 +430,7 @@ Terminal Val does not rerank the shortlist or guide another proposal.
 With no eligible improvement, the seed is retained without an additional Val query.
 Fresh system confirmation and independent Test/OOD assessment remain separate from adaptive development.
 
-A connected candidate receives one system-level outcome, not independent causal credit for each component.
+Connected edits share one parent and one measured outcome, so a bundle's gain is not independent evidence for each edit.
 Component attribution requires paired interventions with the remaining interfaces fixed, such as tool on/off or evolved versus seed synthesis.
 If removing a dependency makes the program invalid, the comparison must report that limitation rather than substitute an unrelated whole-program control.
 Complete prompt templates, interaction traces, candidate changes, and execution settings belong in the reproducibility record rather than the main algorithm.
@@ -429,12 +463,29 @@ These numbers illustrate interpolation, not a universal scale or an evaluator re
 \section{Measurement and statistical analysis}
 \label{app:measurement}
 
-\paragraph{Completeness and denominators.}
-Use the original-input weights $w_{gj}=1/(|\mathcal S||P_g|)$ from Equation~\ref{eq:measurement}, fixed before execution.
-Let $c_{gj}=1$ when both artifacts have all $R$ valid complete scores, $M=\sum_{g,j}w_{gj}c_{gj}$ be covered weight, and $K=\sum_{g,j}w_{gj}c_{gj}z_{gj}$ be correct weight.
-Report conditional agreement $K/M$ when $M>0$, weighted coverage $M$, raw completion counts, and the missing-outcome interval
+\paragraph{Agreement estimator.}
+The distribution $\mathcal P_D$ in Equation~\ref{eq:objective} samples an input from domain $D$, then a strict human preference uniformly within that input's output group.
+Search estimates agreement on a finite cohort, requesting $R\geq3$ executions per artifact for full-evaluator measurements.
+For complete executions on input groups $\mathcal S_{\mathrm{eval}}$ with nonempty strict-preference sets $P_g$, define
 \begin{equation}
- [K,\ K+1-M].
+ \begin{aligned}
+ \bar{s}_\theta(x,y)&=\median_{r=1,\ldots,R}s_\theta^{(r)}(x,y),\quad
+ v_{gj}=\ind[\bar{s}_\theta(x_g,y_{gj}^+)>\bar{s}_\theta(x_g,y_{gj}^-)],\\
+ \widehat J_{\mathcal S_{\mathrm{eval}}}(\theta)&=
+ \frac{1}{|\mathcal S_{\mathrm{eval}}|}\sum_{g\in\mathcal S_{\mathrm{eval}}}
+ \frac{1}{|P_g|}\sum_{j\in P_g}v_{gj}.
+ \end{aligned}
+ \label{eq:measurement}
+\end{equation}
+Input groups receive equal weight; predicted ties count as incorrect.
+The native development proxy uses one fixed pair per input and need not represent every within-group preference.
+
+\paragraph{Completeness and denominators.}
+Use the original-input weights $w_{gj}=1/(|\mathcal S_{\mathrm{eval}}||P_g|)$ from Equation~\ref{eq:measurement}, fixed before execution.
+Let $c_{gj}=1$ when both artifacts have all $R$ valid complete scores, $M_{\mathrm{cov}}=\sum_{g,j}w_{gj}c_{gj}$ be covered weight, and $K_{\mathrm{corr}}=\sum_{g,j}w_{gj}c_{gj}v_{gj}$ be correct weight.
+Report conditional agreement $K_{\mathrm{corr}}/M_{\mathrm{cov}}$ when $M_{\mathrm{cov}}>0$, weighted coverage $M_{\mathrm{cov}}$, raw completion counts, and the missing-outcome interval
+\begin{equation}
+ [K_{\mathrm{corr}},\ K_{\mathrm{corr}}+1-M_{\mathrm{cov}}].
  \label{eq:missing}
 \end{equation}
 For $n$ equally weighted pairs with $m$ complete and $k$ correct, this reduces to $[k/n,(k+n-m)/n]$.
@@ -757,11 +808,11 @@ Exact model/checkpoint versions, metric sets and normalizations, tuning configur
 All four conditions use the same initial program, proposal-Train pool, agent model, edit interface, permitted diagnostics, acceptance guard, and terminal selection rule.
 Independent proposals always edit the current best program and receive no previous failed-attempt diagnostics.
 History-only proposals also edit the current best program, but can inspect their own run's accumulated diagnostic history under the same access rules as IterEval, without an active direction receiving priority or an unaccepted program becoming the parent.
-Depth-first allocation keeps the active direction and the program-inheritance rule of Section~\ref{sec:search}, without returning to a paused direction.
+Depth-first allocation keeps the active direction and the parent rule of Section~\ref{sec:search}, without returning to an ended direction.
 The pause/resume extension additionally allows reopening a saved direction and its history, subject to the same eligibility rules.
 Its reopening policy remains to be frozen, and the row is design-only.
-The history-only versus depth-first contrast tests the combined allocation and inheritance policy, not either mechanism in isolation.
-Attributing a gain specifically to inheritance would additionally require depth-first allocation with the parent reset to the best program after every rejection.
+The history-only versus depth-first contrast tests direction continuation together with the parent rule, not either mechanism in isolation.
+Attributing a gain specifically to parent choice would additionally require depth-first allocation with the parent reset to the best program after every rejection.
 
 The primary search budget is total model-and-tool cost evaluated under one frozen price schedule.
 It includes proposal tokens, requested diagnostics, failed calls, candidate measurement, and a reserved terminal-assessment allowance.
@@ -855,10 +906,11 @@ The random arm's anchor is part of its uniformly sampled budget, not an addition
 \label{app:analysis-details}
 
 \paragraph{From unsuccessful implementation to accepted change.}
-For each selected trajectory, report the direction's initial error, hypothesis, candidate sequence, diagnostic measurements, and acceptance and inheritance decisions.
+For each selected trajectory, report the direction's initial error, intended correction, candidate sequence, diagnostic measurements, acceptance decisions, and next working programs.
 A favorable example must show what changed between the failed and successful attempts, not merely that the later score is higher.
 Include unsuccessful and exhausted directions under the same selection rule.
-Judging a direction unhelpful requires a contradicted prediction and checks of relevant implementation problems; the controller does not make this judgment automatically.
+Report the agent's reason for ending the direction alongside the available diagnostic results, distinguishing implementation problems from an implemented correction that did not address the target errors.
+That decision itself is not evidence that the direction is unhelpful.
 
 \paragraph{Controlled component attribution.}
 Compare compatible tool, route, rubric, module, and synthesis variants on the same inputs.

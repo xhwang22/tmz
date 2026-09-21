@@ -1,99 +1,178 @@
-\section{Depth-first evaluator evolution}
+\section{IterEval}
 \label{sec:method}
 
-IterEval uses depth-first evaluator evolution to search over executable evaluation programs with a fixed base model, using errors revealed by human feedback.
-Its central distinction is between candidate acceptance and direction continuation: an unsuccessful candidate need not replace the best evaluator for its direction to receive further work.
-Program inheritance separately determines which implementation that work starts from.
-
-\subsection{Objective and measurement}
-\label{sec:runtime}
+\subsection{Overview and setup}
+\label{sec:problem}
 \label{sec:measurement}
 
-For domain $D$, let $\mathcal{P}_D$ sample an input and then uniformly sample a strict human preference within its output group.
-With a fixed repeated-scoring protocol, the target is
+Starting from a seed evaluator $E_0$, IterEval revises an executable evaluation program $E_\theta$ using human feedback, with the base model $M$ fixed.
+Its central distinction is between accepting a candidate and continuing an improvement direction.
+A direction identifies an evaluation error and an intended correction to the evaluation program; a candidate is a complete program produced by one revision.
+The direction is the unit of continued exploration; the complete program is the unit of selection.
+Revisions can change what the evaluator observes, which criteria it applies, how it routes tools, and how it combines evidence (Section~\ref{sec:runtime}).
+
+The search maintains
 \begin{equation}
+ S_t=(B_t,W_t,d_t,z_t),
+ \label{eq:search-state}
+\end{equation}
+where $B_t$ is the best accepted program, $W_t$ is the working program being revised, $d_t$ is the active direction, and $z_t$ retains observed outcomes, the agent's interpretations, and unresolved questions.
+Each revision belongs to $d_t$ and adds its outcomes to $z_t$, whether or not the candidate replaces $B_t$.
+Revisions continue within the active direction until the agent ends it or search resources are exhausted.
+Thus rejection can change which program is edited next without discarding the direction under investigation (Figure~\ref{fig:overview}c).
+
+For a task $x$, the evaluator scores each output $y$ separately, without seeing the competing output or human preference.
+Within a domain $D$ sharing an evaluation standard, the objective is agreement with human preferences on unseen inputs,
+\begin{equation}
+ \max_{\theta}\ J_D(\theta),\qquad
  J_D(\theta)=
- \Pr_{(x,y^+,y^-)\sim\mathcal{P}_D,\,\xi}
- \bigl[\bar{s}_\theta(x,y^+)>\bar{s}_\theta(x,y^-)\bigr],
+ \Pr_{(x,y^+,y^-)\sim\mathcal P_D,\,\xi}
+ \bigl[\bar s_\theta(x,y^+)>\bar s_\theta(x,y^-)\bigr].
  \label{eq:objective}
 \end{equation}
-where $\xi$ includes randomness in the $R$ executions used for each median score.
-Each execution is pointwise (Equation~\ref{eq:program}), without access to the opponent or preference label.
-The default synthesizer receives specialist findings, reasons, and scopes, but not structured scores or scales (Figure~\ref{fig:runtime}; Appendix~\ref{app:synthesis}).
+Here $y^+$ is the human-preferred output, $\mathcal P_D$ is the domain's input-and-preference distribution, and $\bar s_\theta$ is the score obtained under a fixed repeated-scoring protocol with execution randomness $\xi$.
+Appendix~\ref{app:measurement} specifies sampling weights, repeated scoring, ties, and incomplete executions.
 
-Search estimates agreement on a finite cohort, requesting $R\geq3$ executions per artifact for full-evaluator measurements.
-For complete executions on input groups $\mathcal S$ with nonempty strict-preference sets $P_g$, define
-\begin{equation}
- \begin{aligned}
- \bar{s}_\theta(x,y)&=\median_{r=1,\ldots,R}s_\theta^{(r)}(x,y),\quad
- z_{gj}=\ind[\bar{s}_\theta(x_g,y_{gj}^+)>\bar{s}_\theta(x_g,y_{gj}^-)],\\
- \widehat J_{\mathcal S}(\theta)&=\frac{1}{|\mathcal S|}\sum_{g\in\mathcal S}\frac{1}{|P_g|}\sum_{j\in P_g}z_{gj}.
- \end{aligned}
- \label{eq:measurement}
-\end{equation}
-Input groups receive equal weight; predicted ties count as incorrect.
-The native development proxy uses one fixed pair per input and need not represent every within-group preference.
-Missing executions retain their denominators through coverage and missing-outcome bounds (Appendix~\ref{app:measurement}).
+\subsection{Disagreement-based preference mining}
+\label{sec:mining}
 
-\subsection{Directions and candidates}
+Preference mining supplies the human feedback used by evolution, drawing comparisons from existing datasets or newly generated outputs.
+Broad preference pools can contain many repetitive comparisons that expose few new evaluation errors.
+Disagreement-based preference mining lowers the sampling priority of comparisons on which existing evaluation signals consistently agree.
+Pairs with conflicting signals receive higher priority, while a random anchor checks for shared blind spots.
+
+For selected comparisons, compatible human preferences are reused when available; otherwise, blinded annotation supplies the missing preferences.
+Both routes supply the same feedback interface to evolution, preserving each label's source and its associated artifacts, signals, and execution records.
+Unselected labels remain hidden from evolution.
+For existing labels, sampling policies are compared at equal label-access budgets; for new annotation, they are compared at equal annotation counts, with annotation time reported separately.
+Random-anchor labels count toward the corresponding budget.
+Appendix~\ref{app:annotation} defines these units and the detailed ranking rules.
+Sampling efficiency is measured by subsequent evaluator improvement, not by disagreement in the selected data alone.
+
+\begin{figure}[t]
+\centering
+\input{figures/overview}
+\caption{IterEval: iterative evaluator self-improvement from human feedback.
+Panel (a) illustrates four artifact families with distinct evaluation standards.
+Panel (b) mines comparisons from existing datasets or fresh outputs, reusing compatible preferences or collecting missing ones.
+Panel (c) separates candidate acceptance from direction continuation.
+Within a continuing direction, the next revision starts from the candidate or the best program; rejected candidates can still inform further revisions.
+Search starts a new direction after the agent ends the active one, retaining its diagnostic history.
+Terminal validation does not trigger edits or reranking.
+Panel (d) covers C1 alignment and output selection, C2 critic-guided refinement, and planned C3 reward-guided training.
+Artifacts are constructed illustrations; the photograph is generated with GPT Image 2.
+Arrows denote information flow, not measured improvements.}
+\label{fig:overview}
+\end{figure}
+
+\subsection{Depth-first evaluator evolution}
 \label{sec:proposal}
-
-A direction $d$ specifies a correction to the evaluation procedure, motivated by a hypothesis about how it would repair an observed error.
-Implementing that correction may require coordinated changes across $(A,K,V,T,\Pi,G)$.
-For example, correcting omission judgments can require finding missing content, assessing its importance, and making that assessment affect the score.
-Changing only one step may leave the error unresolved.
-A candidate $C$ is one complete program implementing the direction, not an individual edit.
-
-The agent constructs candidates from inspectable proposal data $\Dprop$, using the feedback table to connect evaluation errors to artifacts and execution traces.
-A disjoint sealed subset $\Ddev$ returns aggregate measurements only.
-The direction is the unit of continued exploration; the complete program is the unit of selection.
-Connected edits share one parent and one measured outcome, so a bundle's gain is not independent evidence for each edit.
-
-\subsection{Candidate acceptance and program inheritance}
 \label{sec:search}
 
-Let $B_t$ be the best program accepted so far and $W_t$ the working program for the active direction.
-A new direction starts with $W_t=B_t$; within that direction, the next candidate edits $W_t$ using retained diagnostics.
-Every valid, distinct candidate receives the same development measurement protocol.
+Each cycle either starts a direction or continues the active one using its accumulated diagnostics.
+The agent either revises the working program or ends the direction with a recorded explanation.
+A candidate is evaluated for acceptance, while its outcomes inform the next revision within the same direction.
+Ending the direction allows the next session to propose a new one from the best program.
+Algorithm~\ref{alg:era} summarizes this ordinary revision loop.
 
-Define $\Gamma_t(C)$ as the acceptance guard: complete and comparable execution, nondecreasing coverage, and the prespecified stratum-regression check.
-Writing $\widehat J_{\mathrm{dev}}(C)$ for the recorded agreement of program $C$, acceptance is
+The proposal subset $\Dprop$ exposes artifacts, human feedback, and execution traces; the disjoint checking subset $\Ddev$ returns only aggregate candidate measurements.
+Both are development data.
+The agent can inspect detailed proposal cases, while all candidates are accepted or rejected using the same checking set.
+Diagnostic calls, unsuccessful trials, and sessions that end a direction remain in the search cost record.
+
+\begin{algorithm}[t]
+\caption{Depth-first evaluator evolution (ordinary revision loop)}
+\label{alg:era}
+\small
+\begin{algorithmic}[1]
+\Require Seed $E_0$, proposal feedback, checking data, configured search and execution limits
+\State Measure $E_0$; $B\gets E_0$, $W\gets E_0$, $d\gets\varnothing$; initialize history
+\While{search resources remain}
+  \If{$d=\varnothing$}
+    \State $d\gets$ a direction chosen from proposal errors and history; initialize $z$; $W\gets B$
+  \EndIf
+  \State Investigate $(W,d,z)$ using proposal feedback and authorized diagnostics
+  \If{the agent ends $d$}
+    \State Record its explanation, observations and costs; retain $(d,z)$ in history
+    \State $d\gets\varnothing$; \textbf{continue}
+  \EndIf
+  \State Submit candidate $C$ within $d$; record its actual parent, edits and intent
+  \If{$C$ is valid and differs from its parent}
+    \State Obtain checking and local outcomes; reuse verified records for exact replays
+    \State Save $B_{\mathrm{old}}\gets B$; update $B$ by Equation~\ref{eq:acceptance}
+    \State Choose $W\in\{C,B_{\mathrm{old}}\}$ by the conservative parent rule (Appendix~\ref{app:algorithm})
+  \EndIf
+  \State Retain all outcomes and costs in $z$ and history; keep $d$ active
+  \State Stop if execution integrity requires interruption
+\EndWhile
+\State On normal completion, return the Train-selected program after terminal assessment
+\end{algorithmic}
+\end{algorithm}
+
+\paragraph{Choosing a direction.}
+With no active direction, the agent inspects proposal cases and previous trials, identifies an evaluation error, and states the correction it intends to make.
+The target error and intended correction guide subsequent revisions.
+For example, adding a tool and then changing how its output affects the judgment can develop the same correction.
+The controller assigns a direction identifier and starts from $W_t=B_t$.
+The identifier links successive revisions to the same starting program and trial history.
+The agent may refine its account of the correction as diagnosis proceeds, but earlier failures remain in the record.
+The controller preserves this identifier and history; it does not verify that successive revisions retain the same semantic intent.
+Direction choice and the first revision can occur in the same editing session.
+
+\paragraph{Revising and diagnosing.}
+Within the active direction, the agent reads the working program and prior diagnostic results, requests further observations, and submits a complete candidate $C_t$.
+A submission records its edits, intent, and inspected proposal cases.
+Every valid candidate that changes its parent is evaluated on the same checking set; verified measurements may be reused for exact replays.
+Execution traces and measurements on proposal cases record tool outputs, changes in judgments, repaired errors, and regressions.
+The diagnostic state $z_t$ retains these observations alongside the agent's interpretations and unresolved questions, linked to the candidate and its actual parent.
+Observed outcomes establish what the program produced, whereas interpretations explain what the agent proposes to test next.
+
+For example, a tool may detect missing content while the final judgment ignores the finding.
+The agent can test this interpretation by revising how the judgment uses the tool output, rather than repeating the detection step.
+It likewise investigates missing observations, incorrect interpretation, or a correction that was applied but did not help; these explanations are not treated as verified facts.
+
+\paragraph{Candidate acceptance and direction continuation.}
+Candidate acceptance updates the best program according to recorded checking agreement $\widehat J_{\mathrm{dev}}$,
 \begin{equation}
- a_t(C)=\ind[\widehat J_{\mathrm{dev}}(C)>\widehat J_{\mathrm{dev}}(B_t)]
- \,\ind[\Gamma_t(C)].
+ \begin{aligned}
+ a_t&=\ind[\widehat J_{\mathrm{dev}}(C_t)>\widehat J_{\mathrm{dev}}(B_t)]
+       \,\ind[\Gamma_t(C_t)],\\
+ B_{t+1}&=
+ \begin{cases}
+ C_t,&a_t=1,\\
+ B_t,&a_t=0.
+ \end{cases}
+ \end{aligned}
  \label{eq:acceptance}
 \end{equation}
-A separate predicate $w_t(C)$ determines whether the candidate can be inherited as the next working program:
-\begin{equation}
- B_{t+1}=
- \begin{cases} C,&a_t(C)=1,\\ B_t,&\text{otherwise},\end{cases}
- \qquad
- W_{t+1}=
- \begin{cases} C,&w_t(C)=1,\\ B_t,&\text{otherwise}.\end{cases}
- \label{eq:search-update}
-\end{equation}
-Set $w_t(C)=0$ if required local or development comparisons are missing, incomplete, or incomparable.
-Otherwise, $w_t(C)=1$ for accepted candidates, candidates without observed damage, or damaged candidates with fresh, previously uncredited progress and preserved protection cases.
-Damage means a local regression or net regression against the parent or best program on sealed development comparisons.
-Progress is a newly repaired root error or a predeclared exact trace-field change; neither automatically verifies the hypothesis (Appendix~\ref{app:algorithm}).
-Both decisions use the pre-update state, so failed inheritance returns to $B_t$ even if $C$ becomes $B_{t+1}$.
+The guard $\Gamma_t$ requires valid execution and passes only when the coverage and regression checks in Appendix~\ref{app:algorithm} are satisfied.
+This rule preserves the recorded best development agreement.
+It does not decide whether the direction receives another revision.
 
-Equation~\ref{eq:search-update} preserves nondecreasing recorded development agreement for $B_t$ while allowing $W_t$ to pass through candidates that do not improve it.
-This is a selection invariant, not a guarantee of unseen agreement or statistical significance.
+Within a continuing direction, a conservative parent rule chooses whether the next revision starts from $C_t$ or the pre-update best program $B_t$ (Appendix~\ref{app:algorithm}).
+This rule uses local as well as checking comparisons to assess whether further edits should build on the candidate.
+If local comparisons are incomplete, even an accepted candidate may not become the next working program; search then edits $B_t$ while retaining $C_t$ as the new best program.
+Changing the parent neither reverses candidate acceptance nor erases the candidate's diagnostic results.
 
-\subsection{Continuing a direction}
+\paragraph{Continuing before branching.}
+While a direction is active, the next session receives its identifier, current working program, latest trial, and accumulated diagnostic results.
+The agent can request further diagnostics or submit another revision within that direction, regardless of whether the previous candidate was accepted.
+To end the direction, it must issue an explicit action, implemented as \texttt{pause}, with a recorded reason.
+The session instruction asks for the unresolved question and why no different informative test is ready.
+For example, the agent may conclude that an implemented correction does not address the target error after investigating possible implementation problems.
+The agent judges when to end a direction; the controller records this decision without verifying that its reason is sufficient.
 
-Depth-first allocation gives the active direction the next editing opportunity rather than treating candidate rejection as a reason to switch directions.
-The agent uses diagnostic results to distinguish an incomplete implementation from a correction that did not help despite being implemented.
-These diagnostics guide further edits without guaranteeing eventual improvement.
+In the ordinary revision loop, a new direction is proposed only after the agent ends the active direction, starting from the current best program.
+Neither rejecting a candidate nor returning to the best program automatically ends the direction.
+Configured search and execution limits can also stop exploration, leaving the direction unresolved.
+On normal completion, search returns the best program selected on Train, subject to the terminal checks in Appendix~\ref{app:algorithm}, or $E_0$ if no candidate qualifies.
+Terminal validation cannot change this choice or reopen search; independent Test/OOD assessment follows method freeze.
 
-Direction continuation does not require inheriting the latest candidate.
-When inheritance fails, the agent can keep working on the same direction from $B_t$, retaining the rejected candidate's diagnostic history.
-It can request diagnostics, submit another implementation, or pause when no different informative test is proposed.
-The controller enforces program-inheritance eligibility and resource limits, not the agent's interpretation of failure.
+\subsection{Revision space}
+\label{sec:runtime}
 
-Judging a direction unhelpful requires diagnostic results that contradict its hypothesis within its stated scope, after relevant implementation problems have been examined.
-The controller does not make this judgment automatically, and resource exhaustion leaves the direction unresolved.
-Adaptive reuse makes $\Ddev$ development data, not an independent test.
-On normal completion, Train orders eligible candidates; terminal $\Dval$ assesses the frozen shortlist without reranking or edits.
-The seed remains if no eligible improvement exists, and independent Test/OOD assessment follows method freeze (Algorithm~\ref{alg:era}; Appendix~\ref{app:boundaries}).
+The editable program comprises artifact adapters $A$, rubrics and dimensions $K$, evaluator modules $V$, tools $T$, evidence routing $\Pi$, and fusion $G$.
+A revision may change several connected components together: adding a tool, routing its output, and changing how the final judgment uses that output.
+The complete program, rather than each partial edit, is executed and measured.
+The base model remains fixed throughout.
+Figure~\ref{fig:runtime} and Appendix~\ref{app:algorithm} specify these interfaces and the detailed execution rules.

@@ -1,5 +1,152 @@
 # Method rewrite: exemplars and implementation
 
+## Semantic and language boundaries (2026-09-21, round 40)
+
+This local revision retains round39's state and selection equations. It adds a
+complete verbal cycle before Algorithm 1, removes inheritance as a branded third
+decision, and separates execution records from agent interpretations. Main text
+uses evaluation program and continue/end a direction consistently. Existing-label
+budgets are not described as newly performed human work.
+
+The independent reviewer rechecked the current source. patch_revision.py:230–275
+preserves direction_id, while revision intent can change. revision_session.py:57–87
+asks for an unresolved question and why no different test is ready; :404–407 maps
+the pause reason to a no_change record. No parser rule fixes semantic intent or
+requires a sufficient reason category, exhaustive testing, or minimum depth.
+These limitations are now explicit; no hard continuation contract is invented.
+
+revision_control.py:227–259 still requires known local/checking comparisons for
+the next candidate parent. example_search.py preserves pre-update best fallback,
+including an accepted candidate whose local comparison is incomplete. The prose
+reduces terminology, not these implementation conditions.
+
+The four inspected source hashes below remain unchanged. The implementation,
+author-edited Abstract/Introduction, figure assets, numerical fixtures and
+empirical status are not changed. No new citations or venue metadata are added.
+
+## Core-first optimizer exposition (2026-09-21, round 39)
+
+The Method now begins with persistent (B, W, d, z) and the selection/exploration
+distinction. Only state, objective and acceptance/best update remain displayed.
+Algorithm 1 moves to the main text; the six-component revision space moves last.
+Program inheritance remains implemented but is explained within continuation.
+No controller, data, model, or empirical result is changed.
+
+The dedicated reviewer rechecked the native path and verified the rewritten
+draft after two corrections: pause costs are recorded before the next direction,
+and diagnostic interpretation is not presented as an enforced semantic stop test.
+Direction choice and the first revision can share one editing session.
+The ordinary loop omits optional compression modes; it is not a complete listing
+of every configurable branch.
+
+Implementation anchors inspected for this cycle:
+
+- patch_revision.py:230–237 preserves the active direction identifier; :266–274
+  permits updates to the plan/intent, so persistence is not immutable semantics.
+- example_search.py:1057–1119 supplies the installed parent, latest trial and
+  same-direction history to the next session. Rejection or failed inheritance
+  does not itself clear direction identity.
+- revision_session.py:57–87 and :380–439 define investigation, submission,
+  repair and pause. A pause is recorded as no_change, not a free search reset.
+- example_search.py:709–723 and :1156–1158 clear a paused plan and restart
+  from best. The agent's reason is not certified as semantically sufficient.
+- example_search.py:1569–1606 reuses verified measurements for exact replays
+  and applies checking-based selection. The pseudocode does not count replayed
+  scores as independent new measurements.
+- revision_control.py:227–250 retains the complete/comparable local-and-checking
+  prerequisites for inheritance. example_search.py:475–482 and :584–588 preserve
+  the pre-update best fallback, including accepted-but-not-inherited candidates.
+- example_search.py:1047–1051 distinguishes advisory cumulative edits in the
+  default policy from enforced run/session/execution limits.
+
+The source HEAD remains 5814194eb4469e302438b20d6cf368a3d6928cfc with existing
+uncommitted work. Current inspected file hashes:
+
+| Source path | SHA-256 |
+| --- | --- |
+| harness_evolution/multidomain/revision_control.py | bea3de6852661922e3af2824253d04d7b7c5ef905fcf43bd34b7081a5cbebfe2 |
+| harness_evolution/multidomain/example_search.py | 001723e8d29ac8a5ba793908ae21bf32a7a26db28e3bfaec1622681002baadaa |
+| harness_evolution/multidomain/patch_revision.py | ec4658faf3945f90f91296c75c4dbd5ccb2efe6648e28f56dec949749cabc5bb |
+| harness_evolution/multidomain/revision_session.py | 912cc3731fa9fd1909e61902f056be5af62b80ca23ca60f8f2d07b8e4eb4f881 |
+
+These are source checks, not evidence of optimization benefit.
+See method_readability_review_20260921_round39.md for the final review.
+
+## Source consolidation and readability review (2026-09-21, round 38)
+
+The main Method now has one source, `sections/method.tex`. The source-only merge
+preserved the extracted PDF text exactly before any prose revision. Two dedicated
+reviewer passes and a final verification then checked the revised reading order
+against the semantics recorded below. The feedback table is introduced before
+its proposal subset, acceptance is adjacent to the joint best/working update,
+and a constructed trace example explains how diagnosis informs another revision.
+Technical details moved to the appendix retain their original conditions.
+
+The review corrected two easily confused implications: failed inheritance does
+not imply failed acceptance, and default direction continuation is not
+unconditional continuation. Both decisions still use the pre-update best program.
+Repeated checking data remain development data; terminal validation cannot rerank
+or reopen search. There is no new hard direction-edit budget, automatic semantic
+verification rule, empirical claim, or change to the engineering implementation.
+See `method_readability_review_20260921.md` for review dispositions and checks.
+
+## Persistent-state and algorithm-order revision (2026-09-21, round 37)
+
+The author's latest direction replaces the three separate formulation, mining,
+and evolution sections with Section 3, IterEval. Overview and setup states the
+inputs, editable program, objective and data boundaries. Preference mining is a
+short interface; the core follows one cycle rather than retelling the insight.
+SkillOpt's cached Method §§3.1–3.7 was read as a structural reference. GEPA, DGM
+and AgentOptimizer are author-supplied exposition examples, not evidence that
+their algorithms universally abandon rejected directions. No new citation or
+publication-field claim is introduced.
+
+The active state (B, W, d, z) abstracts existing best/working programs, the
+persistent direction plan, and diagnostic history. Revise and Update expose
+their data dependencies, not newly implemented operators or learned parameters.
+The record binds intent and actual edits to the tested candidate and its true
+parent. Available proposal observations include repaired, unchanged, regressed
+and unknown outcomes; checking Train remains aggregate-only. Optional expected
+orderings and exact-field checks are not a required complete diagnostic schema.
+An exact-field change does not verify a semantic explanation.
+
+Inspected anchors in the engineering repository:
+
+- revision_session.py:28–85: proposal-only investigation, actual installed
+  parent versus last trial, intended versus observed behavior, tools/submit/
+  repair/pause actions, and optional expectations/checks.
+- revision_control.py:214–259: common completeness/comparability requirements,
+  acceptance/no-damage/fresh-progress inheritance branches, protected cases,
+  and previously credited repairs. The pre-update best remains the fallback.
+- example_search.py:900–1176: retained direction plans and histories, choosing
+  further investigation/revision or pausing, and edit-guidance policy handling.
+  The proposal's max_steps is not a maximum direction depth.
+- docs/era_algorithm.md: default edit counts, replacement fractions and
+  cumulative direction edits are advisory. There is no default cumulative
+  API/token cap to import into the main equations. Configured search and
+  session bounds plus execution limits remain separate constraints.
+
+The core therefore distinguishes candidate acceptance, program inheritance,
+and direction continuation. Resource exhaustion is unresolved, not refutation.
+Terminal Val remains a frozen-shortlist assessment, not an adaptive acceptance
+gate. The direction allocation is an implemented policy, not a convergence or
+semantic-refutation theorem. C27/C28 remain evidence gaps.
+
+Engineering HEAD remains 5814194eb4469e302438b20d6cf368a3d6928cfc; its dirty
+worktree contains the inspected changes. SHA-256 identifies this read-only
+inspection, not a frozen experiment:
+
+| Path relative to engineering repository | SHA-256 |
+| --- | --- |
+| harness_evolution/multidomain/revision_session.py | 5bb56884633bef98e01e0111a14a4ca1c730ef03b7e8733d2c20b1e51f10a8e2 |
+| harness_evolution/multidomain/revision_control.py | bea3de6852661922e3af2824253d04d7b7c5ef905fcf43bd34b7081a5cbebfe2 |
+| harness_evolution/multidomain/example_search.py | 001723e8d29ac8a5ba793908ae21bf32a7a26db28e3bfaec1622681002baadaa |
+| docs/era_algorithm.md | e6ec62203c2ae3098328a1829d29539db985311e767e5bb9fc38b87db67d0c62 |
+
+No engineering files, model calls, numerical results, figure assets or captions
+were changed. The author's pre-existing Abstract edits and Introduction were
+preserved. Historical audit entries below describe earlier revisions.
+
 Inspected and revised on 2026-09-19.
 The writing exemplars guide exposition; the source implementation governs algorithmic statements.
 This audit supplies no new performance evidence and leaves C27/C28 unverified.

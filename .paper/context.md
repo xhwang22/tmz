@@ -1,5 +1,42 @@
 # Paper context
 
+## Current Method organization (round 40)
+
+Section 3, IterEval, has four subsections: Overview and setup;
+Disagreement-based preference mining; Depth-first evaluator evolution; Revision space.
+The opening states that the direction is the exploration unit and the complete
+program is the selection unit, then defines persistent (B, W, d, z).
+Only three displayed equation blocks remain: state, objective and acceptance/best update.
+Mining is two short paragraphs; the six-component revision space comes last.
+Algorithm 1 remains in the main Method, before Experiments, now preceded by a
+short complete verbal cycle. Measurement and parent-choice details remain in
+the appendix. The opening previews what the evaluation program can change.
+
+Direction identity and history persist across rejected candidates and parent
+fallbacks. An explicit ending action (native pause) clears the active direction;
+the next session starts a direction from the current best program. Its diagnostic
+observations and costs are retained. Exact replays reuse verified measurements.
+The controller enforces identity and measurement/resource rules, not semantic
+consistency or a sufficient reason to end. It does not prevent early exit or
+guarantee minimum depth. This implementation gap cannot be repaired in prose.
+Main text uses continue/end a direction and a conservative parent rule within
+continuation. An accepted candidate can still lack complete local comparisons;
+the next edit then uses the pre-update best while acceptance is retained.
+The diagnostic state distinguishes observed records from agent interpretations
+and unresolved questions. No new schema or automatic semantic oracle is claimed.
+Mining now separates revealed-label budgets from new-annotation counts and time,
+with original-input groups and random-anchor accounting defined in the appendix.
+
+The complete Method remains in sections/method.tex.
+The dedicated reviewer completed source inspection, draft review and targeted
+final verification, finding no blocking Method defect. Four small final wording corrections are applied; see
+method_readability_review_20260921_round40.md for the review and verification.
+The author-modified Abstract and Introduction, all figure geometry/assets and
+quantitative fixtures are unchanged. Only the overview caption now reflects the
+acceptance/continuation hierarchy. C27/C28 remain empirical gaps.
+The PDF has 36 pages and 10 main-text pages against the 9-page initial limit;
+17 unused bibliography records and the approved teaser's small labels remain.
+
 ## Current figure layout (round 36)
 
 The author rejected the previous redesign of both figures.
