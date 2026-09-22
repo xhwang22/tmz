@@ -1,5 +1,0 @@
-Use case: precise-object-edit
-Input images: Image 1 is the edit target, a synthetic tabletop photograph containing one red mug and one blue bowl.
-Primary request: remove ONLY the blue bowl and its cast shadow, restoring the empty stone tabletop behind it. Keep the red mug exactly unchanged.
-Invariants: preserve the mug's position, size, red color, handle, texture and shadow. Preserve the tabletop, back wall, blurred vase and branch, camera viewpoint, crop, lighting, depth of field, and every other detail. Do not move or enlarge the mug to fill the empty space.
-Constraints: after editing there is exactly one red mug and no bowl. No new objects, text, labels, arrows, logos, borders, or watermarks. This omission is an intentionally constructed failure case for a scientific illustration, not a measured model error.

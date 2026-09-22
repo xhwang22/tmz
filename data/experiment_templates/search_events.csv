@@ -1,1 +1,0 @@
-domain_id,run_id,method_id,event_id,event_type,direction_id,parent_hash,candidate_hash,best_hash,working_hash,candidate_accepted,direction_ended,end_reason,development_agreement,coverage,cumulative_cost,observed_diagnostics_path,agent_interpretation_path,checkpoint_fraction,status,manifest_id

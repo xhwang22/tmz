@@ -1,5 +1,0 @@
-Use case: precise-object-edit
-Input images: Image 1 is the edit target, a synthetic tabletop photograph with one blue bowl.
-Primary request: add one small brick-red ceramic mug on the empty foreground tabletop to the LEFT of the existing blue bowl. The mug has a visible curved handle pointing left. Keep the whole blue bowl visible, with a small gap between the mug and bowl.
-Invariants: preserve the original blue bowl's position, size, cobalt color, shape, and texture. Preserve the tabletop, back wall, blurred vase and branch, camera viewpoint, crop, lighting, depth of field, and all existing shadows. The added mug's size and shadow must fit the original scene. Change nothing else.
-Constraints: exactly one red mug and one blue bowl. No text, labels, arrows, logos, borders, or watermarks. High-quality photorealistic product photograph for an explicitly synthetic academic illustration.
