@@ -459,16 +459,35 @@ Report actual deployment cost instead of assuming that an equal cap produces equ
 Fixed final evaluation costs do not buy additional search.
 Table~\ref{tab:cost-results} records these distinctions.
 
+\paragraph{Code-grounded cost scenario.}
+For the current illustration, we estimate model cost for one successful pointwise evaluation, not a full deployment bill.
+The inspected Seed configurations use 2, 4, 4, and 5 specialist calls in SV4, IG1, TG1, and AR1, respectively, plus 0, 3, 3, and 5 routing calls and one synthesis call in each domain.
+Fixed uses one holistic call; ``fixed'' describes its unchanged prompt, not zero inference cost.
+For Fusion, we assume the features are all Seed specialist signals, generate them at their full cost, and replace synthesis with a local linear combination.
+The available SV4 SkillOpt program retains the Seed structure and prompt lengths; the available IterEval program changes the synthesis prompt from 427 to 5,088 characters without adding calls.
+For other method--domain combinations, we use Seed's call topology and request-length profile without predicting their semantic edits.
+Agreement values remain independent layout fixtures, not measurements of these inspected programs; these conditional costs do not establish an empirical ranking of optimizers.
+
+We sum input tokens plus four times output tokens, normalize within each domain by Seed, and average the four ratios.
+Code and configuration text use a characters-divided-by-four token approximation, including scoring schemas.
+Assumed artifact-input lengths are 4,000, 250, 3,000, and 8,000 tokens; image-token allowances are 2,000, 1,000, 0, and 0; synthesis contexts are 500, 150, 500, and 1,500 tokens in the same domain order.
+Each specialist report contributes 600 visible tokens and 100 envelope tokens to synthesis.
+We allow 350 adapter/envelope tokens per specialist or routing call, 100 routing-instruction tokens, one active tool per routing call, and 200 evidence tokens per tool execution.
+Assumed output lengths, including reasoning once, are 1,000 for Fixed, 400 for routing, 1,600 for a specialist, and 1,800 for synthesis.
+Varying the output weight from 2 to 8 and the input/image/context payloads from half to double gives Fixed 0.11--0.15 and Fusion 0.78--0.86 times Seed's cost; these are sensitivity ranges, not confidence intervals.
+We assume no model-cache discounts, retries, or synthesis repairs and do not price local tools or rendering.
+Search-token entries remain independent layout fixtures; latency is left unestimated.
+
 \begin{table}[!htbp]
-\caption{\textbf{Adaptation and deployment resources.}
+\caption{\textbf{Adaptation resources and modeled evaluation cost.}
 Simulated ideal scenario; not measured costs.
-Search cost is in relative units (optimizer cap $=100$), tokens in millions, deployment cost relative to Seed, and latency in seconds.
-Actual reporting includes failed and diagnostic calls, separately by domain and run.}
+Search cost (cap $=100$) and tokens (millions) are assigned separately; model cost follows the code-grounded scenario above, relative to Seed.
+Latency is unestimated (--); real reporting must include failures, retries, and tool charges.}
 \label{tab:cost-results}
 \centering\small
 \begin{tabularx}{\linewidth}{@{}Ycccc@{}}
 \toprule
-Method & Search cost & Search tokens & Deploy cost & Latency\\
+Method & Search cost & Search tokens & Model cost & Latency\\
 \midrule
 \input{figures/ideal_scenario/cost}
 \bottomrule
@@ -639,11 +658,10 @@ When comparing dimensional scores with overall preferences, preserve their separ
 
 \paragraph{Cost and cross-task reporting.}
 For empirical reporting, Figure~\ref{fig:c1-landscape}b requires actual deployment cost per requested output from Table~\ref{tab:cost-results}, not search cost.
-The current draft instead uses assigned relative costs.
-Panel (c) uses the same C1 values as Table~\ref{tab:main-alignment}, but answers where gains occur rather than who has the highest absolute mean.
-Real-data replacement must compute paired differences on common inputs.
-This reuse is intentional; it must not be presented as another independent experiment.
-The external comparator is GEPA, fixed before inspecting its performance.
+The current draft instead uses the conditional model-cost estimates in Appendix~\ref{app:adaptation}.
+Panel (c) compares absolute agreement across tasks, reusing four domains from Table~\ref{tab:main-alignment} and adding fourteen layout-only assignments excluded from all means.
+This reuse is intentional; neither the repeated values nor the additional assignments are independent experiments.
+Real-data replacement must compare methods on common inputs and report task-specific uncertainty.
 Any missing task or comparator is labeled, not dropped to improve the plot.
 
 \section{Search, mining, and component ablations}

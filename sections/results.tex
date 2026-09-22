@@ -24,18 +24,17 @@ Evaluator & Pair $\uparrow$ & Bo$N$ $\uparrow$ & Reg $\downarrow$ & Coverage $\u
 \begin{figure}[!htbp]
 \centering
 \input{figures/results_landscape_pending}
-\caption{\textbf{C1 breadth and deployment trade-offs.}
+\caption{\textbf{C1 breadth and evaluation cost.}
 Simulated ideal scenario; not experimental results.
 (a) Task families and output types.
-(b) Four-domain cost and agreement.
+(b) Four-domain modeled cost and agreement.
 (c) Agreement: IterEval in lake green, baselines in family shades.
 Four tasks reuse Table~\ref{tab:main-alignment}; fourteen are layout-only additions excluded from its means; four remain unfilled.}
 \label{fig:c1-landscape}
 \end{figure}
 
-The extra task assignments in Figure~\ref{fig:c1-landscape}c are excluded from Table~\ref{tab:main-alignment} and panel (b).
-IterEval's deployment cost is \ResultDeployCost{} times Seed's in panel (b), between GEPA and Meta-Harness.
-Actual cost measurements must determine whether this quality--cost relation holds.
+The additional tasks in Figure~\ref{fig:c1-landscape}c are excluded from all means.
+Panel (b) estimates IterEval at \ResultDeployCost{} times Seed's model cost, assuming Seed-like runtime profiles where unavailable (Appendix~\ref{app:adaptation}); deployment costs remain unmeasured.
 
 \paragraph{C2: critic-guided refinement.}
 A frozen generator refines the same fresh $y_0$ using Seed or IterEval critiques, or no critique \citep{madaan2023selfrefine}, at matched resources.
