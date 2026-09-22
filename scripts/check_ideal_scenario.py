@@ -37,7 +37,7 @@ def audit():
         require(manifest[flag] is True, f"Missing disclosure: {flag}")
     require(manifest["empirical_evidence"] is False, "Manifest misstates empirical status")
     expected = {str(p.relative_to(ROOT)) for p in OUT.iterdir() if p.suffix in {".tex", ".pdf", ".svg", ".png"}}
-    expected |= {"data/ideal_scenario/scenario.json", "scripts/render_ideal_scenario.py", "scripts/render_c1_landscape.py"}
+    expected |= {"data/ideal_scenario/scenario.json", "scripts/render_ideal_scenario.py", "scripts/render_c1_landscape.py", "scripts/figure_fonts.py"}
     require(set(manifest["files"]) == expected, "Manifest does not cover the exact source/export set")
     for name, digest in manifest["files"].items():
         p = (ROOT / name).resolve()

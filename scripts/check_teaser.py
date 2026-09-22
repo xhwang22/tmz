@@ -8,6 +8,7 @@ import re
 import struct
 import subprocess
 import xml.etree.ElementTree as ET
+from figure_connectors import STYLE as CONNECTOR_STYLE, audit_markers
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -28,6 +29,8 @@ def audit():
     width = re.search(r"\\includegraphics\[width=([0-9.]+)in\]\{figures/teaser.pdf\}", layout)
     assert width and abs(float(width[1]) - info["print_width_in"]) < 1e-6
     root = ET.fromstring(source.read_text())
+    assert info["connector_style"] == CONNECTOR_STYLE
+    assert audit_markers(root) == info["connector_revision"]["arrow_count"]
     ns = {"s": "http://www.w3.org/2000/svg"}
     tradeoff = root.find(".//s:g[@id='task-tradeoff']", ns)
     rankings = root.find(".//s:g[@id='task-ranking-conflict']", ns)
@@ -41,6 +44,16 @@ def audit():
             "Human: A > B", "≠", "Evaluator: B > A",
         ]
         print("Panel a: qualitative trade-off and opposite overall rankings are explicit.")
+    if info.get("step_wording_revision"):
+        text = subprocess.check_output(["pdftotext", "-layout", str(ROOT / "figures/teaser.pdf"), "-"], text=True)
+        for label in info["step_wording_revision"]["depth_steps"]:
+            assert label in text, f"Missing revised step in PDF: {label}"
+        labels = [el.text for el in root.findall(".//s:text", ns)]
+        assert "Same penalty for" in labels and "small and large edits." in labels
+        assert "outweighs extra detail." in labels
+        assert "underweighted." not in labels and "not scored." not in labels
+        assert "TeX Gyre Pagella" in source.read_text(), "Layout regeneration reverted figure typography"
+        print("Step annotations: concrete layout findings, penalty limitation and task trade-off verified.")
     scale = info["print_width_in"] / float(root.get("viewBox").split()[2])
     ppis, font_pts = [], []
     parents = {child: parent for parent in root.iter() for child in parent}

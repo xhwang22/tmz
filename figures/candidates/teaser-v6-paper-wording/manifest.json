@@ -389,5 +389,32 @@
     0.0,
     1840.0,
     880.0
-  ]
+  ],
+  "font_family": "TeX Gyre Pagella",
+  "step_wording_revision": {
+    "date": "2026-09-22",
+    "purpose": "make each diagnostic identify the remaining problem addressed by the next revision",
+    "default_checks": [
+      "Compare layouts",
+      "Check rain effects",
+      "Inspect details"
+    ],
+    "depth_steps": [
+      "Detect layout changes",
+      "Penalize layout changes",
+      "Penalize major errors more"
+    ],
+    "diagnostic_chain": [
+      "Wider street found; score unchanged.",
+      "Same penalty for small and large edits.",
+      "Street widening outweighs extra detail."
+    ],
+    "preserved": [
+      "approved layout and branch geometry",
+      "all nine image payloads and crops",
+      "case rankings, palette and Palatino-compatible font"
+    ],
+    "evidence_status": "constructed example, not an observed trajectory or acceptance result"
+  },
+  "connector_style": "compact-filled-tips-rounded-routes"
 }

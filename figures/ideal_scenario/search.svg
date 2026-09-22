@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-09-22T06:28:49.442046</dc:date>
+    <dc:date>2026-09-22T10:37:11.308784</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -41,60 +41,60 @@ z
     <g id="xtick_1">
      <g id="line2d_1">
       <defs>
-       <path id="md1cf90f506" d="M 0 0
+       <path id="mf9cfc6f0df" d="M 0 0
 L 0 3.5
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#md1cf90f506" x="31.320199" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="31.320199" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_1">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="31.320199" y="92.272188" transform="rotate(-0 31.320199 92.272188)">0</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="31.320199" y="92.355625" transform="rotate(-0 31.320199 92.355625)">0</text>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_2">
       <g>
-       <use xlink:href="#md1cf90f506" x="51.841196" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="51.841196" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_2">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="51.841196" y="92.272188" transform="rotate(-0 51.841196 92.272188)">25</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="51.841196" y="92.355625" transform="rotate(-0 51.841196 92.355625)">25</text>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_3">
       <g>
-       <use xlink:href="#md1cf90f506" x="72.362193" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="72.362193" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_3">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="72.362193" y="92.272188" transform="rotate(-0 72.362193 92.272188)">50</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="72.362193" y="92.355625" transform="rotate(-0 72.362193 92.355625)">50</text>
      </g>
     </g>
     <g id="xtick_4">
      <g id="line2d_4">
       <g>
-       <use xlink:href="#md1cf90f506" x="92.88319" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="92.88319" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_4">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="92.88319" y="92.272188" transform="rotate(-0 92.88319 92.272188)">75</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="92.88319" y="92.355625" transform="rotate(-0 92.88319 92.355625)">75</text>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_5">
       <g>
-       <use xlink:href="#md1cf90f506" x="113.404186" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="113.404186" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_5">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="113.404186" y="92.272188" transform="rotate(-0 113.404186 92.272188)">100</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="113.404186" y="92.355625" transform="rotate(-0 113.404186 92.355625)">100</text>
      </g>
     </g>
     <g id="text_6">
-     <text style="font: 7px 'Source Sans 3'; text-anchor: middle" x="72.362193" y="102.626406" transform="rotate(-0 72.362193 102.626406)">Search budget (%)</text>
+     <text style="font: 7px 'TeX Gyre Pagella'; text-anchor: middle" x="72.362193" y="103.249687" transform="rotate(-0 72.362193 103.249687)">Search budget (%)</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">
@@ -102,69 +102,69 @@ L 0 3.5
      <g id="line2d_6">
       <path d="M 27.216 73.757647
 L 117.508386 73.757647
-" clip-path="url(#p42d634d96c)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
+" clip-path="url(#p242c092f1f)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
      </g>
      <g id="line2d_7">
       <defs>
-       <path id="ma94200fefd" d="M 0 0
+       <path id="m1e175edf8b" d="M 0 0
 L -3.5 0
 " style="stroke: #000000; stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#ma94200fefd" x="27.216" y="73.757647" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="27.216" y="73.757647" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_7">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: end" x="20.216" y="75.893741" transform="rotate(-0 20.216 75.893741)">70</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: end" x="20.216" y="75.93546" transform="rotate(-0 20.216 75.93546)">70</text>
      </g>
     </g>
     <g id="ytick_2">
      <g id="line2d_8">
       <path d="M 27.216 55.651765
 L 117.508386 55.651765
-" clip-path="url(#p42d634d96c)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
+" clip-path="url(#p242c092f1f)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
      </g>
      <g id="line2d_9">
       <g>
-       <use xlink:href="#ma94200fefd" x="27.216" y="55.651765" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="27.216" y="55.651765" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_8">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: end" x="20.216" y="57.787858" transform="rotate(-0 20.216 57.787858)">75</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: end" x="20.216" y="57.829577" transform="rotate(-0 20.216 57.829577)">75</text>
      </g>
     </g>
     <g id="ytick_3">
      <g id="line2d_10">
       <path d="M 27.216 37.545882
 L 117.508386 37.545882
-" clip-path="url(#p42d634d96c)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
+" clip-path="url(#p242c092f1f)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
      </g>
      <g id="line2d_11">
       <g>
-       <use xlink:href="#ma94200fefd" x="27.216" y="37.545882" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="27.216" y="37.545882" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_9">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: end" x="20.216" y="39.681976" transform="rotate(-0 20.216 39.681976)">80</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: end" x="20.216" y="39.723695" transform="rotate(-0 20.216 39.723695)">80</text>
      </g>
     </g>
     <g id="ytick_4">
      <g id="line2d_12">
       <path d="M 27.216 19.44
 L 117.508386 19.44
-" clip-path="url(#p42d634d96c)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
+" clip-path="url(#p242c092f1f)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
      </g>
      <g id="line2d_13">
       <g>
-       <use xlink:href="#ma94200fefd" x="27.216" y="19.44" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="27.216" y="19.44" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_10">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: end" x="20.216" y="21.576094" transform="rotate(-0 20.216 21.576094)">85</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: end" x="20.216" y="21.617813" transform="rotate(-0 20.216 21.617813)">85</text>
      </g>
     </g>
     <g id="text_11">
-     <text style="font: 7px 'Source Sans 3'; text-anchor: middle" x="8.683188" y="50.22" transform="rotate(-90 8.683188 50.22)">Agreement (%)</text>
+     <text style="font: 7px 'TeX Gyre Pagella'; text-anchor: middle" x="8.235219" y="50.22" transform="rotate(-90 8.235219 50.22)">Agreement (%)</text>
     </g>
    </g>
    <g id="line2d_14">
@@ -173,7 +173,7 @@ L 51.841196 62.894118
 L 72.362193 55.651765
 L 92.88319 52.030588
 L 113.404186 50.22
-" clip-path="url(#p42d634d96c)" style="fill: none; stroke: #8d999e; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#p242c092f1f)" style="fill: none; stroke: #8d999e; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="line2d_15">
     <path d="M 31.320199 73.757647
@@ -181,7 +181,7 @@ L 51.841196 59.272941
 L 72.362193 48.409412
 L 92.88319 41.167059
 L 113.404186 37.545882
-" clip-path="url(#p42d634d96c)" style="fill: none; stroke: #74a9c5; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#p242c092f1f)" style="fill: none; stroke: #74a9c5; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="line2d_16">
     <path d="M 31.320199 73.757647
@@ -189,7 +189,7 @@ L 51.841196 57.824471
 L 72.362193 46.236706
 L 92.88319 38.270118
 L 113.404186 36.097412
-" clip-path="url(#p42d634d96c)" style="fill: none; stroke: #edddab; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#p242c092f1f)" style="fill: none; stroke: #edddab; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="line2d_17">
     <path d="M 31.320199 73.757647
@@ -197,7 +197,7 @@ L 51.841196 59.997176
 L 72.362193 46.960941
 L 92.88319 38.994353
 L 113.404186 34.648941
-" clip-path="url(#p42d634d96c)" style="fill: none; stroke: #62aaa5; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#p242c092f1f)" style="fill: none; stroke: #62aaa5; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="patch_3">
     <path d="M 27.216 81
@@ -210,44 +210,44 @@ L 117.508386 81
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_12">
-    <text style="font: 7px 'Source Sans 3'; text-anchor: start" x="27.216" y="13.44" transform="rotate(-0 27.216 13.44)">a  Development progress</text>
+    <text style="font: 7px 'TeX Gyre Pagella'; text-anchor: start" x="27.216" y="13.44" transform="rotate(-0 27.216 13.44)">a  Development progress</text>
    </g>
    <g id="legend_1">
     <g id="line2d_18">
-     <path d="M 31.716 25.750156
-L 36.716 25.750156
-L 41.716 25.750156
+     <path d="M 31.716 25.819688
+L 36.716 25.819688
+L 41.716 25.819688
 " style="fill: none; stroke: #8d999e; stroke-width: 1.2; stroke-linecap: square"/>
     </g>
     <g id="text_13">
-     <text style="font: 5px 'Source Sans 3'; text-anchor: start" x="45.716" y="27.500156" transform="rotate(-0 45.716 27.500156)">SkillOpt</text>
+     <text style="font: 5px 'TeX Gyre Pagella'; text-anchor: start" x="45.716" y="27.569688" transform="rotate(-0 45.716 27.569688)">SkillOpt</text>
     </g>
     <g id="line2d_19">
-     <path d="M 31.716 32.835313
-L 36.716 32.835313
-L 41.716 32.835313
+     <path d="M 31.716 33.354063
+L 36.716 33.354063
+L 41.716 33.354063
 " style="fill: none; stroke: #74a9c5; stroke-width: 1.2; stroke-linecap: square"/>
     </g>
     <g id="text_14">
-     <text style="font: 5px 'Source Sans 3'; text-anchor: start" x="45.716" y="34.585313" transform="rotate(-0 45.716 34.585313)">GEPA</text>
+     <text style="font: 5px 'TeX Gyre Pagella'; text-anchor: start" x="45.716" y="35.104063" transform="rotate(-0 45.716 35.104063)">GEPA</text>
     </g>
     <g id="line2d_20">
-     <path d="M 31.716 39.920469
-L 36.716 39.920469
-L 41.716 39.920469
+     <path d="M 31.716 40.888438
+L 36.716 40.888438
+L 41.716 40.888438
 " style="fill: none; stroke: #edddab; stroke-width: 1.2; stroke-linecap: square"/>
     </g>
     <g id="text_15">
-     <text style="font: 5px 'Source Sans 3'; text-anchor: start" x="45.716" y="41.670469" transform="rotate(-0 45.716 41.670469)">Meta-Harness</text>
+     <text style="font: 5px 'TeX Gyre Pagella'; text-anchor: start" x="45.716" y="42.638438" transform="rotate(-0 45.716 42.638438)">Meta-Harness</text>
     </g>
     <g id="line2d_21">
-     <path d="M 31.716 47.005625
-L 36.716 47.005625
-L 41.716 47.005625
+     <path d="M 31.716 48.422813
+L 36.716 48.422813
+L 41.716 48.422813
 " style="fill: none; stroke: #62aaa5; stroke-width: 1.2; stroke-linecap: square"/>
     </g>
     <g id="text_16">
-     <text style="font: 5px 'Source Sans 3'; text-anchor: start" x="45.716" y="48.755625" transform="rotate(-0 45.716 48.755625)">IterEval</text>
+     <text style="font: 5px 'TeX Gyre Pagella'; text-anchor: start" x="45.716" y="50.172813" transform="rotate(-0 45.716 50.172813)">IterEval</text>
     </g>
    </g>
   </g>
@@ -264,55 +264,55 @@ z
     <g id="xtick_6">
      <g id="line2d_22">
       <g>
-       <use xlink:href="#md1cf90f506" x="164.050006" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="164.050006" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_17">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="164.050006" y="92.272188" transform="rotate(-0 164.050006 92.272188)">0</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="164.050006" y="92.355625" transform="rotate(-0 164.050006 92.355625)">0</text>
      </g>
     </g>
     <g id="xtick_7">
      <g id="line2d_23">
       <g>
-       <use xlink:href="#md1cf90f506" x="184.571003" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="184.571003" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_18">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="184.571003" y="92.272188" transform="rotate(-0 184.571003 92.272188)">25</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="184.571003" y="92.355625" transform="rotate(-0 184.571003 92.355625)">25</text>
      </g>
     </g>
     <g id="xtick_8">
      <g id="line2d_24">
       <g>
-       <use xlink:href="#md1cf90f506" x="205.092" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="205.092" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_19">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="205.092" y="92.272188" transform="rotate(-0 205.092 92.272188)">50</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="205.092" y="92.355625" transform="rotate(-0 205.092 92.355625)">50</text>
      </g>
     </g>
     <g id="xtick_9">
      <g id="line2d_25">
       <g>
-       <use xlink:href="#md1cf90f506" x="225.612997" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="225.612997" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_20">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="225.612997" y="92.272188" transform="rotate(-0 225.612997 92.272188)">75</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="225.612997" y="92.355625" transform="rotate(-0 225.612997 92.355625)">75</text>
      </g>
     </g>
     <g id="xtick_10">
      <g id="line2d_26">
       <g>
-       <use xlink:href="#md1cf90f506" x="246.133994" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="246.133994" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_21">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="246.133994" y="92.272188" transform="rotate(-0 246.133994 92.272188)">100</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="246.133994" y="92.355625" transform="rotate(-0 246.133994 92.355625)">100</text>
      </g>
     </g>
     <g id="text_22">
-     <text style="font: 7px 'Source Sans 3'; text-anchor: middle" x="205.092" y="102.626406" transform="rotate(-0 205.092 102.626406)">Search budget (%)</text>
+     <text style="font: 7px 'TeX Gyre Pagella'; text-anchor: middle" x="205.092" y="103.249687" transform="rotate(-0 205.092 103.249687)">Search budget (%)</text>
     </g>
    </g>
    <g id="matplotlib.axis_4">
@@ -320,60 +320,60 @@ z
      <g id="line2d_27">
       <path d="M 159.945807 73.757647
 L 250.238193 73.757647
-" clip-path="url(#pf62bc711fe)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
+" clip-path="url(#pf0008fa98a)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
      </g>
      <g id="line2d_28">
       <g>
-       <use xlink:href="#ma94200fefd" x="159.945807" y="73.757647" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="159.945807" y="73.757647" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_23">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: end" x="152.945807" y="75.893741" transform="rotate(-0 152.945807 75.893741)">70</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: end" x="152.945807" y="75.93546" transform="rotate(-0 152.945807 75.93546)">70</text>
      </g>
     </g>
     <g id="ytick_6">
      <g id="line2d_29">
       <path d="M 159.945807 55.651765
 L 250.238193 55.651765
-" clip-path="url(#pf62bc711fe)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
+" clip-path="url(#pf0008fa98a)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
      </g>
      <g id="line2d_30">
       <g>
-       <use xlink:href="#ma94200fefd" x="159.945807" y="55.651765" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="159.945807" y="55.651765" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_24">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: end" x="152.945807" y="57.787858" transform="rotate(-0 152.945807 57.787858)">75</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: end" x="152.945807" y="57.829577" transform="rotate(-0 152.945807 57.829577)">75</text>
      </g>
     </g>
     <g id="ytick_7">
      <g id="line2d_31">
       <path d="M 159.945807 37.545882
 L 250.238193 37.545882
-" clip-path="url(#pf62bc711fe)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
+" clip-path="url(#pf0008fa98a)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
      </g>
      <g id="line2d_32">
       <g>
-       <use xlink:href="#ma94200fefd" x="159.945807" y="37.545882" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="159.945807" y="37.545882" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_25">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: end" x="152.945807" y="39.681976" transform="rotate(-0 152.945807 39.681976)">80</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: end" x="152.945807" y="39.723695" transform="rotate(-0 152.945807 39.723695)">80</text>
      </g>
     </g>
     <g id="ytick_8">
      <g id="line2d_33">
       <path d="M 159.945807 19.44
 L 250.238193 19.44
-" clip-path="url(#pf62bc711fe)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
+" clip-path="url(#pf0008fa98a)" style="fill: none; stroke: #e9eaeb; stroke-width: 0.4; stroke-linecap: square"/>
      </g>
      <g id="line2d_34">
       <g>
-       <use xlink:href="#ma94200fefd" x="159.945807" y="19.44" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="159.945807" y="19.44" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_26">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: end" x="152.945807" y="21.576094" transform="rotate(-0 152.945807 21.576094)">85</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: end" x="152.945807" y="21.617813" transform="rotate(-0 152.945807 21.617813)">85</text>
      </g>
     </g>
    </g>
@@ -383,7 +383,7 @@ L 184.571003 71.947059
 L 205.092 68.325882
 L 225.612997 65.791059
 L 246.133994 64.342588
-" clip-path="url(#pf62bc711fe)" style="fill: none; stroke: #8d999e; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#pf0008fa98a)" style="fill: none; stroke: #8d999e; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="line2d_36">
     <path d="M 164.050006 77.378824
@@ -391,7 +391,7 @@ L 184.571003 68.325882
 L 205.092 61.445647
 L 225.612997 57.100235
 L 246.133994 55.651765
-" clip-path="url(#pf62bc711fe)" style="fill: none; stroke: #74a9c5; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#pf0008fa98a)" style="fill: none; stroke: #74a9c5; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="line2d_37">
     <path d="M 164.050006 77.378824
@@ -399,7 +399,7 @@ L 184.571003 66.515294
 L 205.092 57.462353
 L 225.612997 51.668471
 L 246.133994 46.598824
-" clip-path="url(#pf62bc711fe)" style="fill: none; stroke: #edddab; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#pf0008fa98a)" style="fill: none; stroke: #edddab; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="line2d_38">
     <path d="M 164.050006 77.378824
@@ -407,7 +407,7 @@ L 184.571003 65.428941
 L 205.092 54.927529
 L 225.612997 48.047294
 L 246.133994 44.788235
-" clip-path="url(#pf62bc711fe)" style="fill: none; stroke: #62aaa5; stroke-width: 1.2; stroke-linecap: square"/>
+" clip-path="url(#pf0008fa98a)" style="fill: none; stroke: #62aaa5; stroke-width: 1.2; stroke-linecap: square"/>
    </g>
    <g id="patch_6">
     <path d="M 159.945807 81
@@ -420,44 +420,44 @@ L 250.238193 81
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_27">
-    <text style="font: 7px 'Source Sans 3'; text-anchor: start" x="159.945807" y="13.44" transform="rotate(-0 159.945807 13.44)">b  Held-out controls</text>
+    <text style="font: 7px 'TeX Gyre Pagella'; text-anchor: start" x="159.945807" y="13.44" transform="rotate(-0 159.945807 13.44)">b  Held-out controls</text>
    </g>
    <g id="legend_2">
     <g id="line2d_39">
-     <path d="M 164.445807 25.750156
-L 169.445807 25.750156
-L 174.445807 25.750156
+     <path d="M 164.445807 25.819688
+L 169.445807 25.819688
+L 174.445807 25.819688
 " style="fill: none; stroke: #8d999e; stroke-width: 1.2; stroke-linecap: square"/>
     </g>
     <g id="text_28">
-     <text style="font: 5px 'Source Sans 3'; text-anchor: start" x="178.445807" y="27.500156" transform="rotate(-0 178.445807 27.500156)">No history</text>
+     <text style="font: 5px 'TeX Gyre Pagella'; text-anchor: start" x="178.445807" y="27.569688" transform="rotate(-0 178.445807 27.569688)">No history</text>
     </g>
     <g id="line2d_40">
-     <path d="M 164.445807 32.855625
-L 169.445807 32.855625
-L 174.445807 32.855625
+     <path d="M 164.445807 33.364219
+L 169.445807 33.364219
+L 174.445807 33.364219
 " style="fill: none; stroke: #74a9c5; stroke-width: 1.2; stroke-linecap: square"/>
     </g>
     <g id="text_29">
-     <text style="font: 5px 'Source Sans 3'; text-anchor: start" x="178.445807" y="34.605625" transform="rotate(-0 178.445807 34.605625)">History only</text>
+     <text style="font: 5px 'TeX Gyre Pagella'; text-anchor: start" x="178.445807" y="35.114219" transform="rotate(-0 178.445807 35.114219)">History only</text>
     </g>
     <g id="line2d_41">
-     <path d="M 164.445807 39.961094
-L 169.445807 39.961094
-L 174.445807 39.961094
+     <path d="M 164.445807 40.90875
+L 169.445807 40.90875
+L 174.445807 40.90875
 " style="fill: none; stroke: #edddab; stroke-width: 1.2; stroke-linecap: square"/>
     </g>
     <g id="text_30">
-     <text style="font: 5px 'Source Sans 3'; text-anchor: start" x="178.445807" y="41.711094" transform="rotate(-0 178.445807 41.711094)">Best-parent reset</text>
+     <text style="font: 5px 'TeX Gyre Pagella'; text-anchor: start" x="178.445807" y="42.65875" transform="rotate(-0 178.445807 42.65875)">Best-parent reset</text>
     </g>
     <g id="line2d_42">
-     <path d="M 164.445807 47.04625
-L 169.445807 47.04625
-L 174.445807 47.04625
+     <path d="M 164.445807 48.443125
+L 169.445807 48.443125
+L 174.445807 48.443125
 " style="fill: none; stroke: #62aaa5; stroke-width: 1.2; stroke-linecap: square"/>
     </g>
     <g id="text_31">
-     <text style="font: 5px 'Source Sans 3'; text-anchor: start" x="178.445807" y="48.79625" transform="rotate(-0 178.445807 48.79625)">IterEval</text>
+     <text style="font: 5px 'TeX Gyre Pagella'; text-anchor: start" x="178.445807" y="50.193125" transform="rotate(-0 178.445807 50.193125)">IterEval</text>
     </g>
    </g>
   </g>
@@ -476,7 +476,7 @@ L 378.668363 22.238182
 L 378.668363 34.02
 L 292.675614 34.02
 z
-" clip-path="url(#paaf929a946)" style="fill: #62aaa5"/>
+" clip-path="url(#p30566197ef)" style="fill: #62aaa5"/>
    </g>
    <g id="patch_10">
     <path d="M 292.675614 36.965455
@@ -484,7 +484,7 @@ L 347.398272 36.965455
 L 347.398272 48.747273
 L 292.675614 48.747273
 z
-" clip-path="url(#paaf929a946)" style="fill: #c2e5cf"/>
+" clip-path="url(#p30566197ef)" style="fill: #c2e5cf"/>
    </g>
    <g id="patch_11">
     <path d="M 292.675614 51.692727
@@ -492,7 +492,7 @@ L 316.128182 51.692727
 L 316.128182 63.474545
 L 292.675614 63.474545
 z
-" clip-path="url(#paaf929a946)" style="fill: #f2b8ae"/>
+" clip-path="url(#p30566197ef)" style="fill: #f2b8ae"/>
    </g>
    <g id="patch_12">
     <path d="M 292.675614 66.42
@@ -500,102 +500,102 @@ L 323.945705 66.42
 L 323.945705 78.201818
 L 292.675614 78.201818
 z
-" clip-path="url(#paaf929a946)" style="fill: #edddab"/>
+" clip-path="url(#p30566197ef)" style="fill: #edddab"/>
    </g>
    <g id="matplotlib.axis_5">
     <g id="xtick_11">
      <g id="line2d_43">
       <g>
-       <use xlink:href="#md1cf90f506" x="292.675614" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="292.675614" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_32">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="292.675614" y="92.272188" transform="rotate(-0 292.675614 92.272188)">0</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="292.675614" y="92.355625" transform="rotate(-0 292.675614 92.355625)">0</text>
      </g>
     </g>
     <g id="xtick_12">
      <g id="line2d_44">
       <g>
-       <use xlink:href="#md1cf90f506" x="312.219421" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="312.219421" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_33">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="312.219421" y="92.272188" transform="rotate(-0 312.219421 92.272188)">10</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="312.219421" y="92.355625" transform="rotate(-0 312.219421 92.355625)">10</text>
      </g>
     </g>
     <g id="xtick_13">
      <g id="line2d_45">
       <g>
-       <use xlink:href="#md1cf90f506" x="331.763227" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="331.763227" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_34">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="331.763227" y="92.272188" transform="rotate(-0 331.763227 92.272188)">20</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="331.763227" y="92.355625" transform="rotate(-0 331.763227 92.355625)">20</text>
      </g>
     </g>
     <g id="xtick_14">
      <g id="line2d_46">
       <g>
-       <use xlink:href="#md1cf90f506" x="351.307034" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="351.307034" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_35">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="351.307034" y="92.272188" transform="rotate(-0 351.307034 92.272188)">30</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="351.307034" y="92.355625" transform="rotate(-0 351.307034 92.355625)">30</text>
      </g>
     </g>
     <g id="xtick_15">
      <g id="line2d_47">
       <g>
-       <use xlink:href="#md1cf90f506" x="370.85084" y="81" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#mf9cfc6f0df" x="370.85084" y="81" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_36">
-      <text style="font: 6px 'Source Sans 3'; text-anchor: middle" x="370.85084" y="92.272188" transform="rotate(-0 370.85084 92.272188)">40</text>
+      <text style="font: 6px 'TeX Gyre Pagella'; text-anchor: middle" x="370.85084" y="92.355625" transform="rotate(-0 370.85084 92.355625)">40</text>
      </g>
     </g>
     <g id="text_37">
-     <text style="font: 7px 'Source Sans 3'; text-anchor: middle" x="337.821807" y="102.486406" transform="rotate(-0 337.821807 102.486406)">Share (%)</text>
+     <text style="font: 7px 'TeX Gyre Pagella'; text-anchor: middle" x="337.821807" y="103.122812" transform="rotate(-0 337.821807 103.122812)">Share (%)</text>
     </g>
    </g>
    <g id="matplotlib.axis_6">
     <g id="ytick_9">
      <g id="line2d_48">
       <g>
-       <use xlink:href="#ma94200fefd" x="292.675614" y="28.129091" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="292.675614" y="28.129091" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_38">
-      <text style="font: 5.5px 'Source Sans 3'; text-anchor: end" x="285.675614" y="30.087177" transform="rotate(-0 285.675614 30.087177)">Gain</text>
+      <text style="font: 5.5px 'TeX Gyre Pagella'; text-anchor: end" x="285.675614" y="30.125419" transform="rotate(-0 285.675614 30.125419)">Gain</text>
      </g>
     </g>
     <g id="ytick_10">
      <g id="line2d_49">
       <g>
-       <use xlink:href="#ma94200fefd" x="292.675614" y="42.856364" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="292.675614" y="42.856364" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_39">
-      <text style="font: 5.5px 'Source Sans 3'; text-anchor: end" x="285.675614" y="44.765036" transform="rotate(-0 285.675614 44.765036)">No gain</text>
+      <text style="font: 5.5px 'TeX Gyre Pagella'; text-anchor: end" x="285.675614" y="44.847106" transform="rotate(-0 285.675614 44.847106)">No gain</text>
      </g>
     </g>
     <g id="ytick_11">
      <g id="line2d_50">
       <g>
-       <use xlink:href="#ma94200fefd" x="292.675614" y="57.583636" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="292.675614" y="57.583636" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_40">
-      <text style="font: 5.5px 'Source Sans 3'; text-anchor: end" x="285.675614" y="59.541722" transform="rotate(-0 285.675614 59.541722)">Early end</text>
+      <text style="font: 5.5px 'TeX Gyre Pagella'; text-anchor: end" x="285.675614" y="59.579964" transform="rotate(-0 285.675614 59.579964)">Early end</text>
      </g>
     </g>
     <g id="ytick_12">
      <g id="line2d_51">
       <g>
-       <use xlink:href="#ma94200fefd" x="292.675614" y="72.310909" style="stroke: #000000; stroke-width: 0.8"/>
+       <use xlink:href="#m1e175edf8b" x="292.675614" y="72.310909" style="stroke: #000000; stroke-width: 0.8"/>
       </g>
      </g>
      <g id="text_41">
-      <text style="font: 5.5px 'Source Sans 3'; text-anchor: end" x="285.675614" y="74.268995" transform="rotate(-0 285.675614 74.268995)">Budget</text>
+      <text style="font: 5.5px 'TeX Gyre Pagella'; text-anchor: end" x="285.675614" y="74.307237" transform="rotate(-0 285.675614 74.307237)">Budget</text>
      </g>
     </g>
    </g>
@@ -610,18 +610,18 @@ L 382.968 81
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_42">
-    <text style="font: 7px 'Source Sans 3'; text-anchor: start" x="292.675614" y="13.44" transform="rotate(-0 292.675614 13.44)">c  Direction outcomes</text>
+    <text style="font: 7px 'TeX Gyre Pagella'; text-anchor: start" x="292.675614" y="13.44" transform="rotate(-0 292.675614 13.44)">c  Direction outcomes</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p42d634d96c">
+  <clipPath id="p242c092f1f">
    <rect x="27.216" y="19.44" width="90.292386" height="61.56"/>
   </clipPath>
-  <clipPath id="pf62bc711fe">
+  <clipPath id="pf0008fa98a">
    <rect x="159.945807" y="19.44" width="90.292386" height="61.56"/>
   </clipPath>
-  <clipPath id="paaf929a946">
+  <clipPath id="p30566197ef">
    <rect x="292.675614" y="19.44" width="90.292386" height="61.56"/>
   </clipPath>
  </defs>

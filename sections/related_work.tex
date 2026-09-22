@@ -1,31 +1,23 @@
 \section{Related work}
 \label{sec:related}
 
-\paragraph{Learning evaluation procedures from human feedback.}
-Reward hacking exposes a limitation of improving generators against an imperfect evaluator: optimization can increase evaluator scores by exploiting errors in how quality is assessed \citep{wang2026rewardhacking}.
-This motivates using human feedback to improve the evaluation procedure itself, rather than treating it as a fixed objective.
-We share the goal of aligning judgments with human preferences with learned reward models and trained judges \citep{xu2023imagereward,kim2024prometheus,ke2024critiquellm}.
-Evaluator fine-tuning changes model weights, whereas our search changes an executable evaluation program with the base model fixed.
-Criteria-learning methods, including preference-grounded query-specific rubrics, are closer to our approach because they use human feedback to develop explicit evaluation rules \citep{shankar2024spade,liu2024autocalibrate,shankar2024evalgen,lv2026queryrubrics}.
-Our search also changes how evidence is gathered and how it affects the final judgment, allowing a correction to span several steps of the evaluation procedure.
-Tool-based inspection and evolving verifier skills already appear in Agent-as-a-Judge and WebGrader \citep{zhuge2025agentjudge,chen2026webgrader}; our question is how to adapt that procedure to human quality trade-offs that execution checks alone do not specify.
+\paragraph{Learning evaluators from human feedback.}
+Human feedback supports both training evaluator models and constructing explicit evaluation rules.
+Improving these judgments matters beyond assessment: when evaluators guide generator optimization, reward hacking can exploit their errors rather than improve human-perceived quality \citep{wang2026rewardhacking}.
+Learned reward models and trained judges adapt model weights to produce scores or critiques aligned with human judgments \citep{xu2023imagereward,kim2024prometheus,ke2024critiquellm}.
+Other approaches use feedback to generate, select, or refine explicit evaluation criteria, including preference-grounded query-specific rubrics \citep{shankar2024spade,liu2024autocalibrate,shankar2024evalgen,lv2026queryrubrics}.
+Agent-as-a-Judge and WebGrader extend evaluation through tool-based inspection and evolving verifier skills, respectively \citep{zhuge2025agentjudge,chen2026webgrader}.
+IterEval builds on this move toward explicit evaluation programs: with the base model fixed, it uses human feedback to revise both how evidence is gathered and how that evidence determines judgments.
 
-\paragraph{Continuing directions in program evolution.}
-Our depth-first evaluator evolution builds on methods for revising prompts, modules, and agent code \citep{khattab2024dspy,yuksekgonul2025textgrad,agrawal2026gepa,hu2025adas,zhang2025dgm}.
-Its focus is how search proceeds after a candidate fails to improve the score.
-SkillOpt already uses a rejected-edit buffer to inform later proposals while accepting only score-improving edits \citep{yang2026skillopt}.
-Our search makes a further distinction between retaining that history, continuing the same direction, and inheriting the rejected implementation.
-An eligible candidate can remain the working program without becoming the best program, and a direction can remain active even when inheritance fails.
+\paragraph{Program optimization and agent self-evolution.}
+Automated optimization treats prompts, modules, or agent code as editable state, allowing adaptation without changing the underlying model weights.
+DSPy and TextGrad optimize components of predefined programs \citep{khattab2024dspy,yuksekgonul2025textgrad}, while GEPA and SkillOpt use execution feedback and model-generated reflection to revise textual state \citep{agrawal2026gepa,yang2026skillopt}.
+Agent-level search expands the editable structure and preserves alternatives through archives of designs or programs in ADAS and DGM, distinct harnesses in HarnessBank, and a persistent revision tree in SkillHEX \citep{hu2025adas,zhang2025dgm,luo2026harnessbank,feng2026skillhex}.
+SkillLens distinguishes extracting a skill from successfully using it, motivating attention to executed behavior rather than proposed changes alone \citep{huang2026skillconsumption}.
+Within this line of work, IterEval focuses on whether to continue an improvement direction after a candidate fails to improve: it maintains the direction across revisions and decides its continuation separately from candidate acceptance.
 
-Persistent search is likewise not unique to IterEval: HarnessBank maintains distinct harnesses, and SkillHEX uses executable hypothesis tests and a persistent revision tree \citep{luo2026harnessbank,feng2026skillhex}.
-SkillHEX addresses similarly ambiguous failures through test-time branch selection under sparse terminal rewards, without training or validation sets.
-Our depth-first evaluator evolution instead allocates successive revisions to an active direction, subject to diagnostic and budget checks, while measuring complete evaluation programs against a development cohort of human preferences.
-SkillLens's distinction between extracting a skill and successfully consuming it reinforces the need to examine executed behavior, not merely the plausibility of a proposed revision \citep{huang2026skillconsumption}.
-Our comparison tests whether depth-first direction continuation improves evaluator alignment over alternative search allocations under matched budgets.
-
-\paragraph{Mining preferences for evaluator evolution.}
-Disagreement-based preference mining follows active preference learning in allocating limited human feedback selectively, with disagreement-based sampling rooted in query-by-committee \citep{seung1992committee,muldrew2024activepreference,oh2025activepreference}.
-It applies this principle to evaluator evolution by reducing the priority of repeated comparisons on which existing evaluation signals agree, while retaining a random anchor for shared blind spots.
-Unlike Benchmark$^2$, which selects test sets to preserve ranking consistency, discriminability, and capability alignment \citep{qian2026benchmark2}, our preference mining selects comparisons to improve the evaluator rather than measure competing models.
-Existing datasets can supply both comparisons and reusable preferences; new annotation fills missing feedback.
-The relevant endpoint is the resulting evaluator's agreement at matched human cost, rather than the selected set's disagreement or discriminability.
+\paragraph{Active preference acquisition for evaluation.}
+Active preference learning selects which comparisons receive feedback, with disagreement sampling rooted in query-by-committee \citep{seung1992committee,muldrew2024activepreference,oh2025activepreference}.
+Benchmark$^2$ addresses a related selection problem for measurement, constructing test sets for ranking consistency, discriminability, and capability alignment \citep{qian2026benchmark2}.
+IterEval instead selects feedback to improve an evaluator, reducing the priority of repetitive comparisons on which existing signals agree without treating agreement as correctness.
+It can mine existing labels or request new annotations; its endpoint is evaluator improvement under matched label-access or annotation budgets, respectively, rather than disagreement in the selected set.

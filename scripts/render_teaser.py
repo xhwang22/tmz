@@ -15,6 +15,8 @@ import re
 import xml.etree.ElementTree as ET
 
 import cairosvg
+from figure_fonts import FAMILY, font_path
+from figure_connectors import STYLE as CONNECTOR_STYLE, audit_markers
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "figures/candidates/teaser-v6-paper-wording/teaser.svg"
@@ -41,6 +43,7 @@ def signature(svg):
 
 
 def main():
+    font_path()  # Do not silently replace the requested Palatino-compatible font.
     original = SOURCE.read_text()
     svg = re.sub(r'(?<=")#[0-9A-Fa-f]{6}(?=")',
                  lambda m: PALETTE.get(m[0].upper(), m[0]), original)
@@ -54,6 +57,8 @@ def main():
     svg = re.sub(r'<g id="era-(?:tree|revisions)"[\s\S]*?</g>', method_numerals, svg)
     assert signature(original) == signature(svg), "Recoloring changed content"
     doc = ET.fromstring(svg)
+    assert doc.get("data-connectors") == CONNECTOR_STYLE
+    arrow_count = audit_markers(doc)
     images = doc.findall(".//s:image", NS)
     assert len(images) == 9
     assert all(el.get(HREF, "").startswith("data:image/png;base64,") for el in images)
@@ -66,6 +71,8 @@ def main():
     cairosvg.svg2png(bytestring=svg.encode(), write_to=str(SOURCE.parent / "teaser-2x.png"), scale=2)
     asset_manifest = json.loads((SOURCE.parent / "manifest.json").read_text())
     asset_manifest.update({"canonical_integration": True, "method_accent": "#62AAA5",
+                           "font_family": FAMILY,
+                           "connector_style": CONNECTOR_STYLE,
                            "palette_check": "current source text, geometry and embedded images unchanged by export",
                            "elements": dict(Counter(el.tag.split('}')[-1] for el in doc.iter()))})
     # Preserve the original tracing records explicitly; they are not an audit
@@ -133,6 +140,19 @@ def main():
             "preserved": ["all nine embedded images and crops", "comparison wording", "pointwise-scoring note"],
             "evidence_status": "constructed illustration; not measured metric scores or collected human preferences",
         }
+    if doc.get("data-step-wording") == "concrete-layout-diagnostics":
+        asset_manifest["step_wording_revision"] = {
+            "date": "2026-09-22",
+            "purpose": "make each diagnostic identify the remaining problem addressed by the next revision",
+            "default_checks": ["Compare layouts", "Check rain effects", "Inspect details"],
+            "depth_steps": ["Detect layout changes", "Penalize layout changes", "Penalize major errors more"],
+            "diagnostic_chain": ["Wider street found; score unchanged.",
+                                 "Same penalty for small and large edits.",
+                                 "Street widening outweighs extra detail."],
+            "preserved": ["approved layout and branch geometry", "all nine image payloads and crops",
+                          "case rankings, palette and Palatino-compatible font"],
+            "evidence_status": "constructed example, not an observed trajectory or acceptance result",
+        }
     (SOURCE.parent / "manifest.json").write_text(json.dumps(asset_manifest, indent=2) + "\n")
     info = {
         "source": str(SOURCE.relative_to(ROOT)), "source_sha256": digest(svg.encode()),
@@ -146,8 +166,13 @@ def main():
         "method_accent": "#62AAA5", "error_status_colors_preserved": True,
         "empirical_evidence": False, "constructed_illustration": True,
         "new_generation": False, "print_width_in": 5.4,
+        "font_family": FAMILY,
+        "connector_style": CONNECTOR_STYLE,
+        "connector_revision": {"date": "2026-09-22", "arrow_count": arrow_count,
+                               "scope": "compact filled tips, balanced shaft widths and dash spacing; branch paths, nodes, words and images unchanged"},
         "surface_polish": asset_manifest.get("surface_polish"),
         "panel_a_revision": asset_manifest.get("panel_a_revision"),
+        "step_wording_revision": asset_manifest.get("step_wording_revision"),
         "paper_layout": "figures/teaser.tex",
         "paper_graphic": "figures/teaser.pdf",
         "image_source": asset_manifest["source"],

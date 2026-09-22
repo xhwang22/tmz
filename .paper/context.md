@@ -1,5 +1,94 @@
 # Paper context
 
+## Fig1/Fig2 connector styling — round 51 (2026-09-22)
+
+Both figures now share compact filled arrowheads with explicit dimensions,
+rounded caps and joins. Fig1 keeps its active/attempt-order/unexplored hierarchy
+with lighter shafts; Fig2 rounds long routes and uses a continuous input brace.
+Exact text, embedded images, node positions and canvases match round 50.
+Branch topology, line-style meanings, palette and Pagella typography are retained.
+Canonical exports and the paper PDF are updated in place. Regeneration is
+idempotent, marker audits and `make check` pass, and the PDF remains nine main
+pages and 33 total. Small-label and raster-resolution limitations remain.
+No prose, captions, numerical inputs, experiments, image generation, commit or push.
+
+## Fig1 concrete steps and Fig2 contour repair — round 50 (2026-09-22)
+
+Fig1 retains its approved layout, trees, nine photos, colors and Pagella font.
+Step annotations now identify the remaining problem: street widening is found
+but the score is unchanged; a generic penalty treats small and large edits
+equally; severity weighting makes street widening outweigh extra detail.
+Default branches describe plausible layout, rain-effect and detail checks.
+These remain constructed illustrations, not measured trials or acceptance.
+The layout script now preserves the shared font and checks step-label widths.
+
+Fig2 expands the clipped task-document/window crops and adds transparent margins.
+It restores the robot torso and reconstructs fragile panel-c paper contours,
+folds, speech bubble and stars in place as vectors. The original illustration
+subjects, scene positions, overall layout and palette remain unchanged.
+There are 80 vector labels and 17 raster placements; the refinement scene is
+now native vector artwork. No new image generation or numbered version folder.
+`make check` passes; the PDF remains nine main pages and 33 total. Abstract,
+Introduction, Method, captions and numerical inputs are unchanged. Small labels
+and the remaining raster source-resolution limits are not resolved by this pass.
+No experiments, commit or push in this round.
+
+## Fig2 conflict and icon cleanup — round 49 (2026-09-22)
+
+Panel (a) now contrasts agreement and opposite rankings from two illustrative
+signals, using larger blue/copper badges, an explicit inequality sign and
+"Conflict → sample more". This is relative sampling priority, not guaranteed
+information value or a two-signal restriction. Random sampling and shared-error
+caveats remain. Only the local mining block changes layout.
+The existing pictograms are mechanically cleaned: preserve enclosed skin and
+paper, remove detached connectors/background remnants, and unmatte their edges.
+Panel (c) retains its original objects and placement; blurry document marks,
+arrows and the baked-in Reward label are replaced with vector strokes/text.
+Review scripts overwrite a stable light/dark contact sheet. Original generated
+art remains unchanged, and source resolution is not increased. Captions, claims,
+other figures, manuscript prose and quantitative inputs remain unchanged.
+`make check` passes with 80 vector labels and 18 pictogram placements in Fig2.
+The rebuilt PDF has nine main pages and 33 total. Small labels and some low
+source-resolution pictograms remain limitations; this cleanup does not claim
+new high-resolution artwork. No commit or push in this round.
+
+## Current figure typography — round 48 (2026-09-22)
+
+All seven currently included figures use Palatino-compatible typography:
+TeX Gyre Pagella for text, with Pazo/Palladio math in the native TeX diagram.
+The installed open font is not proprietary Palatino. Shared font resolution
+in `scripts/figure_fonts.py` covers Fig1/Fig2 and the three active charts;
+`\figurefont` scopes appendix figure typography without changing body text,
+captions or tables. All five external PDFs embed their Pagella fonts.
+Canonical exports and stable previews are regenerated in place. Layout,
+colors, image payloads, numerical sources, captions and manuscript prose stay
+unchanged; historical figure archives retain their original fonts.
+The PDF remains nine main-text pages and 33 total. Figure-label size limitations
+and empirical evidence gaps remain; typography is not a print-readiness or
+empirical validation claim. No experiments, commit or push in this round.
+
+## Current Related Work positioning — round 47 (2026-09-22)
+
+Related Work now follows three research areas: learning evaluators from human
+feedback; program optimization and agent self-evolution; active preference
+acquisition for evaluation. Each paragraph ends with the relevant IterEval
+research choice, rather than reconstructing its component hierarchy.
+The second paragraph acknowledges existing reflection, archives and persistent
+trees, then locates the contribution in direction continuation separate from
+candidate acceptance. Parent choice and direction-ending mechanics stay in
+Method. The shorter acquisition paragraph distinguishes reused-label access
+from fresh annotation budgets and learning from benchmark measurement.
+Reward hacking motivates reliable evaluators for downstream optimization;
+SkillLens, query-specific rubrics and Benchmark2 retain their bounded roles.
+No bibliography metadata, empirical claims, Abstract/Introduction, Method,
+experiments, or figure assets change. Prior citation audits remain the source
+of publication-field verification; this round rechecks redistributed claims
+against cached primary texts, not a new full-bibliography or venue-status audit.
+The rebuilt PDF has nine main-text pages and 33 total, meeting the initial page
+limit without changing typography. Figure-label limitations and empirical gaps
+remain. The terminology checker allows only the exact approved literature
+heading containing acquisition; the component is still preference mining.
+
 ## Current figure spacing and moderated placeholders — round 46 (2026-09-22)
 
 Panel b of Fig1 is wider internally: its shared check surface grows from 516 to

@@ -1254,6 +1254,51 @@
       "changed_figures": ["Fig1", "Fig3", "Fig4", "Fig6"],
       "sections_touched": ["Fig1 SVG layout/export", "Float-page spacing", "Central aggregate scenario and dependent tables/plots/macros", "Results cost interpretation and paper memory"],
       "summary": "Widens panel b's internal surface from 516 to 780 units and sibling spacing from 168 to 264, with single-line headings, 1.1x images and spaced diagnostics. Preserves panel a/c geometry, node shapes, branch topology, dashed/solid semantics and all nine image payloads/crops. Float-page glue is fixed at 12pt between displays with surplus below; Table1 and Fig3 remain on page 8. Fig3 retains its annular layout and palette, with label offsets adjusted for closer points. IterEval's assigned agreement is 78.0 instead of 81.0, Best-of-N 62.0 instead of 66.0, regret .192 instead of .158 and cost 1.18 instead of 1.12. Controls, curves, downstream assignments and prose macros are synchronized without changing comparator values or metric definitions. Disclosures and empirical evidence gaps remain. Abstract/Introduction and Fig2 are untouched. Photos remain above 300 source PPI; some labels are below 7pt. PDF remains 34 pages with ten main pages. No experiments, training, new candidate directories, commit or push."
+    },
+    {
+      "round": 47,
+      "date": "2026-09-22",
+      "trigger": "Author requests natural research-area categories and concise positioning instead of component-derived Related Work headings and implementation-level defenses.",
+      "changed_claims": [],
+      "changed_figures": [],
+      "sections_touched": ["Related work", "Paper context and terminology-heading exception"],
+      "summary": "Rewrites three paragraphs around learning evaluators from human feedback, program optimization and agent self-evolution, and active preference acquisition for evaluation. Removes the three-way history/direction/inheritance comparison and controller details. Acknowledges existing reflection, archives and persistent trees; locates IterEval in direction continuation separate from candidate acceptance. Keeps the acquisition paragraph shorter and distinguishes reused-label access from new annotation budgets. Retains all cited works, including reward hacking, SkillLens, query-specific rubrics and Benchmark2, without changing bibliography fields. Rechecks redistributed claims against cached primary texts and reuses existing venue audits. Preserves Abstract/Introduction, Method, experiments, figures and empirical gaps. The rebuilt PDF has nine main-text pages and 33 total without typography changes; small figure labels remain unresolved. No experiments, commit or push."
+    },
+    {
+      "round": 48,
+      "date": "2026-09-22",
+      "trigger": "Author requests Palatino typography for illustrations and charts.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1", "Fig2", "Fig3", "Fig4", "Fig5", "Fig6", "Fig7"],
+      "sections_touched": ["Active figure typography, renderers and exports", "Scoped native TeX figure fonts", "Font dependencies and paper memory"],
+      "summary": "Unifies active diagrams and charts using the installed Palatino-compatible TeX Gyre Pagella, not proprietary Palatino. Adds a shared font resolver for active SVG/chart renderers and scoped Pagella text with Pazo/Palladio math for native TeX figures. Regenerates existing canonical assets without changing geometry, colors, wording, image payloads, numbers or captions. Body and table fonts, Abstract/Introduction, Method and historical charts remain unchanged. All five external figure PDFs embed Pagella fonts; overview label-bound checks and the existing build/check suite pass. The PDF remains nine main pages and 33 total. Small-label limits and empirical gaps remain. No experiments, image generation, commit or push."
+    },
+    {
+      "round": 49,
+      "date": "2026-09-22",
+      "trigger": "Author requests a more visible panel-a conflict and cleanup of icon extraction artifacts throughout Fig2, especially panel c.",
+      "changed_claims": [],
+      "changed_figures": ["Fig2"],
+      "sections_touched": ["Overview renderer and canonical assets", "Overview checks and stable icon review", "Figure memory"],
+      "summary": "Replaces the tiny three-signal matrix with two illustrative signal rankings, explicit inequality and contrasting badges, retaining relative sampling priority and the random sample. Cleans the existing pictogram alpha masks, restores opaque paper/skin, removes detached lines and floor remnants, and unmattes silhouette edges. Panel c retains its pictorial objects and original placement but replaces blurry document marks, arrows and Reward text with vector elements. Reviews all unique icons on pale/dark backgrounds and keeps source resolution limitations explicit. Regenerates canonical exports in place without new image generation, numbered versions, caption/prose/data edits or changes to other figures. No experiments, commit or push."
+    },
+    {
+      "round": 50,
+      "date": "2026-09-22",
+      "trigger": "Author reports remaining icon truncation and asks for clearer, more credible Fig1 step annotations.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1", "Fig2"],
+      "sections_touched": ["Teaser wording and layout generator", "Overview contour cleanup", "Figure checks and memory"],
+      "summary": "Preserves both approved layouts and palettes. Rewrites Fig1 steps around unused street-widening findings, a generic penalty treating minor and major edits equally, and severity weighting relative to visual detail; keeps default checks plausible and all nine image payloads and branches unchanged. Corrects Fig2 crop bounds, restores robot torso opacity, and reconstructs fragile panel-c paper/bubble outlines, folds and stars as native vectors in their original scene slots. Updates stable exports and verifies step widths, font preservation, idempotent teaser regeneration and compiled inclusion. The PDF remains nine main pages and 33 total. Small labels and remaining raster-resolution limitations persist. No prose, captions, numerical data, experiments, image generation, commit or push."
+    },
+    {
+      "round": 51,
+      "date": "2026-09-22",
+      "trigger": "Author requests better arrow and brace styling in Fig1 and Fig2.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1", "Fig2"],
+      "sections_touched": ["Shared connector renderer and audits", "Teaser/overview exports", "Figure memory"],
+      "summary": "Unifies arrowheads as compact filled tips with explicit dimensions, rounded caps and joins. Reduces Fig1 shaft weights while preserving active, attempt-order and unexplored hierarchy. Rounds Fig2 feedback/checking routes and replaces the input brace with a continuous shallow curve. Exact pre/post signatures confirm unchanged text, images, node positions and canvases. Branch topology, line-style meanings, palette and Pagella typography remain. Canonical exports and stable previews are overwritten; teaser regeneration is idempotent, marker audits and make check pass. PDF remains nine main pages and 33 total. Small-label and raster-resolution limitations persist. No prose, captions, numerical inputs, experiments, image generation, new version directories, commit or push."
     }
   ],
   "updated_on": "2026-09-22",

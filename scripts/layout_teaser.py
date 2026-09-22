@@ -9,6 +9,9 @@ from copy import deepcopy
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
+from PIL import ImageFont
+from figure_fonts import SVG_FAMILY, font_path
+from figure_connectors import STYLE as CONNECTOR_STYLE, arrow_marker
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "figures/candidates/teaser-v6-paper-wording/teaser.svg"
@@ -45,7 +48,8 @@ def group(root, name):
 
 def geometry_signature(el):
     """Ignore authorized text/style edits, never path/image/branch geometry."""
-    style = {"fill", "stroke", "stroke-width", "opacity"}
+    style = {"fill", "stroke", "stroke-width", "opacity", "stroke-dasharray",
+             "stroke-dashoffset", "stroke-linecap", "stroke-linejoin"}
     return [(e.tag, sorted((k, v) for k, v in e.attrib.items() if k not in style))
             for e in el.iter() if not e.tag.endswith("}text")]
 
@@ -102,7 +106,7 @@ def widen_default(groups):
             x, y = float(el.get("x")), float(el.get("y"))
             # A single heading fits each wider column; same wording and order.
             if y == 285:
-                el.text = {776: "Compare layouts", 944: "Check night scene",
+                el.text = {776: "Compare layouts", 944: "Check rain effects",
                            1112: "Inspect details"}[x]
             elif y == 309:
                 el.text = ""
@@ -110,6 +114,10 @@ def widen_default(groups):
                   y={437: 451, 460: 478, 496: 510}.get(y, y))
             if y in (437, 460):
                 el.set("font-size", "26")
+            if y in (285, 437, 460):
+                font = ImageFont.truetype(str(font_path("bold" if y == 285 else "regular")),
+                                          int(el.get("font-size")))
+                assert font.getlength(el.text) <= 245, ("Default annotation overflow", el.text)
         elif tag in {"image", "rect"} and el.get("y") == "326":
             # Uniform 1.1x enlargement preserves the crop and >=300 source PPI.
             center = float(el.get("x")) + 65
@@ -127,8 +135,15 @@ def polish(groups):
             tag = el.tag.split("}")[-1]
             if tag == "path":
                 active = el.get("stroke") in {"#699BB3", "#688EA4", "#477D79"}
-                el.set("stroke-width", "2.8" if el.get("stroke") == "#688EA4"
-                       else "4.6" if active else "2.2")
+                el.set("stroke-width", "2.3" if el.get("stroke") == "#688EA4"
+                       else "3.5" if active else "1.9")
+                el.set("stroke-linecap", "round")
+                el.set("stroke-linejoin", "round")
+                if el.get("stroke-dasharray"):
+                    # Longer gaps remain visible after round caps and PDF
+                    # reduction. Preserve dashed/solid semantics exactly.
+                    el.set("stroke-dasharray", "7 6" if el.get("stroke") == "#688EA4"
+                           else "3 6" if active else "2 5")
             elif tag == "circle" and float(el.get("r")) > 2:
                 el.set("stroke-width", "2.6" if el.get("r") == "17" else "2")
             elif tag == "text":
@@ -143,9 +158,9 @@ def polish(groups):
     # Stable positions identify text roles, so a second run does not depend on
     # the previous wording and never scales the same text twice.
     left = {
-        776: ("Compare", "layouts", "Change found;", "not scored."),
-        944: ("Check", "night scene", "Rain at night?", "Wet pavement?"),
-        1112: ("Inspect", "details", "Windows?", "Reflections?"),
+        776: ("Compare", "layouts", "Wider street found;", "score unchanged."),
+        944: ("Check", "rain effects", "Score rainfall and", "wet-road cues."),
+        1112: ("Inspect", "details", "Check windows", "and reflections."),
     }
     for el in groups["default-checks"].iter():
         tag = el.tag.split("}")[-1]
@@ -155,7 +170,7 @@ def polish(groups):
                 el.text = left[x][(285, 309, 437, 460).index(y)]
                 el.set("font-size", "28" if y < 326 else "23")
             elif y == 600:
-                el.text = "Direction left undeveloped"
+                el.text = "Layout finding left unused"
                 el.set("font-size", "22")
                 el.set("fill", "#4F6070")
             else:
@@ -165,10 +180,10 @@ def polish(groups):
         elif tag in {"rect", "path"} and el.get("stroke"):
             el.set("stroke-width", "2.2")
 
-    titles = ("Detect layout changes", "Use changes in scoring", "Weight by severity")
-    diagnostics = (("Detected, but", "not scored."),
-                   ("Scored, but", "underweighted."),
-                   ("Larger changes,", "larger penalties."))
+    titles = ("Detect layout changes", "Penalize layout changes", "Penalize major errors more")
+    diagnostics = (("Wider street found;", "score unchanged."),
+                   ("Same penalty for", "small and large edits."),
+                   ("Street widening", "outweighs extra detail."))
     for el in groups["era-revisions"].iter():
         tag = el.tag.split("}")[-1]
         if tag == "text":
@@ -177,11 +192,15 @@ def polish(groups):
             if x == 1534:
                 el.text = titles[row]
                 el.set("font-size", "30")
+                font = ImageFont.truetype(str(font_path("bold")), 30)
+                assert font.getlength(el.text) <= 475, ("Revision heading overflow", el.text)
             elif x == 1740:
                 line = 0 if y - row * 152 < 230 else 1
                 el.text = diagnostics[row][line]
                 el.set("font-size", "27")
                 el.set("fill", "#334B50")
+                font = ImageFont.truetype(str(font_path()), 27)
+                assert font.getlength(el.text) <= 272, ("Revision annotation overflow", el.text)
             elif x == 1508:
                 el.set("font-size", "22")
                 el.set("font-weight", "700")
@@ -209,17 +228,26 @@ def main():
         "role": "img", "aria-labelledby": "title description",
         "data-layout": "shared-case-above-symmetric-method-panels",
         "data-polish": "compact-flat-wide-default",
+        "data-step-wording": "concrete-layout-diagnostics",
+        "data-connectors": CONNECTOR_STYLE,
     })
     for tag in ("title", "desc"):
         root.append(deepcopy(original.find(f"s:{tag}", NS)))
     defs = node(root, "defs")
     style = node(defs, "style", id="flat-teaser-style")
     style.text = """
-text { font-family: "TeX Gyre Heros", "Helvetica Neue", Arial, sans-serif; }
+text { font-family: FONT_FAMILY; }
 #default-tree text[fill="#FFFFFF"] { fill: #294E65; }
-"""
-    for marker in original.findall(".//s:marker", NS):
-        defs.append(deepcopy(marker))
+""".replace("FONT_FAMILY", SVG_FAMILY)
+    for identifier, color, length, height in (
+        ("blueArrow", "#699BB3", 12, 10),
+        ("orderArrow", "#688EA4", 11, 9),
+        ("roseArrow", "#477D79", 12, 10),
+        ("ghostBlueArrow", "#AFBFCC", 9, 7.5),
+        ("ghostRoseArrow", "#B8CAC8", 9, 7.5),
+    ):
+        defs.append(ET.fromstring(arrow_marker(identifier, color, length, height)
+                                 .replace('<marker ', f'<marker xmlns="{SVG}" ', 1)))
     rect(root, 0, 0, 1840, 880, "#FFFFFF", rx=0)
     rect(root, 8, 8, 1824, 220, "#FCF4EE", "#E8CEBD", 18)
     rect(root, 8, 242, 904, 608, "#F1F5FA", "#CDDAE7", 18)

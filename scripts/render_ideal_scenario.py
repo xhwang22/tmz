@@ -9,7 +9,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Wedge
 import numpy as np
-from render_c1_landscape import ROOT, WIDTH, HEIGHT, FAMILIES, INK, MUTED, GRID, ERA, configure
+from render_c1_landscape import ROOT, WIDTH, HEIGHT, FAMILIES, INK, MUTED, GRID, ERA
+from figure_fonts import FAMILY, configure
 from matplotlib.colors import to_rgb
 
 DATA=ROOT/"data/ideal_scenario"
@@ -203,7 +204,8 @@ def mining():
 
 tables();landscape();search();mining()
 FILES.extend([DATA/"scenario.json",ROOT/"scripts/render_ideal_scenario.py",
-              ROOT/"scripts/render_c1_landscape.py"])
+              ROOT/"scripts/render_c1_landscape.py",ROOT/"scripts/figure_fonts.py"])
 manifest={"simulation_only":True,"empirical_evidence":False,"aggregate_scenario_only":True,
+          "font_family":FAMILY,
           "no_statistical_inference":True,"files":{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in FILES}}
 (DATA/"manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")

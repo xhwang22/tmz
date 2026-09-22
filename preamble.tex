@@ -34,6 +34,17 @@
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \DeclareMathOperator{\median}{median}
 \DeclareMathSizes{8.5}{8}{6}{5}
+% Palatino-compatible figure typography only; preserve official body/caption fonts.
+\DeclareMathVersion{figurepalatino}
+\SetSymbolFont{operators}{figurepalatino}{OT1}{zplm}{m}{n}
+\SetSymbolFont{letters}{figurepalatino}{OML}{zplm}{m}{it}
+\SetSymbolFont{symbols}{figurepalatino}{OMS}{zplm}{m}{n}
+\SetSymbolFont{largesymbols}{figurepalatino}{OMX}{zplm}{m}{n}
+\newcommand{\figurefont}{%
+  \renewcommand{\rmdefault}{qpl}%
+  \renewcommand{\sfdefault}{qpl}%
+  \renewcommand{\ttdefault}{qpl}%
+  \fontfamily{qpl}\selectfont\mathversion{figurepalatino}}
 \definecolor{eraNavy}{HTML}{23445D}
 \definecolor{eraBlue}{HTML}{EAF1F8}
 \definecolor{eraTeal}{HTML}{E9F3F0}

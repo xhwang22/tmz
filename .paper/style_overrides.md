@@ -1,5 +1,69 @@
 # Manuscript style
 
+## Figure connector styling — round 51 (2026-09-22)
+
+- Fig1/Fig2 use the shared compact filled arrowheads in `figure_connectors.py`.
+  Explicit marker dimensions prevent arrowheads scaling with shaft thickness.
+- Preserve active/unexplored contrast, arrow direction and solid/dashed meanings.
+  Long orthogonal routes may have rounded corners; joining braces are continuous.
+- This is a connector-only refinement: retain layout, text, images, node positions,
+  colors and Pagella typography. Overwrite stable exports; do not add variants.
+
+## Concrete figure steps and complete contours — round 50 (2026-09-22)
+
+- Fig1 annotations should name the observed problem and the correction explored
+  next. Replace vague labels such as "underweighted" with the specific limitation
+  illustrated, while keeping default branches plausible and task-relevant.
+- Preserve existing tree geometry, photo payloads, case rankings, approved flat
+  palette and Palatino-compatible typography. Do not imply an empirical path or
+  accept a candidate merely because the illustrated pair changes order.
+- Repair Fig2 crop bounds and broken icon contours in their existing slots.
+  Native vector reconstruction of fragile paper/bubble outlines is authorized
+  as a local cleanup, not a redesign of the figure or its pictorial foregrounds.
+- Regenerate stable exports and paper PDF; keep manuscript prose and quantitative
+  fixtures unchanged. This request does not include a GitHub push.
+
+## Fig2 conflict visibility and icon extraction — round 49 (2026-09-22)
+
+- Make panel (a)'s opposite rankings legible without comparing tiny matrix
+  cells. Use an explicit inequality and restrained blue/copper accents, never
+  imply either signal is ground truth. Preserve the random-sample safeguard.
+- Clean all existing pictograms, including panel (c), without changing the
+  approved composition or replacing the pictorial style. Restore opaque object
+  interiors and remove old connectors, background remnants and raster text.
+- Rebuild panel (c)'s small document strokes, arrows and Reward label in vector
+  form. Palatino-compatible fonts and green method colors remain unchanged.
+- Overwrite canonical assets and stable review outputs. No new image generation,
+  version directory, manuscript claim, experiment or GitHub push is requested.
+
+## Palatino figure typography — round 48 (2026-09-22)
+
+- Use TeX Gyre Pagella, the available Palatino-compatible family, for all
+  currently included diagrams and charts. This supersedes earlier Heros and
+  Source Sans figure-font choices. Embed real fonts in exported PDFs.
+- Use the shared font module for active SVG/chart renderers and scoped
+  `\figurefont` for native TeX figures. Keep official body, caption and table
+  typography unchanged. Do not globally load a replacement body-font package.
+- Preserve geometry, colors, wording, values and evidence disclosures. Keep
+  historical/candidate archives unchanged; overwrite active exports in place.
+- Existing small labels remain a limitation. This request changes font family,
+  not figure size, layout or the scientific content; it does not request a push.
+
+## Related Work research-area organization — round 47 (2026-09-22)
+
+- Use the author-approved headings: Learning evaluators from human feedback;
+  Program optimization and agent self-evolution; Active preference acquisition
+  for evaluation. Do not classify literature by IterEval's own mechanisms.
+- Compare research choices, not implementation rules. Keep candidate acceptance
+  versus direction continuation as the high-level contrast; omit inheritance,
+  pause, working-program eligibility and detailed controller defenses here.
+- Acknowledge existing reflection, archives and persistent trees without claiming
+  that all prior methods abandon directions after one failed candidate.
+- Retain reward hacking as motivation, SkillLens, query-specific rubrics and
+  Benchmark2 with verified scope. Do not claim these papers validate IterEval.
+- Keep the acquisition paragraph shorter, distinguishing reused-label access
+  from new annotation budgets. Preserve Abstract/Introduction and all figures.
+
 ## Figure width, float spacing and placeholder moderation — round 46 (2026-09-22)
 
 - The author now permits horizontal expansion inside Fig1(b), superseding the

@@ -1,6 +1,6 @@
 {
   "source": "figures/candidates/teaser-v6-paper-wording/teaser.svg",
-  "source_sha256": "265b438dbef552f3b4d6553d3e7f6657ebca8aeb444ab5307c1837bab186ca08",
+  "source_sha256": "41eb7528d6979652df2007b26293a34e7a8f916c4345a6fe874950a053a9e278",
   "author_wording_preserved": false,
   "geometry_preserved": false,
   "branch_geometry_preserved": false,
@@ -33,6 +33,13 @@
   "constructed_illustration": true,
   "new_generation": false,
   "print_width_in": 5.4,
+  "font_family": "TeX Gyre Pagella",
+  "connector_style": "compact-filled-tips-rounded-routes",
+  "connector_revision": {
+    "date": "2026-09-22",
+    "arrow_count": 26,
+    "scope": "compact filled tips, balanced shaft widths and dash spacing; branch paths, nodes, words and images unchanged"
+  },
   "surface_polish": {
     "date": "2026-09-21",
     "reference": "figures/overview.png",
@@ -57,6 +64,31 @@
       "pointwise-scoring note"
     ],
     "evidence_status": "constructed illustration; not measured metric scores or collected human preferences"
+  },
+  "step_wording_revision": {
+    "date": "2026-09-22",
+    "purpose": "make each diagnostic identify the remaining problem addressed by the next revision",
+    "default_checks": [
+      "Compare layouts",
+      "Check rain effects",
+      "Inspect details"
+    ],
+    "depth_steps": [
+      "Detect layout changes",
+      "Penalize layout changes",
+      "Penalize major errors more"
+    ],
+    "diagnostic_chain": [
+      "Wider street found; score unchanged.",
+      "Same penalty for small and large edits.",
+      "Street widening outweighs extra detail."
+    ],
+    "preserved": [
+      "approved layout and branch geometry",
+      "all nine image payloads and crops",
+      "case rankings, palette and Palatino-compatible font"
+    ],
+    "evidence_status": "constructed example, not an observed trajectory or acceptance result"
   },
   "paper_layout": "figures/teaser.tex",
   "paper_graphic": "figures/teaser.pdf",
@@ -110,9 +142,9 @@
     }
   ],
   "files": {
-    "figures/teaser.svg": "265b438dbef552f3b4d6553d3e7f6657ebca8aeb444ab5307c1837bab186ca08",
-    "figures/teaser.pdf": "5607f7036bd40795a5b3199c96b3c9ea9ac47f9a89d5c797738b4a93b3020b2c",
-    "figures/teaser.png": "9b137c195cb10d9b75a90b9b0a718d15b91e00215eb3f66ea7d686a2702223cb"
+    "figures/teaser.svg": "41eb7528d6979652df2007b26293a34e7a8f916c4345a6fe874950a053a9e278",
+    "figures/teaser.pdf": "e93f97fdc2882683d3113135e64f680f73a86b058776d1f8733d1f7b7c782e7c",
+    "figures/teaser.png": "e165f201c82bfe3e2613cec54c032d0cbf07bbfd6d6f065ff833e91259831e14"
   },
   "limitations": "All nine original images/crops and search-tree topologies are retained. Panel b spreads sibling columns horizontally; panel c geometry is unchanged. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations."
 }

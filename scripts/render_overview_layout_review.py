@@ -16,7 +16,9 @@ import json
 import argparse
 
 import cairosvg
-from PIL import Image, ImageFont
+from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
+from figure_fonts import FAMILY, SVG_FAMILY, font_path
+from figure_connectors import STYLE as CONNECTOR_STYLE, arrow_marker, underbrace
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "output/imagegen/overview-panel-c-action-cycle-20260921-v12.png"
@@ -38,9 +40,9 @@ image_placements = []
 # Boxes are measured on a 1300 x 770 rendering of the existing generated art.
 CROPS = {
     # One focal object per task family, rather than a reduced multi-object scene.
-    "visual": (52, 78, 180, 182),
+    "visual": (50, 76, 182, 184),
     "image": (357, 87, 445, 174),
-    "text": (702, 83, 789, 182),
+    "text": (700, 81, 794, 185),
     "research": (1081, 87, 1183, 183),
     "database": (46, 302, 90, 355),
     "outputs": (200, 301, 246, 357),
@@ -58,9 +60,10 @@ CROPS = {
 
 
 def cutout(box, name):
-    """Remove only background connected to crop edges; keep enclosed paper.
+    """Extract pictograms without erasing pale faces or document interiors.
 
-    This is mechanical compositing for a layout proof, not new illustration.
+    Close one-pixel outline gaps before filling enclosed foreground. Detached
+    arrow/text fragments are excluded explicitly; this is not new illustration.
     """
     box = tuple(round(v * (src.width / 1300 if i % 2 == 0 else src.height / 770))
                 for i, v in enumerate(box))
@@ -77,38 +80,153 @@ def cutout(box, name):
             continue
         seen.add((x, y))
         c = px[x, y][:3]
-        threshold = 10 if name == "text" else 36
+        threshold = 10 if name == "text" else 22
         if min(max(abs(c[k] - ref[k]) for k in range(3)) for ref in refs) > threshold:
             continue
         px[x, y] = (*c, 0)
         queue.extend(((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)))
+    original_mask = im.getchannel("A")
+    # At source resolution, broken anti-aliased outlines allow the background
+    # flood to enter white paper/skin. Close those gaps, then restore interiors.
+    mask = original_mask.filter(ImageFilter.MaxFilter(3)).filter(ImageFilter.MinFilter(3))
+    flood = Image.new("L", (w + 2, h + 2), 0)
+    flood.paste(mask, (1, 1))
+    ImageDraw.floodfill(flood, (0, 0), 128)
+    holes = flood.crop((1, 1, w + 1, h + 1)).point(lambda v: 255 if v == 0 else 0)
+    # Use closing only to identify interiors, not to grow the visible silhouette.
+    mask = ImageChops.lighter(original_mask, holes)
+    draw = ImageDraw.Draw(mask)
     if name == "human":
-        # The original art has an incoming arrow above the sheet; it is not
-        # part of this illustration and must not become a dangling connector.
-        for x in range(round(w * .75), w):
-            for y in range(round(h * .24)):
-                px[x, y] = (*px[x, y][:3], 0)
+        draw.rectangle((w * .75, 0, w, h * .24), fill=0)
+    if name == "lock":
+        draw.rectangle((0, 0, w * .22, h), fill=0)
+    if name == "training":
+        # Keep only the robot and output card. Both the old arrow and raster
+        # Reward label are rebuilt as vector elements at their original slots.
+        draw.rectangle((w * 62 / 193, 0, w * 131 / 193, h), fill=0)
+        draw.rounded_rectangle((w * 12 / 193, h * 24 / 76, w * 48 / 193, h * 58 / 76),
+                               radius=round(w * 8 / 193), fill=255)
+        draw.rectangle((w * 20 / 193, h * 63 / 76, w * 40 / 193, h * 72 / 76), fill=255)
+        # The white neck and open-bottom torso are not enclosed by an outline;
+        # flood filling therefore mistook them for the pale panel background.
+        # Restore only points inside the original body, including the shoulders.
+        for polygon in (
+            [(21, 57), (42, 57), (40, 63), (42, 71), (20, 71), (22, 63)],
+            [(12, 68), (15, 65), (19, 64), (18, 71), (12, 71)],
+            [(44, 64), (49, 66), (51, 71), (45, 71)],
+        ):
+            draw.polygon([(round(x * w / 193), round(y * h / 76)) for x, y in polygon], fill=255)
+    if name in {"selection", "training"}:
+        # The pale sheet outlines are only 1–2 source pixels wide; color-keying
+        # breaks them into fragments. Preserve the pictorial foreground, but
+        # reconstruct these simple paper silhouettes and their marks in SVG.
+        # Coordinates/overlap order remain the same, not a new icon language.
+        if name == "selection":
+            draw.rectangle((0, 0, w * 59 / 193, h), fill=0)
+            draw.rectangle((w * 134 / 193, 0, w, h), fill=0)
+        else:
+            draw.rectangle((w * 131 / 193, 0, w, h), fill=0)
+    if name == "visual":
+        # Isolate the front window along its rounded outline. The old straight
+        # trim removed the right border together with the rear-window fragment.
+        outline = Image.new("L", (w, h), 0)
+        ImageDraw.Draw(outline).rounded_rectangle(
+            (w * 3 / 132, h * 3 / 108, w * 129 / 132, h * 104 / 108),
+            radius=round(w * 6 / 132), fill=255)
+        mask = ImageChops.darker(mask, outline)
+    if name == "image":
+        # Keep the mug silhouette, excluding the original floor/background.
+        outline = Image.new("L", (w, h), 0)
+        ImageDraw.Draw(outline).polygon([(round(x * w / 88), round(y * h / 87)) for x, y in
+            [(24, 9), (30, 5), (43, 3), (65, 3), (77, 5), (84, 10),
+             (84, 23), (81, 67), (80, 73), (75, 77), (64, 81), (48, 83),
+             (37, 81), (28, 78), (25, 73), (23, 60), (17, 59), (9, 54),
+             (4, 47), (1, 39), (2, 31), (5, 24), (12, 20), (23, 18)]], fill=255)
+        mask = ImageChops.darker(mask, outline)
+        # The handle opening is background, unlike enclosed document/skin areas.
+        seed = (round(w * .18), round(h * .46))
+        hole_color = px[seed[0], seed[1]][:3]
+        queue, visited = deque([seed]), set()
+        while queue:
+            x, y = queue.popleft()
+            if (x, y) in visited or not (0 <= x < w * .30 and h * .20 < y < h * .83):
+                continue
+            visited.add((x, y))
+            if max(abs(px[x, y][i] - hole_color[i]) for i in range(3)) <= 30:
+                mask.putpixel((x, y), 0)
+                queue.extend(((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)))
+    # Discard tiny detached remnants, without touching multi-object scenes.
+    if name not in {"selection", "training"}:
+        pixels = mask.load()
+        remaining = {(x, y) for y in range(h) for x in range(w) if pixels[x, y]}
+        components = []
+        while remaining:
+            seed = remaining.pop()
+            component, queue = [seed], deque([seed])
+            while queue:
+                x, y = queue.popleft()
+                for neighbor in ((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)):
+                    if neighbor in remaining:
+                        remaining.remove(neighbor)
+                        component.append(neighbor)
+                        queue.append(neighbor)
+            components.append(component)
+        largest = max(map(len, components), default=0)
+        for component in components:
+            if len(component) < largest * .025:
+                for x, y in component:
+                    pixels[x, y] = 0
+    # Unmatte only the silhouette edge. Interior paper/skin stays fully opaque;
+    # edge colors no longer carry a pale halo from the old panel background.
+    inner = mask.filter(ImageFilter.MinFilter(3))
+    for y in range(h):
+        for x in range(w):
+            if mask.getpixel((x, y)) and not inner.getpixel((x, y)):
+                color = px[x, y][:3]
+                background = min(refs, key=lambda ref: max(abs(color[i] - ref[i]) for i in range(3)))
+                alpha = min(1.0, max(abs(color[i] - background[i]) for i in range(3)) / 85)
+                if alpha > 0:
+                    rgb = tuple(round(max(0, min(255, (color[i] - (1 - alpha) * background[i]) / alpha))) for i in range(3))
+                    px[x, y] = (*rgb, 255)
+                mask.putpixel((x, y), round(alpha * 255))
+    im.putalpha(mask)
+    assert mask.getbbox(), ("Empty pictogram", name)
+    if name in {"human", "training"}:
+        probes = {"human": [(.40, .37), (.72, .55)], "training": [(30 / 193, 66 / 76)]}
+        for x, y in probes[name]:
+            assert mask.getpixel((round(w * x), round(h * y))) == 255, ("Erased pale interior", name)
+    if name == "lock":
+        assert mask.crop((0, 0, round(w * .20), h)).getbbox() is None, "Stray lock connector"
+    if name == "training":
+        assert mask.crop((round(w * 64 / 193), 0, round(w * 130 / 193), h)).getbbox() is None, "Raster connector/text remains"
     if name in {"visual", "image", "text", "research"}:
         # Fit visible artwork, not inconsistent source margins, to the same box.
         bounds = im.getchannel("A").getbbox()
         if bounds:
-            im = im.crop(bounds)
+            # Transparent breathing room prevents SVG viewport edges from
+            # touching anti-aliased contours, even when displayed very small.
+            artwork = im.crop(bounds)
+            im = Image.new("RGBA", (artwork.width + 6, artwork.height + 6))
+            im.paste(artwork, (3, 3))
     buf = BytesIO()
     im.save(buf, format="PNG")
     sprite_metadata[name] = {"pixels": list(im.size), "sha256": hashlib.sha256(buf.getvalue()).hexdigest()}
     return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode()
 
 
-sprites = {k: cutout(v, k) for k, v in CROPS.items()}
+# The refinement scene consists only of paper, a speech bubble and sparkles;
+# trace it in place below to preserve its complete contours at any scale.
+sprites = {k: cutout(v, k) for k, v in CROPS.items() if k != "refinement"}
 parts = [f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 {W} {H}">
 <title>IterEval — preference mining, evaluator evolution and downstream applications</title>
 <desc>One unaccepted candidate supplies both a checking result and retained diagnostic observations. A question drawn from those observations motivates another revision within the same direction, without requiring the rejected program to be inherited. Candidate acceptance remains independent. Pictograms reuse AI-generated illustrations. This is a constructed example, not an observed trajectory.</desc>
 <defs>
-  <marker id="green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="{DARK}" stroke-width="1.5"/></marker>
-  <marker id="navy" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="{NAVY}" stroke-width="1.5"/></marker>
-  <marker id="gray" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="{GRAY}" stroke-width="1.5"/></marker>
+  {arrow_marker("green", DARK, 13, 10)}
+  {arrow_marker("navy", NAVY, 12, 9)}
+  {arrow_marker("gray", GRAY, 10, 8)}
+  {arrow_marker("gray-small", GRAY, 7, 6)}
 </defs><rect width="{W}" height="{H}" fill="white"/>
-<g font-family="DejaVu Sans, sans-serif" fill="{INK}">''']
+<g font-family="{SVG_FAMILY}" fill="{INK}">''']
 labels = []
 
 
@@ -117,8 +235,7 @@ def rect(x, y, w, h, fill, stroke="none", radius=18, sw=1.5):
 
 
 def text(x, y, value, size=28, weight=400, fill=INK, anchor="start", max_width=None):
-    font_name = "DejaVuSans-Bold.ttf" if weight >= 600 else "DejaVuSans.ttf"
-    font = ImageFont.truetype(font_name, size)
+    font = ImageFont.truetype(str(font_path("bold" if weight >= 600 else "regular")), size)
     tw = font.getlength(value)
     left = x - (tw if anchor == "end" else tw / 2 if anchor == "middle" else 0)
     assert left >= 0 and left + tw <= W, (value, left, tw)
@@ -182,25 +299,32 @@ icon("database", 80, 220, 40, 44)
 icon("outputs", 245, 220, 40, 44)
 lines(100, 286, ["Existing", "datasets"], size=24, gap=26, anchor="middle")
 lines(265, 286, ["New", "outputs"], size=24, gap=26, anchor="middle")
-path("M100 317 V319 Q100 325 112 325 H183", color=GRAY, marker=None, width=2)
-path("M265 317 V319 Q265 325 253 325 H195 V332", color=GRAY, marker="gray", width=2)
-rect(43, 337, 304, 140, "#FFFFFF", "#E2CEBF", 12)
+path(underbrace(100, 265, 317, 195, depth=10), color=GRAY, marker=None, width=2.3)
+path("M195 327 V334", color=GRAY, marker="gray-small", width=2.1)
+rect(43, 337, 304, 148, "#FFFFFF", "#E2CEBF", 12)
 text(195, 367, "Metrics and judges", size=24, weight=600, anchor="middle", max_width=285)
-for x, name in [(79, "S1"), (137, "S2"), (195, "S3")]:
-    text(x, 397, name, size=23, anchor="middle")
+for x, name in [(92, "Signal 1"), (206, "Signal 2")]:
+    text(x, 397, name, size=22, anchor="middle", max_width=88)
 text(289, 397, "Sample", size=22, anchor="middle")
 rect(50, 403, 290, 31, "#F0F0F0", radius=5)
-rect(50, 439, 290, 31, "#DCEAF3", radius=5)
-for y, values, priority in [(426, ["A>B", "A>B", "A>B"], "Less"), (462, ["A>B", "B>A", "A>B"], "More")]:
-    for x, value in zip([79, 137, 195], values):
-        text(x, y, value, size=20, anchor="middle")
-    text(289, y, priority, size=23, anchor="middle", weight=600)
-for x in (108, 166, 225):
-    path(f"M{x} 405 V469", "#D8D9D9", 1, None)
-text(195, 508, "+ random sample", size=24, anchor="middle", fill=GRAY)
-path("M195 517 V537", color=GRAY, marker="gray", width=2)
+for x in (92, 206):
+    text(x, 427, "A > B", size=26, anchor="middle", fill=GRAY)
+text(149, 427, "=", size=27, anchor="middle", fill=GRAY)
+text(289, 427, "Less", size=23, anchor="middle", fill=GRAY)
+# Opposite rankings are visible without scanning a dense signal matrix.
+# Blue/copper encode conflicting preferences, not correct/incorrect judgments.
+rect(50, 442, 290, 37, BG_PEACH, radius=6)
+rect(52, 442, 80, 37, "#E2EDF5", "#7C9EB8", radius=6, sw=1.6)
+rect(166, 442, 80, 37, "#F6E2D7", "#BD846B", radius=6, sw=1.6)
+text(92, 471, "A > B", size=28, weight=600, anchor="middle", fill=NAVY, max_width=78)
+text(149, 472, "≠", size=32, weight=600, anchor="middle", fill="#8D553E")
+text(206, 471, "B > A", size=28, weight=600, anchor="middle", fill="#8D553E", max_width=78)
+text(289, 471, "More", size=24, weight=600, anchor="middle", fill="#8D553E")
+text(195, 510, "Conflict → sample more", size=23, weight=600, anchor="middle", fill="#8D553E", max_width=320)
+text(195, 538, "+ random sample", size=24, anchor="middle", fill=GRAY)
+path("M195 546 V555", color=GRAY, marker="gray-small", width=2.1)
 icon("human", 57, 550, 79, 86)
-lines(151, 568, ["Reuse labels", "or ask humans", "for new ones"], size=24, gap=31, max_width=190)
+lines(151, 581, ["Reuse labels", "or ask humans", "for new ones"], size=24, gap=26, max_width=190)
 rect(53, 652, 285, 53, "#F7E4D6", "#DCAF8D", radius=13)
 text(195, 687, "Human feedback", size=27, weight=600, anchor="middle", max_width=266)
 text(195, 741, "Signals can share errors", size=22, anchor="middle", fill=GRAY)
@@ -251,8 +375,8 @@ lines(769, 485, ["Do these findings reach", "the scoring step?"], size=23, gap=2
 
 # Horizontal flow carries diagnostic information, not unconditional code
 # inheritance. A failed candidate's actual parent is chosen by the Method rule.
-path("M688 373 H737", width=3.3)
-path("M1132 373 H1180", width=3.3)
+path("M688 373 H737", width=2.8)
+path("M1132 373 H1180", width=2.8)
 rect(450, 460, 230, 39, "#E5EBE9", "#CBD7D2", radius=9, sw=1)
 text(565, 486, "No agreement gain", size=21, anchor="middle", fill=GRAY, max_width=218)
 text(565, 529, "Not accepted", size=21, weight=600, anchor="middle", fill=NAVY, max_width=235)
@@ -264,9 +388,9 @@ path("M1309 493 V511 Q1309 524 1296 524 H1157 Q1144 524 1144 511 V498 Q1144 485 
 
 # Candidate measurement links join one common checking procedure. They are
 # dashed and never connect rejection to a direction-ending decision.
-path("M446 407 H433 V588 H790", NAVY, 2.2, None, "7 6")
-path("M1428 407 H1441 V588 H790", NAVY, 2.2, None, "7 6")
-path("M790 588 V650", NAVY, 2.2, "navy", "7 6")
+path("M446 407 H441 Q433 407 433 415 V578 Q433 588 443 588 H790", NAVY, 2.1, None, "7 6")
+path("M1428 407 H1433 Q1441 407 1441 415 V578 Q1441 588 1431 588 H790", NAVY, 2.1, None, "7 6")
+path("M790 588 V650", NAVY, 2.1, "navy", "7 6")
 text(811, 620, "Test each candidate", size=21, fill=NAVY)
 text(445, 620, "Keep diagnostics after rollback", size=19, fill=DARK, max_width=330)
 
@@ -295,7 +419,7 @@ rect(1473, 668, 29, 36, "white", radius=6)
 icon("lock", 1474, 670, 27, 31)
 
 # Feedback enters the direction header, via an unobstructed outer gutter.
-path("M338 679 H380 V192 H431", DARK, 3, "green")
+path("M338 679 H370 Q380 679 380 669 V202 Q380 192 390 192 H431", DARK, 2.8, "green")
 
 # C: same pictorial applications, with tighter vertical spacing and less text.
 for y, height, name, title in [
@@ -307,10 +431,68 @@ for y, height, name, title in [
     rect(1521, y, 278, height, fill, radius=17)
     lines(1660, y + 35, title, size=26, gap=30, weight=600, anchor="middle", max_width=258)
     art_y = y + (64 if name == "selection" else 86)
-    icon(name, 1544, art_y, 232, 87)
+    # Match SVG preserveAspectRatio=xMidYMid meet for the 242×95 crop.
+    scene_pixels = [242, 95] if name == "refinement" else sprite_metadata[name]["pixels"]
+    scale = min(232 / scene_pixels[0], 87 / scene_pixels[1])
+    art_width = scene_pixels[0] * scale
+    art_left = 1544 + (232 - art_width) / 2
+    def scene_line(x0, y0, x1, y1, color="#B5BAC5", width=1.5, arrow=False):
+        path(f"M{art_left + x0 * art_width / 193:.2f} {art_y + y0 * 87 / 76:.2f} "
+             f"L{art_left + x1 * art_width / 193:.2f} {art_y + y1 * 87 / 76:.2f}",
+             color, width, "gray" if arrow else None)
+    # Reconstruct the thin paper contours at their original positions, then
+    # place the retained illustration in front. The folds and small stars are
+    # complete paths, so no source crop can truncate them.
+    unit_x, unit_y = art_width / 193, 87 / 76
+    def paper(x, yy, ww, hh, fold=False, stroke="#ACACB6", fill="#EEEFF0"):
+        xx, top = art_left + x * unit_x, art_y + yy * unit_y
+        ww, hh = ww * unit_x, hh * unit_y
+        if not fold:
+            rect(xx, top, ww, hh, fill, stroke, radius=3.8, sw=1.6)
+        else:
+            f = 13 * unit_x
+            parts.append(f'<path d="M{xx+4} {top} H{xx+ww-f} L{xx+ww} {top+f} V{top+hh-4} '
+                         f'Q{xx+ww} {top+hh} {xx+ww-4} {top+hh} H{xx+4} '
+                         f'Q{xx} {top+hh} {xx} {top+hh-4} V{top+4} Q{xx} {top} {xx+4} {top} Z" '
+                         f'fill="{fill}" stroke="{stroke}" stroke-width="1.6" stroke-linejoin="round"/>')
+            parts.append(f'<path d="M{xx+ww-f} {top} V{top+f-3} Q{xx+ww-f} {top+f} {xx+ww-f+3} {top+f} '
+                         f'H{xx+ww} Z" fill="#D8DDE1" stroke="{stroke}" stroke-width="1.2" stroke-linejoin="round"/>')
+    if name == "selection":
+        for box in ((3, 23, 30, 44), (159, 23, 30, 44), (22, 17, 45, 55), (126, 17, 45, 55)):
+            paper(*box)
+        for x0, x1 in ((4, 16), (31, 55), (137, 162), (177, 186)):
+            for sy in (30, 40, 50):
+                scene_line(x0, sy, x1, sy)
+    if name == "refinement":
+        paper(4, 10, 57, 63)
+        paper(126, 11, 56, 62, fold=True)
+        for x0, x1 in ((16, 47), (138, 171)):
+            for sy in (24, 35, 46, 57):
+                scene_line(x0, sy, x1 - (7 if sy == 57 else 0) - (8 if sy == 24 and x0 == 138 else 0), sy)
+        scene_line(70, 42, 116, 42, color=GRAY, width=2.2, arrow=True)
+        parts.append(f'<g id="refinement-speech-bubble" transform="translate({art_left} {art_y}) scale({unit_x} {unit_y})">'
+                     '<path d="M53 1 H97 Q102 1 102 6 V25 Q102 30 97 30 H73 L60 41 V30 H53 '
+                     'Q49 30 49 25 V6 Q49 1 53 1 Z" fill="#BFE4E6" stroke="#334C55" '
+                     'stroke-width="1.9" stroke-linejoin="round"/>'
+                     '<path d="M59 11 H93 M59 19 H82" fill="none" stroke="#21A6B5" '
+                     'stroke-width="2.7" stroke-linecap="round"/></g>')
+        for cx, cy, r in ((183, 8, 7), (190, 23, 4)):
+            xx, yy, rr = art_left + cx * unit_x, art_y + cy * unit_y, r * unit_x
+            parts.append(f'<path d="M{xx} {yy-rr} Q{xx+rr*.22} {yy-rr*.22} {xx+rr} {yy} '
+                         f'Q{xx+rr*.22} {yy+rr*.22} {xx} {yy+rr} '
+                         f'Q{xx-rr*.22} {yy+rr*.22} {xx-rr} {yy} '
+                         f'Q{xx-rr*.22} {yy-rr*.22} {xx} {yy-rr} Z" fill="#F2B44F"/>')
+    if name == "training":
+        paper(136, 12, 52, 59, stroke=NAVY, fill="#EFF1F6")
+        for sy, x1 in ((29, 162), (40, 175), (51, 159)):
+            scene_line(145, sy, x1, sy, color="#9EB8ED", width=1.8)
+        scene_line(72, 40, 125, 40, color=GRAY, width=2.2, arrow=True)
+    if name != "refinement":
+        icon(name, 1544, art_y, 232, 87)
     if name == "selection":
         text(1660, y + 170, "Rank and select", size=22, anchor="middle", fill=GRAY)
     if name == "training":
+        text(1660, art_y + 75, "Reward", size=20, anchor="middle", fill=INK)
         text(1660, y + 189, "Planned", size=22, anchor="middle", fill=GRAY)
 
 # Short disclosure stays visible while all detailed caveats live in the spec.
@@ -338,6 +520,19 @@ manifest = {
     "generation_provenance": ".paper/overview-panel-c-action-cycle-20260921.md",
     "constructed_illustration": True, "empirical_evidence": False,
     "new_generation": False, "print_width_in": PRINT_WIDTH_IN,
+    "icon_cleanup": {
+        "method": "expanded source crops and transparent margins, conservative foreground masks, restored open robot torso; vector reconstruction of fragile panel-c paper/bubble contours",
+        "preserved": "original pictorial objects and in-figure placement boxes; source resolution is not increased",
+        "removed": ["detached arrow fragments", "mug floor remnants", "baked-in Reward label", "panel-c raster arrows and broken paper/bubble contours"],
+        "restored": ["human face and paper", "full task-document fold and right border", "front-window outline", "robot neck and torso", "panel-c paper contours, folds, bubble tail and complete stars"],
+        "vector_text": ["Reward"],
+        "panel_c": "same scene positions and pictorial foregrounds; native vector paper contours, folds, speech bubble, stars, arrows and document strokes",
+        "vector_scene": "refinement-speech-bubble",
+        "review": "scripts/review_overview_icons.py produces a stable light/dark background contact sheet",
+    },
+    "font_family": FAMILY,
+    "connector_style": CONNECTOR_STYLE,
+    "connector_revision": "fixed-size filled arrowheads, rounded route corners and one continuous data-input brace; unchanged endpoint relationships and solid/dashed meanings",
     "font_size_pt": [min(t["size"] for t in labels) * PRINT_WIDTH_IN * 72 / W,
                      max(t["size"] for t in labels) * PRINT_WIDTH_IN * 72 / W],
     "embedded_images": image_placements,
@@ -345,6 +540,14 @@ manifest = {
     "crop_boxes": CROPS, "text": labels,
     "task_icons": {"single_object": True, "centers": [75, 155, 235, 315],
                    "image_box": [50, 46], "top": 143, "label_baseline": 212},
+    "mining_example": {
+        "signals_shown": 2,
+        "agreement": ["A > B", "A > B"],
+        "conflict": ["A > B", "B > A"],
+        "encoding": "explicit equality/inequality and blue/copper ranking badges; copper denotes conflict, not incorrectness",
+        "selection": "relative sampling priority; retain random sampling for shared errors",
+        "scope": "constructed examples of agreement and disagreement, not a limit on the number of mining signals or a guarantee of information value",
+    },
     "revision_example": {
         "evidence_status": "constructed illustration, not observed results",
         "direction": "Make layout errors count in the final score",

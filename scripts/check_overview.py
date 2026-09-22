@@ -12,6 +12,7 @@ import re
 import struct
 import subprocess
 import xml.etree.ElementTree as ET
+from figure_connectors import STYLE as CONNECTOR_STYLE, audit_markers
 
 ROOT = Path(__file__).resolve().parents[1]
 NS = {"s": "http://www.w3.org/2000/svg"}
@@ -22,6 +23,7 @@ REQUIRED = (
     "Agent’s next question", "Keep diagnostics after rollback",
     "No gain → keep best program", "End direction → start another",
     "Constructed example, not an observed trajectory",
+    "Signal 1", "Signal 2", "Conflict → sample more", "+ random sample", "Reward",
 )
 
 
@@ -47,10 +49,17 @@ def audit(check_paper=False):
     assert r"\includegraphics[width=5.4in]{figures/overview.pdf}" in wrapper
     assert "tikzpicture" not in wrapper and "build/" not in wrapper
     svg = ET.parse(ROOT / "figures/overview.svg").getroot()
+    assert manifest["connector_style"] == CONNECTOR_STYLE
+    assert audit_markers(svg) > 0
     assert svg.get("viewBox") == "0 0 1840 800"
     labels = svg.findall(".//s:text", NS)
     assert [el.text for el in labels] == [label["text"] for label in manifest["text"]]
-    assert len(labels) == 79
+    assert len(labels) == 80
+    assert manifest["mining_example"]["conflict"] == ["A > B", "B > A"]
+    assert any(el.text == "≠" for el in labels), "Conflict must not rely on color alone"
+    assert manifest["icon_cleanup"]["vector_text"] == ["Reward"]
+    assert any(el.text == "Reward" for el in labels), "Reward must be vector text"
+    assert svg.find(".//s:g[@id='refinement-speech-bubble']/s:path", NS) is not None, "Missing complete vector bubble"
     images = svg.findall(".//s:image", NS)
     assert len(images) == len(manifest["embedded_images"])
     for el, record in zip(images, manifest["embedded_images"]):

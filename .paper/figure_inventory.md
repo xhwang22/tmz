@@ -53,6 +53,14 @@ their assigned provenance. Real trajectories, permissions, uncertainty and
 independent attribute results remain unfilled. Full filling requirements:
 `experiment_fill_plan.md`.
 
+## Current typography
+
+Current typography (round 48): Fig1–Fig7 use Palatino-compatible TeX Gyre
+Pagella text. Native TeX figure math uses Pazo/Palladio. Active diagram/chart
+exports embed fonts; `scripts/figure_fonts.py` is the shared rendering source.
+Layout, colors, data and captions are unchanged. This does not alter the
+official body/caption/table typography or resolve existing small-label limits.
+
 ## Historical resources
 
 `archive/figures-round40.yml` preserves the previous inventory and caption texts.

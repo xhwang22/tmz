@@ -5,7 +5,7 @@ INPUTS := Makefile main.tex preamble.tex references.bib iclr2027_conference.sty 
 .PHONY: all check figures ideal simulated palettes clean
 all: paper.pdf
 
-data/ideal_scenario/manifest.json: data/ideal_scenario/scenario.json scripts/render_ideal_scenario.py scripts/render_c1_landscape.py
+data/ideal_scenario/manifest.json: data/ideal_scenario/scenario.json scripts/render_ideal_scenario.py scripts/render_c1_landscape.py scripts/figure_fonts.py
 	python3 scripts/render_ideal_scenario.py
 
 build/main.pdf: $(INPUTS) data/ideal_scenario/manifest.json

@@ -13,7 +13,43 @@ The project plan's Sections 2.2–2.3 and the ERA plan's Section 8 informed the
 structure, not the truth of every limitation in their tables. Current manuscript
 terminology takes precedence over older plan names.
 
-## Current organization: three headings
+## Current organization — round 47 (2026-09-22)
+
+The author requested natural research-area categories rather than headings
+derived from IterEval's mechanisms. The section now uses:
+
+1. **Learning evaluators from human feedback:** weight adaptation, explicit
+   criteria, and tool-using/evolving evaluators; IterEval revises an evaluation
+   program with a fixed base model. Reward hacking motivates the importance
+   of evaluator reliability without framing this paper as a mitigation method.
+2. **Program optimization and agent self-evolution:** predefined components,
+   reflective text optimization, and agent-level archives/trees; IterEval's
+   contrast is persistent direction continuation separate from candidate
+   acceptance. No claim that prior methods lack histories or persistent search.
+3. **Active preference acquisition for evaluation:** selective feedback versus
+   benchmark measurement, ending with evaluator improvement under matched
+   label-access or new-annotation budgets. This supporting paragraph is shorter.
+
+Removed the previous three-way history/direction/inheritance comparison and
+the implementation-level discussion of working programs, eligibility and
+SkillHEX's data-split protocol. SkillLens supports the distinction between
+skill extraction and use, not the reliability of IterEval's diagnostics.
+Query-specific rubric learning remains an example of explicit criteria;
+Benchmark2 remains a measurement-oriented comparison.
+
+All existing citation keys and bibliography fields are preserved. This round
+reuses the publication-field checks below and rechecks claim scope against
+cached primary texts; it does not assert a fresh online venue-status audit.
+Abstract, Introduction, Method, experiments, figures and empirical claim
+statuses are unchanged. No experiment, commit or push is part of this revision.
+
+The rebuilt PDF has nine main-text pages and 33 total; no template dimensions
+or typography were changed. The exact author-approved literature heading
+"Active preference acquisition for evaluation" is exempted from the legacy
+component-name check, without allowing acquisition as a component synonym.
+Figure-label limitations and empirical evidence gaps remain unchanged.
+
+## Historical organization: rounds 28–31
 
 Round 28 initially separated model learning, criteria refinement, and agentic
 evaluation. The author's follow-up requested fewer headings and noted that the

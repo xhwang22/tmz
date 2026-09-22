@@ -41,6 +41,9 @@ It applies to current manuscript prose, headings, captions, and figure labels.
 
 ## Scope and exceptions
 
+- The Related Work heading "Active preference acquisition for evaluation" names
+  a research area, not IterEval's component. This exact heading is allowed;
+  use preference mining or sampling for the method's operation elsewhere.
 - Do not rename cited paper titles, citation keys, implementation identifiers, legacy figure paths, or cross-reference labels.
 - Preserve historical revision entries and audit quotations; this glossary governs new writing.
 - Ordinary verbs and genuinely different objects need not share a single word. Do not replace every occurrence of evidence with feedback or every candidate with output.
