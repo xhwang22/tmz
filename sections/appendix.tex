@@ -541,11 +541,62 @@ The diagnostic state retains execution records and repaired, unchanged, regresse
 Recorded outputs are distinguished from explanations of why they occurred.
 These descriptions need not form a complete structured checklist for every candidate.
 Human preferences establish the target ordering; the agent must investigate why the program fails to reproduce it.
+The session instruction directs the agent to compare the intended edit, expected and actual intermediate outputs, and observed ordering changes.
+A missed expectation prompts inspection of the relevant input and instructions: was its trigger absent or ambiguous, was it overridden, or did the behavior occur without changing the ordering?
+Both gains and regressions outside the initially inspected cases remain available through proposal-case records.
+The latest trial is distinguished from the currently installed parent, so a rolled-back edit is not assumed to remain in the program.
+
 Fixed-input probes compare supported specialist or synthesis variants while holding their upstream inputs fixed.
 Such probes bind their observations to the exact tested candidate and inputs; changing a tool, route, or topology requires the corresponding complete execution.
+The agent can test a proposed edit on a target case and a contrast case to examine both the intended repair and a competing judgment.
+For example, an omission penalty can be tested against a case where the allegedly missing information is outside the task's requirements.
+This is an illustrative test design, not an observed result or an additional human label.
+When a probe is unsupported, the submitted candidate requires complete execution rather than a guessed effect.
 An optional exact intermediate check records whether a declared field changed to its expected value on at least one complete repeat.
 All repeat-level matches, contradictions, and unknowns remain visible.
 A semantic expectation is not automatically verified, and a changed recorded field is not proof of a correct causal explanation or improved overall judgment.
+Absent expectations are not reconstructed after observing the result, and an unavailable field remains unknown.
+
+\paragraph{What aggregate gain leaves unresolved.}
+Equation~\ref{eq:repair-decomposition} is an identity for recorded outcomes under a common measurement protocol.
+Fix a proposal cohort $\mathcal U$ and its weights before executing the comparison, and require complete measurements for both the actual parent $W_t$ and candidate $C_t$.
+For comparison $i=(g,j)$, $v_i(E)$ is the strict-order indicator in Equation~\ref{eq:measurement}, computed from the frozen repeated scores.
+The weights give each input group equal mass and each of its strict comparisons equal conditional mass.
+Define $\mathcal R_t^+=\{i:v_i(W_t)=0,\ v_i(C_t)=1\}$ and $\mathcal R_t^-=\{i:v_i(W_t)=1,\ v_i(C_t)=0\}$ within $\mathcal U$.
+Every other comparison contributes zero to $\widehat J_{\mathcal U}(C_t)-\widehat J_{\mathcal U}(W_t)$, yielding the decomposition.
+If a required measurement is missing, the complete-cohort identity cannot supply its contribution; retain unknown outcomes and report coverage as in Appendix~\ref{app:measurement}.
+Do not recompute weights on whichever cases happen to succeed.
+
+Zero gain is compatible with both empty repair/regression sets and nonempty sets with equal total weight.
+The sets distinguish these possibilities, but not why any ordering changed.
+Execution traces and optional declared expectations provide further observations for that interpretation.
+The identity applies to measured proposal outcomes, not inaccessible per-case checking feedback or a direction's future value.
+With stochastic execution, a recorded repair is not by itself evidence of a repeatable effect.
+
+\paragraph{Using diagnostics to choose the next test.}
+Direction assessment concerns what remains worth testing, not an estimated probability that the direction will eventually improve agreement.
+Missing evidence motivates testing observation or tool changes; available but unused evidence motivates testing its route or consumer.
+If the expected behavior occurs without repairing the target error, the agent examines whether the proposed correction or its decision strength is appropriate.
+If target errors are repaired but other judgments regress, contrast cases help examine its conditions of application and the competing quality criteria.
+These are instructions for interpreting evidence and choosing revisions, not automatic outcome categories that force continuation or termination.
+Repeatedly changing wording without a different expected behavior does not by itself resolve the outstanding question.
+An agent ending still requires an explicit reason, as described below; diagnostics do not supply a semantic correctness oracle.
+
+\paragraph{Direction state and action semantics.}
+Equation~\ref{eq:direction-actions} describes the ordinary loop at the level of search actions rather than literal API calls.
+Proposing a direction and making its first revision can occur in the same session.
+Within an active direction, the agent can inspect records, request supported diagnostic measurements, and repair invalid submissions before submitting a candidate or ending the direction.
+These operations remain subject to the available tools, access restrictions, and execution limits.
+A probe adds observations to $z_t$ but does not promote the best program; promotion requires the common checking measurement and Equation~\ref{eq:acceptance}.
+Rejected revisions preserve the active direction and its diagnostic history even when the next working program falls back to the best program.
+An explicit ending archives that history and clears the direction without changing the best program.
+Only then can the ordinary loop propose a new direction, starting from the current best program.
+Resource exhaustion and integrity interruptions are stopping events outside this action set, not new-direction proposals.
+
+The state constrains when a new direction can begin, not whether the agent's interpretation is correct.
+In particular, $z_t$ summarizes measured records, proposed explanations, and unresolved questions; it is neither a posterior over direction quality nor a machine-verified checklist.
+No scalar direction-value estimate or information-gain objective is computed.
+Semantic continuity and the sufficiency of an ending reason remain agent judgments, with the implementation limits stated below.
 
 \paragraph{Candidate acceptance and the next working program.}
 Candidate acceptance requires complete, comparable execution, a strict development-agreement gain over the best evaluator, nondecreasing coverage, and the prespecified worst-stratum guard.
@@ -572,9 +623,9 @@ Revisions continue within the active direction until the agent ends it or an exe
 The history is retained in either case.
 An ending explanation may concern implementation problems or results suggesting that an implemented correction does not address the target errors.
 That explanation is the agent's assessment, not an automatically verified conclusion.
-The current implementation therefore does not prevent an agent from ending a direction early or guarantee a minimum exploration depth.
+The described revision loop therefore does not prevent an agent from ending a direction early or guarantee a minimum exploration depth.
 One unsuccessful implementation, a nonsignificant difference, or budget exhaustion alone does not establish that the direction is unhelpful.
-In the default implementation, edit size and cumulative direction edits are guidance, not a hard direction budget.
+In this revision loop, edit size and cumulative direction edits are guidance, not a hard direction budget.
 Edit-character counts, replacement fractions, and component counts are advisory.
 Configured proposal opportunities, session action bounds, and execution limits constrain the run; they should not be described as an implemented fixed depth per direction.
 An integrity interruption does not trigger the normal terminal-validation procedure.
