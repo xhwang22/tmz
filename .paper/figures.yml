@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-09-21",
+  "updated_on": "2026-09-22",
   "serialization": "JSON-compatible YAML",
   "numbering": "Main Figures 1–4 and Tables 1–2; appendix Figures A1–A3 and Tables A1–A19. Internal IDs are contiguous; historical IDs are revision-local.",
   "figures": [
@@ -21,7 +21,7 @@
       "caption_in_manuscript": "Dive deeper, branch later. Panel (a) contrasts A's preserved layout with B's greater visual richness and illustrates opposite human and evaluator rankings. Panel (b) branches across plausible corrections; dashed arrows show attempt order. Panel (c) develops one correction through detection, scoring, and severity weighting. Nodes denote complete evaluation programs; hollow nodes are unexplored alternatives. The corrected ordering is local to this example, not candidate acceptance or generalization. Images, preferences, and paths are constructed illustrations, not experimental evidence.",
       "evidence_status": "Constructed illustration of the search distinction; no observed human preferences, optimizer trajectories, acceptance or gains",
       "embedded_image_manifest": "figures/teaser.manifest.json",
-      "visual_update": "2026-09-21 round45: shortens the shared-case layout from 1840 × 940 to 1840 × 880 while retaining equal-width method panels. One flat white surface groups the default checks; successive mint-headed revision cards remain on the right. Stronger paths and larger, shorter diagnostic text preserve branch geometry, attempt order and all nine image payloads/crops. No gradients or new image generation. Photos are 335–741 PPI; labels are 4.6–6.8 points at print size. The main text remains ten pages. Local ordering is not candidate acceptance or measured improvement.",
+      "visual_update": "2026-09-22 round46: retains the 1840 × 880 shared-case layout and equal-width panels. Panel b's check surface widens from 516 to 780 local units and sibling spacing from 168 to 264. Single-line action headings, uniformly enlarged 1.1x images and spaced diagnostics fill the columns. Branch topology, node radii, attempt order, nine image payloads/crops, and panel a/c geometry are preserved. No gradients or new generation. Photos are 305–741 PPI; labels remain 4.6–6.8 points at print size. Local ordering is not candidate acceptance. The main text remains ten pages.",
       "display_scope": "main"
     },
     {
@@ -142,7 +142,7 @@
         "(c) random/mined x history-only/IterEval"
       ],
       "key_numbers": [
-        "100-group interaction: 1.5 percentage points, assigned"
+        "100-group interaction: 0.2 percentage points, assigned"
       ],
       "data_sources": [
         "data/simulated/acquisition.csv"

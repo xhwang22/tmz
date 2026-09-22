@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Polish the shared-case teaser without changing either search-tree geometry.
+"""Polish the shared-case teaser while preserving its search-tree topology.
 
-Keep branch paths, node centers, solid/dashed semantics and photographic crops.
-Tighten the case/header spacing and use flat, aligned graphic groups.
+Spread panel b horizontally; keep panel c and all solid/dashed branch semantics.
+Retain photographic crops and use flat, aligned graphic groups.
 The script is idempotent and overwrites the stable source, not a new candidate.
 """
 from copy import deepcopy
 from pathlib import Path
+import re
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +48,77 @@ def geometry_signature(el):
     style = {"fill", "stroke", "stroke-width", "opacity"}
     return [(e.tag, sorted((k, v) for k, v in e.attrib.items() if k not in style))
             for e in el.iter() if not e.tag.endswith("}text")]
+
+
+def restore_layout(el):
+    """Recover base coordinates before applying the stable layout again."""
+    for item in el.iter():
+        for key in list(item.attrib):
+            if key.startswith("data-base-"):
+                item.set(key[len("data-base-"):], item.attrib.pop(key))
+
+
+def place(el, **attrs):
+    for key, value in attrs.items():
+        el.set(f"data-base-{key}", el.get(key))
+        el.set(key, f"{value:g}" if isinstance(value, (int, float)) else value)
+
+
+def widen_default(groups):
+    """Wider sibling spacing, not a stretched image, font or node shape."""
+    def xwide(x):
+        return 944 + (float(x) - 944) * 264 / 168
+
+    for el in groups["default-tree"].iter():
+        tag = el.tag.split("}")[-1]
+        if tag == "circle":
+            place(el, cx=xwide(el.get("cx")))
+        elif tag == "text":
+            place(el, x=xwide(el.get("x")))
+        elif tag == "path":
+            # These tree paths contain only absolute M/C/H/V commands.
+            tokens = re.findall(r"[A-Za-z]|-?\d+(?:\.\d+)?", el.get("d"))
+            output, command, index = [], None, 0
+            descendant = tokens[:1] == ["M"] and tokens[2] == "518"
+            for token in tokens:
+                if token.isalpha():
+                    assert token in {"M", "C", "H", "V"}, token
+                    command, index = token, 0
+                    output.append(token)
+                    continue
+                value = float(token)
+                is_x = command == "H" or (command != "V" and index % 2 == 0)
+                if is_x:
+                    value = xwide(value)
+                elif descendant:
+                    value = {518: 533, 539: 543, 535: 541, 547: 550}.get(value, value)
+                output.append(f"{value:g}")
+                index += 1
+            place(el, d=" ".join(output))
+
+    for el in groups["default-checks"].iter():
+        tag = el.tag.split("}")[-1]
+        if tag == "text":
+            x, y = float(el.get("x")), float(el.get("y"))
+            # A single heading fits each wider column; same wording and order.
+            if y == 285:
+                el.text = {776: "Compare layouts", 944: "Check night scene",
+                           1112: "Inspect details"}[x]
+            elif y == 309:
+                el.text = ""
+            place(el, x=xwide(x) if x != 783.5 else 687.5,
+                  y={437: 451, 460: 478, 496: 510}.get(y, y))
+            if y in (437, 460):
+                el.set("font-size", "26")
+        elif tag in {"image", "rect"} and el.get("y") == "326":
+            # Uniform 1.1x enlargement preserves the crop and >=300 source PPI.
+            center = float(el.get("x")) + 65
+            place(el, x=xwide(center)-71.5, y=318.75, width=143, height=93.5)
+        elif tag == "rect" and el.get("y") == "474":
+            place(el, x=616, y=488)
+        elif tag == "path":
+            assert el.get("d") == "M722 485.5 l6 6 M728 485.5 l-6 6"
+            place(el, d="M626 499.5 l6 6 M632 499.5 l-6 6")
 
 
 def polish(groups):
@@ -125,13 +197,18 @@ def main():
     original = ET.fromstring(SOURCE.read_text())
     names = ("default-tree", "default-checks", "era-tree", "era-revisions")
     protected = {name: group(original, name) for name in names}
+    for el in protected.values():
+        restore_layout(el)
     before = {name: geometry_signature(el) for name, el in protected.items()}
     polish(protected)
+    for name in names:
+        assert geometry_signature(protected[name]) == before[name], name
+    widen_default(protected)
     root = ET.Element(f"{{{SVG}}}svg", {
         "width": "2208", "height": "1056", "viewBox": "0 0 1840 880",
         "role": "img", "aria-labelledby": "title description",
         "data-layout": "shared-case-above-symmetric-method-panels",
-        "data-polish": "compact-flat-hierarchy",
+        "data-polish": "compact-flat-wide-default",
     })
     for tag in ("title", "desc"):
         root.append(deepcopy(original.find(f"s:{tag}", NS)))
@@ -194,16 +271,16 @@ text { font-family: "TeX Gyre Heros", "Helvetica Neue", Arial, sans-serif; }
     text(rankings, 1355, 197, "≠", 29, 700, "#AC4F5D", "middle")
     text(rankings, 1591, 195, "Evaluator: B > A", 28, 700, anchor="middle")
 
-    # Original branches retain all geometry; labels use the polish above.
-    # Both roots align at y=365; branch descendants retain exact geometry.
+    # Both roots align at y=365. Panel b spreads sibling columns without
+    # changing topology; panel c retains its exact branch geometry.
     left = node(root, "g", id="default-placement",
                 transform="translate(458 365) scale(1.04) translate(-944 -151)")
     # One calm surface groups the three plausible checks without turning them
-    # into sequential method cards. Branches are drawn over it, unchanged.
+    # into sequential method cards. Branches keep their existing semantics.
     surfaces = node(left, "g", id="default-check-surface")
-    rect(surfaces, 686, 253, 516, 257, "#FFFFFF", "#D4E0EA", 12)
-    for x in (860, 1028):
-        node(surfaces, "path", d=f"M{x} 280 V490", fill="none", stroke="#E3EAF0", stroke_width=1.6)
+    rect(surfaces, 554, 253, 780, 272, "#FFFFFF", "#D4E0EA", 12)
+    for x in (812, 1076):
+        node(surfaces, "path", d=f"M{x} 273 V505", fill="none", stroke="#E3EAF0", stroke_width=1.6)
     left.append(protected["default-tree"])
     left.append(protected["default-checks"])
     right = node(root, "g", id="depth-placement", transform="translate(-240 214)")
@@ -219,14 +296,14 @@ text { font-family: "TeX Gyre Heros", "Helvetica Neue", Arial, sans-serif; }
     text(disclosure, 920, 873,
          "Illustrative search paths. Nodes are complete evaluation programs; images stay fixed.",
          22, fill="#4F6070", anchor="middle")
-    for name in names:
+    for name in ("era-tree", "era-revisions"):
         assert geometry_signature(group(root, name)) == before[name], name
     assert len(root.findall(".//s:image", NS)) == 9
     assert not root.findall(".//s:linearGradient", NS)
     if hasattr(ET, "indent"):
         ET.indent(root, space="  ")
     SOURCE.write_text('<?xml version="1.0" encoding="UTF-8"?>\n' + ET.tostring(root, encoding="unicode") + "\n")
-    print("Polished text and stroke weights; branch geometry and all nine image crops unchanged.")
+    print("Panel b widened; panel c geometry, branch topology and nine image crops preserved.")
 
 
 if __name__ == "__main__":

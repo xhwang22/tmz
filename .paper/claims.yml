@@ -1,5 +1,5 @@
 {
-  "updated_on": "2026-09-21",
+  "updated_on": "2026-09-22",
   "serialization": "JSON-compatible YAML",
   "id_namespace": "C1... here are memory claim IDs, separate from manuscript study labels C1/C2/C3.",
   "evidence_policy": "Specification artifacts support design statements only. Explicit simulated reporting fixtures support provenance and arithmetic checks, never empirical effectiveness. C43 records a bounded qualitative observation from inspected development traces; no private numerical results or sample-level records are imported. Hypotheses C27/C28 remain gaps. Round 41: active displays now use assigned ideal aggregates without raw observations or inference; historical C38/C44/C48 are rejected. Abstract and Introduction are author-protected, with empirical gaps recorded explicitly.",

@@ -1,6 +1,6 @@
 # Claim–evidence ledger
 
-## Active evidence boundary — round 41 (2026-09-21)
+## Active evidence boundary — round 46 (2026-09-22)
 
 Current IDs and exact sentences are in `claims.yml` (59 claims) and `figures.yml`.
 There are 7 figures / 21 tables; appendix display numbers have an A prefix.
@@ -12,11 +12,11 @@ Historical figure numbers below belong to their original revision.
 | C37; C53–C57 | `data/ideal_scenario/scenario.json`, generated TeX, manifest and checker | Assigned scenario and arithmetic only |
 | C38/C44/C48 | Historical simulated assets, now removed from active inputs | Rejected active claims; retained audit history |
 | C43 | `search_observation_audit.md` | Bounded qualitative development observation, not optimizer efficacy |
-| 81.0 agreement; +12.0 vs Seed; +4.8 vs GEPA | Equal-domain means of the four assigned domain rows; `numbers.tex` | Ideal values, no estimates/intervals |
-| 1.12 × deployment cost | Assigned IterEval / Seed cost; same source as Fig3b and TableA8 | Not measured prices, latency or search cost |
-| 3.5 / 2.5 / 2.4 points | Four assigned controls in TableA11 | Parent retention / priority under same parent / history, not observed attribution |
-| 1.5-point interaction | TableA12 first four cells / FigA2c | Assigned difference-in-differences, no inference |
-| 61.3% C2; 62.5% C3 | Tie-adjusted assigned W/T/L counts; Table2/TableA14 | Neither real annotations nor training outcomes |
+| 78.0 agreement; +9.0 vs Seed; +1.8 vs GEPA | Equal-domain means of the four assigned domain rows; `numbers.tex` | Moderated placeholders, no estimates/intervals |
+| 1.18 × deployment cost | Assigned IterEval / Seed cost; same source as Fig3b and TableA8 | Between GEPA and Meta-Harness; not measured prices, latency or search cost |
+| 0.5 / 2.5 / 2.4 points | Four assigned controls in TableA11 | Parent retention / priority under same parent / history, not observed attribution |
+| 0.2-point interaction | TableA12 first four cells / FigA2c | Assigned difference-in-differences, no inference |
+| 56.0% C2; 56.3% C3 | Tie-adjusted assigned W/T/L counts; Table2/TableA14 | Neither real annotations nor training outcomes |
 | 22 candidates / 4 assigned domains / N=4 / 160 groups / 5 searches | Design fields and domain taxonomy | Candidate scope or scenario constants, not completed runs |
 | Annotation percentages/minutes and component effects | Assigned rows in same JSON | No individual rater or component-intervention observations |
 

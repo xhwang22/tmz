@@ -1,27 +1,30 @@
 {
   "source": "figures/candidates/teaser-v6-paper-wording/teaser.svg",
-  "source_sha256": "8a6d17791f3afeda5c85fcf14dde65c73e9bbeff9aeaf8b79838e4acc70045a6",
+  "source_sha256": "265b438dbef552f3b4d6553d3e7f6657ebca8aeb444ab5307c1837bab186ca08",
   "author_wording_preserved": false,
   "geometry_preserved": false,
-  "branch_geometry_preserved": true,
+  "branch_geometry_preserved": false,
+  "branch_topology_preserved": true,
+  "panel_c_geometry_preserved": true,
   "typography_polish": true,
   "layout_revision": {
     "layout": "shared-case-above-symmetric-method-panels",
     "preserved": [
-      "all nine image payloads and original crops",
-      "branch path coordinates, node geometry and attempt order"
+      "nine image payloads and original crops",
+      "panel a and panel c geometry",
+      "branch topology, node radii and attempt order"
     ],
     "changed": [
-      "shared case strip above two equal-width method panels",
-      "uniform group transforms; repositioned task annotations",
-      "authorized label compression, font sizes and stroke weights"
+      "panel b sibling spacing: 168 to 264 units",
+      "default check surface: 516 to 780 units wide",
+      "uniform 1.1x check images, single-line headings and spaced diagnostics"
     ],
     "not_changed": [
       "branch topology",
-      "path coordinates inside groups",
       "solid/dashed arrow semantics",
       "case trade-off and local ordering outcomes"
-    ]
+    ],
+    "date": "2026-09-22"
   },
   "preservation_basis": "current editable SVG at export time, not the historical wording profile",
   "method_accent": "#62AAA5",
@@ -77,18 +80,18 @@
     },
     {
       "sha256": "4f53b6f65730d5699c9138d6bd1ac9769ff66c2cbe8629bd82f7bb82e8da7c3e",
-      "svg_width": 130.0,
-      "svg_height": 85.0
+      "svg_width": 143.0,
+      "svg_height": 93.5
     },
     {
       "sha256": "499cf163960d852558927d1a0ac57f60cb74025b37626da6b39a9d0e5bc0833f",
-      "svg_width": 130.0,
-      "svg_height": 85.0
+      "svg_width": 143.0,
+      "svg_height": 93.5
     },
     {
       "sha256": "785c9dcdce3eb1bc6533c30676e2148aa93d46b2425cad510f23f816389bbf8c",
-      "svg_width": 130.0,
-      "svg_height": 85.0
+      "svg_width": 143.0,
+      "svg_height": 93.5
     },
     {
       "sha256": "9294ce442d671ef8e11fe63be60ea92a1eee99c3c6a90d17b0abe4ee65e759f2",
@@ -107,9 +110,9 @@
     }
   ],
   "files": {
-    "figures/teaser.svg": "8a6d17791f3afeda5c85fcf14dde65c73e9bbeff9aeaf8b79838e4acc70045a6",
-    "figures/teaser.pdf": "63f04df8557f504b7ea2ca127c6f2240d3a31bc44357ddacbcdf28d166aebbad",
-    "figures/teaser.png": "41cb1391470840300ac67a8d6047712a8d77c32ff3676bc372290d783ac0cc0c"
+    "figures/teaser.svg": "265b438dbef552f3b4d6553d3e7f6657ebca8aeb444ab5307c1837bab186ca08",
+    "figures/teaser.pdf": "5607f7036bd40795a5b3199c96b3c9ea9ac47f9a89d5c797738b4a93b3020b2c",
+    "figures/teaser.png": "9b137c195cb10d9b75a90b9b0a718d15b91e00215eb3f66ea7d686a2702223cb"
   },
-  "limitations": "All nine original images/crops and both search-tree geometries are retained. Labels are shortened and enlarged, with thicker active paths on flat surfaces. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations."
+  "limitations": "All nine original images/crops and search-tree topologies are retained. Panel b spreads sibling columns horizontally; panel c geometry is unchanged. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations."
 }

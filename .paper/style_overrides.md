@@ -1,5 +1,20 @@
 # Manuscript style
 
+## Figure width, float spacing and placeholder moderation — round 46 (2026-09-22)
+
+- The author now permits horizontal expansion inside Fig1(b), superseding the
+  earlier exact-path-coordinate constraint there. Preserve branch topology,
+  attempt order, node shapes and all image payloads/crops; keep panel a/c and
+  Fig2 unchanged. Retain flat colors, equal-width outer panels and the case strip.
+- Keep Fig3's annular layout and palette. Remove stretched space between Table1
+  and Fig3 through float-page glue, without shrinking fonts or margins.
+- "指标太高" refers to assigned values, not metric definitions. Moderate only
+  the nonempirical scenario, synchronize all dependent displays/prose, and leave
+  baseline values unchanged. Retain provenance, captions and empirical gaps.
+- Overwrite stable assets/previews; no accumulated candidate versions. The
+  current request is not a new push request. Main-text page compliance remains
+  unresolved; do not edit the protected Abstract/Introduction to force a fit.
+
 ## Figure 1 compact flat refinement — round 45 (2026-09-21)
 
 - Continue the existing shared-case/side-by-side layout, not a new topology.

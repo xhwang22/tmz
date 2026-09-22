@@ -4,6 +4,12 @@ Edit `scenario.json`, then run `make ideal && make && make check` from the paper
 The renderer preserves the approved Fig3 geometry and palette and supplies all
 active numerical tables and principal prose values from one source.
 
+2026-09-22: the author requested smaller placeholder advantages. IterEval's
+assigned agreement is now 78.0%, Best-of-N 62.0%, regret .192, and relative
+deployment cost 1.18. The dependent controls, curves, downstream assignments and
+prose macros are synchronized. Comparator assignments are unchanged. These
+choices carry no claim about plausible, expected or observed effect sizes.
+
 The assignments are not model outputs, human votes, independent runs or training
 results. No confidence intervals or successful evolution traces are generated.
 Plots omit an internal simulation banner, while captions, metadata, the title-page

@@ -1,16 +1,6 @@
 {
   "source": "output/imagegen/teaser-flat-search-image25-20260920-v5.png",
   "source_sha256": "ddbb263d08926b758183a8943c0e8ee82ca04d6c7299aa6cb80bb1973146b60f",
-  "canvas": [
-    2206,
-    713
-  ],
-  "viewBox": [
-    0,
-    0,
-    2048,
-    662
-  ],
   "elements": {
     "svg": 1,
     "title": 1,
@@ -27,110 +17,6 @@
     "image": 9
   },
   "font": "TeX Gyre Heros",
-  "grid": {
-    "panel_y": 8,
-    "panel_height": 610,
-    "panel_gap": 8,
-    "b_centers": [
-      776,
-      944,
-      1112
-    ],
-    "c_axis": 1344,
-    "c_levels": [
-      222,
-      374,
-      526
-    ],
-    "c_side_offsets": [
-      -94,
-      94
-    ],
-    "revision_card_size": [
-      544,
-      140
-    ],
-    "revision_image_size": [
-      220,
-      88
-    ]
-  },
-  "mirror_checks": [
-    {
-      "axis_x": 944,
-      "root_y": 151,
-      "target_y": 222,
-      "offsets": [
-        -168,
-        168
-      ],
-      "mirrored": true
-    },
-    {
-      "axis_x": 776,
-      "root_y": 518,
-      "target_y": 568,
-      "offsets": [
-        -46,
-        46
-      ],
-      "mirrored": true
-    },
-    {
-      "axis_x": 944,
-      "root_y": 518,
-      "target_y": 568,
-      "offsets": [
-        -46,
-        46
-      ],
-      "mirrored": true
-    },
-    {
-      "axis_x": 1112,
-      "root_y": 518,
-      "target_y": 568,
-      "offsets": [
-        -46,
-        46
-      ],
-      "mirrored": true
-    },
-    {
-      "axis_x": 1344,
-      "root_y": 151,
-      "target_y": 222,
-      "offsets": [
-        -94,
-        -47.0,
-        47.0,
-        94
-      ],
-      "mirrored": true
-    },
-    {
-      "axis_x": 1344,
-      "root_y": 241,
-      "target_y": 374,
-      "offsets": [
-        -94,
-        94
-      ],
-      "mirrored": true
-    },
-    {
-      "axis_x": 1344,
-      "root_y": 393,
-      "target_y": 526,
-      "offsets": [
-        -94,
-        94
-      ],
-      "mirrored": true
-    }
-  ],
-  "alignment_checks": "pass",
-  "text_collision_check": "pass",
   "photos": [
     {
       "id": "source-street",
@@ -362,19 +248,146 @@
   "layout_revision": {
     "layout": "shared-case-above-symmetric-method-panels",
     "preserved": [
-      "all nine image payloads and original crops",
-      "branch path coordinates, node geometry and attempt order"
+      "nine image payloads and original crops",
+      "panel a and panel c geometry",
+      "branch topology, node radii and attempt order"
     ],
     "changed": [
-      "shared case strip above two equal-width method panels",
-      "uniform group transforms; repositioned task annotations",
-      "authorized label compression, font sizes and stroke weights"
+      "panel b sibling spacing: 168 to 264 units",
+      "default check surface: 516 to 780 units wide",
+      "uniform 1.1x check images, single-line headings and spaced diagnostics"
     ],
     "not_changed": [
       "branch topology",
-      "path coordinates inside groups",
       "solid/dashed arrow semantics",
       "case trade-off and local ordering outcomes"
-    ]
-  }
+    ],
+    "date": "2026-09-22"
+  },
+  "original_tracing_metadata": {
+    "canvas": [
+      2206,
+      713
+    ],
+    "viewBox": [
+      0,
+      0,
+      2048,
+      662
+    ],
+    "grid": {
+      "panel_y": 8,
+      "panel_height": 610,
+      "panel_gap": 8,
+      "b_centers": [
+        776,
+        944,
+        1112
+      ],
+      "c_axis": 1344,
+      "c_levels": [
+        222,
+        374,
+        526
+      ],
+      "c_side_offsets": [
+        -94,
+        94
+      ],
+      "revision_card_size": [
+        544,
+        140
+      ],
+      "revision_image_size": [
+        220,
+        88
+      ]
+    },
+    "mirror_checks": [
+      {
+        "axis_x": 944,
+        "root_y": 151,
+        "target_y": 222,
+        "offsets": [
+          -168,
+          168
+        ],
+        "mirrored": true
+      },
+      {
+        "axis_x": 776,
+        "root_y": 518,
+        "target_y": 568,
+        "offsets": [
+          -46,
+          46
+        ],
+        "mirrored": true
+      },
+      {
+        "axis_x": 944,
+        "root_y": 518,
+        "target_y": 568,
+        "offsets": [
+          -46,
+          46
+        ],
+        "mirrored": true
+      },
+      {
+        "axis_x": 1112,
+        "root_y": 518,
+        "target_y": 568,
+        "offsets": [
+          -46,
+          46
+        ],
+        "mirrored": true
+      },
+      {
+        "axis_x": 1344,
+        "root_y": 151,
+        "target_y": 222,
+        "offsets": [
+          -94,
+          -47.0,
+          47.0,
+          94
+        ],
+        "mirrored": true
+      },
+      {
+        "axis_x": 1344,
+        "root_y": 241,
+        "target_y": 374,
+        "offsets": [
+          -94,
+          94
+        ],
+        "mirrored": true
+      },
+      {
+        "axis_x": 1344,
+        "root_y": 393,
+        "target_y": 526,
+        "offsets": [
+          -94,
+          94
+        ],
+        "mirrored": true
+      }
+    ],
+    "alignment_checks": "pass",
+    "text_collision_check": "pass"
+  },
+  "canvas": [
+    2208,
+    1056
+  ],
+  "viewBox": [
+    0.0,
+    0.0,
+    1840.0,
+    880.0
+  ]
 }

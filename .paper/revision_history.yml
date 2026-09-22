@@ -1245,9 +1245,18 @@
       "changed_figures": ["Fig1"],
       "sections_touched": ["Fig1 layout/export/check scripts, canonical assets and figure memory"],
       "summary": "Tightens the shared-case strip and header spacing to a 1840 × 880 canvas. Groups default checks on one flat white surface, keeps mint-headed revision cards, enlarges diagnostic labels and strengthens active paths. Original branches, node geometry, attempt order and all nine image payloads/crops match commit 8892d9d. No gradients, new image generation, caption changes, Abstract/Introduction edits, Fig2 edits or quantitative changes. Source regeneration is idempotent; fonts are embedded and photos are 335–741 PPI. Labels remain 4.6–6.8 points at print size. The compiled PDF remains 34 pages with ten main pages; initial page-limit compliance remains unresolved. Publication includes the previously pending coherent manuscript revision and execution-plan documents, excluding old untracked candidates/caches. No experiments are run."
+    },
+    {
+      "round": 46,
+      "date": "2026-09-22",
+      "trigger": "Author requests wider Fig1(b) content, less Table1/Fig3 whitespace and lower IterEval placeholder values.",
+      "changed_claims": ["C53", "C54", "C55", "C56", "C57"],
+      "changed_figures": ["Fig1", "Fig3", "Fig4", "Fig6"],
+      "sections_touched": ["Fig1 SVG layout/export", "Float-page spacing", "Central aggregate scenario and dependent tables/plots/macros", "Results cost interpretation and paper memory"],
+      "summary": "Widens panel b's internal surface from 516 to 780 units and sibling spacing from 168 to 264, with single-line headings, 1.1x images and spaced diagnostics. Preserves panel a/c geometry, node shapes, branch topology, dashed/solid semantics and all nine image payloads/crops. Float-page glue is fixed at 12pt between displays with surplus below; Table1 and Fig3 remain on page 8. Fig3 retains its annular layout and palette, with label offsets adjusted for closer points. IterEval's assigned agreement is 78.0 instead of 81.0, Best-of-N 62.0 instead of 66.0, regret .192 instead of .158 and cost 1.18 instead of 1.12. Controls, curves, downstream assignments and prose macros are synchronized without changing comparator values or metric definitions. Disclosures and empirical evidence gaps remain. Abstract/Introduction and Fig2 are untouched. Photos remain above 300 source PPI; some labels are below 7pt. PDF remains 34 pages with ten main pages. No experiments, training, new candidate directories, commit or push."
     }
   ],
-  "updated_on": "2026-09-21",
+  "updated_on": "2026-09-22",
   "figure_id_scopes": [
     {
       "through_round": 40,

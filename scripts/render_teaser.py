@@ -68,8 +68,17 @@ def main():
     asset_manifest.update({"canonical_integration": True, "method_accent": "#62AAA5",
                            "palette_check": "current source text, geometry and embedded images unchanged by export",
                            "elements": dict(Counter(el.tag.split('}')[-1] for el in doc.iter()))})
+    # Preserve the original tracing records explicitly; they are not an audit
+    # of the current reflowed artwork.
+    historical = asset_manifest.setdefault("original_tracing_metadata", {})
+    for key in ("canvas", "viewBox", "grid", "mirror_checks", "alignment_checks", "text_collision_check"):
+        if key in asset_manifest and key not in historical:
+            historical[key] = asset_manifest.pop(key)
+    asset_manifest["canvas"] = [int(doc.get("width")), int(doc.get("height"))]
+    asset_manifest["viewBox"] = [float(value) for value in doc.get("viewBox").split()]
     reflowed = doc.get("data-layout") == "shared-case-above-symmetric-method-panels"
-    typography_polished = doc.get("data-polish") in {"strong-type-short-labels", "compact-flat-hierarchy"}
+    wide_default = doc.get("data-polish") == "compact-flat-wide-default"
+    typography_polished = wide_default or doc.get("data-polish") in {"strong-type-short-labels", "compact-flat-hierarchy"}
     if reflowed:
         asset_manifest["surface_polish"] = {
             "date": "2026-09-21", "reference": "figures/overview.png",
@@ -90,6 +99,17 @@ def main():
         }
         asset_manifest["style"] = "flat pale panels and restrained outlines; no gradients, folds or layered shadows"
         asset_manifest["flat_style_check"] = "no linear/radial gradients or filters"
+        if wide_default:
+            asset_manifest["layout_revision"].update({
+                "date": "2026-09-22",
+                "preserved": ["nine image payloads and original crops", "panel a and panel c geometry",
+                              "branch topology, node radii and attempt order"],
+                "changed": ["panel b sibling spacing: 168 to 264 units",
+                            "default check surface: 516 to 780 units wide",
+                            "uniform 1.1x check images, single-line headings and spaced diagnostics"],
+                "not_changed": ["branch topology", "solid/dashed arrow semantics",
+                                "case trade-off and local ordering outcomes"],
+            })
     elif doc.find(".//s:style[@id='surface-polish-style']", NS) is not None:
         asset_manifest["surface_polish"] = {
             "date": "2026-09-21",
@@ -117,7 +137,9 @@ def main():
     info = {
         "source": str(SOURCE.relative_to(ROOT)), "source_sha256": digest(svg.encode()),
         "author_wording_preserved": not typography_polished, "geometry_preserved": not reflowed,
-        "branch_geometry_preserved": True,
+        "branch_geometry_preserved": not wide_default,
+        "branch_topology_preserved": True,
+        "panel_c_geometry_preserved": True,
         "typography_polish": typography_polished,
         "layout_revision": asset_manifest.get("layout_revision"),
         "preservation_basis": "current editable SVG at export time, not the historical wording profile",
@@ -135,7 +157,7 @@ def main():
                               "svg_height": float(el.get("height"))} for el in images],
         "files": {str((OUT / f"teaser.{ext}").relative_to(ROOT)):
                   digest((OUT / f"teaser.{ext}").read_bytes()) for ext in ("svg", "pdf", "png")},
-        "limitations": "All nine original images/crops and both search-tree geometries are retained. Labels are shortened and enlarged, with thicker active paths on flat surfaces. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations.",
+        "limitations": "All nine original images/crops and search-tree topologies are retained. Panel b spreads sibling columns horizontally; panel c geometry is unchanged. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations.",
     }
     (OUT / "teaser.manifest.json").write_text(json.dumps(info, indent=2) + "\n")
     print("Teaser exported: current SVG content and all nine images preserved; panel-a conflict annotations included.")

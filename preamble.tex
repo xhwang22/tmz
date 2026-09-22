@@ -4,6 +4,13 @@
 \usepackage{graphicx}
 \usepackage{booktabs,tabularx,array,longtable,multirow}
 \usepackage{placeins}
+% Float-only pages should not stretch the space between related displays.
+% Keep the template's text area and fonts; put surplus space below the floats.
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{12pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{xcolor,colortbl}

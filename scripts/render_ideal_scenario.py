@@ -21,6 +21,10 @@ def save(fig,name):
     for ext in ("pdf","svg","png"):
         p=OUT/f"{name}.{ext}"
         fig.savefig(p,dpi=300,metadata={"Creator":"IterEval SIMULATED IDEAL SCENARIO"} if ext=="pdf" else None)
+        if ext == "svg":
+            # Matplotlib leaves trailing spaces in path data; keep exports
+            # diff-clean without changing SVG geometry or text.
+            p.write_text("\n".join(line.rstrip() for line in p.read_text().splitlines()) + "\n")
         FILES.append(p)
     plt.close(fig)
 def tex(name,rows):
@@ -129,7 +133,7 @@ def landscape():
     for x in (.25,.75,1.25):text(px(x),y0-.08,str(x),ha="center",color=MUTED)
     text(x0+w/2,y0-.26,"Relative deployment cost",ha="center",size=8)
     text(x0-.28,y0+h/2,"Agreement (%)",ha="center",rotation=90,size=8)
-    offsets=[(.07,-.02),(-.47,-.02),(-.57,.12),(.08,-.04),(-.40,-.04),(.08,.03),(.07,.05)]
+    offsets=[(.07,-.02),(-.47,-.02),(-.57,.12),(.08,-.04),(-.40,-.06),(.08,-.02),(-.32,.15)]
     names=["Fixed","Seed","Fusion","SkillOpt","GEPA","Meta","IterEval"]
     for i,(cost,mean) in enumerate(zip(D["cost"],np.mean(D["pair"],axis=1))):
         col=ERA if i==6 else "#8D999E"

@@ -1,5 +1,30 @@
 # Paper context
 
+## Current figure spacing and moderated placeholders — round 46 (2026-09-22)
+
+Panel b of Fig1 is wider internally: its shared check surface grows from 516 to
+780 local units and sibling spacing from 168 to 264. Images are uniformly 1.1x
+larger; headings fit on one line and diagnostics are spaced. The outer panel
+layout, panel a/c geometry, branch topology, dashed/solid semantics, and nine
+image payloads/crops are unchanged. Native source PPI is 305–741, with embedded
+PDF fonts; some labels remain 4.6–6.8 points at print size. Regeneration is
+idempotent. No new candidate directory or image generation.
+
+Float-only pages use fixed 12pt separation, top-aligned floats and remaining
+space below them; Table1 and Fig3 stay on page 8 without stretched inter-float
+space. Fig3 keeps its annular taxonomy, palette, canvas and axes. Only assigned
+data and nearby scatter-label offsets change. No template fonts/margins change.
+
+IterEval's assigned agreement is 78.0 (previously 81.0), Best-of-N 62.0 (66.0),
+regret .192 (.158), and deployment cost 1.18 (1.12). Controls, feedback curves,
+downstream aggregate assignments, exports and prose macros are synchronized.
+C2/C3 assigned preferences are 56.0/56.3; none are measurements. Existing
+baseline values are unchanged. Simulation disclosures and C27/C28/C58/C59
+evidence gaps remain. Abstract/Introduction and Fig2 are byte-identical to HEAD.
+The PDF remains 34 pages, including ten main pages versus the nine-page initial
+limit. No experiments, training, commit or push are part of this round.
+This section supersedes earlier exact-coordinate preservation for Fig1(b) only.
+
 ## Current Fig1 compact flat refinement — round 45 (2026-09-21)
 
 The author requests further Fig1 refinement and a GitHub upload. The existing
