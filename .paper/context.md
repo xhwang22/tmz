@@ -1,5 +1,109 @@
 # Paper context
 
+## Approved Fig1 integrated — round 59 (2026-09-22)
+
+The author approves retaining the complete symmetric-branch preview and asks
+for a GitHub push. `scripts/layout_teaser.py` now regenerates that approved
+design directly: complete bilateral branches, shallow lower forks, plain
+adjacent cards and one number per search node. No one-sided expansion, tabs,
+row shading, direction enclosure or correspondence leaders remain. Editable
+and canonical SVG/PDF/PNG exports are synchronized, and repeat regeneration
+preserves SVG/PNG hashes. Nine original images/crops, wording and fonts remain;
+Fig2, manuscript sections and quantitative inputs are unchanged. Preview-only
+experiments remain local. `make check` passes; the rebuilt paper has nine main
+pages and 33 total. Small-label and empirical-evidence limits persist.
+
+## Fig1(c) symmetric branches restored — round 58 (2026-09-22)
+
+The author rejected the one-sided expanded-node preview and explicitly prefers
+complete symmetric branches. The preview renderer now supports `--symmetric`,
+writing `build/figure-review/teaser-options/symmetric.svg` and `.png` plus a crop.
+The original tree is restored exactly, including the shallow lower forks.
+Plain adjacent cards retain full-size images and text, with no duplicated node
+numbers, attached tabs, annotation leaders or row shading. Exact tree, wording,
+image and protected-file audits pass. This remains an unapproved preview;
+canonical figures and paper.pdf are untouched. Future designs must preserve
+bilateral branch symmetry rather than moving all alternatives to one side.
+
+## Fig1(c) expanded-node preview — round 57 (2026-09-22)
+
+The author rejected all four annotation-only treatments and approved trying a
+structural alternative. `scripts/preview_teaser_expanded_nodes.py` generates
+`build/figure-review/teaser-options/expanded.svg`, `expanded.png`, and a panel-c
+crop in the same review directory. Each selected node directly attaches to its
+expanded edit/diagnostic surface; redundant card numbers disappear. All eight
+hollow alternatives move to the left gutter, retaining their original parents.
+Active paths, selected-node positions, wording, full-size photo payloads/crops,
+palette, fonts, and panels a/b are unchanged. Audits infer drawn edge endpoints
+and verify topology plus hashes of canonical figures, sections and paper.pdf.
+This is unapproved review artwork, not installed or pushed. Small-label limits
+and constructed-example disclosure remain; no new evidence or acceptance claim.
+
+## Fig1(c) strategy comparison — round 56 (2026-09-22)
+
+The author also rejected round55's row shading and requests several alternatives.
+Four review-only treatments are in `build/figure-review/teaser-options/`, generated
+by `scripts/compare_teaser_correspondence.py`: A direct notes, B notched cards,
+C image-centered annotations, D one indexed sheet. The comparison shows panel c;
+each A–D SVG/PNG also contains the complete figure. All preserve exact tree
+geometry, wording (except removal of redundant card numbers in A–C), photo
+payloads/crops, palette and panel a/b content. A reduces photo display size;
+B retains card framing; C uses full-size photos aligned to nodes; D repeats
+indices on one shared sheet. No option is approved or installed. Canonical
+figures and paper.pdf still contain the prior rejected preview and are unchanged
+in this round. No new empirical evidence, compilation, commit or push.
+
+## Fig1(c) correspondence without leaders — round 55 (2026-09-22)
+
+The author rejected round54's orthogonal guides. Replace them with three pale,
+borderless horizontal row surfaces behind the aligned nodes and edit cards.
+Matching numbers identify the correspondence; no new line or arrow is added.
+All ten protected foreground/surface groups match round54 exactly, including
+the lowered forks, cards, words and photos. Fig2, manuscript sections and
+numerical inputs are unchanged. Keep stable output paths; no commit or push.
+
+## Fig1(c) node/edit correspondence — round 54 (2026-09-22)
+
+The three existing card numbers now sit on their left edges, aligned with the
+matching search nodes and card centers. Headings align with photo left edges.
+Three light-gray, unarrowed orthogonal guides connect matching numbers while
+clearing hollow alternatives. These are annotation links, not new search edges.
+The tree retains round53's shallow lower forks; card bounds, photos, wording,
+font sizes and panels a/b are unchanged. Fig2, manuscript sections and numerical
+inputs are unchanged. Stable exports are rebuilt without adding a new version.
+SVG/PNG regeneration is idempotent; alignment/clearance audits and `make check`
+pass. The rebuilt paper retains nine main pages and 33 total. Small print-size
+labels remain a limitation. No experiments, commit or push.
+
+## Fig1(c) lower side forks — round 53 (2026-09-22)
+
+Four pale side paths now share 62 more SVG units of the parent stem before
+fanning out. Their visible fans are 50 units high, matching the top level,
+rather than 112. Main-spine paths, all nodes, edge endpoints, cards, wording,
+photos and panels a/b are unchanged. No new search state or edge is introduced.
+This local permission supersedes round52's exact-path constraint for these four
+paths only. Source regeneration is idempotent; Fig2, prose and data are unchanged.
+Canonical exports and the paper PDF are rebuilt; `make check` passes with nine
+main pages and 33 total. Existing small-label limitations remain. No commit/push.
+
+## Fig1 surface hierarchy matched to Fig2 — round 52 (2026-09-22)
+
+Fig2 remains the unchanged reference. Fig1 keeps the shared case strip, symmetric
+method panels and exact search geometry. Outer corners and outlines now match
+the overview; warm-paper cards use fine separators instead of mint headers.
+One flat green surface groups the three continued revisions. Action headings
+are blue/green, diagnostic text is dark, and ancillary notes are neutral gray.
+Photographic outlines are consistent, with small mounts around the full case
+viewports. No gradient, shadow, new icon, layout change or image regeneration.
+All words, font sizes, nine image payloads/crops, connectors and branch paths
+match round51. Fig2, manuscript prose/captions and numerical inputs are unchanged.
+Canonical exports and page previews are overwritten in place. SVG/PNG regeneration
+is idempotent; PDF bytes include an export timestamp. `make check` passes and the
+PDF remains nine main pages and 33 total. Photos remain 305–741 PPI; small labels
+remain 4.6–6.8 points. Photo-versus-pictogram texture is still different; this is
+a restrained style alignment, not a redesign or a print-readiness claim.
+No experiments, commit or push in this round.
+
 ## Fig1/Fig2 connector styling — round 51 (2026-09-22)
 
 Both figures now share compact filled arrowheads with explicit dimensions,

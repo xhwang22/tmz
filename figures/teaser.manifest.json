@@ -1,18 +1,51 @@
 {
   "source": "figures/candidates/teaser-v6-paper-wording/teaser.svg",
-  "source_sha256": "41eb7528d6979652df2007b26293a34e7a8f916c4345a6fe874950a053a9e278",
+  "source_sha256": "0a2bb7c1c6194ed4e8a5851251f18a7a9f6df55146f65a96bfb4d2691b5bb167",
   "author_wording_preserved": false,
   "geometry_preserved": false,
   "branch_geometry_preserved": false,
   "branch_topology_preserved": true,
-  "panel_c_geometry_preserved": true,
+  "panel_c_geometry_preserved": false,
+  "panel_c_node_positions_preserved": true,
+  "panel_c_node_positions_scope": "search-tree nodes; numbered card annotations may move",
+  "branch_revision": {
+    "date": "2026-09-22",
+    "style": "lower-two-fans-50-units",
+    "changed_paths": 4,
+    "fan_height_before": 112,
+    "fan_height_after": 50,
+    "changes": [
+      "lower two side-fork points moved down by 62 SVG units",
+      "vertical prefixes retain the original parent connections"
+    ],
+    "preserved": [
+      "all node positions, edge endpoints, main spine and top-level fan",
+      "branch topology, markers, line styles, colors and wording",
+      "all photos, card positions, panel bounds and panels a/b"
+    ],
+    "scope": "local geometry change only; not new search states or empirical evidence"
+  },
+  "node_edit_mapping": {
+    "date": "2026-09-22",
+    "style": "symmetric-tree-adjacent-cards",
+    "changes": [
+      "plain edit cards aligned with the three depth levels",
+      "redundant card numbers removed; numbered search nodes retained"
+    ],
+    "semantics": "adjacent edit details, not additional search states or candidate acceptance",
+    "preserved": [
+      "complete bilateral branches, node positions and all search edges",
+      "full-size photographs, diagnostic text and local ranking badges"
+    ]
+  },
   "typography_polish": true,
   "layout_revision": {
     "layout": "shared-case-above-symmetric-method-panels",
     "preserved": [
       "nine image payloads and original crops",
-      "panel a and panel c geometry",
-      "branch topology, node radii and attempt order"
+      "panel a geometry",
+      "panel c search-node positions and main spine",
+      "branch topology and attempt order"
     ],
     "changed": [
       "panel b sibling spacing: 168 to 264 units",
@@ -41,15 +74,18 @@
     "scope": "compact filled tips, balanced shaft widths and dash spacing; branch paths, nodes, words and images unchanged"
   },
   "surface_polish": {
-    "date": "2026-09-21",
+    "date": "2026-09-22",
     "reference": "figures/overview.png",
+    "style": "overview-paper-symmetric-tree",
     "changes": [
-      "flat peach/blue/green panels",
-      "white revision cards with plain mint headers",
-      "stronger action headings, shorter diagnostics and heavier active paths",
-      "compact shared case strip and one flat surface grouping the default checks"
+      "flat overview-matched panels and three plain warm-paper edit cards",
+      "no row shading, enclosing direction surface, tabs or annotation leaders"
     ],
-    "scope": "rejected gradient, fold and stacked-edge pass removed"
+    "preserved": [
+      "complete symmetric search tree, central path and shallow lower forks",
+      "all nine image payloads and crops, wording and Pagella fonts"
+    ],
+    "scope": "author-approved Fig1; Fig2 and manuscript prose unchanged"
   },
   "panel_a_revision": {
     "date": "2026-09-21",
@@ -142,9 +178,9 @@
     }
   ],
   "files": {
-    "figures/teaser.svg": "41eb7528d6979652df2007b26293a34e7a8f916c4345a6fe874950a053a9e278",
-    "figures/teaser.pdf": "e93f97fdc2882683d3113135e64f680f73a86b058776d1f8733d1f7b7c782e7c",
-    "figures/teaser.png": "e165f201c82bfe3e2613cec54c032d0cbf07bbfd6d6f065ff833e91259831e14"
+    "figures/teaser.svg": "0a2bb7c1c6194ed4e8a5851251f18a7a9f6df55146f65a96bfb4d2691b5bb167",
+    "figures/teaser.pdf": "83f0f6883c67a8b0ca504c9c7edb388d211f6ec7d84b0bc92c4a3aa2f00cc0d3",
+    "figures/teaser.png": "15f24914c05e50b639eb3913092b18deae1c231fbb4d3f721565f8bd8bc32ca9"
   },
-  "limitations": "All nine original images/crops and search-tree topologies are retained. Panel b spreads sibling columns horizontally; panel c geometry is unchanged. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations."
+  "limitations": "All nine original images/crops and search-tree topologies are retained. Panel b spreads sibling columns horizontally. Panel c retains complete symmetric branches, search-node positions and its main spine, with shallow lower forks and adjacent edit cards. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations."
 }

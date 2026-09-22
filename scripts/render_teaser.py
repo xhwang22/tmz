@@ -85,6 +85,9 @@ def main():
     asset_manifest["viewBox"] = [float(value) for value in doc.get("viewBox").split()]
     reflowed = doc.get("data-layout") == "shared-case-above-symmetric-method-panels"
     wide_default = doc.get("data-polish") == "compact-flat-wide-default"
+    lower_forks = doc.get("data-depth-forks") == "lower-two-fans-50-units"
+    mapped_edits = doc.get("data-node-edit-mapping") in {"aligned-row-surfaces", "symmetric-tree-adjacent-cards"}
+    symmetric_cards = doc.get("data-node-edit-mapping") == "symmetric-tree-adjacent-cards"
     typography_polished = wide_default or doc.get("data-polish") in {"strong-type-short-labels", "compact-flat-hierarchy"}
     if reflowed:
         asset_manifest["surface_polish"] = {
@@ -117,6 +120,21 @@ def main():
                 "not_changed": ["branch topology", "solid/dashed arrow semantics",
                                 "case trade-off and local ordering outcomes"],
             })
+        if doc.get("data-surface-style") == "overview-paper-and-direction-surfaces":
+            asset_manifest["surface_polish"] = {
+                "date": "2026-09-22", "reference": "figures/overview.png",
+                "style": doc.get("data-surface-style"),
+                "changes": ["25-unit panel corners and 1.5-unit outlines, matching the overview",
+                            "one flat green surface grouping the three continued revisions",
+                            "warm-paper cards and fine separators instead of mint header bands",
+                            "blue/green action headings, dark diagnostic text and neutral notes",
+                            "consistent neutral photo outlines and full-viewport case mounts"],
+                "preserved": ["panel bounds, search paths, node positions and group transforms",
+                              "all wording, font sizes, nine image payloads and original crops",
+                              "local ordering and acceptance distinction"],
+                "scope": "Fig1 surface/text-role styling only; Fig2 is unchanged; no gradients or shadows",
+            }
+            asset_manifest["style"] = "flat overview-matched panels, green direction surface and warm-paper cards"
     elif doc.find(".//s:style[@id='surface-polish-style']", NS) is not None:
         asset_manifest["surface_polish"] = {
             "date": "2026-09-21",
@@ -153,13 +171,64 @@ def main():
                           "case rankings, palette and Palatino-compatible font"],
             "evidence_status": "constructed example, not an observed trajectory or acceptance result",
         }
+    if lower_forks:
+        asset_manifest["branch_revision"] = {
+            "date": "2026-09-22", "style": doc.get("data-depth-forks"),
+            "changed_paths": 4, "fan_height_before": 112, "fan_height_after": 50,
+            "changes": ["lower two side-fork points moved down by 62 SVG units",
+                        "vertical prefixes retain the original parent connections"],
+            "preserved": ["all node positions, edge endpoints, main spine and top-level fan",
+                          "branch topology, markers, line styles, colors and wording",
+                          "all photos, card positions, panel bounds and panels a/b"],
+            "scope": "local geometry change only; not new search states or empirical evidence",
+        }
+        asset_manifest["layout_revision"]["preserved"] = [
+            "nine image payloads and original crops", "panel a geometry",
+            "panel c node/card positions and main spine", "branch topology and attempt order"]
+    if mapped_edits and not symmetric_cards:
+        asset_manifest["node_edit_mapping"] = {
+            "date": "2026-09-22", "style": doc.get("data-node-edit-mapping"),
+            "changes": ["existing card numbers moved to the left edge at each tree node's height",
+                        "headings aligned to photo inset left edges",
+                        "three pale borderless row surfaces replace rejected orthogonal leaders"],
+            "semantics": "row alignment and matching numbers, not additional search paths or accepted candidates",
+            "preserved": ["complete search-tree geometry including lowered forks",
+                          "outer layout, card bounds, text strings and font sizes",
+                          "nine photographs, diagnostic text, ranking badges and panels a/b"],
+        }
+    if symmetric_cards:
+        asset_manifest["surface_polish"] = {
+            "date": "2026-09-22", "reference": "figures/overview.png",
+            "style": doc.get("data-surface-style"),
+            "changes": ["flat overview-matched panels and three plain warm-paper edit cards",
+                        "no row shading, enclosing direction surface, tabs or annotation leaders"],
+            "preserved": ["complete symmetric search tree, central path and shallow lower forks",
+                          "all nine image payloads and crops, wording and Pagella fonts"],
+            "scope": "author-approved Fig1; Fig2 and manuscript prose unchanged",
+        }
+        asset_manifest["node_edit_mapping"] = {
+            "date": "2026-09-22", "style": doc.get("data-node-edit-mapping"),
+            "changes": ["plain edit cards aligned with the three depth levels",
+                        "redundant card numbers removed; numbered search nodes retained"],
+            "semantics": "adjacent edit details, not additional search states or candidate acceptance",
+            "preserved": ["complete bilateral branches, node positions and all search edges",
+                          "full-size photographs, diagnostic text and local ranking badges"],
+        }
+        asset_manifest["style"] = "flat overview-matched panels, complete symmetric tree and adjacent paper cards"
+        asset_manifest["layout_revision"]["preserved"] = [
+            "nine image payloads and original crops", "panel a geometry",
+            "panel c search-node positions and main spine", "branch topology and attempt order"]
     (SOURCE.parent / "manifest.json").write_text(json.dumps(asset_manifest, indent=2) + "\n")
     info = {
         "source": str(SOURCE.relative_to(ROOT)), "source_sha256": digest(svg.encode()),
         "author_wording_preserved": not typography_polished, "geometry_preserved": not reflowed,
-        "branch_geometry_preserved": not wide_default,
+        "branch_geometry_preserved": not (wide_default or lower_forks),
         "branch_topology_preserved": True,
-        "panel_c_geometry_preserved": True,
+        "panel_c_geometry_preserved": not (lower_forks or mapped_edits),
+        "panel_c_node_positions_preserved": True,
+        "panel_c_node_positions_scope": "search-tree nodes; numbered card annotations may move",
+        "branch_revision": asset_manifest.get("branch_revision"),
+        "node_edit_mapping": asset_manifest.get("node_edit_mapping"),
         "typography_polish": typography_polished,
         "layout_revision": asset_manifest.get("layout_revision"),
         "preservation_basis": "current editable SVG at export time, not the historical wording profile",
@@ -182,7 +251,7 @@ def main():
                               "svg_height": float(el.get("height"))} for el in images],
         "files": {str((OUT / f"teaser.{ext}").relative_to(ROOT)):
                   digest((OUT / f"teaser.{ext}").read_bytes()) for ext in ("svg", "pdf", "png")},
-        "limitations": "All nine original images/crops and search-tree topologies are retained. Panel b spreads sibling columns horizontally; panel c geometry is unchanged. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations.",
+        "limitations": "All nine original images/crops and search-tree topologies are retained. Panel b spreads sibling columns horizontally. Panel c retains complete symmetric branches, search-node positions and its main spine, with shallow lower forks and adjacent edit cards. Some vector labels remain below 7 points at 5.4-inch print width. All preferences and paths are constructed illustrations.",
     }
     (OUT / "teaser.manifest.json").write_text(json.dumps(info, indent=2) + "\n")
     print("Teaser exported: current SVG content and all nine images preserved; panel-a conflict annotations included.")

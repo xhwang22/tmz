@@ -1299,6 +1299,78 @@
       "changed_figures": ["Fig1", "Fig2"],
       "sections_touched": ["Shared connector renderer and audits", "Teaser/overview exports", "Figure memory"],
       "summary": "Unifies arrowheads as compact filled tips with explicit dimensions, rounded caps and joins. Reduces Fig1 shaft weights while preserving active, attempt-order and unexplored hierarchy. Rounds Fig2 feedback/checking routes and replaces the input brace with a continuous shallow curve. Exact pre/post signatures confirm unchanged text, images, node positions and canvases. Branch topology, line-style meanings, palette and Pagella typography remain. Canonical exports and stable previews are overwritten; teaser regeneration is idempotent, marker audits and make check pass. PDF remains nine main pages and 33 total. Small-label and raster-resolution limitations persist. No prose, captions, numerical inputs, experiments, image generation, new version directories, commit or push."
+    },
+    {
+      "round": 52,
+      "date": "2026-09-22",
+      "trigger": "Author approves a restrained attempt to reduce Fig1/Fig2 stylistic inconsistency while retaining the current composition and branch visualization.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1"],
+      "sections_touched": ["Teaser surface styling and export metadata", "Surface audit and figure memory"],
+      "summary": "Uses Fig2 unchanged as the reference. Matches outer corners and outline weights, replaces mint headers with warm-paper cards and fine separators, and groups the three continued revisions on one flat green surface. Action headings use blue/green, observations use dark text and ancillary notes use neutral gray. Standardizes photo framing without touching images or clips. Exact checks against round51 confirm unchanged wording, type sizes, branch paths/nodes, connectors, group transforms and nine photo payloads/crops. No gradients, shadows, new icons or layout redesign. Regenerates stable canonical assets and paper previews; SVG/PNG output is idempotent while PDF timestamps vary. Surface/marker audits and make check pass. PDF remains nine main pages and 33 total, with 305–741 PPI photos and 4.6–6.8-point labels. The photo/pictogram difference and small-label limitation remain. No prose/caption/data changes, empirical claims, experiments, image generation, historical-resource deletion, commit or push."
+    },
+    {
+      "round": 53,
+      "date": "2026-09-22",
+      "trigger": "Author suggests lowering the bottom two branch fans in Fig1(c).",
+      "changed_claims": [],
+      "changed_figures": ["Fig1"],
+      "sections_touched": ["Teaser lower side-fork geometry", "Export metadata, branch audit and figure memory"],
+      "summary": "Moves four pale side-fork points down by 62 SVG units, reducing fan height from 112 to 50 to match the top level. Vertical prefixes retain original parent connections. Exact checks preserve node positions, main-spine paths, edge endpoints, other tree attributes, card surfaces and other checked groups. Panels a/b, Fig2, prose, photos, wording and data are unchanged. SVG regeneration is idempotent; branch/surface/marker audits and make check pass. Stable exports and the paper PDF are rebuilt, retaining nine main pages and 33 total. Existing small-label and evidence limitations remain. No new search states, experiments, image generation, commit or push."
+    },
+    {
+      "round": 54,
+      "date": "2026-09-22",
+      "trigger": "Author requests visual correspondence and spatial alignment between search nodes and edits.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1"],
+      "sections_touched": ["Teaser number/title alignment and annotation guides", "Export metadata, geometry checks and figure memory"],
+      "summary": "Moves existing card numbers to left-edge docks aligned with search nodes and card centers, and aligns headings with photos. Adds three light-gray orthogonal guides without arrows, routing below hollow alternatives. Replaces an initial curved-guide preview because it resembled search branching. These guides denote correspondence only. Preserves tree topology and geometry including the prior shallow forks, card bounds, words, fonts, photographs, panels a/b, Fig2, manuscript sections and numerical inputs. Adds alignment and clearance checks and regenerates stable exports. Existing print-size and evidence limitations remain. No new search state, empirical claim, experiment, image generation, version directory, commit or push."
+    },
+    {
+      "round": 55,
+      "date": "2026-09-22",
+      "trigger": "Author rejects routed frame-like guides and requests a different visual language for node/edit correspondence.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1"],
+      "sections_touched": ["Teaser correspondence surfaces", "Export metadata, alignment checks and figure memory"],
+      "summary": "Removes the three orthogonal guides and replaces them with pale borderless horizontal row surfaces behind aligned nodes and edit cards. Matching numbers remain; no new line or arrow is added. Exact signatures preserve all ten protected foreground/surface groups, including the complete tree and lowered forks, cards, wording and photographs. Fig2, manuscript sections and numerical inputs are unchanged. Regenerates stable exports and the paper PDF. Small-label and evidence limitations remain. No experiment, image generation, version directory, commit or push."
+    },
+    {
+      "round": 56,
+      "date": "2026-09-22",
+      "trigger": "Author rejects the shaded-row preview and requests multiple visualization strategies.",
+      "changed_claims": [],
+      "changed_figures": [],
+      "sections_touched": ["Review-only figure comparison renderer", "Paper context and visual-review constraints"],
+      "summary": "Creates four local, unadopted panel-c treatments: title-aligned direct notes, recessed-edge cards, image-centered annotations, and one indexed sheet. Removes rejected guides and row shading from all candidates. Produces a common-scale contact sheet and four full SVG/PNG views in one stable review directory. Exact audits preserve the search trees, panel a/b groups, author wording except redundant card indices, photo payloads/crops and arrow count. A and D reduce photo display size; C retains full-size images. Canonical artwork, manuscript, quantitative inputs and paper PDF are unchanged; no choice has been approved. Records rejection of the current installed preview without silently replacing it. Small-label and evidence limitations remain. No experiments, image generation, compilation, commit or push."
+    },
+    {
+      "round": 57,
+      "date": "2026-09-22",
+      "trigger": "Author approves trying expanded nodes after rejecting annotation-only correspondence strategies.",
+      "changed_claims": [],
+      "changed_figures": [],
+      "sections_touched": ["Review-only expanded-node renderer", "Paper context and visual-review constraints"],
+      "summary": "Directly attaches each selected program node to its edit/diagnostic surface, removes duplicate card numbers, and moves eight hollow alternatives into the external left gutter. Preserves original parent relationships, active-path geometry, selected-node positions, words, full-size embedded photographs and crops, fonts, palette and panels a/b. Endpoint-derived graph audits, marker audits, exact text/photo checks and canonical-file hashes pass. Stable expanded.svg/png and a cropped preview are review-only; neither this candidate nor the earlier rejected treatments is approved. Canonical figures, manuscript and paper PDF remain unchanged. No experiment, new empirical claim, image generation, compilation, commit or push."
+    },
+    {
+      "round": 58,
+      "date": "2026-09-22",
+      "trigger": "Author rejects one-sided branches and prefers the original complete symmetric tree.",
+      "changed_claims": [],
+      "changed_figures": [],
+      "sections_touched": ["Review-only figure renderer", "Paper context and visual constraints"],
+      "summary": "Adds a symmetric preview restoring the exact original tree and shallow lower forks. Moves edit details into plain adjacent cards without duplicate node numbers, attached tabs, annotation leaders or shading. Preserves wording, full-size photos, palette and other panels. Tree, text, image and protected-file audits pass. Canonical assets and manuscript remain unchanged; no compilation or push."
+    },
+    {
+      "round": 59,
+      "date": "2026-09-22",
+      "trigger": "Author approves retaining symmetric Fig1 and requests a GitHub push.",
+      "changed_claims": [],
+      "changed_figures": ["Fig1"],
+      "sections_touched": ["Canonical teaser and exports", "Production layout, export and audit scripts", "Paper figure memory"],
+      "summary": "Integrates the approved round58 design into the production layout rather than installing a review-only SVG. Keeps complete bilateral branches, shallow lower forks and adjacent paper cards, removing rejected row shading, direction enclosure, tabs and duplicate card numbers. Preserves search-node positions, edges, all nine photos/crops, words and fonts. Updates metadata and explicit symmetry checks; SVG and PNG regeneration is idempotent. Fig2, manuscript sections and quantitative fixtures are unchanged. Author authorizes compilation and publication of Fig1 and the updated paper PDF; no experiments or empirical claims are added."
     }
   ],
   "updated_on": "2026-09-22",

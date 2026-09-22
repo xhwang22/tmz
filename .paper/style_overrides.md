@@ -1,5 +1,82 @@
 # Manuscript style
 
+## Approved symmetric Fig1 — round 59 (2026-09-22)
+
+- The author approves the round58 symmetric-branch design for canonical Fig1
+  and requests a GitHub push. This supersedes the preview-only restrictions.
+- Preserve the complete bilateral tree, lower shallow forks, plain adjacent
+  cards and single numbered search nodes. Do not restore rejected treatments.
+- Keep Fig2, prose, captions and quantitative fixtures unchanged. Synchronize
+  editable SVG, exports and generation/check scripts, then rebuild the paper.
+
+## Preserve complete symmetric branches — round 58 (2026-09-22)
+
+- The author rejects round57's one-sided tree. Restore the full bilateral
+  branch fans, keeping the shallow lower forks and central selected path.
+- This supersedes the expanded-node attachment preference. Do not sacrifice
+  branch symmetry to join edit content to a selected node.
+- Keep this as a review-only preview; no canonical replacement or push yet.
+
+## Expanded-node structural preview — round 57 (2026-09-22)
+
+- After rejecting A–D, the author permits local panel-c geometry changes for
+  an expanded-node treatment. This supersedes round56's exact-tree-coordinate
+  restriction, but not branch count, parent relationships or depth semantics.
+- A selected program node should attach directly to its edit content; hollow
+  alternatives remain outside that content. Do not add search states or arrows.
+- Keep the established flat palette, Pagella fonts, wording, full-size photos,
+  panels a/b, and Fig2. No canonical replacement, compilation or push yet.
+
+## Compare strategies before adoption — round 56 (2026-09-22)
+
+- Row55 shading and round54 routed guides were both rejected. Do not treat the
+  current canonical preview as an approved correspondence design.
+- The author requests several visually distinct alternatives. Keep them in one
+  stable review directory, with a shared-scale comparison and full-figure views.
+  Do not replace canonical figures, compile the paper or push before selection.
+- Preserve tree geometry/semantics, images/crops, author wording, palette and
+  Palatino-compatible fonts. Annotation layout may vary; no extra search edges.
+
+## Correspondence by row grouping — round 55 (2026-09-22)
+
+- The author rejected round54's orthogonal guides; do not restore them or
+  substitute another routed connector. Use pale borderless row surfaces with
+  the existing aligned numbers. This supersedes the guide rule below.
+- Keep search arrows and hollow alternatives unchanged. Row shading is a
+  reading aid, not an additional search edge or candidate-acceptance signal.
+- Preserve current tree/card geometry, photographs, fonts, wording and Fig2.
+
+## Node/edit correspondence — round 54 (2026-09-22)
+
+- Align Fig1(c)'s existing card numbers with their matching search nodes and
+  card centers; dock numbers at card left edges and align headings with photos.
+- Use thin neutral-gray orthogonal guides without arrows for correspondence.
+  Clear hollow alternatives; do not imply extra branches or candidate acceptance.
+- Preserve the tree, including round53's lowered forks, card bounds, content,
+  fonts, photos and panels a/b. No new frames around the whole search tree.
+
+## Lower side-fork height — round 53 (2026-09-22)
+
+- Fig1(c)'s bottom two pairs of side paths may branch lower along the shared
+  parent stem. Use shallow fans matching the top-level fan height.
+- Keep main-spine paths, all nodes and edge endpoints fixed. Retain the same
+  parents/children, pale alternative styling, card positions and text/images.
+  This is a four-path geometry exception, not permission to redesign the tree.
+
+## Fig1/Fig2 surface consistency — round 52 (2026-09-22)
+
+- Use Fig2 unchanged as the reference for a restrained Fig1 style pass. Preserve
+  the shared case strip, equal-width lower panels, branch geometry and photos.
+- Match outer corners/outline weights and use warm-paper cards with fine rules.
+  A flat green surface may group the continued revisions without adding steps,
+  nodes or links. Do not add gradients, shadows or decorative filler icons.
+- Give actions blue/green headings, observations dark text and ancillary notes
+  neutral gray. Keep words and font sizes unchanged; do not shrink small labels.
+- Standardize photo outlines without changing payloads or crops. Preserve the
+  local-ordering/acceptance distinction and constructed-example disclosures.
+- Overwrite stable exports and paper previews. No manuscript edits, quantitative
+  changes, historical-resource deletion or GitHub push are part of this pass.
+
 ## Figure connector styling — round 51 (2026-09-22)
 
 - Fig1/Fig2 use the shared compact filled arrowheads in `figure_connectors.py`.

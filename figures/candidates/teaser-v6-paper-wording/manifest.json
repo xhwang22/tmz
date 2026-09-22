@@ -9,10 +9,10 @@
     "style": 1,
     "marker": 5,
     "path": 40,
-    "rect": 37,
-    "g": 16,
-    "circle": 40,
-    "text": 67,
+    "rect": 34,
+    "g": 22,
+    "circle": 37,
+    "text": 64,
     "clipPath": 9,
     "image": 9
   },
@@ -202,7 +202,7 @@
   "embedded_images": true,
   "new_generation": false,
   "canonical_integration": true,
-  "style": "flat pale panels and restrained outlines; no gradients, folds or layered shadows",
+  "style": "flat overview-matched panels, complete symmetric tree and adjacent paper cards",
   "flat_style_check": "no linear/radial gradients or filters",
   "wording_profile": "figures/candidates/teaser_wording_20260920.json",
   "wording_profile_sha256": "ecd8523eb0d685b36071da85ca60cf42ae2a53ea35ec4279f4a1eaea6b27af2c",
@@ -221,15 +221,18 @@
   "method_accent": "#62AAA5",
   "palette_check": "current source text, geometry and embedded images unchanged by export",
   "surface_polish": {
-    "date": "2026-09-21",
+    "date": "2026-09-22",
     "reference": "figures/overview.png",
+    "style": "overview-paper-symmetric-tree",
     "changes": [
-      "flat peach/blue/green panels",
-      "white revision cards with plain mint headers",
-      "stronger action headings, shorter diagnostics and heavier active paths",
-      "compact shared case strip and one flat surface grouping the default checks"
+      "flat overview-matched panels and three plain warm-paper edit cards",
+      "no row shading, enclosing direction surface, tabs or annotation leaders"
     ],
-    "scope": "rejected gradient, fold and stacked-edge pass removed"
+    "preserved": [
+      "complete symmetric search tree, central path and shallow lower forks",
+      "all nine image payloads and crops, wording and Pagella fonts"
+    ],
+    "scope": "author-approved Fig1; Fig2 and manuscript prose unchanged"
   },
   "panel_a_revision": {
     "date": "2026-09-21",
@@ -249,8 +252,9 @@
     "layout": "shared-case-above-symmetric-method-panels",
     "preserved": [
       "nine image payloads and original crops",
-      "panel a and panel c geometry",
-      "branch topology, node radii and attempt order"
+      "panel a geometry",
+      "panel c search-node positions and main spine",
+      "branch topology and attempt order"
     ],
     "changed": [
       "panel b sibling spacing: 168 to 264 units",
@@ -416,5 +420,35 @@
     ],
     "evidence_status": "constructed example, not an observed trajectory or acceptance result"
   },
-  "connector_style": "compact-filled-tips-rounded-routes"
+  "connector_style": "compact-filled-tips-rounded-routes",
+  "branch_revision": {
+    "date": "2026-09-22",
+    "style": "lower-two-fans-50-units",
+    "changed_paths": 4,
+    "fan_height_before": 112,
+    "fan_height_after": 50,
+    "changes": [
+      "lower two side-fork points moved down by 62 SVG units",
+      "vertical prefixes retain the original parent connections"
+    ],
+    "preserved": [
+      "all node positions, edge endpoints, main spine and top-level fan",
+      "branch topology, markers, line styles, colors and wording",
+      "all photos, card positions, panel bounds and panels a/b"
+    ],
+    "scope": "local geometry change only; not new search states or empirical evidence"
+  },
+  "node_edit_mapping": {
+    "date": "2026-09-22",
+    "style": "symmetric-tree-adjacent-cards",
+    "changes": [
+      "plain edit cards aligned with the three depth levels",
+      "redundant card numbers removed; numbered search nodes retained"
+    ],
+    "semantics": "adjacent edit details, not additional search states or candidate acceptance",
+    "preserved": [
+      "complete bilateral branches, node positions and all search edges",
+      "full-size photographs, diagnostic text and local ranking badges"
+    ]
+  }
 }
