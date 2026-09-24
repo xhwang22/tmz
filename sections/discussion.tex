@@ -1,12 +1,13 @@
 \section{Discussion}
 \label{sec:discussion}
 
-\paragraph{What would support deeper search?}
-Later gains over history-matched search and better held-out selection would support retaining directions independently of candidate acceptance.
-Longer directions alone are insufficient; the parent-reset control separates direction priority from retaining intermediate implementations.
+\paragraph{Interpreting improvement.}
+Mining and evolution are assessed by the final evaluator obtained per annotation and search cost.
+Diagnostic and controller contrasts test the value of execution evidence, target normalization, and adaptive edit budgets.
+Longer directions or favorable individual trajectories cannot substitute for these comparisons.
 
 \paragraph{Scope and limitations.}
 Separately adapted, within-domain evaluators do not establish universal transfer.
-The controller retains direction identifiers and diagnostics but cannot verify semantic continuity or sufficient reasons to end; trace audits must separate observations from agent interpretation.
+Trace audits distinguish observed behavior from the agent's account of its correction.
 Agreement also need not improve downstream quality, and reward optimization can amplify evaluator errors \citep{wang2026rewardhacking}.
-Fresh human judgments and reserved attribute checks remain necessary; the scenario establishes no empirical benefit.
+Independent downstream judgments therefore remain separate endpoints.

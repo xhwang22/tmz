@@ -3,11 +3,16 @@
 # Add each new compilation dependency explicitly below.
 *
 !/figures/
+!/output/
+!/output/fig2-svg/
+!/output/fig2-svg/overview.pdf
 !/figures/ideal_scenario/
 !/sections/
 !/.gitignore
 !/README.md
 !/figures/evaluator.tex
+!/figures/downstream_results_pending.tex
+!/figures/downstream_preview.pdf
 !/figures/ideal_scenario/annotation.tex
 !/figures/ideal_scenario/components.tex
 !/figures/ideal_scenario/cost.tex

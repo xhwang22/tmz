@@ -1,10 +1,12 @@
 \section{IterEval}
 \label{sec:method}
 
-IterEval separates \emph{candidate acceptance} from \emph{direction continuation}.
-A candidate that fails to improve agreement may reveal an ineffective correction, an incomplete implementation, or repairs offset by regressions.
-Its rejection therefore does not, by itself, decide whether to try another direction.
-The direction is the unit of continued exploration; the complete program is the unit of selection.
+IterEval combines disagreement-based preference mining with depth-first evaluator evolution.
+Mining directs limited human feedback toward comparisons on which existing evaluation signals disagree; evolution develops a correction hypothesis through successive testable revisions before branching.
+Execution evidence is retained after candidate rejection, allowing unsuccessful implementations to inform the next revision.
+A candidate's usefulness as a working program is distinct from the evidence it provides for the active hypothesis.
+The search separates \emph{working-state transition}, \emph{direction continuation}, and \emph{global checkpoint selection}.
+Train execution evidence drives local search and direction development, while restricted Val feedback governs global retention.
 
 \subsection{Setup and revision space}
 \label{sec:problem}
@@ -13,9 +15,8 @@ The direction is the unit of continued exploration; the complete program is the 
 
 Starting from a seed evaluator $E_0$, IterEval revises an executable evaluation program $E_\theta$ using human feedback, with the base model $M$ fixed.
 The program specifies artifact adapters $A$, rubrics and dimensions $K$, evaluator modules $V$, tools $T$, evidence routing $\Pi$, and fusion $G$.
-A revision can change several connected components, such as a detector, its route, and the scoring instruction that uses its findings.
-These edits produce one complete candidate program, which is executed and evaluated as a whole.
-Figure~\ref{fig:runtime} details the component interfaces.
+A revision can change connected components, such as a detector, its route, and the scoring instruction that uses its findings.
+It produces a complete candidate program, executed and evaluated as a whole (Figure~\ref{fig:runtime}).
 
 For a task $x$, the evaluator scores each output $y$ separately, without seeing the competing output or human preference.
 Within a domain $D$ sharing an evaluation standard, the objective is agreement with human preferences on unseen inputs,
@@ -27,50 +28,60 @@ Within a domain $D$ sharing an evaluation standard, the objective is agreement w
  \label{eq:objective}
 \end{equation}
 Here $y^+$ is the human-preferred output, $\mathcal P_D$ is the domain distribution, and $\bar s_\theta$ is the score under a fixed repeated-scoring protocol with execution randomness $\xi$.
-Disagreement-based preference mining determines which feedback to acquire; depth-first evaluator evolution determines how to act on that feedback.
-The proposal subset $\Dprop$ exposes artifacts, human feedback, and execution traces; the disjoint checking subset $\Ddev$ returns only aggregate candidate measurements.
-Both are development data, separate from the final held-out assessment (Appendix~\ref{app:measurement}).
+Before mining, a fixed-seed random split assigns original-input groups from the frozen domain source pool to Train, Val, and Test.
+Mining and random-anchor selection operate only within Train.
+Val and Test inputs and outputs remain fixed, with compared methods sharing the same split in each run (Appendix~\ref{app:measurement}).
+Train exposes artifacts, human feedback, and traces to the optimizer.
+Val cases and traces remain sealed; the optimizer receives only the promotion indicator and retained best score.
+Test stays locked until search ends and the selected program is frozen (Appendix~\ref{app:measurement}).
 
 \subsection{Disagreement-based preference mining}
 \label{sec:mining}
 
-Mining prioritizes comparisons that expose disagreement among existing metrics and judges, while retaining random comparisons to check for shared errors.
-The pool contains output pairs $r=(x,y_a,y_b)$ from existing datasets or newly generated outputs, grouped by their original input.
-Each signal $j$ yields $u_j(r)\in\{-1,0,+1,\bot\}$ by comparing its own scores under a prespecified tie margin.
-The signs indicate preference for $y_b$, a tie, preference for $y_a$, or unavailable evidence, respectively.
-Signal definitions, source groups, and mappings to quality dimensions are fixed before revealing human preferences.
+Mining prioritizes disagreements among metrics and judges, while retaining a random anchor to check for errors shared by the available signals.
+The Train pool contains pairs $r=(x,y_a,y_b)$ from existing datasets or newly generated outputs.
+Post-split output generation for mining is restricted to the assigned Train inputs.
+Each signal $j$ yields $u_j(r)\in\{-1,0,+1,\bot\}$: preference for $y_b$, a tie, preference for $y_a$, or unavailable evidence.
+Each sign is obtained by comparing that signal's scores using a prespecified tie margin.
+Signals sharing a model or underlying metric belong to a source group.
+Each signal is either overall or mapped to one or more quality dimensions $q$ from the domain's evaluation standard.
+These definitions are fixed before revealing human preferences.
 
-We distinguish opposing signals on the same dimension, opposition between overall and dimensional judgments, and trade-offs between dimensions.
-Their indicators define the ranking score
+Within each dimension, a source group contributes at most one sign; opposing signs within the group yield abstention.
+The dimension's aggregate preference is the sign of the sum of group votes.
+We rank pairs by
 \begin{equation}
  P(r)=2\sum_q I_{\mathrm{within},q}(r)
       +\sum_q I_{\mathrm{overall},q}(r)
       +I_{\mathrm{tradeoff}}(r).
  \label{eq:conflict}
 \end{equation}
-The first indicator requires opposing signals from different source groups on dimension $q$; the second requires an overall signal to oppose a signal on $q$.
-The last indicator is one when dimension-level preferences disagree, with at most one vote per source group in each dimension's aggregate.
-Within-dimension conflicts receive twice the weight of overall--dimension conflicts; the trade-off term adds one to the priority.
-Ties and missing signals do not count as opposing preferences.
+The first indicator marks opposing signals from different source groups on dimension $q$; the second marks opposition between an overall signal and a signal on $q$.
+The last is one when aggregate preferences disagree across dimensions.
+Ties and missing signals never count as opposition.
+The fixed 2:1 weighting prioritizes disagreement about the same criterion, while the capped trade-off term prioritizes cross-dimension conflicts.
+The score allocates annotation priority to these predefined forms of disagreement.
 
-A prespecified random anchor is selected by original-input hashes before scoring.
-The remaining comparisons are ranked by decreasing $P(r)$, with pair identifiers breaking ties, and selected up to the feedback budget.
-The anchor and targeted selections share this budget.
-Signal inventories, tie margins, and anchor size are domain-specific settings; Appendix~\ref{app:annotation} specifies their recording and the source-group aggregation.
-For selected comparisons, compatible human preferences are reused when available; otherwise, blinded annotation supplies the missing preferences.
-Both routes preserve each label's source, artifacts, signals, and execution records.
-Unselected labels remain hidden from evolution.
-The relevant endpoint is subsequent evaluator improvement, not the amount of disagreement collected.
+Before computing mining scores, original-input hashes select the random anchor, keeping outputs from the same input together.
+The anchor uses part of the feedback budget.
+The remainder is filled by decreasing $P(r)$, with pair identifiers breaking ties.
+Signal inventories, tie margins, and anchor size are fixed before selected labels are revealed (Appendix~\ref{app:annotation}).
+After selection, we obtain human preferences by reuse or blinded annotation.
+Reuse requires the same task and output pair and matching evaluation criteria and annotation protocol, or an explicitly audited harmonization.
+Otherwise, annotation supplies new preferences.
+Both routes preserve label provenance and missing feedback fields; unselected labels remain hidden.
+We evaluate mining by downstream evaluator improvement, not disagreement yield.
 
 \begin{figure}[t]
 \centering
 \input{figures/overview}
-\caption{IterEval separates candidate acceptance from direction continuation.
+\caption{IterEval overview.
 (a) Acquire preferences using conflict ranking and a random anchor.
-(b) Checking outcomes select the best program; retained execution observations inform the next test.
-Here, a detector finds layout errors without changing scores, prompting a revision that passes its findings into scoring.
-Green links carry diagnostics, not automatic program inheritance.
-The gray exit denotes an explicit reason to end the direction, not an automatic response to rejection.
+(b) A semantic contract predicts the effect of each revision.
+Execution checks guide the agent's next revision; a local controller governs inheritance and the edit budget.
+The example detector finds layout errors without changing scores; if its declared component change is realized without net regression, this intermediate can be inherited before connecting findings to scoring.
+Green links carry diagnostic evidence within the direction.
+Periodic Val checkpoints serve global checkpoint selection only.
 (c) Use the frozen best program for output selection, critic-guided refinement, and planned reward-guided training.
 The example and AI-generated pictograms are constructed illustrations, not observed trajectories or measured improvements.}
 \label{fig:overview}
@@ -80,65 +91,70 @@ The example and AI-generated pictograms are constructed illustrations, not obser
 \label{sec:proposal}
 \label{sec:search}
 
-Candidate selection asks \emph{which program to retain}; direction continuation asks \emph{what to test next} (Figure~\ref{fig:overview}b).
-We formulate this search as sequential program optimization with persistent directions.
-The search keeps a best program $B$, a working program $W$ to revise, an active direction $d$, and its diagnostic record $z$.
-Selection updates $B$ using checking agreement.
-Unsuccessful trials still enter $z$ and can inform another revision or probe within $d$.
+The search maintains an exploratory working program $W$, a best program $B$, and an active direction $d$ with diagnostic history $z$.
+A direction consists of a hypothesis about an evaluation error and a proposed correction, together with the revisions that test or implement it.
+The search is depth-first at the direction level: a failed implementation leads to another test of the active correction before a new direction is opened, unless a direction-ending condition fires.
+An edit budget $\Delta$ bounds the number of characters changed from parent to candidate.
+Separating $W$ from $B$ allows useful intermediate implementations to accumulate before global retention (Figure~\ref{fig:overview}b).
 
-\paragraph{Choosing a direction.}
-When no direction is active, the agent examines proposal errors and earlier trials, then states the error to address, its proposed explanation, and the intended correction.
-For example, overlooked layout faults may suggest that relevant visual evidence is missing or unused, motivating a correction that makes those faults count in scoring.
-This description defines the semantic scope of continued work, with $W=B$ at its start.
-The agent is instructed to refine implementations and unresolved explanations within that scope, and to end the direction before pursuing a different correction.
-A persistent identifier links the description to its trials and diagnostics.
+\paragraph{Semantic contracts make predictions testable.}
+A new direction starts from $W=B$.
+From Train traces, the agent formulates a correction hypothesis with testable consequences.
+Each revision links its edit to that hypothesis through a contract: trace-grounded preconditions, the proposed modification, and predicted postconditions.
+The postconditions name targets $T_t$ expected to become correct, contrasts $K_t$ expected to preserve their judgments, and designated intermediate observables $O_t$ with predicted changes.
+Each observable identifies a component output field and the cases where it is checked.
+Before execution, the agent commits to a repair contract ($T_t\ne\varnothing$) or a scaffolding contract ($T_t=\varnothing$), fixing the applicable transition rule.
+Let $g_t^{\mathrm{chg}}$ indicate whether designated observables change relative to the parent, and $g_t^{\mathrm{pred}}$ whether the observed changes match the contract's predictions.
+Both checks aggregate over these observables using rules fixed in the run configuration.
 
-\paragraph{Revising and diagnosing.}
-The agent revises $W$ to produce a candidate $C$, recording the actual edits, their intent, and the inspected proposal cases.
-Every valid changed candidate is evaluated on the same checking set.
-Proposal-case traces show what the program did, which errors were repaired, and which correct judgments regressed relative to its actual parent.
-The diagnostic record separates these observed outcomes from the agent's explanations and remaining questions.
-The same zero gain can mean unchanged orderings or offsetting repairs and regressions.
-Neither outcome alone reveals whether the intended correction was implemented.
+\paragraph{Execution evidence guides the next revision.}
+Repairing a declared target or a non-target case can yield the same net gain, while zero gain can conceal repairs offset by regressions.
+Case-level checks and intermediate observations distinguish these outcomes relative to the contract.
+The history $z$ retains prediction outcomes, case differences, and trace pointers, including evidence from rejected candidates, separately from the agent's explanations.
+The agent uses this record to choose the next edit or diagnostic probe within the direction.
 
-\paragraph{Choosing the next test.}
-The agent uses $z$ to ask whether the intended behavior occurred, whether it repaired the target error, and what else changed.
-In Figure~\ref{fig:overview}b, layout errors are detected but final scores stay unchanged.
-Testing whether the findings reach the scoring step addresses an unresolved implementation question within the same direction.
-If the intended behavior already occurs without repairing the error, the next test instead examines the correction or its strength.
-If repairs introduce regressions, contrast cases test where the correction should apply.
-Supported probes compare parent and edit with upstream inputs fixed; changes to observations or routing require complete execution.
-Probe outcomes enter $z$, but only a candidate's checking result can update $B$.
-
-\paragraph{Selecting the best program.}
-At trial $t$, acceptance depends on recorded checking agreement $\widehat J_{\mathrm{dev}}$,
+\paragraph{Working-state transition.}
+At step $t$, the agent produces a complete candidate $C_t$ within budget $\Delta_t$ of its parent $P_t=W_t$.
+Both programs are measured on the same Train batch $S_t$, containing targets, contrasts, and additional cases.
+Let $v_i(E)$ indicate a correct strict pairwise judgment by program $E$ on case $i$.
+We compute net gain and, for a repair step, the \emph{target-normalized net gain}
 \begin{equation}
- B_{t+1}=\begin{cases}
- C_t,&\widehat J_{\mathrm{dev}}(C_t)>\widehat J_{\mathrm{dev}}(B_t)
-       \ \text{and}\ \Gamma_t(C_t),\\
- B_t,&\text{otherwise}.
- \end{cases}
- \label{eq:acceptance}
+ n_t^{\mathrm{tar}}=|T_t|,\qquad
+ G_t^{\mathrm{net}}=\sum_{i\in S_t}[v_i(C_t)-v_i(P_t)],\qquad
+ \rho_t=\frac{G_t^{\mathrm{net}}}{n_t^{\mathrm{tar}}}\quad(n_t^{\mathrm{tar}}>0).
+ \label{eq:target-normalized-gain}
 \end{equation}
-Here $\Gamma_t$ requires complete, comparable execution, nondecreasing coverage, and the prespecified worst-stratum regression check.
-This rule preserves the recorded best development agreement without deciding direction continuation.
+The numerator counts repairs minus regressions across the whole batch, including collateral effects outside the targets.
+We use the declared target count as a reference scope, requiring realized net benefit to be commensurate with that scope.
+Contrast outcomes help the agent diagnose overgeneralization, while contrast regressions also enter the net gain.
+Repair inheritance uses the output-change check and target-normalized net gain: $g_t^{\mathrm{chg}}=1$ and $\rho_t\geq\eta_1$.
+Otherwise, the parent remains.
+Predicted-change fulfillment is retained separately as evidence about the proposed mechanism and guides subsequent revisions.
+When $g_t^{\mathrm{chg}}=0$, the attempt is recorded as absent behavior and retains both parent and budget.
 
-Within a continuing direction, the next revision need not retain the rejected candidate's code.
-Using $C_t$ as the next parent requires complete, comparable local and checking outcomes against both parent and best program.
-Given those measurements, $C_t$ can be retained if it is accepted, causes no observed damage, or qualifies for a limited exploratory step.
-The last case requires previously uncredited progress: a newly measured repair of an error present when the direction began, or a predeclared intermediate-field change, with no regression on designated protection cases.
-Otherwise, the next parent is the pre-update best $B_t$.
-Incomplete local evidence can force this fallback even for an accepted candidate, without reversing acceptance or discarding diagnostics.
-The parent rule protects program state while retaining failed trials as information; Appendix~\ref{app:algorithm} gives the exact checks.
+\paragraph{Intermediate implementation can precede preference repair.}
+A scaffolding revision declares no immediate target repair ($T_t=\varnothing$), instead predicting an intermediate observable change intended to support a later repair.
+It becomes the next working program when $g_t^{\mathrm{chg}}=g_t^{\mathrm{pred}}=1$ and $G_t^{\mathrm{net}}\geq0$, with the budget unchanged.
+For example, a layout detector can first expose overlooked faults without changing scores; a subsequent revision can connect those findings to scoring.
+This permits coordinated changes across neutral intermediates.
 
-\paragraph{Continuing before branching.}
-While a direction remains active, the next revision or probe uses its accumulated diagnostic record.
-To end it, the agent submits an explicit reason, with instructions to identify the unresolved question and why no different informative test is ready.
-This reason may concern an implemented correction that fails to address the target errors, or remaining implementation questions with no useful next test.
-After an ending, the next session starts a new direction from the current best program.
-Rejection or parent fallback alone cannot trigger this transition.
-Depth-first evolution denotes this ordering of search decisions, with failed candidates retained as evidence for continued work.
-The agent judges semantic continuity and when to end; the controller preserves the history and applies program-selection rules, without guaranteeing a minimum depth or a correct diagnosis.
-Resource or execution stops leave the direction unresolved.
-Algorithm~\ref{alg:era} and Appendix~\ref{app:algorithm} specify the loop and its execution controls.
-Normal completion returns the best program selected on development data, fixed before independent assessment.
+\paragraph{Direction continuation: adapt the edit budget.}
+The controller adjusts the permitted revision size with a trust-region-inspired expand/contract rule~\citep{conn2000trust}.
+For repair steps with $g_t^{\mathrm{chg}}=1$, $\rho_t$ below the inheritance threshold contracts $\Delta$; meeting the expansion threshold while using most of the budget expands it.
+Otherwise the budget is preserved, including for scaffolding and absent-behavior attempts.
+The agent chooses what to change within this allowance using the diagnostic history.
+Rejecting a repair candidate therefore need not end the direction.
+When contraction takes $\Delta$ below a minimum editing scale, the controller retires the direction and restarts from $B$.
+A per-direction step cap bounds repeated absent-behavior attempts.
+Agent-requested endings and resource limits are recorded separately.
+Here $\Delta$ controls edit size, not confidence in the correction hypothesis.
+The complete policy and its relation to trust-region theory appear in Appendix~\ref{app:algorithm}.
+
+\paragraph{Global checkpoint selection: retain improvements separately.}
+Periodic checkpoints compare $W$ with $B$ on full Val under the same scoring protocol.
+A checkpoint is promoted to $B$ only when its accuracy exceeds the retained score by at least a preset margin.
+To restrict feedback from repeated Val access, the optimizer receives only the promotion indicator and retained best score~\citep{blum2015ladder}.
+Checkpoint outcomes update retention only, leaving $W$, $\Delta$, and direction continuation unchanged.
+The working program can therefore remain below the best Val score while its correction is developed.
+After a final checkpoint, the best program is frozen and compared with the seed once on Test.
+Train guides adaptive exploration, Val guides adaptive retention, and this held-out Test comparison supplies the reported generalization assessment.

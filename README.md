@@ -2,7 +2,7 @@
 
 **Dive Deeper, Branch Later: Self-Evolving Evaluators across Open-Ended Tasks**
 
-This branch contains only the 38 files needed to compile the manuscript,
+This branch contains only the files needed to compile the manuscript,
 plus this README and `.gitignore`.
 
 ## Compile in Overleaf

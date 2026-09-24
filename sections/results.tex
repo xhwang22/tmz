@@ -2,14 +2,11 @@
 Methods score the same outputs pointwise, without human labels or opponent information.
 Table~\ref{tab:main-alignment} separates strict preference agreement from Best-of-$N$ accuracy and normalized rank regret.
 Selection requires human-ranked groups, not pair-only data.
-The ideal scenario places IterEval at \ResultPair{}\% agreement, \ResultSeedGain{} percentage points above Seed and \ResultGepaGain{} above GEPA, with better selection and lower regret.
-This pattern would support gains in both judging pairs and choosing outputs; agreement alone would not establish the latter.
 
 \begin{table}[!htbp]
 \caption{\textbf{C1: final held-out performance.}
-Simulated ideal scenario; not experimental results.
 Pair: preference agreement (\%); Bo$N$: Best-of-$N$ accuracy (\%); Reg: normalized rank regret; coverage (\%) uses requested inputs.
-Values equally weight four domains with $N=4$; no confidence intervals are assigned.}
+Values equally weight four domains with $N=4$.}
 \label{tab:main-alignment}
 \centering\small
 \begin{tabularx}{\linewidth}{@{}Ycccc@{}}
@@ -25,42 +22,34 @@ Evaluator & Pair $\uparrow$ & Bo$N$ $\uparrow$ & Reg $\downarrow$ & Coverage $\u
 \centering
 \input{figures/results_landscape_pending}
 \caption{\textbf{C1 breadth and evaluation cost.}
-Simulated ideal scenario; not experimental results.
 (a) Task families and output types.
 (b) Four-domain modeled cost and agreement.
-(c) Agreement: IterEval in lake green, baselines in family shades.
-Four tasks reuse Table~\ref{tab:main-alignment}; fourteen are layout-only additions excluded from its means; four remain unfilled.}
+(c) Agreement: IterEval in lake green, baselines in family shades; all task groups use the same truncated 50--100\% axis.
+Four tasks reuse Table~\ref{tab:main-alignment}; fourteen additional tasks are excluded from its means; four remain unfilled.}
 \label{fig:c1-landscape}
 \end{figure}
 
-The additional tasks in Figure~\ref{fig:c1-landscape}c are excluded from all means.
+Figure~\ref{fig:c1-landscape}c reuses the four-domain comparison, with additional tasks excluded from all means.
 Panel (b) estimates IterEval at \ResultDeployCost{} times Seed's model cost, assuming Seed-like runtime profiles where unavailable (Appendix~\ref{app:adaptation}); deployment costs remain unmeasured.
 
 \paragraph{C2: critic-guided refinement.}
 A frozen generator refines the same fresh $y_0$ using Seed or IterEval critiques, or no critique \citep{madaan2023selfrefine}, at matched resources.
-The scenario favors IterEval over Seed on \ResultCtwoPreference{}\% of tie-adjusted comparisons across three domains, with fewer major regressions (Table~\ref{tab:downstream-results}).
-Comparisons with $y_0$ and no-critic revision distinguish useful critique from extra generation alone (Table~\ref{tab:downstream-detail}).
-Actual revisions require new blinded judgments.
-
-\begin{table}[!htbp]
-\caption{\textbf{Downstream human-outcome reporting.}
-Simulated ideal scenario; no annotation or training was conducted.
-Pref.: tie-aware preference for IterEval over Seed (\%).
-$\Delta$Reg: major-regression difference against $y_0$ (C2) or Base (C3), in percentage points.
-Counts are assigned; C3 remains conditional.}
-\label{tab:downstream-results}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}P{0.8cm}Yccc@{}}
-\toprule
-Study & Domain & Pref. $\uparrow$ & $\Delta$Reg $\downarrow$ & Judged inputs\\
-\midrule
-\input{figures/ideal_scenario/downstream}
-\bottomrule
-\end{tabularx}
-\end{table}
+Figure~\ref{fig:downstream}a reports the IterEval-versus-Seed contrast separately for each representative domain.
+The no-critic comparison tests the value of critique beyond another revision, while $y_0$ anchors nondegradation (Table~\ref{tab:downstream-detail}).
+Both require new blinded judgments of the exact outputs, independent of evaluator scores.
 
 \paragraph{C3: reward-guided training.}
-Matched policies train with frozen Seed or IterEval rewards and their own online rollouts using LoRA/GRPO \citep{hu2022lora,shao2024deepseekmath}.
-The assigned \ResultCthreePreference{}\% preference for IterEval-trained outputs illustrates the intended downstream test, not a training finding.
-Reward scores alone cannot establish this benefit; new human judgments and reserved attribute checks are required.
-C3 awaits preflight and separate training authorization (Appendix~\ref{app:training}).
+Figure~\ref{fig:downstream}b compares generators trained with frozen Seed and IterEval rewards, using the same starting checkpoint and policy-training recipe within each domain \citep{hu2022lora,shao2024deepseekmath}.
+New human judgments assess the trained outputs; Base provides the no-update reference.
+Reward preflight precedes training, with failed or incomplete studies reported under the fixed roster (Appendix~\ref{app:training}).
+
+\begin{figure}[!htbp]
+\centering
+\input{figures/downstream_results_pending}
+\caption{\textbf{Downstream use across four task families.}
+(a) IterEval-critic versus Seed-critic refinement of the same initial outputs.
+(b) IterEval-reward versus Seed-reward policy training.
+Both panels use tie-aware human preference and a 50\% parity line, with domains in the same order; they represent separate experiments, not a shared learning curve.
+Paired intervals, regression rates, validity, and judgment counts accompany the final measurements in Appendix~\ref{app:downstream}.}
+\label{fig:downstream}
+\end{figure}

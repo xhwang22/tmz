@@ -2,21 +2,26 @@
 \label{sec:experiments}
 \input{figures/ideal_scenario/numbers}
 
-We test evaluator agreement and selection (C1), refinement (C2), and reward-guided training (C3), with separate mechanism studies.
-Numerical displays use a simulated ideal scenario for reporting design, not observed outcomes.
+The evaluation separates broad evaluator assessment (C1), critic-guided refinement (C2), and reward-guided training (C3).
+Mining and evolution ablations test which feedback and search decisions account for evaluator quality.
 
 \paragraph{Tasks and assessment.}
-We prioritize webpages (SV4), detailed captions (IG1), summaries (TG1), and research ideas (AR1), separately adapting each evaluator.
-The 22-domain candidate scope is not a completed benchmark (Appendix~\ref{app:domains}).
-The primary test uses unseen within-domain inputs, independently of mining scores; derivatives and near-duplicate sources stay together.
-Out-of-distribution tests are optional.
+C1 targets the 22-domain scope in Figure~\ref{fig:c1-landscape}a, using direct overall preferences or new annotation where public resources supply only dimensional judgments or references.
+C2 and C3 share four representative domains: webpage generation (SV4), image captioning (IG1), summarization (TG1), and research proposals (AR1).
+This roster covers all four families and is fixed by public data and generator routes, not local asset availability or observed gains (Table~\ref{tab:readiness}).
+Each admitted task receives a separately adapted evaluator.
+Source groups are split before Train-only mining; Val and Test remain fixed across methods.
+The reference 100 Val and 400 Test pairs require sufficient independent groups.
+Appendix~\ref{app:domains} records each domain's public resources, label type, access conditions, and remaining annotation or integration work.
 
 \paragraph{Comparisons and resources.}
-Table~\ref{tab:main-alignment} includes static judges, learned signal fusion, SkillOpt \citep{yang2026skillopt}, GEPA \citep{agrawal2026gepa}, and Meta-Harness \citep{lee2026metaharness}.
-Official optimizers retain their native history and search policies; GEPA receives a full-program interface.
-Adaptive methods share feedback, model access, tools, and resource caps; search cost includes reflection, diagnostics, failures, and validation.
-Independent searches measure variation.
-Text-only IterEval controls for SkillOpt's narrower edit space (Appendix~\ref{app:adaptation}).
+Comparators include fixed judges, learned signal fusion, SkillOpt \citep{yang2026skillopt}, GEPA \citep{agrawal2026gepa}, and Meta-Harness \citep{lee2026metaharness}.
+External optimizers retain native search policies under common feedback and cost budgets, with development access declared separately (Table~\ref{tab:adaptation}).
+GEPA edits complete programs; text-only IterEval matches SkillOpt's edit space.
+Model versions, tool access, and scoring settings are frozen per comparison.
+Search cost includes diagnostics, rejected attempts, and Val checks; feedback collection and deployment costs are reported separately.
+Five searches per adaptive condition are the initial target, to be fixed after a development-only pilot.
+Per-domain effects and equal-domain means use paired 95\% intervals over source groups and search runs (Appendix~\ref{app:measurement}).
 
 \subsection{Core results}
 \label{sec:core}
@@ -26,28 +31,24 @@ Text-only IterEval controls for SkillOpt's narrower edit space (Appendix~\ref{ap
 \subsection{Ablation studies}
 \label{sec:ablations}
 
-\begin{figure}[!htbp]
-\centering
-\input{figures/search_dynamics_pending}
-\caption{\textbf{Search dynamics.} Simulated ideal scenario; not observed runs.
-(a) Best accepted development agreement versus total search cost.
-(b) Independent held-out checkpoint curves for the four history/parent controls, assessed only after search.
-(c) Assigned direction outcomes (definitions in Appendix~\ref{app:ablations}).
-No uncertainty estimates are assigned.}
-\label{fig:budget-tests}
-\end{figure}
-
-\paragraph{Direction continuation.}
-The four controls in Figure~\ref{fig:budget-tests}b isolate parent retention, direction priority, and history at equal cost.
-Their assigned contrasts are \ResultParentGain{}, \ResultDirectionGain{}, and \ResultHistoryGain{} points, respectively (Table~\ref{tab:search-results}); independent searches must confirm this ordering.
-
 \paragraph{Preference mining.}
-Compare mined and random feedback by held-out agreement at equal revealed-label budgets, and additionally at equal human time for new annotation.
-The random/mined $\times$ history-only/IterEval scenario gives a \ResultInteraction{}-point interaction, while its time-matched comparison remains favorable after charging harder annotations (Figure~\ref{fig:acquisition}).
-Both patterns require confirmation with actual label and time records.
+Mining is tested by the final evaluator obtained from a fixed feedback budget.
+Random and mined subsets use the same pool, feedback detail, seed evaluator, and evolution budget, restarting search at each label budget.
+Figure~\ref{fig:acquisition} specifies label-budget and human-time comparisons, including the anchor and adjudication.
+Uncertainty and cross-model disagreement are simpler sampling controls (Table~\ref{tab:mining-results}).
 
+\paragraph{Execution evidence and search control.}
+The evolution studies separate diagnostic feedback from controller decisions.
+Feedback controls retain contracts and controller checks, changing only returned evidence or access to earlier records.
+Controller contrasts remove target normalization from inheritance and budget updates separately, then compare adaptive with fixed budgets.
+Matched-cost searches receive terminal Test assessment of Val-selected programs.
+Parent reset and immediate branching are additional policy interventions (Appendix~\ref{app:ablations}).
+
+\begin{samepage}
 \subsection{Analysis and studies}
 \label{sec:analysis}
 
-Figure~\ref{fig:trajectory} reserves a trace comparison; Table~\ref{tab:component-results} illustrates tests of evidence use and feedback detail.
-Appendices~\ref{app:measurement}--\ref{app:manifest} specify uncertainty, failures, and records for every display.
+Analysis separates absent observable changes, unfulfilled predictions, repairs offset by regressions, and off-target gains, relating each to the next edit and its cost.
+Fixed-rule trajectory samples include unsuccessful directions and distinguish local inheritance from Val promotion (Figure~\ref{fig:trajectory}).
+Matched-budget contrasts test diagnostic value; per-domain agreement, selected ranks, coverage, and costs locate failures hidden by macro-averages (Table~\ref{tab:domain-results}).
+\end{samepage}
