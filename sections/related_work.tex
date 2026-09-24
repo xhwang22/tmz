@@ -7,17 +7,17 @@ Improving these judgments matters beyond assessment: when evaluators guide gener
 Learned reward models and trained judges adapt model weights to produce scores or critiques aligned with human judgments \citep{xu2023imagereward,kim2024prometheus,ke2024critiquellm}.
 Other approaches use feedback to generate, select, or refine explicit evaluation criteria, including preference-grounded query-specific rubrics \citep{shankar2024spade,liu2024autocalibrate,shankar2024evalgen,lv2026queryrubrics}.
 Agent-as-a-Judge and WebGrader extend evaluation through tool-based inspection and evolving verifier skills, respectively \citep{zhuge2025agentjudge,chen2026webgrader}.
-IterEval builds on this move toward explicit evaluation programs: with the base model fixed, it uses human feedback to revise both how evidence is gathered and how that evidence determines judgments.
+EvalOpt builds on this move toward explicit evaluation programs: with the base model fixed, it uses human feedback to revise both how evidence is gathered and how that evidence determines judgments.
 
 \paragraph{Program optimization and agent self-evolution.}
 Automated optimization treats prompts, modules, or agent code as editable state, allowing adaptation without changing the underlying model weights.
 DSPy and TextGrad optimize components of predefined programs \citep{khattab2024dspy,yuksekgonul2025textgrad}, while GEPA and SkillOpt use execution feedback and model-generated reflection to revise textual state \citep{agrawal2026gepa,yang2026skillopt}.
 Agent-level search expands the editable structure and preserves alternatives through archives of designs or programs in ADAS and DGM, distinct harnesses in HarnessBank, and a persistent revision tree in SkillHEX \citep{hu2025adas,zhang2025dgm,luo2026harnessbank,feng2026skillhex}.
 SkillLens distinguishes extracting a skill from successfully using it, motivating attention to executed behavior rather than proposed changes alone \citep{huang2026skillconsumption}.
-Within this line of work, IterEval focuses on whether to continue an improvement direction after a candidate fails to improve: it maintains the direction across revisions and decides its continuation separately from candidate acceptance.
+Within this line of work, EvalOpt focuses on whether to continue an improvement direction after a candidate fails to improve: it maintains the direction across revisions and decides its continuation separately from candidate acceptance.
 
 \paragraph{Active preference acquisition for evaluation.}
 Active preference learning selects which comparisons receive feedback, with disagreement sampling rooted in query-by-committee \citep{seung1992committee,muldrew2024activepreference,oh2025activepreference}.
 Benchmark$^2$ addresses a related selection problem for measurement, constructing test sets for ranking consistency, discriminability, and capability alignment \citep{qian2026benchmark2}.
-IterEval instead selects feedback to improve an evaluator, reducing the priority of repetitive comparisons on which existing signals agree without treating agreement as correctness.
+EvalOpt instead selects feedback to improve an evaluator, reducing the priority of repetitive comparisons on which existing signals agree without treating agreement as correctness.
 It can mine existing labels or request new annotations; its endpoint is evaluator improvement under matched label-access or annotation budgets, respectively, rather than disagreement in the selected set.

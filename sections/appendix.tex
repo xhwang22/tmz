@@ -336,7 +336,7 @@ Val supports adaptive retention; Test is opened only after the best program is f
 \toprule
 Partition & Released information & Permitted decisions\\
 \midrule
-Train & Authorized artifacts, human feedback, detailed traces and case differences & Revision diagnostics, working-state transitions, and edit-budget control of direction continuation\\
+Train & Authorized artifacts, human feedback, detailed traces and case differences & Anchor confirmation, bounded working exploration, rollback, and direction control\\
 Val & Controller: full-cohort outcomes; optimizer: promotion indicator and retained best score & Global checkpoint selection only; no case-level optimizer access\\
 Test & Locked until search, program selection, and analysis rules are frozen & One terminal assessment of seed and best; no edits or reselection\\
 Metric reserve & Endpoints excluded from optimization and runtime tools & Independent assessment of the relevant quality attribute\\
@@ -359,24 +359,26 @@ The run manifest records the source-pool version and hash, grouping and inclusio
 Outputs generated for the prespecified refinement and reward-guided training assessments are separate evaluation products, not additions to the mining or checkpoint-selection cohorts.
 
 Val labels and traces remain controller-only, even when a checkpoint is rejected.
-Val does not change the working program, edit budget, or direction-ending decision.
+Within an active direction, Val does not change the anchor, working program, permitted modification scope, or direction-ending decision.
 Published optimizers may retain their native development rules, but must declare their Train/Val access and receive no Test feedback.
 Interrupted runs retain their failures and incurred costs; they do not receive a fresh selection opportunity.
 
 \paragraph{Controller accuracy versus reporting weights.}
-The revised controller uses equal-pair strict accuracy: $\widehat J_S(E)=|S|^{-1}\sum_{i\in S}v_i(E)$ on a fixed, complete comparison cohort $S$.
-Here $v_i(E)$ is one only when the program assigns a higher score to the human-preferred output.
+Train comparisons use equal-pair correct-ordering frequencies on a fixed cohort, as in Equation~\ref{eq:paired-gain}.
+Each complete replicate contributes one only when the program assigns a higher score to the human-preferred output; one replicate reduces to binary correctness.
 Ties count as errors, and missing executions are not repairs.
-The group-weighted endpoint below is retained for the existing reporting protocol; it equals the controller objective only when groups contribute equally many pairs.
-A future execution must record both denominators rather than treating these endpoints as interchangeable.
+The group-weighted endpoint below is retained for frozen Val/Test reporting; it uses one ordering after the declared within-output aggregation, not the average of arbitrarily many repeated orderings.
+Record both the case weights and aggregation rule rather than treating these estimators as interchangeable.
 
 \paragraph{Agreement estimator.}
-Use the repeated-score protocol of the deployed evaluator, requesting $R\geq3$ executions per artifact and freezing $R$, precision, retries, and cache identity before measurement.
+For Val/Test reporting, freeze the deployed evaluator's scoring protocol, including the number $K$ of executions per artifact, aggregation, precision, retries, and cache identity.
+The existing reporting plan uses $K\geq3$ and median aggregation; this is not a requirement to repeat every Train candidate measurement three times.
+Train uses the separately frozen initial allocation and decision-focused repetition policy in Appendix~\ref{app:algorithm}.
 Let $P_g$ be the strict human preferences within original-input group $g$.
 For complete executions,
 \begin{equation}
  \begin{aligned}
- \bar s_\theta(x,y)&=\median_{r=1,\ldots,R}s_\theta^{(r)}(x,y),\\
+ \bar s_\theta(x,y)&=\median_{r=1,\ldots,K}s_\theta^{(r)}(x,y),\\
  v_{gj}&=\ind[\bar s_\theta(x_g,y_{gj}^{+})>\bar s_\theta(x_g,y_{gj}^{-})],\\
  \widehat J(\theta)&=\frac{1}{|\mathcal G|}\sum_{g\in\mathcal G}
        \frac{1}{|P_g|}\sum_{j\in P_g}v_{gj}.
@@ -431,7 +433,7 @@ The same input resample is used across methods and runs.
 Scoring repeats do not increase the number of independent tasks or searches.
 If shared reviewers introduce additional dependence, retain reviewer identifiers and report reviewer-cluster or crossed-cluster sensitivity rather than treating votes as independent.
 
-Predeclare one principal program comparison (IterEval versus GEPA), the Seed contrast, and the direction-versus-history contrast.
+Predeclare one principal program comparison (EvalOpt versus GEPA), the Seed contrast, and the direction-versus-history contrast.
 Report paired effect sizes and intervals for all other comparisons, with a prespecified multiplicity correction for any family of significance claims.
 Select sample sizes from a target minimum effect and development-only variance, not from a desired test outcome.
 A nonsignificant difference does not establish equivalence.
@@ -470,7 +472,7 @@ SkillOpt \citep{yang2026skillopt} & Skill text & Preserve bounded edits, validat
 GEPA \citep{agrawal2026gepa} & Full program through a declared adapter & Use official engine and program-capable interface; preserve reflection, population selection, and configured merge policy\\
 Meta-Harness \citep{lee2026metaharness} & Harness code & Preserve filesystem access to prior code, scores, and traces; do not restrict parents to the current best\\
 \rowcolor{pEvoWash}
-IterEval & Full evaluation program & Active direction, Train acceptance, periodic Val selection, and stopping rules\\
+EvalOpt & Full evaluation program & Active direction, Train acceptance, periodic Val selection, and stopping rules\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -487,7 +489,7 @@ Use the official text/skill optimization path, not a custom program-evolution ex
 The candidate skill is inserted into a fixed seed interface, with tools and routes unchanged.
 Retain rejected edits and native longer-timescale updates; do not describe the baseline as memoryless or assume every failed edit causes a semantic restart.
 Map its internal selection feedback to development data and charge reflection and selection calls.
-Compare it additionally with IterEval restricted to the identical text fields, evidence inputs, and edit envelope.
+Compare it additionally with EvalOpt restricted to the identical text fields, evidence inputs, and edit envelope.
 This same-space contrast is necessary to attribute a difference to optimization rather than broader program access.
 
 \paragraph{GEPA and Meta-Harness.}
@@ -528,7 +530,7 @@ We estimate model cost for one successful pointwise evaluation, excluding non-mo
 The inspected Seed configurations use 2, 4, 4, and 5 specialist calls in SV4, IG1, TG1, and AR1, respectively, plus 0, 3, 3, and 5 routing calls and one synthesis call in each domain.
 Fixed uses one holistic call; ``fixed'' describes its unchanged prompt, not zero inference cost.
 For Fusion, we assume the features are all Seed specialist signals, generate them at their full cost, and replace synthesis with a local linear combination.
-The available SV4 SkillOpt program retains the Seed structure and prompt lengths; the available IterEval program changes the synthesis prompt from 427 to 5,088 characters without adding calls.
+The available SV4 SkillOpt program retains the Seed structure and prompt lengths; the available EvalOpt program changes the synthesis prompt from 427 to 5,088 characters without adding calls.
 For other method--domain combinations, we use Seed's call topology and request-length profile without predicting their semantic edits.
 
 We sum input tokens plus four times output tokens, normalize within each domain by Seed, and average the four ratios.
@@ -560,267 +562,260 @@ Method & Search cost & Search tokens & Model cost & Latency\\
 \section{Depth-first evaluator evolution and attribution contract}
 \label{app:algorithm}
 
-Figure~\ref{fig:runtime} separates the editable observation and judgment mechanisms.
-Algorithm~\ref{alg:era} specifies the search decisions.
-Self-evolution means automated changes to this evaluation program under external human feedback, not self-definition of the human standard.
-The settings below specify the proposed controller, not completed experimental runs.
-Unresolved execution choices are listed explicitly below.
+This section specifies the proposed controller and the measurements needed to implement it.
+It does not report an implemented replacement or completed controller comparisons.
+Execution acceptance, Train direction control, and Val promotion have different inputs and state effects.
+Algorithm~\ref{alg:era} gives their order; thresholds and measurement choices must be frozen before running the comparisons.
 
 \begin{algorithm}[htbp]
-\caption{Depth-first evaluator evolution with semantic contracts}
+\caption{Direction development with confirmed anchors and bounded exploration}
 \label{alg:era}
 \small
 \begin{algorithmic}[1]
-\Require Seed $E_0$, visible Train, sealed Val, locked Test, frozen search settings
-\State Measure $E_0$ on Val; $B\gets E_0$; initialize persistent history
+\Require Seed $E_0$, Train, sealed Val, locked Test, frozen measurement and control protocol
+\State Measure $E_0$ on Val; set $B\gets E_0$; initialize history
 \While{search resources remain}
-  \State Propose direction $d$ from Train and history; $W\gets B$; initialize diagnostics $z$
-  \State Set edit budget $\Delta\gets\Delta_0$
-  \For{$t=1,\ldots,L$}
-    \State Stop the run if resources are exhausted or execution integrity fails
-    \State Use $z$ to choose the next revision; save parent $P\gets W$
-    \State Submit $C$ and a precommitted repair/scaffolding contract linked to $d$
-    \State Require installability and edit size $\leq\Delta$; return invalid submissions for correction
-    \State Measure $P,C$ on a common Train batch; retain all case and prediction checks in $z$
-    \If{comparison is complete and comparable, and $g^{\mathrm{chg}}=1$}
-      \If{$T=\varnothing$} \Comment{Scaffolding; budget unchanged}
-        \State If $g^{\mathrm{pred}}=1$ and $G^{\mathrm{net}}\geq0$, set $W\gets C$
-      \Else
-        \State Compute $\rho$ by Equation~\ref{eq:target-normalized-gain}
-        \State If $\rho\geq\eta_1$, set $W\gets C$; otherwise retain $P$
-        \State Update $\Delta$ by Equation~\ref{eq:radius-policy}
+  \State Propose direction $d$; set $R\gets B$, $W\gets R$
+  \State Freeze direction panel $\mathcal D_d$; initialize allowed scope and direction limits
+  \While{$d$ is active and its resources remain}
+    \State Save parent $P\gets W$; submit candidate $C$ and its experiment contract
+    \State Check configuration, node execution, interfaces, and evidence products
+    \If{execution checks fail}
+      \State Retain executable $W$; use the bounded implementation-repair allowance
+    \Else
+      \State Compare $P,C$ under matched Train conditions; record mechanism and ranking outcomes
+      \State If needed, add symmetric repeats under the frozen uncertainty policy
+      \If{anchor confirmation is requested}
+        \State Run $R,C$ end-to-end on $\mathcal D_d$ and fresh Train coverage
       \EndIf
+      \State Before staging, check cumulative losses against $R$ and the remaining window
+      \State Confirm $R\gets C,W\gets C$, stage $W\gets C$, or roll back $W\gets R$
+      \State Apply the Train decision summary and update the permitted scope
     \EndIf
-    \If{a periodic checkpoint is due}
-      \State Measure $W$ on full Val; update $B$ by Equation~\ref{eq:acceptance}
-      \State Release only the promotion indicator and retained best score
+    \State Retain observations and interpretations separately, including unsuccessful attempts
+    \If{a checkpoint is due and $W$ passes execution checks}
+      \State Compare $W,B$ on full Val; apply Equation~\ref{eq:acceptance}
+      \State Release only promotion and retained score; leave Train states unchanged
     \EndIf
-    \If{$\Delta<\Delta_{\min}$ or the agent requests a direction ending}
-      \State \textbf{break}
-    \EndIf
-  \EndFor
-  \State Archive direction and stopping reason
+    \State End or suspend $d$ on its declared exit conditions or exhausted limits
+  \EndWhile
+  \State Archive direction, last executable programs, and ending reason before reset
 \EndWhile
-\State On normal completion, checkpoint current $W$ before any reset; freeze selected $B$
-\State Assess $E_0$ and $B$ once each on Test
+\State Complete the prespecified final checkpoint of the saved eligible $W$; freeze $B$
+\State Assess $E_0,B$ once on locked Test
 \end{algorithmic}
 \end{algorithm}
 
 \begin{figure}[htbp]
 \centering
 \input{figures/evaluator}
-\caption{The six-component evaluation program.
+\caption{Low-level elements of the evaluation program.
 (a) Read one output and permitted task evidence.
 (b) Route tool observations.
 (c) Apply dimensional criteria.
 (d) Fuse sourced findings into a score and critique.
-The lower rail identifies the editable components.
+Adapters, criteria, evaluator modules, tools, routing, and fusion are implementation elements within the analysis, judgment, and synthesis stages.
 Human feedback guides evaluator evolution, never the deployed scorer.
-Artifact evidence and judgment remain separate; the summary and findings are a constructed example.}
+The summary and findings are a constructed example.}
 \label{fig:runtime}
 \end{figure}
 
-\paragraph{Direction and revision records.}
-A direction develops a correction hypothesis grounded in Train traces, with testable consequences for the proposed correction.
-Each revision submits a semantic contract before execution: preconditions identifying the affected cases and mechanism, the edit, and predicted postconditions.
-The postconditions specify targets $T_t$ expected to become correct, contrasts $K_t$ expected to preserve their judgments, and designated intermediate observables $O_t$ with predicted changes.
-A target must be incorrect under the actual step parent; targets and contrasts must be included in the measured batch.
-A scaffolding revision instead declares no immediate target repair ($T_t=\varnothing$) and an intermediate observable change intended to support a later repair.
-This declaration does not predict that every pairwise judgment remains unchanged or require observed net repair to equal zero.
-The agent commits to the repair/scaffolding classification before execution, fixing the applicable transition rule for that attempt.
-The contract type is retained with the submitted candidate rather than reassigned after observing its outcome.
-The contract and direction identifier link edits, rejected attempts, and diagnostic results; histories persist across directions.
-These are empirical prediction checks, not formal Hoare proofs or automatic verification of semantic continuity.
+\paragraph{Three layers and three program roles.}
+Execution acceptance establishes that a submitted intervention was installed and ran under its declared interfaces.
+Train direction control determines confirmation, bounded staging, rollback, and whether to continue the correction.
+Val promotion determines global retention only.
+These layers apply to edits of $A$, $J$, and $S$, including their subagents and tools.
 
-\paragraph{Observable changes and prediction fulfillment.}
-Each designated observable identifies a component or execution node, an output field, the applicable cases, and a predicted postcondition.
-For a detector-and-routing revision, these may be the detector's findings and the evidence delivered to its scoring consumer.
-The binary checks $g_t^{\mathrm{chg}}$ and $g_t^{\mathrm{pred}}$ distinguish observed output change relative to the parent from fulfillment of the predicted intermediate change.
-Repair inheritance requires $g_t^{\mathrm{chg}}=1$ and $\rho_t\geq\eta_1$, whereas scaffolding requires $g_t^{\mathrm{chg}}=g_t^{\mathrm{pred}}=1$ and $G_t^{\mathrm{net}}\geq0$.
-Repair inheritance does not additionally require $g_t^{\mathrm{pred}}=1$ or fulfillment of every target or contrast prediction.
-Targets set the declared repair scope, contrasts expose unintended generalization, and observables locate intermediate implementation behavior.
-Targets and contrasts also contribute cases to the measured cohort, so failed contrast preservation can reduce net gain without acting as an independent veto.
-For multiple observables, the run configuration must specify how individual checks produce these binary signals, as well as comparison predicates and missing-output handling.
-These checker details remain implementation choices to be resolved before execution, not additional acceptance gates supplied by this description.
+The anchor $R$ is the direction's initial reference; each subsequent replacement requires sufficient Train support.
+The working program $W$ is the executable parent of the next revision and may temporarily lack confirmed benefit.
+The best program $B$ is retained by the frozen Val protocol.
+At direction initialization $R=W=B$; subsequent Val promotions change only $B$.
+Confirming $W$ on Train updates $R$, whereas staging changes $W$ without changing $R$.
+Rollback restores the exact anchor, including configuration, prompts, routing, and dependencies.
+Diagnostic history is not rolled back.
+The random anchor used by preference mining is a sample of comparisons, not this program anchor.
 
-\paragraph{Editing scope and measurement.}
-The edit budget $\Delta_t$ is a hard bound on the number of changed characters between parent $P_t$ and candidate $C_t$.
-An oversized or non-installable submission is returned for correction rather than classified as evidence against the hypothesis.
-The reference batch contains approximately 12 Train pairs drawn from declared targets, contrasts, and additional Train cases.
-Additional cases come from outside the declared target and contrast sets.
-All complete pairs have equal weight; the rule does not weight repairs or regressions by severity.
-Batch proportions, oversubscribed target handling, and the additional-case sampling policy must be frozen before execution.
-Parent and candidate use the same cases and scoring protocol; parent results may be cached only under a declared compatible program, input, and scoring configuration.
-Incomplete or failed executions remain unknown, retain their costs, and cannot create apparent improvement by shrinking the comparison cohort.
+\paragraph{A five-part experiment contract.}
+Before execution, each candidate records (1) the affected $A/J/S$ nodes and interfaces, (2) the predicted intermediate change, (3) Train cases expected to improve and counterexamples expected to remain correct, (4) direct-improvement or scaffolding type, and (5) execution/behavior acceptance conditions and exit conditions.
+Observable predictions identify fields, cases, and comparison predicates.
+Type and predictions are not reassigned after results arrive.
+A numerical gain prediction is optional and must name its metric, reference program, cohort, and units.
 
-Let $\mathcal R_t^+$ contain repaired pairs and $\mathcal R_t^-$ contain regressed pairs on the common complete batch.
-With $n_t$ pairs, the local change is
+For scaffolding, the exit conditions additionally specify the next integration step, a finite step and cost window, and the evidence required to complete it.
+A browser node in $J$, for example, may need to distinguish source-code presence from an actually usable feature.
+Its execution and evidence can be accepted before an $S$ edit consumes those findings.
+The record must connect the producer output to the declared consumer input.
+Merely sharing a direction identifier does not establish that connection.
+If integration misses its deadline, the exploratory chain is reverted rather than recorded as successful.
+
+\paragraph{Execution, behavior, and preference are different observations.}
+Execution checks cover effective configuration hashes, invoked nodes, tool/model identities, input/output schemas, completion status, and evidence artifacts.
+A missing invocation is an execution failure even if aggregate accuracy improves.
+A successful invocation with an unfulfilled intermediate prediction is a behavioral discrepancy, not an execution failure.
+A fulfilled intermediate prediction with no supported ranking gain is incomplete evidence of benefit.
+Configuration changes alone cannot establish execution, and score changes alone cannot establish the intended mechanism.
+The same separation applies to synthesis edits, for which the relevant invocation and output may be a changed synthesis node rather than an added tool.
+Automatic field comparisons and agent interpretations are recorded separately; ambiguous semantic checks remain unresolved.
+
+\paragraph{Paired measurements and program identity.}
+The immediate parent $P=W$ and candidate $C$ use the same cases, scoring protocol, resource allowances, and unaffected inputs.
+A synthesis probe fixes $A/J$ evidence where compatible; a judgment probe fixes $A$ evidence; an analysis probe fixes downstream code while allowing its inputs to change.
+A cross-component edit is assessed as a bundle unless a valid separate intervention is available.
+Before anchor confirmation, both $R$ and $C$ run end-to-end.
+Results from fixed-evidence probes alone cannot confirm the full program.
+
+A measurement record identifies the entire executable program, effective configuration, component and dependency versions, input and material hashes, model/tool versions, decoding settings, scoring and aggregation rules, budget, and replicate identity.
+A cache hit is valid only when these identities match the requested measurement.
+Replaying a cached stochastic outcome is not a new replicate.
+Changing $J$ invalidates downstream synthesis evidence; changing $A$ invalidates dependent judgment and synthesis results.
+Such changes do not invalidate unrelated immutable inputs.
+
+Failed or missing executions retain their identities and costs.
+They are not zeros, successful abstentions, or grounds for silently dropping cases.
+An incomplete paired comparison cannot confirm an anchor.
+Failure rates and the protocol's fallback/abstention behavior are reported separately from gain, with the intended cohort retained in denominator accounting.
+
+\paragraph{A stable direction panel.}
+At direction creation, freeze a small Train panel $\mathcal D_d$ containing target failures and counterexamples, including membership and case weights.
+Step-specific diagnostic cases may vary, but their scores are not concatenated into a fictitious common improvement trajectory.
+Before each anchor update, compare the proposed program with $R$ on $\mathcal D_d$ and on fresh Train coverage drawn by a prespecified policy.
+Report panel and fresh-coverage outcomes separately.
+The fresh cases check effects outside the original targets, including regressions that the panel may miss.
+Both sources remain visible learning data, and repeated use provides no independent generalization assessment.
+
+\paragraph{Gain, losses, stability, and cost.}
+The primary signal is the paired change in correct-ordering frequency, Equation~\ref{eq:paired-gain}.
+A replicate is a complete pair evaluation under the frozen scoring protocol; a missing replicate is not a correct or incorrect judgment.
+With one valid replicate, the signal reduces to the change in binary correctness.
+With repeated evaluations, it estimates a difference in correctness probabilities on the declared cases.
+All primary comparisons retain fixed case weights even if repeat counts differ across cases.
+
+Counterexample loss is measured separately, for example as the prespecified average positive decrease in correctness probability on the protected cases.
+This prevents repairs elsewhere from automatically canceling a protected regression.
+Margins use a score scale fixed before search; evidence coverage and prediction fulfillment provide intermediate progress indicators.
+Neither a wider score gap nor better evidence coverage is sufficient for anchor confirmation.
+Record repeated-ranking flips and score variation as stability measures, and calls, latency, failures, and retries as costs.
+Candidate-specific variance estimates cannot simultaneously redefine the gain scale and its acceptance threshold.
+
+\paragraph{Decision-focused repetition.}
+Each comparison starts with the protocol's initial measurement allocation.
+Additional replicates are allowed only at prespecified decision points where gain or loss precision affects confirmation, staging, or rollback.
+At each look, the compared programs receive symmetric additional measurement on the same cases.
+The schedule, maximum allocation, precision targets, uncertainty estimator, and treatment of repeated looks are frozen in advance.
+Use a sequentially valid procedure or a fixed finite-look correction when uncertainty bounds are interpreted inferentially.
+Do not reuse unadjusted fixed-sample tests while sampling until acceptance.
+Precision here concerns execution variation on an adaptive Train cohort, not population generalization.
+When the cap is reached without sufficient evidence, the result is unresolved.
+This rule does not require three executions for every candidate and case.
+
+\paragraph{Train decision summary.}
+\label{app:direction-decisions}
+Anchor confirmation requires passed execution and mechanism checks, supported end-to-end gain relative to $R$ on $\mathcal D_d$, and acceptable losses on its counterexamples and fresh coverage.
+Support, loss tolerances, stability limits, and required precision are fixed in the protocol, not edited by the proposer each round.
+For example, confirmation can require the lower uncertainty bound on panel gain to exceed a positive margin and the upper bounds on protected losses to stay below their tolerances.
+Operational validity and cost limits apply separately.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}p{0.40\linewidth}X@{}}
+\toprule
+Observation & Train action\\
+\midrule
+Intervention not connected or execution fails & Do not accept $C$; retain an executable parent and spend only the bounded implementation-repair allowance.\\
+Mechanism observed, benefit supported, protected losses acceptable & Confirm the candidate: $R\gets C$ and $W\gets C$.\\
+Mechanism observed, benefit uncertain & Keep $R$; collect allowed repeats or stage $C$ under a finite exploration contract.\\
+Scaffolding meets its intermediate checks & Stage $W\gets C$ and execute the declared integration step within its remaining window.\\
+Complete mechanism produces supported degradation & Roll back $W\gets R$; narrow the allowed scope or end the direction.\\
+Measurement or exploration cap reached without resolution & Restore $R$ for further search or suspend/end the branch; record unresolved status.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Staging requires execution validity and a prespecified temporary-loss bound relative to $R$, in addition to its declared next step, deadline, and cost cap.
+An unsupported final gain does not remove this safety bound.
+Thus exploration can be locally nonmonotone within its allowed loss, without moving the confirmed center on insufficient evidence.
+The bound is checked against $R$, not only the most recent working program, so successive losses cannot evade the limit by changing parents.
+Each staging window belongs to the exploratory chain; a new intermediate candidate does not reset its clock.
+Until resolved, the next experiment implements or tests the declared correction.
+Missed integration, a breached loss bound, or exhausted resources triggers rollback or branch termination.
+An invalid candidate may remain in the repair workspace, but it is not the executable $W$ or a Val checkpoint.
+
+\paragraph{An auxiliary observed-to-predicted ratio.}
+Only a precommitted positive numerical gain prediction on the same metric, reference program, and cohort can define the ratio:
 \begin{equation}
- \Delta\widehat J_{\mathrm{Train},t}
- =\frac{1}{n_t}\sum_i[v_i(C_t)-v_i(P_t)]
- =\frac{|\mathcal R_t^+|-|\mathcal R_t^-|}{n_t}.
- \label{eq:repair-decomposition}
+ \rho_t =
+ \frac{\widehat g_{\mathcal C_t}(C_t,P_t)}
+      {g_t^{\mathrm{pred}}}
+ \quad\text{if }g_t^{\mathrm{pred}}\geq\varepsilon_{\mathrm{pred}}>0
+ \text{ and the measurement precision criterion holds}.
+ \label{eq:auxiliary-ratio}
 \end{equation}
-The numerator is $G_t^{\mathrm{net}}$ in Equation~\ref{eq:target-normalized-gain}.
-Zero net repairs can therefore hide either unchanged orderings or repairs offset by regressions.
-For repair steps, $n_t^{\mathrm{tar}}=|T_t|>0$ counts the declared repairs; contrasts are predicted to contribute zero change.
-Because $G_t^{\mathrm{net}}$ includes every measured case, $\rho_t$ is a target-normalized net gain, not the fraction of target predictions fulfilled.
-It may exceed one, and gains outside the targets can offset failed target predictions or contrast regressions.
-Target fulfillment, contrast stability, and component-output checks are therefore recorded separately.
-For repair steps, these case-level diagnostics do not introduce additional acceptance gates beyond the stated output-change and target-normalized net gain rules.
+Otherwise the record stores unavailable, with its reason.
+The floor $\varepsilon_{\mathrm{pred}}$ and precision criterion are frozen.
+A gain comparison with the anchor cannot be substituted for a prediction about the immediate parent.
+A structural step without a numerical gain prediction has no ratio; it still must pass its mechanism and staging checks.
+The ratio neither identifies whether a tool ran nor replaces counterexample losses, uncertainty handling, or confirmation.
 
-\paragraph{Local utility does not identify target fulfillment.}
-Fix a parent program, a common batch, and a contract declaring one target repair.
-Suppose the parent is incorrect on both that target and a non-target case.
-In one possible execution outcome, only the target is repaired; in another, only the non-target case is repaired.
-All remaining judgments stay unchanged, and component output changes in both outcomes.
-Both yield $G_t^{\mathrm{net}}=1$ and $\rho_t=1$, although the declared target prediction is fulfilled only by the first.
-Thus neither aggregate net repair nor its normalization by target count identifies target fulfillment.
-The distinction is observable from case-level outcomes recorded against the contract.
-This counterexample concerns what the summary identifies, rather than which working-state transition or next revision is optimal.
-Any search-efficiency benefit from using the additional evidence requires a matched-budget comparison.
+\paragraph{Trust-region-inspired scope control.}
+The allowed modification set has three interpretable levels: local node edits, structural changes within one component, and coordinated changes across $A/J/S$.
+The confirmed anchor is the center of this allowance.
+Working programs may compose edits within it, but every accumulated branch must remain within the authorized component set and chain-level resource limits.
+A local change includes a prompt, checking rule, or scoring parameter.
+A within-component change can add a $J$ expert/tool or alter an $A$ analysis workflow.
+A cross-component change can link new $J$ evidence to its $S$ consumer or revise an $A/J$ interface.
+Changed-character counts remain patch resource limits, not a weighted graph distance or semantic neighborhood.
 
-These roles remain computationally coupled: the contract supplies the target count, and behavior-change and scaffolding checks also enter the controller.
-Detailed diagnostics guide the agent's revision content; the controller applies the stated transition and budget rules rather than classifying semantic failure types to choose an edit scope.
-The contract also supplies targets and contrasts to the measured batch, so even unnormalized net repair is evaluated on a partly declaration-dependent cohort.
+The protocol fixes how many completed checks constitute a scope review, the required reliability of intermediate predictions, the confirmation requirement, and acceptable counterexample losses.
+Only that accumulated evidence can authorize a larger component set or more coordinated changes.
+A single high $\rho$, unavailable $\rho$, or use of most of a character allowance is insufficient.
+An unconnected mechanism calls for interface repair within its allowance; supported degradation after execution calls for rollback and narrower scope or termination.
+High measurement noise limits confirmation and may trigger bounded repeats, without automatically narrowing the textual edit.
+Per-direction limits cover failed executions, probes, staging, and confirmation.
+Explicit endings distinguish adverse directional evidence, completed/exhausted integration tests, unresolved measurement, and resource exhaustion.
 
-\paragraph{Working-state transition.}
-If $g_t^{\mathrm{chg}}=0$, the attempt is classified as absent behavior and both $W$ and $\Delta$ remain unchanged.
-Otherwise a repair step becomes the next working program when $\rho_t\geq\eta_1$.
-A rejected repair step leaves $W$ at its actual parent.
-For a scaffolding step, $\rho_t$ is undefined and is not computed: inheritance requires $g_t^{\mathrm{chg}}=g_t^{\mathrm{pred}}=1$ and $G_t^{\mathrm{net}}\geq0$.
-The budget remains unchanged whether a scaffolding step is inherited or rejected.
-Thus the policy allows neutral intermediate implementations, but does not inherit a step with negative measured net repair.
-The working trajectory can nevertheless decline on Val or on cases outside the local batch, which changes across steps.
+Classical trust-region methods adapt a neighborhood using agreement between predicted and measured improvements~\citep{conn2000trust}.
+Stochastic variants require additional local-model and estimate conditions~\citep{bandeira2014probabilistic,chen2018storm,blanchet2019trust}.
+The categorical scope levels, agent predictions, and adaptive Train panels here have not been shown to satisfy those conditions.
+The claim is controlled exploration around a confirmed anchor, not convergence or automatic verification of the correction hypothesis.
 
-Each case record contains its group, parent and candidate prediction, evaluator-module score changes, reason excerpts, and full-trace pointers.
-The flag $g_t^{\mathrm{chg}}$ summarizes changes at the designated observables, while $g_t^{\mathrm{pred}}$ summarizes fulfillment of the predicted intermediate change.
-Absent behavior is distinguished from changed but ineffective behavior.
-The diagnostic history preserves measured outcomes separately from the agent's explanation and proposed next test.
-Rejected code remains outside $W$, while its diagnostics remain available.
-Supported fixed-input probes may isolate a component's response; changes to tools or routing require complete execution.
-A probe can inform the next revision but cannot update $B$ without a Val checkpoint.
-
-\paragraph{Edit-budget control of direction continuation.}
-Let $\ell_t$ be the number of changed characters between parent $P_t$ and candidate $C_t$.
-For a complete repair-step comparison with $g_t^{\mathrm{chg}}=1$, the policy is
+\paragraph{Val promotion and terminal assessment.}
+Eligible working programs are assessed at a frozen checkpoint cadence, not whenever a favorable partial Val result appears.
+Both $W$ and $B$ are compared on full Val under the same frozen protocol.
+Compatible cached measurements may be reused under the identity and replicate rules above.
+On a complete comparison, the promotion rule is
 \begin{equation}
- \Delta_{t+1}=
+ B\leftarrow
  \begin{cases}
- \Delta_t/\gamma,
-       &\rho_t<\eta_1,\\
- \min\{\gamma\Delta_t,\Delta_{\max}\},
-       &\rho_t\geq\eta_2\ \text{and }\ell_t\geq\beta\Delta_t,\\
- \Delta_t,&\text{otherwise}.
- \end{cases}
- \label{eq:radius-policy}
-\end{equation}
-Here $0<\eta_1<\eta_2$, $\gamma>1$, and $0<\beta\leq1$ specifies proximity to the budget boundary.
-The boundary condition expands scope when an effective edit has used most of its allowance; a high target-normalized net gain alone does not force expansion.
-Scaffolding steps and absent-behavior attempts preserve the budget.
-A repair step with $g_t^{\mathrm{chg}}=1$ and $\rho_t<\eta_1$ therefore narrows the allowance for the next attempt within the same direction.
-Contraction below $\Delta_{\min}$ retires the direction, after which search restarts from $B$ with budget $\Delta_0$.
-The minimum scale is an operational stopping condition, not a certificate that the correction hypothesis is false.
-Agent-requested endings, the direction step cap, global resource exhaustion, and execution-integrity interruptions are recorded separately.
-Repeated absent-behavior attempts consume direction steps without contracting the edit budget and remain bounded by the per-direction step cap.
-No minimum or typical direction length is implied.
-
-\paragraph{Target normalization and its trade-off.}
-The controller sets a minimum net return per declared target: for $|T_t|>0$, its gain condition is $G_t^{\mathrm{net}}\geq\eta_1|T_t|$.
-This design makes a broader declared correction require more net benefit, expressing progress relative to the submitted repair scope rather than using the same absolute threshold for every proposal.
-An equivalent scaling governs budget expansion, subject to the separate edit-boundary condition.
-The target count also affects budget expansion even when it leaves inheritance unchanged.
-With integer net repairs, $\eta_1=0.1$, and $1\leq|T_t|\leq10$, the condition $\rho_t\geq\eta_1$ is equivalent to $G_t^{\mathrm{net}}\geq1$.
-At net repair one, declaring one versus two targets gives ratios of one versus one half, which fall on opposite sides of the reference expansion threshold $\eta_2=0.75$.
-Expansion still requires the boundary condition in Equation~\ref{eq:radius-policy}.
-This dependence on the declared repair count is part of the controller, not a calibrated measure of hypothesis support.
-Precommitting the contract prevents outcome-dependent relabeling within the specified protocol, but still allows narrow target declarations before execution.
-The usefulness of normalization therefore requires comparison with unnormalized control, separately for inheritance and budget updates.
-Fixed-batch replay can expose decision changes under a common candidate and contract record; matched-budget searches are needed to assess the resulting trajectories.
-
-\paragraph{Relation to trust-region theory.}
-Classical trust-region methods compare predicted and observed objective improvement to adapt a local search radius~\citep{conn2000trust}.
-Probabilistic-model variants permit imperfect local models~\citep{bandeira2014probabilistic}, and STORM also accommodates noisy function estimates~\citep{chen2018storm}.
-Their convergence and expected-complexity analyses concern smooth objectives, sufficiently accurate local approximations, and specified step and estimation conditions~\citep{blanchet2019trust}.
-In particular, probabilistic full linearity is a conditional-on-history accuracy property over a neighborhood: function and gradient errors scale with the square and first power of the radius, respectively.
-The required model and estimate probabilities depend on the theorem's other constants.
-An empirical semantic-prediction fulfillment rate above one half does not establish these conditions.
-
-IterEval borrows the expand/contract decision structure for an adaptive character-edit budget.
-Its target-normalized net gain does not measure fulfillment of the semantic contract, and character count bounds syntactic edit size rather than an established neighborhood of behavioral predictability.
-Character-count neighborhoods, declared repair counts, and fixed small adaptive Train batches have not been shown to satisfy the cited approximation and noise assumptions.
-Neutral scaffolding and the unchanged-budget handling of absent behavior are additional program-search rules.
-The trust-region inspiration concerns this auxiliary budget policy; no stationary-point convergence or iteration-complexity guarantee is transferred.
-Prediction fulfillment is an empirical diagnostic of this design, not a test that validates STORM's assumptions.
-
-\paragraph{Global checkpoint selection and restricted feedback.}
-The reference configuration evaluates the working program on the full frozen Val cohort every $h=3$ steps.
-On a complete common cohort under the frozen scoring protocol, the controller updates
-\begin{equation}
- B\leftarrow\begin{cases}
- W,&\widehat J_{\mathrm{Val}}(W)-s_B\geq\tau,\\
+ W,&\widehat J_{\mathrm{Val}}(W)-\widehat J_{\mathrm{Val}}(B)\geq\tau_{\mathrm{Val}},\\
  B,&\text{otherwise},
  \end{cases}
  \label{eq:acceptance}
 \end{equation}
-where $s_B$ is the retained Val score and $\tau=0.03$ in the reference configuration.
-Promotion also sets $s_B\leftarrow\widehat J_{\mathrm{Val}}(W)$.
-The seed's initial Val measurement initializes $s_B$.
-Incomplete checkpoints cannot earn promotion through a different denominator.
-This rule uses a fixed improvement margin, without a paired significance test, multiplicity correction, or stratum-based performance guard.
-Neither promotion nor non-promotion alters $W$, $\Delta$, or direction continuation.
-The optimizer receives only the promotion indicator and retained best score, with no Val cases or traces.
-At normal search completion, the current $W$ receives a final checkpoint before any reset, unless that identical checkpoint is already available under the prescribed protocol.
+with $\tau_{\mathrm{Val}}>0$ fixed before search.
+The same full cohort and failure policy apply to both programs.
+Promotion releases only its indicator and retained score; Val cases and traces remain sealed.
+No Val outcome changes $R$, $W$, scope, staging windows, or direction endings.
+An improvement on Val is a retention decision, not mechanism attribution or confirmation of the Train hypothesis.
 
-The feedback restriction follows the motivation of the Ladder~\citep{blum2015ladder}.
-The original Ladder combines thresholded updates with score rounding and analyzes leaderboard error under its sampling and bounded-loss assumptions.
-The present threshold-only policy does not specify that rounding protocol and does not inherit the bound automatically.
-It limits feedback from adaptive Val access; independent Test remains the basis of final assessment.
-Val supplies no patience counter, harmful-checkpoint rollback, or direction-ending signal.
+Restricted feedback follows the motivation of the Ladder~\citep{blum2015ladder}; this protocol does not inherit its leaderboard bound without the corresponding assumptions and release policy.
+Checkpoint allowances include a reserved final comparison of the last eligible executable $W$ saved before reset.
+If the run is interrupted by integrity failure or the final comparison is incomplete, retain the last valid $B$ rather than silently selecting another program.
+Freeze $B$ before the single terminal Test assessment, which may contain prespecified scoring repeats.
+Additional checkpoint curves, if prespecified, are assessed after search and cannot select the reported program.
 
-\paragraph{Parameter provenance and unresolved execution choices.}
-The reference controller uses $\eta_1=0.1$, $\eta_2=0.75$, $\gamma=2$, $\Delta_0=2400$, $\Delta_{\min}=600$, and $\Delta_{\max}=9600$ characters.
-A direction ends when $\Delta<600$, not when it first equals 600.
-These are configurable design presets, not values established as optimal or mandated by the cited theory.
-\emph{Controller presets} comprise these edit-budget and gain-threshold parameters, the boundary fraction $\beta$, and the Val margin $\tau$.
-\emph{Budget choices} include $L=18$ steps per direction, $N=30$ total steps, checkpoint interval $h=3$, approximately 12 Train pairs per step, 100 Val pairs, and 400 terminal Test pairs.
-\emph{Domain setup} includes signal sources, dimension mappings, tie margins, anchor allocation, and label-compatibility rules.
-All numerical settings are configurable and must be frozen in a run's configuration; the reference values are not algorithmic constants or established optima.
+\paragraph{Protocol freeze and staged implementation.}
+Required settings include the initial scope, allowed nodes, character/call limits, stable-panel and fresh-coverage allocation, gain/loss tolerances, temporary-loss bound, mechanism checkers, initial repeats, finite-look schedule and cap, precision requirements, staging window, repair allowance, direction/global caps, ratio floor, scope-review criteria, and Val cadence/margin.
+None may be adjusted by the evolver in response to the current result.
+Previously listed character-radius and target-count-ratio presets do not specify this controller.
+The 100-Val/400-Test reference allocations in Appendix~\ref{app:measurement} remain configurable data-budget choices, not a precision or power claim.
+Actual settings require an implementation-linked run manifest.
 
-Before a run, the reproducibility record must resolve the exact changed-character metric, boundary fraction $\beta$, component-output and semantic-postcondition checkers, and stochastic comparison/cache policy.
-The edit metric must specify its treatment of formatting, comments, and reordering; canonicalization is not assumed.
-Prompt and rubric text can affect execution, so a text transformation cannot be presumed behavior-preserving merely because it leaves a host-language syntax tree unchanged.
-It must also fix batch composition, checkpoint cadence across direction boundaries, retained-score precision, invalid-resubmission accounting, and incomplete-execution handling.
-These execution choices should be resolved against the final implementation before submission.
-They must not be filled by retrospective choices after observing Test.
-
-\paragraph{Evaluation needed to separate the search principle from its settings.}
-Two study groups separate the use of diagnostic evidence from controller design.
-The first tests whether contract-check feedback and retained execution history improve subsequent revisions within the active direction, holding contract requirements, controller rules, and resource caps fixed.
-It varies the diagnostic feedback available to the agent while retaining the checks required by the controller.
-Removing the contract itself also changes batch selection and controller inputs, so it is a separate intervention.
-Records distinguish target fulfillment from target-normalized net gain and track subsequent repairs after unsuccessful attempts or inherited neutral steps.
-
-The second tests target normalization and adaptive editing scope against simpler controllers.
-It removes normalization from inheritance and budget updates separately, and compares adaptive with fixed edit budgets under the same diagnostic interface.
-Thresholds and resource allocations are prespecified for every comparator.
-Both groups require matched-budget searches and terminal evaluation of the frozen selected programs, rather than relying only on local repair statistics.
-Retained-direction exploration versus immediate branching and neutral scaffolding remain separate contrasts.
-Sensitivity should cover target counts, edit-budget presets, acceptance and promotion margins, checkpoint interval, and direction cap without using Test to choose settings.
-Mining comparisons should vary the 2:1 weighting and anchor allocation at equal feedback budgets.
-These are required evaluations, not reported ablation outcomes.
-
-\paragraph{Terminal assessment and attribution.}
-Search returns the global best selected on Val, with no terminal reranking.
-The seed and selected best are then each assessed once under the frozen Test scoring protocol.
-If checkpoint curves are prespecified, the saved programs are included as a secondary analysis in this post-freeze assessment phase (Appendix~\ref{app:measurement}).
-An independent, representative Test sample estimates the frozen programs' performance; post-Test selection or distribution mismatch invalidates a blanket unbiasedness claim.
-The one terminal assessment may contain prespecified scoring repeats, but not new search rounds.
-
-Connected edits share one parent and one measured outcome, so a bundle's gain is not independent evidence for each edit.
-Component attribution requires paired interventions with the remaining interfaces fixed.
-Invalid dependency-removal interventions must be reported as such, not replaced by unrelated whole-program comparisons.
-Complete prompts, traces, program changes, split manifests, and controller settings belong in the reproducibility record.
+Implementation proceeds in three stages.
+First, separate execution, behavior, and ordering measurements, freeze predictions, and test identity/cache/missing-data handling using constructed boundary records.
+Second, add anchor/working roles and the decision states while holding the evaluator architecture fixed; compare old and new controllers from the same seed at matched cost.
+Third, enable $A/J/S$ structural evolution from a common minimal seed, including a known-executable structural intervention as a positive control.
+Offline replay can check decision boundaries but cannot replace fresh searches: changing the controller changes later proposals and observations.
+These are planned verification steps, not results.
 
 \section{Semantic synthesis and anchored scoring}
 \label{app:synthesis}
@@ -902,42 +897,43 @@ Each condition is evaluated through independent searches and its frozen terminal
 Local repair rates and individual traces are secondary descriptions of the search process.
 
 \paragraph{Diagnostic feedback and retained history.}
-The reduced-feedback condition returns measured net gain, declared target count, the required controller checks, transition decisions, and cost, but omits case-level repair/regression records and intermediate traces.
+The reduced-feedback condition returns paired gain, aggregate losses and uncertainty, required execution/mechanism checks, transition decisions, and cost, but omits case-level repair/regression records and intermediate traces.
 Contracts, case selection, execution, and all controller checks remain enabled.
 Their internal records are retained for analysis but are unavailable to the proposer through prompts, files, or diagnostic tools.
-This contrast tests access to detailed diagnostic feedback, not removal of the semantic contract.
+This contrast tests access to detailed diagnostic feedback, not removal of the experiment contract.
 
 The no-retained-history condition receives the full current diagnostic record but no earlier execution records, failed-candidate archive, or summaries of those records.
 Each proposer call is constructed from the permitted context, including the current program and active hypothesis, so omitted records do not remain in an inherited conversation.
-The working program still carries the consequences of earlier accepted edits.
+The working program still carries the consequences of earlier revisions, including staged changes.
 Both comparisons charge all executed checks and report actual context and proposal costs; fewer prompt tokens are part of the intervention, not additional free search.
 The disclosure policy is fixed before execution and audited on the actual proposer inputs.
 
-\paragraph{Target normalization and edit-budget controls.}
-The inheritance-only ablation replaces $\rho_t\geq\eta_1$ with $G_t^{\mathrm{net}}\geq u_1$, leaving the output-change gate, scaffolding rule, and original budget update unchanged.
-The budget-only ablation uses thresholds $u_1^{\Delta}$ and $u_2^{\Delta}$ on $G_t^{\mathrm{net}}$ for contraction and expansion, preserving the boundary condition and the original normalized inheritance rule.
-The fixed-budget condition keeps $\Delta=\Delta_0$ throughout a direction, with the same contracts and inheritance rule.
-It has no minimum-budget retirement event, so the common direction cap, agent endings, and overall resource limit bound continuation.
-This contrast evaluates the budget policy together with its stopping consequence.
+\paragraph{Controller and modification-scope controls.}
+First compare the previous and proposed controllers from the same seed, holding the evaluator architecture, editable interfaces, feedback, and total cost cap fixed.
+Pin the previous controller's configuration; this is a comparison of control policies, not an isolated test of one ratio.
+Within the proposed controller, compare adaptive categorical scope with a scope fixed before search, keeping confirmation, staging, and direction limits unchanged.
+Character and call caps remain matched resource constraints rather than substitutes for scope.
+Repeat the controller comparison with structural evolution only after the fixed-architecture comparison, using a common minimal $A/J/S$ seed and a known-executable structural intervention as a positive control.
 
-All comparator thresholds and fixed-budget values are chosen under a common development-only tuning allowance and frozen before Test.
-Report the threshold units and the distribution of declared target counts.
-A secondary replay on fixed contracts and measured batches records which inheritance or budget decisions would change under each rule.
-Replay measures controller sensitivity only; changed decisions alter future proposals, so search efficacy requires fresh runs.
-If integer-valued net gain makes two inheritance rules identical on the observed target-count range, report that lack of separation rather than attributing an effect to normalization.
+Comparator thresholds and scope settings receive a common Train-only tuning allowance and are frozen before the independent comparisons.
+Report the chosen settings and the cost of uncertainty resolution, including unsuccessful repeats.
+Offline replay of fixed records can expose different confirmation, staging, or rollback decisions, but changed decisions alter subsequent proposals.
+Controller efficacy therefore requires new online searches; replay is a boundary check, not a substitute.
 
-\paragraph{Parent retention, continuation, and neutral scaffolding.}
-The parent-reset condition replaces $W$ by the current $B$ after a complete rejected attempt, while retaining the active direction, diagnostic history, and the budget produced by the ordinary update.
-It leaves Val cadence and feedback unchanged and does not treat the reset as a promotion.
-The immediate-branching condition instead ends the direction after a complete rejected attempt, retaining history and using the ordinary initialization $W=B$, $\Delta=\Delta_0$ for the next direction.
-This tests continuation against the full restart policy, including its parent and budget reset, rather than isolating semantic priority alone.
-Invalid or incomplete submissions follow the same execution-handling rules in both conditions.
-A separate scaffolding control disables inheritance only for neutral scaffolding with $G_t^{\mathrm{net}}=0$, retaining its diagnostics and unchanged edit budget.
-This tests accumulation through neutral intermediates without changing repair acceptance.
+\paragraph{Staging and direction continuation.}
+The no-staging condition requires every new working program to qualify for anchor confirmation, retaining diagnostics from unsuccessful candidates.
+It preserves the measurement protocol, permitted scope, and execution-repair allowance.
+This tests whether bounded intermediate programs help implement corrections whose benefit requires coordinated steps.
+The immediate-branching condition ends a direction after the first execution-valid candidate that does not qualify for confirmation, retaining history and initializing the next direction with $R=W=B$.
+This comparison includes the loss of staging opportunities and the new direction's panel and scope initialization; it does not isolate a semantic label alone.
+Invalid submissions use the same bounded implementation-repair rules in both conditions.
+An additional parent-reset condition returns to $R$ after an unsuccessful exploratory step while retaining the direction and history, isolating the choice of executable parent from direction termination.
+All conditions keep Val cadence and released feedback fixed.
 
 \paragraph{Search-curve reporting and controls.}
 Figure~\ref{fig:budget-tests} organizes development progress, post-freeze checkpoint assessment, and direction outcomes.
-Its four history/parent conditions and Table~\ref{tab:search-results} follow the earlier protocol, separately from the interventions above.
+Its current four history/parent conditions and Table~\ref{tab:search-results} are legacy layout fixtures, not measurements of the revised controller.
+Their condition labels and values must be replaced together after the corresponding new searches.
 
 \begin{figure}[!htbp]
 \centering
@@ -950,14 +946,14 @@ Its four history/parent conditions and Table~\ref{tab:search-results} follow the
 \end{figure}
 
 For current-controller runs, record local outcomes and direction endings as separate variables.
-Outcomes include inherited positive net gain, inherited neutral scaffolding, rejected candidates, and Val promotion, which can occur at different steps in the same direction.
-Ending reasons record minimum edit budget, per-direction step cap, agent-requested ending, or overall resource/integrity stop, using the event that actually triggered termination.
+Outcomes include execution failure, anchor confirmation, staged exploration, rollback, unresolved measurement, and Val promotion, which can occur at different steps in the same direction.
+Ending reasons distinguish adverse mechanism evidence, exhausted integration tests, an expired staging window, unresolved measurement at its cap, and direction/global resource or integrity limits.
 Val nonpromotion never ends a direction.
 Report outcome and ending counts over all opened directions, alongside revisions and cost, rather than forcing local gain and stopping reason into one exclusive category.
 
 \begin{table}[!htbp]
 \caption{\textbf{Matched-cost search comparison.}
-Agreement is in percent; difference is from full IterEval in percentage points.
+Agreement is in percent; difference is from full EvalOpt in percentage points.
 Revisions per direction and search cost (cap $=100$) are reported separately.}
 \label{tab:search-results}
 \centering\small
@@ -988,7 +984,7 @@ An unknown signal is not a confident agreement.
 Charge pool scoring and reliability checks separately from evolution.
 
 Figure~\ref{fig:acquisition}a--b reports the two budget units separately.
-For new runs, the two-by-two sampling/search study uses random versus mined feedback and full IterEval versus the immediate-branching condition defined above.
+For new runs, the two-by-two sampling/search study uses random versus mined feedback and full EvalOpt versus the immediate-branching condition defined above.
 All four cells share the feedback-detail protocol and search cost cap; the interaction is a secondary contrast at a prespecified feedback budget.
 Panel (c) retains the earlier history-only/full comparison, separately from this new contrast.
 
@@ -1007,7 +1003,7 @@ Independent runs and uncertainty remain unmeasured.}
 Feedback-detail comparisons hold groups fixed while adding available $H_1$ and $H_2/H_3$, with actual human time reported.
 Direct-versus-converted judgments test label adapters on a common subset.
 Compatible tool, routing, rubric, and fusion interventions test use of artifact evidence (Table~\ref{tab:component-results}), distinct from the optimizer's access to execution diagnostics.
-Editable-space comparisons retain SkillOpt's text interface, with full-program IterEval reported separately.
+Editable-space comparisons retain SkillOpt's text interface, with full-program EvalOpt reported separately.
 These studies address their respective interfaces rather than an additive decomposition of the full system's gain.
 
 \begin{table}[!htbp]
@@ -1087,13 +1083,14 @@ Distinguish technical failure, lack of measured gain, and unresolved questions a
 These analyses explain costs and limitations without turning plausible explanations into causal facts.
 
 \paragraph{From execution evidence to subsequent revision.}
-For each completed attempt, retain contract type, target count, individual target and contrast outcomes, designated-observable checks, net gain, inheritance, and edit-budget change.
+For each attempt, retain the five contract fields, program and measurement identities, target and counterexample outcomes, execution/mechanism checks, paired gain and precision, losses, stability, cost, and the resulting anchor/working transition.
+Record the permitted scope and staging window separately; store $\rho$ only when its availability conditions hold.
 Report absent behavior separately from changed behavior that fails its predicted postcondition.
 Within changed-output attempts, distinguish target repairs offset by regressions from gains confined to non-target cases; these descriptors can overlap and are not a forced partition.
 For the subsequent attempt, record whether the agent revises the observable implementation, its downstream use, or the correction hypothesis, allowing unknown or multiple categories.
 Coding follows a prespecified rubric and separates measured behavior from the agent's stated rationale.
 
-The analysis includes every rejected attempt and inherited neutral scaffold, including those with no subsequent revision because the direction or run ends.
+The analysis includes every rejected attempt and staged candidate, including those with no subsequent revision because the direction or run ends.
 Report next-attempt outcomes and remaining-budget censoring separately, along with total cost spent on directions that never promote a checkpoint.
 Local follow-up rates are descriptive because the interventions can change which failures occur.
 The primary comparison remains terminal Test performance across all search runs, not a success rate conditioned on eventually successful directions.
@@ -1105,7 +1102,7 @@ No scaffold-consumer linkage or mechanism correctness is assumed from a shared d
 
 C2 tests the usefulness of critique, not whether the evaluator awards higher scores to its own revisions.
 On the same unseen inputs, generate a new $y_0$ and retain it unchanged as a reference arm.
-Compare no-critic revision, Seed-critic revision, and IterEval-critic revision.
+Compare no-critic revision, Seed-critic revision, and EvalOpt-critic revision.
 Use the same generator, decoding, revision instruction, critique format, evidence access, token cap, and number of revision steps.
 Freeze these settings on input-disjoint development material before final generation.
 A supplementary critique from a learned baseline can be added only with the same interface and accounting.
@@ -1115,7 +1112,7 @@ The vision-language generator and its image-conditioning interface are fixed bef
 
 New blind annotation assesses the exact newly generated outputs.
 Existing benchmark preferences do not label these revisions.
-The main contrast is IterEval-refined versus Seed-refined; comparisons with no-critic revision and $y_0$ test extra-compute and nondegradation explanations.
+The main contrast is EvalOpt-refined versus Seed-refined; comparisons with no-critic revision and $y_0$ test extra-compute and nondegradation explanations.
 Report wins, losses, ties, abstentions, invalid outputs, and the fraction with a major regression relative to $y_0$.
 The tie-aware preference estimate is $(W+T/2)/(W+L+T)$, with a separate requested-input denominator and bounds for unjudged outcomes.
 Major regressions are defined by the domain rubric before annotation, not by whichever errors remain after revision.
@@ -1128,7 +1125,7 @@ These tables and Figure~\ref{fig:downstream} concern different cohorts and must 
 
 \begin{table}[!htbp]
 \caption{\textbf{Downstream human-outcome reporting.}
-Pref.: tie-aware preference for IterEval over Seed (\%).
+Pref.: tie-aware preference for EvalOpt over Seed (\%).
 $\Delta$Reg: major-regression difference against $y_0$ (C2) or Base (C3), in percentage points.
 C3 remains conditional.}
 \label{tab:downstream-results}
@@ -1215,7 +1212,7 @@ The study requires a frozen reward, matched policy-training resources, and new h
 \toprule
 Item & Required specification or result\\
 \midrule
-Arms & Untrained Base; Seed-reward policy; IterEval-reward policy; same initial checkpoint within each domain\\
+Arms & Untrained Base; Seed-reward policy; EvalOpt-reward policy; same initial checkpoint within each domain\\
 Policy and data & Checkpoint, input source/version, source-group splits, decoding: \tbd\\
 LoRA / optimizer & Rank, target layers, optimizer, learning rate, KL rule, update count: \tbd\\
 Online rollouts & Same input sequence and group size; each evolving policy generates its own rollouts\\
@@ -1236,7 +1233,7 @@ Reward-model training code alone does not satisfy this study's generator-trainin
 Only the preflight pool is shared: once policies diverge, each samples its own online trajectories.
 Do not reuse one arm's outputs as if they were on-policy samples from the other.
 Freeze checkpoint-selection rules and evaluate the selected policies on the same previously unseen within-domain inputs.
-Collect new blinded judgments on Base, Seed-reward, and IterEval-reward policy outputs.
+Collect new blinded judgments on Base, Seed-reward, and EvalOpt-reward policy outputs.
 Report the reward contrast as well as each trained arm against Base, with major regressions and external checks.
 An increase in optimized reward accompanied by unchanged or worse human quality does not support training usefulness.
 Additional training algorithms are optional; they answer a different question from changing the reward evaluator.
@@ -1271,7 +1268,7 @@ Additional C3 domain & Reward preflight and training authorization & Task-specif
 \paragraph{Interpreting the completed experiments.}
 If overall agreement improves without top-region or selection gains, limit the claim to agreement.
 If improvements occur only on the adaptively checked training set, the experiment has not shown held-out improvement.
-If history-only search matches full IterEval, report that direction continuation did not demonstrate added value at that budget.
+If history-only search matches full EvalOpt, report that direction continuation did not demonstrate added value at that budget.
 If learned fusion matches full evolution, the tested errors may not require changing the observation path.
 If mining wins per revealed label but not per person-minute, report label efficiency without claiming greater annotation efficiency.
 If C2 improves over Seed critique but not over no-critic revision, additional revision resources remain an alternative explanation.

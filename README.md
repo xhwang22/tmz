@@ -1,6 +1,6 @@
-# IterEval
+# EvalOpt
 
-**Dive Deeper, Branch Later: Self-Evolving Evaluators across Open-Ended Tasks**
+**EvalOpt: Evolving Evaluators for Open-Ended Tasks with Human Feedback**
 
 This branch contains only the files needed to compile the manuscript,
 plus this README and `.gitignore`.

@@ -17,7 +17,7 @@ Appendix~\ref{app:domains} records each domain's public resources, label type, a
 \paragraph{Comparisons and resources.}
 Comparators include fixed judges, learned signal fusion, SkillOpt \citep{yang2026skillopt}, GEPA \citep{agrawal2026gepa}, and Meta-Harness \citep{lee2026metaharness}.
 External optimizers retain native search policies under common feedback and cost budgets, with development access declared separately (Table~\ref{tab:adaptation}).
-GEPA edits complete programs; text-only IterEval matches SkillOpt's edit space.
+GEPA edits complete programs; text-only EvalOpt matches SkillOpt's edit space.
 Model versions, tool access, and scoring settings are frozen per comparison.
 Search cost includes diagnostics, rejected attempts, and Val checks; feedback collection and deployment costs are reported separately.
 Five searches per adaptive condition are the initial target, to be fixed after a development-only pilot.
@@ -40,7 +40,7 @@ Uncertainty and cross-model disagreement are simpler sampling controls (Table~\r
 \paragraph{Execution evidence and search control.}
 The evolution studies separate diagnostic feedback from controller decisions.
 Feedback controls retain contracts and controller checks, changing only returned evidence or access to earlier records.
-Controller contrasts remove target normalization from inheritance and budget updates separately, then compare adaptive with fixed budgets.
+Controller contrasts compare the previous and proposed policies with architecture fixed, then test staging and adaptive modification scope separately.
 Matched-cost searches receive terminal Test assessment of Val-selected programs.
 Parent reset and immediate branching are additional policy interventions (Appendix~\ref{app:ablations}).
 
@@ -49,6 +49,6 @@ Parent reset and immediate branching are additional policy interventions (Append
 \label{sec:analysis}
 
 Analysis separates absent observable changes, unfulfilled predictions, repairs offset by regressions, and off-target gains, relating each to the next edit and its cost.
-Fixed-rule trajectory samples include unsuccessful directions and distinguish local inheritance from Val promotion (Figure~\ref{fig:trajectory}).
+Fixed-rule trajectory samples include unsuccessful directions and distinguish anchor confirmation and staging from Val promotion (Figure~\ref{fig:trajectory}).
 Matched-budget contrasts test diagnostic value; per-domain agreement, selected ranks, coverage, and costs locate failures hidden by macro-averages (Table~\ref{tab:domain-results}).
 \end{samepage}

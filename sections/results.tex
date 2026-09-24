@@ -24,22 +24,22 @@ Evaluator & Pair $\uparrow$ & Bo$N$ $\uparrow$ & Reg $\downarrow$ & Coverage $\u
 \caption{\textbf{C1 breadth and evaluation cost.}
 (a) Task families and output types.
 (b) Four-domain modeled cost and agreement.
-(c) Agreement: IterEval in lake green, baselines in family shades; all task groups use the same truncated 50--100\% axis.
+(c) Agreement: EvalOpt in lake green, baselines in family shades; all task groups use the same truncated 50--100\% axis.
 Four tasks reuse Table~\ref{tab:main-alignment}; fourteen additional tasks are excluded from its means; four remain unfilled.}
 \label{fig:c1-landscape}
 \end{figure}
 
 Figure~\ref{fig:c1-landscape}c reuses the four-domain comparison, with additional tasks excluded from all means.
-Panel (b) estimates IterEval at \ResultDeployCost{} times Seed's model cost, assuming Seed-like runtime profiles where unavailable (Appendix~\ref{app:adaptation}); deployment costs remain unmeasured.
+Panel (b) estimates EvalOpt at \ResultDeployCost{} times Seed's model cost, assuming Seed-like runtime profiles where unavailable (Appendix~\ref{app:adaptation}); deployment costs remain unmeasured.
 
 \paragraph{C2: critic-guided refinement.}
-A frozen generator refines the same fresh $y_0$ using Seed or IterEval critiques, or no critique \citep{madaan2023selfrefine}, at matched resources.
-Figure~\ref{fig:downstream}a reports the IterEval-versus-Seed contrast separately for each representative domain.
+A frozen generator refines the same fresh $y_0$ using Seed or EvalOpt critiques, or no critique \citep{madaan2023selfrefine}, at matched resources.
+Figure~\ref{fig:downstream}a reports the EvalOpt-versus-Seed contrast separately for each representative domain.
 The no-critic comparison tests the value of critique beyond another revision, while $y_0$ anchors nondegradation (Table~\ref{tab:downstream-detail}).
 Both require new blinded judgments of the exact outputs, independent of evaluator scores.
 
 \paragraph{C3: reward-guided training.}
-Figure~\ref{fig:downstream}b compares generators trained with frozen Seed and IterEval rewards, using the same starting checkpoint and policy-training recipe within each domain \citep{hu2022lora,shao2024deepseekmath}.
+Figure~\ref{fig:downstream}b compares generators trained with frozen Seed and EvalOpt rewards, using the same starting checkpoint and policy-training recipe within each domain \citep{hu2022lora,shao2024deepseekmath}.
 New human judgments assess the trained outputs; Base provides the no-update reference.
 Reward preflight precedes training, with failed or incomplete studies reported under the fixed roster (Appendix~\ref{app:training}).
 
@@ -47,8 +47,8 @@ Reward preflight precedes training, with failed or incomplete studies reported u
 \centering
 \input{figures/downstream_results_pending}
 \caption{\textbf{Downstream use across four task families.}
-(a) IterEval-critic versus Seed-critic refinement of the same initial outputs.
-(b) IterEval-reward versus Seed-reward policy training.
+(a) EvalOpt-critic versus Seed-critic refinement of the same initial outputs.
+(b) EvalOpt-reward versus Seed-reward policy training.
 Both panels use tie-aware human preference and a 50\% parity line, with domains in the same order; they represent separate experiments, not a shared learning curve.
 Paired intervals, regression rates, validity, and judgment counts accompany the final measurements in Appendix~\ref{app:downstream}.}
 \label{fig:downstream}

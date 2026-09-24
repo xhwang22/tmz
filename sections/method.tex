@@ -1,22 +1,21 @@
-\section{IterEval}
+\section{EvalOpt}
 \label{sec:method}
 
-IterEval combines disagreement-based preference mining with depth-first evaluator evolution.
-Mining directs limited human feedback toward comparisons on which existing evaluation signals disagree; evolution develops a correction hypothesis through successive testable revisions before branching.
-Execution evidence is retained after candidate rejection, allowing unsuccessful implementations to inform the next revision.
-A candidate's usefulness as a working program is distinct from the evidence it provides for the active hypothesis.
-The search separates \emph{working-state transition}, \emph{direction continuation}, and \emph{global checkpoint selection}.
-Train execution evidence drives local search and direction development, while restricted Val feedback governs global retention.
+EvalOpt separates whether a revision executes as intended, whether its direction merits further development, and whether its program should replace the global best.
+Disagreement-based preference mining selects the human feedback used by search.
+Depth-first evaluator evolution then retains a correction hypothesis across revisions, including unsuccessful attempts whose execution records inform the next test.
+Execution checks establish what ran; Train evidence governs bounded exploration and rollback; sealed Val comparisons govern global retention.
+This separation permits intermediate implementations without treating them as confirmed improvements.
 
 \subsection{Setup and revision space}
 \label{sec:problem}
 \label{sec:measurement}
 \label{sec:runtime}
 
-Starting from a seed evaluator $E_0$, IterEval revises an executable evaluation program $E_\theta$ using human feedback, with the base model $M$ fixed.
-The program specifies artifact adapters $A$, rubrics and dimensions $K$, evaluator modules $V$, tools $T$, evidence routing $\Pi$, and fusion $G$.
-A revision can change connected components, such as a detector, its route, and the scoring instruction that uses its findings.
-It produces a complete candidate program, executed and evaluated as a whole (Figure~\ref{fig:runtime}).
+Starting from a seed evaluator $E_0$, EvalOpt revises an executable evaluation program $E_\theta$ using human feedback, with the base model $M$ fixed.
+The program has three editable stages: analysis $A$ prepares task and artifact evidence, judgment $J$ applies criteria through LLM agents and tools, and synthesis $S$ combines their findings into scores and critiques.
+Their nodes, prompts, tool interfaces, and evidence routes form the revision space.
+A candidate is a complete program, including any coordinated changes across stages; component probes diagnose changes, but confirmation requires end-to-end execution.
 
 For a task $x$, the evaluator scores each output $y$ separately, without seeing the competing output or human preference.
 Within a domain $D$ sharing an evaluation standard, the objective is agreement with human preferences on unseen inputs,
@@ -27,7 +26,7 @@ Within a domain $D$ sharing an evaluation standard, the objective is agreement w
  \bigl[\bar s_\theta(x,y^+)>\bar s_\theta(x,y^-)\bigr].
  \label{eq:objective}
 \end{equation}
-Here $y^+$ is the human-preferred output, $\mathcal P_D$ is the domain distribution, and $\bar s_\theta$ is the score under a fixed repeated-scoring protocol with execution randomness $\xi$.
+Here $y^+$ is the human-preferred output, $\mathcal P_D$ is the domain distribution, and $\bar s_\theta$ is the score under a scoring protocol frozen before search with execution randomness $\xi$.
 Before mining, a fixed-seed random split assigns original-input groups from the frozen domain source pool to Train, Val, and Test.
 Mining and random-anchor selection operate only within Train.
 Val and Test inputs and outputs remain fixed, with compared methods sharing the same split in each run (Appendix~\ref{app:measurement}).
@@ -75,15 +74,14 @@ We evaluate mining by downstream evaluator improvement, not disagreement yield.
 \begin{figure}[t]
 \centering
 \input{figures/overview}
-\caption{IterEval overview.
+\caption{EvalOpt overview.
 (a) Acquire preferences using conflict ranking and a random anchor.
-(b) A semantic contract predicts the effect of each revision.
-Execution checks guide the agent's next revision; a local controller governs inheritance and the edit budget.
-The example detector finds layout errors without changing scores; if its declared component change is realized without net regression, this intermediate can be inherited before connecting findings to scoring.
-Green links carry diagnostic evidence within the direction.
-Periodic Val checkpoints serve global checkpoint selection only.
+(b) Revision predictions are compared with execution evidence.
+The lower inset illustrates how diagnostic history can guide later edits even when the working program is unchanged.
+The evaluator--evolver loop develops a correction before branching; Val checkpoints govern global retention.
+Algorithm~\ref{alg:era} specifies the anchor, bounded working exploration, and confirmation decisions.
 (c) Use the frozen best program for output selection, critic-guided refinement, and planned reward-guided training.
-The example and AI-generated pictograms are constructed illustrations, not observed trajectories or measured improvements.}
+The state transitions and AI-generated pictograms are schematic illustrations, not a fixed revision schedule, observed trajectories, or measured improvements.}
 \label{fig:overview}
 \end{figure}
 
@@ -91,70 +89,71 @@ The example and AI-generated pictograms are constructed illustrations, not obser
 \label{sec:proposal}
 \label{sec:search}
 
-The search maintains an exploratory working program $W$, a best program $B$, and an active direction $d$ with diagnostic history $z$.
-A direction consists of a hypothesis about an evaluation error and a proposed correction, together with the revisions that test or implement it.
-The search is depth-first at the direction level: a failed implementation leads to another test of the active correction before a new direction is opened, unless a direction-ending condition fires.
-An edit budget $\Delta$ bounds the number of characters changed from parent to candidate.
-Separating $W$ from $B$ allows useful intermediate implementations to accumulate before global retention (Figure~\ref{fig:overview}b).
+The controller maintains an \emph{anchor} $R$, a \emph{working program} $W$, and the Val-selected \emph{best program} $B$.
+The anchor is the direction's initial reference, then its most recently confirmed program; working is the program being explored and may lack evidence of final benefit.
+A new direction starts with $R=W=B$ and records a target failure pattern, a proposed correction, and diagnostic history.
+Refining its implementation continues the direction; replacing the correction opens another direction.
+While active, the direction receives the next revision or diagnostic until an explicit ending condition applies.
+The direction is the unit of continued exploration; the complete program is the unit of global selection.
 
-\paragraph{Semantic contracts make predictions testable.}
-A new direction starts from $W=B$.
-From Train traces, the agent formulates a correction hypothesis with testable consequences.
-Each revision links its edit to that hypothesis through a contract: trace-grounded preconditions, the proposed modification, and predicted postconditions.
-The postconditions name targets $T_t$ expected to become correct, contrasts $K_t$ expected to preserve their judgments, and designated intermediate observables $O_t$ with predicted changes.
-Each observable identifies a component output field and the cases where it is checked.
-Before execution, the agent commits to a repair contract ($T_t\ne\varnothing$) or a scaffolding contract ($T_t=\varnothing$), fixing the applicable transition rule.
-Let $g_t^{\mathrm{chg}}$ indicate whether designated observables change relative to the parent, and $g_t^{\mathrm{pred}}$ whether the observed changes match the contract's predictions.
-Both checks aggregate over these observables using rules fixed in the run configuration.
+\paragraph{Declare the experiment, then check execution.}
+Before running a candidate, the agent commits to five items: affected $A/J/S$ nodes, a predicted intermediate change, Train cases expected to improve or remain correct, a direct-improvement or scaffolding type, and observable acceptance and exit conditions.
+A scaffolding step also names its next integration step and a finite exploration window.
+Execution checks inspect the effective configuration, actual node calls, input/output contracts, and produced evidence.
+These checks distinguish a tool that did not run from one that ran without the predicted effect; neither conclusion is inferred from accuracy alone.
+Observed records remain separate from the agent's interpretation and survive rejection.
 
-\paragraph{Execution evidence guides the next revision.}
-Repairing a declared target or a non-target case can yield the same net gain, while zero gain can conceal repairs offset by regressions.
-Case-level checks and intermediate observations distinguish these outcomes relative to the contract.
-The history $z$ retains prediction outcomes, case differences, and trace pointers, including evidence from rejected candidates, separately from the agent's explanations.
-The agent uses this record to choose the next edit or diagnostic probe within the direction.
+\paragraph{Compare programs under matched conditions.}
+Each paired comparison between parent and candidate fixes cases, scoring rules, budgets, and inputs outside the intervention.
+A synthesis edit reuses analysis and judgment evidence where valid; a judgment edit fixes analysis; an analysis edit fixes downstream implementations.
+These probes locate behavioral changes, while end-to-end runs test whether they survive the full pipeline.
+Each direction also keeps a fixed Train panel $\mathcal D_d$ of targets and counterexamples.
+New Train coverage cases test changes outside that panel, but do not replace its reference trajectory.
+Before updating $R$, the controller compares the candidate against $R$ on this panel and checks fresh coverage.
+The panel remains learning data, not independent validation.
 
-\paragraph{Working-state transition.}
-At step $t$, the agent produces a complete candidate $C_t$ within budget $\Delta_t$ of its parent $P_t=W_t$.
-Both programs are measured on the same Train batch $S_t$, containing targets, contrasts, and additional cases.
-Let $v_i(E)$ indicate a correct strict pairwise judgment by program $E$ on case $i$.
-We compute net gain and, for a repair step, the \emph{target-normalized net gain}
+Let $\widehat p_i(E)$ be the observed frequency of a correct preference ordering under the frozen scoring protocol, reducing to a binary outcome for one execution.
+For a prespecified cohort $\mathcal C$, the paired gain is
 \begin{equation}
- n_t^{\mathrm{tar}}=|T_t|,\qquad
- G_t^{\mathrm{net}}=\sum_{i\in S_t}[v_i(C_t)-v_i(P_t)],\qquad
- \rho_t=\frac{G_t^{\mathrm{net}}}{n_t^{\mathrm{tar}}}\quad(n_t^{\mathrm{tar}}>0).
- \label{eq:target-normalized-gain}
+ \widehat g_{\mathcal C}(E,F)
+ =\frac{1}{|\mathcal C|}\sum_{i\in\mathcal C}
+       [\widehat p_i(E)-\widehat p_i(F)].
+ \label{eq:paired-gain}
 \end{equation}
-The numerator counts repairs minus regressions across the whole batch, including collateral effects outside the targets.
-We use the declared target count as a reference scope, requiring realized net benefit to be commensurate with that scope.
-Contrast outcomes help the agent diagnose overgeneralization, while contrast regressions also enter the net gain.
-Repair inheritance uses the output-change check and target-normalized net gain: $g_t^{\mathrm{chg}}=1$ and $\rho_t\geq\eta_1$.
-Otherwise, the parent remains.
-Predicted-change fulfillment is retained separately as evidence about the proposed mechanism and guides subsequent revisions.
-When $g_t^{\mathrm{chg}}=0$, the attempt is recorded as absent behavior and retains both parent and budget.
+Counterexample losses, fixed-scale margins, evidence coverage, ranking instability, and execution cost are recorded separately.
+Margins can expose progress before a ranking flips, but cannot replace the preference objective.
+A fixed initial measurement is followed by symmetric parent--candidate repeats only when a decision remains uncertain, under prespecified stopping and cost limits.
+An exhausted comparison is unresolved, not a reason to rerun until improvement appears.
 
-\paragraph{Intermediate implementation can precede preference repair.}
-A scaffolding revision declares no immediate target repair ($T_t=\varnothing$), instead predicting an intermediate observable change intended to support a later repair.
-It becomes the next working program when $g_t^{\mathrm{chg}}=g_t^{\mathrm{pred}}=1$ and $G_t^{\mathrm{net}}\geq0$, with the budget unchanged.
-For example, a layout detector can first expose overlooked faults without changing scores; a subsequent revision can connect those findings to scoring.
-This permits coordinated changes across neutral intermediates.
+\paragraph{Confirm, stage, or roll back on Train.}
+A candidate becomes the new anchor only after execution and mechanism checks pass, end-to-end gain against $R$ is supported, and counterexample losses meet fixed tolerances.
+The controller then sets $R=W=C$.
+If benefit is uncertain, it retains $R$ and may stage a valid candidate as $W$ for bounded testing.
+Scaffolding can likewise enter $W$ after its intermediate checks pass, without being declared an improvement.
+For example, $J$ can add and verify a browser tool before a later edit teaches $S$ to consume its evidence.
+Staging requires a declared next step, a cost cap, a deadline, and a temporary-loss tolerance.
+Confirmed degradation, failed integration, or an expired window returns $W$ to $R$; diagnostics remain available.
+An execution failure instead enters bounded implementation repair, not automatic rejection of the correction hypothesis.
+Appendix~\ref{app:direction-decisions} gives the decision conditions.
 
-\paragraph{Direction continuation: adapt the edit budget.}
-The controller adjusts the permitted revision size with a trust-region-inspired expand/contract rule~\citep{conn2000trust}.
-For repair steps with $g_t^{\mathrm{chg}}=1$, $\rho_t$ below the inheritance threshold contracts $\Delta$; meeting the expansion threshold while using most of the budget expands it.
-Otherwise the budget is preserved, including for scaffolding and absent-behavior attempts.
-The agent chooses what to change within this allowance using the diagnostic history.
-Rejecting a repair candidate therefore need not end the direction.
-When contraction takes $\Delta$ below a minimum editing scale, the controller retires the direction and restarts from $B$.
-A per-direction step cap bounds repeated absent-behavior attempts.
-Agent-requested endings and resource limits are recorded separately.
-Here $\Delta$ controls edit size, not confidence in the correction hypothesis.
-The complete policy and its relation to trust-region theory appear in Appendix~\ref{app:algorithm}.
+\paragraph{Adapt the permitted scope, not a proxy for semantic distance.}
+The trust-region idea~\citep{conn2000trust} controls which modifications are allowed around the anchor: a local node edit, a structural edit within one component, or a coordinated change across components.
+Character counts and calls remain resource bounds, not a semantic metric.
+Expansion requires a prespecified history of reliable mechanism predictions, confirmed gains, and controlled counterexample losses.
+An ineffective interface calls for repair; a functioning but persistently harmful mechanism calls for rollback and narrower scope or direction termination.
+Noise calls for limited additional measurement, not mechanically shorter prompts.
 
-\paragraph{Global checkpoint selection: retain improvements separately.}
-Periodic checkpoints compare $W$ with $B$ on full Val under the same scoring protocol.
-A checkpoint is promoted to $B$ only when its accuracy exceeds the retained score by at least a preset margin.
-To restrict feedback from repeated Val access, the optimizer receives only the promotion indicator and retained best score~\citep{blum2015ladder}.
-Checkpoint outcomes update retention only, leaving $W$, $\Delta$, and direction continuation unchanged.
-The working program can therefore remain below the best Val score while its correction is developed.
-After a final checkpoint, the best program is frozen and compared with the seed once on Test.
-Train guides adaptive exploration, Val guides adaptive retention, and this held-out Test comparison supplies the reported generalization assessment.
+We retain $\rho$ only as an auxiliary observed-to-predicted gain ratio.
+It is available when a positive numerical prediction was frozen before execution, exceeds a preset floor, matches the measured metric and cohort, and has sufficient measurement precision.
+Otherwise $\rho$ is unavailable; scaffolding without a numerical gain prediction is not assigned a zero denominator or automatic exemption.
+Neither a single high ratio nor a long patch triggers expansion.
+Direction and staging budgets bound exploration; exhaustion without decisive evidence is recorded as unresolved.
+These rules define trust-region-inspired scope control, not a convergence guarantee for a stochastic trust-region algorithm (Appendix~\ref{app:algorithm}).
+
+\paragraph{Promote the global best only on Val.}
+At prespecified checkpoints, an execution-valid $W$ is compared with $B$ on the complete frozen Val cohort.
+Promotion requires the fixed Val improvement criterion; missing outcomes cannot reduce the denominator.
+Only the promotion indicator and retained best score are released, following the motivation of restricted leaderboard feedback~\citep{blum2015ladder}.
+Val does not update the Train anchor, repair budget, or direction-ending decision, and promotion does not establish the cause of an improvement.
+After the final checkpoint, search returns $B$ for one locked Test assessment.
+Algorithm~\ref{alg:era} and Appendix~\ref{app:algorithm} specify confirmation, staging, measurement, and rollback.
