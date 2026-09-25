@@ -433,7 +433,8 @@ The same input resample is used across methods and runs.
 Scoring repeats do not increase the number of independent tasks or searches.
 If shared reviewers introduce additional dependence, retain reviewer identifiers and report reviewer-cluster or crossed-cluster sensitivity rather than treating votes as independent.
 
-Predeclare one principal evaluator comparison (EvalOpt versus GEPA), the Seed contrast, and the direction-versus-history contrast.
+Predeclare one principal evaluator comparison (EvalOpt versus GEPA), the Seed contrast, and EvalOpt versus fixed-patience continuation.
+The history-based comparison tests the broader persistence policy, while fixed patience tests whether continuation based on diagnostics adds value beyond extra attempts.
 Report paired effect sizes and intervals for all other comparisons, with a prespecified multiplicity correction for any family of significance claims.
 Select sample sizes from a target minimum effect and development-only variance, not from a desired test outcome.
 A nonsignificant difference does not establish equivalence.
@@ -925,6 +926,26 @@ The comparisons share feedback pools, seed evaluators, model versions, editable 
 Each condition is evaluated through independent searches and its frozen terminal evaluator.
 Local repair rates and individual traces are secondary descriptions of the search process.
 
+\paragraph{Comparison tiers and shared feedback.}
+The breadth tier uses every domain admitted under the frozen data and interface criteria.
+The intensive tier uses SV4, IG1, TG1, and AR1 for repeated search and mining comparisons, without selecting domains by observed improvement.
+Optimizer attribution uses identical selected Train groups and feedback fields in every arm.
+The end-to-end comparison additionally varies preference mining under equal label-access and total model/tool budgets.
+Report these two estimands separately rather than attributing a sampling advantage to the search policy.
+
+\paragraph{History and fixed-patience policies.}
+History-based search receives the full diagnostic archive and may adopt another correction after any completed revision.
+When it changes correction, it initializes the new direction with $R=W=B$, a new direction panel, and the common initial scope.
+When it continues, it uses the same confirmation, staging, rollback, and Val rules as EvalOpt.
+This compares persistence policies, including the initialization consequences of switching.
+
+Fixed-patience continuation instead allows a direction a fixed number $k$ of charged revision attempts.
+Choose $k$ from $\{2,4,6\}$ under the common Train-only tuning allowance and freeze it before evaluation.
+The revision agent still uses diagnostics to choose edits, but cannot end a direction early merely because it judges another correction more promising.
+The shared rejection, provisional-window, execution-integrity, and resource limits remain active and can stop continuation before $k$ attempts.
+The comparison therefore changes voluntary direction ending, not safety checks or the ability to diagnose.
+Do not match realized direction lengths after observing the runs, since those lengths are an outcome of the policy.
+
 \paragraph{Diagnostic feedback and retained history.}
 The reduced-feedback condition returns paired gain, aggregate losses and uncertainty, required execution/mechanism checks, transition decisions, and cost, but omits case-level repair/regression records and intermediate traces.
 Contracts, case selection, execution, and all controller checks remain enabled.
@@ -938,7 +959,7 @@ Both comparisons charge all executed checks and report actual context and propos
 The disclosure policy is fixed before execution and audited on the actual proposer inputs.
 
 \paragraph{Controller and modification-scope controls.}
-First compare the previous and proposed controllers from the same seed, holding the evaluator architecture, editable interfaces, feedback, and total cost cap fixed.
+As a secondary implementation study, compare the previous and proposed controllers from the same seed, holding the evaluator architecture, editable interfaces, feedback, and total cost cap fixed.
 Pin the previous controller's configuration; this is a comparison of control policies, not an isolated test of one ratio.
 Within the proposed controller, compare adaptive categorical scope with a scope fixed before search, keeping confirmation, staging, and direction limits unchanged.
 Character and call caps remain matched resource constraints rather than substitutes for scope.
@@ -960,19 +981,10 @@ An additional parent-reset condition returns to $R$ after an unsuccessful explor
 All conditions keep Val cadence and released feedback fixed.
 
 \paragraph{Search-curve reporting and controls.}
-Figure~\ref{fig:budget-tests} organizes development progress, post-freeze checkpoint assessment, and direction outcomes.
-Its current four history/parent conditions and Table~\ref{tab:search-results} are legacy layout fixtures, not measurements of the revised controller.
-Their condition labels and values must be replaced together after the corresponding new searches.
-
-\begin{figure}[!htbp]
-\centering
-\input{figures/search_dynamics_pending}
-\caption{\textbf{Search dynamics.}
-(a) Best accepted development agreement versus total search cost.
-(b) Held-out checkpoint curves for history/parent controls, assessed after search.
-(c) Direction outcomes under the history/parent protocol.}
-\label{fig:budget-tests}
-\end{figure}
+Figure~\ref{fig:budget-tests}a compares history-based search, fixed patience, no staging, and full EvalOpt at the prespecified cost checkpoints.
+Its zero-cost point is the common seed; later points assess the retained $B$, not the current working $W$.
+Test curves can decrease even when retained Val scores increase.
+Panel (b) and Table~\ref{tab:search-results} use terminal evaluators, keeping diagnostic access and state-management interventions distinct.
 
 For current-controller runs, record local outcomes and direction endings as separate variables.
 Outcomes include execution failure, reference confirmation, staged exploration, rollback, unresolved measurement, and Val promotion, which can occur at different steps in the same direction.
@@ -995,9 +1007,32 @@ Condition & Agreement & Difference & Revisions/direction & Cost\\
 \end{tabularx}
 \end{table}
 
+\paragraph{Controlled diagnostic cases.}
+A separate constructed task set distinguishes useful intermediate evidence that is not yet consumed, an intended tool call that failed to materialize, and a fully realized correction that is harmful.
+Freeze the tasks, hidden checks, target and contrast cases, and decision allowances before comparing policies.
+The useful condition requires an actual tool call and downstream evidence use; merely adding a tool name does not count as integration.
+The harmful condition requires both realized execution and an independently specified loss, rather than a missing tool response.
+Each policy starts from the same evaluator and receives the same budget and available diagnostics.
+Table~\ref{tab:mechanism-checks} separates the three endpoints; they have different denominators and must not be summed.
+Constructed cases check policy behavior and do not replace natural-task Test performance.
+
+\begin{table}[!htbp]
+\caption{\textbf{Controlled diagnostic decisions.}
+Entries are percentages under each scenario's prespecified allowance.
+Integrate: complete a useful downstream evidence connection; repair: realize the intended tool call; end: stop a realized harmful correction.}
+\label{tab:mechanism-checks}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}Yccc@{}}
+\toprule
+Policy & Integrate $\uparrow$ & Repair $\uparrow$ & End $\uparrow$\\
+\midrule
+\input{figures/ideal_scenario/mechanism}
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \paragraph{Mining budgets and policies.}
 The tentative group-budget grid is 20, 50, 100, and 200, truncated or replaced before execution if the domain lacks enough independent groups.
-These are design values, not measured sample counts.
 Keep the seed, feedback detail, evolution cost, and final test fixed across policies.
 Restart evolution from the seed at each budget; a warm-start sweep answers a different question.
 Use nested selected sets only if that policy is frozen in advance, retaining their dependence in uncertainty estimates.
@@ -1013,9 +1048,12 @@ An unknown signal is not a confident agreement.
 Charge pool scoring and reliability checks separately from evolution.
 
 Figure~\ref{fig:acquisition}a--b reports the two budget units separately.
-For new runs, the two-by-two sampling/search study uses random versus mined feedback and full EvalOpt versus the immediate-branching condition defined above.
+Panel (c) compares mining with and without a random anchor at 100 revealed groups, using the same evolution budget and four-domain roster.
+Freeze the anchor fraction on Train before execution; removing the anchor reallocates those labels to the ranked queue, not to extra feedback.
+To test coverage of shared mistakes, report errors within the label-blind signal-agreement stratum as a secondary endpoint, with missing signals kept separate.
+This coverage analysis does not presume that anchors improve mean accuracy in every domain.
+The two-by-two sampling/search study uses random versus mined feedback and full EvalOpt versus fixed-patience continuation.
 All four cells share the feedback-detail protocol and search cost cap; the interaction is a secondary contrast at a prespecified feedback budget.
-Panel (c) retains the earlier history-only/full comparison, separately from this new contrast.
 
 \begin{figure}[!htbp]
 \centering
@@ -1023,8 +1061,7 @@ Panel (c) retains the earlier history-only/full comparison, separately from this
 \caption{\textbf{Preference-mining efficiency.}
 (a) Held-out agreement versus revealed groups in existing-label replay.
 (b) Agreement at matched person-minute budgets for new annotation.
-(c) Random/mined feedback crossed with history-only/full evolution at 100 groups.
-Independent runs and uncertainty remain unmeasured.}
+(c) Mined feedback with and without the random anchor at the same 100-group budget, by domain.}
 \label{fig:acquisition}
 \end{figure}
 
@@ -1039,7 +1076,8 @@ These studies address their respective interfaces rather than an additive decomp
 \caption{\textbf{Mining and end-to-end comparison.}
 The first four rows form the two-by-two design at 100 revealed groups.
 Agreement is in percent; minutes describe the separate new-annotation comparison.
-Total model-and-tool cost includes mining and search in relative units, not human labor.}
+Total model-and-tool cost includes mining and search in relative units, not human labor.
+The two search policies are fixed patience and EvalOpt.}
 \label{tab:mining-results}
 \centering\small
 \begin{tabularx}{\linewidth}{@{}YYcccc@{}}
@@ -1140,6 +1178,16 @@ The common domain order is SV4, IG1, TG1, and AR1 in both panels of Figure~\ref{
 For image captioning, every arm receives the same source image and captioning instruction; refinement revises the initial caption using the assigned critique.
 The vision-language generator and its image-conditioning interface are fixed before generating $y_0$.
 
+\begin{figure}[!htbp]
+\centering
+\input{figures/downstream_results_pending}
+\caption{\textbf{Independent downstream utility.}
+(a) EvalOpt-critic versus Seed-critic refinement of identical initial outputs.
+(b) EvalOpt-reward versus Seed-reward policy training.
+Both use tie-aware human preference with a 50\% parity line, but involve separate outputs and interventions.}
+\label{fig:downstream}
+\end{figure}
+
 New blind annotation assesses the exact newly generated outputs.
 Existing benchmark preferences do not label these revisions.
 The main contrast is EvalOpt-refined versus Seed-refined; comparisons with no-critic revision and $y_0$ test extra-compute and nondegradation explanations.
@@ -1149,20 +1197,20 @@ Major regressions are defined by the domain rubric before annotation, not by whi
 Final domain estimates use paired 95\% intervals over original-input groups and independent runs where applicable, alongside raw judgment counts and missing-outcome rates.
 Do not pool C2 and C3 into a common effect: they change different interventions and compare different generated outputs.
 
-\paragraph{Supplementary domain coverage.}
-Tables~\ref{tab:downstream-results} and \ref{tab:downstream-detail} use the earlier domain scope: C2 covers SV4, IG1, and TG1, and C3 covers IG1 only.
-These tables and Figure~\ref{fig:downstream} concern different cohorts and must not be pooled.
+\paragraph{Domain and control reporting.}
+Tables~\ref{tab:downstream-results} and \ref{tab:downstream-detail} use the same four-domain roster as Figure~\ref{fig:downstream}.
+The first separates domains; the second compares the control arms using equal-domain means.
+Collected judgments, requested-input counts, and paired intervals will accompany the independent measurements, not be inferred from displayed percentages.
 
 \begin{table}[!htbp]
 \caption{\textbf{Downstream human-outcome reporting.}
 Pref.: tie-aware preference for EvalOpt over Seed (\%).
-$\Delta$Reg: major-regression difference against $y_0$ (C2) or Base (C3), in percentage points.
-C3 remains conditional.}
+Each study uses SV4, IG1, TG1, and AR1.}
 \label{tab:downstream-results}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}P{0.8cm}Yccc@{}}
+\begin{tabularx}{\linewidth}{@{}P{0.8cm}Yc@{}}
 \toprule
-Study & Domain & Pref. $\uparrow$ & $\Delta$Reg $\downarrow$ & Judged inputs\\
+Study & Domain & Pref. $\uparrow$\\
 \midrule
 \input{figures/ideal_scenario/downstream}
 \bottomrule
@@ -1173,12 +1221,12 @@ Study & Domain & Pref. $\uparrow$ & $\Delta$Reg $\downarrow$ & Judged inputs\\
 \caption{\textbf{Downstream controls and per-arm outcomes.}
 Preference, major regression, and invalidity are percentages.
 Regression describes the first arm relative to $y_0$ (C2) or Base (C3), not necessarily the row's comparator.
-Judged and requested input counts are reported separately.}
+Values equally weight the four domains.}
 \label{tab:downstream-detail}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}Yccccc@{}}
+\begin{tabularx}{\linewidth}{@{}Yccc@{}}
 \toprule
-Contrast & Win / tie / loss & Pref. & Major regression & Invalid & Judged / requested\\
+Contrast & Pref. & Major regression & Invalid\\
 \midrule
 \input{figures/ideal_scenario/downstream_detail}
 \bottomrule
@@ -1333,7 +1381,7 @@ Figs.~\ref{fig:teaser}, \ref{fig:overview} & Intuition and method & Existing art
 Table~\ref{tab:main-alignment} & Final evaluator comparison & Seven methods; frozen test groups; independent runs; rankings where available; coverage\\
 Figure~\ref{fig:c1-landscape} & Breadth, heterogeneity, deployment trade-off & Admitted task list; paired Seed/GEPA effects; actual per-output costs\\
 Figure~\ref{fig:downstream} & C2/C3 across four families & SV4/IG1/TG1/AR1 outcomes, new blind judgments, paired intervals; separate interventions\\
-Figure~\ref{fig:budget-tests} & Search dynamics and mechanism & Cost-stamped checkpoints; four control conditions; native baselines; reviewed directions\\
+Figure~\ref{fig:budget-tests} & Search dynamics and mechanism & Cost-stamped checkpoints; history/fixed-patience policies; diagnostics and staging controls\\
 Table~\ref{tab:downstream-results} & Downstream human benefit & New C2 outputs and votes; C3 only after authorized training; regression labels\\
 Table~\ref{tab:domains} & Candidate scope & Fixed task codes and standards; not completion counts\\
 Table~\ref{tab:data-sources} & Resource roles & Primary source, version, exact assets, feedback construct, permissions\\
@@ -1345,8 +1393,9 @@ Table~\ref{tab:adaptation} & Baseline fidelity & Official code revisions, wrappe
 Table~\ref{tab:cost-results} & Practical cost & All search/diagnostic/failed calls, deployed latency and cost\\
 Figure~\ref{fig:runtime} & Evaluation program interfaces & Existing conceptual runtime diagram; no empirical fill needed\\
 Table~\ref{tab:domain-results} & Full C1 breakdown & Domain-by-method-by-run results, dimensional endpoints, denominators\\
-Table~\ref{tab:search-results} & Search-control effects & Four matched controls, same-space contrast, independent runs\\
-Figure~\ref{fig:acquisition} & Feedback efficiency and interaction & Nested label budgets, measured annotation time, fresh seed-based searches\\
+Table~\ref{tab:search-results} & Search-control effects & Current policy and component controls, same-space contrast, independent runs\\
+Table~\ref{tab:mechanism-checks} & Distinguishing incomplete and harmful corrections & Prespecified tool-integration, execution-repair, and harmful-correction cases\\
+Figure~\ref{fig:acquisition} & Feedback efficiency and anchor coverage & Frozen label budgets, measured annotation time, anchor controls\\
 Table~\ref{tab:mining-results} & Mining / end-to-end estimates & Sampling policies and two-by-two cells at each fixed budget\\
 Table~\ref{tab:component-results} & Evidence and feedback attribution & Paired compatible interventions and same-group label-detail runs\\
 Figure~\ref{fig:trajectory} & What changed within a direction? & Candidate code hashes, parent links, observations, diagnoses, outcomes, costs\\

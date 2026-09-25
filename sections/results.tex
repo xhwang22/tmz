@@ -1,7 +1,6 @@
-\paragraph{C1: evaluator agreement and output selection.}
-Methods score the same outputs pointwise, without human labels or opponent information.
+Methods score identical outputs pointwise without human labels or opponent information.
 Table~\ref{tab:main-alignment} separates strict preference agreement from Best-of-$N$ accuracy and normalized rank regret.
-Selection requires human-ranked groups, not pair-only data.
+Selection uses independently human-ranked output groups, not rankings reconstructed from incomplete pair labels.
 
 \begin{table}[!htbp]
 \caption{\textbf{C1: final held-out performance.}
@@ -22,34 +21,14 @@ Evaluator & Pair $\uparrow$ & Bo$N$ $\uparrow$ & Reg $\downarrow$ & Coverage $\u
 \centering
 \input{figures/results_landscape_pending}
 \caption{\textbf{C1 breadth and evaluation cost.}
-(a) Task families and output types.
-(b) Four-domain modeled cost and agreement.
-(c) Agreement: EvalOpt in lake green, baselines in family shades; all task groups use the same truncated 50--100\% axis.
-Four tasks reuse Table~\ref{tab:main-alignment}; fourteen additional tasks are excluded from its means; four remain unfilled.}
+(a) Candidate task families and output types.
+(b) Four-domain agreement and Seed-normalized model cost.
+(c) Agreement across tasks, with EvalOpt in lake green and baselines in family shades.
+The same 50--100\% scale applies throughout (c).
+Four domains reuse Table~\ref{tab:main-alignment}; fourteen additional assignments do not enter its mean, and four slots remain empty.}
 \label{fig:c1-landscape}
 \end{figure}
 
-Figure~\ref{fig:c1-landscape}c reuses the four-domain comparison, with additional tasks excluded from all means.
-Panel (b) estimates EvalOpt at \ResultDeployCost{} times Seed's model cost, assuming Seed-like runtime profiles where unavailable (Appendix~\ref{app:adaptation}); deployment costs remain unmeasured.
-
-\paragraph{C2: critic-guided refinement.}
-A frozen generator refines the same fresh $y_0$ using Seed or EvalOpt critiques, or no critique \citep{madaan2023selfrefine}, at matched resources.
-Figure~\ref{fig:downstream}a reports the EvalOpt-versus-Seed contrast separately for each representative domain.
-The no-critic comparison tests the value of critique beyond another revision, while $y_0$ anchors nondegradation (Table~\ref{tab:downstream-detail}).
-Both require new blinded judgments of the exact outputs, independent of evaluator scores.
-
-\paragraph{C3: reward-guided training.}
-Figure~\ref{fig:downstream}b compares generators trained with frozen Seed and EvalOpt rewards, using the same starting checkpoint and policy-training recipe within each domain \citep{hu2022lora,shao2024deepseekmath}.
-New human judgments assess the trained outputs; Base provides the no-update reference.
-Reward preflight precedes training, with failed or incomplete studies reported under the fixed roster (Appendix~\ref{app:training}).
-
-\begin{figure}[!htbp]
-\centering
-\input{figures/downstream_results_pending}
-\caption{\textbf{Downstream use across four task families.}
-(a) EvalOpt-critic versus Seed-critic refinement of the same initial outputs.
-(b) EvalOpt-reward versus Seed-reward policy training.
-Both panels use tie-aware human preference and a 50\% parity line, with domains in the same order; they represent separate experiments, not a shared learning curve.
-Paired intervals, regression rates, validity, and judgment counts accompany the final measurements in Appendix~\ref{app:downstream}.}
-\label{fig:downstream}
-\end{figure}
+Figure~\ref{fig:c1-landscape} separates domain coverage from the four-domain comparison.
+Search cost is distinct from the cost of deploying a frozen evaluator.
+Deployment accounting includes actual model calls, tokens, tools, latency, and failures under a common cap (Appendix~\ref{app:adaptation}).
