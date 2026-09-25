@@ -6,11 +6,13 @@ The evaluation asks whether EvalOpt improves evaluator quality, whether continua
 Downstream refinement and training assess separate uses of the resulting evaluator.
 
 \paragraph{Tasks and assessment.}
-Broad evaluator assessment (C1) targets 22 candidate domains in four families (Figure~\ref{fig:c1-landscape}a).
-Four representative domains receive the intensive search and mining comparisons: webpage generation (SV4), image captioning (IG1), summarization (TG1), and research proposals (AR1).
-The same roster defines critic-guided refinement (C2) and reward-guided training (C3).
+C1 evaluates all admitted domains on equal terms, targeting 20 domains in four task families (Figure~\ref{fig:c1-landscape}a).
+Each domain uses the same comparator set and replication policy; overall accuracy weights domains equally, regardless of dataset size.
+Task families organize reporting without changing domain weights.
 Each admitted domain receives a separately adapted evaluator.
 Source groups are split before Train-only mining, with fixed Val and Test cohorts shared across methods.
+The primary endpoint is accuracy on decisive human orderings, inferred from independent candidate scores; predicted score ties count as errors.
+Human ties, ranking correlations, and multi-output selection are separate endpoints.
 Task admission and annotation requirements are fixed before outcomes are examined (Appendix~\ref{app:domains}).
 
 \paragraph{Comparisons and resources.}
@@ -33,32 +35,32 @@ Terminal Val-selected evaluators receive a locked Test assessment, with paired u
 \label{sec:analysis}
 
 The central comparison separates continuation based on diagnostics from simply retaining history or spending longer on a direction.
+Detailed search and mining analyses use SV4, IG1, TG1, and AR1, selected for task diversity and measurement feasibility before comparative outcomes are examined; this analysis subset does not define a primary tier of C1 domains.
 \emph{History-based search} retains diagnostics but may change correction after each revision.
 \emph{Fixed-patience continuation} develops each direction for a Train-tuned number of attempts, subject to the same safety and resource limits.
 EvalOpt instead conditions continuation on accumulated diagnostics.
 The controls share confirmation, staging, and Val retention where applicable; direction changes still require their stated reference and panel initialization.
 These are policy comparisons, not interventions on a direction identifier alone.
 
-\begin{figure}[!htbp]
+\begin{figure}[!t]
 \centering
 \input{figures/search_dynamics_pending}
-\caption{\textbf{Direction continuation and its supporting mechanisms.}
-(a) Test agreement of cost-stamped checkpoints, all assessed after search is frozen.
-(b) Terminal agreement changes when continuation, retained history, detailed feedback, or staging is changed.
-Both panels use the same four-domain cohort and feedback budget.}
+\caption{\textbf{Search ablations and downstream utility.}
+(a) Terminal Test accuracy changes relative to full EvalOpt at matched search and feedback budgets.
+(b) Tie-aware human preference for EvalOpt-guided versus Seed-guided outputs, using critique for C2 refinement and reward for C3 training. Bar lengths give percentage points above 50\% parity; endpoint labels give preference rates.
+Both panels use SV4, IG1, TG1, and AR1, weighted equally in aggregate.}
 \label{fig:budget-tests}
 \end{figure}
 
-Figure~\ref{fig:budget-tests}a compares checkpoint quality at equal search cost.
-Figure~\ref{fig:budget-tests}b separates no-history, reduced-feedback, and no-staging interventions.
-The first two restrict the revision agent's evidence without disabling controller checks; no-staging requires immediate reference confirmation before advancing $W$.
-Additional controls fix modification scope, reset the parent, or branch immediately (Appendix~\ref{app:ablations}).
+Figure~\ref{fig:budget-tests}a summarizes terminal accuracy differences for the search-policy and mechanism controls.
+No retained history and reduced feedback restrict the evolution agent's evidence without disabling controller checks; no staging requires immediate reference confirmation before advancing $W$.
+Fixed scope, immediate branching, and text-only edits test the remaining search restrictions (Appendix~\ref{app:ablations}).
 Controlled tool-integration cases and independently reviewed natural trajectories test whether subsequent edits address unrealized changes, unused evidence, or harmful corrections, including failed directions.
 
 \subsection{Feedback efficiency}
 \label{sec:feedback-efficiency}
 
-Mining is assessed by final Test agreement at a fixed feedback and evolution budget.
+Mining is assessed by final Test pair accuracy at a fixed feedback and evolution budget.
 Random, uncertainty, cross-model disagreement, and mined subsets use the same pool and feedback detail, restarting evolution at each label budget.
 Figure~\ref{fig:acquisition} separates label efficiency from annotation time and compares mining with and without its random anchor.
 Anchor labels count within the same total budget.
@@ -68,8 +70,9 @@ Annotation agreement, abstention, and adjudication costs check whether targeting
 \subsection{Independent downstream utility}
 \label{sec:downstream-utility}
 
+C2 and C3 use SV4, IG1, TG1, and AR1 under their separate downstream protocols.
 C2 compares the same fresh output $y_0$, a no-critic revision \citep{madaan2023selfrefine}, and revisions guided by Seed or EvalOpt critiques at matched generator resources.
 New blinded judgments assess preference and regressions against $y_0$, rather than evaluator scores.
 C3 compares Base with policies trained using frozen Seed or EvalOpt rewards under the same within-domain recipe \citep{hu2022lora,shao2024deepseekmath}.
 It separately tests whether offline evaluator quality survives reward optimization.
-Figure~\ref{fig:downstream} and Appendices~\ref{app:downstream}--\ref{app:training} specify both assessments; C3 follows the core search, mining, and refinement studies.
+Figure~\ref{fig:budget-tests}b summarizes both assessments by domain and equal-domain mean; Appendix~\ref{app:downstream} gives the control-arm and regression comparisons.

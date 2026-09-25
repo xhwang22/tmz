@@ -14,6 +14,7 @@
 !/figures/downstream_results_pending.tex
 !/figures/downstream_preview.pdf
 !/figures/ideal_scenario/annotation.tex
+!/figures/ideal_scenario/c1_domains.tex
 !/figures/ideal_scenario/components.tex
 !/figures/ideal_scenario/cost.tex
 !/figures/ideal_scenario/domain.tex
@@ -27,6 +28,8 @@
 !/figures/ideal_scenario/numbers.tex
 !/figures/ideal_scenario/search.pdf
 !/figures/ideal_scenario/search.tex
+!/figures/ideal_scenario/search_compact.tex
+!/figures/ideal_scenario/mining_compact.tex
 !/figures/mining_results_pending.tex
 !/figures/overview.pdf
 !/figures/overview.tex

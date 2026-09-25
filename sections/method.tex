@@ -15,7 +15,7 @@ Train evidence governs provisional exploration and confirmation, while sealed Va
 Starting from a seed evaluator $E_0$, EvalOpt revises an agentic evaluator $E_\theta$ using human feedback, with the base model $M$ fixed.
 Its editable configuration $\theta$ specifies prompts, tool use, component connections, and scoring rules.
 For a task $x$, it evaluates each output $y$ separately, without seeing the competing output or human preference, and records intermediate observations alongside its score.
-An LLM-based \emph{revision agent} diagnoses execution records and proposes revisions; each candidate is a complete revised evaluator.
+An LLM-based \emph{evolution agent} diagnoses execution records and proposes revisions; each candidate is a complete revised evaluator.
 Appendix~\ref{app:synthesis} describes the reference implementation.
 
 Within a domain $D$ sharing an evaluation standard, the objective is agreement with human preferences on unseen inputs,
@@ -29,7 +29,7 @@ Within a domain $D$ sharing an evaluation standard, the objective is agreement w
 Here $y^+$ is the human-preferred output, $\mathcal P_D$ is the domain distribution, and $\bar s_\theta$ is the score under a protocol frozen before search, with execution randomness $\xi$.
 Original-input groups are split into Train, Val, and Test before mining.
 Only Train supplies labels, cases, and traces for revision.
-Val cases and traces remain sealed; the revision agent receives only the promotion indicator and retained best score.
+Val cases and traces remain sealed; the evolution agent receives only the promotion indicator and retained best score.
 Val and Test cohorts remain fixed, and Test is used only after the final evaluator is frozen (Appendix~\ref{app:measurement}).
 
 \subsection{Disagreement-based preference mining}
@@ -59,19 +59,19 @@ We fill the remaining feedback budget in decreasing order of $P(r)$, with pair i
 Selected preferences come from compatible existing labels or blinded annotation.
 Reuse requires the same task and output pair and matching evaluation criteria and annotation protocol, or an explicitly audited harmonization.
 Both routes preserve label provenance and missing feedback fields; unselected labels remain hidden.
-Signal inventories and anchor sizes are specified in Appendix~\ref{app:annotation}.
+Appendix~\ref{app:annotation} details signal configuration, source grouping, and anchor selection.
 Mining is assessed by downstream evaluator improvement, not disagreement yield.
 
 \begin{figure}[t]
 \centering
 \input{figures/overview}
-\caption{EvalOpt overview.
-(a) Acquire preferences using conflict ranking and a random anchor.
-(b) Candidate evaluator $C$ produces scores and traces; the revision agent compares this evidence with declared predictions to guide further edits.
-Within one direction, the controller can stage $C$ as working evaluator $W$, confirm it by updating both reference $R$ and $W$, or restore $W$ from $R$.
-Diagnostic history persists across these updates; modification scope limits each edit from $W$.
-(c) Val checkpoints select best evaluator $B$ independently of Train confirmation; the frozen evaluator supports downstream use and a locked Test assessment.
-The state diagram and AI-generated pictograms are schematic illustrations rather than measured runs.}
+\caption{\textbf{EvalOpt workflow.}
+\textbf{Preference mining} combines comparisons ranked by disagreement with a random sample for human feedback.
+The \textbf{evolution agent} uses this feedback to revise the evaluation program while keeping the base model fixed.
+It retains execution diagnostics even when a candidate is rejected, using them to choose the next edit or check within the same direction.
+The agent uses these diagnostics to decide when to move on, subject to limits on consecutive rejections and resource use.
+The \textbf{evolved evaluator} supports output selection, critique-guided refinement, and reward-guided training.
+Application examples are schematic; pictograms are AI-generated.}
 \label{fig:overview}
 \end{figure}
 
@@ -82,7 +82,7 @@ The state diagram and AI-generated pictograms are schematic illustrations rather
 \paragraph{Maintaining an improvement direction.}
 A direction pairs a target failure pattern with a proposed correction.
 Revisions that develop or test that correction remain within the direction; adopting a different correction begins a new one.
-Its diagnostic history retains observed outcomes, the revision agent's interpretations, and unresolved questions across revisions.
+Its diagnostic history retains observed outcomes, the evolution agent's interpretations, and unresolved questions across revisions.
 Search persists at the direction level, while confirmation and retention act on complete evaluators.
 
 A controller applies prespecified update rules to a \emph{reference evaluator} $R$, a \emph{working evaluator} $W$, and a \emph{best evaluator} $B$.
@@ -92,12 +92,12 @@ Revisions start from $W$.
 Within a direction, EvalOpt may advance $W$ provisionally, update $R$ to $W$ after confirmation, or roll $W$ back to $R$; only Val can promote a checkpoint to $B$.
 
 \paragraph{Revising and diagnosing.}
-The revision agent revises $W$ to produce candidate $C$, using prior attempts to identify what remains unresolved.
+The evolution agent revises $W$ to produce candidate $C$, using prior attempts to identify what remains unresolved.
 It identifies the failures to address and the behavior intended to change or remain unchanged.
 Declared predictions about intermediate outputs are recorded before execution and evaluated as mechanism checks against the resulting traces.
 These traces distinguish an intended change that failed to materialize from an intermediate output that was produced but not used in scoring.
 Either can motivate further work on the same correction despite unchanged preference agreement.
-Observed records remain separate from the revision agent's interpretation and survive rejection.
+Observed records remain separate from the evolution agent's interpretation and survive rejection.
 
 \paragraph{Measuring progress.}
 Parent and candidate are compared on the same cases under a fixed scoring protocol and matched execution conditions.
@@ -128,24 +128,24 @@ A provisional chain shares a fixed exploration window and loss limit relative to
 
 \begin{center}
 \small
-\begin{tabularx}{\linewidth}{@{}P{0.43\linewidth}Y@{}}
+\begin{tabularx}{\linewidth}{@{}P{0.46\linewidth}lY@{}}
 \toprule
-Outcome & Evaluator update\\
+Condition & Action & State update\\
 \midrule
-Confirmation criteria met & Update $R\gets C$ and $W\gets C$.\\
-Benefit unresolved, exploration allowed & Keep $R$; stage $W\gets C$.\\
-Measured rejection or exploration limit reached & Restore $W\gets R$; retain diagnostics.\\
-Execution-integrity failure & Stop search; retain the last valid $B$.\\
+Confirmation criteria met & Confirm & $R\gets C$, $W\gets C$\\
+Not confirmed; provisional exploration allowed & Stage & $W\gets C$; $R$ unchanged\\
+Measured rejection or provisional limit reached & Roll back & $W\gets R$\\
 \bottomrule
 \end{tabularx}
 \end{center}
 
-With complete measurements, a supported loss or failed declared mechanism check can reject the candidate and restore $W$ to $R$ without ending the direction.
-This rollback discards the provisional chain, not its diagnostics.
-Missing required measurement outcomes instead trigger the execution-integrity stop: search ends because the comparison is incomplete, not because the correction has been judged ineffective.
+With complete measurements, a supported loss or failed declared mechanism check can reject the candidate and discard the provisional chain by restoring $W$ to $R$.
+Diagnostic history survives rollback, which does not by itself end the direction; only Val checkpoint selection updates $B$.
+Missing required measurement outcomes instead terminate search, retaining the last valid $B$.
+This execution-integrity stop reflects an incomplete comparison, not evidence that the correction is ineffective.
 While the direction remains active, the next revision or diagnostic addresses the same correction.
-A new direction is proposed only after the revision agent records an ending decision based on accumulated diagnostics, consecutive rejections reach their limit, or direction resources are exhausted.
-The controller enforces these limits, while the revision agent interprets the evidence and maintains the direction's semantic continuity.
+A new direction is proposed only after the evolution agent records an ending decision based on accumulated diagnostics, consecutive rejections reach their limit, or direction resources are exhausted.
+The controller enforces these limits, while the evolution agent interprets the evidence and maintains the direction's semantic continuity.
 
 \paragraph{Adapting the modification scope.}
 We use a trust-region-inspired policy~\citep{conn2000trust} to adapt the permitted scope of each revision from $W$.

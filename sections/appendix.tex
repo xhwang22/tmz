@@ -1,4 +1,4 @@
-% Appendix counters are independent of the main table and four main figures.
+% Appendix counters are independent of the main text.
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \renewcommand{\thefigure}{A\arabic{figure}}
@@ -6,326 +6,97 @@
 \renewcommand{\theHfigure}{appendix.\arabic{figure}}
 \renewcommand{\theHtable}{appendix.\arabic{table}}
 
-\section{Domains, data sources, and study readiness}
+\section{Data and evaluation settings}
 \label{app:domains}
 
-A \emph{domain} is a collection of tasks sharing core quality dimensions, their priorities, the overall decision rule, and the human annotation protocol.
-The experimental unit is a separately adapted evaluator within one such standard.
-Table~\ref{tab:domains} lists 22 candidate domains in four families; inclusion does not establish experimental readiness.
-C1 assesses every admitted domain in this scope; C2 and C3 use the common representative roster TD-SV4, TD-IG1, TD-TG1, and TD-AR1.
-Public resource availability determines candidate routes, independently of the local execution inventory.
-A domain enters the final comparison only after its data, standard, executable interface, and independent test are frozen.
-All admitted domains must be reported regardless of their results.
+\subsection{Task scope and label provenance}
+A domain has a fixed quality standard and a separately adapted evaluator.
+Table~\ref{tab:data-sources} combines the 20-domain roster with its public sources and label routes.
+All admitted domains receive equal weight in C1, regardless of their size or observed results.
+SV1, SV3, SV5, IG6, TG2, and AR3 still require a compatible overall-label release or fixed-evidence cohort before empirical evaluation.
+SV6 uses aesthetic ranks, IG5 overall MOS, TG3 segment scores, and AR2 a three-dimension composite; these human-derived orderings are reported separately from direct choices in a sensitivity analysis.
+Admission requires a frozen source version, permission for the intended processing, executable inputs, and an independent test cohort.
 
 \begingroup
 \small
-\renewcommand{\arraystretch}{1.13}
-\begin{longtable}{@{}P{1.23cm}P{4.63cm}P{7.02cm}@{}}
-\caption{Complete domain panorama. The four families organize the scope;
-every row requires its own standard and readiness audit. These are study
-candidates, not 22 completed evaluations.}
-\label{tab:domains}\\
+\begin{longtable}{@{}P{.85cm}P{4.0cm}P{7.83cm}@{}}
+\caption{Task scope, public resources, and C1 label routes. Direct overall preferences and human-score-derived orderings retain their distinct provenance.}
+\label{tab:data-sources}\\
 \toprule
-ID & Domain & Core quality considerations \\
+ID & Task and public sources & C1 labels and access conditions\\
 \midrule
 \endfirsthead
 \multicolumn{3}{l}{\small Table~\thetable\ continued}\\
 \toprule
-ID & Domain & Core quality considerations \\
+ID & Task and public sources & C1 labels and access conditions\\
 \midrule
 \endhead
 \bottomrule
 \endfoot
-\rowcolor{pBlueWash}
-\multicolumn{3}{@{}l}{\textcolor{pBlue}{\textbf{Structured visual artifacts}}}\\
-TD-SV1 & Brief-conditioned single-slide generation &
-Brief coverage, hierarchy, readability, composition, and visual consistency.\\
-TD-SV2 & Screenshot-conditioned webpage reconstruction &
-Reference content, spatial arrangement, typography, and visual fidelity.\\
-TD-SV3 & Data-to-visualization generation &
-Data fidelity, valid encodings, readability, and communicative usefulness.\\
-TD-SV4 & Specification-conditioned webpage generation &
-Requirement satisfaction, functional behavior, usability, and visual organization.\\
-TD-SV5 & Source-grounded slide-deck generation &
-Source faithfulness, narrative, coverage, slide readability, and deck consistency.\\
-TD-SV6 & Topic-conditioned slide-deck generation &
-Relevance, factual support, narrative completeness, audience fit, and presentation quality.\\
+TD-SV1 & Brief-conditioned single-slide generation\newline \href{https://huggingface.co/datasets/tyrionhuu/PPTBench-Generation}{PPTBench}; \href{https://github.com/zhuohaouw/SlideAudit}{SlideAudit} & Public slide tasks and defect annotations; no matched overall preferences. Generate candidates and annotate $H_0$. PPTBench's data license is unspecified.\\
+TD-SV2 & Screenshot-conditioned webpage reconstruction\newline \href{https://huggingface.co/datasets/SALT-NLP/Design2Code}{Design2Code}; \href{https://huggingface.co/datasets/SALT-NLP/Design2Code_human_eval_pairwise}{human-pair release} & Screenshots, HTML, and downloadable human votes; audit source overlap and the separate annotation license.\\
+TD-SV3 & Data-to-visualization generation\newline \href{https://github.com/TsinghuaDatabaseGroup/nvBench}{nvBench}; \href{https://github.com/vis-nlp/ChartQA}{ChartQA} & Table/goal/chart resources and QA references, not overall preferences. Collect same-goal $H_0$.\\
+TD-SV4 & Specification-conditioned webpage generation\newline \href{https://huggingface.co/datasets/lmarena-ai/webdev-arena-preference-10k}{WebDev Arena}; \href{https://huggingface.co/datasets/luzimu/WebGen-Bench}{WebGen-Bench} & WebDev supplies $H_0$, requests, and candidate code under a custom license; WebGen supplies a separate instruction pool. Audit transfer and third-party processing restrictions.\\
+TD-SV5 & Source-grounded slide-deck generation\newline \href{https://huggingface.co/datasets/PresentBench/PresentBench}{PresentBench}; PPTAgent \citep{pptagent2025} & 238 tasks; the paper reports whole-deck rankings on 24 tasks across five systems. Raw ranking availability and split size remain to be verified. Tasks are CC BY-NC.\\
+TD-SV6 & Topic-conditioned slide-deck generation\newline \href{https://huggingface.co/datasets/Yqy6/Slides-Align}{Slides-Align}; \href{https://github.com/yunqiaoyang/SlidesGen-Bench}{SlidesGen-Bench} & 1,326 ranking records / 187 topics in the audited card; newer releases differ. Freeze the aesthetic standard and topic-conditioned subset; source-heavy tasks overlap SV5.\\
 \addlinespace
-\rowcolor{pTealWash}
-\multicolumn{3}{@{}l}{\textcolor{pTeal}{\textbf{Image generation and understanding}}}\\
-TD-IG1 & Detailed image-caption generation &
-Grounding, coverage, relation accuracy, specificity, and absence of hallucination.\\
-TD-IG2 & Text-to-image generation &
-Prompt alignment, object and relation accuracy, visual coherence, and preference.\\
-TD-IG3 & Single-source instruction-based image editing &
-Instruction fulfillment, preservation of unrequested content, and image quality.\\
-TD-IG4 & LR-conditioned image super-resolution &
-Reference fidelity when available, perceptual detail, artifact avoidance, and plausible texture.\\
-TD-IG5 & Text-to-3D object generation &
-Prompt correspondence, geometry, appearance, and multi-view consistency.\\
-TD-IG6 & Image-to-3D object generation &
-Source-view fidelity, plausible unseen geometry, appearance, and multi-view consistency.\\
+TD-IG1 & Detailed image-caption generation\newline \href{https://github.com/njucckevin/CapArena}{CapArena}; DOCCI \citep{onoe2025docci} & CapArena's human branch supplies image/caption battles; annotation rights need confirmation. DOCCI supplies references; CapArena-Auto supplies model judgments.\\
+TD-IG2 & Text-to-image generation\newline \href{https://huggingface.co/datasets/ymhao/HPDv2}{HPDv2}; \href{https://huggingface.co/datasets/zai-org/ImageRewardDB}{ImageRewardDB} & Public human preferences; GenAI Arena's generation release has 3,192 current-test records (1,735 in test\_v1). Keep dataset versions and reward-training overlap separate.\\
+TD-IG3 & Single-source instruction-based image editing\newline \href{https://huggingface.co/datasets/TIGER-Lab/GenAI-Bench}{GenAI Arena}; \href{https://huggingface.co/datasets/osunlp/MagicBrush}{MagicBrush} & GenAI editing supplies 983 current-test preference records (919 in test\_v1). MagicBrush supplies reference edits, not candidate preferences.\\
+TD-IG4 & LR-conditioned image super-resolution\newline \href{https://huggingface.co/datasets/casyssong/RefSR-18K}{RefSR-18K}; \href{https://github.com/yushuaisong/RefReward-SR}{RefReward-SR} & 4,499 train groups, 3,562 extra groups, and 200 ID / 200 OOD groups; four candidates per group. ID/OOD share LR inputs. Audit rights and overlap.\\
+TD-IG5 & Text-to-3D object generation\newline \href{https://huggingface.co/datasets/ccccby/MATE-3D}{MATE-3D}; \href{https://huggingface.co/datasets/3DGen/3DGen-Bench}{3DGen-Bench} & MATE-3D supplies 1,280 meshes and human MOS including overall quality (CC BY 4.0). Derive comparable-output preferences under a frozen rule. 3DGen remains gated.\\
+TD-IG6 & Image-to-3D object generation\newline \href{https://huggingface.co/datasets/3d-arena/3d-arena}{3D Arena}; 3DGen-Bench & Public input images and meshes; reusable Arena raw votes were not verified. The alternative preference release is gated.\\
 \addlinespace
-\rowcolor{pGoldWash}
-\multicolumn{3}{@{}l}{\textcolor{pGold}{\textbf{Text generation}}}\\
-TD-TG1 & Source-grounded document summarization &
-Faithfulness, relevance, coverage, coherence, and concision.\\
-TD-TG2 & RAG-supported long-form answer generation &
-Answer correctness, evidence grounding, attribution, completeness, and organization.\\
-TD-TG3 & Machine translation &
-Meaning preservation, omissions and additions, fluency, terminology, and style.\\
-TD-TG4 & Instruction-constraint-following response generation &
-Constraint satisfaction, substantive correctness, relevance, and response quality.\\
-TD-TG5 & Open-ended dialogue-response generation &
-Contextual appropriateness, helpfulness, consistency, safety, and conversational quality.\\
+TD-TG1 & Source-grounded document summarization\newline \href{https://huggingface.co/datasets/openai/summarize_from_feedback}{summarize-from-feedback} & Public source posts, summaries, and overall human comparisons. Freeze source-only TL;DR and group duplicate posts.\\
+TD-TG2 & RAG-supported long-form answer generation\newline \href{https://github.com/YuchenFan48/LFQA-E}{LFQA-E}; \href{https://github.com/princeton-nlp/ALCE}{ALCE} & Expert answer pairs plus public retrieval/citation resources. Select a subset with matched, fixed evidence; ALCE ratings are dimensional.\\
+TD-TG3 & Machine translation\newline \href{https://github.com/google/wmt-mqm-human-evaluation}{WMT MQM}; \href{https://huggingface.co/datasets/FinnSchmidt/CD-ESA}{CD-ESA} & WMT22 includes about 2,000 sources per language pair, with segment-level human quality scores. Derive preferences within comparable sources; do not use system-level accuracy. CD-ESA is CC BY-NC.\\
+TD-TG4 & Instruction-constraint-following response generation\newline \href{https://github.com/thu-coai/IF-RewardBench}{IF-RewardBench} & Public instructions, responses, checklists, and preference graphs; human/derived/model edge provenance requires verification.\\
+TD-TG5 & Open-ended dialogue-response generation\newline \href{https://huggingface.co/datasets/nvidia/HelpSteer2}{HelpSteer2} & Downloadable direct human-preference branch (CC BY 4.0), distinct from the five-attribute scores.\\
 \addlinespace
-\rowcolor{pResearchWash}
-\multicolumn{3}{@{}l}{\textcolor{pResearch}{\textbf{Automated research}}}\\
-TD-AR1 & Research-idea generation &
-Novelty relative to evidence, significance, feasibility, and testability.\\
-TD-AR2 & ML/NLP ablation-plan generation &
-Hypothesis identification, controlled contrasts, confound management, and feasibility.\\
-TD-AR3 & Table-to-insight report generation &
-Numerical faithfulness, appropriate inference, uncertainty, and relevance.\\
-TD-AR4 & Related-work generation &
-Coverage, citation correctness, faithful comparison, and synthesis.\\
-TD-AR5 & Peer-review critique generation &
-Technical accuracy, evidence, significance assessment, fairness, and actionable criticism.\\
-\end{longtable}
-\FloatBarrier
-\endgroup
-
-
-\paragraph{What existing resources actually supply.}
-Table~\ref{tab:data-sources} distinguishes inputs and reference material from judgments on generated outputs.
-A published dataset name is not evidence that the required preferences, grouping identifiers, or permissions are available.
-In particular, a caption reference is not a preference between captions, and dimensional scores do not define an overall ordering without an explicit human standard.
-The source audit records URLs and versions separately from experimental completion.
-
-\begingroup
-\small
-\begin{longtable}{@{}P{.8cm}P{3.05cm}P{4.25cm}P{4.58cm}@{}}
-\caption{Public resources and experimental routes for all 22 candidate domains, audited September 2026.
-$H_0$: direct overall human preference; dimensional judgments and references require a separate overall-label route.
-C2 denotes refinement and C3 generator training; an available route is not a completed experiment.}
-\label{tab:data-sources}\\
-\toprule
-ID & Public source & Evidence for C1 & C2 / C3 route and conditions\\
-\midrule
-\endfirsthead
-\multicolumn{4}{l}{\small Table~\thetable\ continued}\\
-\toprule
-ID & Public source & Evidence for C1 & C2 / C3 route and conditions\\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-SV1 & \href{https://huggingface.co/datasets/tyrionhuu/PPTBench-Generation}{PPTBench}; \href{https://github.com/zhuohaouw/SlideAudit}{SlideAudit} & Public slide tasks and defect annotations; no matched overall preferences. Generate candidates and annotate $H_0$. & \href{https://github.com/gitbrent/PptxGenJS}{PptxGenJS} supports code editing/rendering; C3 needs a code-policy reward adapter. PPTBench data license is unspecified.\\
-SV2 & \href{https://huggingface.co/datasets/SALT-NLP/Design2Code}{Design2Code}; \href{https://huggingface.co/datasets/SALT-NLP/Design2Code_human_eval_pairwise}{human-pair release} & Screenshots, HTML, and downloadable human votes; audit source overlap and the separate annotation license. & Render-and-revise interface for C2; VLM GRPO with a custom rendering/reward adapter for C3.\\
-SV3 & \href{https://github.com/TsinghuaDatabaseGroup/nvBench}{nvBench}; \href{https://github.com/vis-nlp/ChartQA}{ChartQA} & Table/goal/chart resources and QA references, not overall preferences. Collect same-goal $H_0$. & \href{https://github.com/microsoft/lida}{LIDA} supports generation, editing, and execution; C3 needs a chart-code reward adapter.\\
-SV4 & \href{https://huggingface.co/datasets/lmarena-ai/webdev-arena-preference-10k}{WebDev Arena}; \href{https://huggingface.co/datasets/luzimu/WebGen-Bench}{WebGen-Bench} & WebDev supplies $H_0$, requests, and candidate code under a custom license; WebGen supplies a separate instruction pool. & \href{https://github.com/mnluzimu/WebGen-Agent}{WebGen-Agent} supports refinement; its WebGen-RL code implements Step-GRPO. Audit transfer/processing restrictions.\\
-SV5 & \href{https://huggingface.co/datasets/PresentBench/PresentBench}{PresentBench}; PPTAgent \citep{pptagent2025} & Public source PDFs, deck tasks, and checklists, not whole-deck $H_0$. Tasks are CC BY-NC; source rights remain separate. & \href{https://github.com/icip-cas/PPTAgent}{PPTAgent} supplies generation/revision; C3 needs deck rendering and policy-reward integration.\\
-SV6 & \href{https://huggingface.co/datasets/Yqy6/Slides-Align}{Slides-Align}; \href{https://github.com/yunqiaoyang/SlidesGen-Bench}{SlidesGen-Bench} & Public decks and human rankings across topics; aesthetic criteria must match the intended overall standard or receive new $H_0$. & Deck revision tools support C2; generator training needs custom integration. Not a substitute for source-grounded SV5.\\
-\addlinespace
-IG1 & \href{https://github.com/njucckevin/CapArena}{CapArena}; DOCCI \citep{onoe2025docci} & CapArena's human branch supplies image/caption battles; annotation rights need confirmation. DOCCI supplies references; CapArena-Auto supplies model judgments. & Image-conditioned caption revision and VLM GRPO are available routes; collect new preferences on generated outputs.\\
-IG2 & \href{https://huggingface.co/datasets/ymhao/HPDv2}{HPDv2}; \href{https://huggingface.co/datasets/zai-org/ImageRewardDB}{ImageRewardDB} & Public human image preferences; audit reward-training overlap. Anonymous access to the audited Pick-a-Pic endpoint was restricted. & C2 requires a fixed editing-capable generator, not resampling. \href{https://github.com/yifan123/flow_grpo}{Flow-GRPO} supplies image-generator training.\\
-IG3 & \href{https://huggingface.co/datasets/osunlp/MagicBrush}{MagicBrush}; \href{https://huggingface.co/datasets/DogNeverSleep/EditReward-Compass}{EditReward-Compass} & MagicBrush supplies source/instruction/edited-target triples (CC BY 4.0), not $H_0$. Compass has dimensional preferences with unresolved label provenance/rights. & Editing models support C2; Flow-GRPO supports Qwen-Image-Edit and FLUX-Kontext for C3. Collect overall preferences and preserve the original source.\\
-IG4 & \href{https://huggingface.co/datasets/casyssong/RefSR-18K}{RefSR-18K}; \href{https://github.com/yushuaisong/RefReward-SR}{RefReward-SR} & Downloadable LR inputs and human candidate ranks; verify annotation and upstream image rights. & Released SR-GRPO trains the generator, not only a reward model. Base-weight access is conditional; C2 still needs a critique interface.\\
-IG5 & \href{https://huggingface.co/datasets/ccccby/MATE-3D}{MATE-3D}; \href{https://huggingface.co/datasets/3DGen/3DGen-Bench}{3DGen-Bench} & MATE-3D supplies meshes and dimensional MOS (CC BY 4.0), not $H_0$. 3DGen human-preference data are gated. & \href{https://github.com/microsoft/TRELLIS}{TRELLIS} releases text-to-3D weights and training code; critique and generator-GRPO integration remain custom.\\
-IG6 & \href{https://huggingface.co/datasets/3d-arena/3d-arena}{3D Arena}; 3DGen-Bench & Public input images and meshes; reusable Arena raw votes were not verified. The alternative preference release is gated. & TRELLIS and \href{https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1}{Hunyuan3D-2.1} supply generator ingredients; both C2 and reward training need adapters.\\
-\addlinespace
-TG1 & \href{https://huggingface.co/datasets/openai/summarize_from_feedback}{summarize-from-feedback} & Public source posts, summaries, and overall human comparisons. Freeze source-only TL;DR and group duplicate posts. & Text revision and standard LLM GRPO routes; original dataset training code is not a modern GRPO implementation.\\
-TG2 & \href{https://github.com/YuchenFan48/LFQA-E}{LFQA-E}; \href{https://github.com/princeton-nlp/ALCE}{ALCE} & Expert answer pairs plus public retrieval/citation resources. Select a subset with matched, fixed evidence; ALCE ratings are dimensional. & Text C2/C3 with the same frozen retrieval context; no extra retrieval in only one arm.\\
-TG3 & \href{https://github.com/google/wmt-mqm-human-evaluation}{WMT MQM}; \href{https://huggingface.co/datasets/FinnSchmidt/CD-ESA}{CD-ESA} & Human error annotations and quality scores, not native pair votes; validate conversion or acquire $H_0$. CD-ESA is CC BY-NC. & Standard text revision/training with source-language evidence and qualified final annotators.\\
-TG4 & \href{https://github.com/thu-coai/IF-RewardBench}{IF-RewardBench} & Public instructions, responses, checklists, and preference graphs; human/derived/model edge provenance requires verification. & Standard text C2/C3. Executable constraint checks supplement, rather than replace, overall human quality.\\
-TG5 & \href{https://huggingface.co/datasets/nvidia/HelpSteer2}{HelpSteer2} & Downloadable direct human-preference branch (CC BY 4.0), distinct from the five-attribute scores. & Standard text C2/C3; preserve conversation context and collect new outcome judgments.\\
-\addlinespace
-AR1 & \href{https://huggingface.co/datasets/yolo1213811/research-ideation-arena-dataset}{Research Ideation Arena} & Public expert overall/dimensional comparisons, proposals, and title/abstract contexts. Data are CC BY-NC; code is noncommercial. & Text C2/C3 under a fixed literature boundary; expert final judgments remain necessary. Full-paper retrieval is not intrinsic to this closed-context task.\\
-AR2 & \href{https://huggingface.co/datasets/yale-nlp/AbGen}{AbGen} & Public plans and three-dimensional human evaluation; obtain overall expert preferences and confirm data permissions. & Text revision/training evaluates the plan artifact, not execution of every proposed scientific experiment.\\
-AR3 & \href{https://github.com/zhenghaozhu23/InsightEval}{InsightEval}; \href{https://github.com/behavioral-data/BLADE}{BLADE}; \href{https://huggingface.co/datasets/allenai/discoverybench}{DiscoveryBench} & Public tables, goals, and expert references, not overall report preferences. InsightEval has no declared license. & LLM-plus-execution C2; C3 needs tool/reward integration and expert report comparisons.\\
-AR4 & \href{https://huggingface.co/datasets/BFTree/RWGBench}{RWGBench}; \href{https://github.com/UKPLab/acl2026-expert-rm}{SciRM} & Public literature tasks and reference text; downloadable matched expert labels from the SciRM-linked archive were not verified. & Standard text C2/C3 with frozen literature. SciRM trains an evaluator, not the output generator; acquire or verify expert $H_0$.\\
-AR5 & \href{https://huggingface.co/datasets/Reza8848/AAAR-1.0}{AAAR}; \href{https://github.com/TU2021/PaperAudit}{PaperAudit} & Public paper/review/weakness material and synthetic errors; collect expert preferences on complete reviews. & Text C2/C3 is possible. PaperAudit's GRPO targets paper-error detection, not general review quality.\\
+TD-AR1 & Research-idea generation\newline \href{https://huggingface.co/datasets/yolo1213811/research-ideation-arena-dataset}{Research Ideation Arena} & Public expert overall/dimensional comparisons, proposals, and title/abstract contexts. Data are CC BY-NC; code is noncommercial.\\
+TD-AR2 & ML/NLP ablation-plan generation\newline \href{https://huggingface.co/datasets/yale-nlp/AbGen}{AbGen} & AbGen-Eval has 100 tasks / 1,800 plans with three human dimensions. Their declared mean supports a composite-score endpoint, not direct overall votes. Confirm permissions.\\
+TD-AR3 & Peer-review critique generation\newline \href{https://huggingface.co/datasets/Reza8848/AAAR-1.0}{AAAR}; \href{https://github.com/TU2021/PaperAudit}{PaperAudit} & AAAR has 993 Weakness papers; ReviewCritique has 100 papers / 380 reviews with expert defect labels. These do not label complete generated-review quality.\\
 \end{longtable}
 \endgroup
 
-Shared training infrastructure includes \href{https://github.com/huggingface/trl}{TRL} for text policies and \href{https://github.com/hiyouga/EasyR1}{EasyR1} for vision-language policies.
-Published descriptions of Design2Code, PresentBench, and Pick-a-Pic provide their task and annotation protocols \citep{si2025design2code,presentbench2026,kirstain2023pickapic}; access conditions in Table~\ref{tab:data-sources} refer to the audited releases.
-Public weights, data, and training code establish possible routes, not a tested end-to-end adapter.
-Gated downloads, missing licenses, and restrictions on third-party processing remain explicit conditions; no access restriction is bypassed.
+Published protocols supplement the release-level audit \citep{si2025design2code,presentbench2026,kirstain2023pickapic}.
+References and dimensional scores do not automatically supply overall preferences.
+DOCCI supplies caption references \citep{onoe2025docci}; SummEval supplies CNN/DailyMail dimensional judgments rather than TL;DR pair labels \citep{fabbri2021summeval}.
+GenEval supplies compositional checks \citep{ghosh2023geneval}, and research-ideation ratings require compatibility with their original expert protocol \citep{si2025ideas}.
+A resource used to train a released metric requires a training-overlap audit before independent evaluation.
 
-DOCCI \citep{onoe2025docci} supplies images and reference descriptions, not the primary IG1 human preference pairs.
-SummEval \citep{fabbri2021summeval} supplies dimensional judgments on CNN/DailyMail summaries, not missing labels for the TL;DR cohort.
-Its 100 source articles remain 100 source units regardless of the number of summaries.
-GenEval supplies compositional checks \citep{ghosh2023geneval}, not overall image preferences.
-A source used to train a released metric requires a training-overlap audit before reuse for independent evaluation.
-Other research-ideation studies \citep{si2025ideas} supply expert ratings under their own protocols; reuse requires a separate compatibility check.
-A resource without usable labels can still provide materials for new annotation.
-
-\begin{table}[!htbp]
-\caption{Common four-family roster for C2 and C3.
-Public resources motivate selection before observing outcomes; exact checkpoints, splits, and sample sizes are frozen before execution.}
-\label{tab:readiness}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}P{.8cm}YYY@{}}
-\toprule
-ID & Inputs and evaluator feedback & Refinement / training route & Independent outcome\\
-\midrule
-SV4 & WebDev human preferences; separate WebGen instruction pool & WebGen revision / Step-GRPO, with matched render and tool access & New webpage preferences, usability and reserved functional checks\\
-IG1 & CapArena human image/caption preferences; DOCCI reference descriptions & Fixed vision-language captioner / vision-language GRPO & New caption preferences, image grounding, hallucination and useful detail\\
-TG1 & TL;DR source posts and overall human comparisons & Fixed text generator / text GRPO & New summary preferences, faithfulness and content coverage\\
-AR1 & Ideation Arena contexts and expert comparisons & Fixed text generator / text GRPO & New expert proposal preferences, feasibility and significance\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-For each admitted domain, the execution record fixes the source version, quality standard, output-generator mixture, outputs per input, and direct, converted, or newly annotated label route.
-Record original-input and larger source-group counts separately, together with pair counts and the number of fully human-ranked groups eligible for selection.
-Reference allocations must be checked against independent groups, not rows or pair combinations.
-An overall-preference corpus can support pairwise assessment without dimensional labels; Best-of-$N$ and regret additionally require an eligible human-ranked cohort.
-If that cohort is absent, report selection as unavailable rather than infer a ranking from disconnected pairs.
-WebDev and WebGen are distinct cohorts: record their roles and audit cross-source overlap instead of treating their rows as interchangeable.
-The common roster fixes coverage, not a requirement for favorable outcomes; failed preflight, incomplete execution, and null effects retain their domain labels.
-
-The run configuration identifies the seed program, proposer and evaluator model versions, prompts, tool versions, decoding, and repeated-scoring policy.
-It also fixes model-and-tool cost caps, the price schedule, independent search seeds, and permitted development access for every comparator.
-Observable checkers, their aggregation, and the changed-character metric must match the executed controller.
-These fields are frozen before running the study.
-
-\paragraph{Within-domain assessment.}
-Val and Test are reserved from the domain source pool before mining, under the same fixed quality standard as Train.
-This is an independent within-domain test, not a claim that arbitrary distribution shifts are solved.
-Held-out selection uses neither mining scores nor evaluator outcomes.
-Source inclusion rules, generator mixture, and duplicate thresholds are frozen before splitting.
-All derivatives of the same document, website/template, image cluster, or research topic remain together at the declared dependence level across Train, Val, and Test.
-An overlap audit checks source groups and derived artifacts across all three partitions.
-An optional source or generator shift must name what changes and verify that the human standard remains comparable.
-Harder cases alone do not define a distinct domain.
-
-\section{Human feedback and preference mining}
+\subsection{Feedback and preference mining}
 \label{app:annotation}
-
 Human feedback has four levels: $H_0$ gives overall preferences; $H_1$ gives dimensional preferences; $H_2$ identifies error type, severity, and location; $H_3$ optionally supplies a free-form rationale.
-An $H_0$-only corpus remains usable, but it supplies neither human dimensional judgments nor human explanations.
-New labels are not assumed to be more reliable than reused labels.
-Both feedback routes provide the same interface to evolution while preserving the source of each label (Table~\ref{tab:human-provenance}).
-A record can be written as
-\begin{equation}
- h=(x,y_a,y_b,q,p,a,\nu),
- \label{eq:human}
-\end{equation}
-where $q$ is overall quality or a dimension, $p$ is a preference, tie, or abstention, $a$ records annotator agreement, and $\nu$ records provenance.
+Unavailable dimensions and rationales remain absent.
+Existing-label replay counts revealed source groups and pair labels; new annotation also records requested ratings, person-minutes, abstentions, and adjudication.
+Annotation fixes the rubric, evidence, tie policy, rater qualifications, compensation, and review requirements.
+The initial design uses two independent development judgments with adjudication and three final judgments, subject to a domain-specific freeze.
+Method identity, earlier winners, and model scores are hidden, and presentation order is randomized.
 
-\begin{table}[!htbp]
-\caption{Feedback routes and accounting.
-Existing-label replay measures revealed-label efficiency; new annotation additionally measures human effort.
-Neither route may reveal unselected or final-test labels to the miner.}
-\label{tab:human-provenance}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}P{2cm}YY@{}}
-\toprule
-Route & Permitted evidence & Budget and missing information\\
-\midrule
-Reused preferences & Original votes, rankings, or explicitly validated conversions on the exact outputs & Count revealed original-input groups and pair labels; retain unknown historical annotation time\\
-New preferences & Blinded judgments on existing or freshly generated outputs & Count requested units, individual ratings, annotation minutes, abstentions, and adjudication\\
-Both & Same feedback detail for a matched contrast; random anchor inside each budget & No model-generated rationale or author preference may fill a missing human field\\
-\bottomrule
-\end{tabularx}
-\end{table}
+Mining operates only on Train, after group-level splitting and deduplication.
+Select the random anchor by original-input hashes independently of scores, with its labels counted within the same total budget.
+Signal signs, source groups, dimension mappings, orientations, tie margins, and repeat counts are fixed before selected human labels are revealed.
+For each dimension, a source group contributes at most one sign; opposing signs within a group yield abstention.
+The dimension preference is the sign of the sum of source-group votes, with zero yielding no preference.
+The structural score in Equation~\ref{eq:conflict} determines rank order, with pair identifiers breaking ties.
 
-\paragraph{Annotation and quality assurance.}
-Freeze the rubric, visible evidence, tie policy, rater qualifications, compensation, consent, and institutional review determination before collection.
-The initial design uses two independent development judgments with adjudication as needed and three independent final judgments; final counts must be specified per domain rather than assumed from this template.
-Blind method and generator identity, model scores, and earlier winners, and randomize presentation order.
-Keep individual votes, dimensional ratings, ties, no-consensus outcomes, insufficient responses, and abstentions.
-Report valid-rater-pair agreement with its denominator and abstention over all requested ratings.
-A changed rubric or visible evidence is a changed protocol, not automatically proof that the old labels were wrong.
-Table~\ref{tab:annotation-results} is filled separately for each route and domain.
+A model signal uses the median of same-repeat score differences; this differs from comparing each artifact's median final score in Equation~\ref{eq:measurement}.
+The native runner uses three repeats and a two-point tie margin for model scores; metric bundles specify their own margins.
+A missing required repeat makes a signal unavailable, not an agreement.
+Metrics reserved for final assessment are excluded from mining and evaluator tools.
+Domain signal rosters and anchor fractions remain study-specific settings to freeze before execution.
 
-\begin{table}[!htbp]
-\caption{\textbf{Human-feedback audit.}
-Agreement and abstention are percentages.
-Report groups, raters, and person-minutes separately for each feedback route.}
-\label{tab:annotation-results}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}Yccccc@{}}
-\toprule
-Domain / route & Groups & Raters & Agreement & Abstention & Minutes\\
-\midrule
-\input{figures/ideal_scenario/annotation}
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\paragraph{Label-blind selection.}
-Deduplicate original-input groups and reserve Val and Test before mining, following Appendix~\ref{app:measurement}.
-Within Train, freeze signal definitions and source mappings, select the random anchor without labels, and use only authorized anchor feedback for any human reliability qualification.
-Freeze the targeted sampling policy before revealing the remaining selected labels.
-For existing datasets, replay exactly this label-access order.
-The random sampling arm includes its anchor within its uniform budget, not as extra data.
-Both routes retain the unselected Train pool for accounting; the miner has no access to Val or Test.
-Human qualification is not inferred from agreement with a model-annotated pilot.
-
-\paragraph{Implemented conflict ranking.}
-Preference mining computes structural disagreement without reading the pair's human preference.
-Outputs are grouped by their original task input and deduplicated before comparison.
-For a pair $r=(x,y_a,y_b)$, signal $j$ supplies a preference sign $u_j(r)\in\{-1,0,+1,\bot\}$ from its own score difference and declared tie margin.
-Zero denotes a tie and $\bot$ missing or abstaining output; raw scores from different signals are never subtracted.
-Signals require executable sources with compatible inputs; provenance, repeated-run variation, and missingness are recorded separately.
-We freeze a many-to-many mapping $M_{jq}$ from signal $j$ to dimension $q$ using its definition and measurement procedure before reading preference labels.
-A mixed score may connect to several dimensions, but remains one shared signal.
-Signals sharing a model, training labels, or underlying metric are assigned source groups so that duplicated prompts do not become independent votes.
-Metrics reserved for final independent assessment remain outside mining, evaluator tools, critique, and reward.
-
-The ranking distinguishes three cases.
-\emph{Within-dimension disagreement} occurs when signals from distinct source groups favor opposite outputs on the same criterion.
-\emph{Overall--dimension disagreement} occurs when an overall signal opposes a dimensional signal.
-\emph{Cross-dimensional trade-offs} occur when dimension-level preferences favor different outputs; these are not contradictory measurements of one criterion.
-Their indicators give the structural priority in Equation~\ref{eq:conflict}.
-Pairs are ranked by decreasing $P(r)$, with stable pair identifiers breaking ties.
-The coefficients define a structural ranking, not estimated signal reliability or a probability of evaluation error.
-In particular, $P(r)=0$ can reflect missing signals or ties rather than agreement, and agreement itself need not be correct.
-Overall--dimension comparisons retain whether their signals share a source group; they are not automatically independent evidence.
-Each source group contributes at most one preference sign to a dimension's aggregate preference, with opposing within-group signs yielding abstention.
-The dimension's preference is the sign of the sum of these source-group votes, with a zero sum yielding no preference.
-Missing outputs and small-margin ties remain distinct from opposing preferences.
-
-For repeated model signals, the pairwise signal margin is the median of same-repeat score differences between the two artifacts; variation and sign changes are retained.
-This differs from Equation~\ref{eq:measurement}, which first takes each artifact's median final score and then compares them.
-A missing required signal repeat makes that evaluation signal unavailable for mining.
-Deterministic metrics use declared ranges and orientations, not ranges fitted to the output pool or human labels.
-The random anchor is selected by original-input hashes before scoring, preserving output groups.
-Label-blind execution does not establish label-blind upstream cohort selection; historical data must also document how the output pool was chosen.
-
-\paragraph{Frozen mining configuration.}
-For each domain, record the executable signal roster and its size, source groups, dimension mapping, score orientation, tie margins, repeat count, and random-anchor input identifiers before revealing preferences.
-The native pool runner defaults to three repeats and a two-point tie margin for model scores; metric bundles supply their own normalized tie margins.
-An available margin whose absolute value does not exceed its signal's threshold is a tie.
-Anchor size belongs to the pool contract, not to the conflict formula, and the targeted queue uses rank order rather than a softmax sampling distribution.
-The current draft does not freeze a cross-domain human-study anchor fraction or signal roster; these remain execution settings to fill in Table~\ref{tab:manifest}.
-Pilot anchor defaults must not be reported as human-study settings.
-
-\paragraph{Human qualification and implementation boundary.}
-The implemented miner supplies the structural queue and its source-dependence records.
-The full preference-mining protocol additionally requires human-annotated anchors to qualify signals before targeted annotation; cross-domain human-reliability calibration and the equal-budget advantage remain unverified.
-Model-annotated pilot anchors measure agreement with that model, not human reliability.
-The annotation fraction, qualification thresholds, and targeted policy must be frozen for the human study, rather than inherited silently from a pilot.
-The feedback table $Z$ is a logical join over feedback, artifact, signal, and execution records; absent human dimensions or rationales remain absent.
-
-
-\paragraph{Source readiness.}
-A signal is marked executable only after its input contract, output orientation, dependencies, and failure behavior are verified.
-A publication, URL, or repeated prompt does not establish executable or independent evidence.
-Report missing dimensions and correlated source groups rather than creating artificial votes.
-External metrics reserved for assessment must not enter mining or the evolved evaluator.
-
-\section{Access boundaries, endpoints, and uncertainty}
+\subsection{Splits, endpoints, and uncertainty}
 \label{app:boundaries}
 \label{app:measurement}
-
-Table~\ref{tab:access} distinguishes optimizer-visible Train, adaptively reused Val, and independent Test.
-The deployed scorer always receives one output and permitted task evidence, without opponent outputs, human labels, generator identity, split names, or mining strata.
-Only the authorized optimization process sees Train labels and traces.
-Automated tools can inspect the artifact; they cannot retrieve held-out answers or invoke reserved assessment metrics.
+Original-input groups and larger declared dependence groups are assigned to Train, Val, and Test before mining.
+Document derivatives, website templates, related images, and research topics remain in the same partition where applicable.
+All methods share the frozen source pool, eligibility rules, splits, and held-out pairs.
+Split assignment uses neither labels nor mining scores; Val/Test cohorts receive no later additions or replacements.
+The deployed scorer sees one output and permitted evidence, without opponents, human labels, generator identity, or split metadata.
+C2/C3 generate separate assessment outputs rather than adding to the search cohorts.
+Table~\ref{tab:access} gives the information boundary.
 
 \begin{table}[!htbp]
 \caption{Information access for the revised search.
@@ -343,39 +114,10 @@ Metric reserve & Endpoints excluded from optimization and runtime tools & Indepe
 \bottomrule
 \end{tabularx}
 \end{table}
-
-\paragraph{Sampling and frozen cohorts.}
-The source pool, output-generation mixture, and pair eligibility rules are fixed before mining or optimizer access.
-A fixed-seed random split assigns original-input groups to Train, Val, and Test, keeping any larger declared dependence groups intact.
-The input pool is frozen at this split; subsequent output generation for mining uses only the assigned Train inputs.
-Val and Test inputs and outputs receive no additions or replacements, and new inputs enter a later frozen dataset version.
-The slide reference allocation reserves 100 Val pairs and 400 Test pairs, drawing one eligible pair uniformly within each held-out original-input group.
-Group assignment and pair selection use neither human preferences, mining scores, nor evaluator outcomes.
-This group-first sampling defines the evaluation population within the source pool; strict-preference agreement conditions on pairs with a strict human judgment.
-Human ties and abstentions are reported separately, with the scored cohort and denominator frozen before search.
-Disagreement mining and random-anchor selection are confined to the remaining Train pool.
-Val and Test are held fixed, and all compared methods in a run share the same split and held-out pairs.
-The run manifest records the source-pool version and hash, grouping and inclusion rules, split seed, selected pair identifiers, and cohort hashes.
-Outputs generated for the prespecified refinement and reward-guided training assessments are separate evaluation products, not additions to the mining or checkpoint-selection cohorts.
-
-Val labels and traces remain controller-only, even when a checkpoint is rejected.
-Within an active direction, Val does not change the reference evaluator, working evaluator, permitted modification scope, or direction-ending decision.
-Published optimizers may retain their native development rules, but must declare their Train/Val access and receive no Test feedback.
-Interrupted runs retain their failures and incurred costs; they do not receive a fresh selection opportunity.
-
-\paragraph{Controller accuracy versus reporting weights.}
-Train comparisons use equal-pair correct-ordering frequencies on a fixed cohort, as in Equation~\ref{eq:paired-gain}.
-Each complete replicate contributes one only when the evaluator assigns a higher score to the human-preferred output; one replicate reduces to binary correctness.
-Ties count as errors, and missing executions are not repairs.
-The group-weighted endpoint below is retained for frozen Val/Test reporting; it uses one ordering after the declared within-output aggregation, not the average of arbitrarily many repeated orderings.
-Record both the case weights and aggregation rule rather than treating these estimators as interchangeable.
-
-\paragraph{Agreement estimator.}
-For Val/Test reporting, freeze the deployed evaluator's scoring protocol, including the number $K$ of executions per artifact, aggregation, precision, retries, and cache identity.
-The existing reporting plan uses $K\geq3$ and median aggregation; this is not a requirement to repeat every Train candidate measurement three times.
-Train uses the separately frozen initial allocation and decision-focused repetition policy in Appendix~\ref{app:algorithm}.
-Let $P_g$ be the strict human preferences within original-input group $g$.
-For complete executions,
+\paragraph{Accuracy and missing outcomes.}
+Train uses mean correct-ordering frequencies across repeated executions for each case, as in Equation~\ref{eq:paired-gain}.
+Val/Test instead uses a frozen scoring protocol with $K\geq3$ executions per artifact and median aggregation.
+For strict human pairs $P_g$ within source group $g$,
 \begin{equation}
  \begin{aligned}
  \bar s_\theta(x,y)&=\median_{r=1,\ldots,K}s_\theta^{(r)}(x,y),\\
@@ -385,77 +127,44 @@ For complete executions,
  \end{aligned}
  \label{eq:measurement}
 \end{equation}
-Input groups receive equal weight; predicted ties count as incorrect.
-Human ties do not create strict preference labels.
-Groups without a strict preference retain a separate count and do not enter this endpoint.
-The reference allocation uses one pair per held-out original input; domains with multiple scored pairs per group use the group-weighted estimator above.
-A reused artifact keeps its frozen repeated scores across all comparisons.
-
-\paragraph{Missing execution and coverage.}
-Fix weights $w_{gj}=1/(|\mathcal G||P_g|)$ before execution.
-Let $c_{gj}$ indicate complete scoring of both artifacts, $M_{\mathrm{cov}}=\sum w_{gj}c_{gj}$, and $K_{\mathrm{corr}}=\sum w_{gj}c_{gj}v_{gj}$.
-Report conditional agreement $K_{\mathrm{corr}}/M_{\mathrm{cov}}$, weighted coverage, raw counts, and
+Predicted ties count as errors; human ties and groups without strict preferences are counted separately.
+Score-tie rates use the same strict pairs and weights as accuracy.
+With fixed weights $w_{gj}=1/(|\mathcal G||P_g|)$ and completion indicators $c_{gj}$, define
+$M_{\mathrm{cov}}=\sum w_{gj}c_{gj}$ and $K_{\mathrm{corr}}=\sum w_{gj}c_{gj}v_{gj}$.
+Report conditional accuracy $K_{\mathrm{corr}}/M_{\mathrm{cov}}$, completion counts, and the full-cohort missing-outcome bounds
 \begin{equation}
- [K_{\mathrm{corr}},\,K_{\mathrm{corr}}+1-M_{\mathrm{cov}}],
+ [K_{\mathrm{corr}},\,K_{\mathrm{corr}}+1-M_{\mathrm{cov}}].
  \label{eq:missing}
 \end{equation}
-the possible full-cohort agreement range under arbitrary missing outcomes.
-This is not a confidence interval.
-Main agreement contrasts use a common complete cohort across the compared methods, with the requested-cohort bounds alongside them; method-specific complete cohorts are supplementary.
-Missing required repeats or tool results remain missing, rather than being replaced by successful retries selected after seeing their score.
-Valid evidence of a low-quality artifact is an outcome, not an execution failure.
-
-\paragraph{Selection and top-region judgments.}
-Freeze a common output pool size for the main selection cohort; the initial design proposes $N=4$, subject to data readiness.
-Other $N$ values are separate sensitivity analyses.
-Complete human rankings, including declared ties, identify the set of top-ranked outputs.
-Best-of-$N$ succeeds when the evaluator selects a member of that set.
-Resolve evaluator score ties by a fixed output-identifier rule independent of human rank.
-With human ties, define regret as the number of outputs strictly preferred to the selected output divided by $N-1$; for strict rankings this is $(\operatorname{rank}(\hat y)-1)/(N-1)$ for the selected output $\hat y$.
-For a human-ranked group without a valid evaluator selection, count selection as unsuccessful and regret as one, and additionally report complete-case sensitivity.
-Top-region agreement uses strict pairs touching the human top-two region, including any ties at its boundary.
-No-consensus or insufficient human rankings are reported separately and never supplied by the evaluator.
-Pair-only data cannot establish any of these multi-output endpoints.
+These are bounds, not confidence intervals.
+Comparisons use a common complete cohort, with requested-cohort bounds alongside them; missing outcomes are never replaced by zeros or selectively favorable retries.
+Best-of-$N$ and regret require a separate fully ranked cohort.
+Native correlations, score-derived preferences, and direct human choices retain their distinct definitions.
 
 \paragraph{Aggregation and uncertainty.}
-Freeze the admitted domain set per endpoint before outcomes are opened and use equal-domain means.
-Report the domain count, input/source groups, pairs, outputs, ranking pool size, and completion for every number.
-Separate reused-label and new-label results before combining compatible endpoints.
-Do not pool incomparable quality metrics or replace an unavailable domain after observing its performance.
+First average within-domain accuracy over independent searches, then average domains equally.
+Overall therefore weights the four family summaries by $6/20$, $6/20$, $5/20$, and $3/20$.
+All methods share the endpoint's domain roster, and incomplete runs follow the prespecified failure policy rather than being dropped.
+The initial target is five independent searches per adaptive condition, finalized through a development-only feasibility and variance pilot.
+Paired 95\% bootstrap intervals resample source groups jointly across methods.
+Optimizer comparisons additionally resample searches, paired only for deliberately paired experimental blocks; scoring repeats are not independent tasks.
+Reviewer dependence receives a separate cluster sensitivity check.
+Report run estimates, effect sizes, and the prespecified multiplicity correction for significance claims.
 
-The main performance estimate averages independently completed searches, not the best search selected retrospectively.
-Static methods have no search-seed variance.
-The initial target is five independent searches per adaptive condition, with the final count and sample sizes frozen after a development-only feasibility and variance pilot.
-Report all run estimates when the available count is too small for stable intervals.
-For fixed evaluators, compute paired 95\% bootstrap intervals by resampling original-input/source groups jointly across methods, retaining all their outputs.
-For optimizer comparisons, additionally resample independent search runs, paired only when the experimental blocks were deliberately paired; otherwise resample method runs independently.
-The same input resample is used across methods and runs.
-Scoring repeats do not increase the number of independent tasks or searches.
-If shared reviewers introduce additional dependence, retain reviewer identifiers and report reviewer-cluster or crossed-cluster sensitivity rather than treating votes as independent.
+\paragraph{Checkpoint assessment.}
+Test is opened after search and all selection rules are frozen.
+Figure~\ref{fig:c1-landscape}b uses checkpoints at 0, 10, 25, 40, 60, 80, and 100\% of the common cost cap.
+The four-domain mechanism protocol additionally permits 25/50/75/100\% checkpoint summaries.
+Each boundary uses the last retained $B$, carried forward after an early stop, never a Test-selected evaluator.
+Additional checkpoint assessment costs are separate from search.
 
-Predeclare one principal evaluator comparison (EvalOpt versus GEPA), the Seed contrast, and EvalOpt versus fixed-patience continuation.
-The history-based comparison tests the broader persistence policy, while fixed patience tests whether continuation based on diagnostics adds value beyond extra attempts.
-Report paired effect sizes and intervals for all other comparisons, with a prespecified multiplicity correction for any family of significance claims.
-Select sample sizes from a target minimum effect and development-only variance, not from a desired test outcome.
-A nonsignificant difference does not establish equivalence.
-Bootstrap intervals on one final evaluator do not establish search stability.
+\section{Method and implementation details}
+\label{app:algorithm}
 
-\paragraph{Independent checkpoints.}
-The primary endpoint evaluates the terminal Val-selected evaluator after search and all configuration choices are frozen.
-A prespecified secondary analysis records the best evaluator $B$ at 25, 50, 75, and 100\% of the search cost cap, using the last completed promotion before each boundary.
-These checkpoints are scored in the same post-freeze Test assessment phase, without returning their outcomes to search or selecting a different terminal evaluator.
-A run ending early carries its last best evaluator forward, with its stopping reason retained.
-Scoring costs for the additional checkpoints are recorded separately and cannot purchase more search.
-The terminal comparison remains the primary estimate; intermediate Test points describe the frozen search trajectory rather than repeated opportunities for selection.
-
-\section{Baselines, adaptation fidelity, and resource matching}
+\subsection{Baselines and resource matching}
 \label{app:adaptation}
-
-Table~\ref{tab:adaptation} defines the main rows by what is optimized and why they are needed.
-An official repository establishes availability, not a completed reproduction on these tasks.
-Before running, pin its commit, inspect the adapter, verify label access and model routing, and record any departure from the published implementation.
-The literature and source audit supporting these choices is maintained with the experiment manifest.
-
+Table~\ref{tab:adaptation} specifies native optimizer semantics and editable spaces.
+Adapters pin source commits, model routing, and Train/Val access before comparison.
 \begin{table}[!htbp]
 \caption{Main baseline contract.
 All adaptive rows use the same permitted human feedback.
@@ -468,7 +177,7 @@ Method & Optimized object & Required fidelity and interpretation\\
 \midrule
 Fixed model judge & None; fixed prompt and base model & Pointwise score on the artifact, no extra tool inspection; a static reference, not a matched observation ablation\\
 Seed evaluator & None; initial full evaluation program & Same seed, tools, routes, and score interface used to initialize program evolution\\
-Learned signal fusion & Weights over fixed signal features & Fit on proposal-Train preferences; hold features, model, and observation path fixed\\
+Learned signal fusion & Weights over fixed signal features & Fit on Train preferences; hold features, model, and observation path fixed\\
 SkillOpt \citep{yang2026skillopt} & Skill text & Preserve bounded edits, validation gate, rejected-edit buffer, and specified meta updates; pin paper-style variant\\
 GEPA \citep{agrawal2026gepa} & Full program through a declared adapter & Use official engine and program-capable interface; preserve reflection, population selection, and configured merge policy\\
 Meta-Harness \citep{lee2026metaharness} & Harness code & Preserve filesystem access to prior code, scores, and traces; do not restrict parents to the current best\\
@@ -477,97 +186,21 @@ EvalOpt & Full evaluation program & Active direction, Train acceptance, periodic
 \bottomrule
 \end{tabularx}
 \end{table}
+Learned fusion fits a regularized pairwise logistic model to frozen signal-feature differences on Train, then scores outputs independently.
+Feature normalization, missingness handling, and regularization are fitted or selected on Train.
+SkillOpt retains its native rejected-edit buffer and longer-timescale updates, with tools and routes fixed; text-only EvalOpt uses the same editable fields.
+GEPA retains its official program-capable interface, reflection, population selection, and configured merge policy.
+Meta-Harness retains full code/trace history and native parent selection, changing only transport needed for the matched model.
+An unmatched model-access configuration is excluded from the main controlled comparison.
 
-\paragraph{Learned signal fusion.}
-A simple reproducible control fits a regularized pairwise logistic model to differences in frozen per-output signal features on proposal Train.
-Use its pointwise linear score for final ranking.
-Freeze feature orientation, normalization, missing-value handling, regularization search, and dimensional-label use before testing.
-Fit transformations only on training data.
-A monotonic remapping of one score cannot improve its ranking except through altered ties; it is not a meaningful substitute for this multi-signal control.
+The search cap charges proposal/reflection, diagnostics, invalid and rejected attempts, repeats, retries, and reserved selection calls at a frozen price schedule.
+End-to-end comparisons additionally charge mining; annotation effort is reported separately.
+Final deployment uses matched input, context, tool, time, and token caps, with actual per-output use recorded.
+Deterministic synthesis incurs no fictitious model call.
 
-\paragraph{SkillOpt.}
-Use the official text/skill optimization path, not a custom program-evolution extension bearing its name.
-The candidate skill is inserted into a fixed seed interface, with tools and routes unchanged.
-Retain rejected edits and native longer-timescale updates; do not describe the baseline as memoryless or assume every failed edit causes a semantic restart.
-Map its internal selection feedback to development data and charge reflection and selection calls.
-Compare it additionally with EvalOpt restricted to the identical text fields, evidence inputs, and edit envelope.
-This same-space contrast is necessary to attribute a difference to optimization rather than broader program access.
-
-\paragraph{GEPA and Meta-Harness.}
-Current GEPA interfaces support program optimization; restricting it to prompts would not test the closest alternative.
-Use a declared whole-program or multicomponent representation with the official optimizer, returning scores and authorized trajectories through its evaluator adapter.
-Preserve the configured population, candidate-selection, and merge mechanisms, and distinguish this program adaptation from the original paper's particular experiments.
-Meta-Harness must retain its full-history code and trace access.
-Its released examples assume a particular coding-agent wrapper; replace only the transport needed for the matched optimizer model, preserving logging and native search decisions.
-If model access cannot be matched, place that run in an explicitly unmatched supplementary comparison rather than the main controlled result.
-
-\paragraph{Additional comparators.}
-AFlow is the first optional structured workflow-search baseline because it provides an explicit workflow search implementation \citep{zhang2025aflow}.
-Its multimodal task adapter must be validated rather than assumed from text/code examples.
-ADAS and DGM are relevant architecture/code-evolution alternatives \citep{hu2025adas,zhang2025dgm}, but need not all enter the main table if the closest full-program comparisons are already covered.
-HarnessBank and SkillHEX remain related methods unless an official executable release and compatible evaluation interface are verified \citep{luo2026harnessbank,feng2026skillhex}.
-A paper or abstract is not sufficient to mark a baseline implemented.
-
-Evaluator fine-tuning is an optional separate study on an open-weight backbone, not a required row across domains with incompatible model access.
-It follows the trained-judge direction exemplified by Prometheus and CritiqueLLM \citep{kim2024prometheus,ke2024critiquellm}.
-Match the initial checkpoint, feedback, observations, and training-selection access; report training compute separately.
-No additional teacher labels are free.
-This trains the evaluator, unlike C3, which trains the generator.
-A query-specific rubric model trained for research reports \citep{lv2026queryrubrics} is not automatically an ideation evaluator.
-
-\paragraph{Resource controls.}
-The primary evolution cap is total model-and-tool cost at a frozen price schedule.
-Count proposal and reflection tokens, diagnostics, rejected and invalid attempts, repeated candidate measurements, retries, and the reserved terminal assessment.
-Track actual tokens, calls, accelerator time where applicable, wall time, and tool-specific charges separately.
-Different attempt counts under equal cost are outcomes.
-Mining and annotation are separate cost categories; the end-to-end comparison includes both.
-Deploy every final evaluator under the same permitted input, context, tool, time, and token caps.
-Report actual deployment cost instead of assuming that an equal cap produces equal use.
-Fixed final evaluation costs do not buy additional search.
-Table~\ref{tab:cost-results} records these distinctions.
-
-\paragraph{Code-grounded cost model.}
-We estimate model cost for one successful pointwise evaluation, excluding non-model deployment charges.
-The inspected Seed configurations use 2, 4, 4, and 5 specialist calls in SV4, IG1, TG1, and AR1, respectively, plus 0, 3, 3, and 5 routing calls and one synthesis call in each domain.
-Fixed uses one holistic call; ``fixed'' describes its unchanged prompt, not zero inference cost.
-For Fusion, we assume the features are all Seed specialist signals, generate them at their full cost, and replace synthesis with a local linear combination.
-The available SV4 SkillOpt program retains the Seed structure and prompt lengths; the available EvalOpt program changes the synthesis prompt from 427 to 5,088 characters without adding calls.
-For other method--domain combinations, we use Seed's call topology and request-length profile without predicting their semantic edits.
-
-We sum input tokens plus four times output tokens, normalize within each domain by Seed, and average the four ratios.
-Code and configuration text use a characters-divided-by-four token approximation, including scoring schemas.
-Assumed artifact-input lengths are 4,000, 250, 3,000, and 8,000 tokens; image-token allowances are 2,000, 1,000, 0, and 0; synthesis contexts are 500, 150, 500, and 1,500 tokens in the same domain order.
-Each specialist report contributes 600 visible tokens and 100 envelope tokens to synthesis.
-We allow 350 adapter/envelope tokens per specialist or routing call, 100 routing-instruction tokens, one active tool per routing call, and 200 evidence tokens per tool execution.
-Assumed output lengths, including reasoning once, are 1,000 for Fixed, 400 for routing, 1,600 for a specialist, and 1,800 for synthesis.
-Varying the output weight from 2 to 8 and the input/image/context payloads from half to double gives Fixed 0.11--0.15 and Fusion 0.78--0.86 times Seed's cost; these are sensitivity ranges, not confidence intervals.
-We assume no model-cache discounts, retries, or synthesis repairs and do not price local tools or rendering.
-Latency is reported separately from token costs.
-
-\begin{table}[!htbp]
-\caption{\textbf{Adaptation resources and modeled evaluation cost.}
-Search cost (cap $=100$) and tokens (millions) are reported separately; model cost follows the calculation above, relative to Seed.
-Latency is unestimated (--); real reporting must include failures, retries, and tool charges.}
-\label{tab:cost-results}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}Ycccc@{}}
-\toprule
-Method & Search cost & Search tokens & Model cost & Latency\\
-\midrule
-\input{figures/ideal_scenario/cost}
-\bottomrule
-\end{tabularx}
-\end{table}
-
-
-\section{Depth-first evaluator evolution: control and measurement}
-\label{app:algorithm}
-
-Execution acceptance, Train direction control, and Val promotion have different inputs and state effects.
-This section specifies the reference controller, \texttt{bounded\_direction\_v2}, and its measurement rules.
-These rules define an empirical search policy; their implementation does not establish improved evaluator accuracy.
-Algorithm~\ref{alg:era} gives the loop, and Appendix~\ref{app:synthesis} describes the concrete evaluator used by the reference implementation.
-
+\subsection{Controller and measurement}
+The reference controller, \texttt{bounded\_direction\_v2}, separates execution validity, Train control, and Val retention.
+Algorithm~\ref{alg:era} gives the loop; numerical settings below specify the reference implementation rather than tuned optima.
 \begin{algorithm}[htbp]
 \caption{Direction development with confirmed references and bounded exploration}
 \label{alg:era}
@@ -596,7 +229,7 @@ Algorithm~\ref{alg:era} gives the loop, and Appendix~\ref{app:synthesis} describ
       \State Compare $W,B$ on full Val; apply Equation~\ref{eq:acceptance}
       \State Release only promotion and retained score; leave Train states unchanged
     \EndIf
-    \State End $d$ on the revision agent's recorded decision or a direction limit
+    \State End $d$ on the evolution agent's recorded decision or a direction limit
   \EndWhile
   \State Perform the scheduled exit checkpoint; archive the direction before reset
 \EndWhile
@@ -604,91 +237,35 @@ Algorithm~\ref{alg:era} gives the loop, and Appendix~\ref{app:synthesis} describ
 \end{algorithmic}
 \end{algorithm}
 
-\begin{figure}[htbp]
-\centering
-\input{figures/evaluator}
-\caption{Low-level elements of the evaluation program.
-(a) Read one output and permitted task evidence.
-(b) Route tool observations.
-(c) Apply dimensional criteria.
-(d) Fuse sourced findings into a score and critique.
-Adapters, criteria, evaluator modules, tools, routing, and fusion are implementation elements within the analysis, judgment, and synthesis stages.
-Human feedback guides evaluator evolution, never the deployed scorer.
-The summary and findings are a constructed example.}
-\label{fig:runtime}
-\end{figure}
 
-\paragraph{Evaluator roles and direction history.}
-The reference evaluator $R$ starts from the direction's initial evaluator; each subsequent replacement requires sufficient Train support.
-The working evaluator $W$ is the executable parent of the next revision and may temporarily lack confirmed benefit.
-The best evaluator $B$ is retained by the frozen Val protocol.
-At direction initialization $R=W=B$; subsequent Val promotions change only $B$.
-Confirming $W$ on Train updates $R$, whereas staging changes $W$ without changing $R$.
-Rollback restores the exact reference evaluator, including configuration, prompts, routing, and dependencies.
-Diagnostic history is not rolled back.
 
-A direction records the target failure, intended correction, and accumulated attempts.
-The revision agent uses failed attempts to revise the correction's implementation or choose another diagnostic.
-It distinguishes a missing observation, an unused observation, and an observation that changed the decision without improving preference agreement.
-Replacing the intended correction requires a new direction; an implementation repair can continue the current one after rollback.
-This semantic distinction is maintained by the revision agent, while the controller enforces measurable validity, staging, and resource limits.
+\paragraph{State and declarations.}
+Each direction starts from $R=W=B$.
+Confirmation updates $R$ and $W$, staging changes only $W$, and rollback restores the exact $R$ while retaining diagnostics.
+Val changes only $B$.
+The agent maintains the target failure and intended correction; changing the correction opens a new direction.
+The edit identifies changed components and intended effects.
+Numerical gain predictions and intermediate checks are optional and cannot be relabeled after measurement.
+Numerical predictions identify the metric, reference, cohort, and units; cross-component edits are measured as bundles unless separate interventions are valid.
+A scaffold additionally declares an intended downstream use and intermediate success condition, without requiring integration on the immediately next revision.
 
-\paragraph{Pre-execution predictions.}
-The revision identifies its changed components and intended effect.
-Observable intermediate checks and numerical correctness predictions are optional.
-Type and predictions are not reassigned after results arrive.
-A numerical gain prediction is optional and must name its metric, reference evaluator, cohort, and units.
-For an explicit scaffolding step, the record additionally specifies an intended downstream integration and an intermediate success condition.
-The controller checks the declaration but does not require integration on the immediately following revision.
-Such a step can produce evidence before a later revision connects it to the scoring decision, but it receives no exemption from the bounded exploration window.
+Intermediate checks specify a case, structured field, and predicate.
+Eligible predictions must hold on every repeat, with at least one predicted field changing or node being created on every repeat.
+Configuration, node calls, and evidence artifacts distinguish unrealized edits from produced-but-unused evidence; fulfilled checks do not alone establish preference gain.
+Reason-text-only, final-score-only, purely semantic, and all-preservation checks remain unresolved.
+Failed checks prohibit confirmation and staging; unresolved checks prohibit confirmation.
+An absent check is not a passed check and does not veto supported gain.
+A scaffold needs passed intermediate checks; an inert scaffold additionally needs valid preflight.
 
-A declared intermediate check identifies a case, output field, and comparison predicate.
-Eligible structured predictions must match on every diagnostic repeat, with at least one eligible output changing or its node being created on every repeat.
-Outputs declared invariant may remain unchanged.
-Checks confined to reason text or final scores, purely semantic checks, and all-preservation declarations remain unresolved rather than demonstrating a repair.
-No declared checks yields \emph{not declared}, not an automatic veto on measured gain.
-Failed checks prevent both confirmation and staging; unresolved checks prevent confirmation.
-An explicit scaffold requires passed intermediate checks to remain provisional.
-An effectively inert scaffold can enter provisional exploration only after a valid preflight.
-These checks establish observable changes, not their factual correctness or causal sufficiency.
-
-\paragraph{Execution, behavior, and preference are different observations.}
-Execution checks cover effective configuration hashes, invoked nodes, tool/model identities, input/output schemas, completion status, and evidence artifacts.
-A missing invocation is an execution failure even if aggregate accuracy improves.
-A successful invocation with an unfulfilled intermediate prediction is a behavioral discrepancy, not an execution failure.
-A fulfilled intermediate prediction with no supported ranking gain is incomplete evidence of benefit.
-Configuration changes alone cannot establish execution, and score changes alone cannot establish the intended mechanism.
-Automatic field comparisons and the revision agent's interpretations are recorded separately; ambiguous semantic checks remain unresolved.
-
-\paragraph{Paired measurements and program identity.}
-The immediate parent $P=W$ and candidate $C$ use the same cases, scoring protocol, resource allowances, and unaffected inputs.
-The comparison with $R$ uses the fixed direction panel within that roster; the local comparison uses the full roster.
-A cross-component edit is assessed as a bundle unless a valid separate intervention is available.
-Compatible upstream evidence is reused to compare changes downstream; the resulting gain is conditional on that evidence.
-The reference runtime's exact reuse and fresh-execution boundaries are given in Appendix~\ref{app:synthesis}.
-Reference confirmation under these boundaries is not a claim that all upstream stages were independently regenerated.
-
-A measurement record identifies the entire executable program, effective configuration, component and dependency versions, input and material hashes, model/tool versions, decoding settings, scoring and aggregation rules, budget, and replicate identity.
-A cache hit is valid only when these identities match the requested measurement.
-Replaying a cached stochastic outcome is not a new replicate.
-Effective execution identity also prevents an unchanged program from obtaining a favorable new draw merely because it was resubmitted.
-
-Failed or missing executions retain their identities and costs.
-They are not zeros, successful abstentions, or grounds for silently dropping cases.
-An incomplete paired comparison cannot confirm a new reference evaluator.
-The reference runtime interrupts search on incomplete seed or candidate measurements; it does not implement an automatic evidence-recovery policy.
-A timeout or unavailable score that leaves a required measurement incomplete can therefore trigger this execution-integrity stop.
-
-\paragraph{A stable direction panel.}
-The first at most eight selected Train IDs form the fixed direction panel $\mathcal D_d$.
-This rule preserves a common set of cases across the direction, but does not guarantee a balanced composition of targets and contrasts.
-The step schedule also draws local targets, sampled contrast cases, and fresh Train coverage.
-The default local allocation is 28 cases, with up to four target cases and eight sampled contrast cases, followed by fresh coverage.
-Panel cases are added if absent, so the measured cohort can exceed 28 cases.
-The local comparison set is the full measured roster, including the fixed panel.
-Compare $C$ with $P$ on this set and with $R$ on $\mathcal D_d$, retaining panel and fresh-coverage results separately.
-Step-specific diagnostic cases may vary, but their scores are not concatenated into a fictitious common improvement trajectory.
-Both sources remain visible learning data, and repeated use provides no independent generalization assessment.
+\paragraph{Measurement identity and panel.}
+The immediate parent $P=W$ and candidate $C$ use matched cases, scoring, resources, and unaffected inputs.
+Cache identity covers the complete evaluator, dependencies, inputs, model/tools, scoring configuration, and replicate; replay is not a fresh repeat.
+Required incomplete seed or candidate measurements interrupt search and retain the last valid $B$; the reference runtime has no automatic evidence-recovery policy.
+The fixed direction panel $\mathcal D_d$ contains the first at most eight selected Train IDs.
+The default local roster has 28 cases, including up to four targets and eight sampled contrasts, with additional Train cases filling the remainder.
+Missing panel cases are added, so the roster can exceed 28.
+Compare $C$ with $P$ on the full roster and with $R$ on the panel.
+Sampled contrasts are not automatically declared protected cases.
 
 \paragraph{Gain, contrast-case losses, and uncertainty.}
 For each case $i$ and evaluator $E$, let $o_{i,r}(E)$ be one if repeat $r$ ranks the human-preferred output strictly higher, and zero for a wrong ordering or tie.
@@ -716,16 +293,13 @@ Declared contrast cases are checked individually: a negative change in any such 
 Margins, intermediate outputs, ranking flips, score variation, calls, latency, and failures remain separate diagnostics.
 Neither a wider score gap nor better evidence coverage is sufficient for reference confirmation.
 
-\paragraph{One fresh confirmation measurement.}
-The default diagnostic allocation is two repeats per evaluator and case.
-A positive gain against $R$ that does not exceed its uncertainty buffer can qualify for one fresh measurement if the candidate is effective and complete, neither local mean nor declared contrast-case means regress, and declared checks are neither failed nor unresolved.
-Eligibility, all compared evaluators, cases, and repeat counts are frozen before dispatch.
-The controller remeasures the parent, candidate, and reference evaluator on the same Train cases with the same repeat count as the diagnostic measurement.
-It executes the judgment stages anew while keeping upstream task analysis fixed.
-The fresh measurement, including its intermediate checks, replaces the initial measurement for the decision.
-Its outcomes are not pooled with the original observations.
-Effective confirmation identities are reused across rounds, preventing repeated requests until a favorable result appears.
-This measurement tests judgment variation conditional on task analysis, not fresh-input coverage or analysis stability.
+\paragraph{Fresh confirmation.}
+The initial diagnostic allocation is two repeats per evaluator and case.
+Positive panel gain against $R$ within its uncertainty buffer qualifies for one fresh measurement only when execution is effective and complete, local and declared contrast gains are nonnegative, and declared checks pass or are absent.
+Remeasure $P,C,R$ on the same cases with the same repeat count.
+Fresh outcomes and checks replace, rather than supplement, the initial decision measurement.
+Equivalent execution identities cannot request repeated confirmation draws.
+Judgment is rerun while task analysis stays fixed (Appendix~\ref{app:synthesis}).
 
 \paragraph{Train decision rules.}
 \label{app:direction-decisions}
@@ -750,48 +324,20 @@ Comparing every candidate against $R$ as well as $P$ prevents accumulated losses
 A charged rejection restores $W=R$ and clears the provisional window; an uncharged generation retry retains the previous $W$ and pending age.
 Three consecutive charged rejections end the direction; confirmation or provisional continuation resets that rejection count.
 The default direction limit is 18 charged steps.
-The revision agent can also end a direction with a recorded reason based on accumulated diagnostics.
+The evolution agent can also end a direction with a recorded reason based on accumulated diagnostics.
 These bounds constrain the duration of exploration, not the correctness of its semantic interpretation.
 Rejection does not itself prescribe a new direction, and a Val non-promotion does not enter these rules.
 
-\paragraph{Trust-region-inspired scope control.}
-The permitted scope has three levels: one component, several components within a functional group, or coordinated changes across groups.
-The level constrains the changes from the current working evaluator $W$ to $C$, not their cumulative difference from $R$.
-In the reference implementation these groups are task analysis, judgment, and synthesis (Appendix~\ref{app:synthesis}).
-The initial level is two.
-Two consecutive supported reference updates widen the scope by one level, up to three; supported harm narrows it by one level, down to one.
-Changed-character counts remain patch resource limits, not a weighted graph distance or semantic neighborhood.
-The fixed character guard is 24,000 characters.
-Execution permissions and interface checks remain separate hard constraints.
-High empirical noise can leave an edit unresolved without mechanically shortening its prompt.
+\paragraph{Scope adaptation.}
+Permitted edits have three levels: one component, multiple components within one functional group, and coordinated changes across groups.
+Scope constrains each edit from $W$, not cumulative distance from $R$.
+The initial level is two; two consecutive supported reference updates expand it by one, while supported harm contracts it by one, within levels one to three.
+The 24,000-character guard and calls are resource constraints, not semantic distances.
+This categorical policy draws on trust-region adaptation \citep{conn2000trust}; it does not establish the local-model assumptions of stochastic convergence results \citep{bandeira2014probabilistic,chen2018storm,blanchet2019trust}.
 
-Classical trust-region methods adapt a neighborhood using agreement between predicted and measured improvements~\citep{conn2000trust}.
-Stochastic variants require additional local-model and estimate conditions~\citep{bandeira2014probabilistic,chen2018storm,blanchet2019trust}.
-The categorical scope levels, revision agent's predictions, and adaptive Train panels here have not been shown to satisfy those conditions.
-The claim is empirical control of revision scope and provisional exploration, not convergence or automatic verification of the correction hypothesis.
-
-\paragraph{An auxiliary observed-to-predicted ratio.}
-A pre-execution numerical prediction may specify expected correctness probabilities on authorized Train cases.
-Unspecified cases predict no change; ordinal winner expectations do not imply numerical gains.
-For a positive predicted gain on the same metric, immediate parent, and cohort, the diagnostic ratio is
-\begin{equation}
- \rho_t =
- \frac{\widehat g_{\mathcal C_t}(C_t,P_t)}
-      {g_t^{\mathrm{pred}}}.
- \label{eq:auxiliary-ratio}
-\end{equation}
-The implementation requires predicted gain greater than $10^{-6}$ in the sum-gain units and complete repeated measurements.
-Otherwise it records the ratio as unavailable.
-This repeat gate does not certify statistical precision.
-The ratio never controls confirmation, staging, rollback, or scope.
-A structural step without a numerical gain prediction has no ratio; it still must pass its mechanism and staging checks.
-
-\paragraph{Val promotion and terminal assessment.}
-Eligible working evaluators are assessed at a frozen checkpoint cadence, not whenever a favorable partial Val result appears.
-The default cadence is every three charged steps, with direction-exit and final checkpoints.
-Both $W$ and $B$ are compared on full Val under the same frozen protocol.
-Compatible cached measurements may be reused under the identity and replicate rules above.
-On a complete comparison with no reduction in coverage, the promotion rule is
+\paragraph{Val retention.}
+The reference cadence is every three charged steps, plus direction-exit and final checkpoints.
+Compare eligible $W$ and $B$ on complete frozen Val under identical scoring and coverage requirements:
 \begin{equation}
  B\leftarrow
  \begin{cases}
@@ -800,222 +346,96 @@ On a complete comparison with no reduction in coverage, the promotion rule is
  \end{cases}
  \label{eq:acceptance}
 \end{equation}
-with $\tau_{\mathrm{Val}}>0$ fixed before search.
-The same full cohort and failure policy apply to both evaluators.
-Promotion releases only its indicator and retained score; Val cases and traces remain sealed.
-No Val outcome changes $R$, $W$, scope, staging windows, or direction endings.
-Uncertainty summaries and worst-stratum scores are diagnostics, not additional promotion gates.
-An improvement on Val is a retention decision, not mechanism attribution or confirmation of the Train hypothesis.
+where $\tau_{\mathrm{Val}}>0$ is prespecified.
+Only promotion and retained score are released; no Val result changes Train states or direction control.
+Restricted feedback follows the motivation of the Ladder \citep{blum2015ladder}, without inheriting its theoretical bound.
+Reserve the last eligible $W$ for the scheduled final comparison before reset; an incomplete comparison retains the last valid $B$.
 
-Restricted feedback follows the motivation of the Ladder~\citep{blum2015ladder}; this protocol does not inherit its leaderboard bound without the corresponding assumptions and release policy.
-Checkpoint allowances include a reserved final comparison of the last eligible executable $W$ saved before reset.
-If the run is interrupted by integrity failure or the final comparison is incomplete, retain the last valid $B$ rather than silently selecting another evaluator.
-Freeze $B$ before the single terminal Test assessment, which may contain prespecified scoring repeats.
-Test is invoked separately and is never loaded by the search loop.
-Additional checkpoint curves, if prespecified, are assessed after search and cannot select the reported evaluator.
-
-\paragraph{Protocol freeze and verification.}
-Every run records its controller version, code/configuration identities, case allocations, scoring rules, repeats, staging and rejection limits, scope settings, resource caps, and Val cadence/margin.
-Defaults above are reference settings, not evidence of optimality or statistical power.
-The 100-Val/400-Test reference allocations in Appendix~\ref{app:measurement} remain configurable data-budget choices, not a precision or power claim.
-Actual settings require an implementation-linked run manifest.
-Historical runs retain their original controller and evaluator versions.
-
-Constructed boundary records test decision rules, cache identity, missing-data handling, and invariance to repeat permutations.
-Controlled searches must separately compare controllers from the same evaluator seed at matched cost, before attributing differences to a changed evaluator architecture.
-A known-executable structural intervention can test whether implementation progress is incorrectly rejected.
-Offline replay can check decision boundaries but cannot replace fresh searches: changing the controller changes later proposals and observations.
-Software checks and such proposed comparisons are not empirical evidence that EvalOpt improves agreement.
-
-\section{Reference evaluator implementation}
+\subsection{Reference evaluator}
 \label{app:synthesis}
+The concrete evaluator implements task analysis ($A$), judgment ($J$), and deterministic synthesis ($S$).
+Task analysis sees the task and permitted sources, not the evaluated output.
+Judgment inspects one output through LLMs, tools, subagents, and routes, producing structured evidence.
+The A/J/S v1 synthesis uses atomic judgments and four criterion ratings with a weighted mean; its separate holistic diagnostic score does not enter that mean.
+These components instantiate the generic revision space, not an additional optimization contribution.
 
-The reference runtime represents each evaluator as an executable evaluation program with explicit task analysis ($A$), judgment ($J$), and synthesis ($S$) components.
-These stages instantiate the generic revision space in Section~\ref{sec:problem}; they are not an additional optimizer contribution or a demonstrated prerequisite for depth-first evolution.
-Figure~\ref{fig:runtime} illustrates their low-level elements.
+Editing synthesis reuses compatible analysis/judgment outputs; editing judgment invalidates its dependent outputs while holding task analysis fixed; editing analysis invalidates dependent judgments.
+Train confirmation therefore measures judgment variation conditional on shared analysis.
+Frozen Val/Test evaluation remains end-to-end.
+Train-derived examples cannot contain case-ID lookups or whole-case score tables.
 
-\paragraph{Task analysis and judgment.}
-Task analysis reads the task and permitted source material without seeing the evaluated output, its competitor, or human labels.
-It identifies evaluation items and may use an ordered model workflow.
-Judgment then inspects one output through LLM evaluators, tools, subagents, and routing rules.
-Its structured findings retain evidence and item references for scoring and diagnosis.
-Few-shot examples can be proposed from Train feedback as editable program content.
-They must not encode case identifiers, label lookups, or whole-case score tables; adding an example is not itself a successful diagnostic test.
-
-\paragraph{Deterministic synthesis and version boundaries.}
-Synthesis computes scores from structured judgment outputs through declared aggregation rules; it is not a prompted synthesizer or arbitrary generated code.
-The default version, A/J/S v1, uses atomic judgments and four criterion ratings, with a weighted mean for scoring.
-A separately emitted holistic score is diagnostic and does not determine that mean.
-The opt-in A/J/S v2 instead uses an explicit deduction ledger.
-Its availability does not establish an accuracy improvement or retroactively change the evaluator used in earlier runs.
-
-In v2, analysis items indicate whether a requirement is required or optional and clear or uncertain.
-Uncertain items are not treated as required.
-Judgment records resolved statuses and a ledger containing criterion, defect kind, item identifiers, severity, and evidence.
-Omitted optional items and unresolved items cannot be charged as defects.
-Clear required omissions or partial fulfillment, and clear contradictions, must be accounted for.
-Repeated charges for the same item identifier are rejected.
-These structural checks do not verify factual truth, severity calibration, or whether differently named entries describe the same defect.
-
-For criterion $k$, deterministic synthesis subtracts the recorded severity penalties from one, clipping at zero, then forms the configured weighted mean across criteria.
-The default minor, moderate, and major penalties are $0.1$, $0.3$, and $0.6$; they are heuristic settings, not learned optima.
-An unresolved required item or the absence of any resolved clear item makes the score unavailable.
-Optional unknowns alone need not prevent scoring.
-Insufficient evidence is not a low-quality output, and the case cannot be removed from the comparison to improve apparent accuracy.
-Every required evaluator report must be sufficient, even if its fusion weight is zero.
-A sufficient empty ledger can yield a score of 100; an insufficient report cannot.
-
-\paragraph{Evidence reuse.}
-Editing synthesis reuses compatible analysis and judgment outputs.
-Editing judgment keeps compatible task analysis fixed and invalidates dependent judgment outputs; editing analysis invalidates its dependent judgments.
-The fresh confirmation measurement in Appendix~\ref{app:algorithm} reruns judgment but still holds task analysis fixed.
-Thus scoring comparisons can establish changes conditional on shared evidence without establishing independent stability of the full runtime.
-Complete end-to-end assessment under the frozen Val/Test protocol remains distinct from these Train diagnostics.
-
-
-\section{Detailed C1 results and selection diagnostics}
+\section{Complete results and ablations}
 \label{app:results}
-
-Table~\ref{tab:domain-results} supplies the per-domain records behind Table~\ref{tab:main-alignment} and Figure~\ref{fig:c1-landscape}.
-Fill one block per admitted domain, feedback route, and ranking-pool size.
-Report all seven main methods, with independent-run means, paired contrasts, run counts, and both requested and completed group counts.
-Do not replace the same-domain comparison with different domains for different methods.
-
-\input{figures/ideal_scenario/domain}
-\small
-\begin{longtable}{@{}P{4.1cm}rrrrP{2.3cm}@{}}
-\caption{\textbf{Per-domain C1 comparison.}
-Pair, top-region agreement (Top), and Best-of-$N$ accuracy are percentages; Reg is normalized rank regret.
-Dimensional outcomes are denoted by Dim.
-Run-level observations and intervals remain unfilled.}
-\label{tab:domain-results}\\
-\toprule
-Domain / method & Pair & Top & Bo$N$ & Reg & Dim.\\
-\midrule
-\endfirsthead
-\multicolumn{6}{l}{\small Table~\thetable\ continued}\\
-\toprule
-Domain / method & Pair & Top & Bo$N$ & Reg & Dim.\\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-\IdealDomainRows
-\end{longtable}
-\normalsize
-
-\paragraph{Selection diagnostics.}
-Report the full selected-rank distribution, including scoring failures, and prespecified strata for omission, factual error, and competing quality criteria where meaningful.
-Define strata before seeing comparative outcomes and retain small or unavailable strata as such.
-Do not infer selection gains from global pairwise agreement.
-The main selection cohort uses one common $N$; a sensitivity sweep changes $N$ only on groups with enough independently ranked outputs.
-When comparing dimensional scores with overall preferences, preserve their separate constructs.
-
-\paragraph{Cost and cross-task reporting.}
-For empirical reporting, Figure~\ref{fig:c1-landscape}b requires actual deployment cost per requested output from Table~\ref{tab:cost-results}, not search cost.
-The current draft instead uses the conditional model-cost estimates in Appendix~\ref{app:adaptation}.
-Panel (c) compares absolute agreement across tasks; only the four domains shared with Table~\ref{tab:main-alignment} enter its means.
-Compare methods on common inputs and report task-specific uncertainty.
-Any missing task or comparator is labeled, not dropped to improve the plot.
-
-\section{Search, mining, and component ablations}
-\label{app:ablations}
-
-The core ablations separate diagnostic information from controller design.
-The comparisons share feedback pools, seed evaluators, model versions, editable interfaces, scoring rules, Val access, and total search cost caps except for the stated intervention.
-Each condition is evaluated through independent searches and its frozen terminal evaluator.
-Local repair rates and individual traces are secondary descriptions of the search process.
-
-\paragraph{Comparison tiers and shared feedback.}
-The breadth tier uses every domain admitted under the frozen data and interface criteria.
-The intensive tier uses SV4, IG1, TG1, and AR1 for repeated search and mining comparisons, without selecting domains by observed improvement.
-Optimizer attribution uses identical selected Train groups and feedback fields in every arm.
-The end-to-end comparison additionally varies preference mining under equal label-access and total model/tool budgets.
-Report these two estimands separately rather than attributing a sampling advantage to the search policy.
-
-\paragraph{History and fixed-patience policies.}
-History-based search receives the full diagnostic archive and may adopt another correction after any completed revision.
-When it changes correction, it initializes the new direction with $R=W=B$, a new direction panel, and the common initial scope.
-When it continues, it uses the same confirmation, staging, rollback, and Val rules as EvalOpt.
-This compares persistence policies, including the initialization consequences of switching.
-
-Fixed-patience continuation instead allows a direction a fixed number $k$ of charged revision attempts.
-Choose $k$ from $\{2,4,6\}$ under the common Train-only tuning allowance and freeze it before evaluation.
-The revision agent still uses diagnostics to choose edits, but cannot end a direction early merely because it judges another correction more promising.
-The shared rejection, provisional-window, execution-integrity, and resource limits remain active and can stop continuation before $k$ attempts.
-The comparison therefore changes voluntary direction ending, not safety checks or the ability to diagnose.
-Do not match realized direction lengths after observing the runs, since those lengths are an outcome of the policy.
-
-\paragraph{Diagnostic feedback and retained history.}
-The reduced-feedback condition returns paired gain, aggregate losses and uncertainty, required execution/mechanism checks, transition decisions, and cost, but omits case-level repair/regression records and intermediate traces.
-Contracts, case selection, execution, and all controller checks remain enabled.
-Their internal records are retained for analysis but are unavailable to the proposer through prompts, files, or diagnostic tools.
-This contrast tests access to detailed diagnostic feedback, not removal of the experiment contract.
-
-The no-retained-history condition receives the full current diagnostic record but no earlier execution records, failed-candidate archive, or summaries of those records.
-Each proposer call is constructed from the permitted context, including the current program and active hypothesis, so omitted records do not remain in an inherited conversation.
-The working evaluator still carries the consequences of earlier revisions, including staged changes.
-Both comparisons charge all executed checks and report actual context and proposal costs; fewer prompt tokens are part of the intervention, not additional free search.
-The disclosure policy is fixed before execution and audited on the actual proposer inputs.
-
-\paragraph{Controller and modification-scope controls.}
-As a secondary implementation study, compare the previous and proposed controllers from the same seed, holding the evaluator architecture, editable interfaces, feedback, and total cost cap fixed.
-Pin the previous controller's configuration; this is a comparison of control policies, not an isolated test of one ratio.
-Within the proposed controller, compare adaptive categorical scope with a scope fixed before search, keeping confirmation, staging, and direction limits unchanged.
-Character and call caps remain matched resource constraints rather than substitutes for scope.
-Repeat the controller comparison with structural evolution only after the fixed-architecture comparison, using a common minimal $A/J/S$ seed and a known-executable structural intervention as a positive control.
-
-Comparator thresholds and scope settings receive a common Train-only tuning allowance and are frozen before the independent comparisons.
-Report the chosen settings and the cost of uncertainty resolution, including unsuccessful repeats.
-Offline replay of fixed records can expose different confirmation, staging, or rollback decisions, but changed decisions alter subsequent proposals.
-Controller efficacy therefore requires new online searches; replay is a boundary check, not a substitute.
-
-\paragraph{Staging and direction continuation.}
-The no-staging condition requires every new working evaluator to qualify for reference confirmation, retaining diagnostics from unsuccessful candidates.
-It preserves the measurement protocol, permitted scope, and execution-repair allowance.
-This tests whether bounded intermediate evaluators help implement corrections whose benefit requires coordinated steps.
-The immediate-branching condition ends a direction after the first execution-valid candidate that does not qualify for confirmation, retaining history and initializing the next direction with $R=W=B$.
-This comparison includes the loss of staging opportunities and the new direction's panel and scope initialization; it does not isolate a semantic label alone.
-Invalid submissions use the same bounded implementation-repair rules in both conditions.
-An additional parent-reset condition returns to $R$ after an unsuccessful exploratory step while retaining the direction and history, isolating the choice of executable parent from direction termination.
-All conditions keep Val cadence and released feedback fixed.
-
-\paragraph{Search-curve reporting and controls.}
-Figure~\ref{fig:budget-tests}a compares history-based search, fixed patience, no staging, and full EvalOpt at the prespecified cost checkpoints.
-Its zero-cost point is the common seed; later points assess the retained $B$, not the current working $W$.
-Test curves can decrease even when retained Val scores increase.
-Panel (b) and Table~\ref{tab:search-results} use terminal evaluators, keeping diagnostic access and state-management interventions distinct.
-
-For current-controller runs, record local outcomes and direction endings as separate variables.
-Outcomes include execution failure, reference confirmation, staged exploration, rollback, unresolved measurement, and Val promotion, which can occur at different steps in the same direction.
-Ending reasons distinguish adverse mechanism evidence, exhausted integration tests, an expired staging window, unresolved measurement at its cap, and direction/global resource or integrity limits.
-Val nonpromotion never ends a direction.
-Report outcome and ending counts over all opened directions, alongside revisions and cost, rather than forcing local gain and stopping reason into one exclusive category.
-
+\subsection{Per-domain evaluator quality}
+Table~\ref{tab:c1-all-domains} provides all seven methods for every C1 domain; Table~\ref{tab:domain-results} adds score-tie diagnostics on the four-domain analysis subset.
 \begin{table}[!htbp]
-\caption{\textbf{Matched-cost search comparison.}
-Agreement is in percent; difference is from full EvalOpt in percentage points.
-Revisions per direction and search cost (cap $=100$) are reported separately.}
-\label{tab:search-results}
+\caption{\textbf{C1 accuracy in every domain.} All domains have equal weight in Overall. Fixed: fixed model judge; Fusion: learned signal fusion; Meta: Meta-Harness.}
+\label{tab:c1-all-domains}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}Ycccc@{}}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}Yrrrrrrr@{}}
 \toprule
-Condition & Agreement & Difference & Revisions/direction & Cost\\
+Domain & Fixed & Seed & Fusion & SkillOpt & GEPA & Meta & EvalOpt\\
 \midrule
-\input{figures/ideal_scenario/search}
+\input{figures/ideal_scenario/c1_domains}
 \bottomrule
 \end{tabularx}
 \end{table}
+\begin{table}[!htbp]
+\caption{\textbf{Predicted score-tie rates on the analysis subset.}
+Percentages use the same strict-human pairs and group weights as C1 accuracy.
+These are evaluator score ties, not human ties.}
+\label{tab:domain-results}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}Yrrrr@{}}
+\toprule
+Method & SV4 & IG1 & TG1 & AR1\\
+\midrule
+\input{figures/ideal_scenario/domain}
+\bottomrule
+\end{tabularx}
+\end{table}
+\subsection{Search ablations}
+\label{app:ablations}
+Search and mining diagnostics use SV4, IG1, TG1, and AR1, without changing their C1 weights.
+All search arms share selected feedback, seed, model, scoring, Val access, and cost except for the declared intervention.
+Table~\ref{tab:search-results} supplements Figure~\ref{fig:budget-tests}a with absolute accuracy and revisions per direction.
 
-\paragraph{Controlled diagnostic cases.}
-A separate constructed task set distinguishes useful intermediate evidence that is not yet consumed, an intended tool call that failed to materialize, and a fully realized correction that is harmful.
-Freeze the tasks, hidden checks, target and contrast cases, and decision allowances before comparing policies.
-The useful condition requires an actual tool call and downstream evidence use; merely adding a tool name does not count as integration.
-The harmful condition requires both realized execution and an independently specified loss, rather than a missing tool response.
-Each policy starts from the same evaluator and receives the same budget and available diagnostics.
-Table~\ref{tab:mechanism-checks} separates the three endpoints; they have different denominators and must not be summed.
-Constructed cases check policy behavior and do not replace natural-task Test performance.
+\paragraph{Policy controls.}
+History-based search can replace the correction after each revision while retaining diagnostics.
+A switch initializes $R=W=B$, a new panel, and initial scope; continuation keeps the common controller.
+Fixed patience uses $k\in\{2,4,6\}$ attempts selected under a shared Train-only tuning allowance.
+The agent cannot voluntarily end early, but shared rejection, integrity, and resource limits remain active.
+Immediate branching ends after the first execution-valid nonconfirming candidate and applies the same new-direction initialization.
+These contrasts include the initialization consequences of switching, not just a change of direction identifier.
 
+\paragraph{Information and state controls.}
+Reduced feedback retains aggregate gain, loss, uncertainty, checks, transitions, and cost while withholding case-level traces.
+No retained history exposes only the current diagnostic record, removing earlier records and summaries from every proposer context.
+Both retain all controller checks and charge actual context/proposal costs.
+No staging requires reference confirmation before advancing $W$; fixed scope removes adaptive scope changes; text-only EvalOpt matches SkillOpt's edit fields.
+Shared repair allowances and Val cadence remain unchanged.
+Fresh online searches, not replay alone, test these interventions.
+
+\begin{table}[!htbp]
+\caption{\textbf{Matched-cost search comparison.}
+Pair accuracy is in percent; difference is from full EvalOpt in percentage points.
+Revisions per direction are reported separately; every condition uses the same search cost of 100 units.}
+\label{tab:search-results}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}Yccc@{}}
+\toprule
+Condition & Pair acc. & Difference & Revisions/direction\\
+\midrule
+\input{figures/ideal_scenario/search_compact}
+\bottomrule
+\end{tabularx}
+\end{table}
+\paragraph{Controlled diagnostics.}
+Table~\ref{tab:mechanism-checks} separates useful evidence awaiting integration, an unrealized tool call, and a realized harmful correction.
+Each policy uses the same seed, available diagnostics, and prespecified allowance.
+Integration requires actual execution and downstream use; harmful-correction termination requires realized execution and independently specified loss.
+The three percentages have different denominators and are not additive.
 \begin{table}[!htbp]
 \caption{\textbf{Controlled diagnostic decisions.}
 Entries are percentages under each scenario's prespecified allowance.
@@ -1030,193 +450,77 @@ Policy & Integrate $\uparrow$ & Repair $\uparrow$ & End $\uparrow$\\
 \bottomrule
 \end{tabularx}
 \end{table}
+\subsection{Preference-mining comparisons}
+Each label budget restarts evolution from the same seed on fixed Test cohorts.
+The 20/50/100/200-group grid is frozen after checking source-group availability.
+A group, rather than each derived pair, is the primary access unit, with pair/ratings counts retained.
+New-annotation time includes raters, adjudication, abstentions, and random anchors; replay cannot claim savings in unrecorded human time.
+Selection policies use the same deduplicated pool and feedback detail, without unselected labels.
 
-\paragraph{Mining budgets and policies.}
-The tentative group-budget grid is 20, 50, 100, and 200, truncated or replaced before execution if the domain lacks enough independent groups.
-Keep the seed, feedback detail, evolution cost, and final test fixed across policies.
-Restart evolution from the seed at each budget; a warm-start sweep answers a different question.
-Use nested selected sets only if that policy is frozen in advance, retaining their dependence in uncertainty estimates.
-A revealed original-input group is the basic label-access unit, but also report the number of pair labels and ratings so large groups do not provide hidden extra feedback.
-New-annotation curves additionally use measured person-minutes, including anchors, extra raters, adjudication, and abstention.
-Existing-label replay cannot claim those minutes were saved unless comparable time records exist.
-If $H_1$ or $H_2$ differs across routes, do not attribute its effect to the sampling policy.
-
-The secondary selection policies use prespecified judge margins, disagreement across source groups, or repeated-run sign instability.
-They draw from the same deduplicated output pool without unselected human labels.
-Freeze source grouping, uncertainty direction, tie thresholds, random seeds, and anchor size before comparing policies.
-An unknown signal is not a confident agreement.
-Charge pool scoring and reliability checks separately from evolution.
-
-Figure~\ref{fig:acquisition}a--b reports the two budget units separately.
-Panel (c) compares mining with and without a random anchor at 100 revealed groups, using the same evolution budget and four-domain roster.
-Freeze the anchor fraction on Train before execution; removing the anchor reallocates those labels to the ranked queue, not to extra feedback.
-To test coverage of shared mistakes, report errors within the label-blind signal-agreement stratum as a secondary endpoint, with missing signals kept separate.
-This coverage analysis does not presume that anchors improve mean accuracy in every domain.
-The two-by-two sampling/search study uses random versus mined feedback and full EvalOpt versus fixed-patience continuation.
-All four cells share the feedback-detail protocol and search cost cap; the interaction is a secondary contrast at a prespecified feedback budget.
-
+Figure~\ref{fig:acquisition} separates label budgets, annotation time, and the random-anchor contrast.
+Removing the anchor reallocates its budget to the ranked queue; anchor size is frozen before comparison.
+Table~\ref{tab:mining-results} retains the random/mined $\times$ fixed-patience/EvalOpt design.
+Pool scoring is charged separately from evolution, and the interaction is a secondary contrast.
 \begin{figure}[!htbp]
 \centering
 \input{figures/mining_results_pending}
 \caption{\textbf{Preference-mining efficiency.}
-(a) Held-out agreement versus revealed groups in existing-label replay.
-(b) Agreement at matched person-minute budgets for new annotation.
+(a) Held-out pair accuracy versus revealed groups in existing-label replay.
+(b) Pair accuracy at matched person-minute budgets for new annotation.
 (c) Mined feedback with and without the random anchor at the same 100-group budget, by domain.}
 \label{fig:acquisition}
 \end{figure}
 
-\paragraph{Secondary studies.}
-Feedback-detail comparisons hold groups fixed while adding available $H_1$ and $H_2/H_3$, with actual human time reported.
-Direct-versus-converted judgments test label adapters on a common subset.
-Compatible tool, routing, rubric, and fusion interventions test use of artifact evidence (Table~\ref{tab:component-results}), distinct from the optimizer's access to execution diagnostics.
-Editable-space comparisons retain SkillOpt's text interface, with full-program EvalOpt reported separately.
-These studies address their respective interfaces rather than an additive decomposition of the full system's gain.
-
 \begin{table}[!htbp]
 \caption{\textbf{Mining and end-to-end comparison.}
-The first four rows form the two-by-two design at 100 revealed groups.
-Agreement is in percent; minutes describe the separate new-annotation comparison.
+The two-by-two design uses 100 revealed groups in every cell.
+Decisive-pair accuracy is in percent; minutes describe the separate new-annotation comparison.
 Total model-and-tool cost includes mining and search in relative units, not human labor.
 The two search policies are fixed patience and EvalOpt.}
 \label{tab:mining-results}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}YYcccc@{}}
-\toprule
-Feedback & Search & Groups & Minutes & Agreement & Total cost\\
-\midrule
-\input{figures/ideal_scenario/mining}
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\paragraph{Compatible component interventions.}
-Hold input evidence fixed when comparing seed and evolved interpretation or synthesis.
-When removing a tool or changing a route changes available evidence, rerun the complete program under the common budget.
-A dependency-breaking ablation is invalid, not a low score.
-Use compatible seed replacements and record when no meaningful intervention exists.
-Include tool on/off, seed/evolved tool, fixed/evolved routing, fixed/evolved rubric and modules, and numerical/semantic fusion where the seed supports them.
-A connected candidate's overall gain cannot be assigned independently to all edited components.
-Table~\ref{tab:component-results} reports paired effects rather than an additive decomposition.
-
-\begin{table}[!htbp]
-\caption{\textbf{Component and feedback diagnostics.}
-Agreement differences are percentage points.
-Cost differences use Seed-normalized deployment cost for program interventions and person-minutes for feedback-detail comparisons.
-Component contrasts are not additive.}
-\label{tab:component-results}
-\centering\small
 \begin{tabularx}{\linewidth}{@{}YYccc@{}}
 \toprule
-Contrast & Held fixed & Groups & Agreement difference & Cost difference\\
+Feedback & Search & Minutes & Pair acc. & Total cost\\
 \midrule
-\input{figures/ideal_scenario/components}
+\input{figures/ideal_scenario/mining_compact}
 \bottomrule
 \end{tabularx}
 \end{table}
-
-\section{Trajectory and failure analysis}
+\subsection{Trajectory assessment}
 \label{app:analysis-details}
+Sample directions by prespecified outcome strata and stable IDs, including failed and exhausted directions.
+Review semantic continuity independently of direction IDs.
+For each selected trajectory, link the earlier failure, realized/unused evidence, next edit, $R/W/B$ transition, and cost.
+Separate observations from agent interpretations, allow multiple or unknown causes, and retain attempts with no follow-up.
+Report censoring and cost on directions that never promote $B$.
+These descriptions complement terminal controlled comparisons rather than establishing causality from a later successful revision.
 
-Figure~\ref{fig:trajectory} connects the recorded search state to actual behavior.
-For every direction, retain its starting error cases, intended correction, candidates, parent evaluators, observations, the revision agent's explanations, selection outcomes, cost, and end reason.
-The implementation's direction identifier can persist while its description changes; human review must therefore check semantic continuity rather than infer it from an identifier.
-Record controller stopping reasons, semantic drift, successful corrections, failed directions, and resource stops.
-
-\begin{figure}[!htbp]
-\centering
-\input{figures/trajectory_results_pending}
-\caption{\textbf{Observed trajectory and failure audit (unmeasured).}
-(a) A direction with an initially unaccepted candidate and later improvement, if one exists.
-(b) A direction that ends without improvement or exhausts resources.
-Show parent links, actual edits, changed observations, local errors, development agreement, acceptance, and cumulative cost.
-Separate recorded outcomes from the revision agent's interpretations.
-Cases follow a fixed sampling rule; no favorable trajectory is assumed to exist.}
-\label{fig:trajectory}
-\end{figure}
-
-\paragraph{Case selection and interpretation.}
-Choose trajectories using a declared rule over outcome categories and stable identifiers, not by visual appeal.
-Review a random sample of all directions and separately sample any later-success, no-gain, and exhausted categories.
-Where feasible, reviewers assess intended corrections and observable behavior without knowing the comparative final scores.
-A representative case must identify what was missing in the earlier implementation and what changed later.
-Improvement after several revisions is temporal evidence; the controlled ablations are needed to attribute a benefit to continuation.
-Direction endings may follow controller thresholds, revision agent decisions, or resource limits; none establishes that the correction was impossible.
-
-\paragraph{Failure taxonomy and reporting.}
-Classify observed missing evidence, unused tool outputs, interpretation errors, incompatible edits, and uncertain diagnoses.
-Allow multiple causes and unknown status.
-Report the share of directions with no accepted candidate, early endings, repeated equivalent edits, and tests that added no new observation.
-Distinguish technical failure, lack of measured gain, and unresolved questions at the budget limit.
-These analyses explain costs and limitations without turning plausible explanations into causal facts.
-
-\paragraph{From execution evidence to subsequent revision.}
-For each attempt, retain the proposed change and any pre-execution predictions, program and measurement identities, target and contrast-case outcomes, execution/mechanism checks, paired gain and uncertainty, losses, stability, cost, and the resulting reference/working transition.
-Distinguish undeclared, unresolved, passed, and failed intermediate checks.
-Record the permitted scope and staging window separately; store $\rho$ only when its availability conditions hold.
-Report absent behavior separately from changed behavior that fails its predicted postcondition.
-Within changed-output attempts, distinguish target repairs offset by regressions from gains confined to non-target cases; these descriptors can overlap and are not a forced partition.
-For the subsequent attempt, record whether the revision agent revises the observable implementation, its downstream use, or the correction hypothesis, allowing unknown or multiple categories.
-Coding follows a prespecified rubric and separates measured behavior from the revision agent's stated rationale.
-
-The analysis includes every rejected attempt and staged candidate, including those with no subsequent revision because the direction or run ends.
-Report next-attempt outcomes and remaining-budget censoring separately, along with total cost spent on directions that never promote a checkpoint.
-Local follow-up rates are descriptive because the interventions can change which failures occur.
-The primary comparison remains terminal Test performance across all search runs, not a success rate conditioned on eventually successful directions.
-No scaffold-consumer linkage or mechanism correctness is assumed from a shared direction identifier.
-
-
-\section{Downstream refinement and independent quality checks}
+\section{Downstream applications}
 \label{app:downstream}
-
-C2 tests the usefulness of critique, not whether the evaluator awards higher scores to its own revisions.
-On the same unseen inputs, generate a new $y_0$ and retain it unchanged as a reference arm.
-Compare no-critic revision, Seed-critic revision, and EvalOpt-critic revision.
-Use the same generator, decoding, revision instruction, critique format, evidence access, token cap, and number of revision steps.
-Freeze these settings on input-disjoint development material before final generation.
-A supplementary critique from a learned baseline can be added only with the same interface and accounting.
-The common domain order is SV4, IG1, TG1, and AR1 in both panels of Figure~\ref{fig:downstream}.
-For image captioning, every arm receives the same source image and captioning instruction; refinement revises the initial caption using the assigned critique.
-The vision-language generator and its image-conditioning interface are fixed before generating $y_0$.
-
-\begin{figure}[!htbp]
-\centering
-\input{figures/downstream_results_pending}
-\caption{\textbf{Independent downstream utility.}
-(a) EvalOpt-critic versus Seed-critic refinement of identical initial outputs.
-(b) EvalOpt-reward versus Seed-reward policy training.
-Both use tie-aware human preference with a 50\% parity line, but involve separate outputs and interventions.}
-\label{fig:downstream}
-\end{figure}
-
-New blind annotation assesses the exact newly generated outputs.
-Existing benchmark preferences do not label these revisions.
-The main contrast is EvalOpt-refined versus Seed-refined; comparisons with no-critic revision and $y_0$ test extra-compute and nondegradation explanations.
-Report wins, losses, ties, abstentions, invalid outputs, and the fraction with a major regression relative to $y_0$.
-The tie-aware preference estimate is $(W+T/2)/(W+L+T)$, with a separate requested-input denominator and bounds for unjudged outcomes.
-Major regressions are defined by the domain rubric before annotation, not by whichever errors remain after revision.
-Final domain estimates use paired 95\% intervals over original-input groups and independent runs where applicable, alongside raw judgment counts and missing-outcome rates.
-Do not pool C2 and C3 into a common effect: they change different interventions and compare different generated outputs.
-
-\paragraph{Domain and control reporting.}
-Tables~\ref{tab:downstream-results} and \ref{tab:downstream-detail} use the same four-domain roster as Figure~\ref{fig:downstream}.
-The first separates domains; the second compares the control arms using equal-domain means.
-Collected judgments, requested-input counts, and paired intervals will accompany the independent measurements, not be inferred from displayed percentages.
-
+Tables~\ref{tab:readiness}--\ref{tab:downstream-detail} give settings and controls for Figure~\ref{fig:budget-tests}b.
 \begin{table}[!htbp]
-\caption{\textbf{Downstream human-outcome reporting.}
-Pref.: tie-aware preference for EvalOpt over Seed (\%).
-Each study uses SV4, IG1, TG1, and AR1.}
-\label{tab:downstream-results}
+\caption{C2/C3 tasks, training routes, and independent assessment. Each domain uses matched generation or update resources; attribute checks remain reserved from optimization.}
+\label{tab:readiness}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}P{0.8cm}Yc@{}}
+\begin{tabularx}{\linewidth}{@{}P{.8cm}YYY@{}}
 \toprule
-Study & Domain & Pref. $\uparrow$\\
+ID & Inputs and evaluator feedback & Refinement / training route & Independent outcome\\
 \midrule
-\input{figures/ideal_scenario/downstream}
+SV4 & WebDev human preferences; separate WebGen inputs & WebGen revision / Step-GRPO; matched render/tool access & New webpage preferences, usability and reserved functional checks\\
+IG1 & CapArena human caption preferences; DOCCI references & Fixed vision-language captioner / vision-language GRPO & New caption preferences, grounding, hallucination and useful detail\\
+TG1 & TL;DR source posts and overall human comparisons & Fixed text generator / text GRPO & New summary preferences, faithfulness and content coverage\\
+AR1 & Ideation Arena contexts and expert comparisons & Fixed text generator / text GRPO & New expert proposal preferences, feasibility and significance\\
 \bottomrule
 \end{tabularx}
 \end{table}
-
+\subsection{Critique-guided refinement}
+C2 compares identical fresh initial outputs $y_0$, no-critic revision, Seed-critic revision, and EvalOpt-critic revision.
+Arms share the generator, decoding, critique format, evidence, token cap, and revision count, including identical captioning images and instructions.
+New blinded judgments assess revised outputs, which lack existing labels.
+Tie-aware preference is $(W+T/2)/(W+L+T)$, with separate abstention and missing-output counts.
+Major regression uses a prespecified rubric relative to $y_0$, not the row's comparison arm.
+Independent attribute checks are excluded from mining, runtime tools, critique, and reward.
 \begin{table}[!htbp]
 \caption{\textbf{Downstream controls and per-arm outcomes.}
 Preference, major regression, and invalidity are percentages.
@@ -1232,213 +536,14 @@ Contrast & Pref. & Major regression & Invalid\\
 \bottomrule
 \end{tabularx}
 \end{table}
-
-\paragraph{Protected attributes and reserved metrics.}
-Human preferences establish the overall endpoint.
-Table~\ref{tab:external-endpoints} adds domain-appropriate checks for particular attributes; none is assumed to capture overall quality.
-A metric used in mining, search, runtime evidence, critique, or reward is an optimization signal, not a reserved independent endpoint.
-If no suitable independent metric exists, record that absence and retain human dimensional judgments.
-Do not invent an ensemble score across incompatible constructs.
-When human and metric outcomes differ, inspect the same outputs and the metric's scope before claiming either reward exploitation or human error.
-
-\begin{table}[!htbp]
-\caption{\textbf{Independent attribute checks (unmeasured).}
-Freeze the exact implementation and reserve status before evaluation.
-Metric availability and scope are not inferred from a task-family name.}
-\label{tab:external-endpoints}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}P{1.2cm}YYc@{}}
-\toprule
-Domain & Target attribute & Candidate checks and limitations & Outcome\\
-\midrule
-SV4 & Requirements and usability & Held-back functional/specification checks plus human usability; passing code is not full visual quality & \pending\\
-IG3 & Instruction and source preservation & Human instruction-fulfillment and unrequested-change judgments; reserved image checks only within their validated scope & \pending\\
-IG1 & Grounding and useful detail & Source-supported claims, hallucination, and coverage; image-generation rewards are not caption metrics & \pending\\
-TG1 & Faithfulness and coverage & Source-support and key-content checks with human review; lexical overlap is supplementary & \pending\\
-AR1 & Novelty, feasibility, significance & Expert review and citation verification; no universal automatic novelty oracle & \pending\\
-SV2 & Reconstruction fidelity & Reserved render/structure checks; resemblance does not establish functional quality & \pending\\
-IG2 & Prompt correspondence & Applicable reserved compositional checks; protect visual quality with human judgments & \pending\\
-TG4 & Stated constraints & Applicable executable checks plus substantive human quality & \pending\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\section{Conditional reward-guided training study}
+\subsection{Reward-guided training}
 \label{app:training}
+C3 requires separately authorized training and independent assessment.
+Arms share the Base checkpoint, architecture, LoRA/GRPO settings, inputs, tools, update budget, and auxiliary rewards; only the frozen reward evaluator differs.
+Both rewards score a common starting-policy pool for variance, ties, validity, and sensitivity to length or unsupported detail, under development-frozen preflight thresholds and stopping rules.
 
-C3 remains design-only until separately authorized training and independent assessment are completed.
-Its purpose is to test whether changing the frozen evaluator reward improves a generator.
-It does not establish that evaluator evolution replaces evaluator fine-tuning or that a reward with higher offline agreement is safe to optimize.
-
-\paragraph{Preflight.}
-The prespecified domains are SV4, IG1, TG1, and AR1, using the public routes in Table~\ref{tab:readiness}.
-The within-domain recipe is Step-GRPO for webpage policies, vision-language GRPO for image captioning, and text GRPO for summaries and proposals.
-These are domain-appropriate training routes, not algorithms compared against one another.
-AR1 requires expert final annotation; the absence of an automatic research-quality metric does not exclude it.
-Before updating policies, score a common pool generated by the actual starting policy using both frozen evaluators.
-Measure agreement near the top of the pool, reward variance, ties, invalid responses, and sensitivity to length, formatting, omission, and unsupported detail.
-Freeze numerical tolerances and the stop/expand decision using development data.
-Failed preflight remains a reported result; it is not removed by substituting another task after testing.
-
-\begin{table}[!htbp]
-\caption{C3 execution manifest and outcomes.
-All hyperparameters and outcomes are pending.
-The study requires a frozen reward, matched policy-training resources, and new human endpoint judgments.}
-\label{tab:training}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}P{2.55cm}Y@{}}
-\toprule
-Item & Required specification or result\\
-\midrule
-Arms & Untrained Base; Seed-reward policy; EvalOpt-reward policy; same initial checkpoint within each domain\\
-Policy and data & Checkpoint, input source/version, source-group splits, decoding: \tbd\\
-LoRA / optimizer & Rank, target layers, optimizer, learning rate, KL rule, update count: \tbd\\
-Online rollouts & Same input sequence and group size; each evolving policy generates its own rollouts\\
-Reward & Immutable program/tools, scale map, normalization, tie and invalid-output rules: \tbd\\
-Resources & Matched update resources and reward-call cap; measured tokens, tool cost, accelerator time: \tbd\\
-Preflight & Validity, variance, preference checks, exploitation probes, numerical gates: \tbd\\
-Checkpoint choice & Input-disjoint training validation and fixed selection rule; no final-test access\\
-Final outcomes & New blinded preferences, dimensional quality, validity, regressions, reserved checks: \pending\\
-Safety diagnostics & Length/format shifts, zero-variance groups, reward versus human-quality divergence: \pending\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\paragraph{Updates and assessment.}
-Base receives no policy updates; both trained arms start from that same checkpoint and use the matched LoRA/GRPO setup.
-Hold the policy architecture, optimizer, tools, training inputs, update resources, and any auxiliary reward terms fixed within each domain; only the evaluator supplying the reward changes.
-Reward-model training code alone does not satisfy this study's generator-training requirement.
 Only the preflight pool is shared: once policies diverge, each samples its own online trajectories.
-Do not reuse one arm's outputs as if they were on-policy samples from the other.
-Freeze checkpoint-selection rules and evaluate the selected policies on the same previously unseen within-domain inputs.
-Collect new blinded judgments on Base, Seed-reward, and EvalOpt-reward policy outputs.
-Report the reward contrast as well as each trained arm against Base, with major regressions and external checks.
-An increase in optimized reward accompanied by unchanged or worse human quality does not support training usefulness.
-Additional training algorithms are optional; they answer a different question from changing the reward evaluator.
-
-\section{Optional extensions and interpretation boundaries}
-\label{app:extensions}
-
-Optional studies do not block the core domain comparison.
-Table~\ref{tab:optional-results} keeps their status explicit so that a missing extension cannot silently become a favorable result.
-Each needs a frozen question, resource contract, and independent endpoint.
-
-\begin{table}[!htbp]
-\caption{\textbf{Optional study register (not executed).}
-Fill only after the study-specific prerequisites are met.
-N/A indicates an inapplicable comparison; a dash indicates an unmeasured one.}
-\label{tab:optional-results}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}P{2.3cm}YYc@{}}
-\toprule
-Study & Prerequisite & Interpretable contrast & Result\\
-\midrule
-AFlow & Verified domain adapter and official code & Structured workflow search at matched resources & \pending\\
-Evaluator fine-tuning & Common open checkpoint and observation interface & Weight adaptation versus restricted/full program evolution & \pending\\
-Source/generator shift & Named shift with unchanged human standard & Transfer of a frozen domain evaluator; separate from primary test & \pending\\
-Larger output pools & Human rankings for every included output & Selection sensitivity by $N$; no mixed-$N$ headline & \pending\\
-Direction reopening & Implemented and frozen reopening policy & Reopening versus native nonreopening search & \pending\\
-Additional C3 domain & Reward preflight and training authorization & Task-specific reward usefulness & \pending\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\paragraph{Interpreting the completed experiments.}
-If overall agreement improves without top-region or selection gains, limit the claim to agreement.
-If improvements occur only on the adaptively checked training set, the experiment has not shown held-out improvement.
-If history-only search matches full EvalOpt, report that direction continuation did not demonstrate added value at that budget.
-If learned fusion matches full evolution, the tested errors may not require changing the observation path.
-If mining wins per revealed label but not per person-minute, report label efficiency without claiming greater annotation efficiency.
-If C2 improves over Seed critique but not over no-critic revision, additional revision resources remain an alternative explanation.
-If C3 raises reward without better human judgments, do not infer better generation from evaluator agreement.
-Null, negative, and incomplete outcomes each have distinct reporting statuses.
-
-\section{Figure and table completion inventory}
-\label{app:reporting}
-
-Table~\ref{tab:reporting} is the completion checklist for the active manuscript.
-Figure~\ref{fig:teaser} and Figure~\ref{fig:overview} remain conceptual and require no invented numerical results.
-The companion fill-in plan specifies the record schema, frozen choices, and interpretation boundary for each item.
-
-\small
-\begin{longtable}{@{}P{2.7cm}P{4.5cm}P{5.68cm}@{}}
-\caption{Complete display inventory.
-Core empirical items are pending; optional entries are conditional.
-Appendix numbering is independent of main-text numbering.}
-\label{tab:reporting}\\
-\toprule
-Display & Question / role & Required inputs\\
-\midrule
-\endfirsthead
-\multicolumn{3}{l}{\small Table~\thetable\ continued}\\
-\toprule
-Display & Question / role & Required inputs\\
-\midrule
-\endhead
-\bottomrule
-\endfoot
-Figs.~\ref{fig:teaser}, \ref{fig:overview} & Intuition and method & Existing artwork and constructed-example disclosures; no result claims\\
-Table~\ref{tab:main-alignment} & Final evaluator comparison & Seven methods; frozen test groups; independent runs; rankings where available; coverage\\
-Figure~\ref{fig:c1-landscape} & Breadth, heterogeneity, deployment trade-off & Admitted task list; paired Seed/GEPA effects; actual per-output costs\\
-Figure~\ref{fig:downstream} & C2/C3 across four families & SV4/IG1/TG1/AR1 outcomes, new blind judgments, paired intervals; separate interventions\\
-Figure~\ref{fig:budget-tests} & Search dynamics and mechanism & Cost-stamped checkpoints; history/fixed-patience policies; diagnostics and staging controls\\
-Table~\ref{tab:downstream-results} & Downstream human benefit & New C2 outputs and votes; C3 only after authorized training; regression labels\\
-Table~\ref{tab:domains} & Candidate scope & Fixed task codes and standards; not completion counts\\
-Table~\ref{tab:data-sources} & Resource roles & Primary source, version, exact assets, feedback construct, permissions\\
-Table~\ref{tab:readiness} & Representative downstream roster & Public data, revision and generator-training routes, independent endpoints\\
-Table~\ref{tab:human-provenance} & Feedback route & Direct/derived/new origin and budget definition\\
-Table~\ref{tab:annotation-results} & Label quality & Individual votes, abstentions, rater groups, timing\\
-Table~\ref{tab:access} & Leakage controls & Access logs, grouping and reserved-metric audit\\
-Table~\ref{tab:adaptation} & Baseline fidelity & Official code revisions, wrappers, editable scope, allowed evidence\\
-Table~\ref{tab:cost-results} & Practical cost & All search/diagnostic/failed calls, deployed latency and cost\\
-Figure~\ref{fig:runtime} & Evaluation program interfaces & Existing conceptual runtime diagram; no empirical fill needed\\
-Table~\ref{tab:domain-results} & Full C1 breakdown & Domain-by-method-by-run results, dimensional endpoints, denominators\\
-Table~\ref{tab:search-results} & Search-control effects & Current policy and component controls, same-space contrast, independent runs\\
-Table~\ref{tab:mechanism-checks} & Distinguishing incomplete and harmful corrections & Prespecified tool-integration, execution-repair, and harmful-correction cases\\
-Figure~\ref{fig:acquisition} & Feedback efficiency and anchor coverage & Frozen label budgets, measured annotation time, anchor controls\\
-Table~\ref{tab:mining-results} & Mining / end-to-end estimates & Sampling policies and two-by-two cells at each fixed budget\\
-Table~\ref{tab:component-results} & Evidence and feedback attribution & Paired compatible interventions and same-group label-detail runs\\
-Figure~\ref{fig:trajectory} & What changed within a direction? & Candidate code hashes, parent links, observations, diagnoses, outcomes, costs\\
-Table~\ref{tab:downstream-detail} & Downstream controls and failures & Per-arm outputs, new blind votes, no-critic control, validity\\
-Table~\ref{tab:external-endpoints} & Protected attributes & Reserved metric implementations and human dimensional outcomes\\
-Table~\ref{tab:training} & Conditional C3 & Frozen training manifest, preflight gates, checkpoints, new outcomes\\
-Table~\ref{tab:optional-results} & Scoped extensions & Separate authorization/readiness and matched controls\\
-Tables~\ref{tab:reporting}, \ref{tab:manifest} & Completion and reproduction & Display status plus complete run manifests and artifact hashes\\
-\end{longtable}
-\normalsize
-
-\section{Reproducibility manifest}
-\label{app:manifest}
-\label{app:simulation}
-
-Table~\ref{tab:manifest} lists the unresolved values that must be frozen before confirmatory runs.
-Each table and figure is linked to versioned data, analysis code, and export hashes in the companion repository.
-
-\begin{table}[!htbp]
-\caption{Run manifest to complete before execution.
-Record study-specific values rather than unrelated implementation defaults.}
-\label{tab:manifest}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}P{2.45cm}Y@{}}
-\toprule
-Field & Required value\\
-\midrule
-Domain and data & Standard, dataset revision, source/license, duplicate groups, input/output hashes, admitted study roles: \tbd\\
-Human protocol & Rubric, dimensions, label origin, raters, consent, compensation, ties, adjudication, timing: \tbd\\
-Partitions & Original-input/source split manifests, sizes, label-access log, independent final cohort: \tbd\\
-Mining & Signal versions, source groups, margins, random anchor, qualification, budgets, policy seeds: \tbd\\
-Models and tools & Evaluator, optimizer, tool-model and generator checkpoints; decoding and API versions: \tbd\\
-Baseline adapters & Official code commits, native settings, wrapper changes, shared interfaces, smoke tests: \tbd\\
-Search & Seed program, editable space, acceptance checks, native end/parent rules, cost cap and checkpoints: \tbd\\
-Measurement & $R$, retries, precision, completeness, frozen cache, independent search runs, failure policy: \tbd\\
-Downstream & Fresh output generation, critic controls; conditional C3 preflight, training, checkpoints: \tbd\\
-Analysis & Primary contrasts, paired/clustering rule, multiplicity, minimum effect, sample sizes, exclusions: \tbd\\
-Artifacts & Run IDs, code/data hashes, raw traces, labels, derived endpoints, plotting revision, release permissions: \tbd\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-Release only authorized and appropriately anonymized artifacts.
-Every populated result must link to immutable source records, its denominator, the analysis version, and the relevant frozen manifest.
-Before a results-bearing submission, revise the abstract, introduction, discussion, and conclusion against those actual outcomes.
+After prespecified checkpoint selection, new blinded judgments on unseen inputs compare EvalOpt-reward with Seed-reward and both with Base, including regressions and reserved attributes.
+Reward increases alone do not establish quality gains.
+Policy checkpoints, optimizer/KL settings, reward scales, update counts, and independent outcomes remain to be established.
 \FloatBarrier
