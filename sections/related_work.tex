@@ -7,7 +7,7 @@ Improving these judgments matters beyond assessment: when evaluators guide gener
 Learned reward models and trained judges adapt model weights to produce scores or critiques aligned with human judgments \citep{xu2023imagereward,kim2024prometheus,ke2024critiquellm}.
 Other approaches use feedback to generate, select, or refine explicit evaluation criteria, including preference-grounded query-specific rubrics \citep{shankar2024spade,liu2024autocalibrate,shankar2024evalgen,lv2026queryrubrics}.
 Agent-as-a-Judge and WebGrader extend evaluation through tool-based inspection and evolving verifier skills, respectively \citep{zhuge2025agentjudge,chen2026webgrader}.
-EvalOpt builds on this move toward explicit evaluation programs: with the base model fixed, it uses human feedback to revise both how evidence is gathered and how that evidence determines judgments.
+EvalOpt builds on this move toward agentic evaluators: with the base model fixed, it uses human feedback to revise both how evidence is gathered and how that evidence determines judgments.
 
 \paragraph{Program optimization and agent self-evolution.}
 Automated optimization treats prompts, modules, or agent code as editable state, allowing adaptation without changing the underlying model weights.

@@ -329,7 +329,7 @@ Automated tools can inspect the artifact; they cannot retrieve held-out answers 
 
 \begin{table}[!htbp]
 \caption{Information access for the revised search.
-Val supports adaptive retention; Test is opened only after the best program is frozen.}
+Val supports adaptive retention; Test is opened only after the best evaluator is frozen.}
 \label{tab:access}
 \centering\small
 \begin{tabularx}{\linewidth}{@{}P{2.3cm}YY@{}}
@@ -338,7 +338,7 @@ Partition & Released information & Permitted decisions\\
 \midrule
 Train & Authorized artifacts, human feedback, detailed traces and case differences & Anchor confirmation, bounded working exploration, rollback, and direction control\\
 Val & Controller: full-cohort outcomes; optimizer: promotion indicator and retained best score & Global checkpoint selection only; no case-level optimizer access\\
-Test & Locked until search, program selection, and analysis rules are frozen & One terminal assessment of seed and best; no edits or reselection\\
+Test & Locked until search, evaluator selection, and analysis rules are frozen & One terminal assessment of seed and best; no edits or reselection\\
 Metric reserve & Endpoints excluded from optimization and runtime tools & Independent assessment of the relevant quality attribute\\
 \bottomrule
 \end{tabularx}
@@ -359,13 +359,13 @@ The run manifest records the source-pool version and hash, grouping and inclusio
 Outputs generated for the prespecified refinement and reward-guided training assessments are separate evaluation products, not additions to the mining or checkpoint-selection cohorts.
 
 Val labels and traces remain controller-only, even when a checkpoint is rejected.
-Within an active direction, Val does not change the anchor, working program, permitted modification scope, or direction-ending decision.
+Within an active direction, Val does not change the anchor, working evaluator, permitted modification scope, or direction-ending decision.
 Published optimizers may retain their native development rules, but must declare their Train/Val access and receive no Test feedback.
 Interrupted runs retain their failures and incurred costs; they do not receive a fresh selection opportunity.
 
 \paragraph{Controller accuracy versus reporting weights.}
 Train comparisons use equal-pair correct-ordering frequencies on a fixed cohort, as in Equation~\ref{eq:paired-gain}.
-Each complete replicate contributes one only when the program assigns a higher score to the human-preferred output; one replicate reduces to binary correctness.
+Each complete replicate contributes one only when the evaluator assigns a higher score to the human-preferred output; one replicate reduces to binary correctness.
 Ties count as errors, and missing executions are not repairs.
 The group-weighted endpoint below is retained for frozen Val/Test reporting; it uses one ordering after the declared within-output aggregation, not the average of arbitrarily many repeated orderings.
 Record both the case weights and aggregation rule rather than treating these estimators as interchangeable.
@@ -433,17 +433,17 @@ The same input resample is used across methods and runs.
 Scoring repeats do not increase the number of independent tasks or searches.
 If shared reviewers introduce additional dependence, retain reviewer identifiers and report reviewer-cluster or crossed-cluster sensitivity rather than treating votes as independent.
 
-Predeclare one principal program comparison (EvalOpt versus GEPA), the Seed contrast, and the direction-versus-history contrast.
+Predeclare one principal evaluator comparison (EvalOpt versus GEPA), the Seed contrast, and the direction-versus-history contrast.
 Report paired effect sizes and intervals for all other comparisons, with a prespecified multiplicity correction for any family of significance claims.
 Select sample sizes from a target minimum effect and development-only variance, not from a desired test outcome.
 A nonsignificant difference does not establish equivalence.
 Bootstrap intervals on one final evaluator do not establish search stability.
 
 \paragraph{Independent checkpoints.}
-The primary endpoint evaluates the terminal Val-selected program after search and all configuration choices are frozen.
-A prespecified secondary analysis records the best program $B$ at 25, 50, 75, and 100\% of the search cost cap, using the last completed promotion before each boundary.
-These checkpoints are scored in the same post-freeze Test assessment phase, without returning their outcomes to search or selecting a different terminal program.
-A run ending early carries its last best program forward, with its stopping reason retained.
+The primary endpoint evaluates the terminal Val-selected evaluator after search and all configuration choices are frozen.
+A prespecified secondary analysis records the best evaluator $B$ at 25, 50, 75, and 100\% of the search cost cap, using the last completed promotion before each boundary.
+These checkpoints are scored in the same post-freeze Test assessment phase, without returning their outcomes to search or selecting a different terminal evaluator.
+A run ending early carries its last best evaluator forward, with its stopping reason retained.
 Scoring costs for the additional checkpoints are recorded separately and cannot purchase more search.
 The terminal comparison remains the primary estimate; intermediate Test points describe the frozen search trajectory rather than repeated opportunities for selection.
 
@@ -559,50 +559,47 @@ Method & Search cost & Search tokens & Model cost & Latency\\
 \end{table}
 
 
-\section{Depth-first evaluator evolution and attribution contract}
+\section{Depth-first evaluator evolution: control and measurement}
 \label{app:algorithm}
 
-This section specifies the proposed controller and the measurements needed to implement it.
-It does not report an implemented replacement or completed controller comparisons.
 Execution acceptance, Train direction control, and Val promotion have different inputs and state effects.
-Algorithm~\ref{alg:era} gives their order; thresholds and measurement choices must be frozen before running the comparisons.
+This section specifies the reference controller, \texttt{bounded\_direction\_v2}, and its measurement rules.
+These rules define an empirical search policy; their implementation does not establish improved evaluator accuracy.
+Algorithm~\ref{alg:era} gives the loop, and Appendix~\ref{app:synthesis} describes the concrete evaluator used by the reference implementation.
 
 \begin{algorithm}[htbp]
 \caption{Direction development with confirmed anchors and bounded exploration}
 \label{alg:era}
 \small
 \begin{algorithmic}[1]
-\Require Seed $E_0$, Train, sealed Val, locked Test, frozen measurement and control protocol
+\Require Seed $E_0$, Train, sealed Val, frozen measurement and control settings
 \State Measure $E_0$ on Val; set $B\gets E_0$; initialize history
 \While{search resources remain}
-  \State Propose direction $d$; set $R\gets B$, $W\gets R$
-  \State Freeze direction panel $\mathcal D_d$; initialize allowed scope and direction limits
+  \State Propose direction $d$; initialize $R=W=B$, scope, and direction limits
+  \State Freeze direction panel $\mathcal D_d$ from the selected Train cases
   \While{$d$ is active and its resources remain}
-    \State Save parent $P\gets W$; submit candidate $C$ and its experiment contract
-    \State Check configuration, node execution, interfaces, and evidence products
-    \If{execution checks fail}
-      \State Retain executable $W$; use the bounded implementation-repair allowance
-    \Else
-      \State Compare $P,C$ under matched Train conditions; record mechanism and ranking outcomes
-      \State If needed, add symmetric repeats under the frozen uncertainty policy
-      \If{anchor confirmation is requested}
-        \State Run $R,C$ end-to-end on $\mathcal D_d$ and fresh Train coverage
-      \EndIf
-      \State Before staging, check cumulative losses against $R$ and the remaining window
-      \State Confirm $R\gets C,W\gets C$, stage $W\gets C$, or roll back $W\gets R$
-      \State Apply the Train decision summary and update the permitted scope
+    \State Save parent $P\gets W$; submit candidate $C$ and pre-execution predictions
+    \State Validate the edit and measure $P,C,R$ under matched Train conditions
+    \If{required executions are incomplete}
+      \State Record the interruption; \Return the last valid $B$
     \EndIf
+    \State Record effective changes, declared-check outcomes, gains, and protected losses
+    \If{$C$ qualifies for the single confirmation batch}
+      \State Remeasure all compared evaluators on the same Train cases under its frozen scope
+      \State Use the new batch, including check outcomes, for the decision
+    \EndIf
+    \State Confirm $R=W=C$, stage $W=C$, or roll back $W=R$
+    \State Apply the decision rules below; update pending age, rejection count, and scope
     \State Retain observations and interpretations separately, including unsuccessful attempts
-    \If{a checkpoint is due and $W$ passes execution checks}
+    \If{a checkpoint is due and $W$ is execution-valid}
       \State Compare $W,B$ on full Val; apply Equation~\ref{eq:acceptance}
       \State Release only promotion and retained score; leave Train states unchanged
     \EndIf
-    \State End or suspend $d$ on its declared exit conditions or exhausted limits
+    \State End $d$ on the evolver's recorded decision or a direction limit
   \EndWhile
-  \State Archive direction, last executable programs, and ending reason before reset
+  \State Perform the scheduled exit checkpoint; archive the direction before reset
 \EndWhile
-\State Complete the prespecified final checkpoint of the saved eligible $W$; freeze $B$
-\State Assess $E_0,B$ once on locked Test
+\State Complete any outstanding final checkpoint; freeze and return $B$
 \end{algorithmic}
 \end{algorithm}
 
@@ -620,33 +617,39 @@ The summary and findings are a constructed example.}
 \label{fig:runtime}
 \end{figure}
 
-\paragraph{Three layers and three program roles.}
-Execution acceptance establishes that a submitted intervention was installed and ran under its declared interfaces.
-Train direction control determines confirmation, bounded staging, rollback, and whether to continue the correction.
-Val promotion determines global retention only.
-These layers apply to edits of $A$, $J$, and $S$, including their subagents and tools.
-
+\paragraph{Evaluator roles and direction history.}
 The anchor $R$ is the direction's initial reference; each subsequent replacement requires sufficient Train support.
-The working program $W$ is the executable parent of the next revision and may temporarily lack confirmed benefit.
-The best program $B$ is retained by the frozen Val protocol.
+The working evaluator $W$ is the executable parent of the next revision and may temporarily lack confirmed benefit.
+The best evaluator $B$ is retained by the frozen Val protocol.
 At direction initialization $R=W=B$; subsequent Val promotions change only $B$.
 Confirming $W$ on Train updates $R$, whereas staging changes $W$ without changing $R$.
 Rollback restores the exact anchor, including configuration, prompts, routing, and dependencies.
 Diagnostic history is not rolled back.
-The random anchor used by preference mining is a sample of comparisons, not this program anchor.
+The random anchor used by preference mining is a sample of comparisons, not the anchor evaluator.
 
-\paragraph{A five-part experiment contract.}
-Before execution, each candidate records (1) the affected $A/J/S$ nodes and interfaces, (2) the predicted intermediate change, (3) Train cases expected to improve and counterexamples expected to remain correct, (4) direct-improvement or scaffolding type, and (5) execution/behavior acceptance conditions and exit conditions.
-Observable predictions identify fields, cases, and comparison predicates.
+A direction records the target failure, intended correction, and accumulated attempts.
+The evolver uses failed attempts to revise the correction's implementation or choose another diagnostic.
+It distinguishes a missing observation, an unused observation, and an observation that changed the decision without improving preference agreement.
+Replacing the intended correction requires a new direction; an implementation repair can continue the current one after rollback.
+This semantic distinction is maintained by the evolver, while the controller enforces measurable validity, staging, and resource limits.
+
+\paragraph{Pre-execution predictions.}
+The revision identifies its changed components and intended effect.
+Observable intermediate checks and numerical correctness predictions are optional.
 Type and predictions are not reassigned after results arrive.
-A numerical gain prediction is optional and must name its metric, reference program, cohort, and units.
+A numerical gain prediction is optional and must name its metric, reference evaluator, cohort, and units.
+For an explicit scaffolding step, the record additionally specifies the next integration step and an intermediate success condition.
+Such a step can produce evidence before a later revision connects it to the scoring decision, but it receives no exemption from the bounded exploration window.
 
-For scaffolding, the exit conditions additionally specify the next integration step, a finite step and cost window, and the evidence required to complete it.
-A browser node in $J$, for example, may need to distinguish source-code presence from an actually usable feature.
-Its execution and evidence can be accepted before an $S$ edit consumes those findings.
-The record must connect the producer output to the declared consumer input.
-Merely sharing a direction identifier does not establish that connection.
-If integration misses its deadline, the exploratory chain is reverted rather than recorded as successful.
+A declared intermediate check identifies a case, output field, and comparison predicate.
+Eligible structured predictions must match on every diagnostic repeat, with at least one eligible output changing or its node being created on every repeat.
+Protected outputs may remain unchanged.
+Checks confined to reason text or final scores, purely semantic checks, and all-preservation declarations remain unresolved rather than demonstrating a repair.
+No declared checks yields \emph{not declared}, not an automatic veto on measured gain.
+Failed checks prevent both confirmation and staging; unresolved checks prevent confirmation.
+An explicit scaffold requires passed intermediate checks to remain provisional.
+An effectively inert scaffold can enter provisional exploration only after a valid preflight.
+These checks establish observable changes, not their factual correctness or causal sufficiency.
 
 \paragraph{Execution, behavior, and preference are different observations.}
 Execution checks cover effective configuration hashes, invoked nodes, tool/model identities, input/output schemas, completion status, and evidence artifacts.
@@ -654,135 +657,135 @@ A missing invocation is an execution failure even if aggregate accuracy improves
 A successful invocation with an unfulfilled intermediate prediction is a behavioral discrepancy, not an execution failure.
 A fulfilled intermediate prediction with no supported ranking gain is incomplete evidence of benefit.
 Configuration changes alone cannot establish execution, and score changes alone cannot establish the intended mechanism.
-The same separation applies to synthesis edits, for which the relevant invocation and output may be a changed synthesis node rather than an added tool.
-Automatic field comparisons and agent interpretations are recorded separately; ambiguous semantic checks remain unresolved.
+Automatic field comparisons and evolver interpretations are recorded separately; ambiguous semantic checks remain unresolved.
 
 \paragraph{Paired measurements and program identity.}
 The immediate parent $P=W$ and candidate $C$ use the same cases, scoring protocol, resource allowances, and unaffected inputs.
-A synthesis probe fixes $A/J$ evidence where compatible; a judgment probe fixes $A$ evidence; an analysis probe fixes downstream code while allowing its inputs to change.
+The comparison with $R$ uses the fixed direction panel within that roster; the local comparison uses the full roster.
 A cross-component edit is assessed as a bundle unless a valid separate intervention is available.
-Before anchor confirmation, both $R$ and $C$ run end-to-end.
-Results from fixed-evidence probes alone cannot confirm the full program.
+Compatible upstream evidence is reused to compare changes downstream; the resulting gain is conditional on that evidence.
+The reference runtime's exact reuse and fresh-execution boundaries are given in Appendix~\ref{app:synthesis}.
+Anchor confirmation under these boundaries is not a claim that all upstream stages were independently regenerated.
 
 A measurement record identifies the entire executable program, effective configuration, component and dependency versions, input and material hashes, model/tool versions, decoding settings, scoring and aggregation rules, budget, and replicate identity.
 A cache hit is valid only when these identities match the requested measurement.
 Replaying a cached stochastic outcome is not a new replicate.
-Changing $J$ invalidates downstream synthesis evidence; changing $A$ invalidates dependent judgment and synthesis results.
-Such changes do not invalidate unrelated immutable inputs.
+Effective execution identity also prevents an unchanged program from obtaining a favorable new draw merely because it was resubmitted.
 
 Failed or missing executions retain their identities and costs.
 They are not zeros, successful abstentions, or grounds for silently dropping cases.
 An incomplete paired comparison cannot confirm an anchor.
-Failure rates and the protocol's fallback/abstention behavior are reported separately from gain, with the intended cohort retained in denominator accounting.
+The reference runtime interrupts search on incomplete seed or candidate measurements; it does not implement an automatic evidence-recovery policy.
 
 \paragraph{A stable direction panel.}
-At direction creation, freeze a small Train panel $\mathcal D_d$ containing target failures and counterexamples, including membership and case weights.
+The first at most eight selected Train IDs form the fixed direction panel $\mathcal D_d$.
+This rule preserves reference cases across the direction, but does not guarantee a balanced target/counterexample composition.
+The step schedule also draws local targets, declared counterexamples, and fresh Train coverage.
+The default local allocation is 28 cases, with up to four target anchors and eight counterexamples, followed by fresh coverage.
+Panel cases are added if absent, so the measured cohort can exceed 28 cases.
+Compare $C$ with $P$ on the local cohort and with $R$ on $\mathcal D_d$, retaining panel and fresh-coverage results separately.
 Step-specific diagnostic cases may vary, but their scores are not concatenated into a fictitious common improvement trajectory.
-Before each anchor update, compare the proposed program with $R$ on $\mathcal D_d$ and on fresh Train coverage drawn by a prespecified policy.
-Report panel and fresh-coverage outcomes separately.
-The fresh cases check effects outside the original targets, including regressions that the panel may miss.
 Both sources remain visible learning data, and repeated use provides no independent generalization assessment.
 
-\paragraph{Gain, losses, stability, and cost.}
-The primary signal is the paired change in correct-ordering frequency, Equation~\ref{eq:paired-gain}.
-A replicate is a complete pair evaluation under the frozen scoring protocol; a missing replicate is not a correct or incorrect judgment.
-With one valid replicate, the signal reduces to the change in binary correctness.
-With repeated evaluations, it estimates a difference in correctness probabilities on the declared cases.
-All primary comparisons retain fixed case weights even if repeat counts differ across cases.
-
-Counterexample loss is measured separately, for example as the prespecified average positive decrease in correctness probability on the protected cases.
-This prevents repairs elsewhere from automatically canceling a protected regression.
-Margins use a score scale fixed before search; evidence coverage and prediction fulfillment provide intermediate progress indicators.
-Neither a wider score gap nor better evidence coverage is sufficient for anchor confirmation.
-Record repeated-ranking flips and score variation as stability measures, and calls, latency, failures, and retries as costs.
-Candidate-specific variance estimates cannot simultaneously redefine the gain scale and its acceptance threshold.
-
-\paragraph{Decision-focused repetition.}
-Each comparison starts with the protocol's initial measurement allocation.
-Additional replicates are allowed only at prespecified decision points where gain or loss precision affects confirmation, staging, or rollback.
-At each look, the compared programs receive symmetric additional measurement on the same cases.
-The schedule, maximum allocation, precision targets, uncertainty estimator, and treatment of repeated looks are frozen in advance.
-Use a sequentially valid procedure or a fixed finite-look correction when uncertainty bounds are interpreted inferentially.
-Do not reuse unadjusted fixed-sample tests while sampling until acceptance.
-Precision here concerns execution variation on an adaptive Train cohort, not population generalization.
-When the cap is reached without sufficient evidence, the result is unresolved.
-This rule does not require three executions for every candidate and case.
-
-\paragraph{Train decision summary.}
-\label{app:direction-decisions}
-Anchor confirmation requires passed execution and mechanism checks, supported end-to-end gain relative to $R$ on $\mathcal D_d$, and acceptable losses on its counterexamples and fresh coverage.
-Support, loss tolerances, stability limits, and required precision are fixed in the protocol, not edited by the proposer each round.
-For example, confirmation can require the lower uncertainty bound on panel gain to exceed a positive margin and the upper bounds on protected losses to stay below their tolerances.
-Operational validity and cost limits apply separately.
-
-\begin{center}
-\small
-\begin{tabularx}{\linewidth}{@{}p{0.40\linewidth}X@{}}
-\toprule
-Observation & Train action\\
-\midrule
-Intervention not connected or execution fails & Do not accept $C$; retain an executable parent and spend only the bounded implementation-repair allowance.\\
-Mechanism observed, benefit supported, protected losses acceptable & Confirm the candidate: $R\gets C$ and $W\gets C$.\\
-Mechanism observed, benefit uncertain & Keep $R$; collect allowed repeats or stage $C$ under a finite exploration contract.\\
-Scaffolding meets its intermediate checks & Stage $W\gets C$ and execute the declared integration step within its remaining window.\\
-Complete mechanism produces supported degradation & Roll back $W\gets R$; narrow the allowed scope or end the direction.\\
-Measurement or exploration cap reached without resolution & Restore $R$ for further search or suspend/end the branch; record unresolved status.\\
-\bottomrule
-\end{tabularx}
-\end{center}
-
-Staging requires execution validity and a prespecified temporary-loss bound relative to $R$, in addition to its declared next step, deadline, and cost cap.
-An unsupported final gain does not remove this safety bound.
-Thus exploration can be locally nonmonotone within its allowed loss, without moving the confirmed center on insufficient evidence.
-The bound is checked against $R$, not only the most recent working program, so successive losses cannot evade the limit by changing parents.
-Each staging window belongs to the exploratory chain; a new intermediate candidate does not reset its clock.
-Until resolved, the next experiment implements or tests the declared correction.
-Missed integration, a breached loss bound, or exhausted resources triggers rollback or branch termination.
-An invalid candidate may remain in the repair workspace, but it is not the executable $W$ or a Val checkpoint.
-
-\paragraph{An auxiliary observed-to-predicted ratio.}
-Only a precommitted positive numerical gain prediction on the same metric, reference program, and cohort can define the ratio:
+\paragraph{Gain, protected losses, and uncertainty.}
+For each case $i$ and evaluator $E$, let $o_{i,r}(E)$ be one if repeat $r$ ranks the human-preferred output strictly higher, and zero for a wrong ordering or tie.
+Unavailable executions have no correctness value.
+With $m$ complete repeats, $\widehat p_i(E)$ is their mean.
+The implementation uses the sum $G_{\mathcal C}=|\mathcal C|\widehat g_{\mathcal C}$, equivalent to Equation~\ref{eq:paired-gain} after rescaling.
+Its empirical uncertainty buffer for comparing $E$ and $F$ is
 \begin{equation}
- \rho_t =
- \frac{\widehat g_{\mathcal C_t}(C_t,P_t)}
-      {g_t^{\mathrm{pred}}}
- \quad\text{if }g_t^{\mathrm{pred}}\geq\varepsilon_{\mathrm{pred}}>0
- \text{ and the measurement precision criterion holds}.
- \label{eq:auxiliary-ratio}
+ \operatorname{SE}_{\mathcal C}(E,F)
+ =\left[\frac{1}{m}\sum_{i\in\mathcal C}
+   \bigl(s_i^2(E)+s_i^2(F)\bigr)\right]^{1/2},
+ \label{eq:repeat-buffer}
 \end{equation}
-Otherwise the record stores unavailable, with its reason.
-The floor $\varepsilon_{\mathrm{pred}}$ and precision criterion are frozen.
-A gain comparison with the anchor cannot be substituted for a prediction about the immediate parent.
-A structural step without a numerical gain prediction has no ratio; it still must pass its mechanism and staging checks.
-The ratio neither identifies whether a tool ran nor replaces counterexample losses, uncertainty handling, or confirmation.
+where $s_i^2$ is the within-case sample variance across repeats.
+The gain is paired by case, not by arbitrarily aligned stochastic repeat slots.
+Independent permutations of repeat order therefore leave every comparison unchanged.
+
+The one-standard-error buffer is a decision heuristic, not a confidence interval or significance test.
+Finite identical observations yield zero empirical variance, not proof that true execution noise is absent.
+Shared upstream evidence and correlated model calls limit the independent-arm approximation.
+These Train comparisons do not estimate generalization to unseen inputs.
+Protected cases are checked individually: a negative change in any protected case's mean correctness prevents confirmation.
+Margins, intermediate outputs, ranking flips, score variation, calls, latency, and failures remain separate diagnostics.
+Neither a wider score gap nor better evidence coverage is sufficient for anchor confirmation.
+
+\paragraph{One bounded confirmation batch.}
+The default diagnostic allocation is two repeats per evaluator and case.
+A positive anchor gain that does not exceed its uncertainty buffer can qualify for one additional batch if the candidate is effective and complete, neither local mean nor protected-case means regress, and declared checks are neither failed nor unresolved.
+Eligibility, all compared evaluators, cases, and repeat counts are frozen before dispatch.
+The parent, candidate, and anchor receive symmetric measurements with newly executed judgment stages and fixed upstream task analysis.
+The batch uses the same repeat count and Train cases as the diagnostic measurement.
+Its outcomes, including intermediate checks, govern the decision even when less favorable.
+They are not selectively pooled with the original observations.
+Effective confirmation identities are reused across rounds, preventing repeated requests until a favorable batch appears.
+This batch tests judgment variation conditional on task analysis, not fresh-input coverage or analysis stability.
+
+\paragraph{Train decision rules.}
+\label{app:direction-decisions}
+The following rules apply in order after completeness and effective-change checks.
+A failed declared mechanism check rejects the candidate without staging it.
+Except for a preflight-validated scaffold, an ineffective edit is also rejected.
+
+First, supported harm relative to either $P$ or $R$ triggers rollback to $R$ and narrows the scope by one level.
+Harm means at least two repeats with $G<-\operatorname{SE}$, or the stop-loss condition $G+\operatorname{SE}\leq-2$ correct pairs.
+Second, confirmation requires at least two repeats, panel gain $G_{\mathcal D_d}(C,R)>\operatorname{SE}_{\mathcal D_d}(C,R)$, no protected-case regression in either comparison, nonnegative local mean gain, and no failed or unresolved declared check.
+Confirmation sets $R=W=C$.
+An absent check does not veto this measured improvement, but is not recorded as a passed mechanism prediction.
+
+Otherwise, a valid unresolved ordinary edit can remain provisional; an effective scaffold additionally needs passed intermediate checks.
+Staging sets $W=C$ without moving $R$.
+The exploratory chain permits two charged provisional steps.
+A third unresolved step restores $W=R$ and records expiration, rather than restarting the window.
+Confirmation or rollback resets pending age.
+Unexecuted generation failures retain $W$ and pending age, subject to the separate failure limit.
+Comparing every candidate against $R$ as well as $P$ prevents accumulated losses from disappearing as the parent changes.
+
+A charged rejection restores $W=R$ and clears the provisional window; an uncharged generation retry retains the previous $W$ and pending age.
+Three consecutive charged rejections end the direction; confirmation or provisional continuation resets that rejection count.
+The default direction limit is 18 charged steps.
+The evolver can also end a direction with a recorded reason.
+These bounds constrain the duration of exploration, not the correctness of its semantic interpretation.
+Rejection does not itself prescribe a new direction, and a Val non-promotion does not enter these rules.
 
 \paragraph{Trust-region-inspired scope control.}
-The allowed modification set has three interpretable levels: local node edits, structural changes within one component, and coordinated changes across $A/J/S$.
-The confirmed anchor is the center of this allowance.
-Working programs may compose edits within it, but every accumulated branch must remain within the authorized component set and chain-level resource limits.
-A local change includes a prompt, checking rule, or scoring parameter.
-A within-component change can add a $J$ expert/tool or alter an $A$ analysis workflow.
-A cross-component change can link new $J$ evidence to its $S$ consumer or revise an $A/J$ interface.
+The permitted scope has three levels: one component, several components within a functional group, or coordinated changes across groups.
+In the reference evaluator these groups are task analysis, judgment, and synthesis (Appendix~\ref{app:synthesis}).
+The initial level is two.
+Two consecutive supported anchor updates widen the scope by one level, up to three; supported harm narrows it by one level, down to one.
 Changed-character counts remain patch resource limits, not a weighted graph distance or semantic neighborhood.
-
-The protocol fixes how many completed checks constitute a scope review, the required reliability of intermediate predictions, the confirmation requirement, and acceptable counterexample losses.
-Only that accumulated evidence can authorize a larger component set or more coordinated changes.
-A single high $\rho$, unavailable $\rho$, or use of most of a character allowance is insufficient.
-An unconnected mechanism calls for interface repair within its allowance; supported degradation after execution calls for rollback and narrower scope or termination.
-High measurement noise limits confirmation and may trigger bounded repeats, without automatically narrowing the textual edit.
-Per-direction limits cover failed executions, probes, staging, and confirmation.
-Explicit endings distinguish adverse directional evidence, completed/exhausted integration tests, unresolved measurement, and resource exhaustion.
+The fixed character guard is 24,000 characters.
+Execution permissions and interface checks remain separate hard constraints.
+High empirical noise can leave an edit unresolved without mechanically shortening its prompt.
 
 Classical trust-region methods adapt a neighborhood using agreement between predicted and measured improvements~\citep{conn2000trust}.
 Stochastic variants require additional local-model and estimate conditions~\citep{bandeira2014probabilistic,chen2018storm,blanchet2019trust}.
-The categorical scope levels, agent predictions, and adaptive Train panels here have not been shown to satisfy those conditions.
+The categorical scope levels, evolver predictions, and adaptive Train panels here have not been shown to satisfy those conditions.
 The claim is controlled exploration around a confirmed anchor, not convergence or automatic verification of the correction hypothesis.
 
+\paragraph{An auxiliary observed-to-predicted ratio.}
+A pre-execution numerical prediction may specify expected correctness probabilities on authorized Train cases.
+Unspecified cases predict no change; ordinal winner expectations do not imply numerical gains.
+For a positive predicted gain on the same metric, immediate parent, and cohort, the diagnostic ratio is
+\begin{equation}
+ \rho_t =
+ \frac{\widehat g_{\mathcal C_t}(C_t,P_t)}
+      {g_t^{\mathrm{pred}}}.
+ \label{eq:auxiliary-ratio}
+\end{equation}
+The implementation requires predicted gain greater than $10^{-6}$ in the sum-gain units and complete repeated measurements.
+Otherwise it records the ratio as unavailable.
+This repeat gate does not certify statistical precision.
+The ratio never controls confirmation, staging, rollback, or scope.
+A structural step without a numerical gain prediction has no ratio; it still must pass its mechanism and staging checks.
+
 \paragraph{Val promotion and terminal assessment.}
-Eligible working programs are assessed at a frozen checkpoint cadence, not whenever a favorable partial Val result appears.
+Eligible working evaluators are assessed at a frozen checkpoint cadence, not whenever a favorable partial Val result appears.
+The default cadence is every three charged steps, with direction-exit and final checkpoints.
 Both $W$ and $B$ are compared on full Val under the same frozen protocol.
 Compatible cached measurements may be reused under the identity and replicate rules above.
-On a complete comparison, the promotion rule is
+On a complete comparison with no reduction in coverage, the promotion rule is
 \begin{equation}
  B\leftarrow
  \begin{cases}
@@ -792,55 +795,76 @@ On a complete comparison, the promotion rule is
  \label{eq:acceptance}
 \end{equation}
 with $\tau_{\mathrm{Val}}>0$ fixed before search.
-The same full cohort and failure policy apply to both programs.
+The same full cohort and failure policy apply to both evaluators.
 Promotion releases only its indicator and retained score; Val cases and traces remain sealed.
 No Val outcome changes $R$, $W$, scope, staging windows, or direction endings.
+Uncertainty summaries and worst-stratum scores are diagnostics, not additional promotion gates.
 An improvement on Val is a retention decision, not mechanism attribution or confirmation of the Train hypothesis.
 
 Restricted feedback follows the motivation of the Ladder~\citep{blum2015ladder}; this protocol does not inherit its leaderboard bound without the corresponding assumptions and release policy.
 Checkpoint allowances include a reserved final comparison of the last eligible executable $W$ saved before reset.
-If the run is interrupted by integrity failure or the final comparison is incomplete, retain the last valid $B$ rather than silently selecting another program.
+If the run is interrupted by integrity failure or the final comparison is incomplete, retain the last valid $B$ rather than silently selecting another evaluator.
 Freeze $B$ before the single terminal Test assessment, which may contain prespecified scoring repeats.
-Additional checkpoint curves, if prespecified, are assessed after search and cannot select the reported program.
+Test is invoked separately and is never loaded by the search loop.
+Additional checkpoint curves, if prespecified, are assessed after search and cannot select the reported evaluator.
 
-\paragraph{Protocol freeze and staged implementation.}
-Required settings include the initial scope, allowed nodes, character/call limits, stable-panel and fresh-coverage allocation, gain/loss tolerances, temporary-loss bound, mechanism checkers, initial repeats, finite-look schedule and cap, precision requirements, staging window, repair allowance, direction/global caps, ratio floor, scope-review criteria, and Val cadence/margin.
-None may be adjusted by the evolver in response to the current result.
-Previously listed character-radius and target-count-ratio presets do not specify this controller.
+\paragraph{Protocol freeze and verification.}
+Every run records its controller version, code/configuration identities, case allocations, scoring rules, repeats, staging and rejection limits, scope settings, resource caps, and Val cadence/margin.
+Defaults above are reference settings, not evidence of optimality or statistical power.
 The 100-Val/400-Test reference allocations in Appendix~\ref{app:measurement} remain configurable data-budget choices, not a precision or power claim.
 Actual settings require an implementation-linked run manifest.
+Historical runs retain their original controller and evaluator versions.
 
-Implementation proceeds in three stages.
-First, separate execution, behavior, and ordering measurements, freeze predictions, and test identity/cache/missing-data handling using constructed boundary records.
-Second, add anchor/working roles and the decision states while holding the evaluator architecture fixed; compare old and new controllers from the same seed at matched cost.
-Third, enable $A/J/S$ structural evolution from a common minimal seed, including a known-executable structural intervention as a positive control.
+Constructed boundary records test decision rules, cache identity, missing-data handling, and invariance to repeat permutations.
+Controlled searches must separately compare controllers from the same evaluator seed at matched cost, before attributing differences to a changed evaluator architecture.
+A known-executable structural intervention can test whether implementation progress is incorrectly rejected.
 Offline replay can check decision boundaries but cannot replace fresh searches: changing the controller changes later proposals and observations.
-These are planned verification steps, not results.
+Software checks and such proposed comparisons are not empirical evidence that EvalOpt improves agreement.
 
-\section{Semantic synthesis and anchored scoring}
+\section{Reference evaluator implementation}
 \label{app:synthesis}
 
-The default fusion procedure forms an overall judgment from specialist findings; a declared numerical rule is an explicit alternative.
-Each specialist produces findings with identifiers, supporting evidence, dimensions, and uncertainty, as well as its own rating and reason.
-The full specialist trace remains available for diagnosis, but the synthesizer's default input omits the structured specialist score, rating, and score scale.
-It retains the findings, reasons, and scope of each specialist and applies its own overall scale.
-This input separation does not remove value judgments expressed in the reasons.
+The reference runtime represents each evaluator as an executable evaluation program with explicit task analysis ($A$), judgment ($J$), and synthesis ($S$) components.
+These stages instantiate the generic revision space in Section~\ref{sec:problem}; they are not an additional optimizer contribution or a demonstrated prerequisite for depth-first evolution.
+Figure~\ref{fig:runtime} illustrates their low-level elements.
 
-The synthesizer groups findings by their consequences for quality, including strengths, weaknesses, mixed effects, and uncertainty.
-Every finding reference must occur in exactly one group.
-This accounting rule makes omitted or multiply referenced findings detectable; it does not guarantee correct semantic grouping.
-Duplicate descriptions should not become independent penalties, and favorable style should not cancel a factual error when the domain standard prioritizes faithfulness.
+\paragraph{Task analysis and judgment.}
+Task analysis reads the task and permitted source material without seeing the evaluated output, its competitor, or human labels.
+It identifies evaluation items and may use an ordered model workflow.
+Judgment then inspects one output through LLM evaluators, tools, subagents, and routing rules.
+Its structured findings retain evidence and item references for scoring and diagnosis.
+Few-shot examples can be proposed from Train feedback as editable program content.
+They must not encode case identifiers, label lookups, or whole-case score tables; adding an example is not itself a successful diagnostic test.
 
-Let $a_k<a_{k+1}$ be adjacent overall anchors and $\lambda\in[0,1]$ locate quality between them.
-The resulting scalar is
-\begin{equation}
- s=(1-\lambda)a_k+\lambda a_{k+1}.
- \label{eq:anchors}
-\end{equation}
-The anchors have domain-specific verbal meanings; specialist scores with different meanings are not averaged.
-Reference completeness, semantic correctness, and calibration require separate checks.
-A synthetic arithmetic example uses $a_k=50$, $a_{k+1}=75$, and $\lambda=0.4$, giving $s=60$.
-These numbers illustrate interpolation, not a universal scale or an evaluator result.
+\paragraph{Deterministic synthesis and version boundaries.}
+Synthesis computes scores from structured judgment outputs through declared aggregation rules; it is not a prompted synthesizer or arbitrary generated code.
+The default version, A/J/S v1, uses atomic judgments and four criterion ratings, with a weighted mean for scoring.
+A separately emitted holistic score is diagnostic and does not determine that mean.
+The opt-in A/J/S v2 instead uses an explicit deduction ledger.
+Its availability does not establish an accuracy improvement or retroactively change the evaluator used in earlier runs.
+
+In v2, analysis items indicate whether a requirement is required or optional and clear or uncertain.
+Uncertain items are not treated as required.
+Judgment records resolved statuses and a ledger containing criterion, defect kind, item identifiers, severity, and evidence.
+Omitted optional items and unresolved items cannot be charged as defects.
+Clear required omissions or partial fulfillment, and clear contradictions, must be accounted for.
+Repeated charges for the same item identifier are rejected.
+These structural checks do not verify factual truth, severity calibration, or whether differently named entries describe the same defect.
+
+For criterion $k$, deterministic synthesis subtracts the recorded severity penalties from one, clipping at zero, then forms the configured weighted mean across criteria.
+The default minor, moderate, and major penalties are $0.1$, $0.3$, and $0.6$; they are heuristic settings, not learned optima.
+An unresolved required item or the absence of any resolved clear item makes the score unavailable.
+Optional unknowns alone need not prevent scoring.
+Insufficient evidence is not a low-quality output, and the case cannot be removed from the comparison to improve apparent accuracy.
+Every required evaluator report must be sufficient, even if its fusion weight is zero.
+A sufficient empty ledger can yield a score of 100; an insufficient report cannot.
+
+\paragraph{Evidence reuse.}
+Editing synthesis reuses compatible analysis and judgment outputs.
+Editing judgment keeps compatible task analysis fixed and invalidates dependent judgment outputs; editing analysis invalidates its dependent judgments.
+The bounded fresh-judgment batch in Appendix~\ref{app:algorithm} reruns judgment but still holds task analysis fixed.
+Thus scoring comparisons can establish changes conditional on shared evidence without establishing independent stability of the full runtime.
+Complete end-to-end assessment under the frozen Val/Test protocol remains distinct from these Train diagnostics.
 
 
 \section{Detailed C1 results and selection diagnostics}
@@ -892,8 +916,8 @@ Any missing task or comparator is labeled, not dropped to improve the plot.
 \label{app:ablations}
 
 The core ablations separate diagnostic information from controller design.
-The comparisons share feedback pools, seed programs, model versions, editable interfaces, scoring rules, Val access, and total search cost caps except for the stated intervention.
-Each condition is evaluated through independent searches and its frozen terminal program.
+The comparisons share feedback pools, seed evaluators, model versions, editable interfaces, scoring rules, Val access, and total search cost caps except for the stated intervention.
+Each condition is evaluated through independent searches and its frozen terminal evaluator.
 Local repair rates and individual traces are secondary descriptions of the search process.
 
 \paragraph{Diagnostic feedback and retained history.}
@@ -904,7 +928,7 @@ This contrast tests access to detailed diagnostic feedback, not removal of the e
 
 The no-retained-history condition receives the full current diagnostic record but no earlier execution records, failed-candidate archive, or summaries of those records.
 Each proposer call is constructed from the permitted context, including the current program and active hypothesis, so omitted records do not remain in an inherited conversation.
-The working program still carries the consequences of earlier revisions, including staged changes.
+The working evaluator still carries the consequences of earlier revisions, including staged changes.
 Both comparisons charge all executed checks and report actual context and proposal costs; fewer prompt tokens are part of the intervention, not additional free search.
 The disclosure policy is fixed before execution and audited on the actual proposer inputs.
 
@@ -921,9 +945,9 @@ Offline replay of fixed records can expose different confirmation, staging, or r
 Controller efficacy therefore requires new online searches; replay is a boundary check, not a substitute.
 
 \paragraph{Staging and direction continuation.}
-The no-staging condition requires every new working program to qualify for anchor confirmation, retaining diagnostics from unsuccessful candidates.
+The no-staging condition requires every new working evaluator to qualify for anchor confirmation, retaining diagnostics from unsuccessful candidates.
 It preserves the measurement protocol, permitted scope, and execution-repair allowance.
-This tests whether bounded intermediate programs help implement corrections whose benefit requires coordinated steps.
+This tests whether bounded intermediate evaluators help implement corrections whose benefit requires coordinated steps.
 The immediate-branching condition ends a direction after the first execution-valid candidate that does not qualify for confirmation, retaining history and initializing the next direction with $R=W=B$.
 This comparison includes the loss of staging opportunities and the new direction's panel and scope initialization; it does not isolate a semantic label alone.
 Invalid submissions use the same bounded implementation-repair rules in both conditions.
@@ -1051,7 +1075,7 @@ Contrast & Held fixed & Groups & Agreement difference & Cost difference\\
 \label{app:analysis-details}
 
 Figure~\ref{fig:trajectory} connects the recorded search state to actual behavior.
-For every direction, retain its starting error cases, intended correction, candidates, parent programs, observations, agent explanations, selection outcomes, cost, and end reason.
+For every direction, retain its starting error cases, intended correction, candidates, parent evaluators, observations, evolver explanations, selection outcomes, cost, and end reason.
 The implementation's direction identifier can persist while its description changes; human review must therefore check semantic continuity rather than infer it from an identifier.
 Record controller stopping reasons, semantic drift, successful corrections, failed directions, and resource stops.
 
@@ -1062,7 +1086,7 @@ Record controller stopping reasons, semantic drift, successful corrections, fail
 (a) A direction with an initially unaccepted candidate and later improvement, if one exists.
 (b) A direction that ends without improvement or exhausts resources.
 Show parent links, actual edits, changed observations, local errors, development agreement, acceptance, and cumulative cost.
-Separate recorded outcomes from agent interpretations.
+Separate recorded outcomes from evolver interpretations.
 Cases follow a fixed sampling rule; no favorable trajectory is assumed to exist.}
 \label{fig:trajectory}
 \end{figure}
@@ -1073,7 +1097,7 @@ Review a random sample of all directions and separately sample any later-success
 Where feasible, reviewers assess intended corrections and observable behavior without knowing the comparative final scores.
 A representative case must identify what was missing in the earlier implementation and what changed later.
 Improvement after several revisions is temporal evidence; the controlled ablations are needed to attribute a benefit to continuation.
-Direction endings may follow controller thresholds, agent decisions, or resource limits; none establishes that the correction was impossible.
+Direction endings may follow controller thresholds, evolver decisions, or resource limits; none establishes that the correction was impossible.
 
 \paragraph{Failure taxonomy and reporting.}
 Classify observed missing evidence, unused tool outputs, interpretation errors, incompatible edits, and uncertain diagnoses.
@@ -1083,12 +1107,13 @@ Distinguish technical failure, lack of measured gain, and unresolved questions a
 These analyses explain costs and limitations without turning plausible explanations into causal facts.
 
 \paragraph{From execution evidence to subsequent revision.}
-For each attempt, retain the five contract fields, program and measurement identities, target and counterexample outcomes, execution/mechanism checks, paired gain and precision, losses, stability, cost, and the resulting anchor/working transition.
+For each attempt, retain the proposed change and any pre-execution predictions, program and measurement identities, target and counterexample outcomes, execution/mechanism checks, paired gain and uncertainty, losses, stability, cost, and the resulting anchor/working transition.
+Distinguish undeclared, unresolved, passed, and failed intermediate checks.
 Record the permitted scope and staging window separately; store $\rho$ only when its availability conditions hold.
 Report absent behavior separately from changed behavior that fails its predicted postcondition.
 Within changed-output attempts, distinguish target repairs offset by regressions from gains confined to non-target cases; these descriptors can overlap and are not a forced partition.
-For the subsequent attempt, record whether the agent revises the observable implementation, its downstream use, or the correction hypothesis, allowing unknown or multiple categories.
-Coding follows a prespecified rubric and separates measured behavior from the agent's stated rationale.
+For the subsequent attempt, record whether the evolver revises the observable implementation, its downstream use, or the correction hypothesis, allowing unknown or multiple categories.
+Coding follows a prespecified rubric and separates measured behavior from the evolver's stated rationale.
 
 The analysis includes every rejected attempt and staged candidate, including those with no subsequent revision because the direction or run ends.
 Report next-attempt outcomes and remaining-budget censoring separately, along with total cost spent on directions that never promote a checkpoint.
@@ -1190,7 +1215,7 @@ TG4 & Stated constraints & Applicable executable checks plus substantive human q
 
 C3 remains design-only until separately authorized training and independent assessment are completed.
 Its purpose is to test whether changing the frozen evaluator reward improves a generator.
-It does not establish that program evolution replaces evaluator fine-tuning or that a reward with higher offline agreement is safe to optimize.
+It does not establish that evaluator evolution replaces evaluator fine-tuning or that a reward with higher offline agreement is safe to optimize.
 
 \paragraph{Preflight.}
 The prespecified domains are SV4, IG1, TG1, and AR1, using the public routes in Table~\ref{tab:readiness}.

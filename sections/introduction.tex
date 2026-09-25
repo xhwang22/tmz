@@ -19,15 +19,12 @@ Extending evaluator self-evolution to new open-ended domains, however, raises tw
 \begin{figure}[t]
 \centering
 \input{figures/teaser}
-\caption{Dive deeper, branch later.
-A revision that leaves the ranking unchanged may reveal what the next revision must address.
-Panel (a) illustrates a human preference for layout preservation over visual richness that the evaluator reverses.
-Panel (b) switches directions before using the detected layout change in scoring.
-Panel (c) develops the same direction through detection, a scoring penalty, and severity weighting.
-The first two revisions leave the ranking unchanged but expose incomplete use of the detected error.
-Nodes denote complete evaluation programs, hollow nodes unexplored alternatives, and dashed arrows attempt order in (b).
-Images, preferences, and paths are constructed illustrations, not experimental evidence.
-Correcting this pair does not establish overall improvement or justify best-program promotion.}
+\caption{An unsuccessful revision need not invalidate its improvement direction.
+(a) The evaluator reverses a human preference for layout preservation over visual richness.
+(b) Search switches directions after an unsuccessful revision.
+(c) EvalOpt uses intermediate diagnostics to develop the same correction despite unchanged early rankings.
+Nodes denote complete evaluation programs, hollow nodes unexplored alternatives, dashed arrows attempt order, and dotted branches hypothetical continuation in (b).
+Images, preferences, and paths are constructed illustrations of local rankings, not experimental evidence or best-program promotion.}
 \label{fig:teaser}
 \end{figure}
 
