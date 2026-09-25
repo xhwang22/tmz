@@ -20,11 +20,12 @@ Extending evaluator self-evolution to new open-ended domains, however, raises tw
 \centering
 \input{figures/teaser}
 \caption{An unsuccessful revision need not invalidate its improvement direction.
-(a) The evaluator reverses a human preference for layout preservation over visual richness.
-(b) Search switches directions after an unsuccessful revision.
-(c) EvalOpt uses intermediate diagnostics to develop the same correction despite unchanged early rankings.
-Nodes denote complete evaluation programs, hollow nodes unexplored alternatives, dashed arrows attempt order, and dotted branches hypothetical continuation in (b).
-Images, preferences, and paths are constructed illustrations of local rankings, not experimental evidence or best-program promotion.}
+\textbf{Example:} a human prefers a clear slide for live discussion, while the initial evaluator favors richer detail.
+\textbf{Observed behavior:} search switches directions while the ranking remains wrong.
+\textbf{EvalOpt:} diagnostic evidence guides successive revisions of the same correction, from detecting competing focal points to scoring and weighting clarity.
+Nodes denote evaluators. Solid branches connect evaluated checkpoints; curved red arrows mark attempt order.
+Dashed branches and hollow nodes show unexplored alternatives, including the possible continuation on the left.
+Images, preferences, and paths are constructed illustrations of local rankings, not experimental evidence or checkpoint promotion.}
 \label{fig:teaser}
 \end{figure}
 
@@ -44,17 +45,16 @@ In the default evaluator-evolution setup we tested, each new revision was propos
 We observed a tendency for unsuccessful early candidates to be followed by revisions in alternative directions rather than deeper development of the current one.
 Over repeated iterations, evolution can therefore spread effort across multiple plausible directions before any one of them has been developed far enough to judge reliably.
 
-EvalOpt uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:teaser}c; Figure~\ref{fig:overview}b).
+EvalOpt uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:teaser}, EvalOpt panel; Figure~\ref{fig:overview}b).
 The search continues developing the current direction after unsuccessful intermediate candidates, using their diagnostic results to guide the next revision.
-The best evaluator is maintained separately and replaced only by an improved candidate.
-Evolution moves to a new direction when diagnostic results provide sufficient evidence against the current one or when its search budget is exhausted.
+The best evaluator is maintained separately and replaced only at a qualifying Val checkpoint.
+A new direction begins after an ending decision based on accumulated diagnostics or after the direction reaches a rejection or resource limit.
 
 
-We evaluate EvalOpt across structured visual artifacts, images and 3D, text generation, and automated research, covering both reused preference datasets and newly collected human preferences.
-Disagreement-based preference mining identifies preference subsets that lead to stronger evaluator improvement than standard sampling from the same data source.
-Under matched search budgets, depth-first evaluator evolution continues developing directions after unsuccessful early candidates and produces more sustained improvement than the default setup.
-The resulting evaluators also achieve stronger agreement with held-out human preferences and improve downstream output selection and critic-guided refinement.
-On representative tasks, their scores further provide useful training rewards for improving generation quality.
+Our evaluation design spans structured visual artifacts, images and 3D, text generation, and automated research, with routes for reused preferences and new human annotation.
+Matched-budget comparisons test whether disagreement-based preference mining improves on standard sampling and whether depth-first evaluator evolution improves on the default setup.
+Separate assessments cover held-out preference agreement, output selection, critic-guided refinement, and reward-guided training on representative tasks.
+These benefits remain to be established empirically; the current quantitative displays are illustrative.
 
 Our contributions are as follows:
 \begin{itemize}
@@ -63,6 +63,6 @@ Our contributions are as follows:
 \item Depth-first evaluator evolution explicitly maintains an improvement direction across revisions, preventing an unsuccessful intermediate candidate from automatically ending development of that direction.
 Disagreement-based preference mining selects informative preferences from existing labeled data or prioritizes comparisons for new human annotation.
 
-\item We provide a cross-domain evaluation of preference mining, evaluator evolution, final agreement with human preferences, and downstream utility under controlled annotation and search budgets.
+\item We specify a cross-domain evaluation protocol for preference mining, evaluator evolution, final agreement with human preferences, and downstream utility under controlled annotation and search budgets.
 
 \end{itemize}

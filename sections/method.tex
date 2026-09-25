@@ -1,11 +1,11 @@
 \section{EvalOpt}
 \label{sec:method}
 
-A revision that fails to improve an evaluator may leave its intended correction unfinished rather than show that the correction is unhelpful.
-EvalOpt therefore separates selecting an evaluator from continuing its improvement direction.
-Disagreement-based preference mining selects human feedback; depth-first evaluator evolution uses that feedback and accumulated execution records to decide what to test next.
-Execution checks establish what ran; Train evidence governs bounded exploration and rollback; sealed Val comparisons govern global retention.
-This separation permits intermediate implementations without treating them as confirmed improvements.
+A failed revision may reflect an incompletely implemented correction rather than evidence against the correction itself.
+EvalOpt separates whether to continue developing a correction from whether to commit an intermediate evaluator.
+Disagreement-based preference mining selects which comparisons receive human feedback; depth-first evaluator evolution uses that feedback and accumulated execution evidence to decide what to test next.
+Execution checks establish what behavior was actually realized and what intermediate evidence it produced.
+Train evidence governs provisional exploration and confirmation, while sealed Val comparisons govern global retention.
 
 \subsection{Problem setup}
 \label{sec:problem}
@@ -15,7 +15,7 @@ This separation permits intermediate implementations without treating them as co
 Starting from a seed evaluator $E_0$, EvalOpt revises an agentic evaluator $E_\theta$ using human feedback, with the base model $M$ fixed.
 Its editable configuration $\theta$ specifies prompts, tool use, component connections, and scoring rules.
 For a task $x$, it evaluates each output $y$ separately, without seeing the competing output or human preference, and records intermediate observations alongside its score.
-An LLM-based \emph{evolver} diagnoses execution records and proposes revisions; each candidate is a complete revised evaluator.
+An LLM-based \emph{revision agent} diagnoses execution records and proposes revisions; each candidate is a complete revised evaluator.
 Appendix~\ref{app:synthesis} describes the reference implementation.
 
 Within a domain $D$ sharing an evaluation standard, the objective is agreement with human preferences on unseen inputs,
@@ -29,7 +29,7 @@ Within a domain $D$ sharing an evaluation standard, the objective is agreement w
 Here $y^+$ is the human-preferred output, $\mathcal P_D$ is the domain distribution, and $\bar s_\theta$ is the score under a protocol frozen before search, with execution randomness $\xi$.
 Original-input groups are split into Train, Val, and Test before mining.
 Only Train supplies labels, cases, and traces for revision.
-Val cases and traces remain sealed; the evolver receives only the promotion indicator and retained best score.
+Val cases and traces remain sealed; the revision agent receives only the promotion indicator and retained best score.
 Val and Test cohorts remain fixed, and Test is used only after the final evaluator is frozen (Appendix~\ref{app:measurement}).
 
 \subsection{Disagreement-based preference mining}
@@ -52,10 +52,10 @@ We rank pairs by
 \end{equation}
 The indicators mark opposing source groups within dimension $q$, opposition between overall and dimensional signals, and opposing aggregate preferences across dimensions, respectively.
 Ties and missing signals do not count as opposition.
-The fixed weights prioritize disagreement about the same criterion without treating cross-dimensional trade-offs as repeated contradictions.
+The weighting prioritizes disagreement on the same criterion, while counting cross-dimensional trade-offs only once per pair.
 
 Original-input hashes select the random anchor before ranking, keeping outputs from the same input together.
-The remaining feedback budget follows decreasing $P(r)$, with pair identifiers breaking ties.
+We fill the remaining feedback budget in decreasing order of $P(r)$, with pair identifiers breaking ties.
 Selected preferences come from compatible existing labels or blinded annotation.
 Reuse requires the same task and output pair and matching evaluation criteria and annotation protocol, or an explicitly audited harmonization.
 Both routes preserve label provenance and missing feedback fields; unselected labels remain hidden.
@@ -67,12 +67,11 @@ Mining is assessed by downstream evaluator improvement, not disagreement yield.
 \input{figures/overview}
 \caption{EvalOpt overview.
 (a) Acquire preferences using conflict ranking and a random anchor.
-(b) Revision predictions are compared with execution evidence.
-The lower inset illustrates how diagnostic history can guide later edits even when the working evaluator is unchanged.
-The evaluator--evolver loop develops a correction before branching; Val checkpoints govern global retention.
-Algorithm~\ref{alg:era} specifies the anchor, bounded working exploration, and confirmation decisions.
-(c) Use the frozen best evaluator for output selection, critic-guided refinement, and planned reward-guided training.
-The state transitions and AI-generated pictograms are schematic illustrations, not a fixed revision schedule, observed trajectories, or measured improvements.}
+(b) Candidate evaluator $C$ produces scores and traces; the revision agent compares this evidence with declared predictions to guide further edits.
+Within one direction, the controller can stage $C$ as working evaluator $W$, confirm it by updating both reference $R$ and $W$, or restore $W$ from $R$.
+Diagnostic history persists across these updates; modification scope limits each edit from $W$.
+(c) Val checkpoints select best evaluator $B$ independently of Train confirmation; the frozen evaluator supports downstream use and a locked Test assessment.
+The state diagram and AI-generated pictograms are schematic illustrations rather than measured runs.}
 \label{fig:overview}
 \end{figure}
 
@@ -81,32 +80,33 @@ The state transitions and AI-generated pictograms are schematic illustrations, n
 \label{sec:search}
 
 \paragraph{Maintaining an improvement direction.}
-A direction identifies a target failure pattern and a proposed correction.
-Its diagnostic history retains observed outcomes, the evolver's interpretations, and unresolved questions across revisions.
-Refining the implementation continues the direction; replacing its correction starts another direction.
-The direction is the unit of continued exploration; the complete evaluator is the unit of selection.
+A direction pairs a target failure pattern with a proposed correction.
+Revisions that develop or test that correction remain within the direction; adopting a different correction begins a new one.
+Its diagnostic history retains observed outcomes, the revision agent's interpretations, and unresolved questions across revisions.
+Search persists at the direction level, while confirmation and retention act on complete evaluators.
 
-The controller maintains an \emph{anchor evaluator} $R$, a \emph{working evaluator} $W$, and the Val-selected \emph{best evaluator} $B$.
+A controller applies prespecified update rules to a \emph{reference evaluator} $R$, a \emph{working evaluator} $W$, and a \emph{best evaluator} $B$.
+$W$ supports reversible exploration, $R$ records Train-confirmed progress within the direction, and $B$ records Val-selected progress across directions.
 A new direction starts with $R=W=B$.
-The anchor is the reference for Train progress, updated only when the confirmation rule is met; working is the parent of the next revision and may contain changes whose benefit remains uncertain.
-Keeping these roles separate allows further implementation without discarding the last supported reference.
+Revisions start from $W$.
+Within a direction, EvalOpt may advance $W$ provisionally, update $R$ to $W$ after confirmation, or roll $W$ back to $R$; only Val can promote a checkpoint to $B$.
 
 \paragraph{Revising and diagnosing.}
-The evolver revises $W$ to produce candidate $C$, using prior attempts to identify what remains unresolved.
-A revision can change a rule, introduce a boundary example, or reconnect components.
-The evolver examines whether the old undesired output would still satisfy the revised rule on the same input, specifying what should change and what should remain unchanged.
-When it declares an observable prediction, the prediction is recorded before execution.
-Execution checks establish whether the change was installed and ran; traces then reveal whether the expected output appeared and reached its consumer.
-A missing observation calls for a different next test from an observation that was produced but ignored.
-Observed records remain separate from the evolver's interpretation and survive rejection.
+The revision agent revises $W$ to produce candidate $C$, using prior attempts to identify what remains unresolved.
+It identifies the failures to address and the behavior intended to change or remain unchanged.
+Declared predictions about intermediate outputs are recorded before execution and evaluated as mechanism checks against the resulting traces.
+These traces distinguish an intended change that failed to materialize from an intermediate output that was produced but not used in scoring.
+Either can motivate further work on the same correction despite unchanged preference agreement.
+Observed records remain separate from the revision agent's interpretation and survive rejection.
 
 \paragraph{Measuring progress.}
-Each paired comparison between parent and candidate fixes cases, the measurement protocol, budgets, and inputs outside the intervention.
-Compatible upstream observations can be reused to locate a change, but such measurements describe behavior conditional on that evidence, not independently repeated execution of the entire evaluator.
-A fixed Train panel $\mathcal D_d$ provides the direction's reference cases; additional Train cases check effects beyond the panel.
-The candidate is compared with its immediate parent on the local cohort and with $R$ on $\mathcal D_d$, so changing parents does not erase accumulated losses on the panel.
+Parent and candidate are compared on the same cases under a fixed scoring protocol and matched execution conditions.
+The local comparison set combines a fixed Train panel $\mathcal D_d$ with the revision's target and contrast cases and additional Train cases for broader coverage.
+Declared contrast cases identify judgments whose ordering accuracy should not decline.
+Comparing $C$ with its parent on this set measures the latest revision; comparing $C$ with $R$ on $\mathcal D_d$ measures accumulated progress within the direction.
 
-Let $\widehat p_i(E)$ be the observed frequency of a correct preference ordering under the frozen scoring protocol, reducing to a binary outcome for one execution.
+Train measures progress through repeated preference orderings, whereas Val/Test judge the ordering after aggregating each output's repeated scores under the deployment protocol.
+Let $\widehat p_i(E)$ be the frequency of correct orderings for Train case $i$, reducing to a binary outcome for one execution.
 For a prespecified cohort $\mathcal C$, the paired gain is
 \begin{equation}
  \widehat g_{\mathcal C}(E,F)
@@ -114,49 +114,50 @@ For a prespecified cohort $\mathcal C$, the paired gain is
        [\widehat p_i(E)-\widehat p_i(F)].
  \label{eq:paired-gain}
 \end{equation}
-Counterexample losses and execution variation are checked separately from this mean.
-Margins and intermediate outputs guide diagnosis but do not replace correct preference ordering.
-Positive but uncertain gains may receive one symmetric confirmation batch under a frozen rule; the new batch governs the decision even when it is less favorable.
-Missing outcomes cannot confirm improvement, and a comparison that remains uncertain is recorded as unresolved.
-Appendix~\ref{app:algorithm} specifies the measurement scope and empirical uncertainty buffer.
+When the gain over $R$ on $\mathcal D_d$ is positive but does not exceed its uncertainty buffer, an otherwise eligible candidate may receive one fresh measurement.
+The controller remeasures $C$, its parent, and $R$ on their original comparison sets with the same repeat count.
+This fresh measurement, rather than the initial one, determines the confirmation decision.
+Evidence reuse, uncertainty rules, and intermediate diagnostic measures are specified in Appendix~\ref{app:algorithm}.
 
 \paragraph{Continuing, confirming, and rolling back.}
-Train measurements determine whether $C$ becomes the anchor, remains provisional, or is discarded.
-Confirmation requires repeated gain against $R$, no protected-case regression, nonnegative local mean gain, and no failed or unresolved declared mechanism check.
-An undeclared check is not evidence that a mechanism succeeded.
-A valid but unconfirmed candidate can become $W$ within a fixed exploration window and loss limit.
-A scaffolding step additionally declares its next integration step and intermediate success condition.
+Confirmation requires gain over $R$ supported by repeated scoring, nonnegative local mean gain, and no violation of declared contrast or mechanism checks.
+Each declared contrast must avoid a decrease in mean accuracy, and every declared mechanism check must pass.
+An execution-valid but unconfirmed candidate may instead remain provisional as $W$.
+A \emph{scaffolding step} adds an intermediate capability for a later revision to use, and declares that intended use and an intermediate success condition.
+A provisional chain shares a fixed exploration window and loss limit relative to $R$; staging another candidate does not reset the window.
 
 \begin{center}
 \small
 \begin{tabularx}{\linewidth}{@{}P{0.43\linewidth}Y@{}}
 \toprule
-Train evidence or stopping condition & Action\\
+Outcome & Evaluator update\\
 \midrule
-Execution or a declared check fails & Reject $C$ and restore $R$, or stop on incomplete execution.\\
-Gain supported and required checks pass & Confirm $R\gets C$ and $W\gets C$.\\
-Benefit unresolved, exploration allowed & Keep $R$; stage $W\gets C$ for the next test.\\
-Loss limit or provisional window reached & Roll back $W\gets R$; retain diagnostics.\\
-Direction-ending decision or limit reached & Archive the direction before proposing another.\\
+Confirmation criteria met & Update $R\gets C$ and $W\gets C$.\\
+Benefit unresolved, exploration allowed & Keep $R$; stage $W\gets C$.\\
+Measured rejection or exploration limit reached & Restore $W\gets R$; retain diagnostics.\\
+Execution-integrity failure & Stop search; retain the last valid $B$.\\
 \bottomrule
 \end{tabularx}
 \end{center}
 
-A new provisional candidate does not restart its exploration window.
-Rollback need not end the direction, and failure to replace $B$ does not trigger branching.
+With complete measurements, a supported loss or failed declared mechanism check can reject the candidate and restore $W$ to $R$ without ending the direction.
+This rollback discards the provisional chain, not its diagnostics.
+Missing required measurement outcomes instead trigger the execution-integrity stop: search ends because the comparison is incomplete, not because the correction has been judged ineffective.
 While the direction remains active, the next revision or diagnostic addresses the same correction.
-The evolver records its reason for ending; rejection and resource limits also bound continuation.
-The controller enforces these limits, while the evolver interprets the evidence and maintains the semantic continuity of the direction.
+A new direction is proposed only after the revision agent records an ending decision based on accumulated diagnostics, consecutive rejections reach their limit, or direction resources are exhausted.
+The controller enforces these limits, while the revision agent interprets the evidence and maintains the direction's semantic continuity.
 
 \paragraph{Adapting the modification scope.}
-The trust-region idea~\citep{conn2000trust} limits the permitted changes around the anchor, from local edits to structural changes within a component group and coordinated changes across groups.
-Consecutive supported updates allow a wider scope; harmful changes lead to rollback and a narrower scope.
-Character counts and calls remain resource bounds, not a semantic metric.
-This is an empirical exploration policy, not a convergence guarantee; exact rules and the optional observed-to-predicted gain ratio are given in Appendix~\ref{app:algorithm}.
+We use a trust-region-inspired policy~\citep{conn2000trust} to adapt the permitted scope of each revision from $W$.
+The allowed changes range from local edits to structural changes within one component group and coordinated changes across groups.
+Consecutive confirmed gains allow a wider scope; measured harmful changes trigger rollback and scope contraction.
+Character counts and calls serve as resource bounds rather than a measure of semantic distance.
+Appendix~\ref{app:algorithm} gives the complete scope-update policy.
 
-\paragraph{Selecting the final evaluator.}
+\paragraph{Global checkpoint selection.}
 At prespecified checkpoints, an execution-valid $W$ is compared with $B$ on the complete frozen Val cohort.
-The fixed improvement criterion determines whether $B$ is replaced, separately from Train confirmation or direction continuation.
-Restricted feedback follows the motivation of the Ladder~\citep{blum2015ladder}; Val does not supply per-case diagnoses or override the current direction's Train decisions.
+The prespecified improvement criterion determines whether $B$ is replaced, separately from Train confirmation or direction continuation.
+To limit information from repeated Val access, we withhold per-case diagnostics, following the restricted-feedback motivation of the Ladder~\citep{blum2015ladder}.
+Val does not override the current direction's Train decisions.
 After the final checkpoint, search returns $B$ for one locked Test assessment.
 Algorithm~\ref{alg:era} gives the full loop.

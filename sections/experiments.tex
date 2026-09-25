@@ -4,6 +4,7 @@
 
 The evaluation separates broad evaluator assessment (C1), critic-guided refinement (C2), and reward-guided training (C3).
 Mining and evolution ablations test which feedback and search decisions account for evaluator quality.
+All numerical results in this draft are illustrative, not empirical measurements.
 
 \paragraph{Tasks and assessment.}
 C1 targets the 22-domain scope in Figure~\ref{fig:c1-landscape}a, using direct overall preferences or new annotation where public resources supply only dimensional judgments or references.
@@ -49,6 +50,6 @@ Parent reset and immediate branching are additional policy interventions (Append
 \label{sec:analysis}
 
 Analysis separates absent observable changes, unfulfilled predictions, repairs offset by regressions, and off-target gains, relating each to the next edit and its cost.
-Fixed-rule trajectory samples include unsuccessful directions and distinguish anchor confirmation and staging from Val promotion (Figure~\ref{fig:trajectory}).
+Fixed-rule trajectory samples include unsuccessful directions and distinguish reference confirmation and staging from Val promotion (Figure~\ref{fig:trajectory}).
 Matched-budget contrasts test diagnostic value; per-domain agreement, selected ranks, coverage, and costs locate failures hidden by macro-averages (Table~\ref{tab:domain-results}).
 \end{samepage}
