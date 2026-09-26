@@ -1,31 +1,27 @@
 \section{Experiments}
 \label{sec:experiments}
 \input{figures/ideal_scenario/numbers}
-
-The evaluation asks whether EvalOpt improves evaluator quality, whether continuation informed by diagnostics adds value beyond history and persistence, and whether mining makes limited feedback more useful.
-Downstream refinement and training assess separate uses of the resulting evaluator.
+We evaluate whether EvalOpt improves evaluator--human agreement under matched budgets (C1), whether diagnostic continuation and disagreement-based mining contribute to that improvement, and whether evolved evaluators improve critique-guided refinement (C2) and reward-guided training (C3).
 
 \paragraph{Tasks and assessment.}
-C1 evaluates all admitted domains on equal terms, targeting 20 domains in four task families (Figure~\ref{fig:c1-landscape}a).
-Each domain uses the same comparator set and replication policy; overall accuracy weights domains equally, regardless of dataset size.
-Task families organize reporting without changing domain weights.
-Each admitted domain receives a separately adapted evaluator.
-Source groups are split before Train-only mining, with fixed Val and Test cohorts shared across methods.
-The primary endpoint is accuracy on decisive human orderings, inferred from independent candidate scores; predicted score ties count as errors.
-Human ties, ranking correlations, and multi-output selection are separate endpoints.
-Task admission and annotation requirements are fixed before outcomes are examined (Appendix~\ref{app:domains}).
+C1 covers 19 equally weighted domains in four families, with a separate evaluator per domain (Figure~\ref{fig:c1-landscape}a).
+SV1 uses our human-annotated slides; Appendix~\ref{app:domains} specifies the other label sources.
+Original-input groups are split before Train-only mining; Val and Test remain fixed.
+The primary endpoint is decisive-pair accuracy: each output is scored independently, and a predicted tie counts as an error (Appendix~\ref{app:measurement}).
 
 \paragraph{Comparisons and resources.}
-Comparators include fixed judges, learned signal fusion, SkillOpt \citep{yang2026skillopt}, GEPA \citep{agrawal2026gepa}, and Meta-Harness \citep{lee2026metaharness}.
-External optimizers retain native search policies under common feedback and cost budgets.
-GEPA edits complete programs; text-only EvalOpt matches SkillOpt's edit space.
-Optimizer comparisons share the exact selected feedback, whereas end-to-end comparisons charge both preference mining and evolution.
-Search cost includes diagnostics, rejected attempts, and Val checks; human effort and deployment cost remain separate.
-Model versions, tool access, scoring settings, and deployment resource caps are fixed.
-The initial target is five independent searches per adaptive condition, finalized using a development-only feasibility and variance pilot.
-Terminal Val-selected evaluators receive a locked Test assessment, with paired uncertainty over source groups and independent searches (Appendix~\ref{app:measurement}).
+We compare EvalOpt with Seed, learned signal fusion, SkillOpt \citep{yang2026skillopt}, GEPA \citep{agrawal2026gepa}, and Meta-Harness \citep{lee2026metaharness}.
+All optimizers start from the same domain-specific Seed evaluator, informed by published rubrics and protocols (Table~\ref{tab:data-sources}).
 
-\subsection{Evaluator quality and cost}
+We preserve each optimizer's native search policy while matching human-feedback and search budgets.
+Search costs include diagnostics, rejected candidates, and Val checkpoints; end-to-end costs additionally include mining.
+GEPA can edit complete evaluation programs, while text-only EvalOpt matches SkillOpt's editable space.
+GPT-5.6 Sol executes Seed and evolved evaluators and powers all optimizers.
+We run five independent searches per adaptive condition.
+Mining combines rubric judgments from GPT-5.5, GPT-5.6 Sol, GPT-6 Astra, and Claude Sonnet 4.6 with applicable dimensional checks.
+Appendix~\ref{app:configuration} details resources and assessment.
+
+\subsection{Evaluator quality under matched budgets}
 \label{sec:core}
 \label{sec:results}
 \input{sections/results}
@@ -34,13 +30,14 @@ Terminal Val-selected evaluators receive a locked Test assessment, with paired u
 \label{sec:ablations}
 \label{sec:analysis}
 
-The central comparison separates continuation based on diagnostics from simply retaining history or spending longer on a direction.
-Detailed search and mining analyses use SV4, IG1, TG1, and AR1, selected for task diversity and measurement feasibility before comparative outcomes are examined; this analysis subset does not define a primary tier of C1 domains.
-\emph{History-based search} retains diagnostics but may change correction after each revision.
-\emph{Fixed-patience continuation} develops each direction for a Train-tuned number of attempts, subject to the same safety and resource limits.
-EvalOpt instead conditions continuation on accumulated diagnostics.
-The controls share confirmation, staging, and Val retention where applicable; direction changes still require their stated reference and panel initialization.
-These are policy comparisons, not interventions on a direction identifier alone.
+We isolate diagnostic continuation from retaining history or making more revisions.
+Search and mining analyses use webpage generation (SV3), image captioning (IG1), summarization (TG1), and research-idea generation (AR1), prespecified for diversity and measurement feasibility and weighted equally.
+
+\emph{History-based search} retains diagnostics but may adopt a different correction after each revision.
+\emph{Fixed-patience continuation} develops each direction for a Train-tuned number of attempts, subject to common rejection, integrity, and resource limits.
+EvalOpt instead conditions continuation on accumulated diagnostics for the current correction.
+All three policies share confirmation, staging, and Val-retention rules.
+New directions share initialization from the globally retained evaluator, resetting the panel and scope.
 
 \begin{figure}[!t]
 \centering
@@ -48,31 +45,42 @@ These are policy comparisons, not interventions on a direction identifier alone.
 \caption{\textbf{Search ablations and downstream utility.}
 (a) Terminal Test accuracy changes relative to full EvalOpt at matched search and feedback budgets.
 (b) Tie-aware human preference for EvalOpt-guided versus Seed-guided outputs, using critique for C2 refinement and reward for C3 training. Bar lengths give percentage points above 50\% parity; endpoint labels give preference rates.
-Both panels use SV4, IG1, TG1, and AR1, weighted equally in aggregate.}
+Both panels use SV3, IG1, TG1, and AR1, weighted equally in aggregate.}
 \label{fig:budget-tests}
 \end{figure}
 
-Figure~\ref{fig:budget-tests}a summarizes terminal accuracy differences for the search-policy and mechanism controls.
-No retained history and reduced feedback restrict the evolution agent's evidence without disabling controller checks; no staging requires immediate reference confirmation before advancing $W$.
-Fixed scope, immediate branching, and text-only edits test the remaining search restrictions (Appendix~\ref{app:ablations}).
-Controlled tool-integration cases and independently reviewed natural trajectories test whether subsequent edits address unrealized changes, unused evidence, or harmful corrections, including failed directions.
+Component ablations test EvalOpt's internal mechanisms (Figure~\ref{fig:budget-tests}a).
+\emph{No retained history} removes prior-attempt diagnostics from the evolution agent, while \emph{reduced feedback} withholds case-level traces but preserves aggregate outcomes and controller-required checks.
+\emph{No staging} requires confirmation before advancing the working evaluator.
+\emph{Immediate branching} switches direction after the first execution-valid nonconfirming candidate.
+\emph{Fixed scope} disables scope adaptation, and \emph{text-only edits} restrict revisions to SkillOpt's editable fields (Appendix~\ref{app:ablations}).
+
+Controlled cases test repair of unrealized tool calls, integration of unused evidence, and termination of harmful corrections.
+Independent reviews examine these responses in natural trajectories, including abandoned directions.
 
 \subsection{Feedback efficiency}
 \label{sec:feedback-efficiency}
 
-Mining is assessed by final Test pair accuracy at a fixed feedback and evolution budget.
-Random, uncertainty, cross-model disagreement, and mined subsets use the same pool and feedback detail, restarting evolution at each label budget.
-Figure~\ref{fig:acquisition} separates label efficiency from annotation time and compares mining with and without its random anchor.
-Anchor labels count within the same total budget.
-A random/mined $\times$ fixed-patience/EvalOpt comparison tests whether sampling and continuation contribute differently (Table~\ref{tab:mining-results}).
-Annotation agreement, abstention, and adjudication costs check whether targeting disagreement also selects noisier or more expensive feedback.
+We assess mining by Test accuracy at matched feedback budgets.
+Random sampling, uncertainty sampling, cross-model disagreement, and our mining share the pool and feedback format, restarting evolution at each budget (Figure~\ref{fig:acquisition}a).
+The anchor ablation compares full mining with spending all labels on ranked disagreements (Figure~\ref{fig:acquisition}b).
+A $2\times2$ comparison crosses random/mined feedback with fixed-patience/EvalOpt search to test their complementarity (Table~\ref{tab:mining-results}).
+
+A slide study requests only sampled dimensional judgments and overall preference.
+At matched initial rating budgets, mining and random sampling are compared on adjudication cost, usable feedback, Seed errors found, and held-out accuracy after revision (Appendix~\ref{app:slide-pilot}).
 
 \subsection{Independent downstream utility}
 \label{sec:downstream-utility}
 
-C2 and C3 use SV4, IG1, TG1, and AR1 under their separate downstream protocols.
-C2 compares the same fresh output $y_0$, a no-critic revision \citep{madaan2023selfrefine}, and revisions guided by Seed or EvalOpt critiques at matched generator resources.
-New blinded judgments assess preference and regressions against $y_0$, rather than evaluator scores.
-C3 compares Base with policies trained using frozen Seed or EvalOpt rewards under the same within-domain recipe \citep{hu2022lora,shao2024deepseekmath}.
-It separately tests whether offline evaluator quality survives reward optimization.
-Figure~\ref{fig:budget-tests}b summarizes both assessments by domain and equal-domain mean; Appendix~\ref{app:downstream} gives the control-arm and regression comparisons.
+C2 and C3 use the same four domains.
+C2 fixes the GPT-5.6 Sol generator; C3 updates Qwen3.5-9B with a frozen GPT-5.6 Sol reward evaluator.
+
+For each fresh output $y_0$, C2 compares no revision with three resource-matched revision arms: no-critic \citep{madaan2023selfrefine}, Seed-guided, and EvalOpt-guided.
+The no-critic arm tests revision without evaluator feedback.
+Blinded judgments compare outputs and assess regressions from $y_0$.
+
+C3 tests whether offline agreement gains translate into better policies under reward optimization.
+It compares Base with policies trained using frozen Seed or EvalOpt rewards under the same within-domain recipe \citep{hu2022lora,shao2024deepseekmath}.
+
+Blinded, rubric-guided human preference is the primary downstream endpoint, complemented by browser tests, caption SPICE, and summary ROUGE-L (Table~\ref{tab:readiness}).
+Figure~\ref{fig:budget-tests}b reports domain results and equal-domain means; Appendix~\ref{app:downstream} details configurations, controls, and regressions.

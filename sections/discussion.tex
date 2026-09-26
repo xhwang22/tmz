@@ -1,13 +1,15 @@
 \section{Discussion}
 \label{sec:discussion}
 
-\paragraph{Interpreting improvement.}
-Mining and evolution are assessed by the final evaluator obtained per annotation and search cost.
-Diagnostic and controller contrasts test the value of execution evidence, bounded exploration, and adaptive modification scope.
-Longer directions or favorable individual trajectories cannot substitute for these comparisons.
+\paragraph{Retaining evidence beyond a candidate.}
+EvalOpt separates the lifetime of an implementation from that of the evidence it produces.
+Rollback discards provisional changes but preserves diagnostics.
+Depth-first evolution uses this evidence to decide whether further work is warranted and what to test next, rather than prescribing more attempts.
 
 \paragraph{Scope and limitations.}
-Separately adapted, within-domain evaluators do not establish universal transfer.
-Trace audits distinguish observed behavior from the evolution agent's account of its correction.
-Agreement also need not improve downstream quality, and reward optimization can amplify evaluator errors \citep{wang2026rewardhacking}.
-Independent downstream judgments therefore remain separate endpoints.
+Diagnostic continuation relies on records that help assess why a revision failed.
+Aggregate outcomes alone may not justify further development; reduced feedback tests the additional value of case-level traces.
+The evolution agent's interpretations can be wrong, motivating independent trajectory review.
+We do not evaluate cross-domain transfer of evolved evaluators.
+Higher evaluator--human agreement need not improve downstream outputs, especially when reward optimization amplifies residual evaluator errors \citep{wang2026rewardhacking}.
+C2 and C3 therefore assess outputs through independent blinded judgments, not the evolved evaluator.

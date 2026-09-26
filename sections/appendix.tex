@@ -9,111 +9,198 @@
 \section{Data and evaluation settings}
 \label{app:domains}
 
-\subsection{Task scope and label provenance}
+\subsection{Task scope, resources, and evaluation dimensions}
+\label{app:domain-signals}
 A domain has a fixed quality standard and a separately adapted evaluator.
-Table~\ref{tab:data-sources} combines the 20-domain roster with its public sources and label routes.
-All admitted domains receive equal weight in C1, regardless of their size or observed results.
-SV1, SV3, SV5, IG6, TG2, and AR3 still require a compatible overall-label release or fixed-evidence cohort before empirical evaluation.
-SV6 uses aesthetic ranks, IG5 overall MOS, TG3 segment scores, and AR2 a three-dimension composite; these human-derived orderings are reported separately from direct choices in a sensitivity analysis.
-Admission requires a frozen source version, permission for the intended processing, executable inputs, and an independent test cohort.
+Table~\ref{tab:data-sources} lists the 19 equally weighted C1 domains, their resources, Seed criterion sources, and candidate signals.
+Rubric judges can supply dimensional and overall judgments.
+The executed signal subset is frozen before mining; reference-based metrics require permitted references, and reserved assessment signals remain outside search.
+
+\paragraph{Seed construction and attribution.}
+Seed is our domain-specific implementation, not a released evaluator copied from a benchmark.
+We adapt published rubric criteria where available and otherwise write criteria from the task requirements and cited evaluation protocols.
+The table identifies these sources alongside our additions; borrowing a criterion does not imply reusing its original judge prompt, model, or score scale.
+We assemble the prompts, tool routing, and score aggregation, freezing one initial checkpoint per domain before comparative search, without Val/Test preference feedback.
+All optimizers receive that checkpoint, subject to their declared editable spaces (Table~\ref{tab:adaptation}).
 
 \begingroup
 \small
-\begin{longtable}{@{}P{.85cm}P{4.0cm}P{7.83cm}@{}}
-\caption{Task scope, public resources, and C1 label routes. Direct overall preferences and human-score-derived orderings retain their distinct provenance.}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{longtable}{@{}P{3.45cm}P{3.55cm}P{5.68cm}@{}}
+\caption{Task scope, data resources, Seed criterion sources, and candidate signals across the 19 domains. Numbers link methods to dimensions within each row. Sources inform criteria or checks; listed signals are not all required Seed components.}
 \label{tab:data-sources}\\
 \toprule
-ID & Task and public sources & C1 labels and access conditions\\
+Domain, task and data sources & Seed criteria and sources & Corresponding methods and signals\\
 \midrule
 \endfirsthead
 \multicolumn{3}{l}{\small Table~\thetable\ continued}\\
 \toprule
-ID & Task and public sources & C1 labels and access conditions\\
+Domain, task and data sources & Seed criteria and sources & Corresponding methods and signals\\
 \midrule
 \endhead
 \bottomrule
 \endfoot
-TD-SV1 & Brief-conditioned single-slide generation\newline \href{https://huggingface.co/datasets/tyrionhuu/PPTBench-Generation}{PPTBench}; \href{https://github.com/zhuohaouw/SlideAudit}{SlideAudit} & Public slide tasks and defect annotations; no matched overall preferences. Generate candidates and annotate $H_0$. PPTBench's data license is unspecified.\\
-TD-SV2 & Screenshot-conditioned webpage reconstruction\newline \href{https://huggingface.co/datasets/SALT-NLP/Design2Code}{Design2Code}; \href{https://huggingface.co/datasets/SALT-NLP/Design2Code_human_eval_pairwise}{human-pair release} & Screenshots, HTML, and downloadable human votes; audit source overlap and the separate annotation license.\\
-TD-SV3 & Data-to-visualization generation\newline \href{https://github.com/TsinghuaDatabaseGroup/nvBench}{nvBench}; \href{https://github.com/vis-nlp/ChartQA}{ChartQA} & Table/goal/chart resources and QA references, not overall preferences. Collect same-goal $H_0$.\\
-TD-SV4 & Specification-conditioned webpage generation\newline \href{https://huggingface.co/datasets/lmarena-ai/webdev-arena-preference-10k}{WebDev Arena}; \href{https://huggingface.co/datasets/luzimu/WebGen-Bench}{WebGen-Bench} & WebDev supplies $H_0$, requests, and candidate code under a custom license; WebGen supplies a separate instruction pool. Audit transfer and third-party processing restrictions.\\
-TD-SV5 & Source-grounded slide-deck generation\newline \href{https://huggingface.co/datasets/PresentBench/PresentBench}{PresentBench}; PPTAgent \citep{pptagent2025} & 238 tasks; the paper reports whole-deck rankings on 24 tasks across five systems. Raw ranking availability and split size remain to be verified. Tasks are CC BY-NC.\\
-TD-SV6 & Topic-conditioned slide-deck generation\newline \href{https://huggingface.co/datasets/Yqy6/Slides-Align}{Slides-Align}; \href{https://github.com/yunqiaoyang/SlidesGen-Bench}{SlidesGen-Bench} & 1,326 ranking records / 187 topics in the audited card; newer releases differ. Freeze the aesthetic standard and topic-conditioned subset; source-heavy tasks overlap SV5.\\
+\multicolumn{3}{l}{\textit{Structured visual artifacts}}\\*
+\textbf{TD-SV1} Brief-conditioned single-slide generation\newline Our human-annotated slide comparisons & (1) Brief adherence; (2) content correctness; (3) readability; (4) visual hierarchy; (5) layout consistency\newline\emph{Our brief/content rubric; visual checks informed by SlideAudit \citep{zhang2025slideaudit}.} & (1--2) Brief-to-text coverage and factuality checks; (3) font-size and contrast diagnostics; (4--5) PPTX/render geometry, overlap and alignment checks, supplemented by visual rubric judgments.\\
 \addlinespace
-TD-IG1 & Detailed image-caption generation\newline \href{https://github.com/njucckevin/CapArena}{CapArena}; DOCCI \citep{onoe2025docci} & CapArena's human branch supplies image/caption battles; annotation rights need confirmation. DOCCI supplies references; CapArena-Auto supplies model judgments.\\
-TD-IG2 & Text-to-image generation\newline \href{https://huggingface.co/datasets/ymhao/HPDv2}{HPDv2}; \href{https://huggingface.co/datasets/zai-org/ImageRewardDB}{ImageRewardDB} & Public human preferences; GenAI Arena's generation release has 3,192 current-test records (1,735 in test\_v1). Keep dataset versions and reward-training overlap separate.\\
-TD-IG3 & Single-source instruction-based image editing\newline \href{https://huggingface.co/datasets/TIGER-Lab/GenAI-Bench}{GenAI Arena}; \href{https://huggingface.co/datasets/osunlp/MagicBrush}{MagicBrush} & GenAI editing supplies 983 current-test preference records (919 in test\_v1). MagicBrush supplies reference edits, not candidate preferences.\\
-TD-IG4 & LR-conditioned image super-resolution\newline \href{https://huggingface.co/datasets/casyssong/RefSR-18K}{RefSR-18K}; \href{https://github.com/yushuaisong/RefReward-SR}{RefReward-SR} & 4,499 train groups, 3,562 extra groups, and 200 ID / 200 OOD groups; four candidates per group. ID/OOD share LR inputs. Audit rights and overlap.\\
-TD-IG5 & Text-to-3D object generation\newline \href{https://huggingface.co/datasets/ccccby/MATE-3D}{MATE-3D}; \href{https://huggingface.co/datasets/3DGen/3DGen-Bench}{3DGen-Bench} & MATE-3D supplies 1,280 meshes and human MOS including overall quality (CC BY 4.0). Derive comparable-output preferences under a frozen rule. 3DGen remains gated.\\
-TD-IG6 & Image-to-3D object generation\newline \href{https://huggingface.co/datasets/3d-arena/3d-arena}{3D Arena}; 3DGen-Bench & Public input images and meshes; reusable Arena raw votes were not verified. The alternative preference release is gated.\\
+\textbf{TD-SV2} Screenshot-conditioned webpage reconstruction\newline \href{https://huggingface.co/datasets/SALT-NLP/Design2Code}{Design2Code}; \href{https://huggingface.co/datasets/SALT-NLP/Design2Code_human_eval_pairwise}{human-pair release} & (1) Text fidelity; (2) position and structure; (3) color and style; (4) visual detail\newline\emph{Adapted from Design2Code's reconstruction metrics; visual detail added.} & (1--3) Design2Code text, position, color and block-match scores \citep{si2025design2code}; (4) screenshot SSIM \citep{wang2004ssim} and CLIP/DINO similarity \citep{radford2021clip,caron2021dino} as visual proxies.\\
 \addlinespace
-TD-TG1 & Source-grounded document summarization\newline \href{https://huggingface.co/datasets/openai/summarize_from_feedback}{summarize-from-feedback} & Public source posts, summaries, and overall human comparisons. Freeze source-only TL;DR and group duplicate posts.\\
-TD-TG2 & RAG-supported long-form answer generation\newline \href{https://github.com/YuchenFan48/LFQA-E}{LFQA-E}; \href{https://github.com/princeton-nlp/ALCE}{ALCE} & Expert answer pairs plus public retrieval/citation resources. Select a subset with matched, fixed evidence; ALCE ratings are dimensional.\\
-TD-TG3 & Machine translation\newline \href{https://github.com/google/wmt-mqm-human-evaluation}{WMT MQM}; \href{https://huggingface.co/datasets/FinnSchmidt/CD-ESA}{CD-ESA} & WMT22 includes about 2,000 sources per language pair, with segment-level human quality scores. Derive preferences within comparable sources; do not use system-level accuracy. CD-ESA is CC BY-NC.\\
-TD-TG4 & Instruction-constraint-following response generation\newline \href{https://github.com/thu-coai/IF-RewardBench}{IF-RewardBench} & Public instructions, responses, checklists, and preference graphs; human/derived/model edge provenance requires verification.\\
-TD-TG5 & Open-ended dialogue-response generation\newline \href{https://huggingface.co/datasets/nvidia/HelpSteer2}{HelpSteer2} & Downloadable direct human-preference branch (CC BY 4.0), distinct from the five-attribute scores.\\
+\textbf{TD-SV3} Specification-conditioned webpage generation\newline \href{https://huggingface.co/datasets/lmarena-ai/webdev-arena-preference-10k}{WebDev Arena}; \href{https://huggingface.co/datasets/luzimu/WebGen-Bench}{WebGen-Bench} \citep{lu2025webgen} & (1) Requirement fulfillment; (2) functionality; (3) usability; (4) visual quality\newline\emph{Adapted from WebGen-Bench's functionality and visual evaluation; usability added.} & (1--2) Browser interaction and requirement checklists; (3) \href{https://github.com/dequelabs/axe-core}{axe-core} accessibility checks; (4) \href{https://huggingface.co/datasets/luzimu/WebGen-Bench}{WebGen-Bench} visual evaluation.\\
 \addlinespace
-TD-AR1 & Research-idea generation\newline \href{https://huggingface.co/datasets/yolo1213811/research-ideation-arena-dataset}{Research Ideation Arena} & Public expert overall/dimensional comparisons, proposals, and title/abstract contexts. Data are CC BY-NC; code is noncommercial.\\
-TD-AR2 & ML/NLP ablation-plan generation\newline \href{https://huggingface.co/datasets/yale-nlp/AbGen}{AbGen} & AbGen-Eval has 100 tasks / 1,800 plans with three human dimensions. Their declared mean supports a composite-score endpoint, not direct overall votes. Confirm permissions.\\
-TD-AR3 & Peer-review critique generation\newline \href{https://huggingface.co/datasets/Reza8848/AAAR-1.0}{AAAR}; \href{https://github.com/TU2021/PaperAudit}{PaperAudit} & AAAR has 993 Weakness papers; ReviewCritique has 100 papers / 380 reviews with expert defect labels. These do not label complete generated-review quality.\\
+\textbf{TD-SV4} Source-grounded slide-deck generation\newline \href{https://huggingface.co/datasets/PresentBench/PresentBench}{PresentBench}; PPTAgent \citep{pptagent2025} & (1) Source fidelity and coverage; (2) organization; (3) visual consistency and readability; (4) editability\newline\emph{PresentBench content checklists and PPTAgent/SlidesGen-Bench quality criteria.} & (1) PresentBench checklists \citep{presentbench2026}; (2) deck-level organization and repetition checks; (3--4) \href{https://github.com/yunqiaoyang/SlidesGen-Bench}{SlidesGen-Bench} \citep{yang2026slidesgen} aesthetics/editability protocols and PPTX diagnostics.\\
+\addlinespace
+\textbf{TD-SV5} Topic-conditioned slide-deck generation\newline \href{https://huggingface.co/datasets/Yqy6/Slides-Align}{Slides-Align} \citep{yang2026slidesgen}; \href{https://github.com/yunqiaoyang/SlidesGen-Bench}{SlidesGen-Bench} & (1) Topic relevance and correctness; (2) narrative organization; (3) aesthetics and readability; (4) cross-page consistency\newline\emph{SlidesGen-Bench visual criteria; topic correctness and organization added.} & (1--2) Deck-level rubric judgments; (3) \href{https://github.com/yunqiaoyang/SlidesGen-Bench}{SlidesGen-Bench} aesthetics protocol; (4) cross-page typography, palette and layout checks.\\
+\addlinespace
+\multicolumn{3}{l}{\textit{Image generation and understanding}}\\*
+\textbf{TD-IG1} Detailed image-caption generation\newline \href{https://github.com/njucckevin/CapArena}{CapArena} \citep{cheng2025caparena}; DOCCI \citep{onoe2025docci} & (1) Factuality and relations; (2) content coverage; (3) detail; (4) conciseness and organization\newline\emph{Adapted from CapArena's precision, informativeness, hallucination, and conciseness guidance.} & (1,3) Atomic visual-claim checks; (2) reference-based CIDEr/SPICE \citep{vedantam2015cider,anderson2016spice}; (4) rubric judgments. \href{https://github.com/jmhessel/clipscore}{CLIPScore} \citep{hessel2021clipscore} supplies a complementary image--text alignment signal.\\
+\addlinespace
+\textbf{TD-IG2} Text-to-image generation\newline \href{https://huggingface.co/datasets/ymhao/HPDv2}{HPDv2} \citep{wu2023hpsv2}; \href{https://huggingface.co/datasets/zai-org/ImageRewardDB}{ImageRewardDB} & (1) Prompt alignment; (2) compositional relations; (3) visual quality; (4) overall preference\newline\emph{Our rubric combines ImageReward/HPDv2 preference criteria with compositional checks.} & (1) CLIP similarity; (1--2) \href{https://arxiv.org/abs/2303.11897}{TIFA} \citep{hu2023tifa}/\href{https://arxiv.org/abs/2310.18235}{DSG} \citep{cho2024dsg} visual questions, GenEval checks \citep{ghosh2023geneval}; (3) visual rubric judgments; (4) PickScore \citep{kirstain2023pickapic}, ImageReward \citep{xu2023imagereward}, \href{https://github.com/tgxs002/HPSv2}{HPSv2}.\\
+\addlinespace
+\textbf{TD-IG3} Single-source instruction-based image editing\newline \href{https://huggingface.co/datasets/TIGER-Lab/GenAI-Bench}{GenAI Arena} \citep{jiang2024genaiarena}; \href{https://huggingface.co/datasets/osunlp/MagicBrush}{MagicBrush} \citep{zhang2023magicbrush} & (1) Instruction fulfillment; (2) content preservation; (3) edit quality and naturalness\newline\emph{GIE-Bench instruction/preservation checks; our visual-quality rubric.} & (1--2) \href{https://arxiv.org/abs/2505.11493}{GIE-Bench} \citep{qian2025gie} visual questions and preservation checks; (2) masked DINO/LPIPS; (3) visual rubric judgments. \href{https://arxiv.org/abs/2509.26346}{EditReward} \citep{wu2026editreward} supplies a separate preference signal.\\
+\addlinespace
+\textbf{TD-IG4} LR-conditioned image super-resolution\newline \href{https://huggingface.co/datasets/casyssong/RefSR-18K}{RefSR-18K} \citep{song2026refsr}; \href{https://github.com/yushuaisong/RefReward-SR}{RefReward-SR} & (1) Fidelity; (2) detail and texture; (3) artifacts and naturalness\newline\emph{Our fidelity/quality rubric, informed by RefReward-SR's evaluation setting.} & (1) Reference-based PSNR/SSIM; (2--3) \href{https://github.com/richzhang/PerceptualSimilarity}{LPIPS} \citep{zhang2018lpips} and visual rubric judgments. \href{https://github.com/yushuaisong/RefReward-SR}{RefReward-SR} supplies a separate preference signal.\\
+\addlinespace
+\textbf{TD-IG5} Text-to-3D object generation\newline \href{https://huggingface.co/datasets/ccccby/MATE-3D}{MATE-3D} \citep{zhang2025mate3d}; \href{https://huggingface.co/datasets/3DGen/3DGen-Bench}{3DGen-Bench} \citep{zhang20253dgen} & (1) Text alignment; (2) geometry and completeness; (3) texture; (4) multiview consistency\newline\emph{T3Bench alignment and multiview quality protocol; our geometry/texture checks.} & (1) \href{https://arxiv.org/abs/2310.02977}{T3Bench} \citep{he2023t3bench} text--3D alignment protocol; (2) mesh diagnostics; (2--4) T3Bench multiview quality evaluation and fixed-view visual rubric judgments.\\
+\addlinespace
+\textbf{TD-IG6} Image-to-3D object generation\newline \href{https://huggingface.co/datasets/3d-arena/3d-arena}{3D Arena} \citep{ebert20253darena}; 3DGen-Bench & (1) Source-image fidelity; (2) geometry; (3) texture; (4) multiview consistency\newline\emph{Our source-conditioned adaptation of 3D quality checks; 3D Arena supplies comparisons.} & (1) Camera-aligned source-view CLIP/DINO similarity; (2) mesh diagnostics; (3--4) visual rubric judgments across standardized renders.\\
+\addlinespace
+\multicolumn{3}{l}{\textit{Text generation}}\\*
+\textbf{TD-TG1} Source-grounded document summarization\newline \href{https://huggingface.co/datasets/openai/summarize_from_feedback}{summarize-from-feedback} \citep{stiennon2020summarize} & (1) Source faithfulness; (2) coverage; (3) relevance; (4) coherence and conciseness\newline\emph{Adapted from summarization feedback and SummEval criteria \citep{fabbri2021summeval}.} & (1) \href{https://github.com/tingofurro/summac}{SummaCConv} \citep{laban2022summac}; (2--3) reference-based \href{https://github.com/google-research/google-research/tree/master/rouge}{ROUGE} \citep{lin2004rouge}/\href{https://github.com/Tiiiger/bert_score}{BERTScore} \citep{zhang2020bertscore} similarity and source-coverage checks; (4) rubric judgments.\\
+\addlinespace
+\textbf{TD-TG2} RAG-supported long-form answer generation\newline \href{https://github.com/YuchenFan48/LFQA-E}{LFQA-E} \citep{fan2026lfqae}; \href{https://github.com/princeton-nlp/ALCE}{ALCE} \citep{gao2023alce} & (1) Correctness and coverage; (2) evidence support; (3) citation precision and completeness; (4) clarity\newline\emph{ALCE evidence/citation checks; our answer-quality rubric informed by LFQA-E.} & (1,4) Question-conditioned rubric judgments; (2) claim--evidence entailment; (3) \href{https://github.com/princeton-nlp/ALCE}{ALCE} citation precision/recall.\\
+\addlinespace
+\textbf{TD-TG3} Machine translation\newline \href{https://github.com/google/wmt-mqm-human-evaluation}{WMT MQM} \citep{freitag2021mqm}; \href{https://huggingface.co/datasets/FinnSchmidt/CD-ESA}{CD-ESA} \citep{schmidt2026cdesa} & (1) Accuracy; (2) fluency; (3) terminology; (4) omissions and additions; (5) style\newline\emph{Adapted from MQM's error taxonomy; omissions/additions made explicit.} & (1--5) MQM-style error judgments; \href{https://github.com/Unbabel/COMET}{COMET} \citep{rei2020comet} supplies aggregate translation quality, with \href{https://github.com/mjpost/sacrebleu}{SacreBLEU/chrF} \citep{post2018sacrebleu,popovic2015chrf} as reference-overlap signals.\\
+\addlinespace
+\textbf{TD-TG4} Instruction-constraint-following response generation\newline \href{https://github.com/thu-coai/IF-RewardBench}{IF-RewardBench} \citep{wen2026ifreward} & (1) Explicit constraint satisfaction; (2) correctness; (3) usefulness and relevance; (4) expression\newline\emph{IFEval/IF-RewardBench constraint checks; our general response-quality criteria.} & (1) \href{https://arxiv.org/abs/2311.07911}{IFEval} \citep{zhou2023ifeval} strict/loose checks and task-specific constraint checkers; (2--4) rubric judgments, informed by \href{https://github.com/thu-coai/IF-RewardBench}{IF-RewardBench} checklists.\\
+\addlinespace
+\textbf{TD-TG5} Open-ended dialogue-response generation\newline \href{https://huggingface.co/datasets/nvidia/HelpSteer2}{HelpSteer2} \citep{wang2024helpsteer,wang2025helppref} & (1) Helpfulness; (2) correctness; (3) contextual consistency; (4) relevance and expression; (5) safety\newline\emph{HelpSteer2 helpfulness, correctness, and coherence; relevance/expression adapted, safety added.} & (1--5) Dimensional dialogue rubric judgments; (3) history--response contradiction checks. A compatible public reward model supplies a separate overall signal.\\
+\addlinespace
+\multicolumn{3}{l}{\textit{Automated research}}\\*
+\textbf{TD-AR1} Research-idea generation\newline \href{https://huggingface.co/datasets/yolo1213811/research-ideation-arena-dataset}{Research Ideation Arena} \citep{chen2026ideation} & (1) Novelty; (2) feasibility; (3) significance; (4) specificity\newline\emph{Adapted from Ideation Arena's four expert-review criteria.} & (1--4) Ideation Arena human-review rubric; (1,3) comparison with the supplied literature and claim--source support checks.\\
+\addlinespace
+\textbf{TD-AR2} ML/NLP ablation-plan generation\newline \href{https://huggingface.co/datasets/yale-nlp/AbGen}{AbGen} \citep{zhao2025abgen} & (1) Importance; (2) faithfulness; (3) soundness, including controls and executability\newline\emph{Adapted from AbGen-Eval's three criteria; controls/executability operationalize soundness.} & (1--3) \href{https://huggingface.co/datasets/yale-nlp/AbGen}{AbGen-Eval} rubric judgments; (2) proposal--paper alignment; (3) intervention/control/outcome checks and confound diagnostics.\\
+\addlinespace
+\textbf{TD-AR3} Peer-review critique generation\newline \href{https://huggingface.co/datasets/Reza8848/AAAR-1.0}{AAAR} \citep{lou2025aaar}; \href{https://github.com/TU2021/PaperAudit}{PaperAudit} \citep{tu2026paperaudit} & (1) Correctness and evidence; (2) significance and coverage; (3) actionability; (4) fairness and clarity\newline\emph{Our critique-quality rubric; AAAR/PaperAudit inform evidence and error checks.} & (1) Paper-evidence localization and \href{https://github.com/TU2021/PaperAudit}{PaperAudit} error checks on annotated subsets; (2--4) critique-quality rubric judgments.\\
 \end{longtable}
 \endgroup
 
-Published protocols supplement the release-level audit \citep{si2025design2code,presentbench2026,kirstain2023pickapic}.
-References and dimensional scores do not automatically supply overall preferences.
-DOCCI supplies caption references \citep{onoe2025docci}; SummEval supplies CNN/DailyMail dimensional judgments rather than TL;DR pair labels \citep{fabbri2021summeval}.
-GenEval supplies compositional checks \citep{ghosh2023geneval}, and research-ideation ratings require compatibility with their original expert protocol \citep{si2025ideas}.
-A resource used to train a released metric requires a training-overlap audit before independent evaluation.
+
+SV1 uses our own human-annotated slide comparisons; SlideAudit informs visual criteria rather than supplying these preference labels.
+For public resources, human dimensional labels can support criterion-specific evaluation; they are not relabeled as overall preferences.
+Cohort construction must match each judgment to its artifacts, criterion, and permitted evidence.
+SV5 uses aesthetic ranks, IG5 overall MOS, TG3 segment scores, and AR2 a three-dimension composite; these human-derived orderings are reported separately from direct choices in a sensitivity analysis.
+Admission requires a frozen source version, permission for the intended processing, executable inputs, and an independent test cohort.
+
+References, dimensional scores, and metric-training resources do not automatically supply independent overall preferences.
+DOCCI supplies caption references \citep{onoe2025docci} and SummEval supplies CNN/DailyMail dimensional ratings, not TL;DR pair labels \citep{fabbri2021summeval}.
+Resources used to train a metric require an overlap audit before independent evaluation.
 
 \subsection{Feedback and preference mining}
 \label{app:annotation}
 Human feedback has four levels: $H_0$ gives overall preferences; $H_1$ gives dimensional preferences; $H_2$ identifies error type, severity, and location; $H_3$ optionally supplies a free-form rationale.
-Unavailable dimensions and rationales remain absent.
-Existing-label replay counts revealed source groups and pair labels; new annotation also records requested ratings, person-minutes, abstentions, and adjudication.
-Annotation fixes the rubric, evidence, tie policy, rater qualifications, compensation, and review requirements.
-The initial design uses two independent development judgments with adjudication and three final judgments, subject to a domain-specific freeze.
-Method identity, earlier winners, and model scores are hidden, and presentation order is randomized.
+Missing feedback remains absent.
+Existing-label replay counts revealed source groups and pairs; new annotation additionally records requested ratings, person-time, abstentions, and adjudication.
+Freeze rubrics, permitted evidence, tie rules, rater qualifications, compensation, and review requirements.
+Development uses two independent judgments with adjudication, final assessment uses three, and both hide method identities, earlier winners, and model scores while randomizing presentation.
 
-Mining operates only on Train, after group-level splitting and deduplication.
-Select the random anchor by original-input hashes independently of scores, with its labels counted within the same total budget.
-Signal signs, source groups, dimension mappings, orientations, tie margins, and repeat counts are fixed before selected human labels are revealed.
-For each dimension, a source group contributes at most one sign; opposing signs within a group yield abstention.
-The dimension preference is the sign of the sum of source-group votes, with zero yielding no preference.
-The structural score in Equation~\ref{eq:conflict} determines rank order, with pair identifiers breaking ties.
+Mining uses deduplicated Train groups under the signal normalization and voting rules in Section~\ref{sec:mining}.
+Signal definitions, source groups, dimension mappings, tie margins, and repeats are frozen before label access.
+The hash-selected random anchor is independent of scores and counts toward the total label budget.
+The four judges in Table~\ref{tab:run-config} form four source groups; repeats, prompt variants, and the Seed's use of the same model do not add groups or establish independent errors.
+Within-dimension opposition determines rank, with pair IDs breaking ties.
 
 A model signal uses the median of same-repeat score differences; this differs from comparing each artifact's median final score in Equation~\ref{eq:measurement}.
 The native runner uses three repeats and a two-point tie margin for model scores; metric bundles specify their own margins.
 A missing required repeat makes a signal unavailable, not an agreement.
 Metrics reserved for final assessment are excluded from mining and evaluator tools.
-Domain signal rosters and anchor fractions remain study-specific settings to freeze before execution.
+The signal roster and anchor fraction are specified in Table~\ref{tab:run-config}.
 
-\subsection{Splits, endpoints, and uncertainty}
+\subsection{Data allocation and evaluation protocol}
 \label{app:boundaries}
 \label{app:measurement}
-Original-input groups and larger declared dependence groups are assigned to Train, Val, and Test before mining.
-Document derivatives, website templates, related images, and research topics remain in the same partition where applicable.
-All methods share the frozen source pool, eligibility rules, splits, and held-out pairs.
-Split assignment uses neither labels nor mining scores; Val/Test cohorts receive no later additions or replacements.
-The deployed scorer sees one output and permitted evidence, without opponents, human labels, generator identity, or split metadata.
-C2/C3 generate separate assessment outputs rather than adding to the search cohorts.
-Table~\ref{tab:access} gives the information boundary.
+\label{app:configuration}
+
+\paragraph{Splits and allocations.}
+Before mining, split original-input groups and declared dependence groups into Train, Val, and Test without using labels or mining scores.
+Keep document derivatives, website templates, related images, and research topics together where applicable.
+All methods share the frozen source pool, eligibility rules, and held-out pairs, with no later Val/Test additions or replacements.
+Train supplies feedback and traces for revision; Val permits only checkpoint retention, releasing the promotion indicator and retained score to the optimizer.
+Test is assessed offline after search and selection rules are frozen.
+The deployed scorer sees one output and permitted evidence, not opponents, human labels, generator identity, or split metadata.
+
+Table~\ref{tab:cohort-allocation} counts deduplicated original-input groups, each contributing one C1 pair selected by fixed hash before label inspection.
+Tune is included in Train but excluded from preference mining; Feedback counts revealed groups.
+Val/Test allocations precede annotation, with decisive pairs, ties, abstentions, and missing assets reported separately.
+Source versions, hashes, grouping keys, filters, and pair IDs are recorded in the release manifest.
+Insufficient eligible groups require collection or a protocol revision, not extra dependent pairs counted as new inputs.
+For the four analysis domains, the public files contain 6,041 single-turn WebDev requests, 3,400 CapArena images with strict preferences, 20,986 TL;DR posts with comparisons, and 1,782 ideation contexts with strict overall preferences.
+These are source capacities before grouping and eligibility checks, not final cohorts.
+Appendix~\ref{app:downstream} specifies separate C2/C3 inputs and cross-source exclusions.
 
 \begin{table}[!htbp]
-\caption{Information access for the revised search.
-Val supports adaptive retention; Test is opened only after the best evaluator is frozen.}
-\label{tab:access}
+\caption{\textbf{C1 data allocation by domain.} Train includes Tune; Feedback is drawn from the remaining Train pool. Every count is in original-input groups. Resource roles and evaluation dimensions are in Table~\ref{tab:data-sources}.}
+\label{tab:cohort-allocation}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}P{2.3cm}YY@{}}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}lYrrrrr@{}}
 \toprule
-Partition & Released information & Permitted decisions\\
+ID & Cohort source & Train & Tune & Feedback & Val & Test\\
 \midrule
-Train & Authorized artifacts, human feedback, detailed traces and case differences & Reference confirmation, bounded working exploration, rollback, and direction control\\
-Val & Controller: full-cohort outcomes; optimizer: promotion indicator and retained best score & Global checkpoint selection only; no case-level optimizer access\\
-Test & Locked until search, evaluator selection, and analysis rules are frozen & One terminal assessment of seed and best; no edits or reselection\\
-Metric reserve & Endpoints excluded from optimization and runtime tools & Independent assessment of the relevant quality attribute\\
+SV1 & Our human-annotated slide comparisons & 200 & 20 & 100 & 40 & 120\\
+SV2 & Design2Code human-pair release & 240 & 32 & 100 & 80 & 160\\
+SV3 & WebDev Arena & 256 & 32 & 100 & 64 & 200\\
+SV4 & PresentBench; new deck pairs & 120 & 16 & 80 & 40 & 78\\
+SV5 & Slides-Align & 90 & 10 & 50 & 30 & 67\\
+IG1 & CapArena human comparisons & 256 & 32 & 100 & 64 & 200\\
+IG2 & HPDv2 & 256 & 32 & 100 & 64 & 200\\
+IG3 & MagicBrush sources; new edited pairs & 128 & 16 & 100 & 32 & 64\\
+IG4 & RefSR-18K & 256 & 32 & 100 & 64 & 200\\
+IG5 & MATE-3D & 80 & 10 & 50 & 30 & 50\\
+IG6 & 3D Arena; new overall judgments & 128 & 16 & 100 & 32 & 64\\
+TG1 & Summarize-from-feedback, TL;DR only & 256 & 32 & 100 & 64 & 200\\
+TG2 & LFQA-E with fixed evidence bundles & 256 & 32 & 100 & 64 & 200\\
+TG3 & WMT MQM; document-level grouping & 256 & 32 & 100 & 64 & 200\\
+TG4 & IF-RewardBench & 256 & 32 & 100 & 64 & 200\\
+TG5 & HelpSteer2 preference release & 256 & 32 & 100 & 64 & 200\\
+AR1 & Research Ideation Arena & 256 & 32 & 100 & 64 & 200\\
+AR2 & AbGen-Eval & 50 & 10 & 40 & 20 & 30\\
+AR3 & AAAR; new overall judgments & 128 & 16 & 100 & 32 & 64\\
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\paragraph{Experimental allocation and replication.}
+Table~\ref{tab:experiment-allocation} specifies data, replication, and allowances.
+Four-domain analyses reuse C1 Val/Test groups but run fresh searches for changed feedback or policies; the mining interaction reuses matching 100-group runs without counting them as new replications.
+Evaluator search, refinement, and training have separate budgets.
+
+\begin{table}[!htbp]
+\caption{\textbf{Allocation across experiments.} The four-domain subset is SV3, IG1, TG1, and AR1. A search cap is 100 units as defined in Table~\ref{tab:run-config}.}
+\label{tab:experiment-allocation}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}P{2.4cm}YP{3.7cm}@{}}
+\toprule
+Experiment & Data per domain and condition & Replication and allowance\\
+\midrule
+C1 optimizer comparison & Table~\ref{tab:cohort-allocation}; identical revealed feedback for every optimizer & 5 seeds; 100 units/search\\
+Search ablations & Four domains; 100 revealed groups; common 64 Val and 200 Test groups & Full plus 8 controls; 5 seeds; 100 units/search\\
+Controller tuning & 32 Tune groups per analysis domain, disjoint from preference mining & $k\in\{2,4,6\}$; 2 seeds; 10 units per setting/seed\\
+Mining replay & Four domains; 20/50/100/200 revealed groups from the 224-group sampling pool & Random, uncertainty, cross-model, full; 5 seeds and 100 search units at each budget\\
+Anchor and interaction & Four domains; 100 revealed groups; 20\% versus no anchor; random/mined $\times$ fixed-patience/EvalOpt & 5 seeds; common search cap; reuse matching cells\\
+Controlled diagnostics & Four domains; 20 Train-derived instances per failure type; 3 types & 5 seeds; at most 6 attempts and 10 units per instance\\
+Natural trajectories & 30 directions/domain from the full-method searches, stratified by confirmation and ending outcome & 2 independent reviewers; retain failed and exhausted directions\\
+Slide annotation & SV1 allocation; 40 acquired pairs/arm; 40 Val and 120 Test groups & 5 searches/arm; pilot-specific caps in Appendix~\ref{app:slide-pilot}\\
+C2 refinement & Separate 64 development and 200 final-assessment inputs/domain & 3 paired seeds; 2 refinement rounds\\
+C3 reward training & Separate 512 training, 64 development, and 200 final-assessment inputs/domain & 3 paired seeds; 128 updates/reward arm\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Fixed patience is tuned on two complementary held-out halves of Tune, never C1 Val/Test.
+Its six short runs cost 60 additional units per analysis domain, itemized separately and included in end-to-end accounting.
+Other arms use common defaults without outcome-guided tuning.
+
 \paragraph{Accuracy and missing outcomes.}
 Train uses mean correct-ordering frequencies across repeated executions for each case, as in Equation~\ref{eq:paired-gain}.
 Val/Test instead uses a frozen scoring protocol with $K\geq3$ executions per artifact and median aggregation.
@@ -143,9 +230,9 @@ Native correlations, score-derived preferences, and direct human choices retain 
 
 \paragraph{Aggregation and uncertainty.}
 First average within-domain accuracy over independent searches, then average domains equally.
-Overall therefore weights the four family summaries by $6/20$, $6/20$, $5/20$, and $3/20$.
+Overall therefore weights the four family summaries by $5/19$, $6/19$, $5/19$, and $3/19$.
 All methods share the endpoint's domain roster, and incomplete runs follow the prespecified failure policy rather than being dropped.
-The initial target is five independent searches per adaptive condition, finalized through a development-only feasibility and variance pilot.
+Search replication follows Table~\ref{tab:experiment-allocation}; scoring repeats do not increase that count.
 Paired 95\% bootstrap intervals resample source groups jointly across methods.
 Optimizer comparisons additionally resample searches, paired only for deliberately paired experimental blocks; scoring repeats are not independent tasks.
 Reviewer dependence receives a separate cluster sensitivity check.
@@ -161,8 +248,49 @@ Additional checkpoint assessment costs are separate from search.
 \section{Method and implementation details}
 \label{app:algorithm}
 
-\subsection{Baselines and resource matching}
+\subsection{Shared configuration and baselines}
 \label{app:adaptation}
+\paragraph{Shared execution settings.}
+\label{app:runtime-config}
+Table~\ref{tab:run-config} fixes models and search defaults; downstream policy settings are separate.
+The reference implementation combines atomic judgments and four criterion ratings by a weighted mean; a separate holistic diagnostic score does not enter that mean.
+Table~\ref{tab:data-sources} specifies domain quality dimensions, rather than a universal number of aggregation fields.
+Prompts, tools, component connections, and scoring rules remain editable, with evaluator weights fixed.
+Train-derived examples cannot contain case-ID lookups or whole-case score tables.
+
+\begin{table}[!htbp]
+\caption{\textbf{Shared models and evaluator-search settings.} Evaluator weights remain fixed. Downstream policy updates are specified separately in Table~\ref{tab:downstream-config}.}
+\label{tab:run-config}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}P{3.0cm}Y@{}}
+\toprule
+Setting & Configuration\\
+\midrule
+Evaluator execution & \href{https://developers.openai.com/api/docs/models/gpt-5.6-sol}{GPT-5.6 Sol}; shared by Seed and all candidate and retained evaluators; low reasoning effort\\
+Evolution and optimization & GPT-5.6 Sol for EvalOpt, SkillOpt, GEPA, and Meta-Harness; medium reasoning effort\\
+Mining judges & \href{https://developers.openai.com/api/docs/models/gpt-5.5}{GPT-5.5}, GPT-5.6 Sol, \href{https://developers.openai.com/api/docs/models/gpt-6-astra}{GPT-6 Astra}, and \href{https://platform.claude.com/docs/en/models/sonnet-4-6/overview}{Claude Sonnet 4.6}; fixed dimensional rubrics; 3 repeats/model; medium effort, with adaptive thinking for Claude\\
+Other mining signals & Applicable dimensional checks from Table~\ref{tab:data-sources}, excluding reserved assessment measures; 20\% random anchor\\
+Input and generation caps & 65,536 input tokens per call; at most 8,192 generated tokens per optimizer call or across one artifact evaluation, including reasoning tokens\\
+Tools & At most 8 external tool calls per artifact evaluation; 30 seconds per call; fixed rendering, tool versions, and image preprocessing across arms\\
+Local measurement & 28 cases, up to 4 targets and 8 sampled contrasts; fixed direction panel of at most 8 cases; missing panel cases added; 2 repeats initially and for a permitted fresh confirmation\\
+Search budget & 100 units = cost of 10,000 one-pass Seed pair evaluations, calibrated on Tune; reserve 20 units for Val; at most 60 charged candidate attempts\\
+Direction limits & At most 18 charged steps; 2 provisional steps; 3 consecutive charged rejections; scope starts at level 2\\
+Retention and assessment & Val every 3 charged steps, at direction exit, and finally; 3 repeats/artifact on Val/Test\\
+Randomization & Split seed 42; search seeds 11/22/33/44/55 for data ordering and search randomization; API sampling is recorded separately\\
+Uncertainty & 2,000 paired bootstrap replicates over input groups and search seeds; 95\% intervals; Holm correction within each prespecified comparison family\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The requested API identifiers are \texttt{gpt-5.6-sol}, \texttt{gpt-5.5-2026-04-23}, \texttt{gpt-6-astra}, and \texttt{claude-sonnet-4-6}.
+Record requested and returned identifiers, provider, date, reasoning settings, and complete call configuration.
+Model routing is fixed across arms; reasoning-enabled calls omit temperature and top-$p$ overrides.
+Mining judges share task evidence and dimensional rubrics, with at most 8,192 generated tokens per artifact and repeat.
+Their scores select feedback, not human labels or independent assessment endpoints.
+All required evidence and outputs must fit without truncation, checked before splitting with each model's tokenizer and image accounting.
+Optimizers share input caps while retaining native history policies.
+
+\paragraph{Baseline adaptation.}
 Table~\ref{tab:adaptation} specifies native optimizer semantics and editable spaces.
 Adapters pin source commits, model routing, and Train/Val access before comparison.
 \begin{table}[!htbp]
@@ -175,7 +303,6 @@ Native search semantics are preserved; differing editable spaces are explicit.}
 \toprule
 Method & Optimized object & Required fidelity and interpretation\\
 \midrule
-Fixed model judge & None; fixed prompt and base model & Pointwise score on the artifact, no extra tool inspection; a static reference, not a matched observation ablation\\
 Seed evaluator & None; initial full evaluation program & Same seed, tools, routes, and score interface used to initialize program evolution\\
 Learned signal fusion & Weights over fixed signal features & Fit on Train preferences; hold features, model, and observation path fixed\\
 SkillOpt \citep{yang2026skillopt} & Skill text & Preserve bounded edits, validation gate, rejected-edit buffer, and specified meta updates; pin paper-style variant\\
@@ -188,21 +315,23 @@ EvalOpt & Full evaluation program & Active direction, Train acceptance, periodic
 \end{table}
 Learned fusion fits a regularized pairwise logistic model to frozen signal-feature differences on Train, then scores outputs independently.
 Feature normalization, missingness handling, and regularization are fitted or selected on Train.
-SkillOpt retains its native rejected-edit buffer and longer-timescale updates, with tools and routes fixed; text-only EvalOpt uses the same editable fields.
-GEPA retains its official program-capable interface, reflection, population selection, and configured merge policy.
-Meta-Harness retains full code/trace history and native parent selection, changing only transport needed for the matched model.
-An unmatched model-access configuration is excluded from the main controlled comparison.
+Text-only EvalOpt uses SkillOpt's editable fields.
+Adapters change transport only as needed for the matched model; unmatched model-access configurations are excluded from the controlled comparison.
 
-The search cap charges proposal/reflection, diagnostics, invalid and rejected attempts, repeats, retries, and reserved selection calls at a frozen price schedule.
-End-to-end comparisons additionally charge mining; annotation effort is reported separately.
-Final deployment uses matched input, context, tool, time, and token caps, with actual per-output use recorded.
-Deterministic synthesis incurs no fictitious model call.
+\paragraph{Resource matching.}
+Within each domain, all methods use the same Tune-calibrated Seed pair cost and frozen model/tool price schedule to convert measured use into search units.
+One-pass pair cost covers both artifacts and their evaluator calls and tools, but no optimizer call.
+The shared cap charges proposals, reflections, diagnostics, failed and rejected attempts, repeats, retries, and Val selection; mining and terminal Test assessment are itemized separately, and end-to-end comparisons include mining.
+Annotation effort is reported separately from model/tool cost.
+Deployment shares input, context, tool, time, and token caps.
+Record actual attempts, input/output/reasoning tokens, calls, API charges including cache and service tier, local accelerator costs, and wall time.
+Attempt and resource ceilings do not guarantee completed runs.
 
 \subsection{Controller and measurement}
-The reference controller, \texttt{bounded\_direction\_v2}, separates execution validity, Train control, and Val retention.
+The controller separates execution validity, Train control, and Val retention.
 Algorithm~\ref{alg:era} gives the loop; numerical settings below specify the reference implementation rather than tuned optima.
 \begin{algorithm}[htbp]
-\caption{Direction development with confirmed references and bounded exploration}
+\caption{Direction development with reference updates and bounded exploration}
 \label{alg:era}
 \small
 \begin{algorithmic}[1]
@@ -222,8 +351,8 @@ Algorithm~\ref{alg:era} gives the loop; numerical settings below specify the ref
       \State Remeasure all compared evaluators on the same Train cases under its frozen scope
       \State Use the fresh measurement, including check outcomes, for the decision
     \EndIf
-    \State Confirm $R=W=C$, stage $W=C$, or roll back $W=R$
-    \State Apply the decision rules below; update pending age, rejection count, and scope
+    \State Apply the rules below to confirm $R=W=C$, stage $W=C$, or roll back $W=R$
+    \State Update pending age, rejection count, and scope
     \State Retain observations and interpretations separately, including unsuccessful attempts
     \If{a checkpoint is due and $W$ is execution-valid}
       \State Compare $W,B$ on full Val; apply Equation~\ref{eq:acceptance}
@@ -240,37 +369,45 @@ Algorithm~\ref{alg:era} gives the loop; numerical settings below specify the ref
 
 
 \paragraph{State and declarations.}
-Each direction starts from $R=W=B$.
-Confirmation updates $R$ and $W$, staging changes only $W$, and rollback restores the exact $R$ while retaining diagnostics.
-Val changes only $B$.
-The agent maintains the target failure and intended correction; changing the correction opens a new direction.
-The edit identifies changed components and intended effects.
-Numerical gain predictions and intermediate checks are optional and cannot be relabeled after measurement.
-Numerical predictions identify the metric, reference, cohort, and units; cross-component edits are measured as bundles unless separate interventions are valid.
-A scaffold additionally declares an intended downstream use and intermediate success condition, without requiring integration on the immediately next revision.
+Algorithm~\ref{alg:era} separates Train updates to $R/W$ from Val updates to $B$.
+A new direction initializes $R=W=B$, so its reference need not be Train-confirmed; all inherited changes must have passed Val retention.
+The agent records the target failure and correction, and a change of correction opens a new direction.
+Each edit identifies changed components and intended effects.
+Optional numerical predictions specify metric, reference, cohort, and units; predictions and checks cannot be relabeled after measurement.
+Cross-component edits are measured as bundles unless separate interventions are valid.
+A scaffold also declares its downstream use and intermediate success condition, without requiring connection on the next revision.
 
-Intermediate checks specify a case, structured field, and predicate.
-Eligible predictions must hold on every repeat, with at least one predicted field changing or node being created on every repeat.
-Configuration, node calls, and evidence artifacts distinguish unrealized edits from produced-but-unused evidence; fulfilled checks do not alone establish preference gain.
+An intermediate check specifies a case, structured field, and predicate.
+Eligible predictions must hold on every repeat, with a predicted field changing or node being created on every repeat.
+Configuration, calls, and artifacts distinguish unrealized changes from produced-but-unused evidence, but fulfilled checks alone do not establish preference gain.
 Reason-text-only, final-score-only, purely semantic, and all-preservation checks remain unresolved.
-Failed checks prohibit confirmation and staging; unresolved checks prohibit confirmation.
-An absent check is not a passed check and does not veto supported gain.
-A scaffold needs passed intermediate checks; an inert scaffold additionally needs valid preflight.
+For scoring-active edits, failed checks reject the candidate and unresolved checks block confirmation.
+Absent checks do not veto measured gain and are not recorded as passed.
+Scoring-active scaffolds need passed intermediate checks to stage; disconnected scaffolds instead need the execution preflight below.
 
 \paragraph{Measurement identity and panel.}
 The immediate parent $P=W$ and candidate $C$ use matched cases, scoring, resources, and unaffected inputs.
-Cache identity covers the complete evaluator, dependencies, inputs, model/tools, scoring configuration, and replicate; replay is not a fresh repeat.
-Required incomplete seed or candidate measurements interrupt search and retain the last valid $B$; the reference runtime has no automatic evidence-recovery policy.
+Cache identity covers the evaluator, dependencies, inputs, model/tools, scoring configuration, and replicate; replay is not a fresh repeat.
+Edits invalidate dependent artifacts while permitting reuse of compatible intermediate outputs.
+Task-only preprocessing cannot inspect the evaluated output.
+Train repeats rerun output-dependent judgments conditional on compatible fixed preprocessing; frozen Val/Test runs remain end-to-end.
+Required incomplete seed or candidate measurements interrupt search and retain the last valid $B$, without automatic evidence recovery.
 The fixed direction panel $\mathcal D_d$ contains the first at most eight selected Train IDs.
 The default local roster has 28 cases, including up to four targets and eight sampled contrasts, with additional Train cases filling the remainder.
 Missing panel cases are added, so the roster can exceed 28.
 Compare $C$ with $P$ on the full roster and with $R$ on the panel.
-Sampled contrasts are not automatically declared protected cases.
 
 \paragraph{Gain, contrast-case losses, and uncertainty.}
 For each case $i$ and evaluator $E$, let $o_{i,r}(E)$ be one if repeat $r$ ranks the human-preferred output strictly higher, and zero for a wrong ordering or tie.
 Unavailable executions have no correctness value.
 With $m$ complete repeats, $\widehat p_i(E)$ is their mean.
+For evaluators $E,F$ on a prespecified cohort $\mathcal C$, the paired mean gain is
+\begin{equation}
+ \widehat g_{\mathcal C}(E,F)
+ =\frac{1}{|\mathcal C|}\sum_{i\in\mathcal C}
+       [\widehat p_i(E)-\widehat p_i(F)].
+ \label{eq:paired-gain}
+\end{equation}
 The implementation uses the sum $G_{\mathcal C}=|\mathcal C|\widehat g_{\mathcal C}$, equivalent to Equation~\ref{eq:paired-gain} after rescaling.
 Its empirical uncertainty buffer for comparing $E$ and $F$ is
 \begin{equation}
@@ -283,60 +420,54 @@ where $s_i^2$ is the within-case sample variance across repeats.
 The gain is paired by case, not by arbitrarily aligned stochastic repeat slots.
 Independent permutations of repeat order therefore leave every comparison unchanged.
 
-The one-standard-error buffer is a decision heuristic, not a confidence interval or significance test.
-Finite identical observations yield zero empirical variance, not proof that true execution noise is absent.
-Shared upstream evidence and correlated model calls limit the independent-arm approximation.
-These Train comparisons do not estimate generalization to unseen inputs.
-The revision may explicitly declare contrast cases whose ordering accuracy should not decline.
-These declarations define the guarded cases; sampled contrasts are not automatically guarded.
-Declared contrast cases are checked individually: a negative change in any such case's mean correctness prevents confirmation.
-Margins, intermediate outputs, ranking flips, score variation, calls, latency, and failures remain separate diagnostics.
-Neither a wider score gap nor better evidence coverage is sufficient for reference confirmation.
+The buffer is a search heuristic, not a confidence interval, significance test, or estimate of generalization.
+Zero empirical variance does not establish noiseless execution, and shared evidence or correlated calls limit the independent-arm approximation.
+Only explicitly declared contrasts are guarded; randomly sampled contrasts are not.
+A decrease in any guarded case's mean correctness blocks confirmation, but does not alone require rollback or prohibit staging within provisional limits.
+Margins, traces, ranking flips, score variation, cost, and failures remain diagnostics rather than alternative confirmation criteria.
 
 \paragraph{Fresh confirmation.}
-The initial diagnostic allocation is two repeats per evaluator and case.
-Positive panel gain against $R$ within its uncertainty buffer qualifies for one fresh measurement only when execution is effective and complete, local and declared contrast gains are nonnegative, and declared checks pass or are absent.
-Remeasure $P,C,R$ on the same cases with the same repeat count.
-Fresh outcomes and checks replace, rather than supplement, the initial decision measurement.
-Equivalent execution identities cannot request repeated confirmation draws.
-Judgment is rerun while task analysis stays fixed (Appendix~\ref{app:synthesis}).
+With two initial repeats per evaluator and case, positive panel gain against $R$ within the uncertainty buffer permits one fresh measurement if execution is effective and complete, local and declared contrast gains are nonnegative, and checks pass or are absent.
+Remeasure $P,C,R$ on the same cases with the same repeat count and conditional execution protocol.
+The initial batch determines eligibility; only the fresh outcomes and checks determine the candidate decision, even when less favorable.
+Both batches remain in the diagnostic history, and equivalent execution identities cannot request another confirmation draw.
+This conditional remeasurement is a search heuristic, not a calibrated test or a guarantee against selection bias.
 
 \paragraph{Train decision rules.}
 \label{app:direction-decisions}
-The following rules apply in order after completeness and effective-change checks.
-A failed declared mechanism check rejects the candidate without staging it.
-Except for a preflight-validated scaffold, an ineffective edit is also rejected.
+After completeness checks, an effective-change check compares deterministic identities of the parent and candidate scoring computations.
+The identity includes scoring inputs, active prompts, routes, tool dependencies, and aggregation, excluding unused configuration; it tests computation changes, not accuracy gains.
+An unchanged identity triggers rejection unless the edit is a predeclared scaffold with a passed execution preflight.
+The preflight independently executes the disconnected capability, allowing bounded staging but not confirmation until the scoring computation changes.
+For a changed scoring computation, a failed declared mechanism check rejects the candidate without staging it, followed by the rules below.
 
 First, supported harm relative to either $P$ or $R$ triggers rollback to $R$ and narrows the scope by one level.
 Harm means at least two repeats with $G<-\operatorname{SE}$, or the stop-loss condition $G+\operatorname{SE}\leq-2$ correct pairs.
 Second, confirmation requires at least two repeats, panel gain $G_{\mathcal D_d}(C,R)>\operatorname{SE}_{\mathcal D_d}(C,R)$, no declared contrast-case regression in either comparison, nonnegative local mean gain, and no failed or unresolved declared check.
 Confirmation sets $R=W=C$.
-An absent check does not veto this measured improvement, but is not recorded as a passed mechanism prediction.
 
-Otherwise, a valid unresolved ordinary edit can remain provisional; an effective scaffold additionally needs passed intermediate checks.
+Otherwise, a valid unresolved ordinary edit can remain provisional, including one with zero or uncertain gain or a declared contrast decline, provided neither comparison triggers the aggregate harm rule.
+A scaffold that changes the scoring computation additionally needs passed intermediate checks.
 Staging sets $W=C$ without moving $R$.
-The exploratory chain permits two charged provisional steps.
-A third unresolved step restores $W=R$ and records expiration, rather than restarting the window.
-Confirmation or rollback resets pending age.
-Unexecuted generation failures retain $W$ and pending age, subject to the separate failure limit.
-Comparing every candidate against $R$ as well as $P$ prevents accumulated losses from disappearing as the parent changes.
+The chain permits two charged provisional steps; a third unresolved step restores $W=R$ and records expiration.
+Confirmation or rollback clears pending age; charged rejection restores $W=R$ and clears the provisional window.
+Uncharged generation retries retain $W$ and pending age, subject to the separate failure limit.
+Comparison against $R$ keeps accumulated loss visible as the parent changes.
 
-A charged rejection restores $W=R$ and clears the provisional window; an uncharged generation retry retains the previous $W$ and pending age.
 Three consecutive charged rejections end the direction; confirmation or provisional continuation resets that rejection count.
-The default direction limit is 18 charged steps.
-The evolution agent can also end a direction with a recorded reason based on accumulated diagnostics.
-These bounds constrain the duration of exploration, not the correctness of its semantic interpretation.
-Rejection does not itself prescribe a new direction, and a Val non-promotion does not enter these rules.
+A direction also ends at 18 charged steps or on the agent's recorded diagnostic judgment.
+These limits bound exploration, not the correctness of that judgment; a single rejection or Val non-promotion does not itself end the direction.
 
 \paragraph{Scope adaptation.}
 Permitted edits have three levels: one component, multiple components within one functional group, and coordinated changes across groups.
 Scope constrains each edit from $W$, not cumulative distance from $R$.
 The initial level is two; two consecutive supported reference updates expand it by one, while supported harm contracts it by one, within levels one to three.
-The 24,000-character guard and calls are resource constraints, not semantic distances.
-This categorical policy draws on trust-region adaptation \citep{conn2000trust}; it does not establish the local-model assumptions of stochastic convergence results \citep{bandeira2014probabilistic,chen2018storm,blanchet2019trust}.
+The 24,000-character guard and call limits bound resources, not semantic distance.
+The categorical policy draws on trust-region adaptation \citep{conn2000trust}, without establishing the assumptions needed for stochastic convergence guarantees \citep{bandeira2014probabilistic,chen2018storm,blanchet2019trust}.
 
 \paragraph{Val retention.}
 The reference cadence is every three charged steps, plus direction-exit and final checkpoints.
+The cadence is frozen before search; the number of checkpoints depends on realized steps and direction endings within the reserved Val budget.
 Compare eligible $W$ and $B$ on complete frozen Val under identical scoring and coverage requirements:
 \begin{equation}
  B\leftarrow
@@ -347,57 +478,30 @@ Compare eligible $W$ and $B$ on complete frozen Val under identical scoring and 
  \label{eq:acceptance}
 \end{equation}
 where $\tau_{\mathrm{Val}}>0$ is prespecified.
-Only promotion and retained score are released; no Val result changes Train states or direction control.
-Restricted feedback follows the motivation of the Ladder \citep{blum2015ladder}, without inheriting its theoretical bound.
+The agent receives only promotion and retained score, never an unpromoted candidate's score; Val does not alter Train states or direction control.
+This restriction follows the Ladder's motivation \citep{blum2015ladder}, without its theoretical bound or elimination of adaptive-selection risk.
 Reserve the last eligible $W$ for the scheduled final comparison before reset; an incomplete comparison retains the last valid $B$.
-
-\subsection{Reference evaluator}
-\label{app:synthesis}
-The concrete evaluator implements task analysis ($A$), judgment ($J$), and deterministic synthesis ($S$).
-Task analysis sees the task and permitted sources, not the evaluated output.
-Judgment inspects one output through LLMs, tools, subagents, and routes, producing structured evidence.
-The A/J/S v1 synthesis uses atomic judgments and four criterion ratings with a weighted mean; its separate holistic diagnostic score does not enter that mean.
-These components instantiate the generic revision space, not an additional optimization contribution.
-
-Editing synthesis reuses compatible analysis/judgment outputs; editing judgment invalidates its dependent outputs while holding task analysis fixed; editing analysis invalidates dependent judgments.
-Train confirmation therefore measures judgment variation conditional on shared analysis.
-Frozen Val/Test evaluation remains end-to-end.
-Train-derived examples cannot contain case-ID lookups or whole-case score tables.
 
 \section{Complete results and ablations}
 \label{app:results}
 \subsection{Per-domain evaluator quality}
-Table~\ref{tab:c1-all-domains} provides all seven methods for every C1 domain; Table~\ref{tab:domain-results} adds score-tie diagnostics on the four-domain analysis subset.
+Table~\ref{tab:c1-all-domains} provides all six methods for every C1 domain.
 \begin{table}[!htbp]
-\caption{\textbf{C1 accuracy in every domain.} All domains have equal weight in Overall. Fixed: fixed model judge; Fusion: learned signal fusion; Meta: Meta-Harness.}
+\caption{\textbf{C1 accuracy in every domain.} All domains have equal weight in Overall. Fusion: learned signal fusion; Meta: Meta-Harness.}
 \label{tab:c1-all-domains}
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\linewidth}{@{}Yrrrrrrr@{}}
+\begin{tabularx}{\linewidth}{@{}Yrrrrrr@{}}
 \toprule
-Domain & Fixed & Seed & Fusion & SkillOpt & GEPA & Meta & EvalOpt\\
+Domain & Seed & Fusion & SkillOpt & GEPA & Meta & EvalOpt\\
 \midrule
 \input{figures/ideal_scenario/c1_domains}
 \bottomrule
 \end{tabularx}
 \end{table}
-\begin{table}[!htbp]
-\caption{\textbf{Predicted score-tie rates on the analysis subset.}
-Percentages use the same strict-human pairs and group weights as C1 accuracy.
-These are evaluator score ties, not human ties.}
-\label{tab:domain-results}
-\centering\small
-\begin{tabularx}{\linewidth}{@{}Yrrrr@{}}
-\toprule
-Method & SV4 & IG1 & TG1 & AR1\\
-\midrule
-\input{figures/ideal_scenario/domain}
-\bottomrule
-\end{tabularx}
-\end{table}
-\subsection{Search ablations}
+\subsection{Search ablations and trajectory diagnostics}
 \label{app:ablations}
-Search and mining diagnostics use SV4, IG1, TG1, and AR1, without changing their C1 weights.
+Search and mining diagnostics use SV3, IG1, TG1, and AR1, without changing their C1 weights.
 All search arms share selected feedback, seed, model, scoring, Val access, and cost except for the declared intervention.
 Table~\ref{tab:search-results} supplements Figure~\ref{fig:budget-tests}a with absolute accuracy and revisions per direction.
 
@@ -419,13 +523,13 @@ Fresh online searches, not replay alone, test these interventions.
 
 \begin{table}[!htbp]
 \caption{\textbf{Matched-cost search comparison.}
-Pair accuracy is in percent; difference is from full EvalOpt in percentage points.
-Revisions per direction are reported separately; every condition uses the same search cost of 100 units.}
+Pair accuracy is in percent; revisions per direction measure search depth.
+Every condition uses the same search cap of 100 units.}
 \label{tab:search-results}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}Yccc@{}}
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
 \toprule
-Condition & Pair acc. & Difference & Revisions/direction\\
+Condition & Pair acc. & Revisions/direction\\
 \midrule
 \input{figures/ideal_scenario/search_compact}
 \bottomrule
@@ -450,81 +554,268 @@ Policy & Integrate $\uparrow$ & Repair $\uparrow$ & End $\uparrow$\\
 \bottomrule
 \end{tabularx}
 \end{table}
-\subsection{Preference-mining comparisons}
-Each label budget restarts evolution from the same seed on fixed Test cohorts.
-The 20/50/100/200-group grid is frozen after checking source-group availability.
-A group, rather than each derived pair, is the primary access unit, with pair/ratings counts retained.
-New-annotation time includes raters, adjudication, abstentions, and random anchors; replay cannot claim savings in unrecorded human time.
-Selection policies use the same deduplicated pool and feedback detail, without unselected labels.
+\paragraph{Trajectory assessment.}
+\label{app:analysis-details}
+Sample 30 directions per domain by stable IDs, ten each with confirmed progress, nonconfirmed agent ending, and forced ending, pooling searches without replacement and reporting shortages.
+Two independent reviewers assess semantic continuity and link failure, realized or unused evidence, subsequent edits, $R/W/B$ transitions, and cost.
+Retain failed, exhausted, and censored trajectories, including attempts without follow-up, and allow multiple or unknown causes.
+These descriptions distinguish observations from agent interpretations and do not establish causality from later success.
 
-Figure~\ref{fig:acquisition} separates label budgets, annotation time, and the random-anchor contrast.
-Removing the anchor reallocates its budget to the ranked queue; anchor size is frozen before comparison.
-Table~\ref{tab:mining-results} retains the random/mined $\times$ fixed-patience/EvalOpt design.
-Pool scoring is charged separately from evolution, and the interaction is a secondary contrast.
+\subsection{Preference-mining comparisons}
+\label{app:mining}
+At each label budget in Table~\ref{tab:experiment-allocation}, restart evolution from the same Seed with fixed Test cohorts, a common deduplicated pool, and identical feedback detail.
+Only selected labels are revealed under the group-level access protocol in Appendix~\ref{app:annotation}.
+Figure~\ref{fig:acquisition} compares label budgets and reallocates the anchor's 20\% budget to ranked pairs in the no-anchor condition.
+Table~\ref{tab:mining-results} gives the secondary random/mined $\times$ fixed-patience/EvalOpt comparison, with pool-scoring and search costs itemized separately.
+
 \begin{figure}[!htbp]
 \centering
 \input{figures/mining_results_pending}
 \caption{\textbf{Preference-mining efficiency.}
 (a) Held-out pair accuracy versus revealed groups in existing-label replay.
-(b) Pair accuracy at matched person-minute budgets for new annotation.
-(c) Mined feedback with and without the random anchor at the same 100-group budget, by domain.}
+(b) Mined feedback with and without the random anchor at the same 100-group budget, by domain.}
 \label{fig:acquisition}
 \end{figure}
 
 \begin{table}[!htbp]
 \caption{\textbf{Mining and end-to-end comparison.}
 The two-by-two design uses 100 revealed groups in every cell.
-Decisive-pair accuracy is in percent; minutes describe the separate new-annotation comparison.
+Decisive-pair accuracy is in percent.
 Total model-and-tool cost includes mining and search in relative units, not human labor.
 The two search policies are fixed patience and EvalOpt.}
 \label{tab:mining-results}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}YYccc@{}}
+\begin{tabularx}{\linewidth}{@{}YYcc@{}}
 \toprule
-Feedback & Search & Minutes & Pair acc. & Total cost\\
+Feedback & Search & Pair acc. & Total cost\\
 \midrule
 \input{figures/ideal_scenario/mining_compact}
 \bottomrule
 \end{tabularx}
 \end{table}
-\subsection{Trajectory assessment}
-\label{app:analysis-details}
-Sample directions by prespecified outcome strata and stable IDs, including failed and exhausted directions.
-Review semantic continuity independently of direction IDs.
-For each selected trajectory, link the earlier failure, realized/unused evidence, next edit, $R/W/B$ transition, and cost.
-Separate observations from agent interpretations, allow multiple or unknown causes, and retain attempts with no follow-up.
-Report censoring and cost on directions that never promote $B$.
-These descriptions complement terminal controlled comparisons rather than establishing causality from a later successful revision.
+\paragraph{What disagreement mining selects.}
+We examine SV3, IG1, TG1, and AR1 at the same 100-group feedback budget, combining 80 ranked pairs and 20 random-anchor pairs into the selected feedback set.
+Each domain has 224 eligible Train groups with decisive overall preference labels, one pair per group, and five selection seeds.
+Existing labels retain their source semantics; source ties and missing labels are outside this diagnostic cohort.
+This composition diagnostic uses a separate two-rubric-source configuration, not the four-judge experimental roster.
+Both sources cover four dimensions and overall quality, supplemented by browser requirement checks (SV3), CIDEr (IG1), or SummaC (TG1); AR1 has no additional checker.
+For each dimension, comparison coverage is the fraction of pairs with at least two available source-group votes, including tied votes.
+Across the four dimensions, its ranges for Pool / Selected are \input{figures/mining_diagnostics/mining_diagnostics_counts}
+Missing votes remain unavailable rather than counting as agreement.
 
-\section{Downstream applications}
-\label{app:downstream}
-Tables~\ref{tab:readiness}--\ref{tab:downstream-detail} give settings and controls for Figure~\ref{fig:budget-tests}b.
+% Keep this half-page diagnostic with text rather than on a float-only page.
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=5.4in]{figures/mining_diagnostics/mining_diagnostics.pdf}
+\caption{\textbf{Feedback composition and Seed errors.}
+(a) Pairs with observed evaluator disagreement on each dimension, as a percentage of all pairs in the Pool (gray) or Selected feedback (teal).
+Selected combines 80 ranked and 20 random-anchor pairs. A pair can contribute to several dimensions, so percentages need not sum to 100\%.
+(b) Seed error for Selected versus 100 uniformly sampled pairs, using decisive overall labels and counting evaluator score ties as errors.
+Pool percentages use 224 pairs; Selected and Random percentages pool 500 appearances across five selections, not independent samples.}
+\label{fig:mining-diagnostics}
+\end{figure}
+
+Figure~\ref{fig:mining-diagnostics}a describes selection's effect on observed disagreements, which depend on the evaluators and their coverage rather than intrinsic dimension difficulty.
+Panel~b audits Seed errors using overall preference labels revealed only after selection, without dimensional human labels.
+Learning benefit is assessed separately in Figure~\ref{fig:acquisition}.
+
+For the anchor audit, we deduplicate pairs across selection seeds and retain those with decisive human preferences and matching non-tied overall votes from both rubric judges.
+The counts opposing this shared model preference are \input{figures/mining_diagnostics/mining_diagnostics_anchor}
+These conditional counts describe shared errors accessible to random sampling; the fixed-budget anchor comparison tests their contribution to learning.
+
+\subsection{Additional human annotation experiment}
+\label{app:slide-pilot}
+This separate SV1 study tests whether selecting annotation questions yields useful feedback for evaluator revision.
+SV1's C1 comparison uses our own human annotations; the sampling study below separately evaluates how to allocate additional annotation questions, rather than assuming a public slide-preference release.
+For collection, we plan to use briefs from \href{https://huggingface.co/datasets/tyrionhuu/PPTBench-Generation}{PPTBench-Generation}, with two single-slide outputs per brief generated by GPT-5.6 Sol under a shared prompt and budget with different generation seeds.
+The public resource supplies inputs, not the pairwise human labels for this study.
+The design allocates 200 Train, 40 Val, and 120 Test brief groups, independently of C1 and the four-domain analyses.
+Source-document and near-duplicate groups must remain within one split, and the source manifest, generation settings, renderer, and output hashes must be frozen before mining.
+Eligibility requires a self-contained brief, accessible supporting material, and two inspectable renders; exclusions precede both sampling arms.
+
+\paragraph{Question selection and blinding.}
+The mined arm selects eight random-anchor pairs before ranking and 32 pairs by the within-dimension disagreement count in Equation~\ref{eq:conflict}.
+For each ranked pair, it samples one or two conflicting dimensions and one or two additional non-conflicting dimensions, uniformly without replacement within each set.
+The requested counts are chosen by independent input hashes before annotation and capped by the available dimensions in each set.
+Anchor pairs receive three uniformly sampled dimensions.
+Every selected pair also receives an overall question.
+The random arm samples 40 pairs uniformly from the same Train pool and matches the mined arm's per-pair question-count distribution, but samples dimensional questions uniformly.
+The criteria in Table~\ref{tab:data-sources} form a question bank, not a mandatory checklist: the interface displays only the sampled questions, with no fields for unqueried dimensions.
+\input{figures/slide_pilot_counts}
+The comparison tests the combined pair-and-dimension sampling policy.
+
+Raters see the brief, supporting material, and equally sized slide renders in randomized A/B positions, with model identities, signal votes, and sampling status hidden.
+Two independent raters answer overall preference first, followed by the sampled dimensional questions in randomized order.
+Each question offers A, B, tie, or unable to judge; tie means comparable quality, whereas inability indicates insufficient evidence.
+Raters must be fluent in the brief's language and familiar with presentation review, with rubric calibration on separate practice items before annotation.
+An identical non-missing response from both raters is accepted, including a tie.
+Otherwise, a third blinded rater answers that question, and two matching non-missing responses determine its label; without that agreement it remains unresolved.
+Unasked dimensions remain absent rather than being filled by overall preference or model votes.
+
+\paragraph{Annotation efficiency.}
+A usable label is a resolved preference or tie.
+Before acquisition, the pilot Seed records pointwise scores for each slide on the question-bank criteria and overall quality.
+These frozen scores are compared with decisive human labels separately for dimensional and overall judgments; a Seed score tie counts as an error.
+Table~\ref{tab:slide-pilot}a reports both usable labels and discovered Seed errors per 100 individual ratings, including third-rater adjudication.
+The two arms have the same initial budget, not necessarily the same realized adjudication cost or annotation time.
+Shared pair--question labels are reused across arms, while each arm is charged the ratings needed to obtain its own feedback set.
+Val and Test annotation costs are common to both arms and reported separately from Train acquisition.
+
 \begin{table}[!htbp]
-\caption{C2/C3 tasks, training routes, and independent assessment. Each domain uses matched generation or update resources; attribute checks remain reserved from optimization.}
-\label{tab:readiness}
+\caption{\textbf{Slide annotation and feedback use.}
+(a) Acquisition cost and feedback yield for random and mined questions. Agreement uses questions both initial raters can judge; efficiency includes adjudication ratings.
+(b) Test accuracy of Val-retained checkpoints, with mean $\pm$ sample standard deviation across five searches using each fixed feedback set.}
+\label{tab:slide-pilot}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}P{.8cm}YYY@{}}
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
 \toprule
-ID & Inputs and evaluator feedback & Refinement / training route & Independent outcome\\
+\multicolumn{3}{@{}l}{(a) Annotation cost and feedback yield}\\
+Measure & Random & Mined\\
 \midrule
-SV4 & WebDev human preferences; separate WebGen inputs & WebGen revision / Step-GRPO; matched render/tool access & New webpage preferences, usability and reserved functional checks\\
-IG1 & CapArena human caption preferences; DOCCI references & Fixed vision-language captioner / vision-language GRPO & New caption preferences, grounding, hallucination and useful detail\\
-TG1 & TL;DR source posts and overall human comparisons & Fixed text generator / text GRPO & New summary preferences, faithfulness and content coverage\\
-AR1 & Ideation Arena contexts and expert comparisons & Fixed text generator / text GRPO & New expert proposal preferences, feasibility and significance\\
+\input{figures/slide_pilot_annotation}
+\bottomrule
+\end{tabularx}
+\smallskip
+\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
+\toprule
+\multicolumn{4}{@{}l}{(b) Feedback used by the same evolution policy}\\
+Evaluator & Test accuracy & Gain over Seed & Gain over random\\
+\midrule
+\input{figures/slide_pilot_evolution}
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\paragraph{Evolution and assessment.}
+Both arms start from the same Seed and EvalOpt policy, with caps of 100,000 model tokens and 100 tool calls per search, including diagnostics and Val access.
+Pool scoring is accounted for separately rather than attributed to human labor.
+Only the acquired Train labels are exposed to revision, preserving their dimension identities, ties, and missing fields.
+Five paired search seeds per arm use these fixed feedback sets and the same Val schedule.
+The three scheduled Val comparisons retain a checkpoint only on a strict accuracy improvement, with ties retaining the earlier checkpoint.
+Test is read only after checkpoint selection and never reranks candidates.
+Three blinded raters judge overall preference for every Val and Test pair, requiring two matching non-missing responses under the same rule as Train.
+\input{figures/slide_pilot_heldout}
+These held-out annotations require 120 Val and 360 Test ratings shared by both arms.
+Table~\ref{tab:slide-pilot}b reports all five retained outcomes, not the best search, and their variation is conditional on one acquisition per arm rather than five independent annotation studies.
+The efficiency and accuracy comparisons answer different questions: more disagreement does not guarantee more usable feedback or a better retained evaluator.
+
+\section{Downstream applications}
+\label{app:downstream}
+\subsection{Shared setup and assessment}
+\label{app:downstream-assessment}
+C2 tests critique-guided refinement and C3 tests reward-guided training, using the shared assessment in Table~\ref{tab:readiness} for Figure~\ref{fig:budget-tests}b.
+\begin{table}[!htbp]
+\caption{\textbf{Downstream assessment by domain.} Human preference is the primary endpoint in C2/C3. Computable measures assess specific attributes, not a shared cross-domain quality score.}
+\label{tab:readiness}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}P{1.45cm}YYY@{}}
+\toprule
+ID / inputs & Human rubric source & Human assessment & Computable complement\\
+\midrule
+SV3 / WebDev & Adapted WebGen-Bench appearance criteria and operation--expected-result checks \citep{lu2025webgen} & Requirement satisfaction, usability and appearance; pairwise overall choice & Render success; reserved requirement-test pass rate\\
+IG1 / DOCCI & CapArena annotation guidelines, Appendix H \citep{cheng2025caparena} & Precision, salient information, hallucination and conciseness; pairwise choice & SPICE precision, recall and F1 against the DOCCI description\\
+TG1 / TL;DR & TL;DR comparison and rating instructions, Appendix C.5 \citep{stiennon2020summarize} & Overall choice; 1--7 coherence, accuracy, coverage and overall ratings & ROUGE-L F1 against the human TL;DR; SummaCConv as an optimization-exposed diagnostic\\
+AR1 / Ideation Arena & Human-review criteria, Appendix A.2 \citep{chen2026ideation} & Overall choice; novelty, feasibility, significance and specificity preferences & None\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\paragraph{Data allocation.}
+Each domain uses 512 training, 64 development, and 200 final-assessment inputs, disjoint from evaluator Train/Val/Test and the timed-annotation pool.
+Freeze all roles before mining, without later additions.
+C2/C3 share final-assessment inputs but obtain separate outputs and new judgments, requiring 1,296 eligible groups per domain: 520 for C1 and 776 downstream, counted once across arms and seeds.
+Development inputs support generator checks and reward calibration, not evaluator evolution.
+Evaluator-search seeds 11/22/33 are paired with generator or training seeds in prespecified blocks, not selected by evaluator score.
+
+\paragraph{Source overlap and eligibility.}
+WebDev groups use normalized user specifications, with repeated requests and near-duplicate templates kept together; restrict the cohort to single-turn tasks with executable artifacts.
+CapArena's human comparisons reuse DOCCI images, so image IDs and near-duplicate scenes are grouped jointly across both releases.
+Use CapArena for C1, DOCCI Train for downstream training/development, and DOCCI Test images outside CapArena for downstream assessment; reference descriptions are withheld from generators.
+TL;DR groups use post IDs and normalized post text; downstream inputs come from the released source-and-reference corpus after removing all comparison-cohort posts.
+For ideation, group identical and near-duplicate literature contexts, using the same seed-paper group wherever its identity is available.
+Shared background citations alone do not merge otherwise distinct contexts; quantify this overlap and record unavailable seed identities in the manifest.
+The complete supplied literature context must fit both the generator and reward evaluator; exclude overlength inputs before allocation rather than truncating evidence underlying an existing preference label.
+Public-source counts precede these eligibility checks, and API processing also requires permission under each source's terms.
+
+\begin{table}[!htbp]
+\caption{\textbf{Domain-specific downstream inputs and generation limits.}
+C2 uses GPT-5.6 Sol; C3 uses Qwen3.5-9B. $L$ is the output token cap. Shared allocations and study-specific settings are given in the text.}
+\label{tab:downstream-config}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}lYrr@{}}
+\toprule
+Domain & Input source & Input token cap & $L$\\
+\midrule
+SV3 & WebDev Arena & 16,384 & 4,096\\
+IG1 & DOCCI & 8,192 & 512\\
+TG1 & TL;DR & 8,192 & 256\\
+AR1 & Ideation Arena & 32,768 & 1,536\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\paragraph{Models and inputs.}
+Table~\ref{tab:downstream-config} specifies domain-specific limits.
+GPT-5.6 Sol generates C2 initial outputs and revisions, with reasoning effort \texttt{none} and no temperature or top-$p$ override.
+C3 uses the public post-trained \href{https://huggingface.co/Qwen/Qwen3.5-9B}{Qwen3.5-9B} checkpoint, revision \texttt{c20223623576}, in all four domains, with thinking disabled throughout training and assessment.
+The Base, Seed-reward, and EvalOpt-reward arms share this checkpoint and tokenizer; only the two reward arms receive policy updates.
+Seed and EvalOpt critiques and rewards use the GPT-5.6 Sol evaluator settings in Table~\ref{tab:run-config}.
+The captioner receives the image, but not the DOCCI reference.
+The webpage model generates a complete HTML/CSS/JavaScript artifact; browser execution supplies evaluator evidence rather than an extra trainable policy.
+Summarization uses the source post, and ideation uses a closed literature context with no online retrieval.
+
+\paragraph{Human assessment.}
+Three blinded raters assess each output pair under fixed, shared instructions after calibration on disjoint examples.
+They see the task, permitted evidence, and anonymized outputs, without critiques, rewards, automatic scores, or reference captions/summaries.
+Choices are A, B, tie, or unable to judge; AR1 also records Both Bad, counted as a tie and reported separately.
+AR1 raters must know the topic and supplied literature, deferring unsupported judgments.
+Tie-aware preference is $(W+T/2)/(W+L+T)$, with abstentions and missing outputs reported separately.
+Record rater backgrounds, calibration, agreement, and person-time.
+
+Table~\ref{tab:readiness} gives domain criteria and rubric sources.
+SV3 requires inspecting the running page, including interactions, with task-specific operation--expected-result checks.
+Its 1--5 appearance anchors adapt WebGen-Bench's model-grading prompt rather than an existing human pairwise instrument.
+IG1 follows CapArena's human guidelines, including not rewarding length alone; TG1 uses TL;DR's comparison instructions and separate 1--7 rating anchors.
+AR1 asks which proposal merits investment under the listed criteria, assessing a proposal rather than a completed finding \citep{si2025ideas}.
+
+\paragraph{Regression judgments.}
+Each regression flag identifies a newly introduced material problem relative to the reference output: broken required interaction or unusable layout (SV3), a salient hallucination or lost essential description (IG1), a central factual distortion or omission (TG1), or an unsupported central premise or infeasible experimental dependency (AR1).
+Raters identify the affected requirement, image region, source passage, or proposal statement.
+Majority vote determines the flag; minor stylistic changes do not qualify.
+Regression is measured against $y_0$ in C2 and Base in C3, not necessarily the pairwise comparison arm.
+
+\paragraph{Executable and reference-based measures.}
+SV3 runs prespecified assertions in isolated Chromium at $1280\!\times\!800$ with a 30-second load limit.
+Render success requires nonblank task content; requirement pass rate averages the fraction of passed assertions equally over tasks.
+Artifact-caused failures fail dependent assertions, while browser-service outages remain missing.
+IG1 uses the released SPICE parser \citep{anderson2016spice} on complete captions and matching DOCCI references, reporting tuple precision, recall, and F1.
+Reference omissions and parser errors limit SPICE, with hallucination assessed separately by humans.
+TG1 references are human summaries matched by post ID before cohort freezing, not model outputs or preferred comparison candidates.
+ROUGE-L F1 \citep{lin2004rouge} uses \texttt{rouge-score}, English stemming, and no truncation.
+SummaCConv \citep{laban2022summac} uses the released \texttt{vitc} sentence-level model and mean aggregation.
+Because it also participates in mining, SummaC is an optimization-exposed diagnostic, not an independent endpoint, and its news training limits interpretation on Reddit posts.
+
+\paragraph{Assessment boundary and reporting.}
+Reserve SPICE, ROUGE-L, final reference texts, and browser assertions from mining, evaluator tools, critique, reward, and checkpoint selection, while allowing general browser execution.
+Table~\ref{tab:data-sources} surveys alternatives, not the executed tool roster.
+Assess the same final outputs from every arm, recording versions, preprocessing, manifests, output lengths, completion counts, and missing outcomes.
+Report per-domain means and paired differences with the uncertainty protocol in Appendix~\ref{app:measurement}, without averaging incompatible metric scales.
+Table~\ref{tab:downstream-detail} summarizes preference and per-arm outcomes.
+
 \subsection{Critique-guided refinement}
-C2 compares identical fresh initial outputs $y_0$, no-critic revision, Seed-critic revision, and EvalOpt-critic revision.
-Arms share the generator, decoding, critique format, evidence, token cap, and revision count, including identical captioning images and instructions.
-New blinded judgments assess revised outputs, which lack existing labels.
-Tie-aware preference is $(W+T/2)/(W+L+T)$, with separate abstention and missing-output counts.
-Major regression uses a prespecified rubric relative to $y_0$, not the row's comparison arm.
-Independent attribute checks are excluded from mining, runtime tools, critique, and reward.
+C2 branches each fresh initial output $y_0$ into no-critic, Seed-critic, and EvalOpt-critic arms, each with two successive revisions.
+Arms share the generator, settings, task evidence, and output cap $L$; critic arms additionally receive a frozen evaluator's critique, capped at 512 tokens per round under a common format.
+The current output and task are available in every round, including the same captioning image.
+Each branch generates at most $3L$ tokens including $y_0$, with critique and tool costs charged separately.
+No intermediate human judgments or best-of-$N$ selection are available.
+Seeds identify paired data/output blocks rather than deterministic API samples.
+
+The primary comparison is EvalOpt versus Seed critique; secondary comparisons are EvalOpt versus no critic and each revised arm versus $y_0$.
+Five comparisons over 200 inputs, three seeds, and three raters allocate 9,000 pair judgments per domain, excluding adjudication and separate attribute ratings.
+
 \begin{table}[!htbp]
 \caption{\textbf{Downstream controls and per-arm outcomes.}
 Preference, major regression, and invalidity are percentages.
-Regression describes the first arm relative to $y_0$ (C2) or Base (C3), not necessarily the row's comparator.
+Merged risk cells describe the first arm relative to $y_0$ (C2) or Base (C3), independently of the comparator.
 Values equally weight the four domains.}
 \label{tab:downstream-detail}
 \centering\small
@@ -538,12 +829,31 @@ Contrast & Pref. & Major regression & Invalid\\
 \end{table}
 \subsection{Reward-guided training}
 \label{app:training}
-C3 requires separately authorized training and independent assessment.
-Arms share the Base checkpoint, architecture, LoRA/GRPO settings, inputs, tools, update budget, and auxiliary rewards; only the frozen reward evaluator differs.
+C3 compares policies trained with frozen Seed or EvalOpt rewards against an untrained Base.
+Reward arms share the Base checkpoint, LoRA/GRPO settings, inputs, tools, and update budget; only the frozen evaluator differs.
 Both rewards score a common starting-policy pool for variance, ties, validity, and sensitivity to length or unsupported detail, under development-frozen preflight thresholds and stopping rules.
 
 Only the preflight pool is shared: once policies diverge, each samples its own online trajectories.
-After prespecified checkpoint selection, new blinded judgments on unseen inputs compare EvalOpt-reward with Seed-reward and both with Base, including regressions and reserved attributes.
+\paragraph{Training recipe.}
+Each reward arm starts from the same policy checkpoint with LoRA rank 16, scale 32, and dropout 0.05 on the language model's attention, gated-delta, and MLP projection layers.
+Embeddings, the vision encoder, and the vision--language merger remain frozen; exact adapter target names are fixed in the run manifest.
+GRPO uses eight distinct prompts per update and four on-policy completions per prompt, giving 32 sequences per optimizer update.
+Two seeded shuffled passes over the 512 training inputs give 128 updates and 4,096 completions per arm and seed.
+Generation uses temperature 0.8 and top-$p$ 0.95, with the task-specific caps in Table~\ref{tab:downstream-config}.
+Use AdamW with learning rate $10^{-5}$, $(\beta_1,\beta_2)=(0.9,0.95)$, weight decay 0.01, and gradient-norm clipping at 1.0.
+The first 13 updates warm up linearly, followed by cosine decay to $10^{-6}$.
+The clipped policy objective uses threshold 0.2, a fixed KL coefficient 0.02 against Base, and one optimization pass over each rollout batch.
+Advantages are standardized within each four-completion group with denominator floor $10^{-6}$; zero-variance groups are retained in accounting but contribute zero policy-gradient advantage.
+
+\paragraph{Reward and final assessment.}
+Each frozen evaluator scores the same 256 Base completions (four per development input) to set its reward mean and standard deviation.
+Standardize scores with these fixed calibration moments and clip to $[-3,3]$, assigning invalid artifacts $-3$; use no additional correctness or length reward.
+One evaluator execution supplies each training reward, with the same decoding and tool limits in both arms.
+Required scorer failures interrupt the run rather than becoming fabricated rewards.
+Score ties, zero-variance groups, invalid outputs, and truncation rates are retained as diagnostics.
+Assess the terminal step-128 checkpoint; earlier training checkpoints are diagnostic only and are not selected by Test performance.
+Final generation uses temperature 0.7 and top-$p$ 0.9 with one output per input and seed.
+Independent assessment compares EvalOpt-reward with Seed-reward and both with Base, allocating 5,400 pair judgments per domain across 200 inputs, three seeds, and three raters.
 Reward increases alone do not establish quality gains.
-Policy checkpoints, optimizer/KL settings, reward scales, update counts, and independent outcomes remain to be established.
+The full training allocation is 24 runs (four domains, two reward arms, three seeds), with a 48-hour wall-clock ceiling per run; interruptions remain visible and are not silently replaced by successful seeds.
 \FloatBarrier

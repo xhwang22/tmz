@@ -24,6 +24,10 @@
 !/figures/ideal_scenario/main.tex
 !/figures/ideal_scenario/mechanism.tex
 !/figures/ideal_scenario/mining.pdf
+!/figures/mining_diagnostics/
+!/figures/mining_diagnostics/mining_diagnostics.pdf
+!/figures/mining_diagnostics/mining_diagnostics_counts.tex
+!/figures/mining_diagnostics/mining_diagnostics_anchor.tex
 !/figures/ideal_scenario/mining.tex
 !/figures/ideal_scenario/numbers.tex
 !/figures/ideal_scenario/search.pdf
@@ -35,6 +39,10 @@
 !/figures/overview.tex
 !/figures/results_landscape_pending.tex
 !/figures/search_dynamics_pending.tex
+!/figures/slide_pilot_annotation.tex
+!/figures/slide_pilot_evolution.tex
+!/figures/slide_pilot_counts.tex
+!/figures/slide_pilot_heldout.tex
 !/figures/teaser.pdf
 !/figures/teaser.tex
 !/figures/trajectory_results_pending.tex

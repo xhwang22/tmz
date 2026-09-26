@@ -1,19 +1,18 @@
-Methods score identical outputs pointwise without human labels or opponent information.
-Table~\ref{tab:main-alignment} reports decisive-pair accuracy averaged within each task family and across all admitted domains.
-Overall gives each domain equal weight, rather than pooling pairs or equally weighting differently sized families.
-Best-of-$N$ and rank regret require separate cohorts with complete human rankings.
+The Seed comparison measures improvement over the starting evaluator; learned signal fusion tests whether reweighting fixed signals suffices without revising the procedure.
+Optimizer comparisons test search effectiveness with the same feedback and budget (Table~\ref{tab:main-alignment}).
+All methods score the same outputs independently, without access to human labels or competing outputs.
 
 \begin{table}[!htbp]
 \caption{\textbf{C1: final held-out accuracy across domains.}
-Decisive-pair accuracy (\%, $\uparrow$), averaged equally over domains within each family and over all 20 domains for Overall.
+Decisive-pair accuracy (\%, $\uparrow$), averaged equally over domains within each family and over all 19 domains for Overall.
 SV: structured visuals; IG: images and 3D; TG: text generation; AR: automated research.
-Bold marks column maxima.}
+Bold marks the highest value in each column.}
 \label{tab:main-alignment}
 \centering\small
 \setlength{\tabcolsep}{5pt}
 \begin{tabularx}{\linewidth}{@{}Yrrrrr@{}}
 \toprule
-Evaluator & SV (6) & IG (6) & TG (5) & AR (3) & Overall\\
+Evaluator & SV (5) & IG (6) & TG (5) & AR (3) & Overall\\
 \midrule
 \input{figures/ideal_scenario/main}
 \bottomrule
@@ -24,14 +23,12 @@ Evaluator & SV (6) & IG (6) & TG (5) & AR (3) & Overall\\
 \centering
 \input{figures/results_landscape_pending}
 \caption{\textbf{C1 task scope and evaluator accuracy.}
-(a) Four task families in equal quadrants, with individual tasks in the outer ring.
-(b) Test accuracy of Val-retained checkpoints against consumed search budget, averaged equally over 20 domains; endpoints match Table~\ref{tab:main-alignment}.
-(c) Per-domain accuracy for the shared Seed and four optimizers on a shared 50--80\% scale: EvalOpt in lake green, baselines in family shades.
-All 20 domains contribute to the family and overall summaries; panel (c) retains their individual contrasts.}
+(a) Four task families in equal quadrants, with individual domains in the outer ring.
+(b) Test accuracy of Val-retained checkpoints versus consumed search budget, evaluated only after search is frozen and averaged equally over 19 domains; endpoints match Table~\ref{tab:main-alignment}.
+(c) Per-domain Test accuracy for Seed and four optimizers on a common 50--80\% scale: EvalOpt in lake green, baselines in family shades.
+}
 \label{fig:c1-landscape}
 \end{figure}
 
-Figure~\ref{fig:c1-landscape} connects the task roster, search progress, and per-domain contrasts.
-Appendix~\ref{app:results} reports all seven methods in each of the 20 domains.
-Search cost is distinct from the cost of deploying a frozen evaluator.
-Deployment accounting includes actual model calls, tokens, tools, latency, and failures under a common cap (Appendix~\ref{app:adaptation}).
+Figure~\ref{fig:c1-landscape}c checks whether aggregate differences extend across domains or concentrate in a few tasks.
+Appendix~\ref{app:results} reports all six methods per domain.
