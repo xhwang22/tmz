@@ -1,19 +1,14 @@
 \section{Introduction}
 \label{sec:intro}
 
-Evaluating open-ended tasks requires case-specific judgments across multiple dimensions of quality, with no single evaluation standard sufficient for every case \citep{ye2024flask,kim2024evallm}.
-A summary may need to preserve fine-grained details when completeness matters, yet emphasize brevity and the central argument when rapid understanding is the goal.
-Likewise, visual richness may be valuable for a promotional webpage but detrimental to a task-oriented interface.
-Metrics and model-based evaluators capture useful aspects of quality, yet do not consistently match human preferences \citep{fabbri2021summeval,xu2023imagereward,zheng2023judging,hu2024criteria}.
-Humans themselves, however, often cannot fully express their judgments as a comprehensive, executable evaluation procedure \citep{shankar2024evalgen}.
-Human preferences are therefore better treated as iterative feedback for improving an evaluator.
+Open-ended evaluation requires case-specific judgments across quality dimensions \citep{ye2024flask,kim2024evallm}.
+A summary may require completeness or brevity; a slide for live discussion may prioritize clarity over detail.
+Metrics and model-based evaluators do not consistently match human preferences \citep{fabbri2021summeval,xu2023imagereward,zheng2023judging,hu2024criteria}, yet humans often cannot express their judgments as an executable evaluation procedure \citep{shankar2024evalgen}.
 
 Existing approaches use human feedback to train evaluator models \citep{xu2023imagereward}, learn or refine evaluation criteria \citep{liu2024autocalibrate,lv2026queryrubrics}, and select evaluation functions \citep{shankar2024evalgen}.
 Prompt and skill optimizers offer a complementary mechanism for revising instructions from execution feedback \citep{agrawal2026gepa,yang2026skillopt}.
-We present EvalOpt, a framework for self-evolving evaluators across open-ended tasks.
-EvalOpt directly revises an explicit evaluation procedure while building on the base model's existing semantic and reasoning capabilities.
-This allows the evaluator to adapt without updating the base model parameters and makes individual changes easier to inspect and test.
-Extending evaluator self-evolution to new open-ended domains, however, raises two challenges: obtaining useful human preferences and reliably turning them into improvements to the evaluation procedure.
+EvalOpt uses preferences to revise an explicit evaluation procedure---its prompts, tool use, component connections, and scoring rules---without updating the base model.
+This raises two challenges: obtaining useful human preferences and turning them into improvements to the procedure.
 
 \begin{figure}[t]
 \centering
@@ -25,45 +20,33 @@ EvalOpt instead uses execution diagnostics to guide the next revision within the
 \label{fig:teaser}
 \end{figure}
 
-Obtaining preference data that is useful for evolution is itself nontrivial: under a limited human feedback budget, the choice of comparisons can affect learning efficiency \citep{muldrew2024activepreference,oh2025activepreference}.
-Hand-designed comparisons tend to reflect the cases and failure modes anticipated by the designer, while broad collections can contain many easy or redundant comparisons that reveal little about where the evaluator still falls short.
-We therefore use disagreement-based preference mining to prioritize comparisons on which existing evaluation signals disagree.
-When preference labels already exist, preference mining selects informative examples from the available data; otherwise, it prioritizes comparisons for new human annotation.
+Under a limited feedback budget, comparison selection affects learning efficiency \citep{muldrew2024activepreference,oh2025activepreference}.
+Hand-designed comparisons reflect anticipated failures, while broad collections can contain easy or redundant cases.
+Disagreement-based preference mining ranks comparisons by conflicting signals within the same quality dimension and retains a random anchor to expose errors shared by those signals.
+Selected feedback comes from compatible existing labels or new human annotation; disagreement determines what to query, not the correct preference.
 
-Preference mining selects comparisons, but does not specify how to revise the evaluator.
-Pairwise preferences identify the better output without specifying the fine-grained criteria behind that choice \citep{ye2024flask,lv2026queryrubrics}.
-A useful direction may require several related revisions before improving agreement, leaving an unsuccessful early candidate inconclusive about the direction itself.
-In the default evaluator-evolution setup we tested, each new revision was proposed by the model from previous candidates and their outcomes.
-We observed a tendency for unsuccessful early candidates to be followed by revisions in alternative directions rather than deeper development of the current one.
+Pairwise preferences do not specify the fine-grained criteria behind a choice \citep{ye2024flask,lv2026queryrubrics}.
+A useful correction may require several revisions: a proposed tool call may not execute, or its evidence may not affect scoring.
+An unsuccessful candidate therefore need not invalidate the correction.
+In the default evolution setup we tested, the model proposed revisions from previous candidates and outcomes, but often switched directions after unsuccessful early candidates.
 
-EvalOpt uses depth-first evaluator evolution to explicitly maintain an improvement direction across revisions (Figure~\ref{fig:teaser}, EvalOpt panel; Figure~\ref{fig:overview}b).
-The search can continue developing the current direction after unsuccessful intermediate candidates, using their diagnostic results to guide the next revision or test.
-Whether to continue a direction is separated from whether to retain an intermediate evaluator.
-The globally retained evaluator is updated only at a qualifying Val checkpoint, while rejected candidates can still contribute diagnostic evidence to subsequent revisions.
-A new direction begins after an ending decision based on accumulated diagnostics or after the current direction reaches a rejection or resource limit.
+Depth-first evaluator evolution maintains an improvement direction---a target failure and proposed correction---across revisions (Figure~\ref{fig:teaser}, EvalOpt panel; Figure~\ref{fig:overview}, Evaluator evolution panel).
+Diagnostics guide repair or reconsideration even after candidate rollback.
+Continuation is separate from candidate acceptance and global retention at validation (Val) checkpoints.
+Directions end on diagnostic-based decisions, rejection limits, or resource limits.
 
-Our evaluation covers 19 domains across structured visuals, images and 3D, text generation, and automated research, weighting domains equally.
-Comparisons include Seed, learned signal fusion, SkillOpt, GEPA, and Meta-Harness under common feedback and search budgets.
-Held-out decisive-pair accuracy measures how closely each evaluator's independent output scores match human preferences (Table~\ref{tab:main-alignment}).
-Four domains support detailed analyses of webpage generation, image captioning, summarization, and research-idea generation.
-History-based search and fixed-patience continuation isolate the value of using diagnostics to guide continued development, while separate sampling comparisons assess feedback efficiency (Figure~\ref{fig:budget-tests}a).
-Independent downstream judgments test whether evolved evaluators improve critique-guided refinement and reward-guided training relative to the Seed evaluator on the same four domains (Figure~\ref{fig:budget-tests}b).
+We compare EvalOpt with Seed, learned signal fusion, SkillOpt, GEPA, and Meta-Harness across 19 equally weighted domains spanning four task families (Table~\ref{tab:main-alignment}).
+Held-out decisive-pair accuracy measures whether independently scored outputs match human preferences under common feedback and search budgets.
+Webpage generation, image captioning, summarization, and research-idea generation support search controls, sampling comparisons, and independently judged downstream applications.
 
-Across the 19-domain comparison, EvalOpt reaches 69.5% held-out decisive-pair accuracy, improving over Seed by 8.0 percentage points and over the strongest baseline, GEPA, by 5.4 points.
-On the four analysis domains, EvalOpt reaches 72.1%, compared with 68.2% for fixed-patience continuation and 67.4% for history-based search.
-Fixed-patience continuation and EvalOpt make a similar number of revisions per direction on average (3.6 versus 3.8), indicating that the advantage is not explained simply by spending more attempts on each direction.
-Further ablations examine provisional staging and diagnostic information, while separate experiments evaluate feedback efficiency and independently judged downstream utility.
+EvalOpt reaches \ResultPair\% accuracy across 19 domains, exceeding Seed by \ResultSeedGain{} percentage points and the strongest baseline, GEPA, by \ResultGepaGain{} points.
+On the four analysis domains, it reaches 72.1\%, versus 68.2\% for fixed patience and 67.4\% for history-based search (Table~\ref{tab:search-results}).
+EvalOpt and fixed patience average 3.8 and 3.6 revisions per direction; similar mean depths are consistent with a benefit from diagnostic-guided continuation but do not establish its cause.
 
-Our contributions are as follows:
+On the same four domains, mined feedback raises EvalOpt accuracy from 70.3\% to 72.1\% at 100 revealed input groups, with total model-and-tool costs of 106 versus 102 units for random sampling (Table~\ref{tab:mining-results}).
+Blinded judgments favor EvalOpt-guided over Seed-guided outputs at tie-aware rates of 60.8\% for critique-guided refinement and 59.1\% for reward-guided training (Figure~\ref{fig:budget-tests}b).
+These downstream comparisons assess output quality independently of the optimized evaluator.
 
-\begin{itemize}
-
-\item We introduce EvalOpt, a framework that learns from human preferences and revises the full evaluation procedure across heterogeneous open-ended task domains.
-
-\item Depth-first evaluator evolution explicitly maintains an improvement direction across revisions, allowing unsuccessful intermediate candidates to inform subsequent attempts without automatically ending the direction.
-Disagreement-based preference mining selects informative preferences from existing labeled data or prioritizes comparisons for new human annotation.
-
-\item Across 19 domains, EvalOpt improves held-out evaluator--human agreement over the Seed evaluator and all comparison optimizers under matched budgets.
-Four-domain controls isolate diagnostic continuation from retained history and fixed patience, with additional analyses of feedback efficiency and independently assessed refinement and training outcomes.
-
-\end{itemize}
+\paragraph{Contributions.}
+We contribute preference-guided revision of executable evaluators with fixed base-model weights, combining disagreement-based mining with depth-first evolution that retains diagnostics after rejection.
+A 19-domain evaluation and four-domain controls assess agreement, search, feedback efficiency, and downstream utility.

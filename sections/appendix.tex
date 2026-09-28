@@ -89,7 +89,8 @@ Domain, task and data sources & Seed criteria and sources & Corresponding method
 SV1 uses our own human-annotated slide comparisons; SlideAudit informs visual criteria rather than supplying these preference labels.
 For public resources, human dimensional labels can support criterion-specific evaluation; they are not relabeled as overall preferences.
 Cohort construction must match each judgment to its artifacts, criterion, and permitted evidence.
-SV5 uses aesthetic ranks, IG5 overall MOS, TG3 segment scores, and AR2 a three-dimension composite; these human-derived orderings are reported separately from direct choices in a sensitivity analysis.
+SV5 uses aesthetic ranks, IG5 overall MOS, TG3 segment scores, and AR2 a three-dimension composite.
+These score-derived orderings differ from direct choices but contribute to the reported aggregate; separate sensitivity results for these label types are not reported here.
 Admission requires a frozen source version, permission for the intended processing, executable inputs, and an independent test cohort.
 
 References, dimensional scores, and metric-training resources do not automatically supply independent overall preferences.
@@ -175,6 +176,12 @@ Table~\ref{tab:experiment-allocation} specifies data, replication, and allowance
 Four-domain analyses reuse C1 Val/Test groups but run fresh searches for changed feedback or policies; the mining interaction reuses matching 100-group runs without counting them as new replications.
 Evaluator search, refinement, and training have separate budgets.
 
+The five optimizer runs use search seeds 11/22/33/44/55, distinct from the shared initial Seed evaluator.
+Each run starts anew from that evaluator with the same data split, revealed C1 feedback, and search cap; seeds control data ordering and search randomization, not model weights.
+API sampling is logged separately and need not be deterministic under a seed.
+Each run retains its own Val-selected checkpoint, and all runs enter assessment without choosing the best run by Test accuracy.
+Mining comparisons additionally vary acquisition across the five blocks, sharing the pool, split, and budgets rather than the selected feedback.
+
 \begin{table}[!htbp]
 \caption{\textbf{Allocation across experiments.} The four-domain subset is SV3, IG1, TG1, and AR1. A search cap is 100 units as defined in Table~\ref{tab:run-config}.}
 \label{tab:experiment-allocation}
@@ -190,7 +197,7 @@ Mining replay & Four domains; 20/50/100/200 revealed groups from the 224-group s
 Anchor and interaction & Four domains; 100 revealed groups; 20\% versus no anchor; random/mined $\times$ fixed-patience/EvalOpt & 5 seeds; common search cap; reuse matching cells\\
 Controlled diagnostics & Four domains; 20 Train-derived instances per failure type; 3 types & 5 seeds; at most 6 attempts and 10 units per instance\\
 Natural trajectories & 30 directions/domain from the full-method searches, stratified by confirmation and ending outcome & 2 independent reviewers; retain failed and exhausted directions\\
-Slide annotation & SV1 allocation; 40 acquired pairs/arm; 40 Val and 120 Test groups & 5 searches/arm; pilot-specific caps in Appendix~\ref{app:slide-pilot}\\
+SV1 collection & Same C1 pool and splits; 100 acquired pairs/arm & 900 individual ratings/arm; shared C1 assessment\\
 C2 refinement & Separate 64 development and 200 final-assessment inputs/domain & 3 paired seeds; 2 refinement rounds\\
 C3 reward training & Separate 512 training, 64 development, and 200 final-assessment inputs/domain & 3 paired seeds; 128 updates/reward arm\\
 \bottomrule
@@ -198,7 +205,7 @@ C3 reward training & Separate 512 training, 64 development, and 200 final-assess
 \end{table}
 
 Fixed patience is tuned on two complementary held-out halves of Tune, never C1 Val/Test.
-Its six short runs cost 60 additional units per analysis domain, itemized separately and included in end-to-end accounting.
+Its six short runs cost 60 additional units per analysis domain, amortized across five searches as 12 units per search and included in end-to-end accounting (Table~\ref{tab:mining-results}).
 Other arms use common defaults without outcome-guided tuning.
 
 \paragraph{Accuracy and missing outcomes.}
@@ -228,15 +235,22 @@ Comparisons use a common complete cohort, with requested-cohort bounds alongside
 Best-of-$N$ and regret require a separate fully ranked cohort.
 Native correlations, score-derived preferences, and direct human choices retain their distinct definitions.
 
-\paragraph{Aggregation and uncertainty.}
-First average within-domain accuracy over independent searches, then average domains equally.
+\paragraph{Aggregation and descriptive statistics.}
+First average within-domain accuracy over five scoring blocks, then average domains equally.
+For the optimizers, each block assesses one independent search's Val-retained evaluator; Seed and learned signal fusion are also scored in five blocks, without treating those blocks as five adaptive searches.
 Overall therefore weights the four family summaries by $5/19$, $6/19$, $5/19$, and $3/19$.
 All methods share the endpoint's domain roster, and incomplete runs follow the prespecified failure policy rather than being dropped.
 Search replication follows Table~\ref{tab:experiment-allocation}; scoring repeats do not increase that count.
-Paired 95\% bootstrap intervals resample source groups jointly across methods.
-Optimizer comparisons additionally resample searches, paired only for deliberately paired experimental blocks; scoring repeats are not independent tasks.
-Reviewer dependence receives a separate cluster sensitivity check.
-Report run estimates, effect sizes, and the prespecified multiplicity correction for significance claims.
+With one decisive pair per group and the same $N_d$ complete pairs in each of the five scoring blocks, domain accuracy in percent is $100\sum_{s=1}^{5}c_{ds}/(5N_d)$, where $c_{ds}$ is the integer number of correctly ordered pairs in block $s$.
+The three scoring executions yield one median score per output, not three correctness observations.
+Compute block averages, domain averages, and between-method differences at full precision and round only the final displayed value, using nearest-tenth rounding with ties to even for percentages and percentage-point differences.
+An auditable result export must identify the common pair cohort and give the requested, decisive, and complete counts and integer correct counts for each method and search; allocation counts alone do not specify the effective denominator.
+For descriptive Overall SD, first average the 19 domain accuracies equally within each block, then compute the mean and sample SD of the five block averages (variance denominator 4).
+Within-domain SD likewise uses the five block accuracies, not individual scoring executions.
+Seed and fusion repeat assessment of their respective fixed evaluators, not five optimization searches.
+Matching block identifiers alone does not establish paired searches across methods.
+These SDs describe the available block arrays, not input-sampling uncertainty or demonstrated search stability.
+Table~\ref{tab:c1-blocks} reports Overall summaries and method differences.
 
 \paragraph{Checkpoint assessment.}
 Test is opened after search and all selection rules are frozen.
@@ -277,7 +291,6 @@ Search budget & 100 units = cost of 10,000 one-pass Seed pair evaluations, calib
 Direction limits & At most 18 charged steps; 2 provisional steps; 3 consecutive charged rejections; scope starts at level 2\\
 Retention and assessment & Val every 3 charged steps, at direction exit, and finally; 3 repeats/artifact on Val/Test\\
 Randomization & Split seed 42; search seeds 11/22/33/44/55 for data ordering and search randomization; API sampling is recorded separately\\
-Uncertainty & 2,000 paired bootstrap replicates over input groups and search seeds; 95\% intervals; Holm correction within each prespecified comparison family\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -485,20 +498,39 @@ Reserve the last eligible $W$ for the scheduled final comparison before reset; a
 \section{Complete results and ablations}
 \label{app:results}
 \subsection{Per-domain evaluator quality}
-Table~\ref{tab:c1-all-domains} provides all six methods for every C1 domain.
+Table~\ref{tab:c1-all-domains} preserves all six means for every C1 domain and adds the stated per-block denominator.
 \begin{table}[!htbp]
-\caption{\textbf{C1 accuracy in every domain.} All domains have equal weight in Overall. Fusion: learned signal fusion; Meta: Meta-Harness.}
+\caption{\textbf{C1 accuracy in every domain.} Values average five scoring blocks per method. $N$ is the stated decisive-pair count per block (11/22/33/44/55). All domains have equal weight in Overall. Fusion: learned signal fusion; Meta: Meta-Harness.}
 \label{tab:c1-all-domains}
 \centering\small
 \setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\linewidth}{@{}Yrrrrrr@{}}
+\begin{tabularx}{\linewidth}{@{}Yrrrrrrr@{}}
 \toprule
-Domain & Seed & Fusion & SkillOpt & GEPA & Meta & EvalOpt\\
+Domain & $N$ & Seed & Fusion & SkillOpt & GEPA & Meta & EvalOpt\\
 \midrule
-\input{figures/ideal_scenario/c1_domains}
+\input{figures/results/c1_domains_with_n}
 \bottomrule
 \end{tabularx}
 \end{table}
+\begin{table}[!htbp]
+\caption{\textbf{C1 Overall descriptive summaries.}
+Accuracy is in percent, differences in percentage points (pp).
+Author-supplied SDs use five equal-domain block averages, not 19 domain means.}
+\label{tab:c1-blocks}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule
+Method & Overall mean $\pm$ SD & EvalOpt minus method (pp)\\
+\midrule
+\input{figures/results/c1_overall_descriptive}
+\bottomrule
+\end{tabularx}
+\end{table}
+Differences use unrounded means: $69.55765-61.51504=8.04261$ pp, displayed as 8.0, rather than subtracting 69.6 and 61.5.
+The authors report requested $=$ complete $=$ decisive and zero missing outcomes within the eligible C1 count cohort.
+Under that condition, Equation~\ref{eq:missing} reduces to the accuracy point value.
+This does not establish the absence of human ties, exclusions, or missing annotations in the source data.
+
 \subsection{Search ablations and trajectory diagnostics}
 \label{app:ablations}
 Search and mining diagnostics use SV3, IG1, TG1, and AR1, without changing their C1 weights.
@@ -531,7 +563,7 @@ Every condition uses the same search cap of 100 units.}
 \toprule
 Condition & Pair acc. & Revisions/direction\\
 \midrule
-\input{figures/ideal_scenario/search_compact}
+\input{figures/results/search_compact}
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -550,7 +582,7 @@ Integrate: complete a useful downstream evidence connection; repair: realize the
 \toprule
 Policy & Integrate $\uparrow$ & Repair $\uparrow$ & End $\uparrow$\\
 \midrule
-\input{figures/ideal_scenario/mechanism}
+\input{figures/results/mechanism}
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -566,11 +598,11 @@ These descriptions distinguish observations from agent interpretations and do no
 At each label budget in Table~\ref{tab:experiment-allocation}, restart evolution from the same Seed with fixed Test cohorts, a common deduplicated pool, and identical feedback detail.
 Only selected labels are revealed under the group-level access protocol in Appendix~\ref{app:annotation}.
 Figure~\ref{fig:acquisition} compares label budgets and reallocates the anchor's 20\% budget to ranked pairs in the no-anchor condition.
-Table~\ref{tab:mining-results} gives the secondary random/mined $\times$ fixed-patience/EvalOpt comparison, with pool-scoring and search costs itemized separately.
+Table~\ref{tab:mining-results} gives the secondary random/mined $\times$ fixed-patience/EvalOpt comparison, with mining, search, and amortized Tune costs itemized separately.
 
 \begin{figure}[!htbp]
 \centering
-\input{figures/mining_results_pending}
+\input{figures/mining_results}
 \caption{\textbf{Preference-mining efficiency.}
 (a) Held-out pair accuracy versus revealed groups in existing-label replay.
 (b) Mined feedback with and without the random anchor at the same 100-group budget, by domain.}
@@ -581,18 +613,26 @@ Table~\ref{tab:mining-results} gives the secondary random/mined $\times$ fixed-p
 \caption{\textbf{Mining and end-to-end comparison.}
 The two-by-two design uses 100 revealed groups in every cell.
 Decisive-pair accuracy is in percent.
-Total model-and-tool cost includes mining and search in relative units, not human labor.
-The two search policies are fixed patience and EvalOpt.}
+Total model-and-tool cost per search includes search, mining, and Tune amortization in relative units, not human labor.
+Fixed-patience tuning costs 60 units per domain, or $60/5=12$ units per search; EvalOpt has no such tuning charge.}
 \label{tab:mining-results}
 \centering\small
-\begin{tabularx}{\linewidth}{@{}YYcc@{}}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}lYrrrrr@{}}
 \toprule
-Feedback & Search & Pair acc. & Total cost\\
+Feedback & Policy & Pair acc. & Search & Mining & Tune & Total\\
 \midrule
-\input{figures/ideal_scenario/mining_compact}
+\input{figures/results/mining_compact}
 \bottomrule
 \end{tabularx}
 \end{table}
+\paragraph{Mining and continuation effects.}
+From Table~\ref{tab:mining-results}, mined minus random feedback is 1.2 pp under fixed patience and 1.8 pp under EvalOpt.
+EvalOpt minus fixed patience is 3.3 pp with random feedback and 3.9 pp with mined feedback.
+The descriptive difference-in-differences is $(1.8-1.2)=(3.9-3.3)=0.6$ pp.
+These contrasts are calculated from the reported cell accuracies, without adding runs or changing costs.
+These are descriptive contrasts, not evidence of a significant interaction.
+
 \paragraph{What disagreement mining selects.}
 We examine SV3, IG1, TG1, and AR1 at the same 100-group feedback budget, combining 80 ranked pairs and 20 random-anchor pairs into the selected feedback set.
 Each domain has 224 eligible Train groups with decisive overall preference labels, one pair per group, and five selection seeds.
@@ -623,23 +663,24 @@ For the anchor audit, we deduplicate pairs across selection seeds and retain tho
 The counts opposing this shared model preference are \input{figures/mining_diagnostics/mining_diagnostics_anchor}
 These conditional counts describe shared errors accessible to random sampling; the fixed-budget anchor comparison tests their contribution to learning.
 
-\subsection{Additional human annotation experiment}
+\subsection{SV1 data collection and annotation yield}
 \label{app:slide-pilot}
-This separate SV1 study tests whether selecting annotation questions yields useful feedback for evaluator revision.
-SV1's C1 comparison uses our own human annotations; the sampling study below separately evaluates how to allocate additional annotation questions, rather than assuming a public slide-preference release.
-For collection, we plan to use briefs from \href{https://huggingface.co/datasets/tyrionhuu/PPTBench-Generation}{PPTBench-Generation}, with two single-slide outputs per brief generated by GPT-5.6 Sol under a shared prompt and budget with different generation seeds.
+This section documents the collection of SV1's C1 feedback and compares its question-selection policy with random sampling under the same annotation budget.
+Both arms use the same source pool, initial Seed evaluator, and frozen Val/Test cohorts as C1, not an additional slide dataset.
+For collection, we use briefs from \href{https://huggingface.co/datasets/tyrionhuu/PPTBench-Generation}{PPTBench-Generation}, with two single-slide outputs per brief generated by GPT-5.6 Sol under a shared prompt and budget with different generation seeds.
 The public resource supplies inputs, not the pairwise human labels for this study.
-The design allocates 200 Train, 40 Val, and 120 Test brief groups, independently of C1 and the four-domain analyses.
+The C1 allocation is 200 Train groups, including 20 Tune groups excluded from acquisition, with 40 Val and 120 Test groups (Table~\ref{tab:cohort-allocation}).
+Each acquisition arm selects 100 pairs from the remaining 180 Train groups; this count includes pairs whose questions receive ties or remain unresolved.
 Source-document and near-duplicate groups must remain within one split, and the source manifest, generation settings, renderer, and output hashes must be frozen before mining.
 Eligibility requires a self-contained brief, accessible supporting material, and two inspectable renders; exclusions precede both sampling arms.
 
 \paragraph{Question selection and blinding.}
-The mined arm selects eight random-anchor pairs before ranking and 32 pairs by the within-dimension disagreement count in Equation~\ref{eq:conflict}.
+The mined arm selects 20 random-anchor pairs before ranking and 80 pairs by the within-dimension disagreement count in Equation~\ref{eq:conflict}.
 For each ranked pair, it samples one or two conflicting dimensions and one or two additional non-conflicting dimensions, uniformly without replacement within each set.
 The requested counts are chosen by independent input hashes before annotation and capped by the available dimensions in each set.
 Anchor pairs receive three uniformly sampled dimensions.
 Every selected pair also receives an overall question.
-The random arm samples 40 pairs uniformly from the same Train pool and matches the mined arm's per-pair question-count distribution, but samples dimensional questions uniformly.
+The random arm samples 100 pairs uniformly from the same Train pool and matches the mined arm's per-pair question-count distribution, but samples dimensional questions uniformly.
 The criteria in Table~\ref{tab:data-sources} form a question bank, not a mandatory checklist: the interface displays only the sampled questions, with no fields for unqueried dimensions.
 \input{figures/slide_pilot_counts}
 The comparison tests the combined pair-and-dimension sampling policy.
@@ -650,54 +691,41 @@ Each question offers A, B, tie, or unable to judge; tie means comparable quality
 Raters must be fluent in the brief's language and familiar with presentation review, with rubric calibration on separate practice items before annotation.
 An identical non-missing response from both raters is accepted, including a tie.
 Otherwise, a third blinded rater answers that question, and two matching non-missing responses determine its label; without that agreement it remains unresolved.
+Each arm reserves 100 ratings for adjudication after the 800 initial ratings; if demand exceeds this reserve, a prespecified hash order determines which questions are adjudicated, leaving the remainder unresolved.
+Unused reserve is not spent on selecting additional pairs.
 Unasked dimensions remain absent rather than being filled by overall preference or model votes.
 
-\paragraph{Annotation efficiency.}
-A usable label is a resolved preference or tie.
-Before acquisition, the pilot Seed records pointwise scores for each slide on the question-bank criteria and overall quality.
-These frozen scores are compared with decisive human labels separately for dimensional and overall judgments; a Seed score tie counts as an error.
-Table~\ref{tab:slide-pilot}a reports both usable labels and discovered Seed errors per 100 individual ratings, including third-rater adjudication.
-The two arms have the same initial budget, not necessarily the same realized adjudication cost or annotation time.
+\paragraph{Annotation yield.}
+A decisive label is a resolved A or B preference; a tie is resolved feedback but supplies no strict ordering for decisive-pair accuracy.
+An unresolved question lacks sufficient rater agreement and is distinct from a tie.
+Table~\ref{tab:slide-pilot} separates these outcomes for overall and sampled dimensional questions, without treating a dimensional preference as an overall label.
+The primary yield is decisive labels per 100 allocated individual ratings, using the same 900-rating budget for both arms; actual rating costs are also reported.
+This comparison tests whether disagreement-based selection spends fewer questions on equal-quality comparisons, rather than assuming that model disagreement guarantees a decisive human preference.
 Shared pair--question labels are reused across arms, while each arm is charged the ratings needed to obtain its own feedback set.
 Val and Test annotation costs are common to both arms and reported separately from Train acquisition.
 
 \begin{table}[!htbp]
-\caption{\textbf{Slide annotation and feedback use.}
-(a) Acquisition cost and feedback yield for random and mined questions. Agreement uses questions both initial raters can judge; efficiency includes adjudication ratings.
-(b) Test accuracy of Val-retained checkpoints, with mean $\pm$ sample standard deviation across five searches using each fixed feedback set.}
+\caption{\textbf{SV1 annotation yield at matched budgets.}
+Both arms use the C1 Train pool and 900 individual ratings of allocated budget, including adjudication.
+Decisive preferences, ties, and unresolved outcomes partition the requested questions; dimensional labels retain their criterion identities.}
 \label{tab:slide-pilot}
 \centering\small
 \begin{tabularx}{\linewidth}{@{}Yrr@{}}
 \toprule
-\multicolumn{3}{@{}l}{(a) Annotation cost and feedback yield}\\
 Measure & Random & Mined\\
 \midrule
 \input{figures/slide_pilot_annotation}
 \bottomrule
 \end{tabularx}
-\smallskip
-\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
-\toprule
-\multicolumn{4}{@{}l}{(b) Feedback used by the same evolution policy}\\
-Evaluator & Test accuracy & Gain over Seed & Gain over random\\
-\midrule
-\input{figures/slide_pilot_evolution}
-\bottomrule
-\end{tabularx}
 \end{table}
 
-\paragraph{Evolution and assessment.}
-Both arms start from the same Seed and EvalOpt policy, with caps of 100,000 model tokens and 100 tool calls per search, including diagnostics and Val access.
-Pool scoring is accounted for separately rather than attributed to human labor.
-Only the acquired Train labels are exposed to revision, preserving their dimension identities, ties, and missing fields.
-Five paired search seeds per arm use these fixed feedback sets and the same Val schedule.
-The three scheduled Val comparisons retain a checkpoint only on a strict accuracy improvement, with ties retaining the earlier checkpoint.
-Test is read only after checkpoint selection and never reranks candidates.
+\paragraph{Connection to C1.}
+The mined feedback is the SV1 feedback shared by the C1 optimizers; the random arm is an acquisition control, not a second test cohort.
+Evaluator accuracy is reported in the C1 results using the common Seed, search budgets, and scoring protocol, without a separate accuracy estimate here.
+Only acquired Train labels enter revision, preserving dimension identities, ties, and missing fields.
 Three blinded raters judge overall preference for every Val and Test pair, requiring two matching non-missing responses under the same rule as Train.
-\input{figures/slide_pilot_heldout}
 These held-out annotations require 120 Val and 360 Test ratings shared by both arms.
-Table~\ref{tab:slide-pilot}b reports all five retained outcomes, not the best search, and their variation is conditional on one acquisition per arm rather than five independent annotation studies.
-The efficiency and accuracy comparisons answer different questions: more disagreement does not guarantee more usable feedback or a better retained evaluator.
+The acquisition comparison concerns one feedback collection per arm, not five independent annotation studies.
 
 \section{Downstream applications}
 \label{app:downstream}
@@ -713,14 +741,14 @@ C2 tests critique-guided refinement and C3 tests reward-guided training, using t
 ID / inputs & Human rubric source & Human assessment & Computable complement\\
 \midrule
 SV3 / WebDev & Adapted WebGen-Bench appearance criteria and operation--expected-result checks \citep{lu2025webgen} & Requirement satisfaction, usability and appearance; pairwise overall choice & Render success; reserved requirement-test pass rate\\
-IG1 / DOCCI & CapArena annotation guidelines, Appendix H \citep{cheng2025caparena} & Precision, salient information, hallucination and conciseness; pairwise choice & SPICE precision, recall and F1 against the DOCCI description\\
-TG1 / TL;DR & TL;DR comparison and rating instructions, Appendix C.5 \citep{stiennon2020summarize} & Overall choice; 1--7 coherence, accuracy, coverage and overall ratings & ROUGE-L F1 against the human TL;DR; SummaCConv as an optimization-exposed diagnostic\\
+IG1 / DOCCI & CapArena annotation guidelines, Appendix H \citep{cheng2025caparena} & Precision, salient information, hallucination and conciseness; pairwise choice & VQAScore image--caption alignment \citep{lin2024vqascore}\\
+TG1 / TL;DR & TL;DR comparison and rating instructions, Appendix C.5 \citep{stiennon2020summarize} & Overall choice; 1--7 coherence, accuracy, coverage and overall ratings & AlignScore source--summary consistency \citep{zha2023alignscore}\\
 AR1 / Ideation Arena & Human-review criteria, Appendix A.2 \citep{chen2026ideation} & Overall choice; novelty, feasibility, significance and specificity preferences & None\\
 \bottomrule
 \end{tabularx}
 \end{table}
 \paragraph{Data allocation.}
-Each domain uses 512 training, 64 development, and 200 final-assessment inputs, disjoint from evaluator Train/Val/Test and the timed-annotation pool.
+Each domain uses 512 training, 64 development, and 200 final-assessment inputs, disjoint from evaluator Train/Val/Test.
 Freeze all roles before mining, without later additions.
 C2/C3 share final-assessment inputs but obtain separate outputs and new judgments, requiring 1,296 eligible groups per domain: 520 for C1 and 776 downstream, counted once across arms and seeds.
 Development inputs support generator checks and reward calibration, not evaluator evolution.
@@ -783,23 +811,68 @@ Raters identify the affected requirement, image region, source passage, or propo
 Majority vote determines the flag; minor stylistic changes do not qualify.
 Regression is measured against $y_0$ in C2 and Base in C3, not necessarily the pairwise comparison arm.
 
-\paragraph{Executable and reference-based measures.}
+\paragraph{Reference-free automatic measures.}
+The following specifies the assessment protocol for the results in Table~\ref{tab:downstream-automatic}.
+These measures use the task specification, image, or source document rather than a human-written reference output.
 SV3 runs prespecified assertions in isolated Chromium at $1280\!\times\!800$ with a 30-second load limit.
 Render success requires nonblank task content; requirement pass rate averages the fraction of passed assertions equally over tasks.
 Artifact-caused failures fail dependent assertions, while browser-service outages remain missing.
-IG1 uses the released SPICE parser \citep{anderson2016spice} on complete captions and matching DOCCI references, reporting tuple precision, recall, and F1.
-Reference omissions and parser errors limit SPICE, with hallucination assessed separately by humans.
-TG1 references are human summaries matched by post ID before cohort freezing, not model outputs or preferred comparison candidates.
-ROUGE-L F1 \citep{lin2004rouge} uses \texttt{rouge-score}, English stemming, and no truncation.
-SummaCConv \citep{laban2022summac} uses the released \texttt{vitc} sentence-level model and mean aggregation.
-Because it also participates in mining, SummaC is an optimization-exposed diagnostic, not an independent endpoint, and its news training limits interpretation on Reddit posts.
+IG1 uses VQAScore \citep{lin2024vqascore} with frozen \texttt{clip-flant5-xxl} in \texttt{t2v-metrics} 3.0, scoring the probability of ``Yes'' to the fixed image--caption compatibility question using the complete generated caption and its source image.
+No reference caption or generated replacement caption is supplied.
+TG1 uses AlignScore-large \citep{zha2023alignscore}, with the released RoBERTa-large checkpoint and \texttt{nli\_sp} mode, treating the original post as context and the generated summary as the claim.
+The released chunk--sentence aggregation handles the full source rather than comparing the summary with a human TL;DR.
+Both scores are reported on a 0--100 scale, not as percentages of correct outputs.
+VQAScore measures compatibility rather than exhaustive visual coverage, and AlignScore measures source support rather than coverage or writing quality.
+Their calibration on long DOCCI captions and Reddit summaries remains uncertain, so neither substitutes for human preference.
+AR1 retains expert preference and regression judgments without an automatic proxy for scientific novelty.
 
 \paragraph{Assessment boundary and reporting.}
-Reserve SPICE, ROUGE-L, final reference texts, and browser assertions from mining, evaluator tools, critique, reward, and checkpoint selection, while allowing general browser execution.
+Reserve VQAScore, AlignScore, and final browser assertions from mining, evaluator tools, critique, reward, and checkpoint selection, while allowing general browser execution.
+SummaC remains an optimization-exposed mining diagnostic, not an independent downstream endpoint.
 Table~\ref{tab:data-sources} surveys alternatives, not the executed tool roster.
 Assess the same final outputs from every arm, recording versions, preprocessing, manifests, output lengths, completion counts, and missing outcomes.
-Report per-domain means and paired differences with the uncertainty protocol in Appendix~\ref{app:measurement}, without averaging incompatible metric scales.
+Empty or invalid outputs receive zero automatic score; infrastructure failures and inputs exceeding a metric's context limit are reported as missing, never silently truncated.
+Report missingness and output length alongside the scores to detect selective exclusion or gains from shorter descriptions.
+Average over inputs within each paired block, then equally over the three blocks, without averaging incompatible metric scales.
+For descriptive paired effects, subtract Seed from EvalOpt within each block and compute the mean and sample SD of the three differences (variance denominator 2).
+Per-arm SDs cannot be added or pooled under an independence assumption to recover this paired SD.
+For C2 requirement pass, the three block differences are $7.1$, $3.7$, and $5.4$ percentage points, giving a mean of $5.4$ and a sample SD of $1.7$ percentage points.
+Table~\ref{tab:downstream-effects} reports the paired effects.
 Table~\ref{tab:downstream-detail} summarizes preference and per-arm outcomes.
+
+\begin{table}[!htbp]
+\caption{\textbf{Reference-free downstream checks.}
+Values are mean $\pm$ sample SD across three paired blocks of 200 inputs.
+C2 compares Seed- and EvalOpt-guided revisions; C3 compares their reward-trained policies.
+Browser outcomes are percentages; VQAScore and AlignScore are scaled scores ($\times100$).
+All measures are higher-is-better.}
+\label{tab:downstream-automatic}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}lYcccc@{}}
+\toprule
+& & \multicolumn{2}{c}{C2} & \multicolumn{2}{c}{C3}\\
+\cmidrule(lr){3-4}\cmidrule(l){5-6}
+Domain & Measure & Seed & EvalOpt & Seed & EvalOpt\\
+\midrule
+\input{figures/downstream/downstream_automatic}
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[!htbp]
+\caption{\textbf{Automatic-metric paired effects.}
+Values are mean $\pm$ sample SD of EvalOpt-minus-Seed differences across three paired blocks.
+Browser effects are in percentage points (pp); VQAScore and AlignScore effects are in score points on the 0--100 scale.}
+\label{tab:downstream-effects}
+\centering\small
+\begin{tabularx}{\linewidth}{@{}Ylcc@{}}
+\toprule
+Measure & Unit & C2 & C3\\
+\midrule
+\input{figures/downstream/downstream_effects}
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \subsection{Critique-guided refinement}
 C2 branches each fresh initial output $y_0$ into no-critic, Seed-critic, and EvalOpt-critic arms, each with two successive revisions.
@@ -823,7 +896,7 @@ Values equally weight the four domains.}
 \toprule
 Contrast & Pref. & Major regression & Invalid\\
 \midrule
-\input{figures/ideal_scenario/downstream_detail}
+\input{figures/results/downstream_detail}
 \bottomrule
 \end{tabularx}
 \end{table}

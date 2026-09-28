@@ -1,0 +1,21 @@
+{
+  "source": "Author revision request, 2026-09-26",
+  "status": "author_supplied_summaries_block_verification_pending",
+  "c1_block_ids": [11,22,33,44,55],
+  "c1_block_counts": null,
+  "c1_eligible_completeness": {"source": "author statement, not locally verified", "requested_equals_complete_equals_decisive": true, "missing": 0},
+  "c1": [
+    {"method":"Seed", "label":"Seed", "mean":61.5, "sd":1.8, "evalopt_minus":8.0},
+    {"method":"Fusion", "label":"Learned signal fusion", "mean":63.0, "sd":1.7, "evalopt_minus":6.5},
+    {"method":"SkillOpt", "label":"SkillOpt", "mean":63.9, "sd":1.1, "evalopt_minus":5.7},
+    {"method":"GEPA", "label":"GEPA", "mean":64.1, "sd":1.5, "evalopt_minus":5.5},
+    {"method":"Meta", "label":"Meta-Harness", "mean":63.7, "sd":2.0, "evalopt_minus":5.9},
+    {"method":"EvalOpt", "label":"EvalOpt", "mean":69.6, "sd":0.9, "evalopt_minus":null}
+  ],
+  "downstream": [
+    {"measure":"Render success", "unit":"pp", "C2":[0.0,0.5], "C3":[0.8,0.8], "C2_differences":null, "C3_differences":null},
+    {"measure":"Requirement pass", "unit":"points_percentage", "C2":[5.4,1.7], "C3":[5.9,2.5], "C2_differences":[7.1,3.7,5.4], "C3_differences":null},
+    {"measure":"VQAScore", "unit":"score_points", "C2":[3.1,0.3], "C3":[5.0,1.1], "C2_differences":null, "C3_differences":null},
+    {"measure":"AlignScore", "unit":"score_points", "C2":[2.6,1.6], "C3":[3.6,1.7], "C2_differences":null, "C3_differences":null}
+  ]
+}

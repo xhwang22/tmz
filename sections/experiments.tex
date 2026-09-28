@@ -1,23 +1,23 @@
 \section{Experiments}
 \label{sec:experiments}
-\input{figures/ideal_scenario/numbers}
 We evaluate whether EvalOpt improves evaluator--human agreement under matched budgets (C1), whether diagnostic continuation and disagreement-based mining contribute to that improvement, and whether evolved evaluators improve critique-guided refinement (C2) and reward-guided training (C3).
 
 \paragraph{Tasks and assessment.}
 C1 covers 19 equally weighted domains in four families, with a separate evaluator per domain (Figure~\ref{fig:c1-landscape}a).
 SV1 uses our human-annotated slides; Appendix~\ref{app:domains} specifies the other label sources.
 Original-input groups are split before Train-only mining; Val and Test remain fixed.
-The primary endpoint is decisive-pair accuracy: each output is scored independently, and a predicted tie counts as an error (Appendix~\ref{app:measurement}).
+The primary endpoint is decisive-pair accuracy: each output is scored independently, and a predicted tie counts as an error (Appendix~\ref{app:measurement}). Val/Test scores use the median of three executions per output, distinct from independent search runs.
 
 \paragraph{Comparisons and resources.}
 We compare EvalOpt with Seed, learned signal fusion, SkillOpt \citep{yang2026skillopt}, GEPA \citep{agrawal2026gepa}, and Meta-Harness \citep{lee2026metaharness}.
 All optimizers start from the same domain-specific Seed evaluator, informed by published rubrics and protocols (Table~\ref{tab:data-sources}).
 
 We preserve each optimizer's native search policy while matching human-feedback and search budgets.
-Search costs include diagnostics, rejected candidates, and Val checkpoints; end-to-end costs additionally include mining.
+Search costs include diagnostics, rejected candidates, and Val checkpoints; end-to-end costs additionally include mining and amortized controller tuning where applicable.
 GEPA can edit complete evaluation programs, while text-only EvalOpt matches SkillOpt's editable space.
 GPT-5.6 Sol executes Seed and evolved evaluators and powers all optimizers.
 We run five independent searches per adaptive condition.
+C1 accuracy for every method, including Seed and learned signal fusion, averages five scoring blocks on the same Test pairs.
 Mining combines rubric judgments from GPT-5.5, GPT-5.6 Sol, GPT-6 Astra, and Claude Sonnet 4.6 with applicable dimensional checks.
 Appendix~\ref{app:configuration} details resources and assessment.
 
@@ -41,7 +41,7 @@ New directions share initialization from the globally retained evaluator, resett
 
 \begin{figure}[!t]
 \centering
-\input{figures/search_dynamics_pending}
+\input{figures/search_dynamics}
 \caption{\textbf{Search ablations and downstream utility.}
 (a) Terminal Test accuracy changes relative to full EvalOpt at matched search and feedback budgets.
 (b) Tie-aware human preference for EvalOpt-guided versus Seed-guided outputs, using critique for C2 refinement and reward for C3 training. Bar lengths give percentage points above 50\% parity; endpoint labels give preference rates.
@@ -64,10 +64,10 @@ Independent reviews examine these responses in natural trajectories, including a
 We assess mining by Test accuracy at matched feedback budgets.
 Random sampling, uncertainty sampling, cross-model disagreement, and our mining share the pool and feedback format, restarting evolution at each budget (Figure~\ref{fig:acquisition}a).
 The anchor ablation compares full mining with spending all labels on ranked disagreements (Figure~\ref{fig:acquisition}b).
-A $2\times2$ comparison crosses random/mined feedback with fixed-patience/EvalOpt search to test their complementarity (Table~\ref{tab:mining-results}).
+A $2\times2$ comparison crosses random/mined feedback with fixed-patience/EvalOpt search to describe their separate effects and interaction, without a significance claim (Table~\ref{tab:mining-results}).
 
-A slide study requests only sampled dimensional judgments and overall preference.
-At matched initial rating budgets, mining and random sampling are compared on adjudication cost, usable feedback, Seed errors found, and held-out accuracy after revision (Appendix~\ref{app:slide-pilot}).
+The SV1 collection analysis compares random and mined question selection at the same annotation budget, requesting only sampled dimensions and overall preference.
+It reports decisive preferences, ties, and unresolved judgments for the same data used in C1 (Appendix~\ref{app:slide-pilot}).
 
 \subsection{Independent downstream utility}
 \label{sec:downstream-utility}
@@ -82,5 +82,5 @@ Blinded judgments compare outputs and assess regressions from $y_0$.
 C3 tests whether offline agreement gains translate into better policies under reward optimization.
 It compares Base with policies trained using frozen Seed or EvalOpt rewards under the same within-domain recipe \citep{hu2022lora,shao2024deepseekmath}.
 
-Blinded, rubric-guided human preference is the primary downstream endpoint, complemented by browser tests, caption SPICE, and summary ROUGE-L (Table~\ref{tab:readiness}).
+Blinded, rubric-guided human preference is the primary downstream endpoint, complemented by reference-free browser tests, image--caption alignment (VQAScore), and source--summary consistency (AlignScore; Table~\ref{tab:downstream-automatic}).
 Figure~\ref{fig:budget-tests}b reports domain results and equal-domain means; Appendix~\ref{app:downstream} details configurations, controls, and regressions.

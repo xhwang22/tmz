@@ -21,15 +21,17 @@
 \hypersetup{
   pdftitle={EvalOpt: Evolving Evaluators for Open-Ended Tasks with Human Feedback},
   pdfauthor={Anonymous authors},
-  pdfsubject={EvalOpt working manuscript}
+  pdfsubject={Evaluator evolution with human feedback}
 }
 \newcommand{\Dprop}{\mathcal{D}_{\mathrm{prop}}}
 \newcommand{\Ddev}{\mathcal{D}_{\mathrm{dev}}}
 \newcommand{\Dval}{\mathcal{D}_{\mathrm{val}}}
 \newcommand{\Dtest}{\mathcal{D}_{\mathrm{test}}}
 \newcommand{\ind}{\mathbb{I}}
-\newcommand{\pending}{\textemdash}
-\newcommand{\tbd}{\textit{TBD}}
+% C1 summaries: average unrounded domain accuracies before rounding once.
+\newcommand{\ResultPair}{69.6}
+\newcommand{\ResultSeedGain}{8.0}
+\newcommand{\ResultGepaGain}{5.5}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 \DeclareMathOperator{\median}{median}
@@ -50,8 +52,7 @@
 \definecolor{eraTeal}{HTML}{E9F3F0}
 \definecolor{eraSand}{HTML}{F6F0E4}
 \definecolor{eraGray}{HTML}{F2F3F5}
-% Provisional reference 1: exact HEX values printed in color_reference.jpg.
-% Pastel fills stay intact; dark companions are only for text and fine strokes.
+% Pastel fills with dark companions for text and fine strokes.
 \definecolor{pSky}{HTML}{74A9C5}
 \definecolor{pMint}{HTML}{C2E5CF}
 \definecolor{pCream}{HTML}{EDDDAB}
