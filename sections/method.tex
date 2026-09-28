@@ -15,7 +15,7 @@ For a task $x$, it evaluates each output $y$ separately, without seeing the comp
 An LLM-based \emph{evolution agent} diagnoses execution records and proposes revisions; each candidate is a complete revised evaluator.
 Appendix~\ref{app:runtime-config} specifies the shared implementation settings.
 
-Within a domain $D$ sharing an evaluation standard, the objective is agreement with human preferences on unseen inputs,
+Within a domain $D$ sharing an evaluation standard, the objective is agreement with reference judgments on unseen inputs,
 \begin{equation}
  \max_{\theta}\ J_D(\theta),\qquad
  J_D(\theta)=
@@ -23,7 +23,7 @@ Within a domain $D$ sharing an evaluation standard, the objective is agreement w
  \bigl[\bar s_\theta(x,y^+)>\bar s_\theta(x,y^-)\bigr].
  \label{eq:objective}
 \end{equation}
-Here $y^+$ is the human-preferred output and $\mathcal P_D$ is the domain distribution.
+Here $y^+$ is the output preferred under the domain's human annotation or source-label protocol, and $\mathcal P_D$ is the domain distribution.
 The deployment score $\bar s_\theta$ aggregates repeated executions by their median under a protocol frozen before search, with execution randomness $\xi$ (Appendix~\ref{app:measurement}).
 Original-input groups are split into Train, Val, and Test before mining.
 Only Train supplies labels, cases, and traces for revision.

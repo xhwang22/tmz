@@ -1,10 +1,11 @@
 \section{Experiments}
 \label{sec:experiments}
-We evaluate whether EvalOpt improves evaluator--human agreement under matched budgets (C1), whether diagnostic continuation and disagreement-based mining contribute to that improvement, and whether evolved evaluators improve critique-guided refinement (C2) and reward-guided training (C3).
+We evaluate whether EvalOpt improves agreement with domain reference judgments under matched budgets (C1), whether diagnostic continuation and disagreement-based mining contribute to that improvement, and whether evolved evaluators improve critique-guided refinement (C2) and reward-guided training (C3).
 
 \paragraph{Tasks and assessment.}
 C1 covers 19 equally weighted domains in four families, with a separate evaluator per domain (Figure~\ref{fig:c1-landscape}a).
 SV1 uses our human-annotated slides; Appendix~\ref{app:domains} specifies the other label sources.
+C1 reference judgments include direct pairwise preferences and pairwise orderings derived from source ratings or rankings; results therefore measure agreement with each domain's stated label protocol rather than a single uniform annotation construct.
 Original-input groups are split before Train-only mining; Val and Test remain fixed.
 The primary endpoint is decisive-pair accuracy: each output is scored independently, and a predicted tie counts as an error (Appendix~\ref{app:measurement}). Val/Test scores use the median of three executions per output, distinct from independent search runs.
 
@@ -75,7 +76,7 @@ It reports decisive preferences, ties, and unresolved judgments for the same dat
 C2 and C3 use the same four domains.
 C2 fixes the GPT-5.6 Sol generator; C3 updates Qwen3.5-9B with a frozen GPT-5.6 Sol reward evaluator.
 
-For each fresh output $y_0$, C2 compares no revision with three resource-matched revision arms: no-critic \citep{madaan2023selfrefine}, Seed-guided, and EvalOpt-guided.
+For each fresh output $y_0$, C2 compares no revision with three arms matched on the generator-revision budget: no-critic \citep{madaan2023selfrefine}, Seed-guided, and EvalOpt-guided.
 The no-critic arm tests revision without evaluator feedback.
 Blinded judgments compare outputs and assess regressions from $y_0$.
 

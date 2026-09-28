@@ -28,7 +28,7 @@ Selected feedback comes from compatible existing labels or new human annotation;
 Pairwise preferences do not specify the fine-grained criteria behind a choice \citep{ye2024flask,lv2026queryrubrics}.
 A useful correction may require several revisions: a proposed tool call may not execute, or its evidence may not affect scoring.
 An unsuccessful candidate therefore need not invalidate the correction.
-In the default evolution setup we tested, the model proposed revisions from previous candidates and outcomes, but often switched directions after unsuccessful early candidates.
+However, when each revision is proposed directly from previous candidates and outcomes, a non-improving candidate can prompt a new correction even when the current one is only partially realized.
 
 Depth-first evaluator evolution maintains an improvement direction---a target failure and proposed correction---across revisions (Figure~\ref{fig:teaser}, EvalOpt panel; Figure~\ref{fig:overview}, Evaluator evolution panel).
 Diagnostics guide repair or reconsideration even after candidate rollback.
@@ -36,7 +36,7 @@ Continuation is separate from candidate acceptance and global retention at valid
 Directions end on diagnostic-based decisions, rejection limits, or resource limits.
 
 We compare EvalOpt with Seed, learned signal fusion, SkillOpt, GEPA, and Meta-Harness across 19 equally weighted domains spanning four task families (Table~\ref{tab:main-alignment}).
-Held-out decisive-pair accuracy measures whether independently scored outputs match human preferences under common feedback and search budgets.
+Held-out decisive-pair accuracy measures whether independently scored outputs match each domain's reference judgments under common feedback and search budgets.
 Webpage generation, image captioning, summarization, and research-idea generation support search controls, sampling comparisons, and independently judged downstream applications.
 
 EvalOpt reaches \ResultPair\% accuracy across 19 domains, exceeding Seed by \ResultSeedGain{} percentage points and the strongest baseline, GEPA, by \ResultGepaGain{} points.
