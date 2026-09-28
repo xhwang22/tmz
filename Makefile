@@ -6,7 +6,7 @@ PDFLATEX ?= pdflatex
 BIBTEX ?= bibtex
 TEXFLAGS := -interaction=nonstopmode -halt-on-error -file-line-error -no-shell-escape -recorder -output-directory=build
 INPUTS := Makefile main.tex preamble.tex references.bib iclr2027_conference.sty iclr2027_conference.bst \
-          $(wildcard sections/*.tex figures/*.tex figures/*.pdf figures/results/*.tex figures/results/*.pdf figures/mining_diagnostics/*.tex figures/mining_diagnostics/*.pdf figures/downstream/*.tex output/fig2-svg/*.pdf)
+		  $(wildcard sections/*.tex figures/*.tex figures/*.pdf figures/results/*.tex figures/results/*.pdf figures/mining_diagnostics/*.tex figures/mining_diagnostics/*.pdf figures/downstream/*.tex)
 
 .PHONY: all clean
 all: paper.pdf
