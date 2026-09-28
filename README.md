@@ -2,13 +2,9 @@
 
 **Evolving Evaluators for Open-Ended Tasks with Human Feedback**
 
-This repository contains the ICLR 2027 manuscript source and its compiled PDF.
+This repository contains the ICLR 2027 manuscript source.
 The paper studies how feedback from people can be used to evolve executable
 evaluation programs for open-ended generation tasks.
-
-## Read the paper
-
-The latest compiled manuscript is available as [`paper.pdf`](paper.pdf).
 
 ## Build
 
@@ -19,8 +15,10 @@ The manuscript requires GNU Make and a TeX Live installation containing
 make clean && make
 ```
 
-The build writes intermediate files to `build/` and copies the resulting PDF to
-`paper.pdf`. The entry point is `main.tex`.
+The build writes intermediate files to `build/` and generates `paper.pdf` at the
+repository root. The generated PDF is intentionally not tracked because
+Overleaf's GitHub synchronization only maintains manuscript source files. The
+entry point is `main.tex`.
 
 ## Repository layout
 
